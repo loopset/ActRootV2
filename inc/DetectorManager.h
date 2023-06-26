@@ -6,8 +6,8 @@ A class holding all the detector info and the main interface to the operations
 performed on its data
 */
 
+#include "TTree.h"
 #include "VDetector.h"
-#include "InputData.h"
 
 #include <string>
 #include <unordered_map>
@@ -27,7 +27,9 @@ namespace ActRoot
         ~DetectorManager() {};
 
         void ReadConfiguration(const std::string& file);
-        void InitializeDataInputRaw(std::shared_ptr<InputData> input);
+        void ReadCalibrations(const std::string& file);
+        void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);
+        void InitializeDataOutput(std::shared_ptr<TTree> input, int run);
     };
 }
 #endif

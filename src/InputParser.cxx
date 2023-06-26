@@ -152,6 +152,7 @@ void ActRoot::InputParser::ReadFile(const std::string &filename)
         else
             continue;        
     }
+    file.close();
 }
 
 bool ActRoot::InputParser::IsComment(const std::string& line)

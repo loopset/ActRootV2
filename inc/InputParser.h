@@ -30,6 +30,7 @@ namespace ActRoot
 
         void AddLine(const std::string& line);
         std::string GetBlockName() const {return fBlockName;}
+        bool CheckTokenExists(const std::string& token);
         std::string GetString(const std::string& token);
         int GetInt(const std::string& token);
         std::vector<std::string> GetStringVector(const std::string& token);
@@ -38,7 +39,6 @@ namespace ActRoot
     private:
         std::string GetToken(const std::string& line);
         void GetValues(const std::string& line, const std::string& token);
-        bool CheckTokenExists(const std::string& token);
         bool IsVector(const std::string& token);
         int StringToInt(const std::string& val);
     };

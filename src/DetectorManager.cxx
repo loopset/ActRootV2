@@ -34,3 +34,24 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
         fDetectors[fDetDatabase[det]]->ReadConfiguration(parser.GetBlock(det));
     }
 }
+
+void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
+{
+    ActRoot::InputParser parser {file};
+    for(const auto& det : parser.GetBlockHeaders())
+    {
+        fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
+    }
+}
+
+void ActRoot::DetectorManager::InitializeDataInputRaw(std::shared_ptr<TTree> input, int run)
+{
+    for(auto& det : fDetectors)
+        det.second->InitInputRawData(input, run);
+}
+
+void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input, int run)
+{
+    for(auto& det : fDetectors)
+        det.second->InitOutputData();
+}
