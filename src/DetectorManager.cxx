@@ -55,3 +55,12 @@ void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input
     for(auto& det : fDetectors)
         det.second->InitOutputData();
 }
+
+void ActRoot::DetectorManager::BuildEventData()
+{
+    for(auto& det : fDetectors)
+    {
+        det.second->ClearEventData();
+        det.second->BuildEventData();
+    }
+}

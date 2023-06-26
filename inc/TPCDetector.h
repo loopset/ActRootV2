@@ -23,7 +23,7 @@ namespace ActRoot
         int fREBINZ {1};
         int fNB_COBO {18};
         int fNB_ASAD {4};
-        int fNB_AGET {5};
+        int fNB_AGET {4};
         int fNB_CHANNEL {68};
 
     public:
@@ -61,6 +61,9 @@ namespace ActRoot
         };
         virtual ~TPCDetector() = default;
 
+        //Getters
+        const TPCParameters& GetTPCPars() const {return fPars;}
+
         virtual void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         // void AddParameterToCalibrationManager() override;
@@ -70,10 +73,13 @@ namespace ActRoot
         // void InitOutputPhysics() override;
         virtual void BuildEventData() override;
         // void BuildEventPhysics() override;
-        // void ClearEventData() override;
+        void ClearEventData() override;
         // void ClearEventPhysics() override;
         ////////////////////////////////
         //ActTPCData* GetDataPointer() { return fData; }
+
+    private:
+        void ReadHits(ReducedData& coas, const int& where, int& hitID);
     };
 }
 

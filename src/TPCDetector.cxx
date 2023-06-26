@@ -2,10 +2,13 @@
 
 #include "CalibrationManager.h"
 #include "InputParser.h"
+#include "Math/Point3D.h"
 #include "TPCData.h"
 #include "TPCLegacyData.h"
 #include "TTree.h"
 
+#include <cstddef>
+#include <exception>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -46,7 +49,7 @@ void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
     //Add LookUp table
     CalibrationManager::Get()->ReadLookUpTable(config->GetString("LookUp"));
     //Pad align table
-    //CalibrationManager::Get()->ReadPadAlign(config->GetString("PadAlign"));    
+    CalibrationManager::Get()->ReadPadAlign(config->GetString("PadAlign"));    
 }
 
 void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
@@ -67,7 +70,68 @@ void ActRoot::TPCDetector::InitOutputData()
     fData = new TPCData;
 }
 
+void ActRoot::TPCDetector::ClearEventData()
+{
+    fData->Clear();
+}
+
 void ActRoot::TPCDetector::BuildEventData()
 {
-    
+    int hitID {};
+    int hitIDin {};
+    for(auto& coas : fMEvent->CoboAsad)
+    {
+        //locate channel!
+        int co {coas.globalchannelid >> 11};
+        int as {(coas.globalchannelid - (co << 11)) >> 9};
+        int ag {(coas.globalchannelid - (co << 11) - (as << 9)) >> 7};
+        int ch {(coas.globalchannelid - (co << 11) - (as << 9)
+                 - (ag << 7))};
+        int where {co * fPars.GetNBASAD() * fPars.GetNBAGET() * fPars.GetNBCHANNEL()
+        + as * fPars.GetNBAGET() * fPars.GetNBCHANNEL()
+        + ag * fPars.GetNBCHANNEL()
+        + ch};
+
+        //Read hits
+        if((co != 31) && (co != 16))
+        {
+            ReadHits(coas, where, hitIDin);
+            hitID++;
+        }
+    }
+}
+
+void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hitID)
+{
+    int padx {}; int pady {};
+    try
+    {
+        padx = CalibrationManager::Get()->ApplyLookUp(where, 4);
+        pady = CalibrationManager::Get()->ApplyLookUp(where, 5);
+    }
+    catch(std::exception& e)
+    {
+        throw std::runtime_error("Error while reading hits in TPCDetector -> LT table out of range, check ACQ parameters");
+    }
+    if(pady == -1)//unused channel
+        return;
+    for(size_t i = 0, maxI = coas.peakheight.size(); i < maxI; i++)
+    {
+        float padz {coas.peaktime[i]};
+        if(padz < 0)
+            continue;
+        float qraw {coas.peakheight[i]};
+        float qcal {static_cast<float>(CalibrationManager::Get()->ApplyPadAlignment(where, qraw))};
+        
+        //Apply rebinning (if desired)
+        int binZ {(int)padz / fPars.GetREBINZ()};
+        padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
+        
+        //Build Voxel
+        Voxel hit {hitID, ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
+        fData->fVoxels.push_back(hit);
+        
+        //Increase hit id
+        hitID++;        
+    }
 }

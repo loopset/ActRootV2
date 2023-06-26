@@ -2,6 +2,10 @@
 #include <ios>
 #include <iostream>
 
+ActRoot::Voxel::Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation)
+    : fID(id), fPosition(pos), fCharge(charge), fIsSaturated(hasSaturation)
+{}
+
 void ActRoot::Voxel::Print() const
 {
     std::cout<<"== ActVoxel id "<<fID<<" =="<<'\n';

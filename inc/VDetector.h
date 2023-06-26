@@ -35,7 +35,7 @@ namespace ActRoot
         // virtual void BuildEventPhysics(){};
 
         // //Clear data
-        // virtual void ClearEventData() {};
+        virtual void ClearEventData() = 0;
         // virtual void ClearEventPhysics() {};
     };
 }
