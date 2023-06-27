@@ -4,6 +4,7 @@
 #include "TPCData.h"
 #include "TPCLegacyData.h"
 #include "InputData.h"
+#include "TTree.h"
 #include "VDetector.h"
 
 #include <memory>
@@ -69,7 +70,7 @@ namespace ActRoot
         // void AddParameterToCalibrationManager() override;
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
         // void InitInputData() override;
-        virtual void InitOutputData() override;
+        virtual void InitOutputData(std::shared_ptr<TTree> tree) override;
         // void InitOutputPhysics() override;
         virtual void BuildEventData() override;
         // void BuildEventPhysics() override;

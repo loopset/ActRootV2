@@ -50,10 +50,10 @@ void ActRoot::DetectorManager::InitializeDataInputRaw(std::shared_ptr<TTree> inp
         det.second->InitInputRawData(input, run);
 }
 
-void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input, int run)
+void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input)
 {
     for(auto& det : fDetectors)
-        det.second->InitOutputData();
+        det.second->InitOutputData(input);
 }
 
 void ActRoot::DetectorManager::BuildEventData()

@@ -12,16 +12,6 @@
 #include <utility>
 #include <vector>
 
-ActRoot::InputData::InputData(const std::string& treeName)
-    : fTreeName(treeName)
-{
-}
-
-void ActRoot::InputData::SetTreeName(const std::string &treeName)
-{
-    fTreeName = treeName;
-}
-
 void ActRoot::InputData::AddFile(int run, const std::string &file)
 {
     if(fTreeName.empty())
@@ -30,6 +20,8 @@ void ActRoot::InputData::AddFile(int run, const std::string &file)
     std::cout<<"Adding TTree "<<fTreeName<<" for run "<<run<<" in file "<<'\n';
     std::cout<<"  "<<file<<'\n';
     fFiles[run] = std::make_shared<TFile>(file.data());
+    if(fFiles[run]->IsZombie())
+        throw std::runtime_error("This file isZombie!");
     fTrees[run] = std::shared_ptr<TTree>(fFiles[run]->Get<TTree>(fTreeName.data()));
 }
 
@@ -38,15 +30,25 @@ void ActRoot::InputData::ReadConfiguration(const std::string &file)
     ActRoot::InputParser parser {file};
     auto block {parser.GetBlock("InputData")};
     //Keys available in file
-    std::vector<std::string> keys {"FilePath", "FileBegin", "FileList", "FileEnd"};
+    std::vector<std::string> keys {"TreeName", "FilePath", "FileBegin", "FileList", "FileEnd"};
     //Set input data
+    auto tree {block->GetString("TreeName")};
+    SetTreeName(tree);
     auto path {block->GetString("FilePath")};
     auto name {block->GetString("FileBegin")};
     fRuns = block->GetIntVector("FileList");
-    auto end {block->GetString("FileEnd")};
+    std::string end {};
+    if(block->CheckTokenExists("FileEnd", true))
+        end = block->GetString("FileEnd");
+    
     for(const auto& run : fRuns)
     {
         auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), name.c_str(), run, end.c_str())};
         AddFile(run, fullname.Data());
     }  
+}
+
+void ActRoot::InputData::GetEntry(int run, int entry)
+{
+    fTrees[run]->GetEntry(entry);
 }

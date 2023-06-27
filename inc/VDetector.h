@@ -27,7 +27,7 @@ namespace ActRoot
         // //Initialize data input and output
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) = 0;
         // virtual void InitInputData(){};
-        virtual void InitOutputData() = 0;
+        virtual void InitOutputData(std::shared_ptr<TTree> tree) = 0;
         // virtual void InitOutputPhysics(){};
 
         // //Build events

@@ -60,10 +60,10 @@ void ActRoot::InputBlock::AddLine(const std::string &line)
     GetValues(line, token);
 }
 
-bool ActRoot::InputBlock::CheckTokenExists(const std::string& token)
+bool ActRoot::InputBlock::CheckTokenExists(const std::string& token, bool soft)
 {
     bool exists {static_cast<bool>(fValues.count(token))};
-    if(!exists)
+    if(!exists && !soft)
         throw std::runtime_error("Token " + token + " does not exit in InputBlock");
     return exists;
 }

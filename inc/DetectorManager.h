@@ -29,7 +29,7 @@ namespace ActRoot
         void ReadConfiguration(const std::string& file);
         void ReadCalibrations(const std::string& file);
         void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);
-        void InitializeDataOutput(std::shared_ptr<TTree> input, int run);
+        void InitializeDataOutput(std::shared_ptr<TTree> output);
         void BuildEventData();
     };
 }

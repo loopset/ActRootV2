@@ -39,7 +39,7 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     std::vector<std::string> keys {"Type", "RebinZ"};
     //Init detector params
     fPars = TPCParameters(config->GetString("Type"));
-    if(config->CheckTokenExists("RebinZ"))
+    if(config->CheckTokenExists("RebinZ", true))
         fPars.SetREBINZ(config->GetInt("RebinZ"));
 }
 
@@ -63,11 +63,12 @@ void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run
     //std::cout<<"Initializing TPC input raw data at run "<<run<<'\n';
 }
 
-void ActRoot::TPCDetector::InitOutputData()
+void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
 {
     if(fData)
         delete fData;
     fData = new TPCData;
+    tree->Branch("data", &fData);
 }
 
 void ActRoot::TPCDetector::ClearEventData()
