@@ -28,4 +28,7 @@
 #pragma link C++ class ActRoot::CalibrationManager;
 
 #pragma link C++ class ActRoot::EventPainter;
+
+#pragma link C++ class ActRoot::InputIterator;
+#pragma link C++ class ActRoot::InputWrapper;
 #endif

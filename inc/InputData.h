@@ -12,13 +12,36 @@
 
 namespace ActRoot
 {
+    //forward declaration
+    class InputData;
+    class InputIterator
+    {
+    private:
+        std::map<int, int>::iterator fRunIt;
+        int fCurrentRun;
+        int fCurrentEntry;
+        std::map<int, int> fEntries;
+
+    public:
+        InputIterator() = default;
+        InputIterator(const InputData* input);
+        ~InputIterator() = default;
+
+        bool Previous();
+        bool Next();
+        bool GoTo(int run, int entry);
+        std::pair<int, int> GetCurrentRunEntry() const {return {fCurrentRun, fCurrentEntry};}
+
+    private:
+        bool CheckEntryIsInRange(int run, int entry);
+    };
+    
     class InputData
     {
     private:
         std::vector<int> fRuns;
         std::map<int, std::shared_ptr<TFile>> fFiles;
         std::map<int, std::shared_ptr<TTree>> fTrees;
-        //std::shared_ptr<TChain> fChain;
         std::string fTreeName;
         
     public:
@@ -34,6 +57,7 @@ namespace ActRoot
         std::shared_ptr<TTree> GetTree(int run) const {return fTrees.at(run);}
         std::vector<int> GetTreeList() const {return fRuns;}
         void GetEntry(int run, int entry);
+        int GetNEntries(int run) const {return fTrees.at(run)->GetEntries();}
     };
 }
 #endif
