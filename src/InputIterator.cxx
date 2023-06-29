@@ -97,37 +97,46 @@ ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
 {
 }
 
-void ActRoot::InputWrapper::GoNext()
+bool ActRoot::InputWrapper::GoNext()
 {
     auto [runBef, _] = fIt.GetCurrentRunEntry();
-    fIt.Next();
+    auto ok = fIt.Next();
     auto [run, entry] = fIt.GetCurrentRunEntry();
+    if(!ok)
+        return ok;
     if(runBef != run)
     {
         fInput->GetTree(run)->SetBranchAddress("data", &fData);
     }
     fInput->GetEntry(run, entry);
+    return ok;
 }
 
-void ActRoot::InputWrapper::GoPrevious()
+bool ActRoot::InputWrapper::GoPrevious()
 {
     auto [runBef, _] = fIt.GetCurrentRunEntry();
-    fIt.Previous();
+    auto ok = fIt.Previous();
     auto [run, entry] = fIt.GetCurrentRunEntry();
+    if(!ok)
+        return ok;
     if(runBef != run)
     {
         fInput->GetTree(run)->SetBranchAddress("data", &fData);
     }
     fInput->GetEntry(run, entry);
+    return ok;
 }
 
-void ActRoot::InputWrapper::GoTo(int run, int entry)
+bool ActRoot::InputWrapper::GoTo(int run, int entry)
 {
     auto [runBef, _] = fIt.GetCurrentRunEntry();
-    fIt.GoTo(run, entry);
+    auto ok = fIt.GoTo(run, entry);
+    if(!ok)
+        return ok;
     if(runBef != run)
     {
         fInput->GetTree(run)->SetBranchAddress("data", &fData);
     }
     fInput->GetEntry(run, entry);
+    return ok;
 }

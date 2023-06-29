@@ -43,9 +43,9 @@ namespace ActRoot
         InputWrapper(InputData* input);
         ~InputWrapper() = default;
 
-        void GoNext();
-        void GoPrevious();
-        void GoTo(int run, int entry);
+        bool GoNext();
+        bool GoPrevious();
+        bool GoTo(int run, int entry);
         TPCData* GetCurrentData() {return fData;}
         std::pair<int, int> GetCurrentStatus() const {return fIt.GetCurrentRunEntry();}
     };

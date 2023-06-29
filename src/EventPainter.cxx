@@ -97,7 +97,9 @@ void ActRoot::EventPainter::DoFill()
 void ActRoot::EventPainter::DoPreviousEvent()
 {
     DoReset();
-    fWrap.GoPrevious();
+    auto ok = fWrap.GoPrevious();
+    if(!ok)
+        return;
     DoFill();
     DoDraw();
 }
@@ -105,7 +107,21 @@ void ActRoot::EventPainter::DoPreviousEvent()
 void ActRoot::EventPainter::DoNextEvent()
 {
     DoReset();
-    fWrap.GoNext();
+    auto ok = fWrap.GoNext();
+    if(!ok)
+        return;
+    DoFill();
+    DoDraw();
+}
+
+void ActRoot::EventPainter::DoGoTo()
+{
+    DoReset();
+    auto run {fRunButton->GetIntNumber()};
+    auto entry {fEntryButton->GetIntNumber()};
+    auto ok = fWrap.GoTo(run, entry);
+    if(!ok)
+        return;
     DoFill();
     DoDraw();
 }
@@ -142,7 +158,7 @@ void ActRoot::EventPainter::InitButtons()
 {
     //Buttons bar
     fButtonsFrame = new TGHorizontalFrame(this, 200, 40);
-    auto* lb = new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4);
+    auto* lb = new TGLayoutHints(kLHintsCenterX, 5, 5, 4, 3);
     //1->Exit button
     TGTextButton* exit = new TGTextButton(fButtonsFrame, "&Exit ");
     exit->Connect("Pressed()", "ActRoot::EventPainter", this, "DoExit()");
@@ -194,17 +210,6 @@ void ActRoot::EventPainter::InitEntryButtons()
     fButtonsFrame->MapWindow();
 }
 
-void ActRoot::EventPainter::DoGoTo()
-{
-    DoReset();
-    auto run {fRunButton->GetIntNumber()};
-    auto entry {fEntryButton->GetIntNumber()};
-    fWrap.GoTo(run, entry);
-    DoFill();
-    DoDraw();
-    //std::cout<<"Going to run = "<<run<<" entry = "<<entry<<'\n';
-}
-
 void ActRoot::EventPainter::InitStatusBars()
 {
     //Status bar
@@ -236,7 +241,7 @@ void ActRoot::EventPainter::InitTabs()
     AddFrame(fTabManager, new TGLayoutHints(kLHintsTop | kLHintsExpandX |
                                             kLHintsExpandY, 2, 2, 0, 0));
     //Tab 1
-    fTab1 = fTabManager->AddTab("2D pads");
+    fTab1 = fTabManager->AddTab("2D histos");
     fFrame1 = new TGCompositeFrame(fTab1, 500, 400, kHorizontalFrame);
     fTab1->AddFrame(fFrame1, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
     //Tab 2
