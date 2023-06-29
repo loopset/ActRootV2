@@ -11,31 +11,7 @@
 #include <vector>
 
 namespace ActRoot
-{
-    //forward declaration
-    class InputData;
-    class InputIterator
-    {
-    private:
-        std::map<int, int>::iterator fRunIt;
-        int fCurrentRun;
-        int fCurrentEntry;
-        std::map<int, int> fEntries;
-
-    public:
-        InputIterator() = default;
-        InputIterator(const InputData* input);
-        ~InputIterator() = default;
-
-        bool Previous();
-        bool Next();
-        bool GoTo(int run, int entry);
-        std::pair<int, int> GetCurrentRunEntry() const {return {fCurrentRun, fCurrentEntry};}
-
-    private:
-        bool CheckEntryIsInRange(int run, int entry);
-    };
-    
+{    
     class InputData
     {
     private:

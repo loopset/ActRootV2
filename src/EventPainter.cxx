@@ -2,20 +2,26 @@
 
 #include "Buttons.h"
 #include "GuiTypes.h"
-#include "InputData.h"
-#include "InputParser.h"
 #include "TCanvas.h"
+#include "TCollection.h"
 #include "TGFrame.h"
 #include "TGLayout.h"
 #include "TGStatusBar.h"
+#include "TGTab.h"
 #include "TGWindow.h"
 #include "TH2.h"
-#include "TPCData.h"
-#include "TRootEmbeddedCanvas.h"
 #include "TApplication.h"
 #include "TGText.h"
 #include "TGButton.h"
 #include "TString.h"
+#include "TRootCanvas.h"
+#include "TGToolBar.h"
+#include "TGNumberEntry.h"
+
+#include "InputData.h"
+#include "InputParser.h"
+#include "TPCData.h"
+#include "InputIterator.h"
 
 #include <cstdio>
 #include <iostream>
@@ -23,40 +29,12 @@
 #include <string>
 #include <vector>
 
-ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
-    : fInput(input), fIt(ActRoot::InputIterator(input)), fData(new ActRoot::TPCData)
+void ActRoot::EventPainter::DoExit()
 {
+    std::cout<<"Exiting ActRoot::EventPainter..."<<'\n';
+    gApplication->Terminate();
 }
 
-void ActRoot::InputWrapper::GoNext()
-{
-    auto [runBef, _] = fIt.GetCurrentRunEntry();
-    fIt.Next();
-    auto [run, entry] = fIt.GetCurrentRunEntry();
-    if(runBef != run)
-    {
-        fInput->GetTree(run)->SetBranchAddress("data", &fData);
-    }
-    fInput->GetEntry(run, entry);
-}
-
-void ActRoot::InputWrapper::GoPrevious()
-{
-    auto [runBef, _] = fIt.GetCurrentRunEntry();
-    fIt.Previous();
-    auto [run, entry] = fIt.GetCurrentRunEntry();
-    if(runBef != run)
-    {
-        fInput->GetTree(run)->SetBranchAddress("data", &fData);
-    }
-    fInput->GetEntry(run, entry);
-}
-
-ActRoot::EventPainter::~EventPainter()
-{
-    Cleanup();
-    delete fEmCanv;
-}
 
 void ActRoot::EventPainter::CloseWindow()
 {
@@ -67,14 +45,16 @@ void ActRoot::EventPainter::DoDraw()
 {
     for(auto& [idx, h] : fHist2d)
     {
-        fCanv->cd(idx);
+        fCanv1->cd(idx);
         h->Draw("colz");
     }
-    fCanv->Update();
+    fCanv1->Update();
     //Set info to status bar
     auto [run, entry] = fWrap.GetCurrentStatus();
     auto toStatusBar {TString::Format("run = %d entry = %d", run, entry)};
     fStatusThis->SetText(toStatusBar.Data(), 1);
+    fRunButton->SetNumber(run, false);
+    fEntryButton->SetNumber(entry, false);
 }
 
 void ActRoot::EventPainter::ResetHistograms()
@@ -85,14 +65,14 @@ void ActRoot::EventPainter::ResetHistograms()
         h->Reset();
         h->GetXaxis()->UnZoom();
         h->GetYaxis()->UnZoom();
-        fCanv->cd(key)->Modified();
+        fCanv1->cd(key)->Modified();
     }
 }
 
 void ActRoot::EventPainter::ResetCanvas()
 {
     //fCanv->Clear("D");
-    fCanv->Update();
+    fCanv1->Update();
 }
 
 void ActRoot::EventPainter::DoReset()
@@ -130,28 +110,6 @@ void ActRoot::EventPainter::DoNextEvent()
     DoDraw();
 }
 
-void ActRoot::EventPainter::DoExit()
-{
-    std::cout<<"Exiting ActRoot::EventPainter..."<<'\n';
-    gApplication->Terminate();
-}
-
-
-void ActRoot::EventPainter::ReadConfiguration(const std::string &file)
-{
-    ActRoot::InputParser parser {file};
-    auto config {parser.GetBlock("Actar")};
-    ftpc = TPCParameters(config->GetString("Type"));
-    if(config->CheckTokenExists("RebinZ", true))
-        ftpc.SetREBINZ(config->GetInt("RebinZ"));
-}
-
-void ActRoot::EventPainter::InitCanvas()
-{
-    fCanv = new TCanvas("cPainter", 10, 10, fEmCanv->GetCanvasWindowId());
-    fCanv->Divide(3, 2);
-}
-
 void ActRoot::EventPainter::Init2DHistograms()
 {
     //Pad
@@ -180,15 +138,15 @@ void ActRoot::EventPainter::CanvasToStatusBar(int event, int px, int py, TObject
     fStatusCanv->SetText(text3, 1);
 }
 
-ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, unsigned int height)
-    : TGMainFrame(window, width, height)
+void ActRoot::EventPainter::InitButtons()
 {
     //Buttons bar
     fButtonsFrame = new TGHorizontalFrame(this, 200, 40);
+    auto* lb = new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4);
     //1->Exit button
     TGTextButton* exit = new TGTextButton(fButtonsFrame, "&Exit ");
     exit->Connect("Pressed()", "ActRoot::EventPainter", this, "DoExit()");
-    fButtonsFrame->AddFrame(exit, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
+    fButtonsFrame->AddFrame(exit, lb);
     //2->Draw
     // TGTextButton* draw = new TGTextButton(fButtonsFrame, "&Draw ");
     // draw->Connect("Pressed()", "ActRoot::EventPainter", this, "DoDraw()");
@@ -196,33 +154,146 @@ ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, 
     //3->Reset
     TGTextButton* reset = new TGTextButton(fButtonsFrame, "&Reset ");
     reset->Connect("Pressed()", "ActRoot::EventPainter", this, "DoReset()");
-    fButtonsFrame->AddFrame(reset, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
-    //4->Next
-    TGTextButton* next = new TGTextButton(fButtonsFrame, "&Next ");
-    next->Connect("Pressed()", "ActRoot::EventPainter", this, "DoNextEvent()");
-    fButtonsFrame->AddFrame(next, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
-    //5->Previous
+    fButtonsFrame->AddFrame(reset, lb);
+    //4->Previous
     TGTextButton* previous = new TGTextButton(fButtonsFrame, "&Previous ");
     previous->Connect("Pressed()", "ActRoot::EventPainter", this, "DoPreviousEvent()");
-    fButtonsFrame->AddFrame(previous, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
-    AddFrame(fButtonsFrame, new TGLayoutHints(kLHintsCenterX, 2, 2, 2, 2));
-    //Embebbed canvas
-    fEmCanv = new TRootEmbeddedCanvas(0, this, 500, 400);
-    InitCanvas();
-    fEmCanv->AdoptCanvas(fCanv);
+    fButtonsFrame->AddFrame(previous, lb);
+    //5->Next
+    TGTextButton* next = new TGTextButton(fButtonsFrame, "&Next ");
+    next->Connect("Pressed()", "ActRoot::EventPainter", this, "DoNextEvent()");
+    fButtonsFrame->AddFrame(next, lb);
+    //Add frame
+    AddFrame(fButtonsFrame, new TGLayoutHints(kLHintsCenterX, 5, 5, 2, 1));
+    //Map
+    fButtonsFrame->MapSubwindows();
+    fButtonsFrame->MapWindow();
+}
+
+void ActRoot::EventPainter::InitEntryButtons()
+{
+    auto* lb = new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4);
+    //Run
+    fRunButton = new TGNumberEntry(fButtonsFrame, 0, 9,999, TGNumberFormat::kNESInteger,
+                                   TGNumberFormat::kNEANonNegative,
+                                   TGNumberFormat::kNELLimitMinMax,
+                                   0, 99999);
+    //fRunButton->Connect("ValueSet(Long_t)", "ActRoot::EventPainter", this, "DoSetRun()");
+    fButtonsFrame->AddFrame(fRunButton, lb);
+    //Entry
+    fEntryButton = new TGNumberEntry(fButtonsFrame, 0, 9, 999, TGNumberFormat::kNESInteger,
+                                     TGNumberFormat::kNEANonNegative,
+                                     TGNumberFormat::kNELLimitMinMax,
+                                     0, 99999);
+    fButtonsFrame->AddFrame(fEntryButton, lb);
+    //Go to
+    TGTextButton* gooto = new TGTextButton(fButtonsFrame, "&GoTo ");
+    gooto->Connect("Pressed()", "ActRoot::EventPainter", this, "DoGoTo()");
+    fButtonsFrame->AddFrame(gooto, lb);
+    fButtonsFrame->MapSubwindows();
+    fButtonsFrame->MapWindow();
+}
+
+void ActRoot::EventPainter::DoGoTo()
+{
+    DoReset();
+    auto run {fRunButton->GetIntNumber()};
+    auto entry {fEntryButton->GetIntNumber()};
+    fWrap.GoTo(run, entry);
+    DoFill();
+    DoDraw();
+    //std::cout<<"Going to run = "<<run<<" entry = "<<entry<<'\n';
+}
+
+void ActRoot::EventPainter::InitStatusBars()
+{
+    //Status bar
+    fStatusFrame = new TGHorizontalFrame(this, 50, 10);
+    //1->For painter info
+    int pars2[] = {20, 80};
+    fStatusThis = new TGStatusBar(fStatusFrame, 50, 10, kHorizontalFrame);
+    fStatusThis->SetParts(pars2, 2);
+    fStatusThis->Draw3DCorner(false);
+    fStatusFrame->AddFrame(fStatusThis, new TGLayoutHints(kLHintsExpandX, 2, 2, 0, 0));
+    //2-> For canvas info
+    int pars1 [] = {20, 80};
+    fStatusCanv = new TGStatusBar(fStatusFrame, 50, 10, kVerticalFrame);
+    fStatusCanv->SetParts(pars1, 2);
+    fStatusCanv->Draw3DCorner(false);
+    fStatusFrame->AddFrame(fStatusCanv, new TGLayoutHints(kLHintsTop | kLHintsExpandX, 2, 2, 0, 0));
+    //Add to global window
+    AddFrame(fStatusFrame, new TGLayoutHints(kLHintsExpandX, 2, 2, 1, 2));
+    //Default text
+    fStatusThis->SetText("ActRootv2", 0);
+    //Map
+    fStatusFrame->MapSubwindows();
+    fStatusFrame->MapWindow();
+}
+
+void ActRoot::EventPainter::InitTabs()
+{
+    fTabManager = new TGTab(this, 500, 400);
+    AddFrame(fTabManager, new TGLayoutHints(kLHintsTop | kLHintsExpandX |
+                                            kLHintsExpandY, 2, 2, 0, 0));
+    //Tab 1
+    fTab1 = fTabManager->AddTab("2D pads");
+    fFrame1 = new TGCompositeFrame(fTab1, 500, 400, kHorizontalFrame);
+    fTab1->AddFrame(fFrame1, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
+    //Tab 2
+    fTab2 = fTabManager->AddTab("future");
+    fFrame2 = new TGCompositeFrame(fTab2, 500, 400, kHorizontalFrame);
+    fTab2->AddFrame(fFrame2, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
+    //Map all
+    fTabManager->MapSubwindows();
+    fTabManager->MapWindow();
+}
+
+void ActRoot::EventPainter::InitTab1()
+{
+    //Add TCanvas
+    fFrame1->SetEditable(true);
+    fCanv1 = new TCanvas("cPainter1", "2D pads", 500, 400);
+    fCanv1->ToggleToolBar();
+    fCanv1->ToggleEventStatus();
+    fCanv1->Divide(3, 2);
+    fFrame1->SetEditable(false);
     //Connect status bar
-    fCanv->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
+    fCanv1->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
                    this, "CanvasToStatusBar(int,int,int,TObject*)");
-    AddFrame(fEmCanv, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 0, 0, 1, 1));
+}
+
+void ActRoot::EventPainter::InitTab2()
+{
+    ;
+}
+
+ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, unsigned int height)
+    : TGMainFrame(window, width, height)
+{
+    //Init buttons
+    InitButtons();
+    InitEntryButtons();
+    //Create Tab structure
+    InitTabs();
+    //Init Tab1
+    InitTab1();
+    //Init Tab2
+    InitTab2();
     //Status bars
     InitStatusBars();
-    fStatusThis->SetText("ActRootv2", 0);
-    
+
     //Other configs
+    //SetCleanup(kDeepCleanup);
     SetWindowName("ActRoot EventPainter");
-    MapSubwindows();
+    //MapSubwindows();
+    Layout();
     Resize(GetDefaultSize());
     MapWindow();
+}
+
+ActRoot::EventPainter::~EventPainter()
+{
+    Cleanup();
 }
 
 void ActRoot::EventPainter::SetDetAndData(const std::string& detector, InputData* input)
@@ -234,23 +305,11 @@ void ActRoot::EventPainter::SetDetAndData(const std::string& detector, InputData
     fWrap = InputWrapper(input);
 }
 
-
-void ActRoot::EventPainter::InitStatusBars()
+void ActRoot::EventPainter::ReadConfiguration(const std::string &file)
 {
-    //Status bar
-    TGHorizontalFrame* frameStatus = new TGHorizontalFrame(this, 50, 10);
-    //1->For painter info
-    int pars2[] = {30, 70};
-    fStatusThis = new TGStatusBar(frameStatus, 50, 10, kHorizontalFrame);
-    fStatusThis->SetParts(pars2, 2);
-    fStatusThis->Draw3DCorner(false);
-    frameStatus->AddFrame(fStatusThis, new TGLayoutHints(kLHintsExpandX, 5, 0, 5, 0));
-    //2-> For canvas info
-    int pars1 [] = {30, 70};
-    fStatusCanv = new TGStatusBar(frameStatus, 50, 10, kVerticalFrame);
-    fStatusCanv->SetParts(pars1, 2);
-    fStatusCanv->Draw3DCorner(false);
-    frameStatus->AddFrame(fStatusCanv, new TGLayoutHints(kLHintsTop | kLHintsExpandX, 5, 0, 5, 0));
-    //Add to global window
-    AddFrame(frameStatus, new TGLayoutHints(kLHintsExpandX, 2, 2, 2, 2));
+    ActRoot::InputParser parser {file};
+    auto config {parser.GetBlock("Actar")};
+    ftpc = TPCParameters(config->GetString("Type"));
+    if(config->CheckTokenExists("RebinZ", true))
+        ftpc.SetREBINZ(config->GetInt("RebinZ"));
 }
