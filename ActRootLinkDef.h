@@ -31,4 +31,7 @@
 
 #pragma link C++ class ActRoot::InputIterator;
 #pragma link C++ class ActRoot::InputWrapper;
+
+#pragma link C++ class ActRoot::SilData + ;
+#pragma link C++ class ActRoot::SilDetector;
 #endif

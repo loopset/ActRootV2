@@ -55,11 +55,7 @@ namespace ActRoot
         int fCurrentRun;
 
     public:
-        TPCDetector()
-        {
-            //fMEvent = new MEventReduced;
-            //fData = new ActTPCData;
-        };
+        TPCDetector() = default;
         virtual ~TPCDetector() = default;
 
         //Getters

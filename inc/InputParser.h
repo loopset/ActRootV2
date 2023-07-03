@@ -36,6 +36,7 @@ namespace ActRoot
         std::vector<std::string> GetStringVector(const std::string& token);
         std::vector<int> GetIntVector(const std::string& token);
         std::unordered_map<std::string, std::vector<std::string>> GetAllReadValues() const {return fValues;}
+        std::vector<std::string> GetTokens() const {return fTokens;}
     private:
         std::string GetToken(const std::string& line);
         void GetValues(const std::string& line, const std::string& token);

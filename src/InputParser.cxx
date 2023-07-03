@@ -57,6 +57,7 @@ void ActRoot::InputBlock::GetValues(const std::string& line, const std::string& 
 void ActRoot::InputBlock::AddLine(const std::string &line)
 {
     auto token {GetToken(line)};
+    fTokens.push_back(token);
     GetValues(line, token);
 }
 

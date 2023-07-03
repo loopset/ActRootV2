@@ -1,6 +1,7 @@
 #include "DetectorManager.h"
 #include "InputParser.h"
 
+#include "SilDetector.h"
 #include "TPCDetector.h"
 
 #include <memory>
@@ -27,7 +28,7 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
         if(det == "Actar")
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::TPCDetector>();
         else if(det == "Silicons")
-            throw std::invalid_argument("No silicon detector implemented yet!");
+            fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::SilDetector>();
         else
             throw std::runtime_error("Detector " + det + " not found in Manager database");
         //Read config file
