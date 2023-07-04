@@ -68,7 +68,7 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
     if(fData)
         delete fData;
     fData = new TPCData;
-    tree->Branch("data", &fData);
+    tree->Branch("TPCData", &fData);
 }
 
 void ActRoot::TPCDetector::ClearEventData()

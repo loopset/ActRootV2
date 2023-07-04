@@ -18,6 +18,7 @@ namespace ActRoot
         std::vector<int> fRuns;
         std::map<int, std::shared_ptr<TFile>> fFiles;
         std::map<int, std::shared_ptr<TTree>> fTrees;
+        std::vector<std::shared_ptr<TTree>> fClones;
         std::string fTreeName;
         
     public:
@@ -33,6 +34,7 @@ namespace ActRoot
         std::shared_ptr<TTree> GetTree(int run) const {return fTrees.at(run);}
         std::vector<int> GetTreeList() const {return fRuns;}
         void GetEntry(int run, int entry);
+        void GetEntryCloneVector(int entry);
         int GetNEntries(int run) const {return fTrees.at(run)->GetEntries();}
     };
 }

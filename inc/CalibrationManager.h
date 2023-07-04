@@ -7,6 +7,7 @@ Singleton class holding the calibrations for all the detectors!
 
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 namespace ActRoot
 {
@@ -32,8 +33,11 @@ namespace ActRoot
         static CalibrationManager* Get();//!< General method to interface with class
 
         //Actar: needs improvements but that depends on .txt file format (need to add keys to parameters)
+        void ReadCalibration(const std::string& file);
         void ReadLookUpTable(const std::string& file);
         void ReadPadAlign(const std::string& file);
+        double ApplyCalibration(const std::string& key, double raw);
+        bool ApplyThreshold(const std::string& key, double raw);
         int ApplyLookUp(int channel, int col);
         double ApplyPadAlignment(int channel, double q);
         

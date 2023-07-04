@@ -12,6 +12,7 @@ performed on its data
 #include <string>
 #include <unordered_map>
 #include <memory>
+#include <vector>
 
 namespace ActRoot
 {
@@ -26,6 +27,7 @@ namespace ActRoot
         DetectorManager();
         ~DetectorManager() {};
 
+        int GetNumberOfDetectors() const {return fDetectors.size();}
         void ReadConfiguration(const std::string& file);
         void ReadCalibrations(const std::string& file);
         void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);

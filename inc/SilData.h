@@ -11,7 +11,7 @@ namespace ActRoot
     {
     public:
         std::unordered_map<std::string, std::vector<float>> fSiE; //!< Calibrated silicon energy
-
+        std::unordered_map<std::string, std::vector<int>> fSiN; //!< Silicon number
         SilData() = default;
 
         void Clear(); //!< Reset stored variables in SilData 

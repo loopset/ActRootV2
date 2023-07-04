@@ -2,16 +2,19 @@
 #define ActVDetector_h
 
 #include "TTree.h"
+#include "TPCLegacyData.h"
+
 #include <memory>
 #include <string>
 
 //Abstract class representing a detector
 namespace ActRoot
 {
-    class InputBlock;//forward declaration
-    
+    class InputBlock;//forward declaration   
     class VDetector
     {
+    protected:
+        MEventReduced* fMEvent {};
     public:
         VDetector() = default;
         virtual ~VDetector() = default;
@@ -37,6 +40,9 @@ namespace ActRoot
         // //Clear data
         virtual void ClearEventData() = 0;
         // virtual void ClearEventPhysics() {};
+
+        void SetMEvent(MEventReduced* mevt){fMEvent = mevt;}
+        MEventReduced* GetMEvent() const {return fMEvent;}
     };
 }
 

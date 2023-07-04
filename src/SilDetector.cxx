@@ -1,8 +1,10 @@
 #include "SilDetector.h"
 
 #include "Buttons.h"
+#include "CalibrationManager.h"
 #include "InputParser.h"
 #include "SilData.h"
+#include "TPCLegacyData.h"
 #include "TString.h"
 #include "TRegexp.h"
 
@@ -10,6 +12,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 std::vector<std::string> ActRoot::SilParameters::GetKeys() const
@@ -50,6 +53,15 @@ void ActRoot::SilParameters::ReadActions(const std::vector<std::string> &layers,
     }
 }
 
+std::pair<std::string, int> ActRoot::SilParameters::GetSilIndex(int vxi)
+{
+    auto where {fVXI.find(vxi) != fVXI.end()};
+    if(where)
+        return fVXI[vxi];
+    else
+        return {"", -1};
+}
+
 void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
     //Read layer setup
@@ -58,19 +70,19 @@ void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     auto legacy {config->GetStringVector("Names")};
     auto file {config->GetString("Actions")};
     fPars.ReadActions(layers, legacy, file);
-    fPars.Print();
+    //fPars.Print();
 }
 
 void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
     auto files {config->GetTokens()};
     for(auto& file : files)
-        std::cout<<"Silicon calibration file = "<<file<<'\n';
+        CalibrationManager::Get()->ReadCalibration(file);
 }
 
 void ActRoot::SilDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
 {
-    
+    ;
 }
 
 void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -78,11 +90,33 @@ void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
     if(fData)
         delete fData;
     fData = new SilData;
+    tree->Branch("SilData", &fData);
 }
 
 void ActRoot::SilDetector::BuildEventData()
 {
-    
+    // for(auto& coas : fMEvent->CoboAsad)
+    // {
+    //     //locate channel!
+    //     int co {coas.globalchannelid >> 11};
+    //     if(co == 31)
+    //     {
+    //         for(int hit = 0, size = coas.peakheight.size(); hit < size; hit++)
+    //         {
+    //             auto vxi {coas.peaktime[hit]};
+    //             auto [layer, sil] = fPars.GetSilIndex(vxi);
+    //             if(sil == -1)
+    //                 continue;
+    //             //Write silicon number
+    //             fData->fSiN[layer].push_back(sil);
+    //             float raw {coas.peakheight[hit]};
+    //             //Calibrate
+    //             std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
+    //             float cal {static_cast<float>(CalibrationManager::Get()->ApplyCalibration(calKey, raw))};
+    //             fData->fSiE[layer].push_back(cal);
+    //         }
+    //     }
+    // }
 }
 void ActRoot::SilDetector::ClearEventData()
 {

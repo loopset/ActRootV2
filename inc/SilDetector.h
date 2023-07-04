@@ -29,7 +29,7 @@ namespace ActRoot
         std::vector<std::string> GetKeys() const;
         int GetSizeOf(const std::string& key){return fSizes[key];}
         void Print() const;//!< Dump info stored
-        std::pair<std::string, int> GetSilIndex(int vxi) {return fVXI[vxi];}
+        std::pair<std::string, int> GetSilIndex(int vxi);
         void ReadActions(const std::vector<std::string>& layers,
                          const std::vector<std::string>& names,
                          const std::string& file);
@@ -43,8 +43,7 @@ namespace ActRoot
         SilParameters fPars;//!< Basic detector configurations
         //Data
         SilData* fData {}; //!< Pointer to SilData
-        MEventReduced* fMEvent {};//!< Pointer to legacy MEventReduced
-
+        
     public:
         SilDetector() = default;
         virtual ~SilDetector() = default;
@@ -59,6 +58,9 @@ namespace ActRoot
         virtual void BuildEventData() override;
         // void BuildEventPhysics() override;
         void ClearEventData() override;
+
+    private:
+        SilData* GetSilDataPointer() const {return fData;}
     };
 }
 

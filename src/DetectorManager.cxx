@@ -2,8 +2,13 @@
 #include "InputParser.h"
 
 #include "SilDetector.h"
+#include "TPCData.h"
 #include "TPCDetector.h"
+#include "TString.h"
+#include "TTree.h"
+#include "VDetector.h"
 
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -48,7 +53,7 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
 void ActRoot::DetectorManager::InitializeDataInputRaw(std::shared_ptr<TTree> input, int run)
 {
     for(auto& det : fDetectors)
-        det.second->InitInputRawData(input, run);
+            det.second->InitInputRawData(input, run);
 }
 
 void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input)

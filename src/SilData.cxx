@@ -4,6 +4,7 @@
 void ActRoot::SilData::Clear()
 {
     fSiE.clear();
+    fSiN.clear();
 }
 
 void ActRoot::SilData::Print() const
@@ -14,7 +15,7 @@ void ActRoot::SilData::Print() const
         std::cout<<"-- Layer "<<key<<'\n';
         for(int i = 0; i < vec.size(); i++)
         {
-            std::cout<<"Idx = "<<i<<" Val = "<<vec[i]<<" MeV"<<'\n';
+            std::cout<<"SilN = "<<fSiN.at(key).at(i)<<" Val = "<<vec[i]<<" MeV"<<'\n';
         }
     }
 }

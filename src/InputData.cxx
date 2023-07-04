@@ -1,6 +1,5 @@
 #include "InputData.h"
 #include "InputParser.h"
-#include "TChain.h"
 #include "TString.h"
 #include "TTree.h"
 #include "TFile.h"

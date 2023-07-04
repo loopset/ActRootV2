@@ -43,14 +43,14 @@ namespace ActRoot
         int GetNBAGET() const {return fNB_AGET;}
         int GetNBCHANNEL() const {return fNB_CHANNEL;}
     };
-    
+
+    class SilDetector;//forward declaration
     class TPCDetector : public ActRoot::VDetector
     {
     private:
         //Parameters of detector
         TPCParameters fPars;
         //Data
-        MEventReduced* fMEvent {};
         TPCData* fData {};
         int fCurrentRun;
 
@@ -74,7 +74,7 @@ namespace ActRoot
         // void ClearEventPhysics() override;
         ////////////////////////////////
         //ActTPCData* GetDataPointer() { return fData; }
-
+        
     private:
         void ReadHits(ReducedData& coas, const int& where, int& hitID);
     };

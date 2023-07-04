@@ -27,6 +27,33 @@ ActRoot::CalibrationManager* ActRoot::CalibrationManager::Get()
         return fInstance;
 }
 
+void ActRoot::CalibrationManager::ReadCalibration(const std::string &file)
+{
+    std::ifstream streamer {file.c_str()};
+    if(!streamer)
+        throw std::runtime_error("No calibration file found: " + file);
+    std::string line {};
+    while(std::getline(streamer, line))
+    {
+        int col {};
+        std::string key {};
+        std::istringstream lineStreamer {line};
+        std::string buffer {};
+        while(std::getline(lineStreamer, buffer, ' '))
+        {
+            auto val {ActRoot::StripSpaces(buffer)};
+            if(val.length() == 0)
+                continue;
+            if(col == 0)
+                key = val;
+            else
+                fCalibs[key].push_back(std::stod(val));
+            //std::cout<<"Sil cal = "<<key<<" val = "<<val<<'\n';
+            col++;
+        }
+    }
+}
+
 void ActRoot::CalibrationManager::ReadPadAlign(const std::string &file)
 {
     std::ifstream streamer {file.c_str()};
@@ -72,6 +99,32 @@ void ActRoot::CalibrationManager::ReadLookUpTable(const std::string &file)
         //std::cout<<"0 = "<<col0<<" back = "<<col5<<'\n';
         fLT.push_back({col0, col1, col2, col3, col4, col5});
     }
+}
+
+double ActRoot::CalibrationManager::ApplyCalibration(const std::string &key, double raw)
+{
+    double cal {};
+    int order {0};
+    std::vector<double> coeffs {};
+    try
+    {
+        coeffs = fCalibs.at(key);
+    }
+    catch(std::exception& e)
+    {
+        throw std::runtime_error("Could not find calibration for key " + key);
+    }
+    for(const auto& coef : coeffs)
+    {
+        cal += coef * std::pow(raw, order);
+        order++;
+    }
+    return cal;
+}
+
+bool ActRoot::CalibrationManager::ApplyThreshold(const std::string &key, double raw)
+{
+    return false;
 }
 
 int ActRoot::CalibrationManager::ApplyLookUp(int channel, int col)
