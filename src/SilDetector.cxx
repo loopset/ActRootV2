@@ -95,29 +95,30 @@ void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
 
 void ActRoot::SilDetector::BuildEventData()
 {
-    // for(auto& coas : fMEvent->CoboAsad)
-    // {
-    //     //locate channel!
-    //     int co {coas.globalchannelid >> 11};
-    //     if(co == 31)
-    //     {
-    //         for(int hit = 0, size = coas.peakheight.size(); hit < size; hit++)
-    //         {
-    //             auto vxi {coas.peaktime[hit]};
-    //             auto [layer, sil] = fPars.GetSilIndex(vxi);
-    //             if(sil == -1)
-    //                 continue;
-    //             //Write silicon number
-    //             fData->fSiN[layer].push_back(sil);
-    //             float raw {coas.peakheight[hit]};
-    //             //Calibrate
-    //             std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
-    //             float cal {static_cast<float>(CalibrationManager::Get()->ApplyCalibration(calKey, raw))};
-    //             fData->fSiE[layer].push_back(cal);
-    //         }
-    //     }
-    // }
+    for(auto& coas : fMEvent->CoboAsad)
+    {
+        //locate channel!
+        int co {coas.globalchannelid >> 11};
+        if(co == 31)
+        {
+            for(int hit = 0, size = coas.peakheight.size(); hit < size; hit++)
+            {
+                auto vxi {coas.peaktime[hit]};
+                auto [layer, sil] = fPars.GetSilIndex(vxi);
+                if(sil == -1)
+                    continue;
+                //Write silicon number
+                fData->fSiN[layer].push_back(sil);
+                float raw {coas.peakheight[hit]};
+                //Calibrate
+                std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
+                float cal {static_cast<float>(CalibrationManager::Get()->ApplyCalibration(calKey, raw))};
+                fData->fSiE[layer].push_back(cal);
+            }
+        }
+    }
 }
+
 void ActRoot::SilDetector::ClearEventData()
 {
     fData->Clear();

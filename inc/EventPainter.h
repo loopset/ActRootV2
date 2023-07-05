@@ -5,6 +5,7 @@
 #include "RQ_OBJECT.h"
 #include "Rtypes.h"
 #include "RtypesCore.h"
+#include "SilDetector.h"
 #include "TCanvas.h"
 #include "TGClient.h"
 #include "TGFrame.h"
@@ -49,8 +50,10 @@ namespace ActRoot
         std::unordered_map<int, std::shared_ptr<TH2F>> fHist2d;
         //TPC detector configuration
         TPCParameters ftpc;
+        //Sil detector
+        SilParameters fsil;
         //Data to plot
-        InputWrapper fWrap;
+        InputWrapper fWrap {};
         
     public:
         EventPainter(const TGWindow* window, unsigned int width, unsigned int height);

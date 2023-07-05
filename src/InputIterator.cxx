@@ -1,7 +1,9 @@
 #include "InputIterator.h"
 
 #include "InputData.h"
+#include "TF1.h"
 #include "TPCData.h"
+#include "SilData.h"
 
 #include <map>
 #include <utility>
@@ -15,7 +17,6 @@ ActRoot::InputIterator::InputIterator(const InputData* input)
         fEntries[run] = tree->GetEntries();
     }
     //Init iterators
-    fRunIt = fEntries.begin();
     fCurrentRun = -1;
     fCurrentEntry = -1;
 }
@@ -36,7 +37,6 @@ bool ActRoot::InputIterator::Previous()
         auto it = fEntries.find(fCurrentRun - 1);
         if(it != fEntries.end())
         {
-            fRunIt = it;
             fCurrentRun = fCurrentRun - 1;
             fCurrentEntry = fEntries[fCurrentRun] - 1;
         }
@@ -49,23 +49,49 @@ bool ActRoot::InputIterator::Previous()
 
 bool ActRoot::InputIterator::Next()
 {
-    //Increase entry
-    for(; fRunIt != fEntries.end(); fRunIt++)
+    //Workaround: Idk what is going on with the fRunIt after initialization
+    //because it goes undefined behaviour (but only when called in EventPainter)
+    if(fCurrentRun == -1)
     {
-        fCurrentRun = fRunIt->first;
-        if(CheckEntryIsInRange(fRunIt->first, fCurrentEntry + 1))
-        {
-            fCurrentEntry += 1;
-            break;
-        }
-        fCurrentEntry = -1;
+        fCurrentRun = fEntries.begin()->first;
     }
-    //Check if it is last entry
-    bool reachedEnd {fRunIt == fEntries.end()};
-    if(reachedEnd)
-        return false;
-    //std::cout<<"Run = "<<fRunIt->first<<" entry = "<<fCurrentEntry<<'\n';
+    if(CheckEntryIsInRange(fCurrentRun, fCurrentEntry + 1))
+    {
+        fCurrentEntry += 1;
+    }
+    else
+    {
+        auto it = fEntries.find(fCurrentRun + 1);
+        if(it != fEntries.end())
+        {
+            fCurrentRun = fCurrentRun + 1;
+            fCurrentEntry = fEntries[fCurrentRun] - 1;
+        }
+        else
+            return false;
+    }
     return true;
+    // //Increase entry
+    // for(; fRunIt != fEntries.end(); fRunIt++)
+    // {
+    //     fCurrentRun = fRunIt->first;
+    //     // std::cout<<"fRunIt in Next() = "<<fRunIt._M_node<<'\n';
+    //     // for(auto& [run, entrie] : fEntries)
+    //     //     std::cout<<"Run = "<<run<<" entries = "<<entrie<<'\n';
+    //     // std::cout<<"fCurrentRun = "<<fCurrentRun<<'\n';
+    //     if(CheckEntryIsInRange(fRunIt->first, fCurrentEntry + 1))
+    //     {
+    //         fCurrentEntry += 1;
+    //         break;
+    //     }
+    //     fCurrentEntry = -1;
+    // }
+    // //Check if it is last entry
+    // bool reachedEnd {fRunIt == fEntries.end()};
+    // if(reachedEnd)
+    //     return false;
+    // std::cout<<"Run = "<<fRunIt->first<<" entry = "<<fCurrentEntry<<'\n';
+    // return true;
 }
 
 bool ActRoot::InputIterator::CheckEntryIsInRange(int run, int entry)
@@ -78,7 +104,6 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
     auto it = fEntries.find(run);
     if(it != fEntries.end() && CheckEntryIsInRange(run, entry))
     {
-        fRunIt = it;
         fCurrentRun = run;
         fCurrentEntry = entry;
         return true;
@@ -93,7 +118,8 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
-    : fInput(input), fIt(ActRoot::InputIterator(input)), fData(new ActRoot::TPCData)
+    : fInput(input), fIt(ActRoot::InputIterator(input)),
+      fTPCData(new ActRoot::TPCData), fSilData(new ActRoot::SilData)
 {
 }
 
@@ -106,7 +132,7 @@ bool ActRoot::InputWrapper::GoNext()
         return ok;
     if(runBef != run)
     {
-        fInput->GetTree(run)->SetBranchAddress("data", &fData);
+        SetBranchAddress(run);
     }
     fInput->GetEntry(run, entry);
     return ok;
@@ -121,7 +147,7 @@ bool ActRoot::InputWrapper::GoPrevious()
         return ok;
     if(runBef != run)
     {
-        fInput->GetTree(run)->SetBranchAddress("data", &fData);
+        SetBranchAddress(run);
     }
     fInput->GetEntry(run, entry);
     return ok;
@@ -135,8 +161,14 @@ bool ActRoot::InputWrapper::GoTo(int run, int entry)
         return ok;
     if(runBef != run)
     {
-        fInput->GetTree(run)->SetBranchAddress("data", &fData);
+        SetBranchAddress(run);
     }
     fInput->GetEntry(run, entry);
     return ok;
+}
+
+void ActRoot::InputWrapper::SetBranchAddress(int run)
+{
+    fInput->GetTree(run)->SetBranchAddress("TPCData", &fTPCData);
+    fInput->GetTree(run)->SetBranchAddress("SilData", &fSilData);
 }

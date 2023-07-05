@@ -39,6 +39,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
         //Read config file
         fDetectors[fDetDatabase[det]]->ReadConfiguration(parser.GetBlock(det));
     }
+    //std::cout<<"Detector size = "<<fDetectors.size()<<'\n';
+    //fTP.reset(fDetectors.size());
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
@@ -48,6 +50,15 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
     {
         fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
     }
+}
+
+void ActRoot::DetectorManager::DeleteDelector(DetectorType type)
+{
+    auto it {fDetectors.find(type)};
+    if(it != fDetectors.end())
+        fDetectors.erase(it);
+    else
+        std::cout<<"Could not delete detector"<<'\n';
 }
 
 void ActRoot::DetectorManager::InitializeDataInputRaw(std::shared_ptr<TTree> input, int run)
@@ -67,6 +78,17 @@ void ActRoot::DetectorManager::BuildEventData()
     for(auto& det : fDetectors)
     {
         det.second->ClearEventData();
-        det.second->BuildEventData();
+        //det.second->BuildEventData();
     }
+    // //1-->Actar
+    if(fDetectors[DetectorType::EActar])
+        fDetectors[DetectorType::EActar]->BuildEventData();
+    //2-->Silicons
+    if(fDetectors.find(DetectorType::ESilicons) != fDetectors.end())
+    {
+        fDetectors[DetectorType::ESilicons]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
+        fDetectors[DetectorType::ESilicons]->BuildEventData();
+        //fTP.push_task(&ActRoot::VDetector::BuildEventData, fDetectors[DetectorType::ESilicons]);
+    }
+    // //fTP.wait_for_tasks();
 }

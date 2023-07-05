@@ -7,6 +7,7 @@ performed on its data
 */
 
 #include "TTree.h"
+#include "BS_thread_pool.hpp"
 #include "VDetector.h"
 
 #include <string>
@@ -23,10 +24,13 @@ namespace ActRoot
     private:
         std::unordered_map<ActRoot::DetectorType, std::shared_ptr<ActRoot::VDetector>> fDetectors;
         std::unordered_map<std::string, DetectorType> fDetDatabase;
+        //BS::thread_pool fTP;
+        
     public:
         DetectorManager();
         ~DetectorManager() {};
 
+        void DeleteDelector(DetectorType type);
         int GetNumberOfDetectors() const {return fDetectors.size();}
         void ReadConfiguration(const std::string& file);
         void ReadCalibrations(const std::string& file);

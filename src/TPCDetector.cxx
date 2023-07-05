@@ -60,7 +60,6 @@ void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run
     fMEvent = new MEventReduced;
     fCurrentRun = run;
     tree->SetBranchAddress("data", &fMEvent);
-    //std::cout<<"Initializing TPC input raw data at run "<<run<<'\n';
 }
 
 void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)

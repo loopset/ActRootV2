@@ -10,7 +10,6 @@ namespace ActRoot
     class InputIterator
     {
     private:
-        std::map<int, int>::iterator fRunIt;
         int fCurrentRun;
         int fCurrentEntry;
         std::map<int, int> fEntries;
@@ -31,12 +30,14 @@ namespace ActRoot
 
     //more forward declarations
     class TPCData;
+    class SilData;
     class InputWrapper
     {
     private:
         InputData* fInput;
         InputIterator fIt;
-        TPCData* fData;
+        TPCData* fTPCData;
+        SilData* fSilData;
 
     public:
         InputWrapper() = default;
@@ -46,8 +47,12 @@ namespace ActRoot
         bool GoNext();
         bool GoPrevious();
         bool GoTo(int run, int entry);
-        TPCData* GetCurrentData() {return fData;}
+        TPCData* GetCurrentTPCData() {return fTPCData;}
+        SilData* GetCurrentSilData() {return fSilData;}
         std::pair<int, int> GetCurrentStatus() const {return fIt.GetCurrentRunEntry();}
+
+    private:
+        void SetBranchAddress(int run);
     };
 }
 #endif

@@ -23,6 +23,7 @@
 #include "TPCData.h"
 #include "InputIterator.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -83,7 +84,7 @@ void ActRoot::EventPainter::DoReset()
 
 void ActRoot::EventPainter::DoFill()
 {
-    for(auto& voxel : fWrap.GetCurrentData()->fVoxels)
+    for(auto& voxel : fWrap.GetCurrentTPCData()->fVoxels)
     {
         //Pad
         fHist2d[1]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Y(), voxel.GetCharge());
@@ -313,8 +314,25 @@ void ActRoot::EventPainter::SetDetAndData(const std::string& detector, InputData
 void ActRoot::EventPainter::ReadConfiguration(const std::string &file)
 {
     ActRoot::InputParser parser {file};
-    auto config {parser.GetBlock("Actar")};
-    ftpc = TPCParameters(config->GetString("Type"));
-    if(config->CheckTokenExists("RebinZ", true))
-        ftpc.SetREBINZ(config->GetInt("RebinZ"));
+    auto headers {parser.GetBlockHeaders()};
+    //TPC
+    if(std::find(headers.begin(), headers.end(), "Actar") != headers.end())
+    {
+        auto config {parser.GetBlock("Actar")};
+        ftpc = TPCParameters(config->GetString("Type"));
+        if(config->CheckTokenExists("RebinZ", true))
+            ftpc.SetREBINZ(config->GetInt("RebinZ"));
+    }
+    //Silicon
+    if(std::find(headers.begin(), headers.end(), "Silicons") != headers.end())
+    {
+        //Read layer setup
+        auto config {parser.GetBlock("Silicons")};
+        auto layers {config->GetStringVector("Layers")};
+        //Read action file
+        auto legacy {config->GetStringVector("Names")};
+        auto file {config->GetString("Actions")};
+        fsil.ReadActions(layers, legacy, file);
+    }
+    
 }
