@@ -57,7 +57,7 @@ namespace ActPhysics
 
         void Draw(std::string what, std::vector<std::string> keys = {});
 
-        double ComputeEnergyLoss(double Tini, std::string material, double thickness, int steps = 10);
+        double ComputeEnergyLoss(double Tini, std::string material, double thickness, double angleInRad, int steps = 10);
 
         void CheckKeyIsStored(const std::string& key);
 

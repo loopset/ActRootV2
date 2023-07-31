@@ -2,6 +2,8 @@
 
 #include "TCanvas.h"
 #include "TF1.h"
+#include "TMath.h"
+#include "TMathBase.h"
 #include "TSpline.h"
 #include "TLegend.h"
 
@@ -142,9 +144,10 @@ void ActPhysics::SRIM::Draw(std::string what, std::vector<std::string> keys)
     legend.reset();
 }
 
-double ActPhysics::SRIM::ComputeEnergyLoss(double Tini, std::string material, double thickness, int steps)
+double ActPhysics::SRIM::ComputeEnergyLoss(double Tini, std::string material, double thickness, double angle, int steps)
 {
-    double dX { thickness / steps};
+    double realThick {thickness / TMath::Abs(TMath::Cos(angle))};
+    double dX { realThick / steps};
     double remainT { Tini};
     double energyLoss {};
     double stopping {};
