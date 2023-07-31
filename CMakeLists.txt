@@ -11,19 +11,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 ##ROOT
 find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS MathCore Physics)
 include(${ROOT_USE_FILE})##automatically loads ROOT_INCLUDE_DIRS and ROOT_LIBRARY_DIR (BUT NOT LIBRARIES, they must be added manually in target_link_libs)
+include(Scripts.cmake)
 
-## set files to compile
-file(GLOB sources ${CMAKE_SOURCE_DIR}/src/*.cxx)
-file(GLOB headers ${CMAKE_SOURCE_DIR}/inc/*.h)
+# set install dir
+set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
-# ActRoot LinkDef and dict generation
-set(LINKDEF_LOCATION ${CMAKE_SOURCE_DIR}/ActRootLinkDef.h)
-set(DICTIONARY_NAME G__${PROJECT_NAME})
-ROOT_GENERATE_DICTIONARY(${DICTIONARY_NAME} ${headers} LINKDEF  ${LINKDEF_LOCATION})
+# include all the includes!
+include_directories(".")
 
-# add ActRoot library
-add_library(${PROJECT_NAME} SHARED ${sources} ${headers} ${DICTIONARY_NAME}.cxx)
-## add ActRoot headers so g++ knows where to locate them
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/inc)
-# link to ROOT
-target_link_libraries(${PROJECT_NAME} ${ROOT_LIBRARIES})
+##add subdirs
+add_subdirectory(Core)
+add_subdirectory(Physics)
