@@ -8,7 +8,7 @@
 #pragma link C++ nestedtypedef;
 
 #pragma link C++ class ActPhysics::Particle;
-#pragma link C++ class ActPhysics::SRIM;
 #pragma link C++ class ActPhysics::Kinematics;
+#pragma link C++ class ActPhysics::SRIM;
 
 #endif

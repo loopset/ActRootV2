@@ -17,7 +17,9 @@ include(Scripts.cmake)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
 # include all the includes!
-include_directories(".")
+include_directories(Core/)
+include_directories(Physics/)
+include_directories(Simulation/)
 
 ##add subdirs
 add_subdirectory(Core)

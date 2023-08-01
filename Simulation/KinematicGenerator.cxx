@@ -1,7 +1,8 @@
 #include "KinematicGenerator.h"
 
-#include "Physics/Kinematics.h"
-#include "Physics/Particle.h"
+#include "Kinematics.h"
+#include "Particle.h"
+
 #include "TGenPhaseSpace.h"
 #include "TLorentzVector.h"
 #include <iostream>

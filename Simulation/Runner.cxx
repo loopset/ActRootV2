@@ -1,9 +1,7 @@
 #include "Runner.h"
 
-#include "Physics/SRIM.h"
+#include "SRIM.h"
 #include "Geometry.h"
-#include "Physics/Kinematics.h"
-#include "KinematicGenerator.h"
 
 #include "TH3.h"
 #include "TMath.h"

@@ -1,5 +1,10 @@
 #include "Kinematics.h"
 
+#include "Particle.h"
+
+#include "Rtypes.h"
+#include "TAttLine.h"
+#include "TGraph.h"
 #include "TMathBase.h"
 #include <Math/Vector3D.h>
 #include <Math/Vector4D.h>
@@ -21,14 +26,60 @@ ActPhysics::Kinematics::Kinematics(double m1, double m2, double m3, double m4,
 	  fT1Lab(T1),
 	  fEex(Eex)
 {
+    Init();
+}
+
+ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2,
+                                   const std::string& p3, const std::string& p4,
+                                   double T1, double Eex)
+    : fT1Lab(T1), fEex(Eex)
+{
+    //Init particles
+    //1
+    fp1 = Particle(p1);
+    fm1 = fp1.GetMass();
+    //2
+    fp2 = Particle(p2);
+    fm2 = fp2.GetMass();
+    //3
+    fp3 = Particle(p3);
+    fm3 = fp3.GetMass();
+    //4
+    fp4 = Particle(p4);
+    fm4 = fp4.GetMass();
+    //Init
+    Init();
+}
+
+ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2,
+                                   const Particle& p3, const Particle& p4,
+                                   double T1, double Eex)
+    : fp1(p1), fp2(p2), fp3(p3), fp4(p4),
+      fT1Lab(T1), fEex(Eex)
+{
+    //Set masses manually from particles
+    //1
+    fm1 = fp1.GetMass();
+    //2
+    fm2 = fp2.GetMass();
+    //3
+    fm3 = fp3.GetMass();
+    //4
+    fm4 = fp4.GetMass();
+    //Init class
+    Init();
+}
+
+void ActPhysics::Kinematics::Init()
+{
     ComputeQValue();
 	double E1Lab { fT1Lab + fm1};
 	double p1Lab { TMath::Sqrt(E1Lab * E1Lab - fm1 * fm1)};
 	fP1Lab = { p1Lab, 0.0, 0.0, E1Lab};//beam along X axis! ACTAR TPC reference frame!
-	fP2Lab = { 0., 0., 0., m2};
+	fP2Lab = { 0., 0., 0., fm2};
 	fPInitialLab = fP1Lab + fP2Lab;
 
-	//and now let's move to CM! For now on, we assume boost along Z axis only!
+	//and now let's move to CM! For now on, we assume boost along X axis only (rememeber, for actar X is like standar Z axis in particle physics)!
 	auto betaVector { fPInitialLab.BoostToCM()};
 	if((betaVector.Y() != 0.) || (betaVector.Z() != 0.))
 	{
@@ -198,7 +249,7 @@ void ActPhysics::Kinematics::ComputeQValue()
         double T1threshold {-fQvalue * (fm1 + fm2 + fm3 + (fm4 +fEex)) / (2.0 * fm2)};
         if(fT1Lab < T1threshold)
         {
-            throw std::runtime_error(("Error! Reactionn has threshold energy of " + std::to_string(T1threshold) + " MeV, but given beam has only " + std::to_string(fT1Lab) + " MeV!"));
+            throw std::runtime_error(("Error! Reaction has a threshold energy of " + std::to_string(T1threshold) + " MeV, but given beam has only " + std::to_string(fT1Lab) + " MeV!"));
         }
     }
 }
@@ -313,4 +364,22 @@ double ActPhysics::Kinematics::ComputeMissingMass(double argT3, double argTheta3
 void ActPhysics::Kinematics::Reset()
 {
     *this = Kinematics(fm1, fm2, fm3, fm4, fT1Lab, fEex);
+}
+
+TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELineStyle style)
+{
+    auto* ret {new TGraph};
+    ret->SetTitle(";#theta_{Lab} [#circ];E_{3} [MeV]");
+    ret->SetLineWidth(2);
+    ret->SetLineColor(color);
+    ret->SetLineStyle(style);
+    for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
+    {
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3);
+        double thetaLab {GetTheta3Lab() * TMath::RadToDeg()}; double T3Lab {GetT3Lab()};
+        if(std::isfinite(thetaLab) && std::isfinite(T3Lab))
+            ret->SetPoint(ret->GetN(), thetaLab, T3Lab);        
+    }
+    
+    return ret;
 }

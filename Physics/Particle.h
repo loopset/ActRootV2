@@ -1,6 +1,7 @@
-#ifndef ActPhysics_h
-#define ActPhysics_h
+#ifndef ActParticle_h
+#define ActParticle_h
 
+#include <iostream>
 #include <string>
 namespace ActPhysics
 {
@@ -10,11 +11,11 @@ namespace ActPhysics
     private:
         double kamuToMeVC2 {931.494028}; //!< Internal constant: amu to MeV/c2
         double keMass {0.510998910}; //!< Internal constant: electron mass in MeV/c2
-        std::string fName; //!< Name in database of the particle
-        double fMassExcess; //!< Mass excess in MeV/c2
-        double fMass; //!< Mass in MeV/c2
-        int fA; //!< Masic number
-        int fZ; //!< Charge of the particle
+        std::string fName {}; //!< Name in database of the particle
+        double fMassExcess {}; //!< Mass excess in MeV/c2
+        double fMass {}; //!< Mass in MeV/c2
+        int fA {}; //!< Masic number
+        int fZ {}; //!< Charge of the particle
 
     public:
         Particle() = default;
@@ -39,5 +40,4 @@ namespace ActPhysics
         std::string StripWhitespaces(std::string str);
     };
 }
-
 #endif

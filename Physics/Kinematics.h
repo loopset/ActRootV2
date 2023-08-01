@@ -1,9 +1,15 @@
 #ifndef ActKinematics_h
 #define ActKinematics_h
 
+#include "Rtypes.h"
+#include "TAttLine.h"
+#include "TGraph.h"
 #include <Math/Vector3Dfwd.h>
 #include <Math/Vector4Dfwd.h>
 #include <Math/GenVector/BoostX.h>
+
+#include "Particle.h"
+
 #include <string>
 #include <tuple>
 #include <utility>
@@ -18,6 +24,12 @@ namespace ActPhysics
         using LorentzBoostX = ROOT::Math::BoostX;
 	
     private:
+        ActPhysics::Particle fp1 {};
+        ActPhysics::Particle fp2 {};
+        ActPhysics::Particle fp3 {};
+        ActPhysics::Particle fp4 {};
+        //auxiliar: since this class before the advent of ActPhysics::Particle was using only masses,
+        //we keep it that way: copy Particle::fMass into fmi
         double fm1 {};
         double fm2 {};
         double fm3 {};
@@ -56,6 +68,14 @@ namespace ActPhysics
         Kinematics(double m1, double m2, double m3, double m4,
                       double T1,
                       double Eex = 0.);
+        Kinematics(const std::string& p1, const std::string& p2,
+                   const std::string& p3, const std::string& p4,
+                   double T1, double Eex = 0);
+        Kinematics(const Particle& p1, const Particle& p2,
+                   const Particle& p3, const Particle& p4,
+                   double T1, double Eex = 0);
+        Kinematics(const Kinematics& ) = default;
+        Kinematics& operator=(const Kinematics& ) = default;
         ~Kinematics() = default;
 
         void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads,
@@ -71,6 +91,8 @@ namespace ActPhysics
         void Print() const;
 
         void Reset();
+
+        TGraph* GetKinematicLine3(double step = 2, EColor color = kMagenta, ELineStyle style = kSolid);
 
         //getters
         double GetT1Lab() const { return fT1Lab; }
@@ -98,7 +120,7 @@ namespace ActPhysics
         void SetRecoil3LabKinematics();
         void SetRecoil4LabKinematics();
         void ComputeQValue();
-    
+        void Init();
         double GetPhiFromVector(FourVector vect);
         double GetThetaFromVector(FourVector vect);
     };

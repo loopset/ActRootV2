@@ -1,9 +1,10 @@
 #ifndef ActKinematicGenerator_h
 #define ActKinematicGenerator_h
 
-#include "Physics/Particle.h"
 #include "TGenPhaseSpace.h"
-#include "Physics/Kinematics.h"
+#include "Kinematics.h"
+#include "Particle.h"
+
 #include "TLorentzVector.h"
 #include <string>
 #include <vector>

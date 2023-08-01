@@ -19,4 +19,7 @@
 //Runner
 #pragma link C++ class ActSim::Runner;
 
+//Theoretical cross section
+#pragma link C++ class ActSim::TheoCrossSection;
+
 #endif

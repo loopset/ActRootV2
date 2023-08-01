@@ -1,16 +1,14 @@
 #ifndef ActSimRunner_h
 #define ActSimRunner_h
 
-#include "Physics/SRIM.h"
-#include "Geometry.h"
-#include "Physics/Kinematics.h"
-#include "KinematicGenerator.h"
-
 #include "TF1.h"
 #include "TRandom3.h"
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
 #include "TH3F.h"
+
+#include "SRIM.h"
+#include "Geometry.h"
 
 #include <memory>
 #include <string>
@@ -28,12 +26,12 @@ namespace ActSim
     private:
         TRandom3* fRand {};
         ActPhysics::SRIM* fsrim {};
-        Geometry* fgeo {};
+        ActSim::Geometry* fgeo {};
         std::unique_ptr<TF1> fSilResolution {};
 
     public:
         Runner(ActPhysics::SRIM* srim,
-               Geometry* geo,
+               ActSim::Geometry* geo,
                TRandom3* rand,
                double silSigma);
 
@@ -65,7 +63,7 @@ namespace ActSim
     
         //getters for pointers
         ActPhysics::SRIM* GetSRIM() const { return fsrim; }
-        Geometry* GetGeo() const { return fgeo; }
+        ActSim::Geometry* GetGeo() const { return fgeo; }
         TRandom3* GetRand() const { return fRand; }
     };
 
