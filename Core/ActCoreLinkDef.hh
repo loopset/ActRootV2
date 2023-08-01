@@ -1,3 +1,5 @@
+#include <string>
+
 #ifdef __CLING__
 
 #pragma link off all globals;
@@ -25,13 +27,20 @@
 #pragma link C++ class ActRoot::InputBlock;
 #pragma link C++ class ActRoot::InputParser;
 
+//calibration manager
 #pragma link C++ class ActRoot::CalibrationManager;
 
+//event painter
 #pragma link C++ class ActRoot::EventPainter;
 
+//input data utilities
 #pragma link C++ class ActRoot::InputIterator;
 #pragma link C++ class ActRoot::InputWrapper;
 
 #pragma link C++ class ActRoot::SilData + ;
 #pragma link C++ class ActRoot::SilDetector;
+
+//utils: cuts manager
+#pragma link C++ class ActRoot::CutsManager<int>;
+#pragma link C++ class ActRoot::CutsManager<std::string>;
 #endif

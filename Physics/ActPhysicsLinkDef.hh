@@ -9,5 +9,6 @@
 
 #pragma link C++ class ActPhysics::Particle;
 #pragma link C++ class ActPhysics::SRIM;
+#pragma link C++ class ActPhysics::Kinematics;
 
 #endif

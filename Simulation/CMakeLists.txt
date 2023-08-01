@@ -1,5 +1,5 @@
 # lib name
-set(LIB_NAME Core)
+set(LIB_NAME Simulation)
 set(FULL_NAME Act${LIB_NAME})
 ## set files to compile
 file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cxx)

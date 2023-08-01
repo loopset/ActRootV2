@@ -13,12 +13,17 @@ ActPhysics::Particle::Particle(int Z, int A)
     ParseFile(Z, A);
 }
 
+ActPhysics::Particle::Particle(const std::string& particle)
+{
+    ParseFile(particle);
+}
+
 void ActPhysics::Particle::ParseFile(int Z, int A, const std::string& file)
 {
     //If no file provided, use default
     std::string filename {file};
     if(filename.length() == 0)
-        filename = std::string(gSystem->Getenv("ACTROOT")) + "/Physics/nubase20.txt";
+        filename = std::string(gSystem->Getenv("ACTROOT")) + "/Physics/Data/nubase20.txt";
     //Streamer
     std::ifstream streamer {filename};
     if(!streamer)
@@ -35,6 +40,35 @@ void ActPhysics::Particle::ParseFile(int Z, int A, const std::string& file)
         //std::cout<<line<<'\n';
         //std::cout<<"a = "<<a<<" z = "<<z<<" i = "<<istr<<'\n';
         if(a == A && z == Z && i == 0)//we will work almost always with standard gs
+        {
+            Extract(line);
+            break;
+        }
+    }
+}
+
+void ActPhysics::Particle::ParseFile(const std::string& particle, const std::string& file)
+{
+    auto isotope {StripWhitespaces(particle)};
+    //If no file provided, use default
+    std::string filename {file};
+    if(filename.length() == 0)
+        filename = std::string(gSystem->Getenv("ACTROOT")) + "/Physics/Data/nubase20.txt";
+    //Streamer
+    std::ifstream streamer {filename};
+    if(!streamer)
+        throw std::runtime_error("Mass database file " + filename + " could not be opened");
+    //Parse
+    std::string line, name, istr;
+    while(std::getline(streamer, line))
+    {
+        istr = line.substr(5, 1);
+        name = line.substr(11, 5);
+        name = StripWhitespaces(name);
+        int i {std::stoi(istr)};//this measures whether it is an isomer or a normal ground state ( = 0)
+        //std::cout<<line<<'\n';
+        //std::cout<<"a = "<<a<<" z = "<<z<<" i = "<<istr<<'\n';
+        if(name == isotope && i == 0)//we will work almost always with standard gs
         {
             Extract(line);
             break;
@@ -69,4 +103,10 @@ void ActPhysics::Particle::Print() const
     std::cout<<"-> A    = "<<fA<<'\n';
     std::cout<<"-> Z    = "<<fZ<<'\n';
     std::cout<<"-> Mass = "<<fMass<<" MeV / c2"<<'\n';
+}
+
+std::string ActPhysics::Particle::StripWhitespaces(std::string str)
+{
+    str.erase(std::remove_if(str.begin(), str.end(), [](char x){return std::isspace(x);}), str.end());
+    return str;
 }
