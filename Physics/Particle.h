@@ -1,6 +1,8 @@
 #ifndef ActParticle_h
 #define ActParticle_h
 
+#include "Constants.h"
+
 #include <iostream>
 #include <string>
 namespace ActPhysics
@@ -9,8 +11,6 @@ namespace ActPhysics
     class Particle
     {
     private:
-        double kamuToMeVC2 {931.494028}; //!< Internal constant: amu to MeV/c2
-        double keMass {0.510998910}; //!< Internal constant: electron mass in MeV/c2
         std::string fName {}; //!< Name in database of the particle
         double fMassExcess {}; //!< Mass excess in MeV/c2
         double fMass {}; //!< Mass in MeV/c2
@@ -29,8 +29,10 @@ namespace ActPhysics
         const std::string& GetName() const {return fName;}
         int GetA() const {return fA;}
         int GetZ() const {return fZ;}
-        double GetMass() const {return fMass;}
-        double GetAMU() const {return fMass / kamuToMeVC2;}//!< Return mass in amu units
+        double GetMass() const {return fMass;}//!< Return mass in MeV / c2 units
+        double GetAMU() const {return fMass / Constants::kamuToMeVC2;}//!< Return mass in amu units
+        double GetSn() const {return GetSnX(1);}
+        double GetSp() const {return GetSpX(1);}
         void Print() const;
 
     private:
@@ -38,6 +40,8 @@ namespace ActPhysics
         void ParseFile(const std::string& particle, const std::string& file = "");
         void Extract(const std::string& line);
         std::string StripWhitespaces(std::string str);
+        double GetSnX(unsigned int X) const;
+        double GetSpX(unsigned int X) const;
     };
 }
 #endif

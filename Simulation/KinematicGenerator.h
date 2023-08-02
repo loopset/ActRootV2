@@ -27,10 +27,6 @@ namespace ActSim
         //store passed values as members
         double fEBeam {};
         double fEx {};
-        //Constants: masses of proton and neutron
-        double kprotonMass;
-        double kneutronMass;
-        double kMevToGeV {1.0E-3};//!< TGenPhaseSpace requires GeV units!
         
     public:
         KinematicGenerator() = default;

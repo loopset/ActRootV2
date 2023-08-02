@@ -1,4 +1,7 @@
 #include "Particle.h"
+
+#include "Constants.h"
+
 #include "TSystem.h"
 
 #include <algorithm>
@@ -94,7 +97,7 @@ void ActPhysics::Particle::Extract(const std::string& line)
     auto massexcess {line.substr(18, 13)};
     fMassExcess = std::stod(massexcess) * 1.e-3;//keV to MeV
     //Build mass
-    fMass = fA * kamuToMeVC2 + fMassExcess - fZ * keMass;
+    fMass = fA * Constants::kamuToMeVC2 + fMassExcess - fZ * Constants::keMass;
 }
 
 void ActPhysics::Particle::Print() const
@@ -109,4 +112,16 @@ std::string ActPhysics::Particle::StripWhitespaces(std::string str)
 {
     str.erase(std::remove_if(str.begin(), str.end(), [](char x){return std::isspace(x);}), str.end());
     return str;
+}
+
+double ActPhysics::Particle::GetSnX(unsigned int X) const
+{
+    Particle N(fZ, fA - X);
+    return N.GetMass() + X * Constants::knMass - fMass;
+}
+
+double ActPhysics::Particle::GetSpX(unsigned int X) const
+{
+    Particle P(fZ - X, fA - X);
+    return P.GetMass() + X * Constants::kpMass - fMass;
 }

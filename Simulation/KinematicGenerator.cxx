@@ -1,7 +1,9 @@
 #include "KinematicGenerator.h"
 
+#include "Colors.h"
 #include "Kinematics.h"
 #include "Particle.h"
+#include "Constants.h"
 
 #include "TGenPhaseSpace.h"
 #include "TLorentzVector.h"
@@ -24,9 +26,6 @@ ActSim::KinematicGenerator::KinematicGenerator(const std::string& p1, const std:
     fBinParts.push_back(ActPhysics::Particle(p4));
     //Compute heavy particle in final state
     ComputeHeavyMass();
-    //Init constants
-    kprotonMass = ActPhysics::Particle(1, 1).GetMass();
-    kneutronMass = ActPhysics::Particle(0, 1).GetMass();
 }
 
 ActSim::KinematicGenerator::KinematicGenerator(const ActPhysics::Particle& p1, const ActPhysics::Particle& p2,
@@ -45,9 +44,6 @@ ActSim::KinematicGenerator::KinematicGenerator(const ActPhysics::Particle& p1, c
     fBinParts.push_back(p4);
     //Compute heavy particle in final state
     ComputeHeavyMass();
-    //Init constants
-    kprotonMass = ActPhysics::Particle(1, 1).GetMass();
-    kneutronMass = ActPhysics::Particle(0, 1).GetMass();
 }
 
 
@@ -88,7 +84,7 @@ TLorentzVector ActSim::KinematicGenerator::GetInitialState()
     //WARNING! TGenPhaseSpace::Theta() needs beam along Z direction
     // that is, out X direction in SimKinematics
     auto lorentz {TLorentzVector(init.Z(), init.Y(), init.X(), init.E())};
-    lorentz *= kMevToGeV;
+    lorentz *= ActPhysics::Constants::kMeVToGeV;
     //lorentz.Print();
     return lorentz;
 }
@@ -96,20 +92,20 @@ TLorentzVector ActSim::KinematicGenerator::GetInitialState()
 std::vector<double> ActSim::KinematicGenerator::GetFinalState()
 {
     std::vector<double> ret(2 + fneutronPS + fprotonPS);//masses in final state
-    ret[0] = fBinParts[2].GetMass() * kMevToGeV;//light recoil
-    ret[1] = (fHeavyPart.GetMass() + fEx) * kMevToGeV;//heavy recoil
+    ret[0] = fBinParts[2].GetMass() * ActPhysics::Constants::kMeVToGeV;//light recoil
+    ret[1] = (fHeavyPart.GetMass() + fEx) * ActPhysics::Constants::kMeVToGeV;//heavy recoil
     //And now proton and neutron masses
     int counter {2};
     //1st, proton
     for(int p = 0; p < fprotonPS; p++)
     {
-        ret[counter] = kprotonMass * kMevToGeV;
+        ret[counter] = ActPhysics::Constants::kpMass * ActPhysics::Constants::kMeVToGeV;
         counter++;
     }
     //2nd, neutron
     for(int n = 0; n < fneutronPS; n++)
     {
-        ret[counter] = kneutronMass * kMevToGeV;
+        ret[counter] = ActPhysics::Constants::knMass * ActPhysics::Constants::kMeVToGeV;
         counter++;
     }
     return ret;
@@ -123,12 +119,14 @@ double ActSim::KinematicGenerator::Generate()
 TLorentzVector* ActSim::KinematicGenerator::GetLorentzVector(unsigned int idx)
 {
     auto* ret {fGen.GetDecay(idx)};
-    *ret *= 1.0 / kMevToGeV;
+    *ret *= 1.0 / ActPhysics::Constants::kMeVToGeV;
     return ret;
 }
 
 void ActSim::KinematicGenerator::Print() const
 {
+    std::cout<<std::fixed<<std::setprecision(2);
+    std::cout<<BOLDCYAN;
     std::cout<<"==== KinematicGenerator ===="<<'\n';
     for(auto& p : fBinParts)
         std::cout<<" Particle "<<p.GetName()<<" with mass "<<p.GetMass()<<" MeV/c2"<<'\n';
@@ -137,4 +135,5 @@ void ActSim::KinematicGenerator::Print() const
     std::cout<<" -> neutron = "<<fneutronPS<<'\n';
     std::cout<<" -> heavy recoil = "<<fHeavyPart.GetName()<<'\n';
     std::cout<<"    with mass "<<fHeavyPart.GetMass()<<" MeV/c2"<<'\n';
+    std::cout<<RESET<<std::endl;
 }

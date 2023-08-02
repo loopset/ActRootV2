@@ -111,8 +111,7 @@ ActSim::Geometry::Geometry()
 
 ActSim::Geometry::~Geometry()
 {
-    //we dont have to delete anything in principle
-    //delete manager;
+    delete fManager;
 }
 
 void ActSim::Geometry::Construct()
