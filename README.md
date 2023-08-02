@@ -1,6 +1,10 @@
 # ActRoot
 ActRoot provides the basic tools for analyzing and simulating ACTAR TPC experiments.
 
+## Doxygen documentation
+Uncompleted `Doxygen` documentation is available at [here](https://loopset.github.io/ActRootV2/). 
+Major advances are still required to have all the code documented.
+
 ## Installation
 
 Follow these steps to have ActRoot working on your computer
