@@ -26,4 +26,4 @@ Please, replace `N` with your number of cores (which you might find by executing
 ```bash
 source /home/youruser/ActRootV2/thisActRoot.sh
 ```
-Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are need, following the notation: `Core/CutsManager.h` or `Simulation/Runner.h`
+Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under `instal/include`, so for instance you would add `#include "Particle.h"` for working with a `ActPhysics::Particle` object.
