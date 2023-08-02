@@ -26,14 +26,16 @@ jobs:
       uses: mattnotmitt/doxygen-action@v1.9.5
       with:
         # Path to Doxyfile
-        doxyfile-path: "./Doxyfile" # default is ./Doxyfile
+        doxyfile-path: ./Doxyfile # default is ./Doxyfile
         # Working directory
-        working-directory: "." # default is .
+        working-directory: . # default is .
     
-    - name: Deploy
+    - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        # Default Doxyfile build documentation to html directory. 
-        # Change the directory if changes in Doxyfile
         publish_dir: ./html
+        enable_jekyll: false
+        allow_empty_commit: false
+        force_orphan: true
+        publish_branch: gh-pages
