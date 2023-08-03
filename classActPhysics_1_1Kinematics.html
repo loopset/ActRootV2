@@ -89,15 +89,15 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>LorentzBoostX</b> = 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4d3deedc6aa8711b5bbebe64c0509b87"><td class="memItemLeft" align="right" valign="top"><a id="a4d3deedc6aa8711b5bbebe64c0509b87"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (double m1, double m2, double m3, double m4, double T1, double Eex=0.)</td></tr>
-<tr class="separator:a4d3deedc6aa8711b5bbebe64c0509b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d1f6032b9bff05af20a2756071a3063"><td class="memItemLeft" align="right" valign="top"><a id="a9d1f6032b9bff05af20a2756071a3063"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, double T1, double Eex=0)</td></tr>
-<tr class="separator:a9d1f6032b9bff05af20a2756071a3063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a204390fb6fb8dad0cbe5165f722f3331"><td class="memItemLeft" align="right" valign="top"><a id="a204390fb6fb8dad0cbe5165f722f3331"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p4, double T1, double Eex=0)</td></tr>
-<tr class="separator:a204390fb6fb8dad0cbe5165f722f3331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fb576b57884270d053f9f4b71c1378"><td class="memItemLeft" align="right" valign="top"><a id="ae2fb576b57884270d053f9f4b71c1378"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (double m1, double m2, double m3, double m4, double T1=-1, double Eex=0.)</td></tr>
+<tr class="separator:ae2fb576b57884270d053f9f4b71c1378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae365cc352aabd92cfbfa5529e520cbf2"><td class="memItemLeft" align="right" valign="top"><a id="ae365cc352aabd92cfbfa5529e520cbf2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, double T1=-1, double Eex=0)</td></tr>
+<tr class="separator:ae365cc352aabd92cfbfa5529e520cbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c94d00293aa80cbfad1910a33d472e5"><td class="memItemLeft" align="right" valign="top"><a id="a3c94d00293aa80cbfad1910a33d472e5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p4, double T1=-1, double Eex=0)</td></tr>
+<tr class="separator:a3c94d00293aa80cbfad1910a33d472e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcb1e74eaa60406dca8d93b6641e8ba6"><td class="memItemLeft" align="right" valign="top"><a id="adcb1e74eaa60406dca8d93b6641e8ba6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;)=default</td></tr>
 <tr class="separator:adcb1e74eaa60406dca8d93b6641e8ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +134,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr
 <tr class="memitem:a47be46fa4f727dafbc6ce0aa3504c58a"><td class="memItemLeft" align="right" valign="top"><a id="a47be46fa4f727dafbc6ce0aa3504c58a"></a>
 TGraph *&#160;</td><td class="memItemRight" valign="bottom"><b>GetKinematicLine3</b> (double step=2, EColor color=kMagenta, ELineStyle style=kSolid)</td></tr>
 <tr class="separator:a47be46fa4f727dafbc6ce0aa3504c58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0263978a8d1d3720334f838ab0e2681"><td class="memItemLeft" align="right" valign="top"><a id="ae0263978a8d1d3720334f838ab0e2681"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBeamEnergy</b> (double T1)</td></tr>
+<tr class="separator:ae0263978a8d1d3720334f838ab0e2681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7b50845a2c3fb5d8b5bd057b6e6c2e"><td class="memItemLeft" align="right" valign="top"><a id="a0d7b50845a2c3fb5d8b5bd057b6e6c2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetEx</b> (double Ex)</td></tr>
+<tr class="separator:a0d7b50845a2c3fb5d8b5bd057b6e6c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7ce7f21428fa5f7840f53803f955170"><td class="memItemLeft" align="right" valign="top"><a id="ab7ce7f21428fa5f7840f53803f955170"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>GetT1Lab</b> () const</td></tr>
 <tr class="separator:ab7ce7f21428fa5f7840f53803f955170"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,6 +194,9 @@ std::tuple&lt; double, double, double, double &gt;&#160;</td><td class="memItemR
 <tr class="memitem:af73c6c83d1643fe9d4e9f0b28020bcf3"><td class="memItemLeft" align="right" valign="top"><a id="af73c6c83d1643fe9d4e9f0b28020bcf3"></a>
 FourVector&#160;</td><td class="memItemRight" valign="bottom"><b>GetPInitialLab</b> () const</td></tr>
 <tr class="separator:af73c6c83d1643fe9d4e9f0b28020bcf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7778267c7cb039fb74cdd93739789491"><td class="memItemLeft" align="right" valign="top"><a id="a7778267c7cb039fb74cdd93739789491"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>GetQValue</b> () const</td></tr>
+<tr class="separator:a7778267c7cb039fb74cdd93739789491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Physics/<a class="el" href="Kinematics_8h_source.html">Kinematics.h</a></li>
