@@ -73,19 +73,19 @@ Doxygen documentation</h1>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Installation</h1>
 <p>Follow these steps to have <a class="el" href="namespaceActRoot.html">ActRoot</a> working on your computer</p><ol type="1">
-<li>Clone this repo to your local computer</li>
+<li>Clone this repo into your local computer</li>
 </ol>
 <div class="fragment"><div class="line">git clone https://github.com/loopset/ActRootV2.git</div>
 </div><!-- fragment --><ol type="1">
 <li>Create a <code>build</code> directory and move into it <div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
 </div><!-- fragment --></li>
 <li>Run CMake and <code>make</code> <div class="fragment"><div class="line">cmake .. &amp;&amp; make -jN install</div>
-</div><!-- fragment --> This command will install all the libraries and headers in the created <code>install</code> dir inside the <a class="el" href="namespaceActRoot.html">ActRoot</a> folder.</li>
+</div><!-- fragment --> This command will install all the libraries and headers in the created <code>install</code> folder inside the <a class="el" href="namespaceActRoot.html">ActRoot</a> parent directory.</li>
 </ol>
 <p>Please, replace <code>N</code> with your number of cores (which you might find by executing <code>nproc</code> in a terminal)</p>
 <ol type="1">
 <li>Source the <code>thisActRoot.sh</code> file located in the <a class="el" href="namespaceActRoot.html">ActRoot</a> main folder. For this, just open your local <code>.bashrc</code> file and append at the end the line <div class="fragment"><div class="line">source /home/youruser/ActRootV2/thisActRoot.sh</div>
-</div><!-- fragment --> Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under <code>instal/include</code>, so for instance you would add <code>#include "Particle.h"</code> for working with a <code><a class="el" href="classActPhysics_1_1Particle.html" title="A class reading NUBASE particle info.">ActPhysics::Particle</a></code> object. </li>
+</div><!-- fragment --> Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under <code>install/include</code>, so, for instance, you would add <code>#include "Particle.h"</code> for working with an <code><a class="el" href="classActPhysics_1_1Particle.html" title="A class reading NUBASE particle info.">ActPhysics::Particle</a></code> object. </li>
 </ol>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
