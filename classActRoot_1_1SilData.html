@@ -145,7 +145,13 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reset stored variables in <a class="el" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data.">SilData</a>. </p>
-
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>.clear();</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.clear();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> SilData.h:13</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> SilData.h:14</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a27282842460c29e6ead7be71eac63983"></a>
@@ -164,7 +170,18 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print calibrated silicon data. </p>
-
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vec] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;==== SilData ====&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;-- Layer &quot;</span>&lt;&lt;key&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; vec.size(); i++)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            std::cout&lt;&lt;<span class="stringliteral">&quot;SilN = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.at(key).at(i)&lt;&lt;<span class="stringliteral">&quot; Val = &quot;</span>&lt;&lt;vec[i]&lt;&lt;<span class="stringliteral">&quot; MeV&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

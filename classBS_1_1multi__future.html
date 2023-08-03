@@ -152,7 +152,9 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;: <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>(num_futures_) {}</div>
+<div class="ttc" id="aclassBS_1_1multi__future_html_a27e462ff68dfe16e6bf23d87a174cfe0"><div class="ttname"><a href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">BS::multi_future::futures</a></div><div class="ttdeci">std::vector&lt; std::future&lt; T &gt; &gt; futures</div><div class="ttdoc">A vector to store the futures.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:121</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -183,7 +185,23 @@ template&lt;typename T &gt; </div>
 
 <p>Get the results from all the futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object, rethrowing any stored exceptions. </p>
 <dl class="section return"><dt>Returns</dt><dd>If the futures return void, this function returns void as well. Otherwise, it returns a vector containing the results. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span> constexpr (std::is_void_v&lt;T&gt;)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.size(); ++i)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>[i].<a class="code" href="classBS_1_1multi__future.html#abc4a07d29c078263b60ae785b7330880">get</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            std::vector&lt;T&gt; results(<a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.size());</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.size(); ++i)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                results[i] = <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>[i].<a class="code" href="classBS_1_1multi__future.html#abc4a07d29c078263b60ae785b7330880">get</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">return</span> results;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1multi__future_html_abc4a07d29c078263b60ae785b7330880"><div class="ttname"><a href="classBS_1_1multi__future.html#abc4a07d29c078263b60ae785b7330880">BS::multi_future::get</a></div><div class="ttdeci">std::conditional_t&lt; std::is_void_v&lt; T &gt;, void, std::vector&lt; T &gt; &gt; get()</div><div class="ttdoc">Get the results from all the futures stored in this multi_future object, rethrowing any stored except...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:60</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="abc96c3ab6b47827071f043f27b1f9501"></a>
@@ -220,7 +238,10 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The future. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>[i];</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6af9fb74e856f779a1722d2018afebee"></a>
@@ -256,7 +277,10 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.push_back(std::move(future));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="abf3325699649c91f9dd88f5a252e742e"></a>
@@ -286,7 +310,10 @@ template&lt;typename T &gt; </div>
 
 <p>Get the number of futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of futures. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.size();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a05073ed8d37b939c9440ac8789b69ba7"></a>
@@ -315,7 +342,12 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Wait for all the futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object. </p>
-
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>.size(); ++i)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>[i].<a class="code" href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">wait</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1multi__future_html_a05073ed8d37b939c9440ac8789b69ba7"><div class="ttname"><a href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">BS::multi_future::wait</a></div><div class="ttdeci">void wait() const</div><div class="ttdoc">Wait for all the futures stored in this multi_future object.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:111</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

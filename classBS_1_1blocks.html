@@ -181,7 +181,24 @@ template&lt;typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, 
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                                                                                        : <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(first_index_)), <a class="code" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">index_after_last</a>(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(index_after_last_)), <a class="code" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">num_blocks</a>(num_blocks_)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">index_after_last</a> &lt; <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            std::swap(<a class="code" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">index_after_last</a>, <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">total_size</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">index_after_last</a> - <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">block_size</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">total_size</a> / <a class="code" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">num_blocks</a>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">block_size</a> == 0)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <a class="code" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">block_size</a> = 1;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <a class="code" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">num_blocks</a> = (<a class="code" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">total_size</a> &gt; 1) ? <a class="code" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">total_size</a> : 1;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1blocks_html_a00be565e32c27f12daabcad3372e4427"><div class="ttname"><a href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">BS::blocks::block_size</a></div><div class="ttdeci">size_t block_size</div><div class="ttdoc">The size of each block (except possibly the last block).</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:207</div></div>
+<div class="ttc" id="aclassBS_1_1blocks_html_a1a85a9337c465b6e8f0f58de55ad9404"><div class="ttname"><a href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">BS::blocks::index_after_last</a></div><div class="ttdeci">T index_after_last</div><div class="ttdoc">The index after the last index in the range.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:217</div></div>
+<div class="ttc" id="aclassBS_1_1blocks_html_a280d8dc59f615cf7880dc455849b8daf"><div class="ttname"><a href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">BS::blocks::first_index</a></div><div class="ttdeci">T first_index</div><div class="ttdoc">The first index in the range.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:212</div></div>
+<div class="ttc" id="aclassBS_1_1blocks_html_a2fe0f1dc1c6cdcb40e255512ad38213f"><div class="ttname"><a href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">BS::blocks::total_size</a></div><div class="ttdeci">size_t total_size</div><div class="ttdoc">The total number of indices in the range.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:227</div></div>
+<div class="ttc" id="aclassBS_1_1blocks_html_ae07e5d2a3a7ee244222f9045f69c64da"><div class="ttname"><a href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">BS::blocks::num_blocks</a></div><div class="ttdeci">size_t num_blocks</div><div class="ttdoc">The number of blocks.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:222</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -219,7 +236,10 @@ template&lt;typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The index after the last index. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keywordflow">return</span> (i == <a class="code" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">num_blocks</a> - 1) ? <a class="code" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">index_after_last</a> : (<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>((i + 1) * <a class="code" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">block_size</a>) + <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aed50be83dbe428959cb600197df32c95"></a>
@@ -249,7 +269,10 @@ template&lt;typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, 
 
 <p>Get the number of blocks. Note that this may be different than the desired number of blocks that was passed to the constructor. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of blocks. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">num_blocks</a>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5f1214e4fdf05ff4d825d08cf8c66b2b"></a>
@@ -279,7 +302,10 @@ template&lt;typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, 
 
 <p>Get the total number of indices in the range. </p>
 <dl class="section return"><dt>Returns</dt><dd>The total number of indices. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    {</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">total_size</a>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7d659984a82cf57e54773d9a88d863ae"></a>
@@ -316,7 +342,10 @@ template&lt;typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The first index. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(i * <a class="code" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">block_size</a>) + <a class="code" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">first_index</a>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

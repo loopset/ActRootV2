@@ -150,7 +150,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{};</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a1a0321ce732a27a7206a7a7240a039fd"></a>
@@ -176,7 +177,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{ <a class="code" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a> = name; };</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad68e77f4fbc8bbe14d00ebbb48cee857"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">ActRoot::InputBlock::fBlockName</a></div><div class="ttdeci">std::string fBlockName</div><div class="ttdef"><b>Definition:</b> InputParser.h:22</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9564170f7f6b6a4627c9577ffd7d0d6b"></a>
@@ -201,7 +204,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{};</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -220,7 +224,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">auto</span> token {<a class="code" href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">GetToken</a>(line)};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.push_back(token);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#aaf39933341284e2e74081e35bfa4a1aa">GetValues</a>(line, token);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4aac1fc1cdd78a9cfbaa34cac5c40a81"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock::fTokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fTokens</div><div class="ttdef"><b>Definition:</b> InputParser.h:24</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a8fcd3c36c6f51e66ce5f5d0540bc63ed"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">ActRoot::InputBlock::GetToken</a></div><div class="ttdeci">std::string GetToken(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:32</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aaf39933341284e2e74081e35bfa4a1aa"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aaf39933341284e2e74081e35bfa4a1aa">ActRoot::InputBlock::GetValues</a></div><div class="ttdeci">void GetValues(const std::string &amp;line, const std::string &amp;token)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:39</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a914cb4d982e63d891ccc3bbafd476e07"></a>
@@ -248,7 +260,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> exists {<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(<a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>.count(token))};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span>(!exists &amp;&amp; !soft)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; does not exit in InputBlock&quot;</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> exists;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a1587321fc4e5cffcbb3e1d5699d63b5b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">ActRoot::InputBlock::fValues</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; fValues</div><div class="ttdef"><b>Definition:</b> InputParser.h:25</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a138a2acebba5c388583ad9a635664e4b"></a>
@@ -273,7 +292,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aa015822135c0686cadc08b6edba18807"></a>
@@ -298,7 +318,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a>;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7748641bbd41896f084000cd4ee4ae77"></a>
@@ -316,7 +337,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4f8b7ba536bd390b0c9b5657d950756e"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">ActRoot::InputBlock::StringToInt</a></div><div class="ttdeci">int StringToInt(const std::string &amp;val)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:92</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a914cb4d982e63d891ccc3bbafd476e07"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">ActRoot::InputBlock::CheckTokenExists</a></div><div class="ttdeci">bool CheckTokenExists(const std::string &amp;token, bool soft=false)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:64</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad1706e1df2b3bc946489ddeb4a1078f7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">ActRoot::InputBlock::IsVector</a></div><div class="ttdeci">bool IsVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:72</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a80bec0960697d0c6328db2800ef70aa7"></a>
@@ -334,7 +364,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    std::vector&lt;int&gt; ret {};</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; val : <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token])</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        ret.push_back(<a class="code" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(val));</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aef758d3abcb471f39760fbae4f93b324"></a>
@@ -352,7 +389,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a695432c832b49d9bfe58ce4b57ee821b"></a>
@@ -370,7 +413,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token];</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a8fcd3c36c6f51e66ce5f5d0540bc63ed"></a>
@@ -396,7 +443,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">//Find separator</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">auto</span> pos { line.find(<a class="code" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>)};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> line.substr(0, pos);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="ttc" id="anamespaceActRoot_html_a65a3472de3360771c3f8a49e0aa3d4e4"><div class="ttname"><a href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a></div><div class="ttdeci">const std::string kTokenSeparator</div><div class="ttdef"><b>Definition:</b> InputParser.h:12</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a52bc06a2eba96092efbefcdaa98669b5"></a>
@@ -421,7 +474,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaf39933341284e2e74081e35bfa4a1aa"></a>
@@ -457,7 +511,25 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//Find separator</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">auto</span> pos { line.find(<a class="code" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>)};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">auto</span> values {line.substr(pos + 1)};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//split by value separator</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::size_t previous {0}; std::size_t actual {};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">while</span> ((actual = values.find_first_of(<a class="code" href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a>, previous)) != std::string::npos)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span>(actual &gt; previous)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous, actual - previous)));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        previous = actual + 1;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//push the rest of the line to the vector</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(previous &lt; values.length())</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous)));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:13</div></div>
+<div class="ttc" id="anamespaceActRoot_html_ab1c6226ed232700245490060aa918465"><div class="ttname"><a href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a></div><div class="ttdeci">const std::string kValueSeparator</div><div class="ttdef"><b>Definition:</b> InputParser.h:13</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad1706e1df2b3bc946489ddeb4a1078f7"></a>
@@ -483,7 +555,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">auto</span> size {<a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size()};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span>(size == 0)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; has empty data&quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(size == 1)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4f8b7ba536bd390b0c9b5657d950756e"></a>
@@ -509,7 +590,20 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">int</span> ret {};</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        ret = std::stoi(val);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">catch</span> (std::exception&amp; e)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Could not convert to int value &quot;</span>&lt;&lt;val&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(e.what());</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

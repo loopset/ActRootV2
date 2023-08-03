@@ -150,7 +150,20 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">//Init entries log</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [run, tree] : input-&gt;GetTrees())</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>[run] = tree-&gt;GetEntries();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">//Init iterators</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> = -1;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> = -1;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputIterator_html_a08b32fa43564e75f15ee0b1fe807735d"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">ActRoot::InputIterator::fCurrentEntry</a></div><div class="ttdeci">int fCurrentEntry</div><div class="ttdef"><b>Definition:</b> InputIterator.h:14</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputIterator_html_a72825156e772a1d9cf92f74953506b96"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">ActRoot::InputIterator::fCurrentRun</a></div><div class="ttdeci">int fCurrentRun</div><div class="ttdef"><b>Definition:</b> InputIterator.h:13</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputIterator_html_ab7847016791c9a0553e9b0a1801c2e46"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">ActRoot::InputIterator::fEntries</a></div><div class="ttdeci">std::map&lt; int, int &gt; fEntries</div><div class="ttdef"><b>Definition:</b> InputIterator.h:15</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4b1cdd59178f20e52217a42be6d24331"></a>
@@ -212,7 +225,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> (entry &gt; -1 &amp;&amp; entry &lt; <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>[run]);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a58d6c4c1a5fecc267eb8c7733ba889ac"></a>
@@ -237,7 +253,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{<span class="keywordflow">return</span> {<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a>, <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a>};}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7304836677b7f0105863c878cfdb2e03"></a>
@@ -265,7 +282,22 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">auto</span> it = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.find(run);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span>(it != <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.end() &amp;&amp; <a class="code" href="classActRoot_1_1InputIterator.html#a9dd44611a73c337b01b39147a352a76d">CheckEntryIsInRange</a>(run, entry))</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> = run;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> = entry;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;InpuIterator::GoTo received wrong run or entry&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputIterator_html_a9dd44611a73c337b01b39147a352a76d"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#a9dd44611a73c337b01b39147a352a76d">ActRoot::InputIterator::CheckEntryIsInRange</a></div><div class="ttdeci">bool CheckEntryIsInRange(int run, int entry)</div><div class="ttdef"><b>Definition:</b> InputIterator.cxx:97</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab4bc333d9b1820946ef43bfc907dd40c"></a>
@@ -282,7 +314,52 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//Workaround: Idk what is going on with the fRunIt after initialization</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//because it goes undefined behaviour (but only when called in EventPainter)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> == -1)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.begin()-&gt;first;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputIterator.html#a9dd44611a73c337b01b39147a352a76d">CheckEntryIsInRange</a>(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a>, <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> + 1))</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> += 1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">auto</span> it = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.find(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> + 1);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">if</span>(it != <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.end())</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> = <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> + 1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>[<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a>] - 1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// //Increase entry</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// for(; fRunIt != fEntries.end(); fRunIt++)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// {</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">//     fCurrentRun = fRunIt-&gt;first;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//     // std::cout&lt;&lt;&quot;fRunIt in Next() = &quot;&lt;&lt;fRunIt._M_node&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//     // for(auto&amp; [run, entrie] : fEntries)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">//     //     std::cout&lt;&lt;&quot;Run = &quot;&lt;&lt;run&lt;&lt;&quot; entries = &quot;&lt;&lt;entrie&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//     // std::cout&lt;&lt;&quot;fCurrentRun = &quot;&lt;&lt;fCurrentRun&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//     if(CheckEntryIsInRange(fRunIt-&gt;first, fCurrentEntry + 1))</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//     {</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//         fCurrentEntry += 1;</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">//         break;</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">//     }</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">//     fCurrentEntry = -1;</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// }</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// //Check if it is last entry</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// bool reachedEnd {fRunIt == fEntries.end()};</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// if(reachedEnd)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">//     return false;</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// std::cout&lt;&lt;&quot;Run = &quot;&lt;&lt;fRunIt-&gt;first&lt;&lt;&quot; entry = &quot;&lt;&lt;fCurrentEntry&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// return true;</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab8f92450ff11eefc48dae440aca61d8e"></a>
@@ -299,7 +376,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//I dont want to mess up thins mixing both forward and reverse iterators</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//So I implement Previous() manually assuming we will use more Next()</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">//Works fine but for sure we could have improved its implementation</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> == -1)<span class="comment">//this would happen if we at the very first iteration previous instead of next</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputIterator.html#a9dd44611a73c337b01b39147a352a76d">CheckEntryIsInRange</a>(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a>, <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> - 1))</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> -= 1;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">auto</span> it = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.find(<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> - 1);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">if</span>(it != <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>.end())</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> = <a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a> - 1;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">fCurrentEntry</a> = <a class="code" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">fEntries</a>[<a class="code" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">fCurrentRun</a>] - 1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;<span class="comment">//reached end of database</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//std::cout&lt;&lt;&quot;Run = &quot;&lt;&lt;fRunIt-&gt;first&lt;&lt;&quot; entry = &quot;&lt;&lt;fCurrentEntry&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

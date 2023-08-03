@@ -129,7 +129,11 @@ Private Attributes</h2></td></tr>
 
 <p>Get the number of milliseconds that have elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of milliseconds. </dd></dl>
-
+<div class="fragment"><div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    {</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;        <span class="keywordflow">return</span> (std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(<a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a>)).count();</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1timer_html_a9a87317c155500b00d12a6123e6efbb4"><div class="ttname"><a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">BS::timer::elapsed_time</a></div><div class="ttdeci">std::chrono::duration&lt; double &gt; elapsed_time</div><div class="ttdoc">The duration that has elapsed between start() and stop().</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:813</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad442341cacfb7970960a8e2090d66c10"></a>
@@ -156,7 +160,11 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Start (or restart) measuring time. </p>
-
+<div class="fragment"><div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    {</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;        <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1timer_html_aa85a015b91bc8858ac38ed884a79eadf"><div class="ttname"><a href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">BS::timer::start_time</a></div><div class="ttdeci">std::chrono::time_point&lt; std::chrono::steady_clock &gt; start_time</div><div class="ttdoc">The time point when measuring started.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:808</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aef4f43b7877eceaaaa1a34a5b58db903"></a>
@@ -183,7 +191,10 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>. </p>
-
+<div class="fragment"><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;    {</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        <a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a> = std::chrono::steady_clock::now() - <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a>;</div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

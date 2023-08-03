@@ -222,7 +222,35 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    : TGMainFrame(window, width, height)</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;{</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="comment">//Init buttons</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a2051f751ca23862fc611e786fa6f6979">InitButtons</a>();</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a4d95b9644339fda376510b6be81b2ff0">InitEntryButtons</a>();</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="comment">//Create Tab structure</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ae95e3445a1d9efc4807b9c0af8058118">InitTabs</a>();</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="comment">//Init Tab1</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ac8e718cbd13b7fb73c2ac2b3f3ed504e">InitTab1</a>();</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="comment">//Init Tab2</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a45fd5fbdca9768722960c98839670782">InitTab2</a>();</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="comment">//Status bars</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ad5a0a11873973b954e272d6dcd960fcc">InitStatusBars</a>();</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="comment">//Other configs</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">//SetCleanup(kDeepCleanup);</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    SetWindowName(<span class="stringliteral">&quot;ActRoot EventPainter&quot;</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="comment">//MapSubwindows();</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    Layout();</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    Resize(GetDefaultSize());</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    MapWindow();</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a2051f751ca23862fc611e786fa6f6979"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a2051f751ca23862fc611e786fa6f6979">ActRoot::EventPainter::InitButtons</a></div><div class="ttdeci">void InitButtons()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:158</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a45fd5fbdca9768722960c98839670782"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a45fd5fbdca9768722960c98839670782">ActRoot::EventPainter::InitTab2</a></div><div class="ttdeci">void InitTab2()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:271</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a4d95b9644339fda376510b6be81b2ff0"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a4d95b9644339fda376510b6be81b2ff0">ActRoot::EventPainter::InitEntryButtons</a></div><div class="ttdeci">void InitEntryButtons()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:190</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ac8e718cbd13b7fb73c2ac2b3f3ed504e"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ac8e718cbd13b7fb73c2ac2b3f3ed504e">ActRoot::EventPainter::InitTab1</a></div><div class="ttdeci">void InitTab1()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:257</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ad5a0a11873973b954e272d6dcd960fcc"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ad5a0a11873973b954e272d6dcd960fcc">ActRoot::EventPainter::InitStatusBars</a></div><div class="ttdeci">void InitStatusBars()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:214</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ae95e3445a1d9efc4807b9c0af8058118"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ae95e3445a1d9efc4807b9c0af8058118">ActRoot::EventPainter::InitTabs</a></div><div class="ttdeci">void InitTabs()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:239</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a318049f0ca135b1359122dbb720f0570"></a>
@@ -247,7 +275,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;{</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    Cleanup();</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -288,7 +319,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">if</span>(!obj)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">auto</span> text1 {obj-&gt;GetName()};</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a>-&gt;SetText(text1, 0);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keyword">auto</span> text3 {obj-&gt;GetObjectInfo(px, py)};</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a>-&gt;SetText(text3, 1);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a783d2029988fb9254770506e40369f6c"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">ActRoot::EventPainter::fStatusCanv</a></div><div class="ttdeci">TGStatusBar * fStatusCanv</div><div class="ttdef"><b>Definition:</b> EventPainter.h:42</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aa7332988f14a0ccf4dde3e421e7c880b"></a>
@@ -349,7 +389,11 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#af6c94460f4d30c10f93ee4e64f386a29">DoExit</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_af6c94460f4d30c10f93ee4e64f386a29"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#af6c94460f4d30c10f93ee4e64f386a29">ActRoot::EventPainter::DoExit</a></div><div class="ttdeci">void DoExit()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:33</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9ae37cb82a7dde5e0be2f3fa65e38eab"></a>
@@ -366,7 +410,28 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [idx, h] : <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;cd(idx);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        h-&gt;Draw(<span class="stringliteral">&quot;colz&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;Update();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//Set info to status bar</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">auto</span> [run, entry] = <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a>.<a class="code" href="classActRoot_1_1InputWrapper.html#a90156d76a3e92fc0a7aafe71e20816ff">GetCurrentStatus</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">auto</span> toStatusBar {TString::Format(<span class="stringliteral">&quot;run = %d entry = %d&quot;</span>, run, entry)};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a>-&gt;SetText(toStatusBar.Data(), 1);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">fRunButton</a>-&gt;SetNumber(run, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">fEntryButton</a>-&gt;SetNumber(entry, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a1fefa81acb691311b2753f3c60661745"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">ActRoot::EventPainter::fRunButton</a></div><div class="ttdeci">TGNumberEntry * fRunButton</div><div class="ttdef"><b>Definition:</b> EventPainter.h:47</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a398cbf5913860ca071373d70b64a6682"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">ActRoot::EventPainter::fStatusThis</a></div><div class="ttdeci">TGStatusBar * fStatusThis</div><div class="ttdef"><b>Definition:</b> EventPainter.h:43</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a5ec0fa88c9da5ea8657978ca7f0c89ed"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">ActRoot::EventPainter::fEntryButton</a></div><div class="ttdeci">TGNumberEntry * fEntryButton</div><div class="ttdef"><b>Definition:</b> EventPainter.h:48</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a685a0b20ea881fc998dfef9cd98be4d4"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">ActRoot::EventPainter::fHist2d</a></div><div class="ttdeci">std::unordered_map&lt; int, std::shared_ptr&lt; TH2F &gt; &gt; fHist2d</div><div class="ttdef"><b>Definition:</b> EventPainter.h:50</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a858c94644e411a7b3bc84254f1d84927"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">ActRoot::EventPainter::fCanv1</a></div><div class="ttdeci">TCanvas * fCanv1</div><div class="ttdef"><b>Definition:</b> EventPainter.h:40</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ad08b322bcc245888388c6703fa80f332"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">ActRoot::EventPainter::fWrap</a></div><div class="ttdeci">InputWrapper fWrap</div><div class="ttdef"><b>Definition:</b> EventPainter.h:56</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a90156d76a3e92fc0a7aafe71e20816ff"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a90156d76a3e92fc0a7aafe71e20816ff">ActRoot::InputWrapper::GetCurrentStatus</a></div><div class="ttdeci">std::pair&lt; int, int &gt; GetCurrentStatus() const</div><div class="ttdef"><b>Definition:</b> InputIterator.h:52</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af6c94460f4d30c10f93ee4e64f386a29"></a>
@@ -383,7 +448,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Exiting ActRoot::EventPainter...&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    gApplication-&gt;Terminate();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="afde528a82cfc5a3c35760fb4b72f8ba3"></a>
@@ -400,7 +469,20 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; voxel : <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a>.<a class="code" href="classActRoot_1_1InputWrapper.html#ac0f2b40c05b703bba7fd9fcb9862d03e">GetCurrentTPCData</a>()-&gt;<a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">//Pad</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[1]-&gt;Fill(voxel.GetPosition().X(), voxel.GetPosition().Y(), voxel.GetCharge());</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">//Side</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[2]-&gt;Fill(voxel.GetPosition().X(), voxel.GetPosition().Z(), voxel.GetCharge());</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">//Front</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[3]-&gt;Fill(voxel.GetPosition().Y(), voxel.GetPosition().Z(), voxel.GetCharge());</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_ac0f2b40c05b703bba7fd9fcb9862d03e"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#ac0f2b40c05b703bba7fd9fcb9862d03e">ActRoot::InputWrapper::GetCurrentTPCData</a></div><div class="ttdeci">TPCData * GetCurrentTPCData()</div><div class="ttdef"><b>Definition:</b> InputIterator.h:50</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> TPCData.h:43</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a73457e97c51c4c5ea394e41f9be80bbd"></a>
@@ -417,7 +499,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1500d94089bfc60c8278dba091c918a4">DoReset</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">auto</span> run {<a class="code" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">fRunButton</a>-&gt;GetIntNumber()};</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">auto</span> entry {<a class="code" href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">fEntryButton</a>-&gt;GetIntNumber()};</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">auto</span> ok = <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a>.<a class="code" href="classActRoot_1_1InputWrapper.html#a3788e897dffe27310a55931d61753276">GoTo</a>(run, entry);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span>(!ok)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3">DoFill</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab">DoDraw</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a1500d94089bfc60c8278dba091c918a4"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a1500d94089bfc60c8278dba091c918a4">ActRoot::EventPainter::DoReset</a></div><div class="ttdeci">void DoReset()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:79</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a9ae37cb82a7dde5e0be2f3fa65e38eab"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab">ActRoot::EventPainter::DoDraw</a></div><div class="ttdeci">void DoDraw()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_afde528a82cfc5a3c35760fb4b72f8ba3"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3">ActRoot::EventPainter::DoFill</a></div><div class="ttdeci">void DoFill()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:85</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a3788e897dffe27310a55931d61753276"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a3788e897dffe27310a55931d61753276">ActRoot::InputWrapper::GoTo</a></div><div class="ttdeci">bool GoTo(int run, int entry)</div><div class="ttdef"><b>Definition:</b> InputIterator.cxx:156</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9e88131fa7416136f72d99f272872691"></a>
@@ -434,7 +530,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1500d94089bfc60c8278dba091c918a4">DoReset</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">auto</span> ok = <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a>.<a class="code" href="classActRoot_1_1InputWrapper.html#a49080911fbf833670b2fe3ea51ed4e13">GoNext</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span>(!ok)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3">DoFill</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab">DoDraw</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a49080911fbf833670b2fe3ea51ed4e13"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a49080911fbf833670b2fe3ea51ed4e13">ActRoot::InputWrapper::GoNext</a></div><div class="ttdeci">bool GoNext()</div><div class="ttdef"><b>Definition:</b> InputIterator.cxx:126</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac8f6dc26aa02d22830d951b533fbf46c"></a>
@@ -451,7 +556,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1500d94089bfc60c8278dba091c918a4">DoReset</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">auto</span> ok = <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a>.<a class="code" href="classActRoot_1_1InputWrapper.html#a4ac2718345058114612ea85c7f642552">GoPrevious</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span>(!ok)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3">DoFill</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab">DoDraw</a>();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a4ac2718345058114612ea85c7f642552"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a4ac2718345058114612ea85c7f642552">ActRoot::InputWrapper::GoPrevious</a></div><div class="ttdeci">bool GoPrevious()</div><div class="ttdef"><b>Definition:</b> InputIterator.cxx:141</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a1500d94089bfc60c8278dba091c918a4"></a>
@@ -468,7 +582,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ad2b0bb7c680d0ceaee66c1b591f47356">ResetHistograms</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a34691afd5f505b9208d469d3c2c2f746">ResetCanvas</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a34691afd5f505b9208d469d3c2c2f746"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a34691afd5f505b9208d469d3c2c2f746">ActRoot::EventPainter::ResetCanvas</a></div><div class="ttdeci">void ResetCanvas()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:73</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ad2b0bb7c680d0ceaee66c1b591f47356"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ad2b0bb7c680d0ceaee66c1b591f47356">ActRoot::EventPainter::ResetHistograms</a></div><div class="ttdeci">void ResetHistograms()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:61</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="abacfa3b97bcd7e02565de3e69505700b"></a>
@@ -485,7 +605,28 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">//Pad</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[1] = std::make_shared&lt;TH2F&gt;(<span class="stringliteral">&quot;hPad&quot;</span>, <span class="stringliteral">&quot;Pad;X [pad];Y [pad]&quot;</span>,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(), 0, <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(),</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>(), 0, <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>());</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="comment">//Side</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[2] = std::make_shared&lt;TH2F&gt;(<span class="stringliteral">&quot;hSide&quot;</span>, <span class="stringliteral">&quot;Side;X [pad];Z [tb]&quot;</span>,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(), 0, <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(),</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">GetNPADSZ</a>() / <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">GetREBINZ</a>(), 0, <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">GetNPADSZ</a>());</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">//Front</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>[3] = std::make_shared&lt;TH2F&gt;(<span class="stringliteral">&quot;hFront&quot;</span>, <span class="stringliteral">&quot;Front;Y [pad];Z [tb]&quot;</span>,</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>(), 0, <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>(),</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                                        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">GetNPADSZ</a>() / <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">GetREBINZ</a>(), 0 , <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">GetNPADSZ</a>());</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [_, h] : <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>)</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        h-&gt;SetStats(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ab31dc6e868001c9826e23f70a6a5ac21"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ActRoot::EventPainter::ftpc</a></div><div class="ttdeci">TPCParameters ftpc</div><div class="ttdef"><b>Definition:</b> EventPainter.h:52</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> TPCDetector.h:39</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a53245f1683330070e850291de5c3807c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">ActRoot::TPCParameters::GetREBINZ</a></div><div class="ttdeci">int GetREBINZ() const</div><div class="ttdef"><b>Definition:</b> TPCDetector.h:40</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition:</b> TPCDetector.h:37</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> TPCDetector.h:38</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a2051f751ca23862fc611e786fa6f6979"></a>
@@ -502,7 +643,38 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;{</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">//Buttons bar</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a> = <span class="keyword">new</span> TGHorizontalFrame(<span class="keyword">this</span>, 200, 40);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keyword">auto</span>* lb = <span class="keyword">new</span> TGLayoutHints(kLHintsCenterX, 5, 5, 4, 3);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="comment">//1-&gt;Exit button</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    TGTextButton* exit = <span class="keyword">new</span> TGTextButton(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="stringliteral">&quot;&amp;Exit &quot;</span>);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    exit-&gt;Connect(<span class="stringliteral">&quot;Pressed()&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>, <span class="keyword">this</span>, <span class="stringliteral">&quot;DoExit()&quot;</span>);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(exit, lb);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">//2-&gt;Draw</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">// TGTextButton* draw = new TGTextButton(fButtonsFrame, &quot;&amp;Draw &quot;);</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="comment">// draw-&gt;Connect(&quot;Pressed()&quot;, &quot;ActRoot::EventPainter&quot;, this, &quot;DoDraw()&quot;);</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">// fButtonsFrame-&gt;AddFrame(draw, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">//3-&gt;Reset</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    TGTextButton* reset = <span class="keyword">new</span> TGTextButton(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="stringliteral">&quot;&amp;Reset &quot;</span>);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    reset-&gt;Connect(<span class="stringliteral">&quot;Pressed()&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>, <span class="keyword">this</span>, <span class="stringliteral">&quot;DoReset()&quot;</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(reset, lb);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="comment">//4-&gt;Previous</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    TGTextButton* previous = <span class="keyword">new</span> TGTextButton(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="stringliteral">&quot;&amp;Previous &quot;</span>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    previous-&gt;Connect(<span class="stringliteral">&quot;Pressed()&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>, <span class="keyword">this</span>, <span class="stringliteral">&quot;DoPreviousEvent()&quot;</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(previous, lb);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">//5-&gt;Next</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    TGTextButton* next = <span class="keyword">new</span> TGTextButton(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="stringliteral">&quot;&amp;Next &quot;</span>);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    next-&gt;Connect(<span class="stringliteral">&quot;Pressed()&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>, <span class="keyword">this</span>, <span class="stringliteral">&quot;DoNextEvent()&quot;</span>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(next, lb);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="comment">//Add frame</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsCenterX, 5, 5, 2, 1));</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="comment">//Map</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;MapSubwindows();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;MapWindow();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a76d8d0c7a5bf8fed8c28cab6aeda7dce"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">ActRoot::EventPainter::fButtonsFrame</a></div><div class="ttdeci">TGHorizontalFrame * fButtonsFrame</div><div class="ttdef"><b>Definition:</b> EventPainter.h:46</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4d95b9644339fda376510b6be81b2ff0"></a>
@@ -519,7 +691,29 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;{</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keyword">auto</span>* lb = <span class="keyword">new</span> TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">//Run</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">fRunButton</a> = <span class="keyword">new</span> TGNumberEntry(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, 0, 9,999, TGNumberFormat::kNESInteger,</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                                   TGNumberFormat::kNEANonNegative,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                                   TGNumberFormat::kNELLimitMinMax,</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                                   0, 99999);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">//fRunButton-&gt;Connect(&quot;ValueSet(Long_t)&quot;, &quot;ActRoot::EventPainter&quot;, this, &quot;DoSetRun()&quot;);</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">fRunButton</a>, lb);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="comment">//Entry</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">fEntryButton</a> = <span class="keyword">new</span> TGNumberEntry(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, 0, 9, 999, TGNumberFormat::kNESInteger,</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                                     TGNumberFormat::kNEANonNegative,</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                                     TGNumberFormat::kNELLimitMinMax,</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                                     0, 99999);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">fEntryButton</a>, lb);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">//Go to</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    TGTextButton* gooto = <span class="keyword">new</span> TGTextButton(<a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>, <span class="stringliteral">&quot;&amp;GoTo &quot;</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    gooto-&gt;Connect(<span class="stringliteral">&quot;Pressed()&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>, <span class="keyword">this</span>, <span class="stringliteral">&quot;DoGoTo()&quot;</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;AddFrame(gooto, lb);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;MapSubwindows();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a>-&gt;MapWindow();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad5a0a11873973b954e272d6dcd960fcc"></a>
@@ -536,7 +730,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;{</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="comment">//Status bar</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a> = <span class="keyword">new</span> TGHorizontalFrame(<span class="keyword">this</span>, 50, 10);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="comment">//1-&gt;For painter info</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">int</span> pars2[] = {20, 80};</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a> = <span class="keyword">new</span> TGStatusBar(<a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>, 50, 10, kHorizontalFrame);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a>-&gt;SetParts(pars2, 2);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a>-&gt;Draw3DCorner(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsExpandX, 2, 2, 0, 0));</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="comment">//2-&gt; For canvas info</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordtype">int</span> pars1 [] = {20, 80};</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a> = <span class="keyword">new</span> TGStatusBar(<a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>, 50, 10, kVerticalFrame);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a>-&gt;SetParts(pars1, 2);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a>-&gt;Draw3DCorner(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsTop | kLHintsExpandX, 2, 2, 0, 0));</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="comment">//Add to global window</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsExpandX, 2, 2, 1, 2));</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">//Default text</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a>-&gt;SetText(<span class="stringliteral">&quot;ActRootv2&quot;</span>, 0);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="comment">//Map</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>-&gt;MapSubwindows();</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a>-&gt;MapWindow();</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a5f0cd604277b8ae1c652b607092b2e33"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">ActRoot::EventPainter::fStatusFrame</a></div><div class="ttdeci">TGHorizontalFrame * fStatusFrame</div><div class="ttdef"><b>Definition:</b> EventPainter.h:44</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac8e718cbd13b7fb73c2ac2b3f3ed504e"></a>
@@ -553,7 +771,20 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;{</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="comment">//Add TCanvas</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">fFrame1</a>-&gt;SetEditable(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a> = <span class="keyword">new</span> TCanvas(<span class="stringliteral">&quot;cPainter1&quot;</span>, <span class="stringliteral">&quot;2D pads&quot;</span>, 500, 400);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;ToggleToolBar();</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;ToggleEventStatus();</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;Divide(3, 2);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">fFrame1</a>-&gt;SetEditable(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="comment">//Connect status bar</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;Connect(<span class="stringliteral">&quot;ProcessedEvent(Int_t,Int_t,Int_t,TObject*)&quot;</span>, <span class="stringliteral">&quot;ActRoot::EventPainter&quot;</span>,</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                   <span class="keyword">this</span>, <span class="stringliteral">&quot;CanvasToStatusBar(int,int,int,TObject*)&quot;</span>);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a87de89f4743bf1b2283324195f1082a1"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">ActRoot::EventPainter::fFrame1</a></div><div class="ttdeci">TGCompositeFrame * fFrame1</div><div class="ttdef"><b>Definition:</b> EventPainter.h:37</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a45fd5fbdca9768722960c98839670782"></a>
@@ -570,7 +801,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;{</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    ;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ae95e3445a1d9efc4807b9c0af8058118"></a>
@@ -587,7 +821,27 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;{</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a> = <span class="keyword">new</span> TGTab(<span class="keyword">this</span>, 500, 400);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsTop | kLHintsExpandX |</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                                            kLHintsExpandY, 2, 2, 0, 0));</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="comment">//Tab 1</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#acae5b7cfce042dfd9a2ad0a1a951680e">fTab1</a> = <a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a>-&gt;AddTab(<span class="stringliteral">&quot;2D histos&quot;</span>);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">fFrame1</a> = <span class="keyword">new</span> TGCompositeFrame(<a class="code" href="classActRoot_1_1EventPainter.html#acae5b7cfce042dfd9a2ad0a1a951680e">fTab1</a>, 500, 400, kHorizontalFrame);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#acae5b7cfce042dfd9a2ad0a1a951680e">fTab1</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">fFrame1</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="comment">//Tab 2</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a66fa21bafe641c6372bc807f54f766ab">fTab2</a> = <a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a>-&gt;AddTab(<span class="stringliteral">&quot;future&quot;</span>);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ac4f69b48ca1740febcfcb99f0786401c">fFrame2</a> = <span class="keyword">new</span> TGCompositeFrame(<a class="code" href="classActRoot_1_1EventPainter.html#a66fa21bafe641c6372bc807f54f766ab">fTab2</a>, 500, 400, kHorizontalFrame);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a66fa21bafe641c6372bc807f54f766ab">fTab2</a>-&gt;AddFrame(<a class="code" href="classActRoot_1_1EventPainter.html#ac4f69b48ca1740febcfcb99f0786401c">fFrame2</a>, <span class="keyword">new</span> TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">//Map all</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a>-&gt;MapSubwindows();</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a>-&gt;MapWindow();</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a4300bc32de36608737c3a55a576cc44d"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">ActRoot::EventPainter::fTabManager</a></div><div class="ttdeci">TGTab * fTabManager</div><div class="ttdef"><b>Definition:</b> EventPainter.h:35</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a66fa21bafe641c6372bc807f54f766ab"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a66fa21bafe641c6372bc807f54f766ab">ActRoot::EventPainter::fTab2</a></div><div class="ttdeci">TGCompositeFrame * fTab2</div><div class="ttdef"><b>Definition:</b> EventPainter.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_ac4f69b48ca1740febcfcb99f0786401c"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ac4f69b48ca1740febcfcb99f0786401c">ActRoot::EventPainter::fFrame2</a></div><div class="ttdeci">TGCompositeFrame * fFrame2</div><div class="ttdef"><b>Definition:</b> EventPainter.h:39</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_acae5b7cfce042dfd9a2ad0a1a951680e"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#acae5b7cfce042dfd9a2ad0a1a951680e">ActRoot::EventPainter::fTab1</a></div><div class="ttdeci">TGCompositeFrame * fTab1</div><div class="ttdef"><b>Definition:</b> EventPainter.h:36</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6fe10e7628b6522f0e4dc07f2d66802b"></a>
@@ -613,7 +867,36 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;{</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keyword">auto</span> headers {parser.<a class="code" href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">GetBlockHeaders</a>()};</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="comment">//TPC</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordflow">if</span>(std::find(headers.begin(), headers.end(), <span class="stringliteral">&quot;Actar&quot;</span>) != headers.end())</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keyword">auto</span> config {parser.GetBlock(<span class="stringliteral">&quot;Actar&quot;</span>)};</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a> = TPCParameters(config-&gt;GetString(<span class="stringliteral">&quot;Type&quot;</span>));</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keywordflow">if</span>(config-&gt;CheckTokenExists(<span class="stringliteral">&quot;RebinZ&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <a class="code" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a>.<a class="code" href="classActRoot_1_1TPCParameters.html#a1e802bd3dcb5435247fef0da647c82a9">SetREBINZ</a>(config-&gt;GetInt(<span class="stringliteral">&quot;RebinZ&quot;</span>));</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="comment">//Silicon</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">if</span>(std::find(headers.begin(), headers.end(), <span class="stringliteral">&quot;Silicons&quot;</span>) != headers.end())</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="comment">//Read layer setup</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        <span class="keyword">auto</span> config {parser.GetBlock(<span class="stringliteral">&quot;Silicons&quot;</span>)};</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="keyword">auto</span> layers {config-&gt;GetStringVector(<span class="stringliteral">&quot;Layers&quot;</span>)};</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">//Read action file</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <span class="keyword">auto</span> legacy {config-&gt;GetStringVector(<span class="stringliteral">&quot;Names&quot;</span>)};</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keyword">auto</span> file {config-&gt;GetString(<span class="stringliteral">&quot;Actions&quot;</span>)};</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a9173d95410a4c9daa081b8e25f619bf3">fsil</a>.<a class="code" href="classActRoot_1_1SilParameters.html#adc738660741b40306747a46cef4df7a3">ReadActions</a>(layers, legacy, file);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a9173d95410a4c9daa081b8e25f619bf3"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a9173d95410a4c9daa081b8e25f619bf3">ActRoot::EventPainter::fsil</a></div><div class="ttdeci">SilParameters fsil</div><div class="ttdef"><b>Definition:</b> EventPainter.h:54</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> InputParser.h:49</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html_a67d08ebce56f6d35c5c62921a8a0520e"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">ActRoot::InputParser::GetBlockHeaders</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetBlockHeaders() const</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:208</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilParameters_html_adc738660741b40306747a46cef4df7a3"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#adc738660741b40306747a46cef4df7a3">ActRoot::SilParameters::ReadActions</a></div><div class="ttdeci">void ReadActions(const std::vector&lt; std::string &gt; &amp;layers, const std::vector&lt; std::string &gt; &amp;names, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> SilDetector.cxx:34</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1e802bd3dcb5435247fef0da647c82a9"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1e802bd3dcb5435247fef0da647c82a9">ActRoot::TPCParameters::SetREBINZ</a></div><div class="ttdeci">void SetREBINZ(int rebin)</div><div class="ttdef"><b>Definition:</b> TPCDetector.h:34</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a34691afd5f505b9208d469d3c2c2f746"></a>
@@ -630,7 +913,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">//fCanv-&gt;Clear(&quot;D&quot;);</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;Update();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad2b0bb7c680d0ceaee66c1b591f47356"></a>
@@ -647,7 +934,17 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">//2D</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [key, h] : <a class="code" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        h-&gt;Reset();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        h-&gt;GetXaxis()-&gt;UnZoom();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        h-&gt;GetYaxis()-&gt;UnZoom();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a>-&gt;cd(key)-&gt;Modified();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad0e1350135c7c0ec7520046ee77ef612"></a>
@@ -675,7 +972,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;{</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="comment">//Init detector and histogram config</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a6fe10e7628b6522f0e4dc07f2d66802b">ReadConfiguration</a>(detector);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#abacfa3b97bcd7e02565de3e69505700b">Init2DHistograms</a>();</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="comment">//Init InputWrapper</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a> = InputWrapper(input);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_a6fe10e7628b6522f0e4dc07f2d66802b"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a6fe10e7628b6522f0e4dc07f2d66802b">ActRoot::EventPainter::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:314</div></div>
+<div class="ttc" id="aclassActRoot_1_1EventPainter_html_abacfa3b97bcd7e02565de3e69505700b"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#abacfa3b97bcd7e02565de3e69505700b">ActRoot::EventPainter::Init2DHistograms</a></div><div class="ttdeci">void Init2DHistograms()</div><div class="ttdef"><b>Definition:</b> EventPainter.cxx:130</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

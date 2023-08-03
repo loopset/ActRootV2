@@ -148,7 +148,9 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;: <a class="code" href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">out_stream</a>(out_stream_) {}</div>
+<div class="ttc" id="aclassBS_1_1synced__stream_html_ae6fe228166d12a7fa916916c7e1d479c"><div class="ttname"><a href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">BS::synced_stream::out_stream</a></div><div class="ttdeci">std::ostream &amp; out_stream</div><div class="ttdoc">The output stream to print to.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:758</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -191,7 +193,12 @@ template&lt;typename... T&gt; </div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    {</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        <span class="keyword">const</span> std::scoped_lock lock(<a class="code" href="classBS_1_1synced__stream.html#a177eb82bf036746521326d0e9b5ff7be">stream_mutex</a>);</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        (<a class="code" href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">out_stream</a> &lt;&lt; ... &lt;&lt; std::forward&lt;T&gt;(items));</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1synced__stream_html_a177eb82bf036746521326d0e9b5ff7be"><div class="ttname"><a href="classBS_1_1synced__stream.html#a177eb82bf036746521326d0e9b5ff7be">BS::synced_stream::stream_mutex</a></div><div class="ttdeci">std::mutex stream_mutex</div><div class="ttdoc">A mutex to synchronize printing.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:763</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5fc273e58ed3cad6d939dc0eceddb8a4"></a>
@@ -233,7 +240,11 @@ template&lt;typename... T&gt; </div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    {</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <a class="code" href="classBS_1_1synced__stream.html#a98e63ce25c8de5cf4bb58966236adef1">print</a>(std::forward&lt;T&gt;(items)..., <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1synced__stream_html_a98e63ce25c8de5cf4bb58966236adef1"><div class="ttname"><a href="classBS_1_1synced__stream.html#a98e63ce25c8de5cf4bb58966236adef1">BS::synced_stream::print</a></div><div class="ttdeci">void print(T &amp;&amp;... items)</div><div class="ttdoc">Print any number of items into the output stream. Ensures that no other threads print to this stream ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:726</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
