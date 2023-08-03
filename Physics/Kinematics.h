@@ -66,14 +66,16 @@ namespace ActPhysics
     public:
         Kinematics() = default;
         Kinematics(double m1, double m2, double m3, double m4,
-                      double T1,
+                      double T1 = -1,
                       double Eex = 0.);
         Kinematics(const std::string& p1, const std::string& p2,
                    const std::string& p3, const std::string& p4,
-                   double T1, double Eex = 0);
+                   double T1 = -1,
+                   double Eex = 0);
         Kinematics(const Particle& p1, const Particle& p2,
                    const Particle& p3, const Particle& p4,
-                   double T1, double Eex = 0);
+                   double T1 = -1,
+                   double Eex = 0);
         Kinematics(const Kinematics& ) = default;
         Kinematics& operator=(const Kinematics& ) = default;
         ~Kinematics() = default;
@@ -94,6 +96,9 @@ namespace ActPhysics
 
         TGraph* GetKinematicLine3(double step = 2, EColor color = kMagenta, ELineStyle style = kSolid);
 
+        //Setters
+        void SetBeamEnergy(double T1);
+        void SetEx(double Ex);
         //getters
         double GetT1Lab() const { return fT1Lab; }
         double GetT3Lab() const { return fT3Lab; }
@@ -113,6 +118,7 @@ namespace ActPhysics
         double GetMass(unsigned int index) const;
         std::tuple<double, double, double, double> GetMasses() const;
         FourVector GetPInitialLab() const { return fPInitialLab; }
+        double GetQValue() const { return fQvalue; }
 	
     private:
         void SetRecoilsCMKinematicsThrough3(double fTheta3CMRads, double phi3CMRads);
@@ -120,6 +126,7 @@ namespace ActPhysics
         void SetRecoil3LabKinematics();
         void SetRecoil4LabKinematics();
         void ComputeQValue();
+        void CheckQValue();
         void Init();
         double GetPhiFromVector(FourVector vect);
         double GetThetaFromVector(FourVector vect);

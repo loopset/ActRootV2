@@ -1,6 +1,7 @@
 #include "Kinematics.h"
 
 #include "Particle.h"
+#include "Colors.h"
 
 #include "Rtypes.h"
 #include "TAttLine.h"
@@ -73,6 +74,12 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2,
 void ActPhysics::Kinematics::Init()
 {
     ComputeQValue();
+    if(fT1Lab == -1)
+    {
+        std::cout<<MAGENTA<<"Using Kinematics with no beam energy set!"<<RESET<<'\n';
+        return;
+    }
+    CheckQValue();
 	double E1Lab { fT1Lab + fm1};
 	double p1Lab { TMath::Sqrt(E1Lab * E1Lab - fm1 * fm1)};
 	fP1Lab = { p1Lab, 0.0, 0.0, E1Lab};//beam along X axis! ACTAR TPC reference frame!
@@ -90,6 +97,18 @@ void ActPhysics::Kinematics::Init()
 	fGamma = BoostTransformation.Gamma();
 	fPInitialCM = BoostTransformation(fPInitialLab);
 	fEcm = fPInitialCM.E();
+}
+
+void ActPhysics::Kinematics::SetBeamEnergy(double T1)
+{
+    fT1Lab = T1;
+    Init();
+}
+
+void ActPhysics::Kinematics::SetEx(double Ex)
+{
+    fEex = Ex;
+    Init();
 }
 
 double ActPhysics::Kinematics::GetMass(unsigned int index) const
@@ -243,7 +262,12 @@ double ActPhysics::Kinematics::ReconstructBeamEnergyFromLabKinematics(double arg
 
 void ActPhysics::Kinematics::ComputeQValue()
 {
+    //does not depend on T1 beam!
     fQvalue = (fm1 + fm2 - fm3 - (fm4 + fEex));
+}
+
+void ActPhysics::Kinematics::CheckQValue()
+{
     if(fQvalue < 0.0)
     {
         double T1threshold {-fQvalue * (fm1 + fm2 + fm3 + (fm4 +fEex)) / (2.0 * fm2)};
