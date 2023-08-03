@@ -62,145 +62,2288 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActPhysics</b></li><li class="navelem"><a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActPhysics.html">ActPhysics</a></li><li class="navelem"><a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActPhysics_1_1Kinematics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActPhysics::Kinematics Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="Kinematics_8h_source.html">Kinematics.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ActPhysics::Kinematics:</div>
+<div class="dyncontent">
+<div class="center"><img src="classActPhysics_1_1Kinematics__coll__graph.png" border="0" usemap="#aActPhysics_1_1Kinematics_coll__map" alt="Collaboration graph"/></div>
+<map name="aActPhysics_1_1Kinematics_coll__map" id="aActPhysics_1_1Kinematics_coll__map">
+<area shape="rect" title=" " alt="" coords="5,139,179,165"/>
+<area shape="rect" href="classActPhysics_1_1Particle.html" title="A class reading NUBASE particle info." alt="" coords="18,5,166,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a450e6d58fcbd8f214eb0ca693bc6f8e0"><td class="memItemLeft" align="right" valign="top"><a id="a450e6d58fcbd8f214eb0ca693bc6f8e0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>ThreeVector</b> = ROOT::Math::XYZVector</td></tr>
+<tr class="memitem:a450e6d58fcbd8f214eb0ca693bc6f8e0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a450e6d58fcbd8f214eb0ca693bc6f8e0">ThreeVector</a> = ROOT::Math::XYZVector</td></tr>
 <tr class="separator:a450e6d58fcbd8f214eb0ca693bc6f8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6a25141646eb13078f13d1cb1d5e9b"><td class="memItemLeft" align="right" valign="top"><a id="aed6a25141646eb13078f13d1cb1d5e9b"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>FourVector</b> = ROOT::Math::PxPyPzEVector</td></tr>
+<tr class="memitem:aed6a25141646eb13078f13d1cb1d5e9b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> = ROOT::Math::PxPyPzEVector</td></tr>
 <tr class="separator:aed6a25141646eb13078f13d1cb1d5e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a865644e9c2a512b72708def6927e90c2"><td class="memItemLeft" align="right" valign="top"><a id="a865644e9c2a512b72708def6927e90c2"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>LorentzBoostX</b> = ROOT::Math::BoostX</td></tr>
+<tr class="memitem:a865644e9c2a512b72708def6927e90c2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2">LorentzBoostX</a> = ROOT::Math::BoostX</td></tr>
 <tr class="separator:a865644e9c2a512b72708def6927e90c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2fb576b57884270d053f9f4b71c1378"><td class="memItemLeft" align="right" valign="top"><a id="ae2fb576b57884270d053f9f4b71c1378"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (double m1, double m2, double m3, double m4, double T1=-1, double Eex=0.)</td></tr>
+<tr class="memitem:a4929cea1e7fdb89cf0f47adb715e356c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a> ()=default</td></tr>
+<tr class="separator:a4929cea1e7fdb89cf0f47adb715e356c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fb576b57884270d053f9f4b71c1378"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ae2fb576b57884270d053f9f4b71c1378">Kinematics</a> (double m1, double m2, double m3, double m4, double T1=-1, double Eex=0.)</td></tr>
 <tr class="separator:ae2fb576b57884270d053f9f4b71c1378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae365cc352aabd92cfbfa5529e520cbf2"><td class="memItemLeft" align="right" valign="top"><a id="ae365cc352aabd92cfbfa5529e520cbf2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, double T1=-1, double Eex=0)</td></tr>
+<tr class="memitem:ae365cc352aabd92cfbfa5529e520cbf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ae365cc352aabd92cfbfa5529e520cbf2">Kinematics</a> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, double T1=-1, double Eex=0)</td></tr>
 <tr class="separator:ae365cc352aabd92cfbfa5529e520cbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c94d00293aa80cbfad1910a33d472e5"><td class="memItemLeft" align="right" valign="top"><a id="a3c94d00293aa80cbfad1910a33d472e5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p4, double T1=-1, double Eex=0)</td></tr>
+<tr class="memitem:a3c94d00293aa80cbfad1910a33d472e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a3c94d00293aa80cbfad1910a33d472e5">Kinematics</a> (const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;p4, double T1=-1, double Eex=0)</td></tr>
 <tr class="separator:a3c94d00293aa80cbfad1910a33d472e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcb1e74eaa60406dca8d93b6641e8ba6"><td class="memItemLeft" align="right" valign="top"><a id="adcb1e74eaa60406dca8d93b6641e8ba6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Kinematics</b> (const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;)=default</td></tr>
+<tr class="memitem:adcb1e74eaa60406dca8d93b6641e8ba6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#adcb1e74eaa60406dca8d93b6641e8ba6">Kinematics</a> (const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;)=default</td></tr>
 <tr class="separator:adcb1e74eaa60406dca8d93b6641e8ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aace29c7b1b1b2bd8001e07749ae85c2a"><td class="memItemLeft" align="right" valign="top"><a id="aace29c7b1b1b2bd8001e07749ae85c2a"></a>
-<a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;)=default</td></tr>
+<tr class="memitem:aace29c7b1b1b2bd8001e07749ae85c2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aace29c7b1b1b2bd8001e07749ae85c2a">operator=</a> (const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;)=default</td></tr>
 <tr class="separator:aace29c7b1b1b2bd8001e07749ae85c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18fd093501698e6640d2f2bfd4a335f5"><td class="memItemLeft" align="right" valign="top"><a id="a18fd093501698e6640d2f2bfd4a335f5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeRecoilKinematics</b> (double thetaCMRads, double phiCMRads, int anglesFrom=4, bool computeBoth=false)</td></tr>
+<tr class="memitem:a105558334d4d6b9f73df422375471753"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a105558334d4d6b9f73df422375471753">~Kinematics</a> ()=default</td></tr>
+<tr class="separator:a105558334d4d6b9f73df422375471753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18fd093501698e6640d2f2bfd4a335f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5">ComputeRecoilKinematics</a> (double thetaCMRads, double phiCMRads, int anglesFrom=4, bool computeBoth=false)</td></tr>
 <tr class="separator:a18fd093501698e6640d2f2bfd4a335f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bcd828d9af0f43829d11cd0a496deb8"><td class="memItemLeft" align="right" valign="top"><a id="a5bcd828d9af0f43829d11cd0a496deb8"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ReconstructBeamEnergyFromLabKinematics</b> (double T3, double theta3LabRads)</td></tr>
+<tr class="memitem:a5bcd828d9af0f43829d11cd0a496deb8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a5bcd828d9af0f43829d11cd0a496deb8">ReconstructBeamEnergyFromLabKinematics</a> (double T3, double theta3LabRads)</td></tr>
 <tr class="separator:a5bcd828d9af0f43829d11cd0a496deb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7a43bbb63ff2d5bd934657814d13da4"><td class="memItemLeft" align="right" valign="top"><a id="ac7a43bbb63ff2d5bd934657814d13da4"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ReconstructTheta3CMFromLab</b> (double T3, double theta3LabRads)</td></tr>
+<tr class="memitem:ac7a43bbb63ff2d5bd934657814d13da4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ac7a43bbb63ff2d5bd934657814d13da4">ReconstructTheta3CMFromLab</a> (double T3, double theta3LabRads)</td></tr>
 <tr class="separator:ac7a43bbb63ff2d5bd934657814d13da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa7a8a3c97fd0ca6e1f20d78ff8b7c44"><td class="memItemLeft" align="right" valign="top"><a id="afa7a8a3c97fd0ca6e1f20d78ff8b7c44"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ReconstructExcitationEnergy</b> (double argT3, double argTheta3LabRads)</td></tr>
+<tr class="memitem:afa7a8a3c97fd0ca6e1f20d78ff8b7c44"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#afa7a8a3c97fd0ca6e1f20d78ff8b7c44">ReconstructExcitationEnergy</a> (double argT3, double argTheta3LabRads)</td></tr>
 <tr class="separator:afa7a8a3c97fd0ca6e1f20d78ff8b7c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee715620f046d0e54380f4ca8757b82e"><td class="memItemLeft" align="right" valign="top"><a id="aee715620f046d0e54380f4ca8757b82e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeTheoreticalT3</b> (double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</td></tr>
+<tr class="memitem:aee715620f046d0e54380f4ca8757b82e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e">ComputeTheoreticalT3</a> (double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</td></tr>
 <tr class="separator:aee715620f046d0e54380f4ca8757b82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35a605811eb1ad51623cbfffb3fc052d"><td class="memItemLeft" align="right" valign="top"><a id="a35a605811eb1ad51623cbfffb3fc052d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeMissingMass</b> (double argT3, double argTheta3LabRads, double argPhi3Rads, double Tbeam, double &amp;retTRecoil, ThreeVector &amp;retPRecoil)</td></tr>
+<tr class="memitem:a35a605811eb1ad51623cbfffb3fc052d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a35a605811eb1ad51623cbfffb3fc052d">ComputeMissingMass</a> (double argT3, double argTheta3LabRads, double argPhi3Rads, double Tbeam, double &amp;retTRecoil, <a class="el" href="classActPhysics_1_1Kinematics.html#a450e6d58fcbd8f214eb0ca693bc6f8e0">ThreeVector</a> &amp;retPRecoil)</td></tr>
 <tr class="separator:a35a605811eb1ad51623cbfffb3fc052d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85eb7a2a990a172234ee3112af15236b"><td class="memItemLeft" align="right" valign="top"><a id="a85eb7a2a990a172234ee3112af15236b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeTheoreticalTheta4</b> (double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</td></tr>
+<tr class="memitem:a85eb7a2a990a172234ee3112af15236b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a85eb7a2a990a172234ee3112af15236b">ComputeTheoreticalTheta4</a> (double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</td></tr>
 <tr class="separator:a85eb7a2a990a172234ee3112af15236b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31781cdb99d26a4cd004fe092bfa662a"><td class="memItemLeft" align="right" valign="top"><a id="a31781cdb99d26a4cd004fe092bfa662a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Print</b> () const</td></tr>
+<tr class="memitem:a31781cdb99d26a4cd004fe092bfa662a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a31781cdb99d26a4cd004fe092bfa662a">Print</a> () const</td></tr>
 <tr class="separator:a31781cdb99d26a4cd004fe092bfa662a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85459522d8246f31d53f1549886f8376"><td class="memItemLeft" align="right" valign="top"><a id="a85459522d8246f31d53f1549886f8376"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr>
+<tr class="memitem:a85459522d8246f31d53f1549886f8376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a85459522d8246f31d53f1549886f8376">Reset</a> ()</td></tr>
 <tr class="separator:a85459522d8246f31d53f1549886f8376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47be46fa4f727dafbc6ce0aa3504c58a"><td class="memItemLeft" align="right" valign="top"><a id="a47be46fa4f727dafbc6ce0aa3504c58a"></a>
-TGraph *&#160;</td><td class="memItemRight" valign="bottom"><b>GetKinematicLine3</b> (double step=2, EColor color=kMagenta, ELineStyle style=kSolid)</td></tr>
+<tr class="memitem:a47be46fa4f727dafbc6ce0aa3504c58a"><td class="memItemLeft" align="right" valign="top">TGraph *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a47be46fa4f727dafbc6ce0aa3504c58a">GetKinematicLine3</a> (double step=2, EColor color=kMagenta, ELineStyle style=kSolid)</td></tr>
 <tr class="separator:a47be46fa4f727dafbc6ce0aa3504c58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0263978a8d1d3720334f838ab0e2681"><td class="memItemLeft" align="right" valign="top"><a id="ae0263978a8d1d3720334f838ab0e2681"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBeamEnergy</b> (double T1)</td></tr>
+<tr class="memitem:ae0263978a8d1d3720334f838ab0e2681"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ae0263978a8d1d3720334f838ab0e2681">SetBeamEnergy</a> (double T1)</td></tr>
 <tr class="separator:ae0263978a8d1d3720334f838ab0e2681"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d7b50845a2c3fb5d8b5bd057b6e6c2e"><td class="memItemLeft" align="right" valign="top"><a id="a0d7b50845a2c3fb5d8b5bd057b6e6c2e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetEx</b> (double Ex)</td></tr>
+<tr class="memitem:a0d7b50845a2c3fb5d8b5bd057b6e6c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a0d7b50845a2c3fb5d8b5bd057b6e6c2e">SetEx</a> (double Ex)</td></tr>
 <tr class="separator:a0d7b50845a2c3fb5d8b5bd057b6e6c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7ce7f21428fa5f7840f53803f955170"><td class="memItemLeft" align="right" valign="top"><a id="ab7ce7f21428fa5f7840f53803f955170"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetT1Lab</b> () const</td></tr>
+<tr class="memitem:ab7ce7f21428fa5f7840f53803f955170"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ab7ce7f21428fa5f7840f53803f955170">GetT1Lab</a> () const</td></tr>
 <tr class="separator:ab7ce7f21428fa5f7840f53803f955170"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f506f0e0c3e90fc103919df82371439"><td class="memItemLeft" align="right" valign="top"><a id="a7f506f0e0c3e90fc103919df82371439"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetT3Lab</b> () const</td></tr>
+<tr class="memitem:a7f506f0e0c3e90fc103919df82371439"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">GetT3Lab</a> () const</td></tr>
 <tr class="separator:a7f506f0e0c3e90fc103919df82371439"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9290f414c7368d548d6f8f3614c6370"><td class="memItemLeft" align="right" valign="top"><a id="af9290f414c7368d548d6f8f3614c6370"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetT4Lab</b> () const</td></tr>
+<tr class="memitem:af9290f414c7368d548d6f8f3614c6370"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#af9290f414c7368d548d6f8f3614c6370">GetT4Lab</a> () const</td></tr>
 <tr class="separator:af9290f414c7368d548d6f8f3614c6370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac75c3b9c01e5c18fa46494b5d1cf5664"><td class="memItemLeft" align="right" valign="top"><a id="ac75c3b9c01e5c18fa46494b5d1cf5664"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetTheta3Lab</b> () const</td></tr>
+<tr class="memitem:ac75c3b9c01e5c18fa46494b5d1cf5664"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">GetTheta3Lab</a> () const</td></tr>
 <tr class="separator:ac75c3b9c01e5c18fa46494b5d1cf5664"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91b54a72884bf94bde3fa679b456b28b"><td class="memItemLeft" align="right" valign="top"><a id="a91b54a72884bf94bde3fa679b456b28b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetTheta4Lab</b> () const</td></tr>
+<tr class="memitem:a91b54a72884bf94bde3fa679b456b28b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a91b54a72884bf94bde3fa679b456b28b">GetTheta4Lab</a> () const</td></tr>
 <tr class="separator:a91b54a72884bf94bde3fa679b456b28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab09c08e60318a98910f1aa2a7e7fa387"><td class="memItemLeft" align="right" valign="top"><a id="ab09c08e60318a98910f1aa2a7e7fa387"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetPhi3Lab</b> () const</td></tr>
+<tr class="memitem:ab09c08e60318a98910f1aa2a7e7fa387"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ab09c08e60318a98910f1aa2a7e7fa387">GetPhi3Lab</a> () const</td></tr>
 <tr class="separator:ab09c08e60318a98910f1aa2a7e7fa387"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fa58d6109146a366fc5c70fe9c402c5"><td class="memItemLeft" align="right" valign="top"><a id="a1fa58d6109146a366fc5c70fe9c402c5"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetPhi4Lab</b> () const</td></tr>
+<tr class="memitem:a1fa58d6109146a366fc5c70fe9c402c5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a1fa58d6109146a366fc5c70fe9c402c5">GetPhi4Lab</a> () const</td></tr>
 <tr class="separator:a1fa58d6109146a366fc5c70fe9c402c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d1212ce61b3e5bb3fb791478b78ecb8"><td class="memItemLeft" align="right" valign="top"><a id="a8d1212ce61b3e5bb3fb791478b78ecb8"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetTheta3CM</b> () const</td></tr>
+<tr class="memitem:a8d1212ce61b3e5bb3fb791478b78ecb8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a8d1212ce61b3e5bb3fb791478b78ecb8">GetTheta3CM</a> () const</td></tr>
 <tr class="separator:a8d1212ce61b3e5bb3fb791478b78ecb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dc7b4b1d103894b7a782bf536666a8c"><td class="memItemLeft" align="right" valign="top"><a id="a0dc7b4b1d103894b7a782bf536666a8c"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetTheta4CM</b> () const</td></tr>
+<tr class="memitem:a0dc7b4b1d103894b7a782bf536666a8c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a0dc7b4b1d103894b7a782bf536666a8c">GetTheta4CM</a> () const</td></tr>
 <tr class="separator:a0dc7b4b1d103894b7a782bf536666a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a96ea84b95d5dca331840f57ab3e0e"><td class="memItemLeft" align="right" valign="top"><a id="a79a96ea84b95d5dca331840f57ab3e0e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetPhi3CM</b> () const</td></tr>
+<tr class="memitem:a79a96ea84b95d5dca331840f57ab3e0e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a79a96ea84b95d5dca331840f57ab3e0e">GetPhi3CM</a> () const</td></tr>
 <tr class="separator:a79a96ea84b95d5dca331840f57ab3e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4ea9638ca20fba7817e60a4600d99f4"><td class="memItemLeft" align="right" valign="top"><a id="aa4ea9638ca20fba7817e60a4600d99f4"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetPhi4CM</b> () const</td></tr>
+<tr class="memitem:aa4ea9638ca20fba7817e60a4600d99f4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aa4ea9638ca20fba7817e60a4600d99f4">GetPhi4CM</a> () const</td></tr>
 <tr class="separator:aa4ea9638ca20fba7817e60a4600d99f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d2b2a3f43c37764e041f9c459c55c07"><td class="memItemLeft" align="right" valign="top"><a id="a8d2b2a3f43c37764e041f9c459c55c07"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetBeta</b> () const</td></tr>
+<tr class="memitem:a8d2b2a3f43c37764e041f9c459c55c07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a8d2b2a3f43c37764e041f9c459c55c07">GetBeta</a> () const</td></tr>
 <tr class="separator:a8d2b2a3f43c37764e041f9c459c55c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90f6f52da8ad932d7438cd828b129b3b"><td class="memItemLeft" align="right" valign="top"><a id="a90f6f52da8ad932d7438cd828b129b3b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetGamma</b> () const</td></tr>
+<tr class="memitem:a90f6f52da8ad932d7438cd828b129b3b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a90f6f52da8ad932d7438cd828b129b3b">GetGamma</a> () const</td></tr>
 <tr class="separator:a90f6f52da8ad932d7438cd828b129b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40292a6de935948a937d4fd46c8499cb"><td class="memItemLeft" align="right" valign="top"><a id="a40292a6de935948a937d4fd46c8499cb"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetECM</b> () const</td></tr>
+<tr class="memitem:a40292a6de935948a937d4fd46c8499cb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a40292a6de935948a937d4fd46c8499cb">GetECM</a> () const</td></tr>
 <tr class="separator:a40292a6de935948a937d4fd46c8499cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a961898d1614d318ab5b8a724e1f3c596"><td class="memItemLeft" align="right" valign="top"><a id="a961898d1614d318ab5b8a724e1f3c596"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetEex</b> () const</td></tr>
+<tr class="memitem:a961898d1614d318ab5b8a724e1f3c596"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a961898d1614d318ab5b8a724e1f3c596">GetEex</a> () const</td></tr>
 <tr class="separator:a961898d1614d318ab5b8a724e1f3c596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40cc4b233224efd22ad76f59cc73d288"><td class="memItemLeft" align="right" valign="top"><a id="a40cc4b233224efd22ad76f59cc73d288"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetMass</b> (unsigned int index) const</td></tr>
+<tr class="memitem:a40cc4b233224efd22ad76f59cc73d288"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a40cc4b233224efd22ad76f59cc73d288">GetMass</a> (unsigned int index) const</td></tr>
 <tr class="separator:a40cc4b233224efd22ad76f59cc73d288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49c150cee28bf60dfa85bbf4e5eeb2cc"><td class="memItemLeft" align="right" valign="top"><a id="a49c150cee28bf60dfa85bbf4e5eeb2cc"></a>
-std::tuple&lt; double, double, double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetMasses</b> () const</td></tr>
+<tr class="memitem:a49c150cee28bf60dfa85bbf4e5eeb2cc"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; double, double, double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a49c150cee28bf60dfa85bbf4e5eeb2cc">GetMasses</a> () const</td></tr>
 <tr class="separator:a49c150cee28bf60dfa85bbf4e5eeb2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af73c6c83d1643fe9d4e9f0b28020bcf3"><td class="memItemLeft" align="right" valign="top"><a id="af73c6c83d1643fe9d4e9f0b28020bcf3"></a>
-FourVector&#160;</td><td class="memItemRight" valign="bottom"><b>GetPInitialLab</b> () const</td></tr>
+<tr class="memitem:af73c6c83d1643fe9d4e9f0b28020bcf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#af73c6c83d1643fe9d4e9f0b28020bcf3">GetPInitialLab</a> () const</td></tr>
 <tr class="separator:af73c6c83d1643fe9d4e9f0b28020bcf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7778267c7cb039fb74cdd93739789491"><td class="memItemLeft" align="right" valign="top"><a id="a7778267c7cb039fb74cdd93739789491"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetQValue</b> () const</td></tr>
+<tr class="memitem:a7778267c7cb039fb74cdd93739789491"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a7778267c7cb039fb74cdd93739789491">GetQValue</a> () const</td></tr>
 <tr class="separator:a7778267c7cb039fb74cdd93739789491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a94b13b1e54d3a47025c2c162860dbeda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a94b13b1e54d3a47025c2c162860dbeda">SetRecoilsCMKinematicsThrough3</a> (double fTheta3CMRads, double phi3CMRads)</td></tr>
+<tr class="separator:a94b13b1e54d3a47025c2c162860dbeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106dc8a08767053ca1f056bad1e81c6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a106dc8a08767053ca1f056bad1e81c6e">SetRecoilsCMKinematicsThrough4</a> (double theta4CMRads, double phi4CMRads)</td></tr>
+<tr class="separator:a106dc8a08767053ca1f056bad1e81c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073aac152ad296f574e751561ece9f15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a073aac152ad296f574e751561ece9f15">SetRecoil3LabKinematics</a> ()</td></tr>
+<tr class="separator:a073aac152ad296f574e751561ece9f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0f4dd3bcda1a2820d550f43e46b089"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a8d0f4dd3bcda1a2820d550f43e46b089">SetRecoil4LabKinematics</a> ()</td></tr>
+<tr class="separator:a8d0f4dd3bcda1a2820d550f43e46b089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade4b2fa6be29738167099ec804e3d2da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ade4b2fa6be29738167099ec804e3d2da">ComputeQValue</a> ()</td></tr>
+<tr class="separator:ade4b2fa6be29738167099ec804e3d2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa78e097175f854772e167c149182cb32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aa78e097175f854772e167c149182cb32">CheckQValue</a> ()</td></tr>
+<tr class="separator:aa78e097175f854772e167c149182cb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e377ed1d0f39d289091848d3d0f9e90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a9e377ed1d0f39d289091848d3d0f9e90">Init</a> ()</td></tr>
+<tr class="separator:a9e377ed1d0f39d289091848d3d0f9e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44afc6659f884ae138f37db131c4cb78"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a44afc6659f884ae138f37db131c4cb78">GetPhiFromVector</a> (<a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> vect)</td></tr>
+<tr class="separator:a44afc6659f884ae138f37db131c4cb78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d00224d531a9d36c5d30a3710ecd137"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a4d00224d531a9d36c5d30a3710ecd137">GetThetaFromVector</a> (<a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> vect)</td></tr>
+<tr class="separator:a4d00224d531a9d36c5d30a3710ecd137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a304fb989f40ae0be52a57cbe396fb115"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a304fb989f40ae0be52a57cbe396fb115">fp1</a> {}</td></tr>
+<tr class="separator:a304fb989f40ae0be52a57cbe396fb115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadb499dcee260d1d9d156a6b360d0bd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aadb499dcee260d1d9d156a6b360d0bd8">fp2</a> {}</td></tr>
+<tr class="separator:aadb499dcee260d1d9d156a6b360d0bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc623852091838787618629ad7619f7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#abc623852091838787618629ad7619f7f">fp3</a> {}</td></tr>
+<tr class="separator:abc623852091838787618629ad7619f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6818f9fa9e8ecd1e369413ea32556b0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a6818f9fa9e8ecd1e369413ea32556b0a">fp4</a> {}</td></tr>
+<tr class="separator:a6818f9fa9e8ecd1e369413ea32556b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa02eaa3abdfd71d7a4eff90fa481e2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a> {}</td></tr>
+<tr class="separator:affa02eaa3abdfd71d7a4eff90fa481e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac88125333338706c093670c7893ada80"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ac88125333338706c093670c7893ada80">fm2</a> {}</td></tr>
+<tr class="separator:ac88125333338706c093670c7893ada80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ca4ee550c4813853085b8d2475ca16"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> {}</td></tr>
+<tr class="separator:af3ca4ee550c4813853085b8d2475ca16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa98280565dca1bdd0808905bbd4089"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> {}</td></tr>
+<tr class="separator:a0aa98280565dca1bdd0808905bbd4089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae30ae9701c59710f7a67bc7d000eb0da"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a> {}</td></tr>
+<tr class="separator:ae30ae9701c59710f7a67bc7d000eb0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d2f27777217d6b8b3172641f62f0b9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a> {}</td></tr>
+<tr class="separator:aa5d2f27777217d6b8b3172641f62f0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989c8363cc9e78156455e974aff06484"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a> {}</td></tr>
+<tr class="separator:a989c8363cc9e78156455e974aff06484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d649f4fa30e7405ec00a1372c512d80"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a> {}</td></tr>
+<tr class="separator:a5d649f4fa30e7405ec00a1372c512d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2159f1ab22ee69d47a1439441fc18613"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a2159f1ab22ee69d47a1439441fc18613">fQvalue</a> {}</td></tr>
+<tr class="separator:a2159f1ab22ee69d47a1439441fc18613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa94353ce41be7d47d5f17168a439c175"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aa94353ce41be7d47d5f17168a439c175">fP1Lab</a> {}</td></tr>
+<tr class="separator:aa94353ce41be7d47d5f17168a439c175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183891db39358a3c7328e3b44f5568ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a183891db39358a3c7328e3b44f5568ec">fP2Lab</a> {}</td></tr>
+<tr class="separator:a183891db39358a3c7328e3b44f5568ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e80dab928e3c421fd963f8aa698fc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">fPInitialLab</a> {}</td></tr>
+<tr class="separator:a17e80dab928e3c421fd963f8aa698fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331304ad1c6058f8d0b32f94431cfc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a331304ad1c6058f8d0b32f94431cfc92">fPInitialCM</a> {}</td></tr>
+<tr class="separator:a331304ad1c6058f8d0b32f94431cfc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a650d60491e54d463e36cb7a4201db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a34a650d60491e54d463e36cb7a4201db">fP3CM</a> {}</td></tr>
+<tr class="separator:a34a650d60491e54d463e36cb7a4201db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc067bb1ee57193f9c86d97e74db1c2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#adc067bb1ee57193f9c86d97e74db1c2c">fP4CM</a> {}</td></tr>
+<tr class="separator:adc067bb1ee57193f9c86d97e74db1c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b2370e3b1f3d23f8cd16b14f23cde7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a58b2370e3b1f3d23f8cd16b14f23cde7">fP3Lab</a> {}</td></tr>
+<tr class="separator:a58b2370e3b1f3d23f8cd16b14f23cde7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad031afff0acef0feddb22dc3f95c5b68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ad031afff0acef0feddb22dc3f95c5b68">fP4Lab</a> {}</td></tr>
+<tr class="separator:ad031afff0acef0feddb22dc3f95c5b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f56e21fc0fa579781e3fcd1cd79c936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2">LorentzBoostX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a1f56e21fc0fa579781e3fcd1cd79c936">BoostTransformation</a> {}</td></tr>
+<tr class="separator:a1f56e21fc0fa579781e3fcd1cd79c936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680436b323dfe61cf17c0e35e757df64"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a680436b323dfe61cf17c0e35e757df64">fTheta3CM</a> {}</td></tr>
+<tr class="separator:a680436b323dfe61cf17c0e35e757df64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3372caa90c2c556601cd213b0773cc52"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a3372caa90c2c556601cd213b0773cc52">fTheta4CM</a> {}</td></tr>
+<tr class="separator:a3372caa90c2c556601cd213b0773cc52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8b34093659e0fbb09ec1798d5f6b00"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#acf8b34093659e0fbb09ec1798d5f6b00">fPhi3CM</a> {}</td></tr>
+<tr class="separator:acf8b34093659e0fbb09ec1798d5f6b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2357084bd0c9a1f85f9774e57139932d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a2357084bd0c9a1f85f9774e57139932d">fPhi4CM</a> {}</td></tr>
+<tr class="separator:a2357084bd0c9a1f85f9774e57139932d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1b67cb3e7ae66464c88a2a6aa2bbe4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a> {}</td></tr>
+<tr class="separator:a6c1b67cb3e7ae66464c88a2a6aa2bbe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed738cb2342966d6ae12f7a8d58503b9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aed738cb2342966d6ae12f7a8d58503b9">fT3Lab</a> {}</td></tr>
+<tr class="separator:aed738cb2342966d6ae12f7a8d58503b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46952cf833954732e565f9219669d156"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a46952cf833954732e565f9219669d156">fT4Lab</a> {}</td></tr>
+<tr class="separator:a46952cf833954732e565f9219669d156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37fb4f85d1799f2fb8551c6fb2ea903"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ac37fb4f85d1799f2fb8551c6fb2ea903">fTheta3Lab</a> {}</td></tr>
+<tr class="separator:ac37fb4f85d1799f2fb8551c6fb2ea903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaef6d43ecd2be47820972043aa54b673"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aaef6d43ecd2be47820972043aa54b673">fTheta4Lab</a> {}</td></tr>
+<tr class="separator:aaef6d43ecd2be47820972043aa54b673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b93f76064011eee15f3b4426fa5dc8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#af8b93f76064011eee15f3b4426fa5dc8">fPhi3Lab</a> {}</td></tr>
+<tr class="separator:af8b93f76064011eee15f3b4426fa5dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa9b87116c17213e85921424ec85368"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#abaa9b87116c17213e85921424ec85368">fPhi4Lab</a> {}</td></tr>
+<tr class="separator:abaa9b87116c17213e85921424ec85368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aed6a25141646eb13078f13d1cb1d5e9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6a25141646eb13078f13d1cb1d5e9b">&#9670;&nbsp;</a></span>FourVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">ActPhysics::Kinematics::FourVector</a> =  ROOT::Math::PxPyPzEVector</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a865644e9c2a512b72708def6927e90c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a865644e9c2a512b72708def6927e90c2">&#9670;&nbsp;</a></span>LorentzBoostX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2">ActPhysics::Kinematics::LorentzBoostX</a> =  ROOT::Math::BoostX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a450e6d58fcbd8f214eb0ca693bc6f8e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a450e6d58fcbd8f214eb0ca693bc6f8e0">&#9670;&nbsp;</a></span>ThreeVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1Kinematics.html#a450e6d58fcbd8f214eb0ca693bc6f8e0">ActPhysics::Kinematics::ThreeVector</a> =  ROOT::Math::XYZVector</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4929cea1e7fdb89cf0f47adb715e356c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4929cea1e7fdb89cf0f47adb715e356c">&#9670;&nbsp;</a></span>Kinematics() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::Kinematics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2fb576b57884270d053f9f4b71c1378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2fb576b57884270d053f9f4b71c1378">&#9670;&nbsp;</a></span>Kinematics() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::Kinematics </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T1</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Eex</em> = <code>0.</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae365cc352aabd92cfbfa5529e520cbf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae365cc352aabd92cfbfa5529e520cbf2">&#9670;&nbsp;</a></span>Kinematics() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::Kinematics </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T1</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Eex</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c94d00293aa80cbfad1910a33d472e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c94d00293aa80cbfad1910a33d472e5">&#9670;&nbsp;</a></span>Kinematics() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::Kinematics </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T1</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Eex</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adcb1e74eaa60406dca8d93b6641e8ba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcb1e74eaa60406dca8d93b6641e8ba6">&#9670;&nbsp;</a></span>Kinematics() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::Kinematics </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a105558334d4d6b9f73df422375471753"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a105558334d4d6b9f73df422375471753">&#9670;&nbsp;</a></span>~Kinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActPhysics::Kinematics::~Kinematics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa78e097175f854772e167c149182cb32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa78e097175f854772e167c149182cb32">&#9670;&nbsp;</a></span>CheckQValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::CheckQValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35a605811eb1ad51623cbfffb3fc052d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a605811eb1ad51623cbfffb3fc052d">&#9670;&nbsp;</a></span>ComputeMissingMass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ComputeMissingMass </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argT3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argTheta3LabRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argPhi3Rads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Tbeam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>retTRecoil</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActPhysics_1_1Kinematics.html#a450e6d58fcbd8f214eb0ca693bc6f8e0">ThreeVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>retPRecoil</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade4b2fa6be29738167099ec804e3d2da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade4b2fa6be29738167099ec804e3d2da">&#9670;&nbsp;</a></span>ComputeQValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::ComputeQValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18fd093501698e6640d2f2bfd4a335f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18fd093501698e6640d2f2bfd4a335f5">&#9670;&nbsp;</a></span>ComputeRecoilKinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::ComputeRecoilKinematics </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>thetaCMRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>phiCMRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>anglesFrom</em> = <code>4</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>computeBoth</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee715620f046d0e54380f4ca8757b82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee715620f046d0e54380f4ca8757b82e">&#9670;&nbsp;</a></span>ComputeTheoreticalT3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ComputeTheoreticalT3 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argTheta3LabRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>sol</em> = <code>{&quot;pos&quot;}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85eb7a2a990a172234ee3112af15236b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85eb7a2a990a172234ee3112af15236b">&#9670;&nbsp;</a></span>ComputeTheoreticalTheta4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ComputeTheoreticalTheta4 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argTheta3LabRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>sol</em> = <code>{&quot;pos&quot;}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d2b2a3f43c37764e041f9c459c55c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2b2a3f43c37764e041f9c459c55c07">&#9670;&nbsp;</a></span>GetBeta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetBeta </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40292a6de935948a937d4fd46c8499cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40292a6de935948a937d4fd46c8499cb">&#9670;&nbsp;</a></span>GetECM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetECM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a961898d1614d318ab5b8a724e1f3c596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a961898d1614d318ab5b8a724e1f3c596">&#9670;&nbsp;</a></span>GetEex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetEex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90f6f52da8ad932d7438cd828b129b3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f6f52da8ad932d7438cd828b129b3b">&#9670;&nbsp;</a></span>GetGamma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetGamma </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47be46fa4f727dafbc6ce0aa3504c58a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47be46fa4f727dafbc6ce0aa3504c58a">&#9670;&nbsp;</a></span>GetKinematicLine3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGraph * ActPhysics::Kinematics::GetKinematicLine3 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>step</em> = <code>2</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EColor&#160;</td>
+          <td class="paramname"><em>color</em> = <code>kMagenta</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ELineStyle&#160;</td>
+          <td class="paramname"><em>style</em> = <code>kSolid</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40cc4b233224efd22ad76f59cc73d288"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40cc4b233224efd22ad76f59cc73d288">&#9670;&nbsp;</a></span>GetMass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetMass </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49c150cee28bf60dfa85bbf4e5eeb2cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49c150cee28bf60dfa85bbf4e5eeb2cc">&#9670;&nbsp;</a></span>GetMasses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; double, double, double, double &gt; ActPhysics::Kinematics::GetMasses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79a96ea84b95d5dca331840f57ab3e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a96ea84b95d5dca331840f57ab3e0e">&#9670;&nbsp;</a></span>GetPhi3CM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetPhi3CM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab09c08e60318a98910f1aa2a7e7fa387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab09c08e60318a98910f1aa2a7e7fa387">&#9670;&nbsp;</a></span>GetPhi3Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetPhi3Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4ea9638ca20fba7817e60a4600d99f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ea9638ca20fba7817e60a4600d99f4">&#9670;&nbsp;</a></span>GetPhi4CM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetPhi4CM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1fa58d6109146a366fc5c70fe9c402c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fa58d6109146a366fc5c70fe9c402c5">&#9670;&nbsp;</a></span>GetPhi4Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetPhi4Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44afc6659f884ae138f37db131c4cb78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44afc6659f884ae138f37db131c4cb78">&#9670;&nbsp;</a></span>GetPhiFromVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetPhiFromVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td>
+          <td class="paramname"><em>vect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af73c6c83d1643fe9d4e9f0b28020bcf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af73c6c83d1643fe9d4e9f0b28020bcf3">&#9670;&nbsp;</a></span>GetPInitialLab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::GetPInitialLab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7778267c7cb039fb74cdd93739789491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7778267c7cb039fb74cdd93739789491">&#9670;&nbsp;</a></span>GetQValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetQValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7ce7f21428fa5f7840f53803f955170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7ce7f21428fa5f7840f53803f955170">&#9670;&nbsp;</a></span>GetT1Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetT1Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f506f0e0c3e90fc103919df82371439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f506f0e0c3e90fc103919df82371439">&#9670;&nbsp;</a></span>GetT3Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetT3Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af9290f414c7368d548d6f8f3614c6370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9290f414c7368d548d6f8f3614c6370">&#9670;&nbsp;</a></span>GetT4Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetT4Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d1212ce61b3e5bb3fb791478b78ecb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d1212ce61b3e5bb3fb791478b78ecb8">&#9670;&nbsp;</a></span>GetTheta3CM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetTheta3CM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac75c3b9c01e5c18fa46494b5d1cf5664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac75c3b9c01e5c18fa46494b5d1cf5664">&#9670;&nbsp;</a></span>GetTheta3Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetTheta3Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dc7b4b1d103894b7a782bf536666a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc7b4b1d103894b7a782bf536666a8c">&#9670;&nbsp;</a></span>GetTheta4CM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetTheta4CM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91b54a72884bf94bde3fa679b456b28b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b54a72884bf94bde3fa679b456b28b">&#9670;&nbsp;</a></span>GetTheta4Lab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetTheta4Lab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d00224d531a9d36c5d30a3710ecd137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d00224d531a9d36c5d30a3710ecd137">&#9670;&nbsp;</a></span>GetThetaFromVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::GetThetaFromVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a>&#160;</td>
+          <td class="paramname"><em>vect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e377ed1d0f39d289091848d3d0f9e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e377ed1d0f39d289091848d3d0f9e90">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aace29c7b1b1b2bd8001e07749ae85c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aace29c7b1b1b2bd8001e07749ae85c2a">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a>&amp; ActPhysics::Kinematics::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Kinematics.html">Kinematics</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31781cdb99d26a4cd004fe092bfa662a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31781cdb99d26a4cd004fe092bfa662a">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5bcd828d9af0f43829d11cd0a496deb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bcd828d9af0f43829d11cd0a496deb8">&#9670;&nbsp;</a></span>ReconstructBeamEnergyFromLabKinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ReconstructBeamEnergyFromLabKinematics </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>theta3LabRads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa7a8a3c97fd0ca6e1f20d78ff8b7c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7a8a3c97fd0ca6e1f20d78ff8b7c44">&#9670;&nbsp;</a></span>ReconstructExcitationEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ReconstructExcitationEnergy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argT3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>argTheta3LabRads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7a43bbb63ff2d5bd934657814d13da4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7a43bbb63ff2d5bd934657814d13da4">&#9670;&nbsp;</a></span>ReconstructTheta3CMFromLab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ReconstructTheta3CMFromLab </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>theta3LabRads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85459522d8246f31d53f1549886f8376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85459522d8246f31d53f1549886f8376">&#9670;&nbsp;</a></span>Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::Reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0263978a8d1d3720334f838ab0e2681"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0263978a8d1d3720334f838ab0e2681">&#9670;&nbsp;</a></span>SetBeamEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetBeamEnergy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d7b50845a2c3fb5d8b5bd057b6e6c2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7b50845a2c3fb5d8b5bd057b6e6c2e">&#9670;&nbsp;</a></span>SetEx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetEx </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a073aac152ad296f574e751561ece9f15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073aac152ad296f574e751561ece9f15">&#9670;&nbsp;</a></span>SetRecoil3LabKinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetRecoil3LabKinematics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d0f4dd3bcda1a2820d550f43e46b089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0f4dd3bcda1a2820d550f43e46b089">&#9670;&nbsp;</a></span>SetRecoil4LabKinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetRecoil4LabKinematics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94b13b1e54d3a47025c2c162860dbeda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b13b1e54d3a47025c2c162860dbeda">&#9670;&nbsp;</a></span>SetRecoilsCMKinematicsThrough3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetRecoilsCMKinematicsThrough3 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fTheta3CMRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>phi3CMRads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a106dc8a08767053ca1f056bad1e81c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106dc8a08767053ca1f056bad1e81c6e">&#9670;&nbsp;</a></span>SetRecoilsCMKinematicsThrough4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::Kinematics::SetRecoilsCMKinematicsThrough4 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>theta4CMRads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>phi4CMRads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1f56e21fc0fa579781e3fcd1cd79c936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f56e21fc0fa579781e3fcd1cd79c936">&#9670;&nbsp;</a></span>BoostTransformation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2">LorentzBoostX</a> ActPhysics::Kinematics::BoostTransformation {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5d649f4fa30e7405ec00a1372c512d80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d649f4fa30e7405ec00a1372c512d80">&#9670;&nbsp;</a></span>fBeta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fBeta {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c1b67cb3e7ae66464c88a2a6aa2bbe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">&#9670;&nbsp;</a></span>fEcm</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fEcm {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae30ae9701c59710f7a67bc7d000eb0da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae30ae9701c59710f7a67bc7d000eb0da">&#9670;&nbsp;</a></span>fEex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fEex {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a989c8363cc9e78156455e974aff06484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989c8363cc9e78156455e974aff06484">&#9670;&nbsp;</a></span>fGamma</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fGamma {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affa02eaa3abdfd71d7a4eff90fa481e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa02eaa3abdfd71d7a4eff90fa481e2">&#9670;&nbsp;</a></span>fm1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fm1 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac88125333338706c093670c7893ada80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac88125333338706c093670c7893ada80">&#9670;&nbsp;</a></span>fm2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fm2 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3ca4ee550c4813853085b8d2475ca16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ca4ee550c4813853085b8d2475ca16">&#9670;&nbsp;</a></span>fm3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fm3 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0aa98280565dca1bdd0808905bbd4089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa98280565dca1bdd0808905bbd4089">&#9670;&nbsp;</a></span>fm4</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fm4 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a304fb989f40ae0be52a57cbe396fb115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a304fb989f40ae0be52a57cbe396fb115">&#9670;&nbsp;</a></span>fp1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> ActPhysics::Kinematics::fp1 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa94353ce41be7d47d5f17168a439c175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa94353ce41be7d47d5f17168a439c175">&#9670;&nbsp;</a></span>fP1Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP1Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aadb499dcee260d1d9d156a6b360d0bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb499dcee260d1d9d156a6b360d0bd8">&#9670;&nbsp;</a></span>fp2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> ActPhysics::Kinematics::fp2 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a183891db39358a3c7328e3b44f5568ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183891db39358a3c7328e3b44f5568ec">&#9670;&nbsp;</a></span>fP2Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP2Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc623852091838787618629ad7619f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc623852091838787618629ad7619f7f">&#9670;&nbsp;</a></span>fp3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> ActPhysics::Kinematics::fp3 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34a650d60491e54d463e36cb7a4201db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a650d60491e54d463e36cb7a4201db">&#9670;&nbsp;</a></span>fP3CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP3CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58b2370e3b1f3d23f8cd16b14f23cde7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58b2370e3b1f3d23f8cd16b14f23cde7">&#9670;&nbsp;</a></span>fP3Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP3Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6818f9fa9e8ecd1e369413ea32556b0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6818f9fa9e8ecd1e369413ea32556b0a">&#9670;&nbsp;</a></span>fp4</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> ActPhysics::Kinematics::fp4 {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc067bb1ee57193f9c86d97e74db1c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc067bb1ee57193f9c86d97e74db1c2c">&#9670;&nbsp;</a></span>fP4CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP4CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad031afff0acef0feddb22dc3f95c5b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad031afff0acef0feddb22dc3f95c5b68">&#9670;&nbsp;</a></span>fP4Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fP4Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf8b34093659e0fbb09ec1798d5f6b00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf8b34093659e0fbb09ec1798d5f6b00">&#9670;&nbsp;</a></span>fPhi3CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fPhi3CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af8b93f76064011eee15f3b4426fa5dc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b93f76064011eee15f3b4426fa5dc8">&#9670;&nbsp;</a></span>fPhi3Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fPhi3Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2357084bd0c9a1f85f9774e57139932d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2357084bd0c9a1f85f9774e57139932d">&#9670;&nbsp;</a></span>fPhi4CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fPhi4CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abaa9b87116c17213e85921424ec85368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa9b87116c17213e85921424ec85368">&#9670;&nbsp;</a></span>fPhi4Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fPhi4Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a331304ad1c6058f8d0b32f94431cfc92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331304ad1c6058f8d0b32f94431cfc92">&#9670;&nbsp;</a></span>fPInitialCM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fPInitialCM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17e80dab928e3c421fd963f8aa698fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e80dab928e3c421fd963f8aa698fc1">&#9670;&nbsp;</a></span>fPInitialLab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> ActPhysics::Kinematics::fPInitialLab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2159f1ab22ee69d47a1439441fc18613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2159f1ab22ee69d47a1439441fc18613">&#9670;&nbsp;</a></span>fQvalue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fQvalue {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5d2f27777217d6b8b3172641f62f0b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d2f27777217d6b8b3172641f62f0b9">&#9670;&nbsp;</a></span>fT1Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fT1Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed738cb2342966d6ae12f7a8d58503b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed738cb2342966d6ae12f7a8d58503b9">&#9670;&nbsp;</a></span>fT3Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fT3Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46952cf833954732e565f9219669d156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46952cf833954732e565f9219669d156">&#9670;&nbsp;</a></span>fT4Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fT4Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a680436b323dfe61cf17c0e35e757df64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a680436b323dfe61cf17c0e35e757df64">&#9670;&nbsp;</a></span>fTheta3CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fTheta3CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac37fb4f85d1799f2fb8551c6fb2ea903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac37fb4f85d1799f2fb8551c6fb2ea903">&#9670;&nbsp;</a></span>fTheta3Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fTheta3Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3372caa90c2c556601cd213b0773cc52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3372caa90c2c556601cd213b0773cc52">&#9670;&nbsp;</a></span>fTheta4CM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fTheta4CM {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaef6d43ecd2be47820972043aa54b673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef6d43ecd2be47820972043aa54b673">&#9670;&nbsp;</a></span>fTheta4Lab</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::fTheta4Lab {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Physics/<a class="el" href="Kinematics_8h_source.html">Kinematics.h</a></li>
-<li>Physics/Kinematics.cxx</li>
+<li>Physics/<a class="el" href="Kinematics_8cxx.html">Kinematics.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

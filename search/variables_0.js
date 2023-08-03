@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['endl_153',['endl',['../classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0',1,'BS::synced_stream']]]
+  ['block_5fsize_1013',['block_size',['../classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427',1,'BS::blocks']]],
+  ['boosttransformation_1014',['BoostTransformation',['../classActPhysics_1_1Kinematics.html#a1f56e21fc0fa579781e3fcd1cd79c936',1,'ActPhysics::Kinematics']]]
 ];

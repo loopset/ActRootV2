@@ -62,13 +62,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>BS</b></li><li class="navelem"><a class="el" href="classBS_1_1synced__stream.html">synced_stream</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceBS.html">BS</a></li><li class="navelem"><a class="el" href="classBS_1_1synced__stream.html">synced_stream</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classBS_1_1synced__stream-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BS::synced_stream Class Reference</div>  </div>
@@ -96,15 +97,22 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aecb26211e0170537b99c96880582cde0"><td class="memItemLeft" align="right" valign="top"><a id="aecb26211e0170537b99c96880582cde0"></a>
-static std::ostream &amp;(&amp;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0">endl</a> (std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::endl)</td></tr>
+<tr class="memitem:aecb26211e0170537b99c96880582cde0"><td class="memItemLeft" align="right" valign="top">static std::ostream &amp;(&amp;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0">endl</a> (std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::endl)</td></tr>
 <tr class="memdesc:aecb26211e0170537b99c96880582cde0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A stream manipulator to pass to a <a class="el" href="classBS_1_1synced__stream.html" title="A helper class to synchronize printing to an output stream by different threads.">synced_stream</a> (an explicit cast of std::endl). Prints a newline character to the stream, and then flushes it. Should only be used if flushing is desired, otherwise '<br  />
-' should be used instead. <br /></td></tr>
+' should be used instead.  <a href="classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0">More...</a><br /></td></tr>
 <tr class="separator:aecb26211e0170537b99c96880582cde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33cdf7cd5e56d2ddc047613838da1e6d"><td class="memItemLeft" align="right" valign="top"><a id="a33cdf7cd5e56d2ddc047613838da1e6d"></a>
-static std::ostream &amp;(&amp;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d">flush</a> (std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::flush)</td></tr>
-<tr class="memdesc:a33cdf7cd5e56d2ddc047613838da1e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A stream manipulator to pass to a <a class="el" href="classBS_1_1synced__stream.html" title="A helper class to synchronize printing to an output stream by different threads.">synced_stream</a> (an explicit cast of std::flush). Used to flush the stream. <br /></td></tr>
+<tr class="memitem:a33cdf7cd5e56d2ddc047613838da1e6d"><td class="memItemLeft" align="right" valign="top">static std::ostream &amp;(&amp;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d">flush</a> (std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::flush)</td></tr>
+<tr class="memdesc:a33cdf7cd5e56d2ddc047613838da1e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A stream manipulator to pass to a <a class="el" href="classBS_1_1synced__stream.html" title="A helper class to synchronize printing to an output stream by different threads.">synced_stream</a> (an explicit cast of std::flush). Used to flush the stream.  <a href="classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d">More...</a><br /></td></tr>
 <tr class="separator:a33cdf7cd5e56d2ddc047613838da1e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae6fe228166d12a7fa916916c7e1d479c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">out_stream</a></td></tr>
+<tr class="memdesc:ae6fe228166d12a7fa916916c7e1d479c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output stream to print to.  <a href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">More...</a><br /></td></tr>
+<tr class="separator:ae6fe228166d12a7fa916916c7e1d479c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177eb82bf036746521326d0e9b5ff7be"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1synced__stream.html#a177eb82bf036746521326d0e9b5ff7be">stream_mutex</a> = {}</td></tr>
+<tr class="memdesc:a177eb82bf036746521326d0e9b5ff7be"><td class="mdescLeft">&#160;</td><td class="mdescRight">A mutex to synchronize printing.  <a href="classBS_1_1synced__stream.html#a177eb82bf036746521326d0e9b5ff7be">More...</a><br /></td></tr>
+<tr class="separator:a177eb82bf036746521326d0e9b5ff7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A helper class to synchronize printing to an output stream by different threads. </p>
@@ -225,6 +233,104 @@ template&lt;typename... T&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aecb26211e0170537b99c96880582cde0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb26211e0170537b99c96880582cde0">&#9670;&nbsp;</a></span>endl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp;(&amp;) BS::synced_stream::endl(std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::endl)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A stream manipulator to pass to a <a class="el" href="classBS_1_1synced__stream.html" title="A helper class to synchronize printing to an output stream by different threads.">synced_stream</a> (an explicit cast of std::endl). Prints a newline character to the stream, and then flushes it. Should only be used if flushing is desired, otherwise '<br  />
+' should be used instead. </p>
+
+</div>
+</div>
+<a id="a33cdf7cd5e56d2ddc047613838da1e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33cdf7cd5e56d2ddc047613838da1e6d">&#9670;&nbsp;</a></span>flush</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp;(&amp;) BS::synced_stream::flush(std::ostream &amp;) = static_cast&lt;std::ostream&amp; (&amp;)(std::ostream&amp;)&gt;(std::flush)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A stream manipulator to pass to a <a class="el" href="classBS_1_1synced__stream.html" title="A helper class to synchronize printing to an output stream by different threads.">synced_stream</a> (an explicit cast of std::flush). Used to flush the stream. </p>
+
+</div>
+</div>
+<a id="ae6fe228166d12a7fa916916c7e1d479c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6fe228166d12a7fa916916c7e1d479c">&#9670;&nbsp;</a></span>out_stream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; BS::synced_stream::out_stream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The output stream to print to. </p>
+
+</div>
+</div>
+<a id="a177eb82bf036746521326d0e9b5ff7be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177eb82bf036746521326d0e9b5ff7be">&#9670;&nbsp;</a></span>stream_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex BS::synced_stream::stream_mutex = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A mutex to synchronize printing. </p>
 
 </div>
 </div>

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['flush_154',['flush',['../classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d',1,'BS::synced_stream']]],
-  ['fsie_155',['fSiE',['../classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449',1,'ActRoot::SilData']]],
-  ['fsin_156',['fSiN',['../classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596',1,'ActRoot::SilData']]]
+  ['canvangular_1015',['canvAngular',['../classActSim_1_1TheoCrossSection.html#a60fd8005d7e13b5b0f52a7845a882830',1,'ActSim::TheoCrossSection']]],
+  ['canvfinalxs_1016',['canvFinalXS',['../classActSim_1_1TheoCrossSection.html#aee06ed7cee259c444b279b053a0b547e',1,'ActSim::TheoCrossSection']]],
+  ['canvscattering_1017',['canvScattering',['../classActSim_1_1TheoCrossSection.html#a8769bb6d1159d3b466e7158d131b2683',1,'ActSim::TheoCrossSection']]],
+  ['coboasad_1018',['CoboAsad',['../classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5',1,'MEventReduced']]],
+  ['convertevtomev_1019',['converteVToMeV',['../classActSim_1_1TheoCrossSection.html#a9a13db6a8d08916492558608b13d1032',1,'ActSim::TheoCrossSection']]]
 ];

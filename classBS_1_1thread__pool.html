@@ -62,12 +62,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>BS</b></li><li class="navelem"><a class="el" href="classBS_1_1thread__pool.html">thread_pool</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceBS.html">BS</a></li><li class="navelem"><a class="el" href="classBS_1_1thread__pool.html">thread_pool</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classBS_1_1thread__pool-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BS::thread_pool Class Reference</div>  </div>
@@ -81,12 +83,11 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af0705b5edcf3809e4f133272e8070d12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">thread_pool</a> (const concurrency_t thread_count_=0)</td></tr>
+<tr class="memitem:af0705b5edcf3809e4f133272e8070d12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">thread_pool</a> (const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_=0)</td></tr>
 <tr class="memdesc:af0705b5edcf3809e4f133272e8070d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new thread pool.  <a href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">More...</a><br /></td></tr>
 <tr class="separator:af0705b5edcf3809e4f133272e8070d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f7cc32367d0d0c020bf103782506998"><td class="memItemLeft" align="right" valign="top"><a id="a1f7cc32367d0d0c020bf103782506998"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998">~thread_pool</a> ()</td></tr>
-<tr class="memdesc:a1f7cc32367d0d0c020bf103782506998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruct the thread pool. Waits for all tasks to complete, then destroys all threads. Note that if the pool is paused, then any tasks still in the queue will never be executed. <br /></td></tr>
+<tr class="memitem:a1f7cc32367d0d0c020bf103782506998"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998">~thread_pool</a> ()</td></tr>
+<tr class="memdesc:a1f7cc32367d0d0c020bf103782506998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruct the thread pool. Waits for all tasks to complete, then destroys all threads. Note that if the pool is paused, then any tasks still in the queue will never be executed.  <a href="classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998">More...</a><br /></td></tr>
 <tr class="separator:a1f7cc32367d0d0c020bf103782506998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5faf242cb0eacbb5c1142a2bd966468"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ab5faf242cb0eacbb5c1142a2bd966468">get_tasks_queued</a> () const</td></tr>
 <tr class="memdesc:ab5faf242cb0eacbb5c1142a2bd966468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of tasks currently waiting in the queue to be executed by the threads.  <a href="classBS_1_1thread__pool.html#ab5faf242cb0eacbb5c1142a2bd966468">More...</a><br /></td></tr>
@@ -97,7 +98,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afdec64ff8998d66017cc185ae397e064"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#afdec64ff8998d66017cc185ae397e064">get_tasks_total</a> () const</td></tr>
 <tr class="memdesc:afdec64ff8998d66017cc185ae397e064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total number of unfinished tasks: either still waiting in the queue, or running in a thread. Note that <a class="el" href="classBS_1_1thread__pool.html#afdec64ff8998d66017cc185ae397e064" title="Get the total number of unfinished tasks: either still waiting in the queue, or running in a thread....">get_tasks_total()</a> == <a class="el" href="classBS_1_1thread__pool.html#ab5faf242cb0eacbb5c1142a2bd966468" title="Get the number of tasks currently waiting in the queue to be executed by the threads.">get_tasks_queued()</a> + <a class="el" href="classBS_1_1thread__pool.html#a07b4d97e3a9e40e3228e2ed1f9a717cc" title="Get the number of tasks currently being executed by the threads.">get_tasks_running()</a>.  <a href="classBS_1_1thread__pool.html#afdec64ff8998d66017cc185ae397e064">More...</a><br /></td></tr>
 <tr class="separator:afdec64ff8998d66017cc185ae397e064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe1cb80839e30f218818e99af4d1dc64"><td class="memItemLeft" align="right" valign="top">concurrency_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">get_thread_count</a> () const</td></tr>
+<tr class="memitem:afe1cb80839e30f218818e99af4d1dc64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">get_thread_count</a> () const</td></tr>
 <tr class="memdesc:afe1cb80839e30f218818e99af4d1dc64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of threads in the pool.  <a href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">More...</a><br /></td></tr>
 <tr class="separator:afe1cb80839e30f218818e99af4d1dc64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc7938f7b2b9140c3f6e729b48db79b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#adc7938f7b2b9140c3f6e729b48db79b2">is_paused</a> () const</td></tr>
@@ -111,13 +112,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9a1874dbd7bc21887cab0a18167ce984"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classBS_1_1multi__future.html">multi_future</a>&lt; R &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a9a1874dbd7bc21887cab0a18167ce984">parallelize_loop</a> (const T index_after_last, F &amp;&amp;loop, const size_t num_blocks=0)</td></tr>
 <tr class="memdesc:a9a1874dbd7bc21887cab0a18167ce984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallelize a loop by automatically splitting it into blocks and submitting each block separately to the queue. Returns a <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object that contains the futures for all of the blocks. This overload is used for the special case where the first index is 0.  <a href="classBS_1_1thread__pool.html#a9a1874dbd7bc21887cab0a18167ce984">More...</a><br /></td></tr>
 <tr class="separator:a9a1874dbd7bc21887cab0a18167ce984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb5f1e179eb97f6458d4f77fbb331fd"><td class="memItemLeft" align="right" valign="top"><a id="aefb5f1e179eb97f6458d4f77fbb331fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#aefb5f1e179eb97f6458d4f77fbb331fd">pause</a> ()</td></tr>
-<tr class="memdesc:aefb5f1e179eb97f6458d4f77fbb331fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause the pool. The workers will temporarily stop retrieving new tasks out of the queue, although any tasks already executed will keep running until they are finished. <br /></td></tr>
+<tr class="memitem:aefb5f1e179eb97f6458d4f77fbb331fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#aefb5f1e179eb97f6458d4f77fbb331fd">pause</a> ()</td></tr>
+<tr class="memdesc:aefb5f1e179eb97f6458d4f77fbb331fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause the pool. The workers will temporarily stop retrieving new tasks out of the queue, although any tasks already executed will keep running until they are finished.  <a href="classBS_1_1thread__pool.html#aefb5f1e179eb97f6458d4f77fbb331fd">More...</a><br /></td></tr>
 <tr class="separator:aefb5f1e179eb97f6458d4f77fbb331fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7b0b929324dad46b60a0321477ca352"><td class="memItemLeft" align="right" valign="top"><a id="ab7b0b929324dad46b60a0321477ca352"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ab7b0b929324dad46b60a0321477ca352">purge</a> ()</td></tr>
-<tr class="memdesc:ab7b0b929324dad46b60a0321477ca352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Purge all the tasks waiting in the queue. Tasks that are currently running will not be affected, but any tasks still waiting in the queue will be discarded, and will never be executed by the threads. Please note that there is no way to restore the purged tasks. <br /></td></tr>
+<tr class="memitem:ab7b0b929324dad46b60a0321477ca352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ab7b0b929324dad46b60a0321477ca352">purge</a> ()</td></tr>
+<tr class="memdesc:ab7b0b929324dad46b60a0321477ca352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Purge all the tasks waiting in the queue. Tasks that are currently running will not be affected, but any tasks still waiting in the queue will be discarded, and will never be executed by the threads. Please note that there is no way to restore the purged tasks.  <a href="classBS_1_1thread__pool.html#ab7b0b929324dad46b60a0321477ca352">More...</a><br /></td></tr>
 <tr class="separator:ab7b0b929324dad46b60a0321477ca352"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7cec549d4a8729beac50f5eba3ec63f"><td class="memTemplParams" colspan="2">template&lt;typename F , typename T1 , typename T2 , typename T  = std::common_type_t&lt;T1, T2&gt;&gt; </td></tr>
 <tr class="memitem:ae7cec549d4a8729beac50f5eba3ec63f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ae7cec549d4a8729beac50f5eba3ec63f">push_loop</a> (const T1 first_index, const T2 index_after_last, F &amp;&amp;loop, const size_t num_blocks=0)</td></tr>
@@ -131,20 +130,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a016a2a6a7a9c844c94c606aaf517b21c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">push_task</a> (F &amp;&amp;task, A &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a016a2a6a7a9c844c94c606aaf517b21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push a function with zero or more arguments, but no return value, into the task queue. Does not return a future, so the user must use <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> or some other method to ensure that the task finishes executing, otherwise bad things will happen.  <a href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">More...</a><br /></td></tr>
 <tr class="separator:a016a2a6a7a9c844c94c606aaf517b21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d3623b19c51a513fe4612b2157b0314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">reset</a> (const concurrency_t thread_count_=0)</td></tr>
+<tr class="memitem:a5d3623b19c51a513fe4612b2157b0314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">reset</a> (const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_=0)</td></tr>
 <tr class="memdesc:a5d3623b19c51a513fe4612b2157b0314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the number of threads in the pool. Waits for all currently running tasks to be completed, then destroys all threads in the pool and creates a new thread pool with the new number of threads. Any tasks that were waiting in the queue before the pool was reset will then be executed by the new threads. If the pool was paused before resetting it, the new pool will be paused as well.  <a href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">More...</a><br /></td></tr>
 <tr class="separator:a5d3623b19c51a513fe4612b2157b0314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87b9d62da8901302453f0a65bd6b99cd"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... A, typename R  = std::invoke_result_t&lt;std::decay_t&lt;F&gt;, std::decay_t&lt;A&gt;...&gt;&gt; </td></tr>
 <tr class="memitem:a87b9d62da8901302453f0a65bd6b99cd"><td class="memTemplItemLeft" align="right" valign="top">std::future&lt; R &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd">submit</a> (F &amp;&amp;task, A &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a87b9d62da8901302453f0a65bd6b99cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a function with zero or more arguments into the task queue. If the function has a return value, get a future for the eventual returned value. If the function has no return value, get an std::future&lt;void&gt; which can be used to wait until the task finishes.  <a href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd">More...</a><br /></td></tr>
 <tr class="separator:a87b9d62da8901302453f0a65bd6b99cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad57048e0479f878af3ac3a27031a2d6e"><td class="memItemLeft" align="right" valign="top"><a id="ad57048e0479f878af3ac3a27031a2d6e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ad57048e0479f878af3ac3a27031a2d6e">unpause</a> ()</td></tr>
-<tr class="memdesc:ad57048e0479f878af3ac3a27031a2d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unpause the pool. The workers will resume retrieving new tasks out of the queue. <br /></td></tr>
+<tr class="memitem:ad57048e0479f878af3ac3a27031a2d6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ad57048e0479f878af3ac3a27031a2d6e">unpause</a> ()</td></tr>
+<tr class="memdesc:ad57048e0479f878af3ac3a27031a2d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unpause the pool. The workers will resume retrieving new tasks out of the queue.  <a href="classBS_1_1thread__pool.html#ad57048e0479f878af3ac3a27031a2d6e">More...</a><br /></td></tr>
 <tr class="separator:ad57048e0479f878af3ac3a27031a2d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e16153b1a14b5b4d8191168ccf6e4b8"><td class="memItemLeft" align="right" valign="top"><a id="a1e16153b1a14b5b4d8191168ccf6e4b8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">wait_for_tasks</a> ()</td></tr>
-<tr class="memdesc:a1e16153b1a14b5b4d8191168ccf6e4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are currently running in the threads and those that are still waiting in the queue. However, if the pool is paused, this function only waits for the currently running tasks (otherwise it would wait forever). Note: To wait for just one specific task, use <a class="el" href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd" title="Submit a function with zero or more arguments into the task queue. If the function has a return value...">submit()</a> instead, and call the wait() member function of the generated future. <br /></td></tr>
+<tr class="memitem:a1e16153b1a14b5b4d8191168ccf6e4b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">wait_for_tasks</a> ()</td></tr>
+<tr class="memdesc:a1e16153b1a14b5b4d8191168ccf6e4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are currently running in the threads and those that are still waiting in the queue. However, if the pool is paused, this function only waits for the currently running tasks (otherwise it would wait forever). Note: To wait for just one specific task, use <a class="el" href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd" title="Submit a function with zero or more arguments into the task queue. If the function has a return value...">submit()</a> instead, and call the wait() member function of the generated future.  <a href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">More...</a><br /></td></tr>
 <tr class="separator:a1e16153b1a14b5b4d8191168ccf6e4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a980dc3c8de9114dc63b0fbfc979b031d"><td class="memTemplParams" colspan="2">template&lt;typename R , typename P &gt; </td></tr>
 <tr class="memitem:a980dc3c8de9114dc63b0fbfc979b031d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a980dc3c8de9114dc63b0fbfc979b031d">wait_for_tasks_duration</a> (const std::chrono::duration&lt; R, P &gt; &amp;duration)</td></tr>
@@ -154,6 +151,54 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0bf42daf5d4e6536a32af2279c95b351"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a0bf42daf5d4e6536a32af2279c95b351">wait_for_tasks_until</a> (const std::chrono::time_point&lt; C, D &gt; &amp;timeout_time)</td></tr>
 <tr class="memdesc:a0bf42daf5d4e6536a32af2279c95b351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for tasks to be completed, but stop waiting after the specified time point has been reached.  <a href="classBS_1_1thread__pool.html#a0bf42daf5d4e6536a32af2279c95b351">More...</a><br /></td></tr>
 <tr class="separator:a0bf42daf5d4e6536a32af2279c95b351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4b6564dcbe7b01efb736377917b489b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8">create_threads</a> ()</td></tr>
+<tr class="memdesc:a4b6564dcbe7b01efb736377917b489b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the threads in the pool and assign a worker to each thread.  <a href="classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8">More...</a><br /></td></tr>
+<tr class="separator:a4b6564dcbe7b01efb736377917b489b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b4777cae9085a4fa792a334f1015d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a97b4777cae9085a4fa792a334f1015d6">destroy_threads</a> ()</td></tr>
+<tr class="memdesc:a97b4777cae9085a4fa792a334f1015d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the threads in the pool.  <a href="classBS_1_1thread__pool.html#a97b4777cae9085a4fa792a334f1015d6">More...</a><br /></td></tr>
+<tr class="separator:a97b4777cae9085a4fa792a334f1015d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f5276dbef05cd912718925cd7583af5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a2f5276dbef05cd912718925cd7583af5">determine_thread_count</a> (const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_) const</td></tr>
+<tr class="memdesc:a2f5276dbef05cd912718925cd7583af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine how many threads the pool should have, based on the parameter passed to the constructor or <a class="el" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314" title="Reset the number of threads in the pool. Waits for all currently running tasks to be completed,...">reset()</a>.  <a href="classBS_1_1thread__pool.html#a2f5276dbef05cd912718925cd7583af5">More...</a><br /></td></tr>
+<tr class="separator:a2f5276dbef05cd912718925cd7583af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f36df0501ab738b10baee833e9ed960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">worker</a> ()</td></tr>
+<tr class="memdesc:a6f36df0501ab738b10baee833e9ed960"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worker function to be assigned to each thread in the pool. Waits until it is notified by <a class="el" href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c" title="Push a function with zero or more arguments, but no return value, into the task queue....">push_task()</a> that a task is available, and then retrieves the task from the queue and executes it. Once the task finishes, the worker notifies <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> in case it is waiting.  <a href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">More...</a><br /></td></tr>
+<tr class="separator:a6f36df0501ab738b10baee833e9ed960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1ad45a5fa18fc0aa649060df55471bc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a1ad45a5fa18fc0aa649060df55471bc6">paused</a> = false</td></tr>
+<tr class="memdesc:a1ad45a5fa18fc0aa649060df55471bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag indicating whether the workers should pause. When set to true, the workers temporarily stop retrieving new tasks out of the queue, although any tasks already executed will keep running until they are finished. When set to false again, the workers resume retrieving tasks.  <a href="classBS_1_1thread__pool.html#a1ad45a5fa18fc0aa649060df55471bc6">More...</a><br /></td></tr>
+<tr class="separator:a1ad45a5fa18fc0aa649060df55471bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb3be4acff4c3d14b95b2cbad6dad6e"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#aecb3be4acff4c3d14b95b2cbad6dad6e">task_available_cv</a> = {}</td></tr>
+<tr class="memdesc:aecb3be4acff4c3d14b95b2cbad6dad6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A condition variable to notify <a class="el" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960" title="A worker function to be assigned to each thread in the pool. Waits until it is notified by push_task(...">worker()</a> that a new task has become available.  <a href="classBS_1_1thread__pool.html#aecb3be4acff4c3d14b95b2cbad6dad6e">More...</a><br /></td></tr>
+<tr class="separator:aecb3be4acff4c3d14b95b2cbad6dad6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80b9508ed414f5f06e318dc89775485"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ac80b9508ed414f5f06e318dc89775485">tasks_done_cv</a> = {}</td></tr>
+<tr class="memdesc:ac80b9508ed414f5f06e318dc89775485"><td class="mdescLeft">&#160;</td><td class="mdescRight">A condition variable to notify <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> that the tasks are done.  <a href="classBS_1_1thread__pool.html#ac80b9508ed414f5f06e318dc89775485">More...</a><br /></td></tr>
+<tr class="separator:ac80b9508ed414f5f06e318dc89775485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd4757e864a90eaf2144a50c7cd761f"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#adcd4757e864a90eaf2144a50c7cd761f">tasks</a> = {}</td></tr>
+<tr class="memdesc:adcd4757e864a90eaf2144a50c7cd761f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A queue of tasks to be executed by the threads.  <a href="classBS_1_1thread__pool.html#adcd4757e864a90eaf2144a50c7cd761f">More...</a><br /></td></tr>
+<tr class="separator:adcd4757e864a90eaf2144a50c7cd761f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a059515108dff15d4e7cb01d0e3678733"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a059515108dff15d4e7cb01d0e3678733">tasks_running</a> = 0</td></tr>
+<tr class="memdesc:a059515108dff15d4e7cb01d0e3678733"><td class="mdescLeft">&#160;</td><td class="mdescRight">A counter for the total number of currently running tasks.  <a href="classBS_1_1thread__pool.html#a059515108dff15d4e7cb01d0e3678733">More...</a><br /></td></tr>
+<tr class="separator:a059515108dff15d4e7cb01d0e3678733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf8504f1b1a651bc0a714a65a8817c5"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a5cf8504f1b1a651bc0a714a65a8817c5">tasks_mutex</a> = {}</td></tr>
+<tr class="memdesc:a5cf8504f1b1a651bc0a714a65a8817c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A mutex to synchronize access to the task queue by different threads.  <a href="classBS_1_1thread__pool.html#a5cf8504f1b1a651bc0a714a65a8817c5">More...</a><br /></td></tr>
+<tr class="separator:a5cf8504f1b1a651bc0a714a65a8817c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a83012732b16fce9fb87a6bc37a8d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a19a83012732b16fce9fb87a6bc37a8d4">thread_count</a> = 0</td></tr>
+<tr class="memdesc:a19a83012732b16fce9fb87a6bc37a8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of threads in the pool.  <a href="classBS_1_1thread__pool.html#a19a83012732b16fce9fb87a6bc37a8d4">More...</a><br /></td></tr>
+<tr class="separator:a19a83012732b16fce9fb87a6bc37a8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d390bd82d042e989baf9783bb424ae3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::thread[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a7d390bd82d042e989baf9783bb424ae3">threads</a> = nullptr</td></tr>
+<tr class="memdesc:a7d390bd82d042e989baf9783bb424ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A smart pointer to manage the memory allocated for the threads.  <a href="classBS_1_1thread__pool.html#a7d390bd82d042e989baf9783bb424ae3">More...</a><br /></td></tr>
+<tr class="separator:a7d390bd82d042e989baf9783bb424ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada3f9e45366bd2b6a66fdf1e15df9b40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40">waiting</a> = false</td></tr>
+<tr class="memdesc:ada3f9e45366bd2b6a66fdf1e15df9b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag indicating that <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> is active and expects to be notified whenever a task is done.  <a href="classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40">More...</a><br /></td></tr>
+<tr class="separator:ada3f9e45366bd2b6a66fdf1e15df9b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031db7480dd2ff3d13a4ba3d0aec3bc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9">workers_running</a> = false</td></tr>
+<tr class="memdesc:a031db7480dd2ff3d13a4ba3d0aec3bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag indicating to the workers to keep running. When set to false, the workers terminate permanently.  <a href="classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9">More...</a><br /></td></tr>
+<tr class="separator:a031db7480dd2ff3d13a4ba3d0aec3bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A fast, lightweight, and easy-to-use C++17 thread pool class. </p>
@@ -170,7 +215,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">BS::thread_pool::thread_pool </td>
           <td>(</td>
-          <td class="paramtype">const concurrency_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td>
           <td class="paramname"><em>thread_count_</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
@@ -192,7 +237,123 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a1f7cc32367d0d0c020bf103782506998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f7cc32367d0d0c020bf103782506998">&#9670;&nbsp;</a></span>~thread_pool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BS::thread_pool::~thread_pool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destruct the thread pool. Waits for all tasks to complete, then destroys all threads. Note that if the pool is paused, then any tasks still in the queue will never be executed. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4b6564dcbe7b01efb736377917b489b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b6564dcbe7b01efb736377917b489b8">&#9670;&nbsp;</a></span>create_threads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::create_threads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create the threads in the pool and assign a worker to each thread. </p>
+
+</div>
+</div>
+<a id="a97b4777cae9085a4fa792a334f1015d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b4777cae9085a4fa792a334f1015d6">&#9670;&nbsp;</a></span>destroy_threads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::destroy_threads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroy the threads in the pool. </p>
+
+</div>
+</div>
+<a id="a2f5276dbef05cd912718925cd7583af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f5276dbef05cd912718925cd7583af5">&#9670;&nbsp;</a></span>determine_thread_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> BS::thread_pool::determine_thread_count </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td>
+          <td class="paramname"><em>thread_count_</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determine how many threads the pool should have, based on the parameter passed to the constructor or <a class="el" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314" title="Reset the number of threads in the pool. Waits for all currently running tasks to be completed,...">reset()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_count_</td><td>The parameter passed to the constructor or <a class="el" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314" title="Reset the number of threads in the pool. Waits for all currently running tasks to be completed,...">reset()</a>. If the parameter is a positive number, then the pool will be created with this number of threads. If the parameter is non-positive, or a parameter was not supplied (in which case it will have the default value of 0), then the pool will be created with the total number of hardware threads available, as obtained from std::thread::hardware_concurrency(). If the latter returns a non-positive number for some reason, then the pool will be created with just one thread. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of threads to use for constructing the pool. </dd></dl>
+
+</div>
+</div>
 <a id="ab5faf242cb0eacbb5c1142a2bd966468"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5faf242cb0eacbb5c1142a2bd966468">&#9670;&nbsp;</a></span>get_tasks_queued()</h2>
 
@@ -287,7 +448,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">concurrency_t BS::thread_pool::get_thread_count </td>
+          <td class="memname"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> BS::thread_pool::get_thread_count </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -465,6 +626,60 @@ template&lt;typename F , typename T1 , typename T2 , typename T  = std::common_t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object that can be used to wait for all the blocks to finish. If the loop function returns a value, the <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object can also be used to obtain the values returned by each block. </dd></dl>
+
+</div>
+</div>
+<a id="aefb5f1e179eb97f6458d4f77fbb331fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb5f1e179eb97f6458d4f77fbb331fd">&#9670;&nbsp;</a></span>pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pause the pool. The workers will temporarily stop retrieving new tasks out of the queue, although any tasks already executed will keep running until they are finished. </p>
+
+</div>
+</div>
+<a id="ab7b0b929324dad46b60a0321477ca352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7b0b929324dad46b60a0321477ca352">&#9670;&nbsp;</a></span>purge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::purge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Purge all the tasks waiting in the queue. Tasks that are currently running will not be affected, but any tasks still waiting in the queue will be discarded, and will never be executed by the threads. Please note that there is no way to restore the purged tasks. </p>
 
 </div>
 </div>
@@ -665,7 +880,7 @@ template&lt;typename F , typename... A&gt; </div>
         <tr>
           <td class="memname">void BS::thread_pool::reset </td>
           <td>(</td>
-          <td class="paramtype">const concurrency_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a>&#160;</td>
           <td class="paramname"><em>thread_count_</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
@@ -740,6 +955,60 @@ template&lt;typename F , typename... A, typename R  = std::invoke_result_t&lt;st
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A future to be used later to wait for the function to finish executing and/or obtain its returned value if it has one. </dd></dl>
+
+</div>
+</div>
+<a id="ad57048e0479f878af3ac3a27031a2d6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57048e0479f878af3ac3a27031a2d6e">&#9670;&nbsp;</a></span>unpause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::unpause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unpause the pool. The workers will resume retrieving new tasks out of the queue. </p>
+
+</div>
+</div>
+<a id="a1e16153b1a14b5b4d8191168ccf6e4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e16153b1a14b5b4d8191168ccf6e4b8">&#9670;&nbsp;</a></span>wait_for_tasks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::wait_for_tasks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are currently running in the threads and those that are still waiting in the queue. However, if the pool is paused, this function only waits for the currently running tasks (otherwise it would wait forever). Note: To wait for just one specific task, use <a class="el" href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd" title="Submit a function with zero or more arguments into the task queue. If the function has a return value...">submit()</a> instead, and call the wait() member function of the generated future. </p>
 
 </div>
 </div>
@@ -828,6 +1097,274 @@ template&lt;typename C , typename D &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if all tasks finished running, false if the time point was reached but some tasks are still running. </dd></dl>
+
+</div>
+</div>
+<a id="a6f36df0501ab738b10baee833e9ed960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f36df0501ab738b10baee833e9ed960">&#9670;&nbsp;</a></span>worker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::thread_pool::worker </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A worker function to be assigned to each thread in the pool. Waits until it is notified by <a class="el" href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c" title="Push a function with zero or more arguments, but no return value, into the task queue....">push_task()</a> that a task is available, and then retrieves the task from the queue and executes it. Once the task finishes, the worker notifies <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> in case it is waiting. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1ad45a5fa18fc0aa649060df55471bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ad45a5fa18fc0aa649060df55471bc6">&#9670;&nbsp;</a></span>paused</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BS::thread_pool::paused = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A flag indicating whether the workers should pause. When set to true, the workers temporarily stop retrieving new tasks out of the queue, although any tasks already executed will keep running until they are finished. When set to false again, the workers resume retrieving tasks. </p>
+
+</div>
+</div>
+<a id="aecb3be4acff4c3d14b95b2cbad6dad6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb3be4acff4c3d14b95b2cbad6dad6e">&#9670;&nbsp;</a></span>task_available_cv</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable BS::thread_pool::task_available_cv = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A condition variable to notify <a class="el" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960" title="A worker function to be assigned to each thread in the pool. Waits until it is notified by push_task(...">worker()</a> that a new task has become available. </p>
+
+</div>
+</div>
+<a id="adcd4757e864a90eaf2144a50c7cd761f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd4757e864a90eaf2144a50c7cd761f">&#9670;&nbsp;</a></span>tasks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::queue&lt;std::function&lt;void()&gt; &gt; BS::thread_pool::tasks = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A queue of tasks to be executed by the threads. </p>
+
+</div>
+</div>
+<a id="ac80b9508ed414f5f06e318dc89775485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80b9508ed414f5f06e318dc89775485">&#9670;&nbsp;</a></span>tasks_done_cv</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable BS::thread_pool::tasks_done_cv = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A condition variable to notify <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> that the tasks are done. </p>
+
+</div>
+</div>
+<a id="a5cf8504f1b1a651bc0a714a65a8817c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf8504f1b1a651bc0a714a65a8817c5">&#9670;&nbsp;</a></span>tasks_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex BS::thread_pool::tasks_mutex = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A mutex to synchronize access to the task queue by different threads. </p>
+
+</div>
+</div>
+<a id="a059515108dff15d4e7cb01d0e3678733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a059515108dff15d4e7cb01d0e3678733">&#9670;&nbsp;</a></span>tasks_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t BS::thread_pool::tasks_running = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A counter for the total number of currently running tasks. </p>
+
+</div>
+</div>
+<a id="a19a83012732b16fce9fb87a6bc37a8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19a83012732b16fce9fb87a6bc37a8d4">&#9670;&nbsp;</a></span>thread_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> BS::thread_pool::thread_count = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of threads in the pool. </p>
+
+</div>
+</div>
+<a id="a7d390bd82d042e989baf9783bb424ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d390bd82d042e989baf9783bb424ae3">&#9670;&nbsp;</a></span>threads</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;std::thread[]&gt; BS::thread_pool::threads = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A smart pointer to manage the memory allocated for the threads. </p>
+
+</div>
+</div>
+<a id="ada3f9e45366bd2b6a66fdf1e15df9b40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada3f9e45366bd2b6a66fdf1e15df9b40">&#9670;&nbsp;</a></span>waiting</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BS::thread_pool::waiting = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A flag indicating that <a class="el" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8" title="Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...">wait_for_tasks()</a> is active and expects to be notified whenever a task is done. </p>
+
+</div>
+</div>
+<a id="a031db7480dd2ff3d13a4ba3d0aec3bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a031db7480dd2ff3d13a4ba3d0aec3bc9">&#9670;&nbsp;</a></span>workers_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BS::thread_pool::workers_running = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A flag indicating to the workers to keep running. When set to false, the workers terminate permanently. </p>
 
 </div>
 </div>

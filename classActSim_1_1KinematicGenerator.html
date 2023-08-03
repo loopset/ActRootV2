@@ -62,12 +62,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActSim</b></li><li class="navelem"><a class="el" href="classActSim_1_1KinematicGenerator.html">KinematicGenerator</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActSim.html">ActSim</a></li><li class="navelem"><a class="el" href="classActSim_1_1KinematicGenerator.html">KinematicGenerator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActSim_1_1KinematicGenerator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActSim::KinematicGenerator Class Reference</div>  </div>
@@ -78,43 +80,649 @@ $(function() {
  <a href="classActSim_1_1KinematicGenerator.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="KinematicGenerator_8h_source.html">KinematicGenerator.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ActSim::KinematicGenerator:</div>
+<div class="dyncontent">
+<div class="center"><img src="classActSim_1_1KinematicGenerator__coll__graph.png" border="0" usemap="#aActSim_1_1KinematicGenerator_coll__map" alt="Collaboration graph"/></div>
+<map name="aActSim_1_1KinematicGenerator_coll__map" id="aActSim_1_1KinematicGenerator_coll__map">
+<area shape="rect" title="A class that wraps together ActPhysics::Kinematics and a TGenPhaseSpace." alt="" coords="12,228,219,255"/>
+<area shape="rect" href="classActPhysics_1_1Kinematics.html" title=" " alt="" coords="159,139,333,165"/>
+<area shape="rect" href="classActPhysics_1_1Particle.html" title="A class reading NUBASE particle info." alt="" coords="5,5,153,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:add8bcfc998056228bfceeed866661c26"><td class="memItemLeft" align="right" valign="top"><a id="add8bcfc998056228bfceeed866661c26"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>KinematicGenerator</b> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, int protonPS=0, int neutronPS=0)</td></tr>
+<tr class="memitem:a5d77ef741cd5575523eca4fe274f3ed6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a5d77ef741cd5575523eca4fe274f3ed6">KinematicGenerator</a> ()=default</td></tr>
+<tr class="separator:a5d77ef741cd5575523eca4fe274f3ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add8bcfc998056228bfceeed866661c26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#add8bcfc998056228bfceeed866661c26">KinematicGenerator</a> (const std::string &amp;p1, const std::string &amp;p2, const std::string &amp;p3, const std::string &amp;p4, int protonPS=0, int neutronPS=0)</td></tr>
 <tr class="separator:add8bcfc998056228bfceeed866661c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0177178957ecb5a16c8a349468440b"><td class="memItemLeft" align="right" valign="top"><a id="afc0177178957ecb5a16c8a349468440b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>KinematicGenerator</b> (const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p4, int protonPS=0, int neutronPS=0)</td></tr>
+<tr class="memitem:afc0177178957ecb5a16c8a349468440b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#afc0177178957ecb5a16c8a349468440b">KinematicGenerator</a> (const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p1, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p2, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p3, const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;p4, int protonPS=0, int neutronPS=0)</td></tr>
 <tr class="separator:afc0177178957ecb5a16c8a349468440b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c804787db0c2ffdaa0c1236e2500501"><td class="memItemLeft" align="right" valign="top"><a id="a6c804787db0c2ffdaa0c1236e2500501"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBeamEnergy</b> (double beamE)</td></tr>
+<tr class="memitem:a6c804787db0c2ffdaa0c1236e2500501"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a6c804787db0c2ffdaa0c1236e2500501">SetBeamEnergy</a> (double beamE)</td></tr>
 <tr class="separator:a6c804787db0c2ffdaa0c1236e2500501"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a8cf6365707e63448b02a8519df0a19"><td class="memItemLeft" align="right" valign="top"><a id="a8a8cf6365707e63448b02a8519df0a19"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetExcitationEnergy</b> (double Ex)</td></tr>
+<tr class="memitem:a8a8cf6365707e63448b02a8519df0a19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a8a8cf6365707e63448b02a8519df0a19">SetExcitationEnergy</a> (double Ex)</td></tr>
 <tr class="separator:a8a8cf6365707e63448b02a8519df0a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5719d07292aa0f20608ffd9927c9e4a7"><td class="memItemLeft" align="right" valign="top"><a id="a5719d07292aa0f20608ffd9927c9e4a7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBeamAndExEnergies</b> (double beamE, double Ex)</td></tr>
+<tr class="memitem:a5719d07292aa0f20608ffd9927c9e4a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a5719d07292aa0f20608ffd9927c9e4a7">SetBeamAndExEnergies</a> (double beamE, double Ex)</td></tr>
 <tr class="separator:a5719d07292aa0f20608ffd9927c9e4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6966872e9717b584a60b8b5df591e495"><td class="memItemLeft" align="right" valign="top"><a id="a6966872e9717b584a60b8b5df591e495"></a>
-<a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetBinaryKinematics</b> ()</td></tr>
+<tr class="memitem:a6966872e9717b584a60b8b5df591e495"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a6966872e9717b584a60b8b5df591e495">GetBinaryKinematics</a> ()</td></tr>
 <tr class="separator:a6966872e9717b584a60b8b5df591e495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8eb5638057fbb92b508f799591b008"><td class="memItemLeft" align="right" valign="top"><a id="a1e8eb5638057fbb92b508f799591b008"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>Generate</b> ()</td></tr>
+<tr class="memitem:a1e8eb5638057fbb92b508f799591b008"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a1e8eb5638057fbb92b508f799591b008">Generate</a> ()</td></tr>
 <tr class="separator:a1e8eb5638057fbb92b508f799591b008"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afab451edf294f4bcdec1e801701c9994"><td class="memItemLeft" align="right" valign="top"><a id="afab451edf294f4bcdec1e801701c9994"></a>
-TLorentzVector *&#160;</td><td class="memItemRight" valign="bottom"><b>GetLorentzVector</b> (unsigned int idx)</td></tr>
+<tr class="memitem:afab451edf294f4bcdec1e801701c9994"><td class="memItemLeft" align="right" valign="top">TLorentzVector *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#afab451edf294f4bcdec1e801701c9994">GetLorentzVector</a> (unsigned int idx)</td></tr>
 <tr class="separator:afab451edf294f4bcdec1e801701c9994"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7333ebe8bb419020a44aa4497fb3e10e"><td class="memItemLeft" align="right" valign="top"><a id="a7333ebe8bb419020a44aa4497fb3e10e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Print</b> () const</td></tr>
+<tr class="memitem:a7333ebe8bb419020a44aa4497fb3e10e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a7333ebe8bb419020a44aa4497fb3e10e">Print</a> () const</td></tr>
 <tr class="separator:a7333ebe8bb419020a44aa4497fb3e10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:acc9f424119884601c95342cf23980bf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#acc9f424119884601c95342cf23980bf1">Init</a> ()</td></tr>
+<tr class="separator:acc9f424119884601c95342cf23980bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a065c5e2ea930aee4a0b26c4cb320ee2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a065c5e2ea930aee4a0b26c4cb320ee2b">ComputeHeavyMass</a> ()</td></tr>
+<tr class="separator:a065c5e2ea930aee4a0b26c4cb320ee2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa94ff7cf1cb70a04ea0ad2b54508a80"><td class="memItemLeft" align="right" valign="top">TLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#aaa94ff7cf1cb70a04ea0ad2b54508a80">GetInitialState</a> ()</td></tr>
+<tr class="separator:aaa94ff7cf1cb70a04ea0ad2b54508a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca760b4a4e8ecb54cac649bc43fe51fc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#aca760b4a4e8ecb54cac649bc43fe51fc">GetFinalState</a> ()</td></tr>
+<tr class="separator:aca760b4a4e8ecb54cac649bc43fe51fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6c23615d15c3a4e9db9eaa85fad768e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a6c23615d15c3a4e9db9eaa85fad768e9">fKin</a></td></tr>
+<tr class="separator:a6c23615d15c3a4e9db9eaa85fad768e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576301d540521d688c9d70e6eb9533c9"><td class="memItemLeft" align="right" valign="top">TGenPhaseSpace&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a576301d540521d688c9d70e6eb9533c9">fGen</a></td></tr>
+<tr class="separator:a576301d540521d688c9d70e6eb9533c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac427f25e8a47653b3aca080c96fcf6bd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#ac427f25e8a47653b3aca080c96fcf6bd">fBinParts</a></td></tr>
+<tr class="separator:ac427f25e8a47653b3aca080c96fcf6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ced12b790ad20049e1e6252c56cec1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a60ced12b790ad20049e1e6252c56cec1">fHeavyPart</a></td></tr>
+<tr class="separator:a60ced12b790ad20049e1e6252c56cec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8f5e7dad80035f306f002d7e20a153b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#aa8f5e7dad80035f306f002d7e20a153b">fneutronPS</a></td></tr>
+<tr class="separator:aa8f5e7dad80035f306f002d7e20a153b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb86e7eef1053edfdfa41bc658cf5ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#adfb86e7eef1053edfdfa41bc658cf5ed">fprotonPS</a></td></tr>
+<tr class="separator:adfb86e7eef1053edfdfa41bc658cf5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a142ccb7acd22341f52636a1b93b4d752"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#a142ccb7acd22341f52636a1b93b4d752">fEBeam</a> {}</td></tr>
+<tr class="separator:a142ccb7acd22341f52636a1b93b4d752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa971d12471d3e4c51249b4c894fe5bce"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1KinematicGenerator.html#aa971d12471d3e4c51249b4c894fe5bce">fEx</a> {}</td></tr>
+<tr class="separator:aa971d12471d3e4c51249b4c894fe5bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class that wraps together <a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a> and a TGenPhaseSpace. </p>
 <p>In this way, all sorts of kinematics can be generated within the same class </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5d77ef741cd5575523eca4fe274f3ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d77ef741cd5575523eca4fe274f3ed6">&#9670;&nbsp;</a></span>KinematicGenerator() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActSim::KinematicGenerator::KinematicGenerator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add8bcfc998056228bfceeed866661c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add8bcfc998056228bfceeed866661c26">&#9670;&nbsp;</a></span>KinematicGenerator() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActSim::KinematicGenerator::KinematicGenerator </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>p4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>protonPS</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>neutronPS</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc0177178957ecb5a16c8a349468440b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc0177178957ecb5a16c8a349468440b">&#9670;&nbsp;</a></span>KinematicGenerator() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActSim::KinematicGenerator::KinematicGenerator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp;&#160;</td>
+          <td class="paramname"><em>p4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>protonPS</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>neutronPS</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a065c5e2ea930aee4a0b26c4cb320ee2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a065c5e2ea930aee4a0b26c4cb320ee2b">&#9670;&nbsp;</a></span>ComputeHeavyMass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::ComputeHeavyMass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e8eb5638057fbb92b508f799591b008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e8eb5638057fbb92b508f799591b008">&#9670;&nbsp;</a></span>Generate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::KinematicGenerator::Generate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6966872e9717b584a60b8b5df591e495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6966872e9717b584a60b8b5df591e495">&#9670;&nbsp;</a></span>GetBinaryKinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a>&amp; ActSim::KinematicGenerator::GetBinaryKinematics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca760b4a4e8ecb54cac649bc43fe51fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca760b4a4e8ecb54cac649bc43fe51fc">&#9670;&nbsp;</a></span>GetFinalState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; double &gt; ActSim::KinematicGenerator::GetFinalState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa94ff7cf1cb70a04ea0ad2b54508a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa94ff7cf1cb70a04ea0ad2b54508a80">&#9670;&nbsp;</a></span>GetInitialState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TLorentzVector ActSim::KinematicGenerator::GetInitialState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afab451edf294f4bcdec1e801701c9994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab451edf294f4bcdec1e801701c9994">&#9670;&nbsp;</a></span>GetLorentzVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TLorentzVector * ActSim::KinematicGenerator::GetLorentzVector </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc9f424119884601c95342cf23980bf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9f424119884601c95342cf23980bf1">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7333ebe8bb419020a44aa4497fb3e10e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7333ebe8bb419020a44aa4497fb3e10e">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5719d07292aa0f20608ffd9927c9e4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5719d07292aa0f20608ffd9927c9e4a7">&#9670;&nbsp;</a></span>SetBeamAndExEnergies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::SetBeamAndExEnergies </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>beamE</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c804787db0c2ffdaa0c1236e2500501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c804787db0c2ffdaa0c1236e2500501">&#9670;&nbsp;</a></span>SetBeamEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::SetBeamEnergy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>beamE</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a8cf6365707e63448b02a8519df0a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a8cf6365707e63448b02a8519df0a19">&#9670;&nbsp;</a></span>SetExcitationEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActSim::KinematicGenerator::SetExcitationEnergy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac427f25e8a47653b3aca080c96fcf6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac427f25e8a47653b3aca080c96fcf6bd">&#9670;&nbsp;</a></span>fBinParts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a>&gt; ActSim::KinematicGenerator::fBinParts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a142ccb7acd22341f52636a1b93b4d752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a142ccb7acd22341f52636a1b93b4d752">&#9670;&nbsp;</a></span>fEBeam</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::KinematicGenerator::fEBeam {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa971d12471d3e4c51249b4c894fe5bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa971d12471d3e4c51249b4c894fe5bce">&#9670;&nbsp;</a></span>fEx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::KinematicGenerator::fEx {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a576301d540521d688c9d70e6eb9533c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a576301d540521d688c9d70e6eb9533c9">&#9670;&nbsp;</a></span>fGen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGenPhaseSpace ActSim::KinematicGenerator::fGen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60ced12b790ad20049e1e6252c56cec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ced12b790ad20049e1e6252c56cec1">&#9670;&nbsp;</a></span>fHeavyPart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> ActSim::KinematicGenerator::fHeavyPart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c23615d15c3a4e9db9eaa85fad768e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c23615d15c3a4e9db9eaa85fad768e9">&#9670;&nbsp;</a></span>fKin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a> ActSim::KinematicGenerator::fKin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8f5e7dad80035f306f002d7e20a153b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8f5e7dad80035f306f002d7e20a153b">&#9670;&nbsp;</a></span>fneutronPS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActSim::KinematicGenerator::fneutronPS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfb86e7eef1053edfdfa41bc658cf5ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb86e7eef1053edfdfa41bc658cf5ed">&#9670;&nbsp;</a></span>fprotonPS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActSim::KinematicGenerator::fprotonPS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Simulation/<a class="el" href="KinematicGenerator_8h_source.html">KinematicGenerator.h</a></li>
-<li>Simulation/KinematicGenerator.cxx</li>
+<li>Simulation/<a class="el" href="KinematicGenerator_8cxx.html">KinematicGenerator.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

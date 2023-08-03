@@ -62,45 +62,396 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1InputWrapper.html">InputWrapper</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1InputWrapper.html">InputWrapper</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1InputWrapper-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::InputWrapper Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="InputIterator_8h_source.html">InputIterator.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ActRoot::InputWrapper:</div>
+<div class="dyncontent">
+<div class="center"><img src="classActRoot_1_1InputWrapper__coll__graph.png" border="0" usemap="#aActRoot_1_1InputWrapper_coll__map" alt="Collaboration graph"/></div>
+<map name="aActRoot_1_1InputWrapper_coll__map" id="aActRoot_1_1InputWrapper_coll__map">
+<area shape="rect" title=" " alt="" coords="261,95,430,121"/>
+<area shape="rect" href="classActRoot_1_1InputIterator.html" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" href="classActRoot_1_1InputData.html" title=" " alt="" coords="193,5,338,32"/>
+<area shape="rect" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data." alt="" coords="363,5,491,32"/>
+<area shape="rect" href="classActRoot_1_1TPCData.html" title=" " alt="" coords="515,5,653,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abe0cdb7a9bd4a064be6b94334fe697d7"><td class="memItemLeft" align="right" valign="top"><a id="abe0cdb7a9bd4a064be6b94334fe697d7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>InputWrapper</b> (<a class="el" href="classActRoot_1_1InputData.html">InputData</a> *input)</td></tr>
+<tr class="memitem:a9468611b7bc1e118d9d44c9e33f3ac4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a9468611b7bc1e118d9d44c9e33f3ac4b">InputWrapper</a> ()=default</td></tr>
+<tr class="separator:a9468611b7bc1e118d9d44c9e33f3ac4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0cdb7a9bd4a064be6b94334fe697d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#abe0cdb7a9bd4a064be6b94334fe697d7">InputWrapper</a> (<a class="el" href="classActRoot_1_1InputData.html">InputData</a> *input)</td></tr>
 <tr class="separator:abe0cdb7a9bd4a064be6b94334fe697d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49080911fbf833670b2fe3ea51ed4e13"><td class="memItemLeft" align="right" valign="top"><a id="a49080911fbf833670b2fe3ea51ed4e13"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>GoNext</b> ()</td></tr>
+<tr class="memitem:a6c8ad58117503508c74fbbc0bb3c518d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a6c8ad58117503508c74fbbc0bb3c518d">~InputWrapper</a> ()=default</td></tr>
+<tr class="separator:a6c8ad58117503508c74fbbc0bb3c518d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49080911fbf833670b2fe3ea51ed4e13"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a49080911fbf833670b2fe3ea51ed4e13">GoNext</a> ()</td></tr>
 <tr class="separator:a49080911fbf833670b2fe3ea51ed4e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ac2718345058114612ea85c7f642552"><td class="memItemLeft" align="right" valign="top"><a id="a4ac2718345058114612ea85c7f642552"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>GoPrevious</b> ()</td></tr>
+<tr class="memitem:a4ac2718345058114612ea85c7f642552"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a4ac2718345058114612ea85c7f642552">GoPrevious</a> ()</td></tr>
 <tr class="separator:a4ac2718345058114612ea85c7f642552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3788e897dffe27310a55931d61753276"><td class="memItemLeft" align="right" valign="top"><a id="a3788e897dffe27310a55931d61753276"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>GoTo</b> (int run, int entry)</td></tr>
+<tr class="memitem:a3788e897dffe27310a55931d61753276"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a3788e897dffe27310a55931d61753276">GoTo</a> (int run, int entry)</td></tr>
 <tr class="separator:a3788e897dffe27310a55931d61753276"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0f2b40c05b703bba7fd9fcb9862d03e"><td class="memItemLeft" align="right" valign="top"><a id="ac0f2b40c05b703bba7fd9fcb9862d03e"></a>
-<a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentTPCData</b> ()</td></tr>
+<tr class="memitem:ac0f2b40c05b703bba7fd9fcb9862d03e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#ac0f2b40c05b703bba7fd9fcb9862d03e">GetCurrentTPCData</a> ()</td></tr>
 <tr class="separator:ac0f2b40c05b703bba7fd9fcb9862d03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd3ba4751b640a75d044544b467c0583"><td class="memItemLeft" align="right" valign="top"><a id="acd3ba4751b640a75d044544b467c0583"></a>
-<a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentSilData</b> ()</td></tr>
+<tr class="memitem:acd3ba4751b640a75d044544b467c0583"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#acd3ba4751b640a75d044544b467c0583">GetCurrentSilData</a> ()</td></tr>
 <tr class="separator:acd3ba4751b640a75d044544b467c0583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90156d76a3e92fc0a7aafe71e20816ff"><td class="memItemLeft" align="right" valign="top"><a id="a90156d76a3e92fc0a7aafe71e20816ff"></a>
-std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentStatus</b> () const</td></tr>
+<tr class="memitem:a90156d76a3e92fc0a7aafe71e20816ff"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a90156d76a3e92fc0a7aafe71e20816ff">GetCurrentStatus</a> () const</td></tr>
 <tr class="separator:a90156d76a3e92fc0a7aafe71e20816ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a3260baa48c56aa2f75e4ba717cd37ec7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a3260baa48c56aa2f75e4ba717cd37ec7">SetBranchAddress</a> (int run)</td></tr>
+<tr class="separator:a3260baa48c56aa2f75e4ba717cd37ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a48b6bf5db5de9d0b7ac9c5a589341e8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1InputData.html">InputData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">fInput</a></td></tr>
+<tr class="separator:a48b6bf5db5de9d0b7ac9c5a589341e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad46143f96a0256f5f26a5c17caf16dc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1InputIterator.html">InputIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a></td></tr>
+<tr class="separator:ad46143f96a0256f5f26a5c17caf16dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e3f7a5a7dd01d7b6a1d58841d379bc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a></td></tr>
+<tr class="separator:a4e3f7a5a7dd01d7b6a1d58841d379bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29dc8f04050365793e5d69f7a34284cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a></td></tr>
+<tr class="separator:a29dc8f04050365793e5d69f7a34284cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9468611b7bc1e118d9d44c9e33f3ac4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9468611b7bc1e118d9d44c9e33f3ac4b">&#9670;&nbsp;</a></span>InputWrapper() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::InputWrapper::InputWrapper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe0cdb7a9bd4a064be6b94334fe697d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0cdb7a9bd4a064be6b94334fe697d7">&#9670;&nbsp;</a></span>InputWrapper() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::InputWrapper::InputWrapper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1InputData.html">ActRoot::InputData</a> *&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c8ad58117503508c74fbbc0bb3c518d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8ad58117503508c74fbbc0bb3c518d">&#9670;&nbsp;</a></span>~InputWrapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::InputWrapper::~InputWrapper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acd3ba4751b640a75d044544b467c0583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd3ba4751b640a75d044544b467c0583">&#9670;&nbsp;</a></span>GetCurrentSilData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilData.html">SilData</a>* ActRoot::InputWrapper::GetCurrentSilData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90156d76a3e92fc0a7aafe71e20816ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90156d76a3e92fc0a7aafe71e20816ff">&#9670;&nbsp;</a></span>GetCurrentStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;int, int&gt; ActRoot::InputWrapper::GetCurrentStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0f2b40c05b703bba7fd9fcb9862d03e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f2b40c05b703bba7fd9fcb9862d03e">&#9670;&nbsp;</a></span>GetCurrentTPCData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a>* ActRoot::InputWrapper::GetCurrentTPCData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49080911fbf833670b2fe3ea51ed4e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49080911fbf833670b2fe3ea51ed4e13">&#9670;&nbsp;</a></span>GoNext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::InputWrapper::GoNext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ac2718345058114612ea85c7f642552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ac2718345058114612ea85c7f642552">&#9670;&nbsp;</a></span>GoPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::InputWrapper::GoPrevious </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3788e897dffe27310a55931d61753276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3788e897dffe27310a55931d61753276">&#9670;&nbsp;</a></span>GoTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::InputWrapper::GoTo </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>entry</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3260baa48c56aa2f75e4ba717cd37ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3260baa48c56aa2f75e4ba717cd37ec7">&#9670;&nbsp;</a></span>SetBranchAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::InputWrapper::SetBranchAddress </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a48b6bf5db5de9d0b7ac9c5a589341e8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48b6bf5db5de9d0b7ac9c5a589341e8e">&#9670;&nbsp;</a></span>fInput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1InputData.html">InputData</a>* ActRoot::InputWrapper::fInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad46143f96a0256f5f26a5c17caf16dc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad46143f96a0256f5f26a5c17caf16dc8">&#9670;&nbsp;</a></span>fIt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1InputIterator.html">InputIterator</a> ActRoot::InputWrapper::fIt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29dc8f04050365793e5d69f7a34284cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29dc8f04050365793e5d69f7a34284cb">&#9670;&nbsp;</a></span>fSilData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilData.html">SilData</a>* ActRoot::InputWrapper::fSilData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e3f7a5a7dd01d7b6a1d58841d379bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e3f7a5a7dd01d7b6a1d58841d379bc6">&#9670;&nbsp;</a></span>fTPCData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a>* ActRoot::InputWrapper::fTPCData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="InputIterator_8h_source.html">InputIterator.h</a></li>
-<li>Core/InputIterator.cxx</li>
+<li>Core/<a class="el" href="InputIterator_8cxx.html">InputIterator.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -62,13 +62,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActSim</b></li><li class="navelem"><a class="el" href="classActSim_1_1Runner.html">Runner</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActSim.html">ActSim</a></li><li class="navelem"><a class="el" href="classActSim_1_1Runner.html">Runner</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActSim_1_1Runner-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActSim::Runner Class Reference</div>  </div>
@@ -79,60 +80,573 @@ $(function() {
  <a href="classActSim_1_1Runner.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Runner_8h_source.html">Runner.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ActSim::Runner:</div>
+<div class="dyncontent">
+<div class="center"><img src="classActSim_1_1Runner__coll__graph.png" border="0" usemap="#aActSim_1_1Runner_coll__map" alt="Collaboration graph"/></div>
+<map name="aActSim_1_1Runner_coll__map" id="aActSim_1_1Runner_coll__map">
+<area shape="rect" title="A class holding utility functions to build up a simulation macro." alt="" coords="145,184,268,211"/>
+<area shape="rect" href="classActSim_1_1Geometry.html" title="A simple geometry manager implemented in ROOT." alt="" coords="16,95,157,121"/>
+<area shape="rect" href="structActSim_1_1DriftChamber.html" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" href="classActPhysics_1_1SRIM.html" title="A class to interface with SRIM files." alt="" coords="181,95,315,121"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a331ac2915d46cd8bfabcdaef25213897"><td class="memItemLeft" align="right" valign="top"><a id="a331ac2915d46cd8bfabcdaef25213897"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>XYZPoint</b> = ROOT::Math::XYZPoint</td></tr>
+<tr class="memitem:a331ac2915d46cd8bfabcdaef25213897"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> = ROOT::Math::XYZPoint</td></tr>
 <tr class="separator:a331ac2915d46cd8bfabcdaef25213897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8efce50e49d98fd544c1af995e6e431"><td class="memItemLeft" align="right" valign="top"><a id="af8efce50e49d98fd544c1af995e6e431"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>XYZVector</b> = ROOT::Math::XYZVector</td></tr>
+<tr class="memitem:af8efce50e49d98fd544c1af995e6e431"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#af8efce50e49d98fd544c1af995e6e431">XYZVector</a> = ROOT::Math::XYZVector</td></tr>
 <tr class="separator:af8efce50e49d98fd544c1af995e6e431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9cf55954bb145e6c0b650ee38e68c5b5"><td class="memItemLeft" align="right" valign="top"><a id="a9cf55954bb145e6c0b650ee38e68c5b5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Runner</b> (<a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *srim, <a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *geo, TRandom3 *rand, double silSigma)</td></tr>
+<tr class="memitem:a9cf55954bb145e6c0b650ee38e68c5b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a9cf55954bb145e6c0b650ee38e68c5b5">Runner</a> (<a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *srim, <a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *geo, TRandom3 *rand, double silSigma)</td></tr>
 <tr class="separator:a9cf55954bb145e6c0b650ee38e68c5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b1a726224265f7658543e72ccb7be00"><td class="memItemLeft" align="right" valign="top"><a id="a0b1a726224265f7658543e72ccb7be00"></a>
-std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>EnergyAfterSilicons</b> (double T3EnteringSil, double silWidth, double silThresh, const std::string &amp;silString, bool enableResolution=true, bool enableStraggling=true)</td></tr>
+<tr class="memitem:a0b1a726224265f7658543e72ccb7be00"><td class="memItemLeft" align="right" valign="top">std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a0b1a726224265f7658543e72ccb7be00">EnergyAfterSilicons</a> (double T3EnteringSil, double silWidth, double silThresh, const std::string &amp;silString, bool enableResolution=true, bool enableStraggling=true)</td></tr>
 <tr class="separator:a0b1a726224265f7658543e72ccb7be00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ded19d700fe239b7a31e1575811cb4d"><td class="memItemLeft" align="right" valign="top"><a id="a5ded19d700fe239b7a31e1575811cb4d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>EnergyAfterGas</b> (double TIni, double distance, const std::string &amp;gasKey, bool enableStraggling=true)</td></tr>
+<tr class="memitem:a5ded19d700fe239b7a31e1575811cb4d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a5ded19d700fe239b7a31e1575811cb4d">EnergyAfterGas</a> (double TIni, double distance, const std::string &amp;gasKey, bool enableStraggling=true)</td></tr>
 <tr class="separator:a5ded19d700fe239b7a31e1575811cb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a201a968982279d4f8ebb43e780197477"><td class="memItemLeft" align="right" valign="top"><a id="a201a968982279d4f8ebb43e780197477"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>EnergyBeforeGas</b> (double Esil, double trackLengthInMM, const std::string &amp;gasKey)</td></tr>
+<tr class="memitem:a201a968982279d4f8ebb43e780197477"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a201a968982279d4f8ebb43e780197477">EnergyBeforeGas</a> (double Esil, double trackLengthInMM, const std::string &amp;gasKey)</td></tr>
 <tr class="separator:a201a968982279d4f8ebb43e780197477"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16810fcfcbd65455bdc951521312349d"><td class="memItemLeft" align="right" valign="top"><a id="a16810fcfcbd65455bdc951521312349d"></a>
-XYZPoint&#160;</td><td class="memItemRight" valign="bottom"><b>SampleVertex</b> (double meanY=-1, double sigmaY=-1, double meanZ=-1, double sigmaZ=-1, TH3F *histBeam=nullptr)</td></tr>
+<tr class="memitem:a16810fcfcbd65455bdc951521312349d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a16810fcfcbd65455bdc951521312349d">SampleVertex</a> (double meanY=-1, double sigmaY=-1, double meanZ=-1, double sigmaZ=-1, TH3F *histBeam=nullptr)</td></tr>
 <tr class="separator:a16810fcfcbd65455bdc951521312349d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7db04323ce99654cfafb6f5b73bca296"><td class="memItemLeft" align="right" valign="top"><a id="a7db04323ce99654cfafb6f5b73bca296"></a>
-XYZPoint&#160;</td><td class="memItemRight" valign="bottom"><b>DisplacePointToTGeometryFrame</b> (const XYZPoint &amp;pointInMM)</td></tr>
+<tr class="memitem:a7db04323ce99654cfafb6f5b73bca296"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a7db04323ce99654cfafb6f5b73bca296">DisplacePointToTGeometryFrame</a> (const <a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> &amp;pointInMM)</td></tr>
 <tr class="separator:a7db04323ce99654cfafb6f5b73bca296"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0864afbad249ccbfce5e3dd0d3df3a0"><td class="memItemLeft" align="right" valign="top"><a id="aa0864afbad249ccbfce5e3dd0d3df3a0"></a>
-XYZPoint&#160;</td><td class="memItemRight" valign="bottom"><b>DisplacePointToStandardFrame</b> (const XYZPoint &amp;pointGeo)</td></tr>
+<tr class="memitem:aa0864afbad249ccbfce5e3dd0d3df3a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#aa0864afbad249ccbfce5e3dd0d3df3a0">DisplacePointToStandardFrame</a> (const <a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> &amp;pointGeo)</td></tr>
 <tr class="separator:aa0864afbad249ccbfce5e3dd0d3df3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab881f5e75b5a965d4d86a53279707908"><td class="memItemLeft" align="right" valign="top"><a id="ab881f5e75b5a965d4d86a53279707908"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>RandomizeBeamEnergy</b> (double Tini, double sigma)</td></tr>
+<tr class="memitem:ab881f5e75b5a965d4d86a53279707908"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#ab881f5e75b5a965d4d86a53279707908">RandomizeBeamEnergy</a> (double Tini, double sigma)</td></tr>
 <tr class="separator:ab881f5e75b5a965d4d86a53279707908"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3792693ce2f1e39e8ec5d8c2d7c115f3"><td class="memItemLeft" align="right" valign="top"><a id="a3792693ce2f1e39e8ec5d8c2d7c115f3"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyStragglingInMaterialToRLeft</b> (double RIni, double RLeft, const std::string &amp;srimKey)</td></tr>
+<tr class="memitem:a3792693ce2f1e39e8ec5d8c2d7c115f3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ApplyStragglingInMaterialToRLeft</a> (double RIni, double RLeft, const std::string &amp;srimKey)</td></tr>
 <tr class="separator:a3792693ce2f1e39e8ec5d8c2d7c115f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a606e744a928e2a50ee4b5864920639"><td class="memItemLeft" align="right" valign="top"><a id="a5a606e744a928e2a50ee4b5864920639"></a>
-<a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSRIM</b> () const</td></tr>
+<tr class="memitem:a5a606e744a928e2a50ee4b5864920639"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a5a606e744a928e2a50ee4b5864920639">GetSRIM</a> () const</td></tr>
 <tr class="separator:a5a606e744a928e2a50ee4b5864920639"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af334521f7f6b20ecc5127f2a0d88f604"><td class="memItemLeft" align="right" valign="top"><a id="af334521f7f6b20ecc5127f2a0d88f604"></a>
-<a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetGeo</b> () const</td></tr>
+<tr class="memitem:af334521f7f6b20ecc5127f2a0d88f604"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#af334521f7f6b20ecc5127f2a0d88f604">GetGeo</a> () const</td></tr>
 <tr class="separator:af334521f7f6b20ecc5127f2a0d88f604"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76481714ac2c1ddc1147b7422186d5a4"><td class="memItemLeft" align="right" valign="top"><a id="a76481714ac2c1ddc1147b7422186d5a4"></a>
-TRandom3 *&#160;</td><td class="memItemRight" valign="bottom"><b>GetRand</b> () const</td></tr>
+<tr class="memitem:a76481714ac2c1ddc1147b7422186d5a4"><td class="memItemLeft" align="right" valign="top">TRandom3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a76481714ac2c1ddc1147b7422186d5a4">GetRand</a> () const</td></tr>
 <tr class="separator:a76481714ac2c1ddc1147b7422186d5a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:acd282d9e71570d96c56453c1609361f6"><td class="memItemLeft" align="right" valign="top">TRandom3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a> {}</td></tr>
+<tr class="separator:acd282d9e71570d96c56453c1609361f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a698e33770e59fedd4699600396333a13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a> {}</td></tr>
+<tr class="separator:a698e33770e59fedd4699600396333a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9794214da2c7011296d1d55cce0cfa9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a> {}</td></tr>
+<tr class="separator:af9794214da2c7011296d1d55cce0cfa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afefd5b0653db133c6bfa2854d1396c0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; TF1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a> {}</td></tr>
+<tr class="separator:afefd5b0653db133c6bfa2854d1396c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class holding utility functions to build up a simulation macro. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a331ac2915d46cd8bfabcdaef25213897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331ac2915d46cd8bfabcdaef25213897">&#9670;&nbsp;</a></span>XYZPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a> =  ROOT::Math::XYZPoint</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af8efce50e49d98fd544c1af995e6e431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8efce50e49d98fd544c1af995e6e431">&#9670;&nbsp;</a></span>XYZVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActSim_1_1Runner.html#af8efce50e49d98fd544c1af995e6e431">ActSim::Runner::XYZVector</a> =  ROOT::Math::XYZVector</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9cf55954bb145e6c0b650ee38e68c5b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf55954bb145e6c0b650ee38e68c5b5">&#9670;&nbsp;</a></span>Runner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActSim::Runner::Runner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a> *&#160;</td>
+          <td class="paramname"><em>srim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a> *&#160;</td>
+          <td class="paramname"><em>geo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TRandom3 *&#160;</td>
+          <td class="paramname"><em>rand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>silSigma</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3792693ce2f1e39e8ec5d8c2d7c115f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3792693ce2f1e39e8ec5d8c2d7c115f3">&#9670;&nbsp;</a></span>ApplyStragglingInMaterialToRLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::Runner::ApplyStragglingInMaterialToRLeft </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>RIni</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>RLeft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>srimKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0864afbad249ccbfce5e3dd0d3df3a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0864afbad249ccbfce5e3dd0d3df3a0">&#9670;&nbsp;</a></span>DisplacePointToStandardFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a> ActSim::Runner::DisplacePointToStandardFrame </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>pointGeo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7db04323ce99654cfafb6f5b73bca296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7db04323ce99654cfafb6f5b73bca296">&#9670;&nbsp;</a></span>DisplacePointToTGeometryFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a> ActSim::Runner::DisplacePointToTGeometryFrame </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>pointInMM</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ded19d700fe239b7a31e1575811cb4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ded19d700fe239b7a31e1575811cb4d">&#9670;&nbsp;</a></span>EnergyAfterGas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::Runner::EnergyAfterGas </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>TIni</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>distance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>gasKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enableStraggling</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b1a726224265f7658543e72ccb7be00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b1a726224265f7658543e72ccb7be00">&#9670;&nbsp;</a></span>EnergyAfterSilicons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; double, double &gt; ActSim::Runner::EnergyAfterSilicons </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T3EnteringSil</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>silWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>silThresh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>silString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enableResolution</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enableStraggling</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a201a968982279d4f8ebb43e780197477"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201a968982279d4f8ebb43e780197477">&#9670;&nbsp;</a></span>EnergyBeforeGas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::Runner::EnergyBeforeGas </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Esil</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>trackLengthInMM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>gasKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af334521f7f6b20ecc5127f2a0d88f604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af334521f7f6b20ecc5127f2a0d88f604">&#9670;&nbsp;</a></span>GetGeo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a>* ActSim::Runner::GetGeo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76481714ac2c1ddc1147b7422186d5a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76481714ac2c1ddc1147b7422186d5a4">&#9670;&nbsp;</a></span>GetRand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TRandom3* ActSim::Runner::GetRand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a606e744a928e2a50ee4b5864920639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a606e744a928e2a50ee4b5864920639">&#9670;&nbsp;</a></span>GetSRIM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a>* ActSim::Runner::GetSRIM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab881f5e75b5a965d4d86a53279707908"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab881f5e75b5a965d4d86a53279707908">&#9670;&nbsp;</a></span>RandomizeBeamEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActSim::Runner::RandomizeBeamEnergy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Tini</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a16810fcfcbd65455bdc951521312349d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16810fcfcbd65455bdc951521312349d">&#9670;&nbsp;</a></span>SampleVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a> ActSim::Runner::SampleVertex </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>meanY</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmaY</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>meanZ</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmaZ</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TH3F *&#160;</td>
+          <td class="paramname"><em>histBeam</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af9794214da2c7011296d1d55cce0cfa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9794214da2c7011296d1d55cce0cfa9">&#9670;&nbsp;</a></span>fgeo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActSim_1_1Geometry.html">ActSim::Geometry</a>* ActSim::Runner::fgeo {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd282d9e71570d96c56453c1609361f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd282d9e71570d96c56453c1609361f6">&#9670;&nbsp;</a></span>fRand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TRandom3* ActSim::Runner::fRand {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afefd5b0653db133c6bfa2854d1396c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefd5b0653db133c6bfa2854d1396c0b">&#9670;&nbsp;</a></span>fSilResolution</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;TF1&gt; ActSim::Runner::fSilResolution {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a698e33770e59fedd4699600396333a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a698e33770e59fedd4699600396333a13">&#9670;&nbsp;</a></span>fsrim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SRIM.html">ActPhysics::SRIM</a>* ActSim::Runner::fsrim {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Simulation/<a class="el" href="Runner_8h_source.html">Runner.h</a></li>
-<li>Simulation/Runner.cxx</li>
+<li>Simulation/<a class="el" href="Runner_8cxx.html">Runner.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

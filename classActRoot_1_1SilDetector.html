@@ -62,12 +62,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1SilDetector.html">SilDetector</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1SilDetector.html">SilDetector</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1SilDetector-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::SilDetector Class Reference</div>  </div>
@@ -92,53 +94,370 @@ Collaboration diagram for ActRoot::SilDetector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1SilDetector__coll__graph.png" border="0" usemap="#aActRoot_1_1SilDetector_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1SilDetector_coll__map" id="aActRoot_1_1SilDetector_coll__map">
-<area shape="rect" title="Silicon detector class." alt="" coords="5,247,159,273"/>
-<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="9,171,155,197"/>
-<area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="19,81,145,108"/>
-<area shape="rect" title=" " alt="" coords="46,5,118,32"/>
+<area shape="rect" title="Silicon detector class." alt="" coords="185,260,338,287"/>
+<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="5,171,152,197"/>
+<area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="15,81,142,108"/>
+<area shape="rect" title=" " alt="" coords="43,5,115,32"/>
+<area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="176,171,347,197"/>
+<area shape="rect" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data." alt="" coords="371,171,499,197"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abb2941129f36f270c9b0f856ad18076f"><td class="memItemLeft" align="right" valign="top"><a id="abb2941129f36f270c9b0f856ad18076f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadConfiguration</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
+<tr class="memitem:a255e85b2c0691fe9aba301e0c38bbf30"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a255e85b2c0691fe9aba301e0c38bbf30">SilDetector</a> ()=default</td></tr>
+<tr class="separator:a255e85b2c0691fe9aba301e0c38bbf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338b98d66cb83cb58776b82efbe58742"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a338b98d66cb83cb58776b82efbe58742">~SilDetector</a> ()=default</td></tr>
+<tr class="separator:a338b98d66cb83cb58776b82efbe58742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb2941129f36f270c9b0f856ad18076f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#abb2941129f36f270c9b0f856ad18076f">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:abb2941129f36f270c9b0f856ad18076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50a9ca48595dc638678f9f99c958fd1a"><td class="memItemLeft" align="right" valign="top"><a id="a50a9ca48595dc638678f9f99c958fd1a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadCalibrations</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
+<tr class="memitem:a50a9ca48595dc638678f9f99c958fd1a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a50a9ca48595dc638678f9f99c958fd1a">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a50a9ca48595dc638678f9f99c958fd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memItemLeft" align="right" valign="top"><a id="a1ae870f778209a2f9b8d43d8d4c31714"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitInputRawData</b> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
+<tr class="memitem:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a1ae870f778209a2f9b8d43d8d4c31714">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
 <tr class="separator:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae61278092e4fb15820798ce263334c9e"><td class="memItemLeft" align="right" valign="top"><a id="ae61278092e4fb15820798ce263334c9e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitOutputData</b> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
+<tr class="memitem:ae61278092e4fb15820798ce263334c9e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#ae61278092e4fb15820798ce263334c9e">InitOutputData</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
 <tr class="separator:ae61278092e4fb15820798ce263334c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe4e9551b4e76cbd056abfb7240225fe"><td class="memItemLeft" align="right" valign="top"><a id="abe4e9551b4e76cbd056abfb7240225fe"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>BuildEventData</b> () override</td></tr>
+<tr class="memitem:abe4e9551b4e76cbd056abfb7240225fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#abe4e9551b4e76cbd056abfb7240225fe">BuildEventData</a> () override</td></tr>
 <tr class="separator:abe4e9551b4e76cbd056abfb7240225fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a405dc51a983235b18ba2f42c8146c1ca"><td class="memItemLeft" align="right" valign="top"><a id="a405dc51a983235b18ba2f42c8146c1ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearEventData</b> () override</td></tr>
+<tr class="memitem:a405dc51a983235b18ba2f42c8146c1ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a405dc51a983235b18ba2f42c8146c1ca">ClearEventData</a> () override</td></tr>
 <tr class="separator:a405dc51a983235b18ba2f42c8146c1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
-<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMEvent</b> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
+<tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
+<tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35753133618b1a4c52f829200b70a8c6 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6">~VDetector</a> ()=default</td></tr>
+<tr class="separator:a35753133618b1a4c52f829200b70a8c6 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">SetMEvent</a> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="a850f7140986bfea024c864fe4d88c44b"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetMEvent</b> () const</td></tr>
+<tr class="memitem:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
 <tr class="separator:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac3cc762b72af490f7376099b5aa61b02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#ac3cc762b72af490f7376099b5aa61b02">GetSilDataPointer</a> () const</td></tr>
+<tr class="separator:ac3cc762b72af490f7376099b5aa61b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a503a920e0e914b8c08d3431f34e861cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilParameters.html">SilParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">fPars</a></td></tr>
+<tr class="memdesc:a503a920e0e914b8c08d3431f34e861cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic detector configurations.  <a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">More...</a><br /></td></tr>
+<tr class="separator:a503a920e0e914b8c08d3431f34e861cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b93a517a781781b9d4b0f584008ded"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a> {}</td></tr>
+<tr class="memdesc:ad2b93a517a781781b9d4b0f584008ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data.">SilData</a>.  <a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">More...</a><br /></td></tr>
+<tr class="separator:ad2b93a517a781781b9d4b0f584008ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
-<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="afc475c3fe37b340d5e78bba54fde2748"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fMEvent</b> {}</td></tr>
+<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> {}</td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Silicon detector class. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a255e85b2c0691fe9aba301e0c38bbf30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255e85b2c0691fe9aba301e0c38bbf30">&#9670;&nbsp;</a></span>SilDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::SilDetector::SilDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a338b98d66cb83cb58776b82efbe58742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338b98d66cb83cb58776b82efbe58742">&#9670;&nbsp;</a></span>~SilDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ActRoot::SilDetector::~SilDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abe4e9551b4e76cbd056abfb7240225fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe4e9551b4e76cbd056abfb7240225fe">&#9670;&nbsp;</a></span>BuildEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::BuildEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a2ddfd1d788241eda54cad200ce0e8bbc">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="a405dc51a983235b18ba2f42c8146c1ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a405dc51a983235b18ba2f42c8146c1ca">&#9670;&nbsp;</a></span>ClearEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::ClearEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="ac3cc762b72af490f7376099b5aa61b02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3cc762b72af490f7376099b5aa61b02">&#9670;&nbsp;</a></span>GetSilDataPointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilData.html">SilData</a>* ActRoot::SilDetector::GetSilDataPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ae870f778209a2f9b8d43d8d4c31714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae870f778209a2f9b8d43d8d4c31714">&#9670;&nbsp;</a></span>InitInputRawData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::InitInputRawData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ae290737344013d689e7d74edf4edfe2b">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="ae61278092e4fb15820798ce263334c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae61278092e4fb15820798ce263334c9e">&#9670;&nbsp;</a></span>InitOutputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::InitOutputData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a39d539f2ddc28bfd318b0d19ca2de3f0">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="a50a9ca48595dc638678f9f99c958fd1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50a9ca48595dc638678f9f99c958fd1a">&#9670;&nbsp;</a></span>ReadCalibrations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::ReadCalibrations </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="abb2941129f36f270c9b0f856ad18076f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb2941129f36f270c9b0f856ad18076f">&#9670;&nbsp;</a></span>ReadConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::ReadConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#af3ee43c1271b1e9e66b77939e77d9e57">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad2b93a517a781781b9d4b0f584008ded"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2b93a517a781781b9d4b0f584008ded">&#9670;&nbsp;</a></span>fData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilData.html">SilData</a>* ActRoot::SilDetector::fData {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to <a class="el" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data.">SilData</a>. </p>
+
+</div>
+</div>
+<a id="a503a920e0e914b8c08d3431f34e861cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a503a920e0e914b8c08d3431f34e861cd">&#9670;&nbsp;</a></span>fPars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilParameters.html">SilParameters</a> ActRoot::SilDetector::fPars</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Basic detector configurations. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="SilDetector_8h_source.html">SilDetector.h</a></li>
-<li>Core/SilDetector.cxx</li>
+<li>Core/<a class="el" href="SilDetector_8cxx.html">SilDetector.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

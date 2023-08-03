@@ -62,17 +62,21 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1EventPainter.html">EventPainter</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1EventPainter.html">EventPainter</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1EventPainter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::EventPainter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="EventPainter_8h_source.html">EventPainter.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActRoot::EventPainter:</div>
 <div class="dyncontent">
@@ -87,77 +91,949 @@ Collaboration diagram for ActRoot::EventPainter:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1EventPainter__coll__graph.png" border="0" usemap="#aActRoot_1_1EventPainter_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1EventPainter_coll__map" id="aActRoot_1_1EventPainter_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,168,107"/>
-<area shape="rect" title=" " alt="" coords="30,5,143,32"/>
+<area shape="rect" title=" " alt="" coords="251,184,414,211"/>
+<area shape="rect" title=" " alt="" coords="5,95,119,121"/>
+<area shape="rect" href="classActRoot_1_1TPCParameters.html" title=" " alt="" coords="143,95,323,121"/>
+<area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="347,95,518,121"/>
+<area shape="rect" href="classActRoot_1_1InputWrapper.html" title=" " alt="" coords="543,95,712,121"/>
+<area shape="rect" href="classActRoot_1_1InputIterator.html" title=" " alt="" coords="287,5,450,32"/>
+<area shape="rect" href="classActRoot_1_1InputData.html" title=" " alt="" coords="475,5,620,32"/>
+<area shape="rect" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data." alt="" coords="645,5,773,32"/>
+<area shape="rect" href="classActRoot_1_1TPCData.html" title=" " alt="" coords="797,5,935,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a678f4bb1b350c4ec1d4c9b53f650b28d"><td class="memItemLeft" align="right" valign="top"><a id="a678f4bb1b350c4ec1d4c9b53f650b28d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EventPainter</b> (const TGWindow *window, unsigned int width, unsigned int height)</td></tr>
+<tr class="memitem:a678f4bb1b350c4ec1d4c9b53f650b28d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a678f4bb1b350c4ec1d4c9b53f650b28d">EventPainter</a> (const TGWindow *window, unsigned int width, unsigned int height)</td></tr>
 <tr class="separator:a678f4bb1b350c4ec1d4c9b53f650b28d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0e1350135c7c0ec7520046ee77ef612"><td class="memItemLeft" align="right" valign="top"><a id="ad0e1350135c7c0ec7520046ee77ef612"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDetAndData</b> (const std::string &amp;detector, <a class="el" href="classActRoot_1_1InputData.html">InputData</a> *input)</td></tr>
+<tr class="memitem:a318049f0ca135b1359122dbb720f0570"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a318049f0ca135b1359122dbb720f0570">~EventPainter</a> ()</td></tr>
+<tr class="separator:a318049f0ca135b1359122dbb720f0570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e1350135c7c0ec7520046ee77ef612"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ad0e1350135c7c0ec7520046ee77ef612">SetDetAndData</a> (const std::string &amp;detector, <a class="el" href="classActRoot_1_1InputData.html">InputData</a> *input)</td></tr>
 <tr class="separator:ad0e1350135c7c0ec7520046ee77ef612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f4b91089dc26b15b251aa60953d0df9"><td class="memItemLeft" align="right" valign="top"><a id="a7f4b91089dc26b15b251aa60953d0df9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CloseWindow</b> ()</td></tr>
+<tr class="memitem:a7f4b91089dc26b15b251aa60953d0df9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a7f4b91089dc26b15b251aa60953d0df9">CloseWindow</a> ()</td></tr>
 <tr class="separator:a7f4b91089dc26b15b251aa60953d0df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6c94460f4d30c10f93ee4e64f386a29"><td class="memItemLeft" align="right" valign="top"><a id="af6c94460f4d30c10f93ee4e64f386a29"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoExit</b> ()</td></tr>
+<tr class="memitem:af6c94460f4d30c10f93ee4e64f386a29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#af6c94460f4d30c10f93ee4e64f386a29">DoExit</a> ()</td></tr>
 <tr class="separator:af6c94460f4d30c10f93ee4e64f386a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ae37cb82a7dde5e0be2f3fa65e38eab"><td class="memItemLeft" align="right" valign="top"><a id="a9ae37cb82a7dde5e0be2f3fa65e38eab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoDraw</b> ()</td></tr>
+<tr class="memitem:a9ae37cb82a7dde5e0be2f3fa65e38eab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab">DoDraw</a> ()</td></tr>
 <tr class="separator:a9ae37cb82a7dde5e0be2f3fa65e38eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afde528a82cfc5a3c35760fb4b72f8ba3"><td class="memItemLeft" align="right" valign="top"><a id="afde528a82cfc5a3c35760fb4b72f8ba3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoFill</b> ()</td></tr>
+<tr class="memitem:afde528a82cfc5a3c35760fb4b72f8ba3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3">DoFill</a> ()</td></tr>
 <tr class="separator:afde528a82cfc5a3c35760fb4b72f8ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1500d94089bfc60c8278dba091c918a4"><td class="memItemLeft" align="right" valign="top"><a id="a1500d94089bfc60c8278dba091c918a4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoReset</b> ()</td></tr>
+<tr class="memitem:a1500d94089bfc60c8278dba091c918a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a1500d94089bfc60c8278dba091c918a4">DoReset</a> ()</td></tr>
 <tr class="separator:a1500d94089bfc60c8278dba091c918a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8f6dc26aa02d22830d951b533fbf46c"><td class="memItemLeft" align="right" valign="top"><a id="ac8f6dc26aa02d22830d951b533fbf46c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoPreviousEvent</b> ()</td></tr>
+<tr class="memitem:ac8f6dc26aa02d22830d951b533fbf46c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ac8f6dc26aa02d22830d951b533fbf46c">DoPreviousEvent</a> ()</td></tr>
 <tr class="separator:ac8f6dc26aa02d22830d951b533fbf46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e88131fa7416136f72d99f272872691"><td class="memItemLeft" align="right" valign="top"><a id="a9e88131fa7416136f72d99f272872691"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoNextEvent</b> ()</td></tr>
+<tr class="memitem:a9e88131fa7416136f72d99f272872691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a9e88131fa7416136f72d99f272872691">DoNextEvent</a> ()</td></tr>
 <tr class="separator:a9e88131fa7416136f72d99f272872691"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abacfa3b97bcd7e02565de3e69505700b"><td class="memItemLeft" align="right" valign="top"><a id="abacfa3b97bcd7e02565de3e69505700b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Init2DHistograms</b> ()</td></tr>
+<tr class="memitem:abacfa3b97bcd7e02565de3e69505700b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#abacfa3b97bcd7e02565de3e69505700b">Init2DHistograms</a> ()</td></tr>
 <tr class="separator:abacfa3b97bcd7e02565de3e69505700b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2b0bb7c680d0ceaee66c1b591f47356"><td class="memItemLeft" align="right" valign="top"><a id="ad2b0bb7c680d0ceaee66c1b591f47356"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetHistograms</b> ()</td></tr>
+<tr class="memitem:ad2b0bb7c680d0ceaee66c1b591f47356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ad2b0bb7c680d0ceaee66c1b591f47356">ResetHistograms</a> ()</td></tr>
 <tr class="separator:ad2b0bb7c680d0ceaee66c1b591f47356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34691afd5f505b9208d469d3c2c2f746"><td class="memItemLeft" align="right" valign="top"><a id="a34691afd5f505b9208d469d3c2c2f746"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetCanvas</b> ()</td></tr>
+<tr class="memitem:a34691afd5f505b9208d469d3c2c2f746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a34691afd5f505b9208d469d3c2c2f746">ResetCanvas</a> ()</td></tr>
 <tr class="separator:a34691afd5f505b9208d469d3c2c2f746"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a394c16f487be760fb1f924ddbc2c7093"><td class="memItemLeft" align="right" valign="top"><a id="a394c16f487be760fb1f924ddbc2c7093"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CanvasToStatusBar</b> (int event, int px, int py, TObject *obj)</td></tr>
+<tr class="memitem:a394c16f487be760fb1f924ddbc2c7093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a394c16f487be760fb1f924ddbc2c7093">CanvasToStatusBar</a> (int event, int px, int py, TObject *obj)</td></tr>
 <tr class="separator:a394c16f487be760fb1f924ddbc2c7093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5a0a11873973b954e272d6dcd960fcc"><td class="memItemLeft" align="right" valign="top"><a id="ad5a0a11873973b954e272d6dcd960fcc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitStatusBars</b> ()</td></tr>
+<tr class="memitem:ad5a0a11873973b954e272d6dcd960fcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ad5a0a11873973b954e272d6dcd960fcc">InitStatusBars</a> ()</td></tr>
 <tr class="separator:ad5a0a11873973b954e272d6dcd960fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae95e3445a1d9efc4807b9c0af8058118"><td class="memItemLeft" align="right" valign="top"><a id="ae95e3445a1d9efc4807b9c0af8058118"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitTabs</b> ()</td></tr>
+<tr class="memitem:ae95e3445a1d9efc4807b9c0af8058118"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ae95e3445a1d9efc4807b9c0af8058118">InitTabs</a> ()</td></tr>
 <tr class="separator:ae95e3445a1d9efc4807b9c0af8058118"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8e718cbd13b7fb73c2ac2b3f3ed504e"><td class="memItemLeft" align="right" valign="top"><a id="ac8e718cbd13b7fb73c2ac2b3f3ed504e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitTab1</b> ()</td></tr>
+<tr class="memitem:ac8e718cbd13b7fb73c2ac2b3f3ed504e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ac8e718cbd13b7fb73c2ac2b3f3ed504e">InitTab1</a> ()</td></tr>
 <tr class="separator:ac8e718cbd13b7fb73c2ac2b3f3ed504e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45fd5fbdca9768722960c98839670782"><td class="memItemLeft" align="right" valign="top"><a id="a45fd5fbdca9768722960c98839670782"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitTab2</b> ()</td></tr>
+<tr class="memitem:a45fd5fbdca9768722960c98839670782"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a45fd5fbdca9768722960c98839670782">InitTab2</a> ()</td></tr>
 <tr class="separator:a45fd5fbdca9768722960c98839670782"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2051f751ca23862fc611e786fa6f6979"><td class="memItemLeft" align="right" valign="top"><a id="a2051f751ca23862fc611e786fa6f6979"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitButtons</b> ()</td></tr>
+<tr class="memitem:a2051f751ca23862fc611e786fa6f6979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a2051f751ca23862fc611e786fa6f6979">InitButtons</a> ()</td></tr>
 <tr class="separator:a2051f751ca23862fc611e786fa6f6979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d95b9644339fda376510b6be81b2ff0"><td class="memItemLeft" align="right" valign="top"><a id="a4d95b9644339fda376510b6be81b2ff0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitEntryButtons</b> ()</td></tr>
+<tr class="memitem:a4d95b9644339fda376510b6be81b2ff0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a4d95b9644339fda376510b6be81b2ff0">InitEntryButtons</a> ()</td></tr>
 <tr class="separator:a4d95b9644339fda376510b6be81b2ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73457e97c51c4c5ea394e41f9be80bbd"><td class="memItemLeft" align="right" valign="top"><a id="a73457e97c51c4c5ea394e41f9be80bbd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DoGoTo</b> ()</td></tr>
+<tr class="memitem:a73457e97c51c4c5ea394e41f9be80bbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a73457e97c51c4c5ea394e41f9be80bbd">DoGoTo</a> ()</td></tr>
 <tr class="separator:a73457e97c51c4c5ea394e41f9be80bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6fe10e7628b6522f0e4dc07f2d66802b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a6fe10e7628b6522f0e4dc07f2d66802b">ReadConfiguration</a> (const std::string &amp;file)</td></tr>
+<tr class="separator:a6fe10e7628b6522f0e4dc07f2d66802b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7332988f14a0ccf4dde3e421e7c880b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#aa7332988f14a0ccf4dde3e421e7c880b">ClassDef</a> (<a class="el" href="classActRoot_1_1EventPainter.html">EventPainter</a>, 0)</td></tr>
+<tr class="separator:aa7332988f14a0ccf4dde3e421e7c880b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4300bc32de36608737c3a55a576cc44d"><td class="memItemLeft" align="right" valign="top">TGTab *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a4300bc32de36608737c3a55a576cc44d">fTabManager</a></td></tr>
+<tr class="separator:a4300bc32de36608737c3a55a576cc44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae5b7cfce042dfd9a2ad0a1a951680e"><td class="memItemLeft" align="right" valign="top">TGCompositeFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#acae5b7cfce042dfd9a2ad0a1a951680e">fTab1</a></td></tr>
+<tr class="separator:acae5b7cfce042dfd9a2ad0a1a951680e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87de89f4743bf1b2283324195f1082a1"><td class="memItemLeft" align="right" valign="top">TGCompositeFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a87de89f4743bf1b2283324195f1082a1">fFrame1</a></td></tr>
+<tr class="separator:a87de89f4743bf1b2283324195f1082a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fa21bafe641c6372bc807f54f766ab"><td class="memItemLeft" align="right" valign="top">TGCompositeFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a66fa21bafe641c6372bc807f54f766ab">fTab2</a></td></tr>
+<tr class="separator:a66fa21bafe641c6372bc807f54f766ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f69b48ca1740febcfcb99f0786401c"><td class="memItemLeft" align="right" valign="top">TGCompositeFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ac4f69b48ca1740febcfcb99f0786401c">fFrame2</a></td></tr>
+<tr class="separator:ac4f69b48ca1740febcfcb99f0786401c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858c94644e411a7b3bc84254f1d84927"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">fCanv1</a></td></tr>
+<tr class="separator:a858c94644e411a7b3bc84254f1d84927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783d2029988fb9254770506e40369f6c"><td class="memItemLeft" align="right" valign="top">TGStatusBar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a783d2029988fb9254770506e40369f6c">fStatusCanv</a></td></tr>
+<tr class="separator:a783d2029988fb9254770506e40369f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398cbf5913860ca071373d70b64a6682"><td class="memItemLeft" align="right" valign="top">TGStatusBar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a398cbf5913860ca071373d70b64a6682">fStatusThis</a></td></tr>
+<tr class="separator:a398cbf5913860ca071373d70b64a6682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0cd604277b8ae1c652b607092b2e33"><td class="memItemLeft" align="right" valign="top">TGHorizontalFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a5f0cd604277b8ae1c652b607092b2e33">fStatusFrame</a></td></tr>
+<tr class="separator:a5f0cd604277b8ae1c652b607092b2e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d8d0c7a5bf8fed8c28cab6aeda7dce"><td class="memItemLeft" align="right" valign="top">TGHorizontalFrame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a76d8d0c7a5bf8fed8c28cab6aeda7dce">fButtonsFrame</a></td></tr>
+<tr class="separator:a76d8d0c7a5bf8fed8c28cab6aeda7dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fefa81acb691311b2753f3c60661745"><td class="memItemLeft" align="right" valign="top">TGNumberEntry *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">fRunButton</a></td></tr>
+<tr class="separator:a1fefa81acb691311b2753f3c60661745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec0fa88c9da5ea8657978ca7f0c89ed"><td class="memItemLeft" align="right" valign="top">TGNumberEntry *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">fEntryButton</a></td></tr>
+<tr class="separator:a5ec0fa88c9da5ea8657978ca7f0c89ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a685a0b20ea881fc998dfef9cd98be4d4"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, std::shared_ptr&lt; TH2F &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">fHist2d</a></td></tr>
+<tr class="separator:a685a0b20ea881fc998dfef9cd98be4d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab31dc6e868001c9826e23f70a6a5ac21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ftpc</a></td></tr>
+<tr class="separator:ab31dc6e868001c9826e23f70a6a5ac21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9173d95410a4c9daa081b8e25f619bf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilParameters.html">SilParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a9173d95410a4c9daa081b8e25f619bf3">fsil</a></td></tr>
+<tr class="separator:a9173d95410a4c9daa081b8e25f619bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad08b322bcc245888388c6703fa80f332"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1InputWrapper.html">InputWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a> {}</td></tr>
+<tr class="separator:ad08b322bcc245888388c6703fa80f332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a678f4bb1b350c4ec1d4c9b53f650b28d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a678f4bb1b350c4ec1d4c9b53f650b28d">&#9670;&nbsp;</a></span>EventPainter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::EventPainter::EventPainter </td>
+          <td>(</td>
+          <td class="paramtype">const TGWindow *&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a318049f0ca135b1359122dbb720f0570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a318049f0ca135b1359122dbb720f0570">&#9670;&nbsp;</a></span>~EventPainter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::EventPainter::~EventPainter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a394c16f487be760fb1f924ddbc2c7093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394c16f487be760fb1f924ddbc2c7093">&#9670;&nbsp;</a></span>CanvasToStatusBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::CanvasToStatusBar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>px</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>py</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TObject *&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7332988f14a0ccf4dde3e421e7c880b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7332988f14a0ccf4dde3e421e7c880b">&#9670;&nbsp;</a></span>ClassDef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::EventPainter::ClassDef </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1EventPainter.html">EventPainter</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f4b91089dc26b15b251aa60953d0df9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f4b91089dc26b15b251aa60953d0df9">&#9670;&nbsp;</a></span>CloseWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::CloseWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ae37cb82a7dde5e0be2f3fa65e38eab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ae37cb82a7dde5e0be2f3fa65e38eab">&#9670;&nbsp;</a></span>DoDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoDraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6c94460f4d30c10f93ee4e64f386a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6c94460f4d30c10f93ee4e64f386a29">&#9670;&nbsp;</a></span>DoExit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoExit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afde528a82cfc5a3c35760fb4b72f8ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afde528a82cfc5a3c35760fb4b72f8ba3">&#9670;&nbsp;</a></span>DoFill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoFill </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a73457e97c51c4c5ea394e41f9be80bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73457e97c51c4c5ea394e41f9be80bbd">&#9670;&nbsp;</a></span>DoGoTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoGoTo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e88131fa7416136f72d99f272872691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e88131fa7416136f72d99f272872691">&#9670;&nbsp;</a></span>DoNextEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoNextEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8f6dc26aa02d22830d951b533fbf46c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f6dc26aa02d22830d951b533fbf46c">&#9670;&nbsp;</a></span>DoPreviousEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoPreviousEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1500d94089bfc60c8278dba091c918a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1500d94089bfc60c8278dba091c918a4">&#9670;&nbsp;</a></span>DoReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::DoReset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abacfa3b97bcd7e02565de3e69505700b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abacfa3b97bcd7e02565de3e69505700b">&#9670;&nbsp;</a></span>Init2DHistograms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::Init2DHistograms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2051f751ca23862fc611e786fa6f6979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2051f751ca23862fc611e786fa6f6979">&#9670;&nbsp;</a></span>InitButtons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitButtons </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d95b9644339fda376510b6be81b2ff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d95b9644339fda376510b6be81b2ff0">&#9670;&nbsp;</a></span>InitEntryButtons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitEntryButtons </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5a0a11873973b954e272d6dcd960fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5a0a11873973b954e272d6dcd960fcc">&#9670;&nbsp;</a></span>InitStatusBars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitStatusBars </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8e718cbd13b7fb73c2ac2b3f3ed504e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e718cbd13b7fb73c2ac2b3f3ed504e">&#9670;&nbsp;</a></span>InitTab1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitTab1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45fd5fbdca9768722960c98839670782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45fd5fbdca9768722960c98839670782">&#9670;&nbsp;</a></span>InitTab2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitTab2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae95e3445a1d9efc4807b9c0af8058118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95e3445a1d9efc4807b9c0af8058118">&#9670;&nbsp;</a></span>InitTabs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::InitTabs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fe10e7628b6522f0e4dc07f2d66802b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe10e7628b6522f0e4dc07f2d66802b">&#9670;&nbsp;</a></span>ReadConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::ReadConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34691afd5f505b9208d469d3c2c2f746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34691afd5f505b9208d469d3c2c2f746">&#9670;&nbsp;</a></span>ResetCanvas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::ResetCanvas </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2b0bb7c680d0ceaee66c1b591f47356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2b0bb7c680d0ceaee66c1b591f47356">&#9670;&nbsp;</a></span>ResetHistograms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::ResetHistograms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0e1350135c7c0ec7520046ee77ef612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0e1350135c7c0ec7520046ee77ef612">&#9670;&nbsp;</a></span>SetDetAndData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::EventPainter::SetDetAndData </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>detector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1InputData.html">InputData</a> *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a76d8d0c7a5bf8fed8c28cab6aeda7dce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d8d0c7a5bf8fed8c28cab6aeda7dce">&#9670;&nbsp;</a></span>fButtonsFrame</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGHorizontalFrame* ActRoot::EventPainter::fButtonsFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a858c94644e411a7b3bc84254f1d84927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a858c94644e411a7b3bc84254f1d84927">&#9670;&nbsp;</a></span>fCanv1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TCanvas* ActRoot::EventPainter::fCanv1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ec0fa88c9da5ea8657978ca7f0c89ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ec0fa88c9da5ea8657978ca7f0c89ed">&#9670;&nbsp;</a></span>fEntryButton</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGNumberEntry* ActRoot::EventPainter::fEntryButton</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a87de89f4743bf1b2283324195f1082a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87de89f4743bf1b2283324195f1082a1">&#9670;&nbsp;</a></span>fFrame1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGCompositeFrame* ActRoot::EventPainter::fFrame1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4f69b48ca1740febcfcb99f0786401c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f69b48ca1740febcfcb99f0786401c">&#9670;&nbsp;</a></span>fFrame2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGCompositeFrame* ActRoot::EventPainter::fFrame2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a685a0b20ea881fc998dfef9cd98be4d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a685a0b20ea881fc998dfef9cd98be4d4">&#9670;&nbsp;</a></span>fHist2d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;int, std::shared_ptr&lt;TH2F&gt; &gt; ActRoot::EventPainter::fHist2d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1fefa81acb691311b2753f3c60661745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fefa81acb691311b2753f3c60661745">&#9670;&nbsp;</a></span>fRunButton</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGNumberEntry* ActRoot::EventPainter::fRunButton</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9173d95410a4c9daa081b8e25f619bf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9173d95410a4c9daa081b8e25f619bf3">&#9670;&nbsp;</a></span>fsil</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1SilParameters.html">SilParameters</a> ActRoot::EventPainter::fsil</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a783d2029988fb9254770506e40369f6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783d2029988fb9254770506e40369f6c">&#9670;&nbsp;</a></span>fStatusCanv</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGStatusBar* ActRoot::EventPainter::fStatusCanv</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f0cd604277b8ae1c652b607092b2e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f0cd604277b8ae1c652b607092b2e33">&#9670;&nbsp;</a></span>fStatusFrame</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGHorizontalFrame* ActRoot::EventPainter::fStatusFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a398cbf5913860ca071373d70b64a6682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398cbf5913860ca071373d70b64a6682">&#9670;&nbsp;</a></span>fStatusThis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGStatusBar* ActRoot::EventPainter::fStatusThis</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acae5b7cfce042dfd9a2ad0a1a951680e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae5b7cfce042dfd9a2ad0a1a951680e">&#9670;&nbsp;</a></span>fTab1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGCompositeFrame* ActRoot::EventPainter::fTab1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66fa21bafe641c6372bc807f54f766ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66fa21bafe641c6372bc807f54f766ab">&#9670;&nbsp;</a></span>fTab2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGCompositeFrame* ActRoot::EventPainter::fTab2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4300bc32de36608737c3a55a576cc44d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4300bc32de36608737c3a55a576cc44d">&#9670;&nbsp;</a></span>fTabManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGTab* ActRoot::EventPainter::fTabManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab31dc6e868001c9826e23f70a6a5ac21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab31dc6e868001c9826e23f70a6a5ac21">&#9670;&nbsp;</a></span>ftpc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> ActRoot::EventPainter::ftpc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad08b322bcc245888388c6703fa80f332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad08b322bcc245888388c6703fa80f332">&#9670;&nbsp;</a></span>fWrap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1InputWrapper.html">InputWrapper</a> ActRoot::EventPainter::fWrap {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="EventPainter_8h_source.html">EventPainter.h</a></li>
-<li>Core/EventPainter.cxx</li>
+<li>Core/<a class="el" href="EventPainter_8cxx.html">EventPainter.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

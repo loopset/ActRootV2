@@ -62,61 +62,458 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1Voxel.html">Voxel</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1Voxel.html">Voxel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1Voxel-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::Voxel Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="TPCData_8h_source.html">TPCData.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a9d005c00a1b838e1c64157af8411d09f"><td class="memItemLeft" align="right" valign="top"><a id="a9d005c00a1b838e1c64157af8411d09f"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>XYZPoint</b> = ROOT::Math::XYZPointF</td></tr>
+<tr class="memitem:a9d005c00a1b838e1c64157af8411d09f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> = ROOT::Math::XYZPointF</td></tr>
 <tr class="separator:a9d005c00a1b838e1c64157af8411d09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a88ae42d70ac1ccd2775b54eb0639f7c0"><td class="memItemLeft" align="right" valign="top"><a id="a88ae42d70ac1ccd2775b54eb0639f7c0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Voxel</b> (int id, const XYZPoint &amp;pos, float charge, bool hasSaturation=false)</td></tr>
+<tr class="memitem:a8d13a75dd95a1e43a933c4a43636fa75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a8d13a75dd95a1e43a933c4a43636fa75">Voxel</a> ()=default</td></tr>
+<tr class="separator:a8d13a75dd95a1e43a933c4a43636fa75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ae42d70ac1ccd2775b54eb0639f7c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a88ae42d70ac1ccd2775b54eb0639f7c0">Voxel</a> (int id, const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> &amp;pos, float charge, bool hasSaturation=false)</td></tr>
 <tr class="separator:a88ae42d70ac1ccd2775b54eb0639f7c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a451e7f74151ec954548c8d41497a35cd"><td class="memItemLeft" align="right" valign="top"><a id="a451e7f74151ec954548c8d41497a35cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (const XYZPoint &amp;pos)</td></tr>
+<tr class="memitem:a451e7f74151ec954548c8d41497a35cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a451e7f74151ec954548c8d41497a35cd">SetPosition</a> (const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> &amp;pos)</td></tr>
 <tr class="separator:a451e7f74151ec954548c8d41497a35cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf2347046a3a00245f6debc8840708b7"><td class="memItemLeft" align="right" valign="top"><a id="adf2347046a3a00245f6debc8840708b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetCharge</b> (float charge)</td></tr>
+<tr class="memitem:adf2347046a3a00245f6debc8840708b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#adf2347046a3a00245f6debc8840708b7">SetCharge</a> (float charge)</td></tr>
 <tr class="separator:adf2347046a3a00245f6debc8840708b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d0578f75b5de023e12fb8b482543a2"><td class="memItemLeft" align="right" valign="top"><a id="a16d0578f75b5de023e12fb8b482543a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetID</b> (int id)</td></tr>
+<tr class="memitem:a16d0578f75b5de023e12fb8b482543a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a16d0578f75b5de023e12fb8b482543a2">SetID</a> (int id)</td></tr>
 <tr class="separator:a16d0578f75b5de023e12fb8b482543a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a560690fd2a9ec8ccc0c114950a6ae885"><td class="memItemLeft" align="right" valign="top"><a id="a560690fd2a9ec8ccc0c114950a6ae885"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetIsSaturated</b> (bool sat)</td></tr>
+<tr class="memitem:a560690fd2a9ec8ccc0c114950a6ae885"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a560690fd2a9ec8ccc0c114950a6ae885">SetIsSaturated</a> (bool sat)</td></tr>
 <tr class="separator:a560690fd2a9ec8ccc0c114950a6ae885"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a294dfb5c1b1022731ee2e30e2530b9c8"><td class="memItemLeft" align="right" valign="top"><a id="a294dfb5c1b1022731ee2e30e2530b9c8"></a>
-const XYZPoint &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetPosition</b> () const</td></tr>
+<tr class="memitem:a294dfb5c1b1022731ee2e30e2530b9c8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a294dfb5c1b1022731ee2e30e2530b9c8">GetPosition</a> () const</td></tr>
 <tr class="separator:a294dfb5c1b1022731ee2e30e2530b9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bcbc52f49aefd0c7aba38a83b7a333a"><td class="memItemLeft" align="right" valign="top"><a id="a9bcbc52f49aefd0c7aba38a83b7a333a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetCharge</b> () const</td></tr>
+<tr class="memitem:a9bcbc52f49aefd0c7aba38a83b7a333a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a9bcbc52f49aefd0c7aba38a83b7a333a">GetCharge</a> () const</td></tr>
 <tr class="separator:a9bcbc52f49aefd0c7aba38a83b7a333a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37bcf6898ebd5d105f75d95dcab5cec4"><td class="memItemLeft" align="right" valign="top"><a id="a37bcf6898ebd5d105f75d95dcab5cec4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetID</b> () const</td></tr>
+<tr class="memitem:a37bcf6898ebd5d105f75d95dcab5cec4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a37bcf6898ebd5d105f75d95dcab5cec4">GetID</a> () const</td></tr>
 <tr class="separator:a37bcf6898ebd5d105f75d95dcab5cec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76879e84060f7a88385acf1c598cdaf4"><td class="memItemLeft" align="right" valign="top"><a id="a76879e84060f7a88385acf1c598cdaf4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetIsSaturated</b> () const</td></tr>
+<tr class="memitem:a76879e84060f7a88385acf1c598cdaf4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a76879e84060f7a88385acf1c598cdaf4">GetIsSaturated</a> () const</td></tr>
 <tr class="separator:a76879e84060f7a88385acf1c598cdaf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab33492cfa4fa181ee393e5d60508a50b"><td class="memItemLeft" align="right" valign="top"><a id="ab33492cfa4fa181ee393e5d60508a50b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Print</b> () const</td></tr>
+<tr class="memitem:ab33492cfa4fa181ee393e5d60508a50b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#ab33492cfa4fa181ee393e5d60508a50b">Print</a> () const</td></tr>
 <tr class="separator:ab33492cfa4fa181ee393e5d60508a50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a22d10623362a9feefced5db98cc6e222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a> {-1, -1, -1}</td></tr>
+<tr class="separator:a22d10623362a9feefced5db98cc6e222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256c956acb9be4ec1f4760965615f99d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a> {-1}</td></tr>
+<tr class="separator:a256c956acb9be4ec1f4760965615f99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52de04c6c008102f8d6373be1292f8a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#a52de04c6c008102f8d6373be1292f8a1">fID</a> {-1}</td></tr>
+<tr class="separator:a52de04c6c008102f8d6373be1292f8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d8714d3fda570e7933876d702d0a9e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a> {false}</td></tr>
+<tr class="separator:ad9d8714d3fda570e7933876d702d0a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a9d005c00a1b838e1c64157af8411d09f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d005c00a1b838e1c64157af8411d09f">&#9670;&nbsp;</a></span>XYZPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">ActRoot::Voxel::XYZPoint</a> =  ROOT::Math::XYZPointF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8d13a75dd95a1e43a933c4a43636fa75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d13a75dd95a1e43a933c4a43636fa75">&#9670;&nbsp;</a></span>Voxel() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::Voxel::Voxel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88ae42d70ac1ccd2775b54eb0639f7c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ae42d70ac1ccd2775b54eb0639f7c0">&#9670;&nbsp;</a></span>Voxel() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::Voxel::Voxel </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>charge</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>hasSaturation</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9bcbc52f49aefd0c7aba38a83b7a333a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bcbc52f49aefd0c7aba38a83b7a333a">&#9670;&nbsp;</a></span>GetCharge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ActRoot::Voxel::GetCharge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37bcf6898ebd5d105f75d95dcab5cec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37bcf6898ebd5d105f75d95dcab5cec4">&#9670;&nbsp;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::Voxel::GetID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76879e84060f7a88385acf1c598cdaf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76879e84060f7a88385acf1c598cdaf4">&#9670;&nbsp;</a></span>GetIsSaturated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::Voxel::GetIsSaturated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a294dfb5c1b1022731ee2e30e2530b9c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a294dfb5c1b1022731ee2e30e2530b9c8">&#9670;&nbsp;</a></span>GetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a>&amp; ActRoot::Voxel::GetPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab33492cfa4fa181ee393e5d60508a50b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab33492cfa4fa181ee393e5d60508a50b">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::Voxel::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf2347046a3a00245f6debc8840708b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2347046a3a00245f6debc8840708b7">&#9670;&nbsp;</a></span>SetCharge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::Voxel::SetCharge </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>charge</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a16d0578f75b5de023e12fb8b482543a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16d0578f75b5de023e12fb8b482543a2">&#9670;&nbsp;</a></span>SetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::Voxel::SetID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a560690fd2a9ec8ccc0c114950a6ae885"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a560690fd2a9ec8ccc0c114950a6ae885">&#9670;&nbsp;</a></span>SetIsSaturated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::Voxel::SetIsSaturated </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a451e7f74151ec954548c8d41497a35cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a451e7f74151ec954548c8d41497a35cd">&#9670;&nbsp;</a></span>SetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::Voxel::SetPosition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a256c956acb9be4ec1f4760965615f99d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256c956acb9be4ec1f4760965615f99d">&#9670;&nbsp;</a></span>fCharge</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ActRoot::Voxel::fCharge {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52de04c6c008102f8d6373be1292f8a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52de04c6c008102f8d6373be1292f8a1">&#9670;&nbsp;</a></span>fID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::Voxel::fID {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d8714d3fda570e7933876d702d0a9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d8714d3fda570e7933876d702d0a9e">&#9670;&nbsp;</a></span>fIsSaturated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::Voxel::fIsSaturated {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22d10623362a9feefced5db98cc6e222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d10623362a9feefced5db98cc6e222">&#9670;&nbsp;</a></span>fPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1Voxel.html#a9d005c00a1b838e1c64157af8411d09f">XYZPoint</a> ActRoot::Voxel::fPosition {-1, -1, -1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="TPCData_8h_source.html">TPCData.h</a></li>
-<li>Core/TPCData.cxx</li>
+<li>Core/<a class="el" href="TPCData_8cxx.html">TPCData.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

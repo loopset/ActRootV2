@@ -70,9 +70,9 @@ $(function() {
 <div class="title">BS_thread_pool.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<a href="BS__thread__pool_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define BS_THREAD_POOL_VERSION &quot;v3.5.0 (2023-05-25)&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="BS__thread__pool_8h.html#a1149cbbef0b0be59576a0787b2606af4">   13</a></span>&#160;<span class="preprocessor">#define BS_THREAD_POOL_VERSION &quot;v3.5.0 (2023-05-25)&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span>             <span class="comment">// std::chrono</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;condition_variable&gt;</span> <span class="comment">// std::condition_variable</span></div>
@@ -88,9 +88,9 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span>            <span class="comment">// std::forward, std::move, std::swap</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span>             <span class="comment">// std::vector</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span>BS</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespaceBS.html">   29</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceBS.html">BS</a></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">using</span> concurrency_t = std::invoke_result_t&lt;decltype(std::thread::hardware_concurrency)&gt;;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">   34</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> = std::invoke_result_t&lt;decltype(std::thread::hardware_concurrency)&gt;;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// ============================================================================================= //</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//                                    Begin class multi_future                                   //</span></div>
@@ -140,7 +140,7 @@ $(function() {
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::vector&lt;std::future&lt;T&gt;&gt; futures;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">  121</a></span>&#160;    std::vector&lt;std::future&lt;T&gt;&gt; <a class="code" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a>;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;};</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">//                                     End class multi_future                                    //</span></div>
@@ -187,15 +187,15 @@ $(function() {
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    }</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">size_t</span> block_size = 0;</div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427">  207</a></span>&#160;    <span class="keywordtype">size_t</span> block_size = 0;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    T first_index = 0;</div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="classBS_1_1blocks.html#a280d8dc59f615cf7880dc455849b8daf">  212</a></span>&#160;    T first_index = 0;</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    T index_after_last = 0;</div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404">  217</a></span>&#160;    T index_after_last = 0;</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">size_t</span> num_blocks = 0;</div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da">  222</a></span>&#160;    <span class="keywordtype">size_t</span> num_blocks = 0;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">size_t</span> total_size = 0;</div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="classBS_1_1blocks.html#a2fe0f1dc1c6cdcb40e255512ad38213f">  227</a></span>&#160;    <span class="keywordtype">size_t</span> total_size = 0;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;};</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">//                                        End class blocks                                       //</span></div>
@@ -211,7 +211,7 @@ $(function() {
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="comment">// Constructors and destructors</span></div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="comment">// ============================</span></div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">  251</a></span>&#160;    <a class="code" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">thread_pool</a>(<span class="keyword">const</span> concurrency_t thread_count_ = 0) : thread_count(determine_thread_count(thread_count_)), threads(std::make_unique&lt;std::thread[]&gt;(determine_thread_count(thread_count_)))</div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">  251</a></span>&#160;    <a class="code" href="classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12">thread_pool</a>(<span class="keyword">const</span> <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_ = 0) : thread_count(determine_thread_count(thread_count_)), threads(std::make_unique&lt;std::thread[]&gt;(determine_thread_count(thread_count_)))</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    {</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        create_threads();</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
@@ -244,7 +244,7 @@ $(function() {
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <span class="keywordflow">return</span> tasks_running + tasks.size();</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    }</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
-<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">  307</a></span>&#160;    [[nodiscard]] concurrency_t <a class="code" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">get_thread_count</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">  307</a></span>&#160;    [[nodiscard]] <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> <a class="code" href="classBS_1_1thread__pool.html#afe1cb80839e30f218818e99af4d1dc64">get_thread_count</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">return</span> thread_count;</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
@@ -318,7 +318,7 @@ $(function() {
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        task_available_cv.notify_one();</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    }</div>
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160; </div>
-<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">  451</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">reset</a>(<span class="keyword">const</span> concurrency_t thread_count_ = 0)</div>
+<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">  451</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">reset</a>(<span class="keyword">const</span> <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_ = 0)</div>
 <div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    {</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        std::unique_lock tasks_lock(tasks_mutex);</div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">bool</span> was_paused = paused;</div>
@@ -404,32 +404,32 @@ $(function() {
 <div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;    <span class="comment">// Private member functions</span></div>
 <div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <span class="comment">// ========================</span></div>
 <div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160; </div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    <span class="keywordtype">void</span> create_threads()</div>
+<div class="line"><a name="l00572"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8">  572</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8">create_threads</a>()</div>
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;    {</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;        {</div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;            <span class="keyword">const</span> std::scoped_lock tasks_lock(tasks_mutex);</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            workers_running = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;        }</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;        <span class="keywordflow">for</span> (concurrency_t i = 0; i &lt; thread_count; ++i)</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> i = 0; i &lt; thread_count; ++i)</div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;        {</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            threads[i] = std::thread(&amp;thread_pool::worker, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            threads[i] = std::thread(&amp;<a class="code" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">thread_pool::worker</a>, <span class="keyword">this</span>);</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;        }</div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    }</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160; </div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    <span class="keywordtype">void</span> destroy_threads()</div>
+<div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a97b4777cae9085a4fa792a334f1015d6">  587</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBS_1_1thread__pool.html#a97b4777cae9085a4fa792a334f1015d6">destroy_threads</a>()</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    {</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;        {</div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            <span class="keyword">const</span> std::scoped_lock tasks_lock(tasks_mutex);</div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            workers_running = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;        }</div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;        task_available_cv.notify_all();</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;        <span class="keywordflow">for</span> (concurrency_t i = 0; i &lt; thread_count; ++i)</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> i = 0; i &lt; thread_count; ++i)</div>
 <div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;        {</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;            threads[i].join();</div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        }</div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    }</div>
 <div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160; </div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    [[nodiscard]] concurrency_t determine_thread_count(<span class="keyword">const</span> concurrency_t thread_count_)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00606"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a2f5276dbef05cd912718925cd7583af5">  606</a></span>&#160;    [[nodiscard]] <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> <a class="code" href="classBS_1_1thread__pool.html#a2f5276dbef05cd912718925cd7583af5">determine_thread_count</a>(<span class="keyword">const</span> <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count_)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;        <span class="keywordflow">if</span> (thread_count_ &gt; 0)</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            <span class="keywordflow">return</span> thread_count_;</div>
@@ -442,7 +442,7 @@ $(function() {
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;        }</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;    }</div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160; </div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;    <span class="keywordtype">void</span> worker()</div>
+<div class="line"><a name="l00622"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">  622</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">worker</a>()</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;    {</div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        std::function&lt;void()&gt; task;</div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;        <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
@@ -469,25 +469,25 @@ $(function() {
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;    <span class="comment">// Private data</span></div>
 <div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;    <span class="comment">// ============</span></div>
 <div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160; </div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    <span class="keywordtype">bool</span> paused = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00652"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a1ad45a5fa18fc0aa649060df55471bc6">  652</a></span>&#160;    <span class="keywordtype">bool</span> paused = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160; </div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;    std::condition_variable task_available_cv = {};</div>
+<div class="line"><a name="l00657"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#aecb3be4acff4c3d14b95b2cbad6dad6e">  657</a></span>&#160;    std::condition_variable task_available_cv = {};</div>
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160; </div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;    std::condition_variable tasks_done_cv = {};</div>
+<div class="line"><a name="l00662"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#ac80b9508ed414f5f06e318dc89775485">  662</a></span>&#160;    std::condition_variable tasks_done_cv = {};</div>
 <div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160; </div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    std::queue&lt;std::function&lt;void()&gt;&gt; tasks = {};</div>
+<div class="line"><a name="l00667"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#adcd4757e864a90eaf2144a50c7cd761f">  667</a></span>&#160;    std::queue&lt;std::function&lt;void()&gt;&gt; tasks = {};</div>
 <div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160; </div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;    <span class="keywordtype">size_t</span> tasks_running = 0;</div>
+<div class="line"><a name="l00672"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a059515108dff15d4e7cb01d0e3678733">  672</a></span>&#160;    <span class="keywordtype">size_t</span> tasks_running = 0;</div>
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    <span class="keyword">mutable</span> std::mutex tasks_mutex = {};</div>
+<div class="line"><a name="l00677"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a5cf8504f1b1a651bc0a714a65a8817c5">  677</a></span>&#160;    <span class="keyword">mutable</span> std::mutex tasks_mutex = {};</div>
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160; </div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;    concurrency_t thread_count = 0;</div>
+<div class="line"><a name="l00682"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a19a83012732b16fce9fb87a6bc37a8d4">  682</a></span>&#160;    <a class="code" href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">concurrency_t</a> thread_count = 0;</div>
 <div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160; </div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    std::unique_ptr&lt;std::thread[]&gt; threads = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00687"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a7d390bd82d042e989baf9783bb424ae3">  687</a></span>&#160;    std::unique_ptr&lt;std::thread[]&gt; threads = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160; </div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;    <span class="keywordtype">bool</span> waiting = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00692"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40">  692</a></span>&#160;    <span class="keywordtype">bool</span> waiting = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160; </div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    <span class="keywordtype">bool</span> workers_running = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00697"></a><span class="lineno"><a class="line" href="classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9">  697</a></span>&#160;    <span class="keywordtype">bool</span> workers_running = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;};</div>
 <div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160; </div>
 <div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;<span class="comment">//                                     End class thread_pool                                     //</span></div>
@@ -519,9 +519,9 @@ $(function() {
 <div class="line"><a name="l00752"></a><span class="lineno"><a class="line" href="classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d">  752</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> std::ostream&amp; (&amp;<a class="code" href="classBS_1_1synced__stream.html#a33cdf7cd5e56d2ddc047613838da1e6d">flush</a>)(std::ostream&amp;) = <span class="keyword">static_cast&lt;</span>std::ostream&amp; (&amp;)(std::ostream&amp;)<span class="keyword">&gt;</span>(std::flush);</div>
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160; </div>
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    std::ostream&amp; out_stream;</div>
+<div class="line"><a name="l00758"></a><span class="lineno"><a class="line" href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">  758</a></span>&#160;    std::ostream&amp; <a class="code" href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">out_stream</a>;</div>
 <div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160; </div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    <span class="keyword">mutable</span> std::mutex stream_mutex = {};</div>
+<div class="line"><a name="l00763"></a><span class="lineno"><a class="line" href="classBS_1_1synced__stream.html#a177eb82bf036746521326d0e9b5ff7be">  763</a></span>&#160;    <span class="keyword">mutable</span> std::mutex stream_mutex = {};</div>
 <div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;};</div>
 <div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160; </div>
 <div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;<span class="comment">//                                    End class synced_stream                                    //</span></div>
@@ -549,9 +549,9 @@ $(function() {
 <div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    }</div>
 <div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160; </div>
 <div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;    std::chrono::time_point&lt;std::chrono::steady_clock&gt; start_time = std::chrono::steady_clock::now();</div>
+<div class="line"><a name="l00808"></a><span class="lineno"><a class="line" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">  808</a></span>&#160;    std::chrono::time_point&lt;std::chrono::steady_clock&gt; start_time = std::chrono::steady_clock::now();</div>
 <div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160; </div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;    std::chrono::duration&lt;double&gt; elapsed_time = std::chrono::duration&lt;double&gt;::zero();</div>
+<div class="line"><a name="l00813"></a><span class="lineno"><a class="line" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">  813</a></span>&#160;    std::chrono::duration&lt;double&gt; elapsed_time = std::chrono::duration&lt;double&gt;::zero();</div>
 <div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;};</div>
 <div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160; </div>
 <div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;<span class="comment">//                                        End class timer                                        //</span></div>
@@ -566,6 +566,7 @@ $(function() {
 <div class="ttc" id="aclassBS_1_1blocks_html_aed50be83dbe428959cb600197df32c95"><div class="ttname"><a href="classBS_1_1blocks.html#aed50be83dbe428959cb600197df32c95">BS::blocks::get_num_blocks</a></div><div class="ttdeci">size_t get_num_blocks() const</div><div class="ttdoc">Get the number of blocks. Note that this may be different than the desired number of blocks that was ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:188</div></div>
 <div class="ttc" id="aclassBS_1_1multi__future_html"><div class="ttname"><a href="classBS_1_1multi__future.html">BS::multi_future</a></div><div class="ttdoc">A helper class to facilitate waiting for and/or getting the results of multiple futures at once.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:46</div></div>
 <div class="ttc" id="aclassBS_1_1multi__future_html_a05073ed8d37b939c9440ac8789b69ba7"><div class="ttname"><a href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">BS::multi_future::wait</a></div><div class="ttdeci">void wait() const</div><div class="ttdoc">Wait for all the futures stored in this multi_future object.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:111</div></div>
+<div class="ttc" id="aclassBS_1_1multi__future_html_a27e462ff68dfe16e6bf23d87a174cfe0"><div class="ttname"><a href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">BS::multi_future::futures</a></div><div class="ttdeci">std::vector&lt; std::future&lt; T &gt; &gt; futures</div><div class="ttdoc">A vector to store the futures.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:121</div></div>
 <div class="ttc" id="aclassBS_1_1multi__future_html_a320812d6a9287fa2aedf3deab6edee1a"><div class="ttname"><a href="classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a">BS::multi_future::multi_future</a></div><div class="ttdeci">multi_future(const size_t num_futures_=0)</div><div class="ttdoc">Construct a multi_future object with the given number of futures.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:53</div></div>
 <div class="ttc" id="aclassBS_1_1multi__future_html_a6af9fb74e856f779a1722d2018afebee"><div class="ttname"><a href="classBS_1_1multi__future.html#a6af9fb74e856f779a1722d2018afebee">BS::multi_future::push_back</a></div><div class="ttdeci">void push_back(std::future&lt; T &gt; future)</div><div class="ttdoc">Append a future to this multi_future object.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:93</div></div>
 <div class="ttc" id="aclassBS_1_1multi__future_html_abc4a07d29c078263b60ae785b7330880"><div class="ttname"><a href="classBS_1_1multi__future.html#abc4a07d29c078263b60ae785b7330880">BS::multi_future::get</a></div><div class="ttdeci">std::conditional_t&lt; std::is_void_v&lt; T &gt;, void, std::vector&lt; T &gt; &gt; get()</div><div class="ttdoc">Get the results from all the futures stored in this multi_future object, rethrowing any stored except...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:60</div></div>
@@ -576,6 +577,7 @@ $(function() {
 <div class="ttc" id="aclassBS_1_1synced__stream_html_a5fc273e58ed3cad6d939dc0eceddb8a4"><div class="ttname"><a href="classBS_1_1synced__stream.html#a5fc273e58ed3cad6d939dc0eceddb8a4">BS::synced_stream::println</a></div><div class="ttdeci">void println(T &amp;&amp;... items)</div><div class="ttdoc">Print any number of items into the output stream, followed by a newline character....</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:739</div></div>
 <div class="ttc" id="aclassBS_1_1synced__stream_html_a98e63ce25c8de5cf4bb58966236adef1"><div class="ttname"><a href="classBS_1_1synced__stream.html#a98e63ce25c8de5cf4bb58966236adef1">BS::synced_stream::print</a></div><div class="ttdeci">void print(T &amp;&amp;... items)</div><div class="ttdoc">Print any number of items into the output stream. Ensures that no other threads print to this stream ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:726</div></div>
 <div class="ttc" id="aclassBS_1_1synced__stream_html_aa66339189e666fb9aec5759401dc6dfc"><div class="ttname"><a href="classBS_1_1synced__stream.html#aa66339189e666fb9aec5759401dc6dfc">BS::synced_stream::synced_stream</a></div><div class="ttdeci">synced_stream(std::ostream &amp;out_stream_=std::cout)</div><div class="ttdoc">Construct a new synced stream.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:717</div></div>
+<div class="ttc" id="aclassBS_1_1synced__stream_html_ae6fe228166d12a7fa916916c7e1d479c"><div class="ttname"><a href="classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c">BS::synced_stream::out_stream</a></div><div class="ttdeci">std::ostream &amp; out_stream</div><div class="ttdoc">The output stream to print to.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:758</div></div>
 <div class="ttc" id="aclassBS_1_1synced__stream_html_aecb26211e0170537b99c96880582cde0"><div class="ttname"><a href="classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0">BS::synced_stream::endl</a></div><div class="ttdeci">static std::ostream &amp;(&amp;) endl(std::ostream &amp;)</div><div class="ttdoc">A stream manipulator to pass to a synced_stream (an explicit cast of std::endl). Prints a newline cha...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:747</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html"><div class="ttname"><a href="classBS_1_1thread__pool.html">BS::thread_pool</a></div><div class="ttdoc">A fast, lightweight, and easy-to-use C++17 thread pool class.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:240</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a016a2a6a7a9c844c94c606aaf517b21c"><div class="ttname"><a href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">BS::thread_pool::push_task</a></div><div class="ttdeci">void push_task(F &amp;&amp;task, A &amp;&amp;... args)</div><div class="ttdoc">Push a function with zero or more arguments, but no return value, into the task queue....</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:437</div></div>
@@ -583,10 +585,14 @@ $(function() {
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a0bf42daf5d4e6536a32af2279c95b351"><div class="ttname"><a href="classBS_1_1thread__pool.html#a0bf42daf5d4e6536a32af2279c95b351">BS::thread_pool::wait_for_tasks_until</a></div><div class="ttdeci">bool wait_for_tasks_until(const std::chrono::time_point&lt; C, D &gt; &amp;timeout_time)</div><div class="ttdoc">Wait for tasks to be completed, but stop waiting after the specified time point has been reached.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:555</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a1e16153b1a14b5b4d8191168ccf6e4b8"><div class="ttname"><a href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">BS::thread_pool::wait_for_tasks</a></div><div class="ttdeci">void wait_for_tasks()</div><div class="ttdoc">Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:520</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a1f7cc32367d0d0c020bf103782506998"><div class="ttname"><a href="classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998">BS::thread_pool::~thread_pool</a></div><div class="ttdeci">~thread_pool()</div><div class="ttdoc">Destruct the thread pool. Waits for all tasks to complete, then destroys all threads....</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:259</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a2f5276dbef05cd912718925cd7583af5"><div class="ttname"><a href="classBS_1_1thread__pool.html#a2f5276dbef05cd912718925cd7583af5">BS::thread_pool::determine_thread_count</a></div><div class="ttdeci">concurrency_t determine_thread_count(const concurrency_t thread_count_) const</div><div class="ttdoc">Determine how many threads the pool should have, based on the parameter passed to the constructor or ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:606</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a2ffca1428e1f111220b5f9aed9ff9eac"><div class="ttname"><a href="classBS_1_1thread__pool.html#a2ffca1428e1f111220b5f9aed9ff9eac">BS::thread_pool::push_loop</a></div><div class="ttdeci">void push_loop(const T index_after_last, F &amp;&amp;loop, const size_t num_blocks=0)</div><div class="ttdoc">Parallelize a loop by automatically splitting it into blocks and submitting each block separately to ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:423</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a4b6564dcbe7b01efb736377917b489b8"><div class="ttname"><a href="classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8">BS::thread_pool::create_threads</a></div><div class="ttdeci">void create_threads()</div><div class="ttdoc">Create the threads in the pool and assign a worker to each thread.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:572</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a5d3623b19c51a513fe4612b2157b0314"><div class="ttname"><a href="classBS_1_1thread__pool.html#a5d3623b19c51a513fe4612b2157b0314">BS::thread_pool::reset</a></div><div class="ttdeci">void reset(const concurrency_t thread_count_=0)</div><div class="ttdoc">Reset the number of threads in the pool. Waits for all currently running tasks to be completed,...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:451</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a6f36df0501ab738b10baee833e9ed960"><div class="ttname"><a href="classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960">BS::thread_pool::worker</a></div><div class="ttdeci">void worker()</div><div class="ttdoc">A worker function to be assigned to each thread in the pool. Waits until it is notified by push_task(...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:622</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a7567b2d637a74178f069265f969649c8"><div class="ttname"><a href="classBS_1_1thread__pool.html#a7567b2d637a74178f069265f969649c8">BS::thread_pool::parallelize_loop</a></div><div class="ttdeci">multi_future&lt; R &gt; parallelize_loop(const T1 first_index, const T2 index_after_last, F &amp;&amp;loop, const size_t num_blocks=0)</div><div class="ttdoc">Parallelize a loop by automatically splitting it into blocks and submitting each block separately to ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:338</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a87b9d62da8901302453f0a65bd6b99cd"><div class="ttname"><a href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd">BS::thread_pool::submit</a></div><div class="ttdeci">std::future&lt; R &gt; submit(F &amp;&amp;task, A &amp;&amp;... args)</div><div class="ttdoc">Submit a function with zero or more arguments into the task queue. If the function has a return value...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:476</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a97b4777cae9085a4fa792a334f1015d6"><div class="ttname"><a href="classBS_1_1thread__pool.html#a97b4777cae9085a4fa792a334f1015d6">BS::thread_pool::destroy_threads</a></div><div class="ttdeci">void destroy_threads()</div><div class="ttdoc">Destroy the threads in the pool.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:587</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a980dc3c8de9114dc63b0fbfc979b031d"><div class="ttname"><a href="classBS_1_1thread__pool.html#a980dc3c8de9114dc63b0fbfc979b031d">BS::thread_pool::wait_for_tasks_duration</a></div><div class="ttdeci">bool wait_for_tasks_duration(const std::chrono::duration&lt; R, P &gt; &amp;duration)</div><div class="ttdoc">Wait for tasks to be completed, but stop waiting after the specified duration has passed.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:537</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_a9a1874dbd7bc21887cab0a18167ce984"><div class="ttname"><a href="classBS_1_1thread__pool.html#a9a1874dbd7bc21887cab0a18167ce984">BS::thread_pool::parallelize_loop</a></div><div class="ttdeci">multi_future&lt; R &gt; parallelize_loop(const T index_after_last, F &amp;&amp;loop, const size_t num_blocks=0)</div><div class="ttdoc">Parallelize a loop by automatically splitting it into blocks and submitting each block separately to ...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:366</div></div>
 <div class="ttc" id="aclassBS_1_1thread__pool_html_ab5faf242cb0eacbb5c1142a2bd966468"><div class="ttname"><a href="classBS_1_1thread__pool.html#ab5faf242cb0eacbb5c1142a2bd966468">BS::thread_pool::get_tasks_queued</a></div><div class="ttdeci">size_t get_tasks_queued() const</div><div class="ttdoc">Get the number of tasks currently waiting in the queue to be executed by the threads.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:274</div></div>
@@ -602,6 +608,8 @@ $(function() {
 <div class="ttc" id="aclassBS_1_1timer_html_a69eabae9b119282e3cb1f8a13fa02159"><div class="ttname"><a href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">BS::timer::ms</a></div><div class="ttdeci">std::chrono::milliseconds::rep ms() const</div><div class="ttdoc">Get the number of milliseconds that have elapsed between start() and stop().</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:799</div></div>
 <div class="ttc" id="aclassBS_1_1timer_html_ad442341cacfb7970960a8e2090d66c10"><div class="ttname"><a href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">BS::timer::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Start (or restart) measuring time.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:781</div></div>
 <div class="ttc" id="aclassBS_1_1timer_html_aef4f43b7877eceaaaa1a34a5b58db903"><div class="ttname"><a href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">BS::timer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Stop measuring time and store the elapsed time since start().</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:789</div></div>
+<div class="ttc" id="anamespaceBS_html"><div class="ttname"><a href="namespaceBS.html">BS</a></div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:30</div></div>
+<div class="ttc" id="anamespaceBS_html_a7bb1747ef283bd1349183c445ee89aaa"><div class="ttname"><a href="namespaceBS.html#a7bb1747ef283bd1349183c445ee89aaa">BS::concurrency_t</a></div><div class="ttdeci">std::invoke_result_t&lt; decltype(std::thread::hardware_concurrency)&gt; concurrency_t</div><div class="ttdoc">A convenient shorthand for the type of std::thread::hardware_concurrency(). Should evaluate to unsign...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

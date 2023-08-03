@@ -62,13 +62,16 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classActRoot_1_1CalibrationManager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::CalibrationManager Class Reference</div>  </div>
@@ -79,44 +82,435 @@ $(function() {
  <a href="classActRoot_1_1CalibrationManager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CalibrationManager_8h_source.html">CalibrationManager.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ActRoot::CalibrationManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="classActRoot_1_1CalibrationManager__coll__graph.png" border="0" usemap="#aActRoot_1_1CalibrationManager_coll__map" alt="Collaboration graph"/></div>
+<map name="aActRoot_1_1CalibrationManager_coll__map" id="aActRoot_1_1CalibrationManager_coll__map">
+<area shape="rect" title="The singleton class managin all calibrations." alt="" coords="5,5,215,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6dddb07f56998716ace3ff9abb38c2a4"><td class="memItemLeft" align="right" valign="top"><a id="a6dddb07f56998716ace3ff9abb38c2a4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadCalibration</b> (const std::string &amp;file)</td></tr>
+<tr class="memitem:a6dddb07f56998716ace3ff9abb38c2a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a6dddb07f56998716ace3ff9abb38c2a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3829521dd0c2d2e948c3fda8ef64259a"><td class="memItemLeft" align="right" valign="top"><a id="a3829521dd0c2d2e948c3fda8ef64259a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadLookUpTable</b> (const std::string &amp;file)</td></tr>
+<tr class="memitem:a3829521dd0c2d2e948c3fda8ef64259a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a3829521dd0c2d2e948c3fda8ef64259a">ReadLookUpTable</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a3829521dd0c2d2e948c3fda8ef64259a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34cf69db0cfc240a41b85f253982ad7c"><td class="memItemLeft" align="right" valign="top"><a id="a34cf69db0cfc240a41b85f253982ad7c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadPadAlign</b> (const std::string &amp;file)</td></tr>
+<tr class="memitem:a34cf69db0cfc240a41b85f253982ad7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a34cf69db0cfc240a41b85f253982ad7c">ReadPadAlign</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a34cf69db0cfc240a41b85f253982ad7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a943efc2a955786642286182b7aa64a8f"><td class="memItemLeft" align="right" valign="top"><a id="a943efc2a955786642286182b7aa64a8f"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyCalibration</b> (const std::string &amp;key, double raw)</td></tr>
+<tr class="memitem:a943efc2a955786642286182b7aa64a8f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f">ApplyCalibration</a> (const std::string &amp;key, double raw)</td></tr>
 <tr class="separator:a943efc2a955786642286182b7aa64a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc84a9cc8f7e04ae92a4d76617e29c02"><td class="memItemLeft" align="right" valign="top"><a id="afc84a9cc8f7e04ae92a4d76617e29c02"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyThreshold</b> (const std::string &amp;key, double raw)</td></tr>
+<tr class="memitem:afc84a9cc8f7e04ae92a4d76617e29c02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#afc84a9cc8f7e04ae92a4d76617e29c02">ApplyThreshold</a> (const std::string &amp;key, double raw)</td></tr>
 <tr class="separator:afc84a9cc8f7e04ae92a4d76617e29c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dc78d9b0ca9b0f41332bc2370f22df5"><td class="memItemLeft" align="right" valign="top"><a id="a7dc78d9b0ca9b0f41332bc2370f22df5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyLookUp</b> (int channel, int col)</td></tr>
+<tr class="memitem:a7dc78d9b0ca9b0f41332bc2370f22df5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5">ApplyLookUp</a> (int channel, int col)</td></tr>
 <tr class="separator:a7dc78d9b0ca9b0f41332bc2370f22df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1faf4826c9064fd574bf21d1fefa712"><td class="memItemLeft" align="right" valign="top"><a id="aa1faf4826c9064fd574bf21d1fefa712"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyPadAlignment</b> (int channel, double q)</td></tr>
+<tr class="memitem:aa1faf4826c9064fd574bf21d1fefa712"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712">ApplyPadAlignment</a> (int channel, double q)</td></tr>
 <tr class="separator:aa1faf4826c9064fd574bf21d1fefa712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af241f3dc207e7f05d31394970e9021e0"><td class="memItemLeft" align="right" valign="top"><a id="af241f3dc207e7f05d31394970e9021e0"></a>
-static <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">Get</a> ()</td></tr>
-<tr class="memdesc:af241f3dc207e7f05d31394970e9021e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">General method to interface with class. <br /></td></tr>
+<tr class="memitem:af241f3dc207e7f05d31394970e9021e0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">Get</a> ()</td></tr>
+<tr class="memdesc:af241f3dc207e7f05d31394970e9021e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">General method to interface with class.  <a href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">More...</a><br /></td></tr>
 <tr class="separator:af241f3dc207e7f05d31394970e9021e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a5fa748bbeb087b265eef9206cb2eab68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a5fa748bbeb087b265eef9206cb2eab68">CalibrationManager</a> ()=default</td></tr>
+<tr class="separator:a5fa748bbeb087b265eef9206cb2eab68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e8d9e5186c317ee3b2f70632d163214"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a8e8d9e5186c317ee3b2f70632d163214">~CalibrationManager</a> ()=default</td></tr>
+<tr class="separator:a8e8d9e5186c317ee3b2f70632d163214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8608ee2ee767a355ae126fb78279e286"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a></td></tr>
+<tr class="memdesc:a8608ee2ee767a355ae126fb78279e286"><td class="mdescLeft">&#160;</td><td class="mdescRight">General map holding strings as keys for the vector of doubles (coeffs) of calib.  <a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">More...</a><br /></td></tr>
+<tr class="separator:a8608ee2ee767a355ae126fb78279e286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad346595880359ad866c13ab7fe909790"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a></td></tr>
+<tr class="separator:ad346595880359ad866c13ab7fe909790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3622baa52ca22287581a064eb83e5e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a></td></tr>
+<tr class="memdesc:a8e3622baa52ca22287581a064eb83e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pad align coefficiens.  <a href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">More...</a><br /></td></tr>
+<tr class="separator:a8e3622baa52ca22287581a064eb83e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a7619a99e84361ac4dddaa9bd9ffee0d2">fFiles</a></td></tr>
+<tr class="memdesc:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of files read in calibration.  <a href="classActRoot_1_1CalibrationManager.html#a7619a99e84361ac4dddaa9bd9ffee0d2">More...</a><br /></td></tr>
+<tr class="separator:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a2f9541212f2384368ea8148e98dddd23"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a2f9541212f2384368ea8148e98dddd23">fInstance</a> = nullptr</td></tr>
+<tr class="memdesc:a2f9541212f2384368ea8148e98dddd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton of class.  <a href="classActRoot_1_1CalibrationManager.html#a2f9541212f2384368ea8148e98dddd23">More...</a><br /></td></tr>
+<tr class="separator:a2f9541212f2384368ea8148e98dddd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The singleton class managin all calibrations. </p>
 <p>Specific methods are implemented for LT and Pad alignment, but the other calibrations work the same as nptools </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5fa748bbeb087b265eef9206cb2eab68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa748bbeb087b265eef9206cb2eab68">&#9670;&nbsp;</a></span>CalibrationManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::CalibrationManager::CalibrationManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e8d9e5186c317ee3b2f70632d163214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e8d9e5186c317ee3b2f70632d163214">&#9670;&nbsp;</a></span>~CalibrationManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::CalibrationManager::~CalibrationManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a943efc2a955786642286182b7aa64a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a943efc2a955786642286182b7aa64a8f">&#9670;&nbsp;</a></span>ApplyCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActRoot::CalibrationManager::ApplyCalibration </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>raw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7dc78d9b0ca9b0f41332bc2370f22df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc78d9b0ca9b0f41332bc2370f22df5">&#9670;&nbsp;</a></span>ApplyLookUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::CalibrationManager::ApplyLookUp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa1faf4826c9064fd574bf21d1fefa712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1faf4826c9064fd574bf21d1fefa712">&#9670;&nbsp;</a></span>ApplyPadAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActRoot::CalibrationManager::ApplyPadAlignment </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc84a9cc8f7e04ae92a4d76617e29c02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc84a9cc8f7e04ae92a4d76617e29c02">&#9670;&nbsp;</a></span>ApplyThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::CalibrationManager::ApplyThreshold </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>raw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af241f3dc207e7f05d31394970e9021e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af241f3dc207e7f05d31394970e9021e0">&#9670;&nbsp;</a></span>Get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1CalibrationManager.html">ActRoot::CalibrationManager</a> * ActRoot::CalibrationManager::Get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>General method to interface with class. </p>
+
+</div>
+</div>
+<a id="a6dddb07f56998716ace3ff9abb38c2a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dddb07f56998716ace3ff9abb38c2a4">&#9670;&nbsp;</a></span>ReadCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::CalibrationManager::ReadCalibration </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3829521dd0c2d2e948c3fda8ef64259a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3829521dd0c2d2e948c3fda8ef64259a">&#9670;&nbsp;</a></span>ReadLookUpTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::CalibrationManager::ReadLookUpTable </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34cf69db0cfc240a41b85f253982ad7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34cf69db0cfc240a41b85f253982ad7c">&#9670;&nbsp;</a></span>ReadPadAlign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::CalibrationManager::ReadPadAlign </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8608ee2ee767a355ae126fb78279e286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8608ee2ee767a355ae126fb78279e286">&#9670;&nbsp;</a></span>fCalibs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;std::string, std::vector&lt;double&gt; &gt; ActRoot::CalibrationManager::fCalibs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>General map holding strings as keys for the vector of doubles (coeffs) of calib. </p>
+
+</div>
+</div>
+<a id="a7619a99e84361ac4dddaa9bd9ffee0d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7619a99e84361ac4dddaa9bd9ffee0d2">&#9670;&nbsp;</a></span>fFiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; ActRoot::CalibrationManager::fFiles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of files read in calibration. </p>
+
+</div>
+</div>
+<a id="a2f9541212f2384368ea8148e98dddd23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f9541212f2384368ea8148e98dddd23">&#9670;&nbsp;</a></span>fInstance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1CalibrationManager.html">ActRoot::CalibrationManager</a> * ActRoot::CalibrationManager::fInstance = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Singleton of class. </p>
+
+</div>
+</div>
+<a id="ad346595880359ad866c13ab7fe909790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad346595880359ad866c13ab7fe909790">&#9670;&nbsp;</a></span>fLT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::vector&lt;int&gt; &gt; ActRoot::CalibrationManager::fLT</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e3622baa52ca22287581a064eb83e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e3622baa52ca22287581a064eb83e5e">&#9670;&nbsp;</a></span>fPadAlign</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::vector&lt;double&gt; &gt; ActRoot::CalibrationManager::fPadAlign</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pad align coefficiens. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="CalibrationManager_8h_source.html">CalibrationManager.h</a></li>
-<li>Core/CalibrationManager.cxx</li>
+<li>Core/<a class="el" href="CalibrationManager_8cxx.html">CalibrationManager.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

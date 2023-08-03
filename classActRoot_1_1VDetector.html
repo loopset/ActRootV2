@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1VDetector.html">VDetector</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1VDetector.html">VDetector</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -74,6 +74,8 @@ $(function() {
 <div class="title">ActRoot::VDetector Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="VDetector_8h_source.html">VDetector.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActRoot::VDetector:</div>
 <div class="dyncontent">
@@ -97,37 +99,334 @@ Collaboration diagram for ActRoot::VDetector:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af3ee43c1271b1e9e66b77939e77d9e57"><td class="memItemLeft" align="right" valign="top"><a id="af3ee43c1271b1e9e66b77939e77d9e57"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadConfiguration</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config)=0</td></tr>
+<tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
+<tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35753133618b1a4c52f829200b70a8c6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6">~VDetector</a> ()=default</td></tr>
+<tr class="separator:a35753133618b1a4c52f829200b70a8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ee43c1271b1e9e66b77939e77d9e57"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#af3ee43c1271b1e9e66b77939e77d9e57">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config)=0</td></tr>
 <tr class="separator:af3ee43c1271b1e9e66b77939e77d9e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89e7b7acb7e13c41e18fab69de4b5db8"><td class="memItemLeft" align="right" valign="top"><a id="a89e7b7acb7e13c41e18fab69de4b5db8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadCalibrations</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config)=0</td></tr>
+<tr class="memitem:a89e7b7acb7e13c41e18fab69de4b5db8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config)=0</td></tr>
 <tr class="separator:a89e7b7acb7e13c41e18fab69de4b5db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae290737344013d689e7d74edf4edfe2b"><td class="memItemLeft" align="right" valign="top"><a id="ae290737344013d689e7d74edf4edfe2b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitInputRawData</b> (std::shared_ptr&lt; TTree &gt; tree, int run)=0</td></tr>
+<tr class="memitem:ae290737344013d689e7d74edf4edfe2b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ae290737344013d689e7d74edf4edfe2b">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run)=0</td></tr>
 <tr class="separator:ae290737344013d689e7d74edf4edfe2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39d539f2ddc28bfd318b0d19ca2de3f0"><td class="memItemLeft" align="right" valign="top"><a id="a39d539f2ddc28bfd318b0d19ca2de3f0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitOutputData</b> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
+<tr class="memitem:a39d539f2ddc28bfd318b0d19ca2de3f0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a39d539f2ddc28bfd318b0d19ca2de3f0">InitOutputData</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
 <tr class="separator:a39d539f2ddc28bfd318b0d19ca2de3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ddfd1d788241eda54cad200ce0e8bbc"><td class="memItemLeft" align="right" valign="top"><a id="a2ddfd1d788241eda54cad200ce0e8bbc"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>BuildEventData</b> ()=0</td></tr>
+<tr class="memitem:a2ddfd1d788241eda54cad200ce0e8bbc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a2ddfd1d788241eda54cad200ce0e8bbc">BuildEventData</a> ()=0</td></tr>
 <tr class="separator:a2ddfd1d788241eda54cad200ce0e8bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memItemLeft" align="right" valign="top"><a id="a8d046f65ecc6dfb5de44f5e94624e0ee"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearEventData</b> ()=0</td></tr>
+<tr class="memitem:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ClearEventData</a> ()=0</td></tr>
 <tr class="separator:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memItemLeft" align="right" valign="top"><a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMEvent</b> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
+<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">SetMEvent</a> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850f7140986bfea024c864fe4d88c44b"><td class="memItemLeft" align="right" valign="top"><a id="a850f7140986bfea024c864fe4d88c44b"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetMEvent</b> () const</td></tr>
+<tr class="memitem:a850f7140986bfea024c864fe4d88c44b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
 <tr class="separator:a850f7140986bfea024c864fe4d88c44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748"><td class="memItemLeft" align="right" valign="top"><a id="afc475c3fe37b340d5e78bba54fde2748"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fMEvent</b> {}</td></tr>
+<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> {}</td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7f90fa1f9c6769b51ae6ddfe4ec03e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f90fa1f9c6769b51ae6ddfe4ec03e37">&#9670;&nbsp;</a></span>VDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::VDetector::VDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35753133618b1a4c52f829200b70a8c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35753133618b1a4c52f829200b70a8c6">&#9670;&nbsp;</a></span>~VDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ActRoot::VDetector::~VDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2ddfd1d788241eda54cad200ce0e8bbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ddfd1d788241eda54cad200ce0e8bbc">&#9670;&nbsp;</a></span>BuildEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::BuildEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#aec95898572ad71774124ef185a51ad74">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#abe4e9551b4e76cbd056abfb7240225fe">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="a8d046f65ecc6dfb5de44f5e94624e0ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d046f65ecc6dfb5de44f5e94624e0ee">&#9670;&nbsp;</a></span>ClearEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::ClearEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#aa894c86913c3e7ac7bce5cd1ba63927b">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#a405dc51a983235b18ba2f42c8146c1ca">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="a850f7140986bfea024c864fe4d88c44b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a850f7140986bfea024c864fe4d88c44b">&#9670;&nbsp;</a></span>GetMEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMEventReduced.html">MEventReduced</a>* ActRoot::VDetector::GetMEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae290737344013d689e7d74edf4edfe2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae290737344013d689e7d74edf4edfe2b">&#9670;&nbsp;</a></span>InitInputRawData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::InitInputRawData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#af7de9c7a228fbae0d61df089cb40916f">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#a1ae870f778209a2f9b8d43d8d4c31714">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="a39d539f2ddc28bfd318b0d19ca2de3f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d539f2ddc28bfd318b0d19ca2de3f0">&#9670;&nbsp;</a></span>InitOutputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::InitOutputData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ae0d8d2d64ce6ad3b110d61d6551f89f3">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#ae61278092e4fb15820798ce263334c9e">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="a89e7b7acb7e13c41e18fab69de4b5db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89e7b7acb7e13c41e18fab69de4b5db8">&#9670;&nbsp;</a></span>ReadCalibrations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::ReadCalibrations </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a25fc444541ee68c98cfea43b5775c969">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#a50a9ca48595dc638678f9f99c958fd1a">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="af3ee43c1271b1e9e66b77939e77d9e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ee43c1271b1e9e66b77939e77d9e57">&#9670;&nbsp;</a></span>ReadConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::ReadConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a6514e434dfa289be7fa1656e1624d972">ActRoot::TPCDetector</a>, and <a class="el" href="classActRoot_1_1SilDetector.html#abb2941129f36f270c9b0f856ad18076f">ActRoot::SilDetector</a>.</p>
+
+</div>
+</div>
+<a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">&#9670;&nbsp;</a></span>SetMEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::VDetector::SetMEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td>
+          <td class="paramname"><em>mevt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afc475c3fe37b340d5e78bba54fde2748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc475c3fe37b340d5e78bba54fde2748">&#9670;&nbsp;</a></span>fMEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMEventReduced.html">MEventReduced</a>* ActRoot::VDetector::fMEvent {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Core/<a class="el" href="VDetector_8h_source.html">VDetector.h</a></li>
 </ul>

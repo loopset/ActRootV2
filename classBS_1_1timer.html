@@ -62,12 +62,13 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>BS</b></li><li class="navelem"><a class="el" href="classBS_1_1timer.html">timer</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceBS.html">BS</a></li><li class="navelem"><a class="el" href="classBS_1_1timer.html">timer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classBS_1_1timer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BS::timer Class Reference</div>  </div>
@@ -81,17 +82,24 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad442341cacfb7970960a8e2090d66c10"><td class="memItemLeft" align="right" valign="top"><a id="ad442341cacfb7970960a8e2090d66c10"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">start</a> ()</td></tr>
-<tr class="memdesc:ad442341cacfb7970960a8e2090d66c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start (or restart) measuring time. <br /></td></tr>
+<tr class="memitem:ad442341cacfb7970960a8e2090d66c10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">start</a> ()</td></tr>
+<tr class="memdesc:ad442341cacfb7970960a8e2090d66c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start (or restart) measuring time.  <a href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">More...</a><br /></td></tr>
 <tr class="separator:ad442341cacfb7970960a8e2090d66c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef4f43b7877eceaaaa1a34a5b58db903"><td class="memItemLeft" align="right" valign="top"><a id="aef4f43b7877eceaaaa1a34a5b58db903"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">stop</a> ()</td></tr>
-<tr class="memdesc:aef4f43b7877eceaaaa1a34a5b58db903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>. <br /></td></tr>
+<tr class="memitem:aef4f43b7877eceaaaa1a34a5b58db903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">stop</a> ()</td></tr>
+<tr class="memdesc:aef4f43b7877eceaaaa1a34a5b58db903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>.  <a href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">More...</a><br /></td></tr>
 <tr class="separator:aef4f43b7877eceaaaa1a34a5b58db903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69eabae9b119282e3cb1f8a13fa02159"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds::rep&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">ms</a> () const</td></tr>
 <tr class="memdesc:a69eabae9b119282e3cb1f8a13fa02159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of milliseconds that have elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>.  <a href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">More...</a><br /></td></tr>
 <tr class="separator:a69eabae9b119282e3cb1f8a13fa02159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa85a015b91bc8858ac38ed884a79eadf"><td class="memItemLeft" align="right" valign="top">std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a> = std::chrono::steady_clock::now()</td></tr>
+<tr class="memdesc:aa85a015b91bc8858ac38ed884a79eadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time point when measuring started.  <a href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">More...</a><br /></td></tr>
+<tr class="separator:aa85a015b91bc8858ac38ed884a79eadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a87317c155500b00d12a6123e6efbb4"><td class="memItemLeft" align="right" valign="top">std::chrono::duration&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a> = std::chrono::duration&lt;double&gt;::zero()</td></tr>
+<tr class="memdesc:a9a87317c155500b00d12a6123e6efbb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The duration that has elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>.  <a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">More...</a><br /></td></tr>
+<tr class="separator:a9a87317c155500b00d12a6123e6efbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A helper class to measure execution time for benchmarking purposes. </p>
@@ -121,6 +129,109 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Get the number of milliseconds that have elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of milliseconds. </dd></dl>
+
+</div>
+</div>
+<a id="ad442341cacfb7970960a8e2090d66c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad442341cacfb7970960a8e2090d66c10">&#9670;&nbsp;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::timer::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start (or restart) measuring time. </p>
+
+</div>
+</div>
+<a id="aef4f43b7877eceaaaa1a34a5b58db903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef4f43b7877eceaaaa1a34a5b58db903">&#9670;&nbsp;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BS::timer::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9a87317c155500b00d12a6123e6efbb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a87317c155500b00d12a6123e6efbb4">&#9670;&nbsp;</a></span>elapsed_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::duration&lt;double&gt; BS::timer::elapsed_time = std::chrono::duration&lt;double&gt;::zero()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The duration that has elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>. </p>
+
+</div>
+</div>
+<a id="aa85a015b91bc8858ac38ed884a79eadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85a015b91bc8858ac38ed884a79eadf">&#9670;&nbsp;</a></span>start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::time_point&lt;std::chrono::steady_clock&gt; BS::timer::start_time = std::chrono::steady_clock::now()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The time point when measuring started. </p>
 
 </div>
 </div>

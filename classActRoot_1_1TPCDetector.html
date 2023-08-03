@@ -62,17 +62,21 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ActRoot</b></li><li class="navelem"><a class="el" href="classActRoot_1_1TPCDetector.html">TPCDetector</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceActRoot.html">ActRoot</a></li><li class="navelem"><a class="el" href="classActRoot_1_1TPCDetector.html">TPCDetector</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1TPCDetector-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ActRoot::TPCDetector Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="TPCDetector_8h_source.html">TPCDetector.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActRoot::TPCDetector:</div>
 <div class="dyncontent">
@@ -87,54 +91,430 @@ Collaboration diagram for ActRoot::TPCDetector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1TPCDetector__coll__graph.png" border="0" usemap="#aActRoot_1_1TPCDetector_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1TPCDetector_coll__map" id="aActRoot_1_1TPCDetector_coll__map">
-<area shape="rect" title=" " alt="" coords="5,247,168,273"/>
-<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="13,171,160,197"/>
-<area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="23,81,150,108"/>
-<area shape="rect" title=" " alt="" coords="51,5,123,32"/>
+<area shape="rect" title=" " alt="" coords="185,260,348,287"/>
+<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="5,171,152,197"/>
+<area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="15,81,142,108"/>
+<area shape="rect" title=" " alt="" coords="43,5,115,32"/>
+<area shape="rect" href="classActRoot_1_1TPCParameters.html" title=" " alt="" coords="177,171,357,197"/>
+<area shape="rect" href="classActRoot_1_1TPCData.html" title=" " alt="" coords="381,171,518,197"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9386bed12200ccadb71e6601e9dc2d51"><td class="memItemLeft" align="right" valign="top"><a id="a9386bed12200ccadb71e6601e9dc2d51"></a>
-const <a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTPCPars</b> () const</td></tr>
+<tr class="memitem:af0c326e1e0c2d6ee2e54024052af416a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#af0c326e1e0c2d6ee2e54024052af416a">TPCDetector</a> ()=default</td></tr>
+<tr class="separator:af0c326e1e0c2d6ee2e54024052af416a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23aafc92aa386c970bf460cf2b2663e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#af23aafc92aa386c970bf460cf2b2663e">~TPCDetector</a> ()=default</td></tr>
+<tr class="separator:af23aafc92aa386c970bf460cf2b2663e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9386bed12200ccadb71e6601e9dc2d51"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a9386bed12200ccadb71e6601e9dc2d51">GetTPCPars</a> () const</td></tr>
 <tr class="separator:a9386bed12200ccadb71e6601e9dc2d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6514e434dfa289be7fa1656e1624d972"><td class="memItemLeft" align="right" valign="top"><a id="a6514e434dfa289be7fa1656e1624d972"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadConfiguration</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
+<tr class="memitem:a6514e434dfa289be7fa1656e1624d972"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a6514e434dfa289be7fa1656e1624d972">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a6514e434dfa289be7fa1656e1624d972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25fc444541ee68c98cfea43b5775c969"><td class="memItemLeft" align="right" valign="top"><a id="a25fc444541ee68c98cfea43b5775c969"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ReadCalibrations</b> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
+<tr class="memitem:a25fc444541ee68c98cfea43b5775c969"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a25fc444541ee68c98cfea43b5775c969">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a25fc444541ee68c98cfea43b5775c969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7de9c7a228fbae0d61df089cb40916f"><td class="memItemLeft" align="right" valign="top"><a id="af7de9c7a228fbae0d61df089cb40916f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitInputRawData</b> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
+<tr class="memitem:af7de9c7a228fbae0d61df089cb40916f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#af7de9c7a228fbae0d61df089cb40916f">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
 <tr class="separator:af7de9c7a228fbae0d61df089cb40916f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0d8d2d64ce6ad3b110d61d6551f89f3"><td class="memItemLeft" align="right" valign="top"><a id="ae0d8d2d64ce6ad3b110d61d6551f89f3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>InitOutputData</b> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
+<tr class="memitem:ae0d8d2d64ce6ad3b110d61d6551f89f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#ae0d8d2d64ce6ad3b110d61d6551f89f3">InitOutputData</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
 <tr class="separator:ae0d8d2d64ce6ad3b110d61d6551f89f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec95898572ad71774124ef185a51ad74"><td class="memItemLeft" align="right" valign="top"><a id="aec95898572ad71774124ef185a51ad74"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>BuildEventData</b> () override</td></tr>
+<tr class="memitem:aec95898572ad71774124ef185a51ad74"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#aec95898572ad71774124ef185a51ad74">BuildEventData</a> () override</td></tr>
 <tr class="separator:aec95898572ad71774124ef185a51ad74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa894c86913c3e7ac7bce5cd1ba63927b"><td class="memItemLeft" align="right" valign="top"><a id="aa894c86913c3e7ac7bce5cd1ba63927b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearEventData</b> () override</td></tr>
+<tr class="memitem:aa894c86913c3e7ac7bce5cd1ba63927b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#aa894c86913c3e7ac7bce5cd1ba63927b">ClearEventData</a> () override</td></tr>
 <tr class="separator:aa894c86913c3e7ac7bce5cd1ba63927b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
-<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMEvent</b> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
+<tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
+<tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35753133618b1a4c52f829200b70a8c6 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6">~VDetector</a> ()=default</td></tr>
+<tr class="separator:a35753133618b1a4c52f829200b70a8c6 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">SetMEvent</a> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="a850f7140986bfea024c864fe4d88c44b"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetMEvent</b> () const</td></tr>
+<tr class="memitem:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
 <tr class="separator:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aaa0eba961b5c4a5b7e840c3e6a08674d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#aaa0eba961b5c4a5b7e840c3e6a08674d">ReadHits</a> (<a class="el" href="classReducedData.html">ReducedData</a> &amp;coas, const int &amp;where, int &amp;hitID)</td></tr>
+<tr class="separator:aaa0eba961b5c4a5b7e840c3e6a08674d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0dfe427358f3425b6f2f54f741ff7aca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a0dfe427358f3425b6f2f54f741ff7aca">fPars</a></td></tr>
+<tr class="separator:a0dfe427358f3425b6f2f54f741ff7aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207b41743c6f6cac7f8ca23869115eeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a> {}</td></tr>
+<tr class="separator:a207b41743c6f6cac7f8ca23869115eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9550d00d6666702c7f06a758f2378891"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a9550d00d6666702c7f06a758f2378891">fCurrentRun</a></td></tr>
+<tr class="separator:a9550d00d6666702c7f06a758f2378891"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
-<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a id="afc475c3fe37b340d5e78bba54fde2748"></a>
-<a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fMEvent</b> {}</td></tr>
+<tr class="memitem:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> {}</td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af0c326e1e0c2d6ee2e54024052af416a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0c326e1e0c2d6ee2e54024052af416a">&#9670;&nbsp;</a></span>TPCDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::TPCDetector::TPCDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af23aafc92aa386c970bf460cf2b2663e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23aafc92aa386c970bf460cf2b2663e">&#9670;&nbsp;</a></span>~TPCDetector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ActRoot::TPCDetector::~TPCDetector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aec95898572ad71774124ef185a51ad74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec95898572ad71774124ef185a51ad74">&#9670;&nbsp;</a></span>BuildEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::BuildEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a2ddfd1d788241eda54cad200ce0e8bbc">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="aa894c86913c3e7ac7bce5cd1ba63927b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa894c86913c3e7ac7bce5cd1ba63927b">&#9670;&nbsp;</a></span>ClearEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::ClearEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="a9386bed12200ccadb71e6601e9dc2d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9386bed12200ccadb71e6601e9dc2d51">&#9670;&nbsp;</a></span>GetTPCPars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a>&amp; ActRoot::TPCDetector::GetTPCPars </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7de9c7a228fbae0d61df089cb40916f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7de9c7a228fbae0d61df089cb40916f">&#9670;&nbsp;</a></span>InitInputRawData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::InitInputRawData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ae290737344013d689e7d74edf4edfe2b">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="ae0d8d2d64ce6ad3b110d61d6551f89f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0d8d2d64ce6ad3b110d61d6551f89f3">&#9670;&nbsp;</a></span>InitOutputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::InitOutputData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a39d539f2ddc28bfd318b0d19ca2de3f0">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="a25fc444541ee68c98cfea43b5775c969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25fc444541ee68c98cfea43b5775c969">&#9670;&nbsp;</a></span>ReadCalibrations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::ReadCalibrations </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="a6514e434dfa289be7fa1656e1624d972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6514e434dfa289be7fa1656e1624d972">&#9670;&nbsp;</a></span>ReadConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::ReadConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#af3ee43c1271b1e9e66b77939e77d9e57">ActRoot::VDetector</a>.</p>
+
+</div>
+</div>
+<a id="aaa0eba961b5c4a5b7e840c3e6a08674d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa0eba961b5c4a5b7e840c3e6a08674d">&#9670;&nbsp;</a></span>ReadHits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::ReadHits </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classReducedData.html">ReducedData</a> &amp;&#160;</td>
+          <td class="paramname"><em>coas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>where</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>hitID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9550d00d6666702c7f06a758f2378891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9550d00d6666702c7f06a758f2378891">&#9670;&nbsp;</a></span>fCurrentRun</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::TPCDetector::fCurrentRun</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a207b41743c6f6cac7f8ca23869115eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a207b41743c6f6cac7f8ca23869115eeb">&#9670;&nbsp;</a></span>fData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a>* ActRoot::TPCDetector::fData {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dfe427358f3425b6f2f54f741ff7aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dfe427358f3425b6f2f54f741ff7aca">&#9670;&nbsp;</a></span>fPars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> ActRoot::TPCDetector::fPars</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Core/<a class="el" href="TPCDetector_8h_source.html">TPCDetector.h</a></li>
-<li>Core/TPCDetector.cxx</li>
+<li>Core/<a class="el" href="TPCDetector_8cxx.html">TPCDetector.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

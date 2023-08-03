@@ -62,12 +62,13 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>BS</b></li><li class="navelem"><a class="el" href="classBS_1_1multi__future.html">multi_future</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceBS.html">BS</a></li><li class="navelem"><a class="el" href="classBS_1_1multi__future.html">multi_future</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classBS_1_1multi__future-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BS::multi_future&lt; T &gt; Class Template Reference</div>  </div>
@@ -96,10 +97,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf3325699649c91f9dd88f5a252e742e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1multi__future.html#abf3325699649c91f9dd88f5a252e742e">size</a> () const</td></tr>
 <tr class="memdesc:abf3325699649c91f9dd88f5a252e742e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object.  <a href="classBS_1_1multi__future.html#abf3325699649c91f9dd88f5a252e742e">More...</a><br /></td></tr>
 <tr class="separator:abf3325699649c91f9dd88f5a252e742e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05073ed8d37b939c9440ac8789b69ba7"><td class="memItemLeft" align="right" valign="top"><a id="a05073ed8d37b939c9440ac8789b69ba7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">wait</a> () const</td></tr>
-<tr class="memdesc:a05073ed8d37b939c9440ac8789b69ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for all the futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object. <br /></td></tr>
+<tr class="memitem:a05073ed8d37b939c9440ac8789b69ba7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">wait</a> () const</td></tr>
+<tr class="memdesc:a05073ed8d37b939c9440ac8789b69ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for all the futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object.  <a href="classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7">More...</a><br /></td></tr>
 <tr class="separator:a05073ed8d37b939c9440ac8789b69ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a27e462ff68dfe16e6bf23d87a174cfe0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::future&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">futures</a></td></tr>
+<tr class="memdesc:a27e462ff68dfe16e6bf23d87a174cfe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector to store the futures.  <a href="classBS_1_1multi__future.html#a27e462ff68dfe16e6bf23d87a174cfe0">More...</a><br /></td></tr>
+<tr class="separator:a27e462ff68dfe16e6bf23d87a174cfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -280,6 +286,62 @@ template&lt;typename T &gt; </div>
 
 <p>Get the number of futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of futures. </dd></dl>
+
+</div>
+</div>
+<a id="a05073ed8d37b939c9440ac8789b69ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05073ed8d37b939c9440ac8789b69ba7">&#9670;&nbsp;</a></span>wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classBS_1_1multi__future.html">BS::multi_future</a>&lt; T &gt;::wait </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wait for all the futures stored in this <a class="el" href="classBS_1_1multi__future.html" title="A helper class to facilitate waiting for and/or getting the results of multiple futures at once.">multi_future</a> object. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a27e462ff68dfe16e6bf23d87a174cfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e462ff68dfe16e6bf23d87a174cfe0">&#9670;&nbsp;</a></span>futures</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::future&lt;T&gt; &gt; <a class="el" href="classBS_1_1multi__future.html">BS::multi_future</a>&lt; T &gt;::futures</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A vector to store the futures. </p>
 
 </div>
 </div>
