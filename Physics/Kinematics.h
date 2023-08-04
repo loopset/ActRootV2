@@ -94,7 +94,7 @@ namespace ActPhysics
 
         void Reset();
 
-        TGraph* GetKinematicLine3(double step = 2, EColor color = kMagenta, ELineStyle style = kSolid);
+        TGraph* GetKinematicLine3(double step = 0.1, EColor color = kMagenta, ELineStyle style = kSolid);
 
         //Setters
         void SetBeamEnergy(double T1);
