@@ -44,7 +44,7 @@ var searchData=
   ['getissaturated_309',['GetIsSaturated',['../classActRoot_1_1Voxel.html#a76879e84060f7a88385acf1c598cdaf4',1,'ActRoot::Voxel']]],
   ['getkeyisinside_310',['GetKeyIsInside',['../classActRoot_1_1CutsManager.html#a492ec35e9abef8244a6b21a3a12e7e72',1,'ActRoot::CutsManager']]],
   ['getkeys_311',['GetKeys',['../classActRoot_1_1SilParameters.html#a203de59bd26d21b61a3ee5fc9c5ffc87',1,'ActRoot::SilParameters']]],
-  ['getkinematicline3_312',['GetKinematicLine3',['../classActPhysics_1_1Kinematics.html#a47be46fa4f727dafbc6ce0aa3504c58a',1,'ActPhysics::Kinematics']]],
+  ['getkinematicline3_312',['GetKinematicLine3',['../classActPhysics_1_1Kinematics.html#a5aa6fa2909099290323f1809200e573c',1,'ActPhysics::Kinematics']]],
   ['getlistofkeys_313',['GetListOfKeys',['../classActRoot_1_1CutsManager.html#a98842cac246a5b1ef19c1af9e8ee2917',1,'ActRoot::CutsManager']]],
   ['getlorentzvector_314',['GetLorentzVector',['../classActSim_1_1KinematicGenerator.html#afab451edf294f4bcdec1e801701c9994',1,'ActSim::KinematicGenerator']]],
   ['getmass_315',['GetMass',['../classActPhysics_1_1Kinematics.html#a40cc4b233224efd22ad76f59cc73d288',1,'ActPhysics::Kinematics::GetMass()'],['../classActPhysics_1_1Particle.html#a50444b520c562653c8d529c8ccd56fe8',1,'ActPhysics::Particle::GetMass()']]],
