@@ -8,7 +8,7 @@ Major advances are still required to have all the code documented.
 ## Installation
 
 Follow these steps to have ActRoot working on your computer
-1. Clone this repo to your local computer
+1. Clone this repo into your local computer
 
 ```bash
 git clone https://github.com/loopset/ActRootV2.git
@@ -21,7 +21,7 @@ mkdir build && cd build
 ```bash
 cmake .. && make -jN install
 ```
-This command will install all the libraries and headers in the created `install` dir inside the ActRoot folder.
+This command will install all the libraries and headers in the created `install` folder inside the ActRoot parent directory.
 
 Please, replace `N` with your number of cores (which you might find by executing `nproc` in a terminal)
 
@@ -30,4 +30,4 @@ Please, replace `N` with your number of cores (which you might find by executing
 ```bash
 source /home/youruser/ActRootV2/thisActRoot.sh
 ```
-Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under `instal/include`, so for instance you would add `#include "Particle.h"` for working with a `ActPhysics::Particle` object.
+Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under `install/include`, so, for instance, you would add `#include "Particle.h"` for working with an `ActPhysics::Particle` object.
