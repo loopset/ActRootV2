@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['inputblock_616',['InputBlock',['../classActRoot_1_1InputBlock.html',1,'ActRoot']]],
-  ['inputdata_617',['InputData',['../classActRoot_1_1InputData.html',1,'ActRoot']]],
-  ['inputiterator_618',['InputIterator',['../classActRoot_1_1InputIterator.html',1,'ActRoot']]],
-  ['inputparser_619',['InputParser',['../classActRoot_1_1InputParser.html',1,'ActRoot']]],
-  ['inputwrapper_620',['InputWrapper',['../classActRoot_1_1InputWrapper.html',1,'ActRoot']]]
+  ['histogrampainter_636',['HistogramPainter',['../classActRoot_1_1HistogramPainter.html',1,'ActRoot']]]
 ];

@@ -95,11 +95,11 @@ $(function() {
 <li>fCalibs
 : <a class="el" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">ActRoot::CalibrationManager</a>
 </li>
-<li>fCanv1
-: <a class="el" href="classActRoot_1_1EventPainter.html#a858c94644e411a7b3bc84254f1d84927">ActRoot::EventPainter</a>
-</li>
 <li>fCanvas
 : <a class="el" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">ActSim::Geometry</a>
+</li>
+<li>fCanvs
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ad1976a8941a425944affbc8319b36346">ActRoot::HistogramPainter</a>
 </li>
 <li>fCharge
 : <a class="el" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">ActRoot::Voxel</a>
@@ -118,7 +118,8 @@ $(function() {
 : <a class="el" href="classActRoot_1_1CutsManager.html#a87fa8b0c2c10462874a5c7e794f8b342">ActRoot::CutsManager&lt; T &gt;</a>
 </li>
 <li>fData
-: <a class="el" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector</a>
+: <a class="el" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector</a>
 , <a class="el" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">ActRoot::TPCDetector</a>
 </li>
 <li>fDebug
@@ -180,14 +181,24 @@ $(function() {
 <li>fHeavyPart
 : <a class="el" href="classActSim_1_1KinematicGenerator.html#a60ced12b790ad20049e1e6252c56cec1">ActSim::KinematicGenerator</a>
 </li>
-<li>fHist2d
-: <a class="el" href="classActRoot_1_1EventPainter.html#a685a0b20ea881fc998dfef9cd98be4d4">ActRoot::EventPainter</a>
+<li>fHistPainter
+: <a class="el" href="classActRoot_1_1EventPainter.html#a1ca22808dc326846097061091be559ab">ActRoot::EventPainter</a>
+</li>
+<li>fHistSil
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#a86179d6759c9b0cfb079e8817f241c3b">ActRoot::HistogramPainter</a>
+</li>
+<li>fHistTpc
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ac3c3166cb570fff41a552c3a643e3217">ActRoot::HistogramPainter</a>
 </li>
 <li>fID
 : <a class="el" href="classActRoot_1_1Voxel.html#a52de04c6c008102f8d6373be1292f8a1">ActRoot::Voxel</a>
 </li>
 <li>Fill()
-: <a class="el" href="classActRoot_1_1OutputData.html#a137be534be947d5fc3fa574d5d714b0d">ActRoot::OutputData</a>
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#a2380c9b49e7923da13f23e9657746484">ActRoot::HistogramPainter</a>
+, <a class="el" href="classActRoot_1_1OutputData.html#a137be534be947d5fc3fa574d5d714b0d">ActRoot::OutputData</a>
+</li>
+<li>FillSilHisto()
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#a75f85f975ecc31567358555e27132f60">ActRoot::HistogramPainter</a>
 </li>
 <li>FindBoundaryPoint()
 : <a class="el" href="classActSim_1_1Geometry.html#a889b6e4f7a59ae652eedcc20e672de6c">ActSim::Geometry</a>
@@ -234,6 +245,9 @@ $(function() {
 </li>
 <li>fLatStrag
 : <a class="el" href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">ActPhysics::SRIM</a>
+</li>
+<li>fLeaves
+: <a class="el" href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">ActRoot::ModularData</a>
 </li>
 <li>fLengthX
 : <a class="el" href="structActSim_1_1SilUnit.html#af7e36835d2320140e1a05119eb1bc010">ActSim::SilUnit</a>
@@ -359,7 +373,8 @@ $(function() {
 : <a class="el" href="classActRoot_1_1TPCParameters.html#a4c887bb83360780d29c107703de495f6">ActRoot::TPCParameters</a>
 </li>
 <li>fPars
-: <a class="el" href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector</a>
+: <a class="el" href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector</a>
 , <a class="el" href="classActRoot_1_1TPCDetector.html#a0dfe427358f3425b6f2f54f741ff7aca">ActRoot::TPCDetector</a>
 </li>
 <li>fPhi3CM
@@ -408,11 +423,14 @@ $(function() {
 <li>fSiE
 : <a class="el" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData</a>
 </li>
-<li>fsil
-: <a class="el" href="classActRoot_1_1EventPainter.html#a9173d95410a4c9daa081b8e25f619bf3">ActRoot::EventPainter</a>
+<li>fSil
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ac5ad93049572a385de71297646e5d707">ActRoot::HistogramPainter</a>
 </li>
 <li>fSilData
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">ActRoot::InputWrapper</a>
+</li>
+<li>fSilMap
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#a7b516af1cf20120311f9c5e21fd9b667">ActRoot::HistogramPainter</a>
 </li>
 <li>fSilResolution
 : <a class="el" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">ActSim::Runner</a>
@@ -489,8 +507,8 @@ $(function() {
 <li>fTopVol
 : <a class="el" href="classActSim_1_1Geometry.html#aa0220a342637e853c35779eff6d522d1">ActSim::Geometry</a>
 </li>
-<li>ftpc
-: <a class="el" href="classActRoot_1_1EventPainter.html#ab31dc6e868001c9826e23f70a6a5ac21">ActRoot::EventPainter</a>
+<li>fTPC
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#acdc8588f4a09ab13fd9e7c18b040e277">ActRoot::HistogramPainter</a>
 </li>
 <li>fTPCData
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">ActRoot::InputWrapper</a>
@@ -525,10 +543,12 @@ $(function() {
 : <a class="el" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData</a>
 </li>
 <li>fVXI
-: <a class="el" href="classActRoot_1_1SilParameters.html#a3cfeecb13b11002a391a2eec8dfd949a">ActRoot::SilParameters</a>
+: <a class="el" href="classActRoot_1_1ModularParameters.html#ae157ecb802fb424bfbc6581b45f1ba61">ActRoot::ModularParameters</a>
+, <a class="el" href="classActRoot_1_1SilParameters.html#a3cfeecb13b11002a391a2eec8dfd949a">ActRoot::SilParameters</a>
 </li>
 <li>fWrap
 : <a class="el" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">ActRoot::EventPainter</a>
+, <a class="el" href="classActRoot_1_1HistogramPainter.html#a8e0a9ce45720162212d0b8a9a1d9307b">ActRoot::HistogramPainter</a>
 </li>
 <li>fZ
 : <a class="el" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">ActPhysics::Particle</a>
