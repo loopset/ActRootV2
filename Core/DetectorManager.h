@@ -17,7 +17,7 @@ performed on its data
 
 namespace ActRoot
 {
-    enum class DetectorType {EActar, ESilicons};
+    enum class DetectorType {EActar, ESilicons, EModular};
     
     class DetectorManager
     {

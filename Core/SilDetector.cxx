@@ -1,6 +1,5 @@
 #include "SilDetector.h"
 
-#include "Buttons.h"
 #include "CalibrationManager.h"
 #include "InputParser.h"
 #include "SilData.h"
@@ -107,9 +106,14 @@ void ActRoot::SilDetector::BuildEventData()
                 auto [layer, sil] = fPars.GetSilIndex(vxi);
                 if(sil == -1)
                     continue;
-                //Write silicon number
-                fData->fSiN[layer].push_back(sil);
+                //Get raw data
                 float raw {coas.peakheight[hit]};
+                //Check threshold
+                std::string threshKey {"Sil_" + layer + "_" + sil + "_P"};
+                if(!CalibrationManager::Get()->ApplyThreshold(threshKey, raw, 3))
+                    continue;
+                //Write silicon number
+                fData->fSiN[layer].push_back(sil);                
                 //Calibrate
                 std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
                 float cal {static_cast<float>(CalibrationManager::Get()->ApplyCalibration(calKey, raw))};

@@ -122,9 +122,27 @@ double ActRoot::CalibrationManager::ApplyCalibration(const std::string &key, dou
     return cal;
 }
 
-bool ActRoot::CalibrationManager::ApplyThreshold(const std::string &key, double raw)
+bool ActRoot::CalibrationManager::ApplyThreshold(const std::string &key, double raw, double nsigma)
 {
-    return false;
+    std::vector<double> coeffs {};
+    try
+    {
+        coeffs = fCalibs.at(key);
+    }
+    catch(std::exception& e)
+    {
+        throw std::runtime_error("Could not find calibration for key " + key);
+    }
+    //Value to compare to
+    double threshold {coeffs[0]};
+    if(coeffs.size() == 2)//CATS style
+    {
+        threshold += coeffs[1] * nsigma;
+    }
+    if(raw < threshold)
+        return false;
+    else
+        return true;;
 }
 
 int ActRoot::CalibrationManager::ApplyLookUp(int channel, int col)

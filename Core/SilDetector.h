@@ -57,7 +57,7 @@ namespace ActRoot
         // void InitOutputPhysics() override;
         virtual void BuildEventData() override;
         // void BuildEventPhysics() override;
-        void ClearEventData() override;
+        virtual void ClearEventData() override;
 
     private:
         SilData* GetSilDataPointer() const {return fData;}

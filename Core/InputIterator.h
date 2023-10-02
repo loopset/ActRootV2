@@ -47,8 +47,8 @@ namespace ActRoot
         bool GoNext();
         bool GoPrevious();
         bool GoTo(int run, int entry);
-        TPCData* GetCurrentTPCData() {return fTPCData;}
-        SilData* GetCurrentSilData() {return fSilData;}
+        TPCData* GetCurrentTPCData() const {return fTPCData;}
+        SilData* GetCurrentSilData() const {return fSilData;}
         std::pair<int, int> GetCurrentStatus() const {return fIt.GetCurrentRunEntry();}
 
     private:

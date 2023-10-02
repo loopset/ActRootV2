@@ -20,6 +20,7 @@
 #include "TPCData.h"
 #include "TPCDetector.h"
 #include "InputIterator.h"
+#include "HistogramPainter.h"
 
 #include <memory>
 #include <string>
@@ -37,7 +38,6 @@ namespace ActRoot
         TGCompositeFrame* fFrame1;
         TGCompositeFrame* fTab2;
         TGCompositeFrame* fFrame2;
-        TCanvas* fCanv1;
         //Status bar
         TGStatusBar* fStatusCanv;
         TGStatusBar* fStatusThis;
@@ -47,11 +47,7 @@ namespace ActRoot
         TGNumberEntry* fRunButton;
         TGNumberEntry* fEntryButton;
         //Histograms
-        std::unordered_map<int, std::shared_ptr<TH2F>> fHist2d;
-        //TPC detector configuration
-        TPCParameters ftpc;
-        //Sil detector
-        SilParameters fsil;
+        HistogramPainter fHistPainter;
         //Data to plot
         InputWrapper fWrap {};
         
@@ -59,7 +55,7 @@ namespace ActRoot
         EventPainter(const TGWindow* window, unsigned int width, unsigned int height);
         virtual ~EventPainter();
         
-        void SetDetAndData(const std::string& detector, InputData* input);
+        void SetPainterAndData(const std::string& detfile, InputData* input);
         
         virtual void CloseWindow();
         void DoExit();
@@ -68,10 +64,8 @@ namespace ActRoot
         void DoReset();
         void DoPreviousEvent();
         void DoNextEvent();
-        void Init2DHistograms();
-        void ResetHistograms();
-        void ResetCanvas();
         void CanvasToStatusBar(int event, int px, int py, TObject* obj);
+        void CanvasToStatusBar2(int event, int px, int py, TObject* obj);
         void InitStatusBars();
         void InitTabs();
         void InitTab1();
@@ -79,10 +73,7 @@ namespace ActRoot
         void InitButtons();
         void InitEntryButtons();
         void DoGoTo();
-
-    private:
-        void ReadConfiguration(const std::string& file);
-
+        
         ClassDef(EventPainter, 0);
     };
 }

@@ -37,7 +37,7 @@ namespace ActRoot
         void ReadLookUpTable(const std::string& file);
         void ReadPadAlign(const std::string& file);
         double ApplyCalibration(const std::string& key, double raw);
-        bool ApplyThreshold(const std::string& key, double raw);
+        bool ApplyThreshold(const std::string& key, double raw, double nsigma = 1);
         int ApplyLookUp(int channel, int col);
         double ApplyPadAlignment(int channel, double q);
         

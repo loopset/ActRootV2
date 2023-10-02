@@ -1,6 +1,7 @@
 #include "DetectorManager.h"
 #include "InputParser.h"
 
+#include "ModularDetector.h"
 #include "SilDetector.h"
 #include "TPCData.h"
 #include "TPCDetector.h"
@@ -19,7 +20,8 @@ ActRoot::DetectorManager::DetectorManager()
     //Set assignments for strings to enum type
     fDetDatabase = {
         {"Actar", DetectorType::EActar},
-        {"Silicons", DetectorType::ESilicons}
+        {"Silicons", DetectorType::ESilicons},
+        {"Modular", DetectorType::EModular},
     };
 }
 
@@ -34,6 +36,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::TPCDetector>();
         else if(det == "Silicons")
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::SilDetector>();
+        else if(det == "Modular")
+            fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::ModularDetector>();
         else
             throw std::runtime_error("Detector " + det + " not found in Manager database");
         //Read config file
@@ -89,6 +93,12 @@ void ActRoot::DetectorManager::BuildEventData()
         fDetectors[DetectorType::ESilicons]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
         fDetectors[DetectorType::ESilicons]->BuildEventData();
         //fTP.push_task(&ActRoot::VDetector::BuildEventData, fDetectors[DetectorType::ESilicons]);
+    }
+    //3-->Modular
+    if(fDetectors.find(DetectorType::EModular) != fDetectors.end())
+    {
+        fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
+        fDetectors[DetectorType::EModular]->BuildEventData();
     }
     // //fTP.wait_for_tasks();
 }

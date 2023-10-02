@@ -14,7 +14,10 @@
 #pragma link C++ class ReducedData + ;
 #pragma link C++ class MEventReduced + ;
 
+//virtual detector
 #pragma link C++ class ActRoot::VDetector + ;
+
+//tpc
 #pragma link C++ class ActRoot::TPCDetector + ;
 #pragma link C++ class ActRoot::Voxel + ;
 #pragma link C++ class ActRoot::TPCData + ;
@@ -32,13 +35,19 @@
 
 //event painter
 #pragma link C++ class ActRoot::EventPainter;
+#pragma link C++ class ActRoot::HistogramPainter;
 
 //input data utilities
 #pragma link C++ class ActRoot::InputIterator;
 #pragma link C++ class ActRoot::InputWrapper;
 
+//silicons
 #pragma link C++ class ActRoot::SilData + ;
 #pragma link C++ class ActRoot::SilDetector;
+
+//modular detector
+#pragma link C++ class ActRoot::ModularData + ;
+#pragma link C++ class ActRoot::ModularDetector;
 
 //utils: cuts manager
 #pragma link C++ class ActRoot::CutsManager<int>;

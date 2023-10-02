@@ -2,6 +2,7 @@
 
 #include "Buttons.h"
 #include "GuiTypes.h"
+#include "HistogramPainter.h"
 #include "TCanvas.h"
 #include "TCollection.h"
 #include "TGFrame.h"
@@ -44,55 +45,23 @@ void ActRoot::EventPainter::CloseWindow()
 
 void ActRoot::EventPainter::DoDraw()
 {
-    for(auto& [idx, h] : fHist2d)
-    {
-        fCanv1->cd(idx);
-        h->Draw("colz");
-    }
-    fCanv1->Update();
+    fHistPainter.Draw();
     //Set info to status bar
     auto [run, entry] = fWrap.GetCurrentStatus();
     auto toStatusBar {TString::Format("run = %d entry = %d", run, entry)};
-    fStatusThis->SetText(toStatusBar.Data(), 1);
+    //fStatusThis->SetText(toStatusBar.Data(), 1);
     fRunButton->SetNumber(run, false);
     fEntryButton->SetNumber(entry, false);
 }
 
-void ActRoot::EventPainter::ResetHistograms()
-{
-    //2D
-    for(auto& [key, h] : fHist2d)
-    {
-        h->Reset();
-        h->GetXaxis()->UnZoom();
-        h->GetYaxis()->UnZoom();
-        fCanv1->cd(key)->Modified();
-    }
-}
-
-void ActRoot::EventPainter::ResetCanvas()
-{
-    //fCanv->Clear("D");
-    fCanv1->Update();
-}
-
 void ActRoot::EventPainter::DoReset()
 {
-    ResetHistograms();
-    ResetCanvas();
+    fHistPainter.Reset();
 }
 
 void ActRoot::EventPainter::DoFill()
 {
-    for(auto& voxel : fWrap.GetCurrentTPCData()->fVoxels)
-    {
-        //Pad
-        fHist2d[1]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Y(), voxel.GetCharge());
-        //Side
-        fHist2d[2]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Z(), voxel.GetCharge());
-        //Front
-        fHist2d[3]->Fill(voxel.GetPosition().Y(), voxel.GetPosition().Z(), voxel.GetCharge());
-    }
+    fHistPainter.Fill();
 }
 
 void ActRoot::EventPainter::DoPreviousEvent()
@@ -127,25 +96,18 @@ void ActRoot::EventPainter::DoGoTo()
     DoDraw();
 }
 
-void ActRoot::EventPainter::Init2DHistograms()
-{
-    //Pad
-    fHist2d[1] = std::make_shared<TH2F>("hPad", "Pad;X [pad];Y [pad]",
-                                        ftpc.GetNPADSX(), 0, ftpc.GetNPADSX(),
-                                        ftpc.GetNPADSY(), 0, ftpc.GetNPADSY());
-    //Side
-    fHist2d[2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]",
-                                        ftpc.GetNPADSX(), 0, ftpc.GetNPADSX(),
-                                        ftpc.GetNPADSZ() / ftpc.GetREBINZ(), 0, ftpc.GetNPADSZ());
-    //Front
-    fHist2d[3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]",
-                                        ftpc.GetNPADSY(), 0, ftpc.GetNPADSY(),
-                                        ftpc.GetNPADSZ() / ftpc.GetREBINZ(), 0 , ftpc.GetNPADSZ());
-    for(auto& [_, h] : fHist2d)
-        h->SetStats(false);
-}
 
 void ActRoot::EventPainter::CanvasToStatusBar(int event, int px, int py, TObject *obj)
+{
+    if(!obj)
+        return;
+    auto text1 {obj->GetName()};
+    fStatusCanv->SetText(text1, 0);
+    auto text3 {obj->GetObjectInfo(px, py)};
+    fStatusCanv->SetText(text3, 1);
+}
+
+void ActRoot::EventPainter::CanvasToStatusBar2(int event, int px, int py, TObject *obj)
 {
     if(!obj)
         return;
@@ -258,19 +220,22 @@ void ActRoot::EventPainter::InitTab1()
 {
     //Add TCanvas
     fFrame1->SetEditable(true);
-    fCanv1 = new TCanvas("cPainter1", "2D pads", 500, 400);
-    fCanv1->ToggleToolBar();
-    fCanv1->ToggleEventStatus();
-    fCanv1->Divide(3, 2);
+    auto* c1 = fHistPainter.SetCanvas(1, "2D pads", 500, 400);
     fFrame1->SetEditable(false);
     //Connect status bar
-    fCanv1->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
-                   this, "CanvasToStatusBar(int,int,int,TObject*)");
+    // c1->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
+    //             this, "CanvasToStatusBar(int,int,int,TObject*)");
 }
 
 void ActRoot::EventPainter::InitTab2()
 {
-    ;
+    //Add TCanvas
+    fFrame2->SetEditable(true);
+    auto* c2 = fHistPainter.SetCanvas(2, "Pads and Silicons", 500, 400);
+    fFrame2->SetEditable(false);
+    //Connect status bar
+    // c2->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
+    //                 this, "CanvasToStatusBar2(int,int,int,TObject*)");
 }
 
 ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, unsigned int height)
@@ -286,7 +251,7 @@ ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, 
     //Init Tab2
     InitTab2();
     //Status bars
-    InitStatusBars();
+    //InitStatusBars();
 
     //Other configs
     //SetCleanup(kDeepCleanup);
@@ -302,37 +267,11 @@ ActRoot::EventPainter::~EventPainter()
     Cleanup();
 }
 
-void ActRoot::EventPainter::SetDetAndData(const std::string& detector, InputData* input)
+void ActRoot::EventPainter::SetPainterAndData(const std::string& detfile, InputData* input)
 {
-    //Init detector and histogram config
-    ReadConfiguration(detector);
-    Init2DHistograms();
+    //Init HistogramPainter
+    fHistPainter.ReadDetFile(detfile);   
     //Init InputWrapper
     fWrap = InputWrapper(input);
-}
-
-void ActRoot::EventPainter::ReadConfiguration(const std::string &file)
-{
-    ActRoot::InputParser parser {file};
-    auto headers {parser.GetBlockHeaders()};
-    //TPC
-    if(std::find(headers.begin(), headers.end(), "Actar") != headers.end())
-    {
-        auto config {parser.GetBlock("Actar")};
-        ftpc = TPCParameters(config->GetString("Type"));
-        if(config->CheckTokenExists("RebinZ", true))
-            ftpc.SetREBINZ(config->GetInt("RebinZ"));
-    }
-    //Silicon
-    if(std::find(headers.begin(), headers.end(), "Silicons") != headers.end())
-    {
-        //Read layer setup
-        auto config {parser.GetBlock("Silicons")};
-        auto layers {config->GetStringVector("Layers")};
-        //Read action file
-        auto legacy {config->GetStringVector("Names")};
-        auto file {config->GetString("Actions")};
-        fsil.ReadActions(layers, legacy, file);
-    }
-    
+    fHistPainter.SetInputWrapper(&fWrap);
 }
