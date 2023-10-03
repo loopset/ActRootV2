@@ -28,13 +28,12 @@ namespace ActRoot
         InputData& operator=(const InputData& ) = default;        
 
         void ReadConfiguration(const std::string& file);
-        void SetTreeName(const std::string& treeName){fTreeName = treeName; };
+        void SetTreeName(const std::string& treeName){fTreeName = treeName;};
         void AddFile(int run, const std::string& file);
         std::map<int, std::shared_ptr<TTree>> GetTrees() const {return fTrees;}
         std::shared_ptr<TTree> GetTree(int run) const {return fTrees.at(run);}
         std::vector<int> GetTreeList() const {return fRuns;}
         void GetEntry(int run, int entry);
-        void GetEntryCloneVector(int entry);
         int GetNEntries(int run) const {return fTrees.at(run)->GetEntries();}
     };
 }

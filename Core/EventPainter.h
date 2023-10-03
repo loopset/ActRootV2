@@ -38,10 +38,6 @@ namespace ActRoot
         TGCompositeFrame* fFrame1;
         TGCompositeFrame* fTab2;
         TGCompositeFrame* fFrame2;
-        //Status bar
-        TGStatusBar* fStatusCanv;
-        TGStatusBar* fStatusThis;
-        TGHorizontalFrame* fStatusFrame;
         //Buttons
         TGHorizontalFrame* fButtonsFrame;
         TGNumberEntry* fRunButton;
@@ -64,9 +60,6 @@ namespace ActRoot
         void DoReset();
         void DoPreviousEvent();
         void DoNextEvent();
-        void CanvasToStatusBar(int event, int px, int py, TObject* obj);
-        void CanvasToStatusBar2(int event, int px, int py, TObject* obj);
-        void InitStatusBars();
         void InitTabs();
         void InitTab1();
         void InitTab2();

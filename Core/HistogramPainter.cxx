@@ -3,10 +3,12 @@
 #include "Colors.h"
 #include "InputParser.h"
 #include "InputIterator.h"
+#include "Rtypes.h"
 #include "TCanvas.h"
 #include "TH2.h"
 #include "TPCData.h"
 #include "TString.h"
+#include "TStyle.h"
 
 #include <iostream>
 #include <memory>
@@ -100,7 +102,14 @@ void ActRoot::HistogramPainter::Init()
                                          3, 0.5, 3.5,
                                          4, 0.5, 3.5);
     for(auto& [_, h] : fHistSil)
+    {
         h->SetStats(false);
+        //Style for TEXT option
+        h->SetMarkerColor(kRed);
+        h->SetMarkerSize(1.8);
+    }
+    //For number of decimals
+    gStyle->SetPaintTextFormat(".2f MeV");
 }
 
 void ActRoot::HistogramPainter::Fill()
@@ -133,14 +142,13 @@ void ActRoot::HistogramPainter::Draw()
         fCanvs[1]->cd(pad);
         h->Draw("colz");
     }
-    fCanvs[1]->cd();
     fCanvs[1]->Update();
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //Sil
     for(auto& [pad, h] : fHistSil)
     {
         fCanvs[2]->cd(pad);
-        h->Draw("colz");
+        h->Draw("col text");
     }
     //Draw also pad
     fCanvs[2]->cd(4);

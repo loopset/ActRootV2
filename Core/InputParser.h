@@ -12,7 +12,9 @@ namespace ActRoot
     const std::string kTokenSeparator {": "};
     const std::string kValueSeparator {", "};
     const std::string kCommentSeparator {"%"};
-    const std::string kBlockHeader {"["};
+    const std::string kBlockOpening {"["};
+    const std::string kBlockClosing {"]"};
+    const std::string kExpandValue {"..."};
     
     std::string StripSpaces(std::string line);
     
@@ -39,9 +41,10 @@ namespace ActRoot
         std::vector<std::string> GetTokens() const {return fTokens;}
     private:
         std::string GetToken(const std::string& line);
-        void GetValues(const std::string& line, const std::string& token);
+        void GetValues(const std::string& line, const std::string& token, bool findTokenSeparator = true);
         bool IsVector(const std::string& token);
         int StringToInt(const std::string& val);
+        std::vector<int> ExpandInt(int begin, int end);
     };
 
     typedef std::shared_ptr<InputBlock> BlockPtr;

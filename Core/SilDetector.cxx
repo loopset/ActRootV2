@@ -74,7 +74,7 @@ void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 
 void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
-    auto files {config->GetTokens()};
+    auto files {config->GetStringVector("Paths")};
     for(auto& file : files)
         CalibrationManager::Get()->ReadCalibration(file);
 }

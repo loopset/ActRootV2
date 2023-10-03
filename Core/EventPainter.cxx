@@ -48,8 +48,6 @@ void ActRoot::EventPainter::DoDraw()
     fHistPainter.Draw();
     //Set info to status bar
     auto [run, entry] = fWrap.GetCurrentStatus();
-    auto toStatusBar {TString::Format("run = %d entry = %d", run, entry)};
-    //fStatusThis->SetText(toStatusBar.Data(), 1);
     fRunButton->SetNumber(run, false);
     fEntryButton->SetNumber(entry, false);
 }
@@ -94,27 +92,6 @@ void ActRoot::EventPainter::DoGoTo()
         return;
     DoFill();
     DoDraw();
-}
-
-
-void ActRoot::EventPainter::CanvasToStatusBar(int event, int px, int py, TObject *obj)
-{
-    if(!obj)
-        return;
-    auto text1 {obj->GetName()};
-    fStatusCanv->SetText(text1, 0);
-    auto text3 {obj->GetObjectInfo(px, py)};
-    fStatusCanv->SetText(text3, 1);
-}
-
-void ActRoot::EventPainter::CanvasToStatusBar2(int event, int px, int py, TObject *obj)
-{
-    if(!obj)
-        return;
-    auto text1 {obj->GetName()};
-    fStatusCanv->SetText(text1, 0);
-    auto text3 {obj->GetObjectInfo(px, py)};
-    fStatusCanv->SetText(text3, 1);
 }
 
 void ActRoot::EventPainter::InitButtons()
@@ -173,31 +150,6 @@ void ActRoot::EventPainter::InitEntryButtons()
     fButtonsFrame->MapWindow();
 }
 
-void ActRoot::EventPainter::InitStatusBars()
-{
-    //Status bar
-    fStatusFrame = new TGHorizontalFrame(this, 50, 10);
-    //1->For painter info
-    int pars2[] = {20, 80};
-    fStatusThis = new TGStatusBar(fStatusFrame, 50, 10, kHorizontalFrame);
-    fStatusThis->SetParts(pars2, 2);
-    fStatusThis->Draw3DCorner(false);
-    fStatusFrame->AddFrame(fStatusThis, new TGLayoutHints(kLHintsExpandX, 2, 2, 0, 0));
-    //2-> For canvas info
-    int pars1 [] = {20, 80};
-    fStatusCanv = new TGStatusBar(fStatusFrame, 50, 10, kVerticalFrame);
-    fStatusCanv->SetParts(pars1, 2);
-    fStatusCanv->Draw3DCorner(false);
-    fStatusFrame->AddFrame(fStatusCanv, new TGLayoutHints(kLHintsTop | kLHintsExpandX, 2, 2, 0, 0));
-    //Add to global window
-    AddFrame(fStatusFrame, new TGLayoutHints(kLHintsExpandX, 2, 2, 1, 2));
-    //Default text
-    fStatusThis->SetText("ActRootv2", 0);
-    //Map
-    fStatusFrame->MapSubwindows();
-    fStatusFrame->MapWindow();
-}
-
 void ActRoot::EventPainter::InitTabs()
 {
     fTabManager = new TGTab(this, 500, 400);
@@ -222,9 +174,6 @@ void ActRoot::EventPainter::InitTab1()
     fFrame1->SetEditable(true);
     auto* c1 = fHistPainter.SetCanvas(1, "2D pads", 500, 400);
     fFrame1->SetEditable(false);
-    //Connect status bar
-    // c1->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
-    //             this, "CanvasToStatusBar(int,int,int,TObject*)");
 }
 
 void ActRoot::EventPainter::InitTab2()
@@ -233,9 +182,6 @@ void ActRoot::EventPainter::InitTab2()
     fFrame2->SetEditable(true);
     auto* c2 = fHistPainter.SetCanvas(2, "Pads and Silicons", 500, 400);
     fFrame2->SetEditable(false);
-    //Connect status bar
-    // c2->Connect("ProcessedEvent(Int_t,Int_t,Int_t,TObject*)", "ActRoot::EventPainter",
-    //                 this, "CanvasToStatusBar2(int,int,int,TObject*)");
 }
 
 ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, unsigned int height)
@@ -250,8 +196,6 @@ ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, 
     InitTab1();
     //Init Tab2
     InitTab2();
-    //Status bars
-    //InitStatusBars();
 
     //Other configs
     //SetCleanup(kDeepCleanup);

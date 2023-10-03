@@ -25,6 +25,12 @@ ActRoot::DetectorManager::DetectorManager()
     };
 }
 
+ActRoot::DetectorManager::DetectorManager(const std::string& file)
+    : DetectorManager()
+{
+    ReadConfiguration(file);
+}
+
 void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
 {
     //Preliminary!
@@ -51,9 +57,7 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
 {
     ActRoot::InputParser parser {file};
     for(const auto& det : parser.GetBlockHeaders())
-    {
         fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
-    }
 }
 
 void ActRoot::DetectorManager::DeleteDelector(DetectorType type)

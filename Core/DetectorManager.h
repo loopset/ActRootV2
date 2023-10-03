@@ -28,6 +28,7 @@ namespace ActRoot
         
     public:
         DetectorManager();
+        DetectorManager(const std::string& file);
         ~DetectorManager() {};
 
         void DeleteDelector(DetectorType type);

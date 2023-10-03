@@ -52,4 +52,7 @@
 //utils: cuts manager
 #pragma link C++ class ActRoot::CutsManager<int>;
 #pragma link C++ class ActRoot::CutsManager<std::string>;
+
+//MTExecutor
+#pragma link C++ class ActRoot::MTExecutor;
 #endif

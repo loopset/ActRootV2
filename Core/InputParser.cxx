@@ -33,14 +33,24 @@ std::string ActRoot::InputBlock::GetToken(const std::string& line)
 {
     //Find separator
     auto pos { line.find(ActRoot::kTokenSeparator)};
+    if(pos == line.npos)//if not found, likely it is a continuation of a previous token -> return empty token
+        return "";
     return line.substr(0, pos);
 }
 
-void ActRoot::InputBlock::GetValues(const std::string& line, const std::string& token)
+void ActRoot::InputBlock::GetValues(const std::string& line, const std::string& token, bool findTokenSeparator)
 {
-    //Find separator
-    auto pos { line.find(ActRoot::kTokenSeparator)};
-    auto values {line.substr(pos + 1)};
+    //Find separator if exists
+    std::string values {};
+    if(!findTokenSeparator)
+    {
+        values = line;
+    }
+    else
+    {
+        auto pos = line.find(ActRoot::kTokenSeparator);
+        values = line.substr(pos + 1);
+    }
     //split by value separator
     std::size_t previous {0}; std::size_t actual {};
     while ((actual = values.find_first_of(ActRoot::kValueSeparator, previous)) != std::string::npos)
@@ -57,6 +67,11 @@ void ActRoot::InputBlock::GetValues(const std::string& line, const std::string& 
 void ActRoot::InputBlock::AddLine(const std::string &line)
 {
     auto token {GetToken(line)};
+    if(token.length() == 0)//is a continuation of the .back() token; append to it
+    {
+        GetValues(line, fTokens.back(), false);//false bc this new line does not have Token= listed
+        return;
+    }
     fTokens.push_back(token);
     GetValues(line, token);
 }
@@ -122,8 +137,43 @@ std::vector<int> ActRoot::InputBlock::GetIntVector(const std::string& token)
 {
     CheckTokenExists(token);
     std::vector<int> ret {};
-    for(const auto& val : fValues[token])
-        ret.push_back(StringToInt(val));
+    //Check if we need to expand
+    int idxExpand {-1};
+    for(int v = 0; v < fValues[token].size(); v++)
+    {
+        const auto& val {fValues[token][v]};
+        if(val != ActRoot::kExpandValue)
+            ret.push_back(StringToInt(val));
+        if(val == ActRoot::kExpandValue)
+        {
+            //Begin is previous value
+            //End is next value
+            int end {};
+            try
+            {
+                end = StringToInt(fValues[token].at(v + 1));
+            }
+            catch(std::out_of_range& e)
+            {
+                throw std::out_of_range("... expansion requires next (begin, END] element to be present");
+            }
+            auto expansion {ExpandInt(ret.back(), end)};
+            //Insert
+            ret.insert(ret.end(), expansion.begin(), expansion.end());
+            //End is already in ret, skip next iteration
+            v += 1;
+        }
+    }
+    //for(const auto& val : fValues[token])
+    //ret.push_back(StringToInt(val));
+    return ret;
+}
+
+std::vector<int> ActRoot::InputBlock::ExpandInt(int begin, int end)
+{
+    std::vector<int> ret;
+    for(int i = begin + 1; i <= end; i++)
+        ret.push_back(i);
     return ret;
 }
 
@@ -171,10 +221,10 @@ bool ActRoot::InputParser::IsComment(const std::string& line)
 
 std::string ActRoot::InputParser::IsBlockHeader(const std::string& line)
 {
-    auto opening {line.find(ActRoot::kBlockHeader)};
+    auto opening {line.find(ActRoot::kBlockOpening)};
     if(opening != std::string::npos)
     {
-        auto closing {line.find("]")};
+        auto closing {line.find(ActRoot::kBlockClosing)};
         return line.substr(opening + 1, closing - 1);
     }
     else 
