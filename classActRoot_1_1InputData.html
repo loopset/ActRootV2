@@ -101,8 +101,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af73bdd0462861a317d8c3dabfe36e768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa199309492180ff6f71621f6ef235e20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">GetEntry</a> (int run, int entry)</td></tr>
 <tr class="separator:aa199309492180ff6f71621f6ef235e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e686c6464501901f7f6a6fdb525bc2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputData.html#a6e686c6464501901f7f6a6fdb525bc2d">GetEntryCloneVector</a> (int entry)</td></tr>
-<tr class="separator:a6e686c6464501901f7f6a6fdb525bc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af15abe9b19269234cda2031b4fa277f4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputData.html#af15abe9b19269234cda2031b4fa277f4">GetNEntries</a> (int run) const</td></tr>
 <tr class="separator:af15abe9b19269234cda2031b4fa277f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -270,24 +268,6 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a6e686c6464501901f7f6a6fdb525bc2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e686c6464501901f7f6a6fdb525bc2d">&#9670;&nbsp;</a></span>GetEntryCloneVector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ActRoot::InputData::GetEntryCloneVector </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>entry</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="af15abe9b19269234cda2031b4fa277f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af15abe9b19269234cda2031b4fa277f4">&#9670;&nbsp;</a></span>GetNEntries()</h2>
 
@@ -311,7 +291,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>.at(run)-&gt;GetEntries();}</div>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>.at(run)-&gt;GetEntries();}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -459,8 +439,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a422df4b022acf17702bea913a198b876"><div class="ttname"><a href="classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876">ActRoot::InputData::AddFile</a></div><div class="ttdeci">void AddFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> InputData.cxx:14</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a67fb01fd53401719cd03fbba0e6261b1"><div class="ttname"><a href="classActRoot_1_1InputData.html#a67fb01fd53401719cd03fbba0e6261b1">ActRoot::InputData::SetTreeName</a></div><div class="ttdeci">void SetTreeName(const std::string &amp;treeName)</div><div class="ttdef"><b>Definition:</b> InputData.h:31</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> InputParser.h:49</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:200</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> InputParser.h:52</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:250</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -487,7 +467,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{<a class="code" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">fTreeName</a> = treeName; };</div>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{<a class="code" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">fTreeName</a> = treeName;};</div>
 </div><!-- fragment -->
 </div>
 </div>

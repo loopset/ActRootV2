@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['geometry_635',['Geometry',['../classActSim_1_1Geometry.html',1,'ActSim']]]
+  ['histogrampainter_645',['HistogramPainter',['../classActRoot_1_1HistogramPainter.html',1,'ActRoot']]]
 ];

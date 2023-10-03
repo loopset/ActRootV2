@@ -75,8 +75,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1App.html">App</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The singleton class managin all calibrations.  <a href="classActRoot_1_1CalibrationManager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,6 +104,9 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class holding ModularLeaf experimental setups: VXI equivalences Detector of type ModularLeaf.  <a href="classActRoot_1_1ModularParameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html">ModularDetector</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MTExecutor.html">MTExecutor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class to perform multiple tasks in MT mode (experimental!)  <a href="classActRoot_1_1MTExecutor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1OutputData.html">OutputData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,8 +156,12 @@ Variables</h2></td></tr>
 <tr class="separator:ab1c6226ed232700245490060aa918465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6eef6a3005f0c49b95eaebd5667a79d"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#ae6eef6a3005f0c49b95eaebd5667a79d">kCommentSeparator</a> {&quot;%&quot;}</td></tr>
 <tr class="separator:ae6eef6a3005f0c49b95eaebd5667a79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af116aa9421254ba376422da478630058"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#af116aa9421254ba376422da478630058">kBlockHeader</a> {&quot;[&quot;}</td></tr>
-<tr class="separator:af116aa9421254ba376422da478630058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf8d039e652e45b986cc273f04ce0aa"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a8cf8d039e652e45b986cc273f04ce0aa">kBlockOpening</a> {&quot;[&quot;}</td></tr>
+<tr class="separator:a8cf8d039e652e45b986cc273f04ce0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884005d6e55fd93d441756571e38bc1d"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a884005d6e55fd93d441756571e38bc1d">kBlockClosing</a> {&quot;]&quot;}</td></tr>
+<tr class="separator:a884005d6e55fd93d441756571e38bc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65076a6acd149336692ce0dc76f5a051"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">kExpandValue</a> {&quot;...&quot;}</td></tr>
+<tr class="separator:a65076a6acd149336692ce0dc76f5a051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a68d199cc2990311709795d0ded060fc2"></a>
@@ -242,14 +247,28 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af116aa9421254ba376422da478630058"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af116aa9421254ba376422da478630058">&#9670;&nbsp;</a></span>kBlockHeader</h2>
+<a id="a884005d6e55fd93d441756571e38bc1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884005d6e55fd93d441756571e38bc1d">&#9670;&nbsp;</a></span>kBlockClosing</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string ActRoot::kBlockHeader {&quot;[&quot;}</td>
+          <td class="memname">const std::string ActRoot::kBlockClosing {&quot;]&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8cf8d039e652e45b986cc273f04ce0aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cf8d039e652e45b986cc273f04ce0aa">&#9670;&nbsp;</a></span>kBlockOpening</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string ActRoot::kBlockOpening {&quot;[&quot;}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -264,6 +283,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const std::string ActRoot::kCommentSeparator {&quot;%&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65076a6acd149336692ce0dc76f5a051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65076a6acd149336692ce0dc76f5a051">&#9670;&nbsp;</a></span>kExpandValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string ActRoot::kExpandValue {&quot;...&quot;}</td>
         </tr>
       </table>
 </div><div class="memdoc">

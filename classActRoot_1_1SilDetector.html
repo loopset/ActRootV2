@@ -428,7 +428,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ActRoot::VDetector</a>.</p>
 <div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">auto</span> files {config-&gt;GetTokens()};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">auto</span> files {config-&gt;GetStringVector(<span class="stringliteral">&quot;Paths&quot;</span>)};</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; file : files)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">CalibrationManager::Get</a>()-&gt;<a class="code" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a>(file);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
