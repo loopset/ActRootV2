@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['detectormanager_2ecxx_808',['DetectorManager.cxx',['../DetectorManager_8cxx.html',1,'']]],
-  ['detectormanager_2eh_809',['DetectorManager.h',['../DetectorManager_8h.html',1,'']]]
+  ['geometry_2ecxx_818',['Geometry.cxx',['../Geometry_8cxx.html',1,'']]],
+  ['geometry_2eh_819',['Geometry.h',['../Geometry_8h.html',1,'']]]
 ];

@@ -78,7 +78,7 @@ $(function() {
 <p>Main class interfacing all analysis detectors, with calibrations and main methods.  
  <a href="classActRoot_1_1DetectorManager.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="DetectorManager_8h_source.html">DetectorManager.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActDetectorManager_8h_source.html">ActDetectorManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -144,8 +144,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//Initialize Calibration Manager</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a9b7e32a907b44f28e68c7a3d6d4a3059">fCalMan</a> = std::make_shared&lt;CalibrationManager&gt;();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a9a3c770bf412e7a1d762e642341e756b"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a9a3c770bf412e7a1d762e642341e756b">ActRoot::DetectorManager::fDetDatabase</a></div><div class="ttdeci">std::unordered_map&lt; std::string, DetectorType &gt; fDetDatabase</div><div class="ttdoc">Equivalence .detector file [Header] to VDetector pointer.</div><div class="ttdef"><b>Definition:</b> DetectorManager.h:28</div></div>
-<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a9b7e32a907b44f28e68c7a3d6d4a3059"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a9b7e32a907b44f28e68c7a3d6d4a3059">ActRoot::DetectorManager::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">CalibrationManager is now included in DetectorManager to avoid singleton.</div><div class="ttdef"><b>Definition:</b> DetectorManager.h:29</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a9a3c770bf412e7a1d762e642341e756b"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a9a3c770bf412e7a1d762e642341e756b">ActRoot::DetectorManager::fDetDatabase</a></div><div class="ttdeci">std::unordered_map&lt; std::string, DetectorType &gt; fDetDatabase</div><div class="ttdoc">Equivalence .detector file [Header] to VDetector pointer.</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:28</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a9b7e32a907b44f28e68c7a3d6d4a3059"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a9b7e32a907b44f28e68c7a3d6d4a3059">ActRoot::DetectorManager::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">CalibrationManager is now included in DetectorManager to avoid singleton.</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:29</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">ActRoot::DetectorType::EActar</a></div><div class="ttdeci">@ EActar</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">ActRoot::DetectorType::EModular</a></div><div class="ttdeci">@ EModular</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ActRoot::DetectorType::ESilicons</a></div><div class="ttdeci">@ ESilicons</div></div>
@@ -171,8 +171,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a96e568d4d5a7ab4145274435bdb4afdd">ReadConfiguration</a>(file);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a96e568d4d5a7ab4145274435bdb4afdd"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a96e568d4d5a7ab4145274435bdb4afdd">ActRoot::DetectorManager::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> DetectorManager.cxx:37</div></div>
-<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_ae454669d758446f342b478ce3d9c694d"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#ae454669d758446f342b478ce3d9c694d">ActRoot::DetectorManager::DetectorManager</a></div><div class="ttdeci">DetectorManager()</div><div class="ttdef"><b>Definition:</b> DetectorManager.cxx:19</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a96e568d4d5a7ab4145274435bdb4afdd"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a96e568d4d5a7ab4145274435bdb4afdd">ActRoot::DetectorManager::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.cxx:37</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_ae454669d758446f342b478ce3d9c694d"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#ae454669d758446f342b478ce3d9c694d">ActRoot::DetectorManager::DetectorManager</a></div><div class="ttdeci">DetectorManager()</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.cxx:19</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -240,7 +240,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>]-&gt;BuildEventData();</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_af5af2efda2a1568959401693525f9cb6"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">ActRoot::DetectorManager::fDetectors</a></div><div class="ttdeci">std::unordered_map&lt; ActRoot::DetectorType, std::shared_ptr&lt; ActRoot::VDetector &gt; &gt; fDetectors</div><div class="ttdoc">Pointer to detectors.</div><div class="ttdef"><b>Definition:</b> DetectorManager.h:27</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_af5af2efda2a1568959401693525f9cb6"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">ActRoot::DetectorManager::fDetectors</a></div><div class="ttdeci">std::unordered_map&lt; ActRoot::DetectorType, std::shared_ptr&lt; ActRoot::VDetector &gt; &gt; fDetectors</div><div class="ttdoc">Pointer to detectors.</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -513,8 +513,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Core/<a class="el" href="DetectorManager_8h_source.html">DetectorManager.h</a></li>
-<li>Core/<a class="el" href="DetectorManager_8cxx.html">DetectorManager.cxx</a></li>
+<li>Core/<a class="el" href="ActDetectorManager_8h_source.html">ActDetectorManager.h</a></li>
+<li>Core/<a class="el" href="ActDetectorManager_8cxx.html">ActDetectorManager.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

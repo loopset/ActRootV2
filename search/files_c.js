@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['sildata_2ecxx_836',['SilData.cxx',['../SilData_8cxx.html',1,'']]],
-  ['sildata_2eh_837',['SilData.h',['../SilData_8h.html',1,'']]],
-  ['sildetector_2ecxx_838',['SilDetector.cxx',['../SilDetector_8cxx.html',1,'']]],
-  ['sildetector_2eh_839',['SilDetector.h',['../SilDetector_8h.html',1,'']]],
-  ['srim_2ecxx_840',['SRIM.cxx',['../SRIM_8cxx.html',1,'']]],
-  ['srim_2eh_841',['SRIM.h',['../SRIM_8h.html',1,'']]]
+  ['vdetector_2eh_850',['VDetector.h',['../VDetector_8h.html',1,'']]]
 ];
