@@ -76,7 +76,7 @@ void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
     auto files {config->GetStringVector("Paths")};
     for(auto& file : files)
-        CalibrationManager::Get()->ReadCalibration(file);
+        fCalMan->ReadCalibration(file);
 }
 
 void ActRoot::SilDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
@@ -110,14 +110,16 @@ void ActRoot::SilDetector::BuildEventData()
                 float raw {coas.peakheight[hit]};
                 //Check threshold
                 std::string threshKey {"Sil_" + layer + "_" + sil + "_P"};
-                if(!CalibrationManager::Get()->ApplyThreshold(threshKey, raw, 3))
+                if(!fCalMan->ApplyThreshold(threshKey, raw, 3))
                     continue;
                 //Write silicon number
                 fData->fSiN[layer].push_back(sil);                
                 //Calibrate
                 std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
-                float cal {static_cast<float>(CalibrationManager::Get()->ApplyCalibration(calKey, raw))};
+                float cal {static_cast<float>(fCalMan->ApplyCalibration(calKey, raw))};
                 fData->fSiE[layer].push_back(cal);
+                //std::cout<<"Raw sil = "<<raw<<" |"<<'\n';
+                //std::cout<<"Cal sil = "<<cal<<" |"<<'\n';
             }
         }
     }

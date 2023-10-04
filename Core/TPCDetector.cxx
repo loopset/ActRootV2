@@ -47,9 +47,9 @@ void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
     std::vector<std::string> keys {"LookUp", "PadAlign"};
     //Add LookUp table
-    CalibrationManager::Get()->ReadLookUpTable(config->GetString("LookUp"));
+    fCalMan->ReadLookUpTable(config->GetString("LookUp"));
     //Pad align table
-    CalibrationManager::Get()->ReadPadAlign(config->GetString("PadAlign"));    
+    fCalMan->ReadPadAlign(config->GetString("PadAlign"));
 }
 
 void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
@@ -106,8 +106,8 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
     int padx {}; int pady {};
     try
     {
-        padx = CalibrationManager::Get()->ApplyLookUp(where, 4);
-        pady = CalibrationManager::Get()->ApplyLookUp(where, 5);
+        padx = fCalMan->ApplyLookUp(where, 4);
+        pady = fCalMan->ApplyLookUp(where, 5);
     }
     catch(std::exception& e)
     {
@@ -121,7 +121,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         if(padz < 0)
             continue;
         float qraw {coas.peakheight[i]};
-        float qcal {static_cast<float>(CalibrationManager::Get()->ApplyPadAlignment(where, qraw))};
+        float qcal {static_cast<float>(fCalMan->ApplyPadAlignment(where, qraw))};
         
         //Apply rebinning (if desired)
         int binZ {(int)padz / fPars.GetREBINZ()};

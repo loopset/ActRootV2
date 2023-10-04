@@ -1,4 +1,5 @@
 #include "DetectorManager.h"
+#include "CalibrationManager.h"
 #include "InputParser.h"
 
 #include "ModularDetector.h"
@@ -23,6 +24,8 @@ ActRoot::DetectorManager::DetectorManager()
         {"Silicons", DetectorType::ESilicons},
         {"Modular", DetectorType::EModular},
     };
+    //Initialize Calibration Manager
+    fCalMan = std::make_shared<CalibrationManager>();
 }
 
 ActRoot::DetectorManager::DetectorManager(const std::string& file)
@@ -48,16 +51,18 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string &file)
             throw std::runtime_error("Detector " + det + " not found in Manager database");
         //Read config file
         fDetectors[fDetDatabase[det]]->ReadConfiguration(parser.GetBlock(det));
+        //Set CalibrationManager pointer
+        fDetectors[fDetDatabase[det]]->SetCalMan(fCalMan);
     }
-    //std::cout<<"Detector size = "<<fDetectors.size()<<'\n';
-    //fTP.reset(fDetectors.size());
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
 {
     ActRoot::InputParser parser {file};
     for(const auto& det : parser.GetBlockHeaders())
+    {
         fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
+    }
 }
 
 void ActRoot::DetectorManager::DeleteDelector(DetectorType type)
@@ -86,9 +91,10 @@ void ActRoot::DetectorManager::BuildEventData()
     for(auto& det : fDetectors)
     {
         det.second->ClearEventData();
-        //det.second->BuildEventData();
     }
-    // //1-->Actar
+    //This has to be splitted since MEvent could only be read from one branch at the same time
+    //And that branch is in Actar detector, so we pass the pointer manually to the other detectors
+    //1-->Actar
     if(fDetectors[DetectorType::EActar])
         fDetectors[DetectorType::EActar]->BuildEventData();
     //2-->Silicons
@@ -96,7 +102,6 @@ void ActRoot::DetectorManager::BuildEventData()
     {
         fDetectors[DetectorType::ESilicons]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
         fDetectors[DetectorType::ESilicons]->BuildEventData();
-        //fTP.push_task(&ActRoot::VDetector::BuildEventData, fDetectors[DetectorType::ESilicons]);
     }
     //3-->Modular
     if(fDetectors.find(DetectorType::EModular) != fDetectors.end())
@@ -104,5 +109,4 @@ void ActRoot::DetectorManager::BuildEventData()
         fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
         fDetectors[DetectorType::EModular]->BuildEventData();
     }
-    // //fTP.wait_for_tasks();
 }

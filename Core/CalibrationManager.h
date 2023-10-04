@@ -5,13 +5,14 @@
 Singleton class holding the calibrations for all the detectors!
 */
 
+#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
 namespace ActRoot
 {
-    //! The singleton class managin all calibrations
+    //! Class managing all calibrations (NO LONGER a singleton)
     /*!
       Specific methods are implemented for LT and Pad alignment,
       but the other calibrations work the same as nptools
@@ -22,16 +23,13 @@ namespace ActRoot
         std::unordered_map<std::string, std::vector<double>> fCalibs;//!< General map holding strings as keys for the vector of doubles (coeffs) of calib
         std::vector<std::vector<int>> fLT;//<! Special for Look up table on pad plane
         std::vector<std::vector<double>> fPadAlign;//!< Pad align coefficiens
-        std::vector<std::string> fFiles;//!< List of files read in calibration
-
-        //Constructor and destructor are private because we want a singleton
-        static CalibrationManager* fInstance;//!< Singleton of class
-        CalibrationManager() = default;//<! Private constructor of singleton
-        ~CalibrationManager() = default;//<! Private destructor of singleton
+        std::vector<std::string> fFiles;//!< List of files read in calibration       
 
     public:
-        static CalibrationManager* Get();//!< General method to interface with class
-
+        CalibrationManager() = default;//<! Default constructor
+        CalibrationManager(const std::string& calfile);//!< Construct and read a standard calibration file at once
+        ~CalibrationManager() = default;//<! Destructor
+        
         //Actar: needs improvements but that depends on .txt file format (need to add keys to parameters)
         void ReadCalibration(const std::string& file);
         void ReadLookUpTable(const std::string& file);
@@ -40,7 +38,7 @@ namespace ActRoot
         bool ApplyThreshold(const std::string& key, double raw, double nsigma = 1);
         int ApplyLookUp(int channel, int col);
         double ApplyPadAlignment(int channel, double q);
-        
+        void Print() const;
     };
 }
 

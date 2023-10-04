@@ -8,23 +8,15 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
+#include <mutex>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
-ActRoot::CalibrationManager* ActRoot::CalibrationManager::fInstance = nullptr;
-
-ActRoot::CalibrationManager* ActRoot::CalibrationManager::Get()
+ActRoot::CalibrationManager::CalibrationManager(const std::string& calfile)
 {
-    if(!fInstance)
-    {
-        std::cout<<"Instatiating singleton of ActRoot::CalibrationManager"<<'\n';
-        fInstance = new CalibrationManager();
-        return fInstance;
-    }
-    else
-        return fInstance;
+    ReadCalibration(calfile);
 }
 
 void ActRoot::CalibrationManager::ReadCalibration(const std::string &file)
@@ -48,7 +40,6 @@ void ActRoot::CalibrationManager::ReadCalibration(const std::string &file)
                 key = val;
             else
                 fCalibs[key].push_back(std::stod(val));
-            //std::cout<<"Sil cal = "<<key<<" val = "<<val<<'\n';
             col++;
         }
     }
@@ -103,7 +94,7 @@ void ActRoot::CalibrationManager::ReadLookUpTable(const std::string &file)
 
 double ActRoot::CalibrationManager::ApplyCalibration(const std::string &key, double raw)
 {
-    double cal {};
+    double cal {0};
     int order {0};
     std::vector<double> coeffs {};
     try
@@ -160,4 +151,18 @@ double ActRoot::CalibrationManager::ApplyPadAlignment(int channel, double q)
         order++;
     }
     return qAl;
+}
+
+void ActRoot::CalibrationManager::Print() const
+{
+    std::cout<<"==============================================="<<'\n';
+    std::cout<<"Pad align table with size   = "<<fPadAlign.size()<<'\n';
+    std::cout<<"Pad look up table with size = "<<fLT.size()<<'\n';
+    std::cout<<"Other calibrations = "<<'\n';
+    for(const auto& [key, vals] : fCalibs)
+    {
+        std::cout<<"-> Key "<<key<<'\n';
+        for(const auto& val : vals)
+            std::cout<<"   "<<val<<'\n';
+    }
 }

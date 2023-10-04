@@ -6,6 +6,7 @@ A class holding all the detector info and the main interface to the operations
 performed on its data
 */
 
+#include "CalibrationManager.h"
 #include "TTree.h"
 //#include "BS_thread_pool.hpp"
 #include "VDetector.h"
@@ -18,19 +19,21 @@ performed on its data
 namespace ActRoot
 {
     enum class DetectorType {EActar, ESilicons, EModular};
-    
+
+    //! Main class interfacing all analysis detectors, with calibrations and main methods
     class DetectorManager
     {
     private:
-        std::unordered_map<ActRoot::DetectorType, std::shared_ptr<ActRoot::VDetector>> fDetectors;
-        std::unordered_map<std::string, DetectorType> fDetDatabase;
-        //BS::thread_pool fTP;
+        std::unordered_map<ActRoot::DetectorType, std::shared_ptr<ActRoot::VDetector>> fDetectors;//!< Pointer to detectors
+        std::unordered_map<std::string, DetectorType> fDetDatabase;//!< Equivalence .detector file [Header] to VDetector pointer
+        std::shared_ptr<CalibrationManager> fCalMan {};//!< CalibrationManager is now included in DetectorManager to avoid singleton
         
     public:
         DetectorManager();
         DetectorManager(const std::string& file);
         ~DetectorManager() {};
 
+        std::shared_ptr<CalibrationManager> GetCalMan() {return fCalMan;}
         void DeleteDelector(DetectorType type);
         int GetNumberOfDetectors() const {return fDetectors.size();}
         void ReadConfiguration(const std::string& file);
