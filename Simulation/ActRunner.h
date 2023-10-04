@@ -1,5 +1,5 @@
-#ifndef ActSimRunner_h
-#define ActSimRunner_h
+#ifndef ActRunner_h
+#define ActRunner_h
 
 #include "TF1.h"
 #include "TRandom3.h"
@@ -8,7 +8,7 @@
 #include "TH3F.h"
 
 #include "ActSRIM.h"
-#include "Geometry.h"
+#include "ActGeometry.h"
 
 #include <memory>
 #include <string>

@@ -1,5 +1,5 @@
-#ifndef ACTSTEPPINGACTION_HH
-#define ACTSTEPPINGACTION_HH
+#ifndef ACT4STEPPINGACTION_HH
+#define ACT4STEPPINGACTION_HH
 
 #include "G4UserSteppingAction.hh"
 

@@ -1,6 +1,6 @@
-#include "ActSilDetector.hh"
+#include "Act4SilDetector.hh"
 
-#include "ActDetectorConstruction.hh"
+#include "Act4DetectorConstruction.hh"
 #include "G4LogicalVolume.hh"
 #include "G4VPhysicalVolume.hh"
 #include "G4SystemOfUnits.hh"

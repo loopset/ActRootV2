@@ -1,6 +1,6 @@
-#include "ActDriftDetector.hh"
+#include "Act4DriftDetector.hh"
 
-#include "ActDetectorConstruction.hh"
+#include "Act4DetectorConstruction.hh"
 
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"

@@ -1,5 +1,5 @@
-#include "ActDetectorConstruction.hh"
-#include "ActActionInitialization.hh"
+#include "Act4DetectorConstruction.hh"
+#include "Act4ActionInitialization.hh"
 
 #include "G4RunManagerFactory.hh"
 #include "G4SteppingVerbose.hh"

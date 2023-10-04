@@ -1,5 +1,5 @@
-#ifndef ACTSILDETECTOR_HH
-#define ACTSILDETECTOR_HH
+#ifndef ACT4SILDETECTOR_HH
+#define ACT4SILDETECTOR_HH
 
 class ActDetectorConstruction;
 

@@ -1,5 +1,5 @@
-#ifndef ACTPRIMARYGENERATOR_HH
-#define ACTPRIMARYGENERATOR_HH
+#ifndef ACT4PRIMARYGENERATOR_HH
+#define ACT4PRIMARYGENERATOR_HH
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"

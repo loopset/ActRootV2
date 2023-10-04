@@ -1,5 +1,5 @@
-#include "ActEventAction.hh"
-#include "ActRunAction.hh"
+#include "Act4EventAction.hh"
+#include "Act4RunAction.hh"
 
 #include "G4AnalysisManager.hh"
 #include "G4RunManager.hh"

@@ -1,5 +1,5 @@
-#ifndef ACTEVENTACTION_HH
-#define ACTEVENTACTION_HH
+#ifndef ACT4EVENTACTION_HH
+#define ACT4EVENTACTION_HH
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"

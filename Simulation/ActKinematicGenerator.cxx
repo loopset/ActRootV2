@@ -1,4 +1,4 @@
-#include "KinematicGenerator.h"
+#include "ActKinematicGenerator.h"
 
 #include "ActColors.h"
 #include "ActKinematics.h"

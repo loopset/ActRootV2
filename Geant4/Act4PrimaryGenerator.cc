@@ -1,4 +1,4 @@
-#include "ActPrimaryGenerator.hh"
+#include "Act4PrimaryGenerator.hh"
 
 #include "G4RunManager.hh"
 #include "G4LogicalVolumeStore.hh"
@@ -53,7 +53,7 @@ void ActPrimaryGenerator::GeneratePrimaries(G4Event* event)
 
     //Set vertex position
     G4double xVertex {G4UniformRand() * driftHalfLength};
-    G4double yVertex {0.};
+    G4double yVertex {G4UniformRand() * driftBox->GetYHalfLength()};
     G4double zVertex {0.};
     fParticleGun->SetParticlePosition(G4ThreeVector(xVertex, yVertex, zVertex));
     fParticleGun->GeneratePrimaryVertex(event);

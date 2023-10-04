@@ -1,4 +1,4 @@
-#include "ActRunAction.hh"
+#include "Act4RunAction.hh"
 
 #include "G4AnalysisManager.hh"
 #include "G4Run.hh"

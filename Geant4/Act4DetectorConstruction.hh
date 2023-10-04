@@ -1,5 +1,5 @@
-#ifndef ACTDETECTORCONSTRUCTION_H
-#define ACTDETECTORCONSTRUCTION_H
+#ifndef ACT4DETECTORCONSTRUCTION_H
+#define ACT4DETECTORCONSTRUCTION_H
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"

@@ -1,6 +1,6 @@
-#include "ActSteppingAction.hh"
-#include "ActEventAction.hh"
-#include "ActDetectorConstruction.hh"
+#include "Act4SteppingAction.hh"
+#include "Act4EventAction.hh"
+#include "Act4DetectorConstruction.hh"
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"

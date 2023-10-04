@@ -96,11 +96,11 @@ void ActRoot::HistogramPainter::Init()
     //Front L0
     fHistSil[5] = std::make_shared<TH2F>("hF0", "F0;Col;Row",
                                          3, 0.5, 3.5,
-                                         4, 0.5, 3.5);
+                                         4, 0.5, 4.5);
     //Front L1
     fHistSil[6] = std::make_shared<TH2F>("hF1", "F1;Col;Row",
                                          3, 0.5, 3.5,
-                                         4, 0.5, 3.5);
+                                         4, 0.5, 4.5);
     for(auto& [_, h] : fHistSil)
     {
         h->SetStats(false);

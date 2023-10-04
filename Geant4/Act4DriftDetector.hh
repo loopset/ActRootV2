@@ -1,5 +1,5 @@
-#ifndef ACTDRIFTDETECTOR_H
-#define ACTDRIFTDETECTOR_H
+#ifndef ACT4DRIFTDETECTOR_H
+#define ACT4DRIFTDETECTOR_H
 #include "G4VUserDetectorConstruction.hh"
 
 #include "G4Material.hh"

@@ -1,10 +1,10 @@
-#include "ActActionInitialization.hh"
+#include "Act4ActionInitialization.hh"
 
-#include "ActPrimaryGenerator.hh"
-#include "ActRunAction.hh"
-#include "ActDetectorConstruction.hh"
-#include "ActEventAction.hh"
-#include "ActSteppingAction.hh"
+#include "Act4PrimaryGenerator.hh"
+#include "Act4RunAction.hh"
+#include "Act4DetectorConstruction.hh"
+#include "Act4EventAction.hh"
+#include "Act4SteppingAction.hh"
 
 ActActionInitialization::ActActionInitialization(ActDetectorConstruction* det)
     : fDetConstruction(det)

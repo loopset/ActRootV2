@@ -1,5 +1,5 @@
-#ifndef ACTRUNACTION_HH
-#define ACTRUNACTION_HH
+#ifndef ACT4RUNACTION_HH
+#define ACT4RUNACTION_HH
 
 #include "G4UserRunAction.hh"
 #include "globals.hh"
