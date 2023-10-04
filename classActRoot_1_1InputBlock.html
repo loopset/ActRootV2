@@ -76,7 +76,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="InputParser_8h_source.html">InputParser.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActInputParser_8h_source.html">ActInputParser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -180,7 +180,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <a class="code" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a> = name; };</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad68e77f4fbc8bbe14d00ebbb48cee857"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">ActRoot::InputBlock::fBlockName</a></div><div class="ttdeci">std::string fBlockName</div><div class="ttdef"><b>Definition:</b> InputParser.h:24</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad68e77f4fbc8bbe14d00ebbb48cee857"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">ActRoot::InputBlock::fBlockName</a></div><div class="ttdeci">std::string fBlockName</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -236,9 +236,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.push_back(token);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">GetValues</a>(line, token);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4aac1fc1cdd78a9cfbaa34cac5c40a81"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock::fTokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fTokens</div><div class="ttdef"><b>Definition:</b> InputParser.h:26</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a8fcd3c36c6f51e66ce5f5d0540bc63ed"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">ActRoot::InputBlock::GetToken</a></div><div class="ttdeci">std::string GetToken(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:32</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aefd420cacbf18fefc613aa98f140172f"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">ActRoot::InputBlock::GetValues</a></div><div class="ttdeci">void GetValues(const std::string &amp;line, const std::string &amp;token, bool findTokenSeparator=true)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:41</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4aac1fc1cdd78a9cfbaa34cac5c40a81"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock::fTokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fTokens</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:26</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a8fcd3c36c6f51e66ce5f5d0540bc63ed"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">ActRoot::InputBlock::GetToken</a></div><div class="ttdeci">std::string GetToken(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:32</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aefd420cacbf18fefc613aa98f140172f"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">ActRoot::InputBlock::GetValues</a></div><div class="ttdeci">void GetValues(const std::string &amp;line, const std::string &amp;token, bool findTokenSeparator=true)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:41</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -273,7 +273,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; does not exit in InputBlock&quot;</span>);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> exists;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a1587321fc4e5cffcbb3e1d5699d63b5b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">ActRoot::InputBlock::fValues</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; fValues</div><div class="ttdef"><b>Definition:</b> InputParser.h:27</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a1587321fc4e5cffcbb3e1d5699d63b5b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">ActRoot::InputBlock::fValues</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; fValues</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,9 +392,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4f8b7ba536bd390b0c9b5657d950756e"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">ActRoot::InputBlock::StringToInt</a></div><div class="ttdeci">int StringToInt(const std::string &amp;val)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:107</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a914cb4d982e63d891ccc3bbafd476e07"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">ActRoot::InputBlock::CheckTokenExists</a></div><div class="ttdeci">bool CheckTokenExists(const std::string &amp;token, bool soft=false)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:79</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad1706e1df2b3bc946489ddeb4a1078f7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">ActRoot::InputBlock::IsVector</a></div><div class="ttdeci">bool IsVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:87</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4f8b7ba536bd390b0c9b5657d950756e"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">ActRoot::InputBlock::StringToInt</a></div><div class="ttdeci">int StringToInt(const std::string &amp;val)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:107</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a914cb4d982e63d891ccc3bbafd476e07"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">ActRoot::InputBlock::CheckTokenExists</a></div><div class="ttdeci">bool CheckTokenExists(const std::string &amp;token, bool soft=false)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:79</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad1706e1df2b3bc946489ddeb4a1078f7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">ActRoot::InputBlock::IsVector</a></div><div class="ttdeci">bool IsVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:87</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -447,8 +447,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">//ret.push_back(StringToInt(val));</span></div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7b5503a95cd9739bb30291e233d48e4c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ActRoot::InputBlock::ExpandInt</a></div><div class="ttdeci">std::vector&lt; int &gt; ExpandInt(int begin, int end)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:172</div></div>
-<div class="ttc" id="anamespaceActRoot_html_a65076a6acd149336692ce0dc76f5a051"><div class="ttname"><a href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a></div><div class="ttdeci">const std::string kExpandValue</div><div class="ttdef"><b>Definition:</b> InputParser.h:17</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7b5503a95cd9739bb30291e233d48e4c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ActRoot::InputBlock::ExpandInt</a></div><div class="ttdeci">std::vector&lt; int &gt; ExpandInt(int begin, int end)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:172</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a65076a6acd149336692ce0dc76f5a051"><div class="ttname"><a href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a></div><div class="ttdeci">const std::string kExpandValue</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:17</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -528,7 +528,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> line.substr(0, pos);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="ttc" id="anamespaceActRoot_html_a65a3472de3360771c3f8a49e0aa3d4e4"><div class="ttname"><a href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a></div><div class="ttdeci">const std::string kTokenSeparator</div><div class="ttdef"><b>Definition:</b> InputParser.h:12</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a65a3472de3360771c3f8a49e0aa3d4e4"><div class="ttname"><a href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a></div><div class="ttdeci">const std::string kTokenSeparator</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:12</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -621,8 +621,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span>(previous &lt; values.length())</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous)));</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:13</div></div>
-<div class="ttc" id="anamespaceActRoot_html_ab1c6226ed232700245490060aa918465"><div class="ttname"><a href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a></div><div class="ttdeci">const std::string kValueSeparator</div><div class="ttdef"><b>Definition:</b> InputParser.h:13</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:13</div></div>
+<div class="ttc" id="anamespaceActRoot_html_ab1c6226ed232700245490060aa918465"><div class="ttname"><a href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a></div><div class="ttdeci">const std::string kValueSeparator</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:13</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -790,8 +790,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Core/<a class="el" href="InputParser_8h_source.html">InputParser.h</a></li>
-<li>Core/<a class="el" href="InputParser_8cxx.html">InputParser.cxx</a></li>
+<li>Core/<a class="el" href="ActInputParser_8h_source.html">ActInputParser.h</a></li>
+<li>Core/<a class="el" href="ActInputParser_8cxx.html">ActInputParser.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -79,7 +79,7 @@ $(function() {
 <p>A class reading NUBASE particle info.  
  <a href="classActPhysics_1_1Particle.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="Particle_8h_source.html">Particle.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActParticle_8h_source.html">ActParticle.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -203,7 +203,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a9cfd9f9ce73da86adfdf75df31d69c37">ParseFile</a>(Z, A);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9cfd9f9ce73da86adfdf75df31d69c37"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9cfd9f9ce73da86adfdf75df31d69c37">ActPhysics::Particle::ParseFile</a></div><div class="ttdeci">void ParseFile(int Z, int A, const std::string &amp;file=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> Particle.cxx:24</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9cfd9f9ce73da86adfdf75df31d69c37"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9cfd9f9ce73da86adfdf75df31d69c37">ActPhysics::Particle::ParseFile</a></div><div class="ttdeci">void ParseFile(int Z, int A, const std::string &amp;file=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -322,13 +322,13 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">//Build mass</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a> = <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">Constants::kamuToMeVC2</a> + <a class="code" href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">fMassExcess</a> - <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">Constants::keMass</a>;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a925a7e7bb827b583d4070788119002a0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdoc">Name in database of the particle.</div><div class="ttdef"><b>Definition:</b> Particle.h:14</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab76f793d03b157cafcf655f7762b5818"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">ActPhysics::Particle::fMassExcess</a></div><div class="ttdeci">double fMassExcess</div><div class="ttdoc">Mass excess in MeV/c2.</div><div class="ttdef"><b>Definition:</b> Particle.h:15</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab9426cc4c7a71d8e721537b4aa2ddd70"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle::fMass</a></div><div class="ttdeci">double fMass</div><div class="ttdoc">Mass in MeV/c2.</div><div class="ttdef"><b>Definition:</b> Particle.h:16</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ade02efcafaf9596e92803043c4086e83"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">ActPhysics::Particle::fZ</a></div><div class="ttdeci">int fZ</div><div class="ttdoc">Charge of the particle.</div><div class="ttdef"><b>Definition:</b> Particle.h:18</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_aea893f4402bc8854ef2997c775ad4046"><div class="ttname"><a href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">ActPhysics::Particle::fA</a></div><div class="ttdeci">int fA</div><div class="ttdoc">Masic number.</div><div class="ttdef"><b>Definition:</b> Particle.h:17</div></div>
-<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a18c63f6ebbc1233496d95dc8e56c4c7f"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">ActPhysics::Constants::kamuToMeVC2</a></div><div class="ttdeci">const double kamuToMeVC2</div><div class="ttdoc">amu to MeV / c2 scaling factor</div><div class="ttdef"><b>Definition:</b> Constants.h:9</div></div>
-<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a9ee6c5906c1394dc08f470f7e07274cb"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">ActPhysics::Constants::keMass</a></div><div class="ttdeci">const double keMass</div><div class="ttdoc">electron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> Constants.h:10</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a925a7e7bb827b583d4070788119002a0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdoc">Name in database of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:14</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab76f793d03b157cafcf655f7762b5818"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">ActPhysics::Particle::fMassExcess</a></div><div class="ttdeci">double fMassExcess</div><div class="ttdoc">Mass excess in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:15</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab9426cc4c7a71d8e721537b4aa2ddd70"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle::fMass</a></div><div class="ttdeci">double fMass</div><div class="ttdoc">Mass in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:16</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ade02efcafaf9596e92803043c4086e83"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">ActPhysics::Particle::fZ</a></div><div class="ttdeci">int fZ</div><div class="ttdoc">Charge of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:18</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_aea893f4402bc8854ef2997c775ad4046"><div class="ttname"><a href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">ActPhysics::Particle::fA</a></div><div class="ttdeci">int fA</div><div class="ttdoc">Masic number.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:17</div></div>
+<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a18c63f6ebbc1233496d95dc8e56c4c7f"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">ActPhysics::Constants::kamuToMeVC2</a></div><div class="ttdeci">const double kamuToMeVC2</div><div class="ttdoc">amu to MeV / c2 scaling factor</div><div class="ttdef"><b>Definition:</b> ActConstants.h:9</div></div>
+<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a9ee6c5906c1394dc08f470f7e07274cb"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">ActPhysics::Constants::keMass</a></div><div class="ttdeci">const double keMass</div><div class="ttdoc">electron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:10</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -461,7 +461,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">GetSnX</a>(1);}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a5b95715858587e4a87dd7da681adce8a"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">ActPhysics::Particle::GetSnX</a></div><div class="ttdeci">double GetSnX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> Particle.cxx:117</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a5b95715858587e4a87dd7da681adce8a"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">ActPhysics::Particle::GetSnX</a></div><div class="ttdeci">double GetSnX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:117</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -493,7 +493,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">return</span> N.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">Constants::knMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html_a5549948933bac9d81662d341618360da"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">ActPhysics::Particle::Particle</a></div><div class="ttdeci">Particle()=default</div></div>
-<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_ae930a4a8c842f20f7ece45fc24a8d55b"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">ActPhysics::Constants::knMass</a></div><div class="ttdeci">const double knMass</div><div class="ttdoc">neutron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> Constants.h:12</div></div>
+<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_ae930a4a8c842f20f7ece45fc24a8d55b"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">ActPhysics::Constants::knMass</a></div><div class="ttdeci">const double knMass</div><div class="ttdoc">neutron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:12</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -520,7 +520,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">GetSpX</a>(1);}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a8c9d007fd0c8c6b84c2c5f2f37ef77e0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">ActPhysics::Particle::GetSpX</a></div><div class="ttdeci">double GetSpX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> Particle.cxx:123</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a8c9d007fd0c8c6b84c2c5f2f37ef77e0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">ActPhysics::Particle::GetSpX</a></div><div class="ttdeci">double GetSpX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:123</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -551,7 +551,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">Particle</a> P(<a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> - X, <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> - X);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> P.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">Constants::kpMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
-<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_afbe77d3a00bc7a28eb94709bb7f3cbfe"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">ActPhysics::Constants::kpMass</a></div><div class="ttdeci">const double kpMass</div><div class="ttdoc">proton mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> Constants.h:11</div></div>
+<div class="ttc" id="anamespaceActPhysics_1_1Constants_html_afbe77d3a00bc7a28eb94709bb7f3cbfe"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">ActPhysics::Constants::kpMass</a></div><div class="ttdeci">const double kpMass</div><div class="ttdoc">proton mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:11</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -667,8 +667,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9153388d8d6fdfbe2d19581b6e729364"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">ActPhysics::Particle::StripWhitespaces</a></div><div class="ttdeci">std::string StripWhitespaces(std::string str)</div><div class="ttdef"><b>Definition:</b> Particle.cxx:111</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_acdbe88b9b62cce5685496d28e276b3a9"><div class="ttname"><a href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">ActPhysics::Particle::Extract</a></div><div class="ttdeci">void Extract(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> Particle.cxx:82</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9153388d8d6fdfbe2d19581b6e729364"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">ActPhysics::Particle::StripWhitespaces</a></div><div class="ttdeci">std::string StripWhitespaces(std::string str)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:111</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_acdbe88b9b62cce5685496d28e276b3a9"><div class="ttname"><a href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">ActPhysics::Particle::Extract</a></div><div class="ttdeci">void Extract(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:82</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -916,8 +916,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Physics/<a class="el" href="Particle_8h_source.html">Particle.h</a></li>
-<li>Physics/<a class="el" href="Particle_8cxx.html">Particle.cxx</a></li>
+<li>Physics/<a class="el" href="ActParticle_8h_source.html">ActParticle.h</a></li>
+<li>Physics/<a class="el" href="ActParticle_8cxx.html">ActParticle.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

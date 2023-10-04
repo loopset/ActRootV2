@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="OutputData_8h_source.html">OutputData.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActOutputData_8h_source.html">ActOutputData.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -159,7 +159,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">SetSameTreesAsInput</a>(input);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a538e7c324ee8abd9861d2e994af62abb"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">ActRoot::OutputData::SetSameTreesAsInput</a></div><div class="ttdeci">void SetSameTreesAsInput(const InputData &amp;input)</div><div class="ttdef"><b>Definition:</b> OutputData.cxx:55</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a538e7c324ee8abd9861d2e994af62abb"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">ActRoot::OutputData::SetSameTreesAsInput</a></div><div class="ttdeci">void SetSameTreesAsInput(const InputData &amp;input)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:55</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -233,7 +233,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run]-&gt;Fill();</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_af3a76bc7cd3e0c0559d5421fd66a4241"><div class="ttname"><a href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">ActRoot::OutputData::fTrees</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TTree &gt; &gt; fTrees</div><div class="ttdef"><b>Definition:</b> OutputData.h:21</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_af3a76bc7cd3e0c0559d5421fd66a4241"><div class="ttname"><a href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">ActRoot::OutputData::fTrees</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TTree &gt; &gt; fTrees</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -324,8 +324,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run] = std::make_shared&lt;TFile&gt;(file.c_str(), <span class="stringliteral">&quot;recreate&quot;</span>);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run] = std::make_shared&lt;TTree&gt;(<a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a>.c_str(), <span class="stringliteral">&quot;ActRoot event data&quot;</span>);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a4f167ee9292cf7b894b5f0f2d196d196"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">ActRoot::OutputData::fFiles</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TFile &gt; &gt; fFiles</div><div class="ttdef"><b>Definition:</b> OutputData.h:20</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_adcc83fde6634ac6e9fe6501d3f84b9ab"><div class="ttname"><a href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">ActRoot::OutputData::fTreeName</a></div><div class="ttdeci">std::string fTreeName</div><div class="ttdef"><b>Definition:</b> OutputData.h:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a4f167ee9292cf7b894b5f0f2d196d196"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">ActRoot::OutputData::fFiles</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TFile &gt; &gt; fFiles</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_adcc83fde6634ac6e9fe6501d3f84b9ab"><div class="ttname"><a href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">ActRoot::OutputData::fTreeName</a></div><div class="ttdeci">std::string fTreeName</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,11 +392,11 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">InitFile</a>(run, fullname.Data());</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }  </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> InputParser.h:52</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> InputParser.cxx:250</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a00ce8a6c8f41c90b8c5f167512f73654"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">ActRoot::OutputData::fRuns</a></div><div class="ttdeci">std::vector&lt; int &gt; fRuns</div><div class="ttdef"><b>Definition:</b> OutputData.h:19</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6ec7808e1341b86e1a3abbc97d154ae4"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">ActRoot::OutputData::InitFile</a></div><div class="ttdeci">void InitFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> OutputData.cxx:20</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_ac3578b268132cd45bed5240d7c092ace"><div class="ttname"><a href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">ActRoot::OutputData::SetTreeName</a></div><div class="ttdeci">void SetTreeName(const std::string &amp;treeName)</div><div class="ttdef"><b>Definition:</b> OutputData.h:32</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:52</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:250</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a00ce8a6c8f41c90b8c5f167512f73654"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">ActRoot::OutputData::fRuns</a></div><div class="ttdeci">std::vector&lt; int &gt; fRuns</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:19</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6ec7808e1341b86e1a3abbc97d154ae4"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">ActRoot::OutputData::InitFile</a></div><div class="ttdeci">void InitFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_ac3578b268132cd45bed5240d7c092ace"><div class="ttname"><a href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">ActRoot::OutputData::SetTreeName</a></div><div class="ttdeci">void SetTreeName(const std::string &amp;treeName)</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:32</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -538,8 +538,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Core/<a class="el" href="OutputData_8h_source.html">OutputData.h</a></li>
-<li>Core/<a class="el" href="OutputData_8cxx.html">OutputData.cxx</a></li>
+<li>Core/<a class="el" href="ActOutputData_8h_source.html">ActOutputData.h</a></li>
+<li>Core/<a class="el" href="ActOutputData_8cxx.html">ActOutputData.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
