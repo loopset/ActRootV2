@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calibrationmanager_33',['CalibrationManager',['../classActRoot_1_1CalibrationManager.html',1,'ActRoot::CalibrationManager'],['../classActRoot_1_1CalibrationManager.html#a5fa748bbeb087b265eef9206cb2eab68',1,'ActRoot::CalibrationManager::CalibrationManager()']]],
+  ['calibrationmanager_33',['CalibrationManager',['../classActRoot_1_1CalibrationManager.html',1,'ActRoot::CalibrationManager'],['../classActRoot_1_1CalibrationManager.html#a2a059eec5501aaf6b72358fcc924ad04',1,'ActRoot::CalibrationManager::CalibrationManager(const std::string &amp;calfile)'],['../classActRoot_1_1CalibrationManager.html#a5fa748bbeb087b265eef9206cb2eab68',1,'ActRoot::CalibrationManager::CalibrationManager()=default']]],
   ['calibrationmanager_2ecxx_34',['CalibrationManager.cxx',['../CalibrationManager_8cxx.html',1,'']]],
   ['calibrationmanager_2eh_35',['CalibrationManager.h',['../CalibrationManager_8h.html',1,'']]],
   ['canvangular_36',['canvAngular',['../classActSim_1_1TheoCrossSection.html#a60fd8005d7e13b5b0f52a7845a882830',1,'ActSim::TheoCrossSection']]],

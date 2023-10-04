@@ -75,13 +75,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Base class contaning all methods of an analysis detector.  
+ <a href="classActRoot_1_1VDetector.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="VDetector_8h_source.html">VDetector.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActRoot::VDetector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1VDetector__inherit__graph.png" border="0" usemap="#aActRoot_1_1VDetector_inherit__map" alt="Inheritance graph"/></div>
 <map name="aActRoot_1_1VDetector_inherit__map" id="aActRoot_1_1VDetector_inherit__map">
-<area shape="rect" title=" " alt="" coords="223,5,370,32"/>
+<area shape="rect" title="Base class contaning all methods of an analysis detector." alt="" coords="223,5,370,32"/>
 <area shape="rect" href="classActRoot_1_1ModularDetector.html" title=" " alt="" coords="5,80,196,107"/>
 <area shape="rect" href="classActRoot_1_1SilDetector.html" title="Silicon detector class." alt="" coords="220,80,373,107"/>
 <area shape="rect" href="classActRoot_1_1TPCDetector.html" title=" " alt="" coords="398,80,561,107"/>
@@ -92,7 +95,7 @@ Collaboration diagram for ActRoot::VDetector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1VDetector__coll__graph.png" border="0" usemap="#aActRoot_1_1VDetector_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1VDetector_coll__map" id="aActRoot_1_1VDetector_coll__map">
-<area shape="rect" title=" " alt="" coords="5,171,152,197"/>
+<area shape="rect" title="Base class contaning all methods of an analysis detector." alt="" coords="5,171,152,197"/>
 <area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="15,81,142,108"/>
 <area shape="rect" title=" " alt="" coords="43,5,115,32"/>
 </map>
@@ -120,13 +123,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850f7140986bfea024c864fe4d88c44b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
 <tr class="separator:a850f7140986bfea024c864fe4d88c44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8f55b5ebaa3f562bcc74f66cd2b38b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afd8f55b5ebaa3f562bcc74f66cd2b38b">SetCalMan</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt; calman)</td></tr>
+<tr class="separator:afd8f55b5ebaa3f562bcc74f66cd2b38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db0696cba13e0122676789b14eed816"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a3db0696cba13e0122676789b14eed816">GetCalMan</a> () const</td></tr>
+<tr class="separator:a3db0696cba13e0122676789b14eed816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:afc475c3fe37b340d5e78bba54fde2748"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> {}</td></tr>
+<tr class="memdesc:afc475c3fe37b340d5e78bba54fde2748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy dependency to MEvent... Could be changed in future.  <a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">More...</a><br /></td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d8fea032d928ce494d6a116f9df0517"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> {}</td></tr>
+<tr class="memdesc:a4d8fea032d928ce494d6a116f9df0517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classActRoot_1_1CalibrationManager.html" title="Class managing all calibrations (NO LONGER a singleton)">CalibrationManager</a> to avoid working with singleton.  <a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">More...</a><br /></td></tr>
+<tr class="separator:a4d8fea032d928ce494d6a116f9df0517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class contaning all methods of an analysis detector. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7f90fa1f9c6769b51ae6ddfe4ec03e37"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7f90fa1f9c6769b51ae6ddfe4ec03e37">&#9670;&nbsp;</a></span>VDetector()</h2>
 
@@ -232,6 +245,33 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3db0696cba13e0122676789b14eed816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db0696cba13e0122676789b14eed816">&#9670;&nbsp;</a></span>GetCalMan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a>&gt; ActRoot::VDetector::GetCalMan </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>;}</div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> VDetector.h:20</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a850f7140986bfea024c864fe4d88c44b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a850f7140986bfea024c864fe4d88c44b">&#9670;&nbsp;</a></span>GetMEvent()</h2>
 
@@ -254,8 +294,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>;}</div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdef"><b>Definition:</b> VDetector.h:17</div></div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>;}</div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> VDetector.h:19</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -381,6 +421,33 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="afd8f55b5ebaa3f562bcc74f66cd2b38b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8f55b5ebaa3f562bcc74f66cd2b38b">&#9670;&nbsp;</a></span>SetCalMan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::VDetector::SetCalMan </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td>
+          <td class="paramname"><em>calman</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> = calman;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">&#9670;&nbsp;</a></span>SetMEvent()</h2>
 
@@ -404,11 +471,35 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> = mevt;}</div>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> = mevt;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4d8fea032d928ce494d6a116f9df0517"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8fea032d928ce494d6a116f9df0517">&#9670;&nbsp;</a></span>fCalMan</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a>&gt; ActRoot::VDetector::fCalMan {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to <a class="el" href="classActRoot_1_1CalibrationManager.html" title="Class managing all calibrations (NO LONGER a singleton)">CalibrationManager</a> to avoid working with singleton. </p>
+
+</div>
+</div>
 <a id="afc475c3fe37b340d5e78bba54fde2748"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc475c3fe37b340d5e78bba54fde2748">&#9670;&nbsp;</a></span>fMEvent</h2>
 
@@ -428,6 +519,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Legacy dependency to MEvent... Could be changed in future. </p>
 
 </div>
 </div>

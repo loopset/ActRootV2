@@ -86,7 +86,7 @@ Inheritance diagram for ActRoot::SilDetector:</div>
 <div class="center"><img src="classActRoot_1_1SilDetector__inherit__graph.png" border="0" usemap="#aActRoot_1_1SilDetector_inherit__map" alt="Inheritance graph"/></div>
 <map name="aActRoot_1_1SilDetector_inherit__map" id="aActRoot_1_1SilDetector_inherit__map">
 <area shape="rect" title="Silicon detector class." alt="" coords="5,80,159,107"/>
-<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="9,5,155,32"/>
+<area shape="rect" href="classActRoot_1_1VDetector.html" title="Base class contaning all methods of an analysis detector." alt="" coords="9,5,155,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -95,7 +95,7 @@ Collaboration diagram for ActRoot::SilDetector:</div>
 <div class="center"><img src="classActRoot_1_1SilDetector__coll__graph.png" border="0" usemap="#aActRoot_1_1SilDetector_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1SilDetector_coll__map" id="aActRoot_1_1SilDetector_coll__map">
 <area shape="rect" title="Silicon detector class." alt="" coords="185,260,338,287"/>
-<area shape="rect" href="classActRoot_1_1VDetector.html" title=" " alt="" coords="5,171,152,197"/>
+<area shape="rect" href="classActRoot_1_1VDetector.html" title="Base class contaning all methods of an analysis detector." alt="" coords="5,171,152,197"/>
 <area shape="rect" href="classMEventReduced.html" title=" " alt="" coords="15,81,142,108"/>
 <area shape="rect" title=" " alt="" coords="43,5,115,32"/>
 <area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="176,171,347,197"/>
@@ -130,6 +130,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
 <tr class="separator:a850f7140986bfea024c864fe4d88c44b inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8f55b5ebaa3f562bcc74f66cd2b38b inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afd8f55b5ebaa3f562bcc74f66cd2b38b">SetCalMan</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt; calman)</td></tr>
+<tr class="separator:afd8f55b5ebaa3f562bcc74f66cd2b38b inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db0696cba13e0122676789b14eed816 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a3db0696cba13e0122676789b14eed816">GetCalMan</a> () const</td></tr>
+<tr class="separator:a3db0696cba13e0122676789b14eed816 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -149,7 +153,11 @@ Private Attributes</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
 <tr class="memitem:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> {}</td></tr>
+<tr class="memdesc:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy dependency to MEvent... Could be changed in future.  <a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">More...</a><br /></td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> {}</td></tr>
+<tr class="memdesc:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classActRoot_1_1CalibrationManager.html" title="Class managing all calibrations (NO LONGER a singleton)">CalibrationManager</a> to avoid working with singleton.  <a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">More...</a><br /></td></tr>
+<tr class="separator:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Silicon detector class. </p>
@@ -246,26 +254,27 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordtype">float</span> raw {coas.peakheight[hit]};</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="comment">//Check threshold</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                std::string threshKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_P&quot;</span>};</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">CalibrationManager::Get</a>()-&gt;ApplyThreshold(threshKey, raw, 3))</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyThreshold(threshKey, raw, 3))</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">continue</span>;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="comment">//Write silicon number</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[layer].push_back(sil);                </div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">//Calibrate</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                std::string calKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_E&quot;</span>};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordtype">float</span> cal {<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">CalibrationManager::Get</a>()-&gt;<a class="code" href="classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f">ApplyCalibration</a>(calKey, raw))};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordtype">float</span> cal {<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyCalibration(calKey, raw))};</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[layer].push_back(cal);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a943efc2a955786642286182b7aa64a8f"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f">ActRoot::CalibrationManager::ApplyCalibration</a></div><div class="ttdeci">double ApplyCalibration(const std::string &amp;key, double raw)</div><div class="ttdef"><b>Definition:</b> CalibrationManager.cxx:104</div></div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_af241f3dc207e7f05d31394970e9021e0"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">ActRoot::CalibrationManager::Get</a></div><div class="ttdeci">static CalibrationManager * Get()</div><div class="ttdoc">General method to interface with class.</div><div class="ttdef"><b>Definition:</b> CalibrationManager.cxx:18</div></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Raw sil = &quot;&lt;&lt;raw&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Cal sil = &quot;&lt;&lt;cal&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> SilData.h:13</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> SilData.h:14</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_a503a920e0e914b8c08d3431f34e861cd"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector::fPars</a></div><div class="ttdeci">SilParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> SilDetector.h:43</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_ad2b93a517a781781b9d4b0f584008ded"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector::fData</a></div><div class="ttdeci">SilData * fData</div><div class="ttdoc">Pointer to SilData.</div><div class="ttdef"><b>Definition:</b> SilDetector.h:45</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_a91dc241bb125283f48278c946d498345"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">ActRoot::SilParameters::GetSilIndex</a></div><div class="ttdeci">std::pair&lt; std::string, int &gt; GetSilIndex(int vxi)</div><div class="ttdef"><b>Definition:</b> SilDetector.cxx:55</div></div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdef"><b>Definition:</b> VDetector.h:17</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> VDetector.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> VDetector.h:19</div></div>
 <div class="ttc" id="aclassMEventReduced_html_a6be3a1f8fd6ce8274ab56d7c16cbeef5"><div class="ttname"><a href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">MEventReduced::CoboAsad</a></div><div class="ttdeci">std::vector&lt; ReducedData &gt; CoboAsad</div><div class="ttdef"><b>Definition:</b> TPCLegacyData.h:30</div></div>
 </div><!-- fragment -->
 </div>
@@ -294,9 +303,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">Clear</a>();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">Clear</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_ac7e53f3842dc4184d9667c255e151159"><div class="ttname"><a href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">ActRoot::SilData::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">Reset stored variables in SilData.</div><div class="ttdef"><b>Definition:</b> SilData.cxx:4</div></div>
 </div><!-- fragment -->
 </div>
@@ -430,9 +439,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">auto</span> files {config-&gt;GetStringVector(<span class="stringliteral">&quot;Paths&quot;</span>)};</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; file : files)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#af241f3dc207e7f05d31394970e9021e0">CalibrationManager::Get</a>()-&gt;<a class="code" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a>(file);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ReadCalibration(file);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a6dddb07f56998716ace3ff9abb38c2a4"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ActRoot::CalibrationManager::ReadCalibration</a></div><div class="ttdeci">void ReadCalibration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> CalibrationManager.cxx:30</div></div>
 </div><!-- fragment -->
 </div>
 </div>
