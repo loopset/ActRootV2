@@ -20,9 +20,9 @@
 #include "TGNumberEntry.h"
 
 #include "ActInputData.h"
-#include "InputParser.h"
-#include "TPCData.h"
-#include "InputIterator.h"
+#include "ActInputParser.h"
+#include "ActTPCData.h"
+#include "ActInputIterator.h"
 
 #include <algorithm>
 #include <cstdio>

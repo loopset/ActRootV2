@@ -2,7 +2,7 @@
 
 #include "ActModularData.h"
 #include "TString.h"
-#include "InputParser.h"
+#include "ActInputParser.h"
 
 #include <fstream>
 #include <iostream>

@@ -8,7 +8,7 @@
 #include <Math/Vector4Dfwd.h>
 #include <Math/GenVector/BoostX.h>
 
-#include "Particle.h"
+#include "ActParticle.h"
 
 #include <string>
 #include <tuple>

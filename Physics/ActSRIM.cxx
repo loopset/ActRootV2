@@ -1,4 +1,4 @@
-#include "SRIM.h"
+#include "ActSRIM.h"
 
 #include "TCanvas.h"
 #include "TF1.h"

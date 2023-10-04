@@ -5,7 +5,7 @@
 #include "RQ_OBJECT.h"
 #include "Rtypes.h"
 #include "RtypesCore.h"
-#include "SilDetector.h"
+#include "ActSilDetector.h"
 #include "TCanvas.h"
 #include "TGClient.h"
 #include "TGFrame.h"
@@ -17,9 +17,9 @@
 #include "TGStatusBar.h"
 #include "TGTab.h"
 
-#include "TPCData.h"
-#include "TPCDetector.h"
-#include "InputIterator.h"
+#include "ActTPCData.h"
+#include "ActTPCDetector.h"
+#include "ActInputIterator.h"
 #include "ActHistogramPainter.h"
 
 #include <memory>

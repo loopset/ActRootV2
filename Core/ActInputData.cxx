@@ -1,5 +1,5 @@
 #include "ActInputData.h"
-#include "InputParser.h"
+#include "ActInputParser.h"
 #include "TString.h"
 #include "TTree.h"
 #include "TFile.h"

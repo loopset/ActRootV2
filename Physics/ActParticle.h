@@ -1,7 +1,7 @@
 #ifndef ActParticle_h
 #define ActParticle_h
 
-#include "Constants.h"
+#include "ActConstants.h"
 
 #include <iostream>
 #include <string>

@@ -1,6 +1,6 @@
-#include "Kinematics.h"
+#include "ActKinematics.h"
 
-#include "Particle.h"
+#include "ActParticle.h"
 #include "ActColors.h"
 
 #include "Rtypes.h"

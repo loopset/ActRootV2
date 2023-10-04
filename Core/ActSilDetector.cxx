@@ -1,9 +1,9 @@
-#include "SilDetector.h"
+#include "ActSilDetector.h"
 
 #include "ActCalibrationManager.h"
-#include "InputParser.h"
-#include "SilData.h"
-#include "TPCLegacyData.h"
+#include "ActInputParser.h"
+#include "ActSilData.h"
+#include "ActTPCLegacyData.h"
 #include "TString.h"
 #include "TRegexp.h"
 

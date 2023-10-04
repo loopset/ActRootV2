@@ -5,7 +5,7 @@
 
 #include "ActDetectorManager.h"
 #include "ActInputData.h"
-#include "OutputData.h"
+#include "ActOutputData.h"
 
 #include "TROOT.h"
 #include "TStopwatch.h"

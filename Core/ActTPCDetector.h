@@ -1,11 +1,11 @@
 #ifndef ActTPCDetector_h
 #define ActTPCDetector_h
 
-#include "TPCData.h"
-#include "TPCLegacyData.h"
+#include "ActTPCData.h"
+#include "ActTPCLegacyData.h"
 #include "ActInputData.h"
 #include "TTree.h"
-#include "VDetector.h"
+#include "ActVDetector.h"
 
 #include <memory>
 #include <string>

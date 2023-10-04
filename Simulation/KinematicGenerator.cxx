@@ -1,9 +1,9 @@
 #include "KinematicGenerator.h"
 
 #include "ActColors.h"
-#include "Kinematics.h"
-#include "Particle.h"
-#include "Constants.h"
+#include "ActKinematics.h"
+#include "ActParticle.h"
+#include "ActConstants.h"
 
 #include "TGenPhaseSpace.h"
 #include "TLorentzVector.h"

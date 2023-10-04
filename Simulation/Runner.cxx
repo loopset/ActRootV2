@@ -1,6 +1,6 @@
 #include "Runner.h"
 
-#include "SRIM.h"
+#include "ActSRIM.h"
 #include "Geometry.h"
 
 #include "TH3.h"

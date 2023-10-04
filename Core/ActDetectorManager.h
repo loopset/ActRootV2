@@ -9,7 +9,7 @@ performed on its data
 #include "ActCalibrationManager.h"
 #include "TTree.h"
 //#include "BS_thread_pool.hpp"
-#include "VDetector.h"
+#include "ActVDetector.h"
 
 #include <string>
 #include <unordered_map>

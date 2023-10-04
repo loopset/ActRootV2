@@ -1,10 +1,10 @@
-#include "TPCDetector.h"
+#include "ActTPCDetector.h"
 
 #include "ActCalibrationManager.h"
-#include "InputParser.h"
+#include "ActInputParser.h"
 #include "Math/Point3D.h"
-#include "TPCData.h"
-#include "TPCLegacyData.h"
+#include "ActTPCData.h"
+#include "ActTPCLegacyData.h"
 #include "TTree.h"
 
 #include <cstddef>

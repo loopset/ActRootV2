@@ -1,9 +1,9 @@
 #ifndef ActSilDetector_h
 #define ActSilDetector_h
 
-#include "SilData.h"
-#include "TPCLegacyData.h"
-#include "VDetector.h"
+#include "ActSilData.h"
+#include "ActTPCLegacyData.h"
+#include "ActVDetector.h"
 #include <map>
 #include <string>
 #include <unordered_map>

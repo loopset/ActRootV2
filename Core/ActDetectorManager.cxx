@@ -1,14 +1,14 @@
 #include "ActDetectorManager.h"
 #include "ActCalibrationManager.h"
-#include "InputParser.h"
+#include "ActInputParser.h"
 
 #include "ActModularDetector.h"
-#include "SilDetector.h"
-#include "TPCData.h"
-#include "TPCDetector.h"
+#include "ActSilDetector.h"
+#include "ActTPCData.h"
+#include "ActTPCDetector.h"
 #include "TString.h"
 #include "TTree.h"
-#include "VDetector.h"
+#include "ActVDetector.h"
 
 #include <iostream>
 #include <memory>

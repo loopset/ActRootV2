@@ -2,7 +2,7 @@
 #define ActModularDetector_h
 
 #include "ActModularData.h"
-#include "VDetector.h"
+#include "ActVDetector.h"
 
 #include <cstring>
 #include <map>

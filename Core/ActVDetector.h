@@ -2,7 +2,7 @@
 #define ActVDetector_h
 
 #include "TTree.h"
-#include "TPCLegacyData.h"
+#include "ActTPCLegacyData.h"
 #include "ActCalibrationManager.h"
 
 #include <memory>

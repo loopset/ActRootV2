@@ -7,7 +7,7 @@
 #include "Math/Vector3D.h"
 #include "TH3F.h"
 
-#include "SRIM.h"
+#include "ActSRIM.h"
 #include "Geometry.h"
 
 #include <memory>

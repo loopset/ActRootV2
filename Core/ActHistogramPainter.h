@@ -4,9 +4,9 @@
 #include "TCanvas.h"
 #include "TH2.h"
 #include "TH2F.h"
-#include "SilDetector.h"
-#include "TPCDetector.h"
-#include "InputIterator.h"
+#include "ActSilDetector.h"
+#include "ActTPCDetector.h"
+#include "ActInputIterator.h"
 
 #include <map>
 #include <memory>

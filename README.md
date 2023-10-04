@@ -30,4 +30,4 @@ Please, replace `N` with your number of cores (which you might find by executing
 ```bash
 source /home/youruser/ActRootV2/thisActRoot.sh
 ```
-Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under `install/include`, so, for instance, you would add `#include "Particle.h"` for working with an `ActPhysics::Particle` object.
+Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your macros when they are needed. They are all under `install/include`, so, for instance, you would add `#include "ActParticle.h"` for working with an `ActPhysics::Particle` object.
