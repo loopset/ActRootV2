@@ -20,7 +20,7 @@
 #include "TPCData.h"
 #include "TPCDetector.h"
 #include "InputIterator.h"
-#include "HistogramPainter.h"
+#include "ActHistogramPainter.h"
 
 #include <memory>
 #include <string>

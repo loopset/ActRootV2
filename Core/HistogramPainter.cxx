@@ -1,6 +1,6 @@
-#include "HistogramPainter.h"
+#include "ActHistogramPainter.h"
 
-#include "Colors.h"
+#include "ActColors.h"
 #include "InputParser.h"
 #include "InputIterator.h"
 #include "Rtypes.h"

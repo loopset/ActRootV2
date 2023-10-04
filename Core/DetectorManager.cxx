@@ -1,5 +1,5 @@
 #include "DetectorManager.h"
-#include "CalibrationManager.h"
+#include "ActCalibrationManager.h"
 #include "InputParser.h"
 
 #include "ModularDetector.h"

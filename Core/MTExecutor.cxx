@@ -2,11 +2,11 @@
 
 #include "BS_thread_pool.h"
 
-#include "CalibrationManager.h"
+#include "ActCalibrationManager.h"
 #include "DetectorManager.h"
 #include "InputData.h"
 #include "OutputData.h"
-#include "Colors.h"
+#include "ActColors.h"
 
 #include "TROOT.h"
 #include "TStopwatch.h"

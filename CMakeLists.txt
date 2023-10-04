@@ -8,8 +8,14 @@ project(ActRoot)
 set(CMAKE_CXX_STANDARD 17) # same as ROOT built for Ubuntu
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE) # force require this standard
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# read Geant4 options
+option(BUILD_GEANT4 "Build ActGeant4 library" OFF)#disabled by default
 ##ROOT
 find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS MathCore Physics GenVector)
+if(BUILD_GEANT4)
+  find_package(Geant4 CONFIG REQUIRED ui_all vis_all)
+endif()
 include(${ROOT_USE_FILE})##automatically loads ROOT_INCLUDE_DIRS and ROOT_LIBRARY_DIR (BUT NOT LIBRARIES, they must be added manually in target_link_libs)
 include(Scripts.cmake)
 
@@ -20,8 +26,10 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 include_directories(Core/)
 include_directories(Physics/)
 include_directories(Simulation/)
+include_directories(Geant4/)
 
 ##add subdirs
 add_subdirectory(Core)
 add_subdirectory(Physics)
 add_subdirectory(Simulation)
+add_subdirectory(Geant4)

@@ -17,4 +17,4 @@ target_include_directories(${FULL_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # link to ROOT
 target_link_libraries(${FULL_NAME} ${ROOT_LIBRARIES})
 # install
-install_actroot_component(${FULL_NAME} ${LIB_NAME} "${headers}")
+install_actroot_component(${FULL_NAME} "${headers}")

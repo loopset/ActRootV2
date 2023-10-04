@@ -1,8 +1,8 @@
-#include "EventPainter.h"
+#include "ActEventPainter.h"
 
 #include "Buttons.h"
 #include "GuiTypes.h"
-#include "HistogramPainter.h"
+#include "ActHistogramPainter.h"
 #include "TCanvas.h"
 #include "TCollection.h"
 #include "TGFrame.h"
