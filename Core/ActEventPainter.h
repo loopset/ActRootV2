@@ -1,7 +1,7 @@
 #ifndef ActEventPainter_h
 #define ActEventPainter_h
 
-#include "InputData.h"
+#include "ActInputData.h"
 #include "RQ_OBJECT.h"
 #include "Rtypes.h"
 #include "RtypesCore.h"

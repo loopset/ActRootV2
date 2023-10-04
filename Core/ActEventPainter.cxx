@@ -19,7 +19,7 @@
 #include "TGToolBar.h"
 #include "TGNumberEntry.h"
 
-#include "InputData.h"
+#include "ActInputData.h"
 #include "InputParser.h"
 #include "TPCData.h"
 #include "InputIterator.h"

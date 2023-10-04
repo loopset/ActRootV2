@@ -1,8 +1,8 @@
-#include "DetectorManager.h"
+#include "ActDetectorManager.h"
 #include "ActCalibrationManager.h"
 #include "InputParser.h"
 
-#include "ModularDetector.h"
+#include "ActModularDetector.h"
 #include "SilDetector.h"
 #include "TPCData.h"
 #include "TPCDetector.h"

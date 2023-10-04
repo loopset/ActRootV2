@@ -3,8 +3,8 @@
 
 #include "BS_thread_pool.h"
 
-#include "DetectorManager.h"
-#include "InputData.h"
+#include "ActDetectorManager.h"
+#include "ActInputData.h"
 #include "OutputData.h"
 
 #include "TROOT.h"

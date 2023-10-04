@@ -1,6 +1,6 @@
-#include "ModularDetector.h"
+#include "ActModularDetector.h"
 
-#include "ModularData.h"
+#include "ActModularData.h"
 #include "TString.h"
 #include "InputParser.h"
 

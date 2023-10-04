@@ -1,7 +1,7 @@
 #ifndef ActModularDetector_h
 #define ActModularDetector_h
 
-#include "ModularData.h"
+#include "ActModularData.h"
 #include "VDetector.h"
 
 #include <cstring>

@@ -1,6 +1,6 @@
 #include "OutputData.h"
 
-#include "InputData.h"
+#include "ActInputData.h"
 #include "InputParser.h"
 
 #include "TFile.h"

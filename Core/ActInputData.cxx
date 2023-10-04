@@ -1,4 +1,4 @@
-#include "InputData.h"
+#include "ActInputData.h"
 #include "InputParser.h"
 #include "TString.h"
 #include "TTree.h"
