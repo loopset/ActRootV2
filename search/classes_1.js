@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['calibrationmanager_640',['CalibrationManager',['../classActRoot_1_1CalibrationManager.html',1,'ActRoot']]],
-  ['cutsmanager_641',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]]
+  ['blocks_734',['blocks',['../classBS_1_1blocks.html',1,'BS']]]
 ];

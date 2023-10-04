@@ -78,7 +78,7 @@ $(function() {
 <p>Class managing all calibrations (NO LONGER a singleton)  
  <a href="classActRoot_1_1CalibrationManager.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="CalibrationManager_8h_source.html">CalibrationManager.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActCalibrationManager_8h_source.html">ActCalibrationManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -170,7 +170,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a>(calfile);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a6dddb07f56998716ace3ff9abb38c2a4"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ActRoot::CalibrationManager::ReadCalibration</a></div><div class="ttdeci">void ReadCalibration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> CalibrationManager.cxx:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a6dddb07f56998716ace3ff9abb38c2a4"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ActRoot::CalibrationManager::ReadCalibration</a></div><div class="ttdeci">void ReadCalibration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.cxx:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -244,7 +244,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> cal;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8608ee2ee767a355ae126fb78279e286"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">ActRoot::CalibrationManager::fCalibs</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt; fCalibs</div><div class="ttdoc">General map holding strings as keys for the vector of doubles (coeffs) of calib.</div><div class="ttdef"><b>Definition:</b> CalibrationManager.h:23</div></div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8608ee2ee767a355ae126fb78279e286"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">ActRoot::CalibrationManager::fCalibs</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt; fCalibs</div><div class="ttdoc">General map holding strings as keys for the vector of doubles (coeffs) of calib.</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:23</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -276,7 +276,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;{</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>[channel][col];</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_ad346595880359ad866c13ab7fe909790"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">ActRoot::CalibrationManager::fLT</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; fLT</div><div class="ttdef"><b>Definition:</b> CalibrationManager.h:24</div></div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_ad346595880359ad866c13ab7fe909790"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">ActRoot::CalibrationManager::fLT</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; fLT</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -315,7 +315,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">return</span> qAl;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8e3622baa52ca22287581a064eb83e5e"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">ActRoot::CalibrationManager::fPadAlign</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; fPadAlign</div><div class="ttdoc">Pad align coefficiens.</div><div class="ttdef"><b>Definition:</b> CalibrationManager.h:25</div></div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8e3622baa52ca22287581a064eb83e5e"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">ActRoot::CalibrationManager::fPadAlign</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; fPadAlign</div><div class="ttdoc">Pad align coefficiens.</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -622,8 +622,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Core/<a class="el" href="CalibrationManager_8h_source.html">CalibrationManager.h</a></li>
-<li>Core/<a class="el" href="CalibrationManager_8cxx.html">CalibrationManager.cxx</a></li>
+<li>Core/<a class="el" href="ActCalibrationManager_8h_source.html">ActCalibrationManager.h</a></li>
+<li>Core/<a class="el" href="ActCalibrationManager_8cxx.html">ActCalibrationManager.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

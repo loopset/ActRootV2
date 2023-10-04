@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['paused_1258',['paused',['../classBS_1_1thread__pool.html#a1ad45a5fa18fc0aa649060df55471bc6',1,'BS::thread_pool']]],
-  ['peakheight_1259',['peakheight',['../classReducedData.html#a3178a4300890ba16016cd0e5bc3ed9eb',1,'ReducedData']]],
-  ['peaktime_1260',['peaktime',['../classReducedData.html#a495366e7b72c0d7bd568cf2e42485f73',1,'ReducedData']]]
+  ['out_5fstream_1439',['out_stream',['../classBS_1_1synced__stream.html#ae6fe228166d12a7fa916916c7e1d479c',1,'BS::synced_stream']]]
 ];

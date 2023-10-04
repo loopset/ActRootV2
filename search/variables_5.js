@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hassaturation_1236',['hasSaturation',['../classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b',1,'ReducedData']]]
+  ['gasmaterial_1416',['gasMaterial',['../classActDriftDetector.html#a44cbf860c686848ef74001acd95094ad',1,'ActDriftDetector']]],
+  ['globalchannelid_1417',['globalchannelid',['../classReducedData.html#a46e555975be9eca27677509f0dcd238a',1,'ReducedData']]]
 ];

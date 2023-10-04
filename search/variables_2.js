@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['elapsed_5ftime_1072',['elapsed_time',['../classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4',1,'BS::timer']]],
-  ['endflinewidth_1073',['ENDFLineWidth',['../classActSim_1_1TheoCrossSection.html#a70981e6ddfc3e3d0aae2c1f5078ab3dc',1,'ActSim::TheoCrossSection']]],
-  ['endfnumberwidth_1074',['ENDFNumberWidth',['../classActSim_1_1TheoCrossSection.html#aa458b88b8c1444a0b9df687f3089b851',1,'ActSim::TheoCrossSection']]],
-  ['endl_1075',['endl',['../classBS_1_1synced__stream.html#aecb26211e0170537b99c96880582cde0',1,'BS::synced_stream']]],
-  ['event_1076',['event',['../classMEventReduced.html#a4aeaca289c281a693e8269b92a9aa9e5',1,'MEventReduced']]]
+  ['driftcenterx_1233',['driftCenterX',['../classActDriftDetector.html#a1224dae9c09062b8cf5a5265a05a3eb2',1,'ActDriftDetector']]],
+  ['driftcentery_1234',['driftCenterY',['../classActDriftDetector.html#a64d792b607515955ffff2458235734e2',1,'ActDriftDetector']]],
+  ['driftcenterz_1235',['driftCenterZ',['../classActDriftDetector.html#aae90a846b6e6f2cf6346d89f0d02dfb8',1,'ActDriftDetector']]],
+  ['driftsizex_1236',['driftSizeX',['../classActDriftDetector.html#a4b15f0f0517cfac9d5c0e58bbb259b30',1,'ActDriftDetector']]],
+  ['driftsizey_1237',['driftSizeY',['../classActDriftDetector.html#acb6e4fe5e13db1cc1928380dd886cfd6',1,'ActDriftDetector']]],
+  ['driftsizez_1238',['driftSizeZ',['../classActDriftDetector.html#a4274c459372078ecbeedfe96035390b4',1,'ActDriftDetector']]]
 ];

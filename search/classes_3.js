@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['eventpainter_644',['EventPainter',['../classActRoot_1_1EventPainter.html',1,'ActRoot']]]
+  ['detectormanager_737',['DetectorManager',['../classActRoot_1_1DetectorManager.html',1,'ActRoot']]],
+  ['driftchamber_738',['DriftChamber',['../structActSim_1_1DriftChamber.html',1,'ActSim']]]
 ];

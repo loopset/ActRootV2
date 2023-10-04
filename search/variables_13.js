@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_1282',['Z',['../structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0',1,'ActSim::DriftChamber']]]
+  ['y_1463',['Y',['../structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c',1,'ActSim::DriftChamber']]]
 ];

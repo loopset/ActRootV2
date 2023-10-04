@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['index_5fafter_5flast_1237',['index_after_last',['../classBS_1_1blocks.html#a1a85a9337c465b6e8f0f58de55ad9404',1,'BS::blocks']]]
+  ['hassaturation_1418',['hasSaturation',['../classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b',1,'ReducedData']]]
 ];
