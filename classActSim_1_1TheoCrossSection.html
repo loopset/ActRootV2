@@ -79,7 +79,7 @@ $(function() {
 <p>A class to implement theorethical cross sections in simulations.  
  <a href="classActSim_1_1TheoCrossSection.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="TheoCrossSection_8h_source.html">TheoCrossSection.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActTheoCrossSection_8h_source.html">ActTheoCrossSection.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -269,13 +269,13 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <a class="code" href="classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6">xsAtEnergy</a> = std::make_unique&lt;TF1&gt;(<span class="stringliteral">&quot;xsAtEnergy&quot;</span>, <a class="code" href="classActSim_1_1TheoCrossSection.html#abac40e13918e72c2ca2f3bf5a8d187fd">lambda</a>, -1.0, 1.0, 1);</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <a class="code" href="classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6">xsAtEnergy</a>-&gt;SetTitle(TString::Format(<span class="stringliteral">&quot;Diff. XS at T_{n} = %.2f MeV;cos #theta_{n};#sigma [b / sr]&quot;</span>, Tn));</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a0aff587966f1adfe555e9d26fbaa7c59"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a0aff587966f1adfe555e9d26fbaa7c59">ActSim::TheoCrossSection::funcsAngular</a></div><div class="ttdeci">std::map&lt; int, std::unique_ptr&lt; TF1 &gt; &gt; funcsAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:33</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a2ad4ff00ea0149d9d0498adbbdf93e24"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a2ad4ff00ea0149d9d0498adbbdf93e24">ActSim::TheoCrossSection::legendreCoeffs</a></div><div class="ttdeci">std::vector&lt; double &gt; legendreCoeffs</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:47</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a44820fbd59acee80406000d7321ff9b6"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6">ActSim::TheoCrossSection::xsAtEnergy</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; xsAtEnergy</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:49</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a4c04a9164bd5ee0ebc7da63bbfbad9b3"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a4c04a9164bd5ee0ebc7da63bbfbad9b3">ActSim::TheoCrossSection::functScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; functScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:28</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_abac40e13918e72c2ca2f3bf5a8d187fd"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#abac40e13918e72c2ca2f3bf5a8d187fd">ActSim::TheoCrossSection::lambda</a></div><div class="ttdeci">std::function&lt; double(double *, double *)&gt; lambda</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:48</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_acda1fba76677e4cb6ce6c0161ae8415d"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d">ActSim::TheoCrossSection::mAngular</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; std::vector&lt; double &gt;, std::vector&lt; double &gt; &gt; &gt; mAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:31</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae38e3a5c0894f685d3428afdafb28ff1"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae38e3a5c0894f685d3428afdafb28ff1">ActSim::TheoCrossSection::scatteringXS</a></div><div class="ttdeci">double scatteringXS</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:46</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a0aff587966f1adfe555e9d26fbaa7c59"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a0aff587966f1adfe555e9d26fbaa7c59">ActSim::TheoCrossSection::funcsAngular</a></div><div class="ttdeci">std::map&lt; int, std::unique_ptr&lt; TF1 &gt; &gt; funcsAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:33</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a2ad4ff00ea0149d9d0498adbbdf93e24"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a2ad4ff00ea0149d9d0498adbbdf93e24">ActSim::TheoCrossSection::legendreCoeffs</a></div><div class="ttdeci">std::vector&lt; double &gt; legendreCoeffs</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:47</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a44820fbd59acee80406000d7321ff9b6"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6">ActSim::TheoCrossSection::xsAtEnergy</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; xsAtEnergy</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:49</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a4c04a9164bd5ee0ebc7da63bbfbad9b3"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a4c04a9164bd5ee0ebc7da63bbfbad9b3">ActSim::TheoCrossSection::functScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; functScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:28</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_abac40e13918e72c2ca2f3bf5a8d187fd"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#abac40e13918e72c2ca2f3bf5a8d187fd">ActSim::TheoCrossSection::lambda</a></div><div class="ttdeci">std::function&lt; double(double *, double *)&gt; lambda</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:48</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_acda1fba76677e4cb6ce6c0161ae8415d"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d">ActSim::TheoCrossSection::mAngular</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; std::vector&lt; double &gt;, std::vector&lt; double &gt; &gt; &gt; mAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:31</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae38e3a5c0894f685d3428afdafb28ff1"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae38e3a5c0894f685d3428afdafb28ff1">ActSim::TheoCrossSection::scatteringXS</a></div><div class="ttdeci">double scatteringXS</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:46</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -332,8 +332,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="comment">//legend.reset();</span></div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="comment">//canvAngular-&gt;Close();</span></div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a60fd8005d7e13b5b0f52a7845a882830"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a60fd8005d7e13b5b0f52a7845a882830">ActSim::TheoCrossSection::canvAngular</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:53</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a9c14f07dfc690285ef05c4ac792a2c3a"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a9c14f07dfc690285ef05c4ac792a2c3a">ActSim::TheoCrossSection::legendAngular</a></div><div class="ttdeci">std::unique_ptr&lt; TLegend &gt; legendAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:55</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a60fd8005d7e13b5b0f52a7845a882830"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a60fd8005d7e13b5b0f52a7845a882830">ActSim::TheoCrossSection::canvAngular</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:53</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a9c14f07dfc690285ef05c4ac792a2c3a"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a9c14f07dfc690285ef05c4ac792a2c3a">ActSim::TheoCrossSection::legendAngular</a></div><div class="ttdeci">std::unique_ptr&lt; TLegend &gt; legendAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:55</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -358,8 +358,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    gPad-&gt;WaitPrimitive(<span class="stringliteral">&quot;lat&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    </div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a85b44872910eee79de20012812de8051"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a85b44872910eee79de20012812de8051">ActSim::TheoCrossSection::DrawScattering</a></div><div class="ttdeci">void DrawScattering()</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.cxx:192</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_af14aa27657079b263872ea563b97968a"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#af14aa27657079b263872ea563b97968a">ActSim::TheoCrossSection::DrawAngular</a></div><div class="ttdeci">void DrawAngular()</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.cxx:207</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a85b44872910eee79de20012812de8051"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a85b44872910eee79de20012812de8051">ActSim::TheoCrossSection::DrawScattering</a></div><div class="ttdeci">void DrawScattering()</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.cxx:192</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_af14aa27657079b263872ea563b97968a"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#af14aa27657079b263872ea563b97968a">ActSim::TheoCrossSection::DrawAngular</a></div><div class="ttdeci">void DrawAngular()</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.cxx:207</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -390,7 +390,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">//canvScattering-&gt;WaitPrimitive(&quot;lat&quot;, &quot;&quot;);</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="comment">//canvScattering-&gt;Close();</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a8769bb6d1159d3b466e7158d131b2683"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a8769bb6d1159d3b466e7158d131b2683">ActSim::TheoCrossSection::canvScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:52</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a8769bb6d1159d3b466e7158d131b2683"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a8769bb6d1159d3b466e7158d131b2683">ActSim::TheoCrossSection::canvScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:52</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -421,7 +421,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="classActSim_1_1TheoCrossSection.html#aee06ed7cee259c444b279b053a0b547e">canvFinalXS</a>-&gt;WaitPrimitive();</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="comment">//canvFinalXS-&gt;Close();</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_aee06ed7cee259c444b279b053a0b547e"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#aee06ed7cee259c444b279b053a0b547e">ActSim::TheoCrossSection::canvFinalXS</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvFinalXS</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:54</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_aee06ed7cee259c444b279b053a0b547e"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#aee06ed7cee259c444b279b053a0b547e">ActSim::TheoCrossSection::canvFinalXS</a></div><div class="ttdeci">std::unique_ptr&lt; TCanvas &gt; canvFinalXS</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:54</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -469,7 +469,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78">nIgnoredLinesAngular</a>; }</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a092c36ea8a86a98d155542611eff2a78"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78">ActSim::TheoCrossSection::nIgnoredLinesAngular</a></div><div class="ttdeci">int nIgnoredLinesAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:37</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a092c36ea8a86a98d155542611eff2a78"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78">ActSim::TheoCrossSection::nIgnoredLinesAngular</a></div><div class="ttdeci">int nIgnoredLinesAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -496,7 +496,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78">nIgnoredLinesScattering</a>; }</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a2a90a9428032b95dfb0d7b8e63c71b78"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78">ActSim::TheoCrossSection::nIgnoredLinesScattering</a></div><div class="ttdeci">int nIgnoredLinesScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:36</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a2a90a9428032b95dfb0d7b8e63c71b78"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78">ActSim::TheoCrossSection::nIgnoredLinesScattering</a></div><div class="ttdeci">int nIgnoredLinesScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -523,7 +523,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088">nLegendreCoeffs</a>; }</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a21dfe2c83dcf75a3e21b7139da08d088"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088">ActSim::TheoCrossSection::nLegendreCoeffs</a></div><div class="ttdeci">int nLegendreCoeffs</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:38</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a21dfe2c83dcf75a3e21b7139da08d088"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088">ActSim::TheoCrossSection::nLegendreCoeffs</a></div><div class="ttdeci">int nLegendreCoeffs</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:38</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -609,8 +609,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        coeffs.push_back(finalNumber);</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a70981e6ddfc3e3d0aae2c1f5078ab3dc"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a70981e6ddfc3e3d0aae2c1f5078ab3dc">ActSim::TheoCrossSection::ENDFLineWidth</a></div><div class="ttdeci">int ENDFLineWidth</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:40</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_aa458b88b8c1444a0b9df687f3089b851"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#aa458b88b8c1444a0b9df687f3089b851">ActSim::TheoCrossSection::ENDFNumberWidth</a></div><div class="ttdeci">int ENDFNumberWidth</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:41</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a70981e6ddfc3e3d0aae2c1f5078ab3dc"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a70981e6ddfc3e3d0aae2c1f5078ab3dc">ActSim::TheoCrossSection::ENDFLineWidth</a></div><div class="ttdeci">int ENDFLineWidth</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:40</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_aa458b88b8c1444a0b9df687f3089b851"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#aa458b88b8c1444a0b9df687f3089b851">ActSim::TheoCrossSection::ENDFNumberWidth</a></div><div class="ttdeci">int ENDFNumberWidth</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:41</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -711,9 +711,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;SimCrossSection: successfully read Angular XS!&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a3367297b7b3c7cfc72c0aeede0ce0b10"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a3367297b7b3c7cfc72c0aeede0ce0b10">ActSim::TheoCrossSection::ParseLine</a></div><div class="ttdeci">void ParseLine(std::string &amp;line, std::vector&lt; double &gt; &amp;coeffs)</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.cxx:88</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a6f036834aa3857614cc9fff61a3d273f"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a6f036834aa3857614cc9fff61a3d273f">ActSim::TheoCrossSection::splinesAngular</a></div><div class="ttdeci">std::map&lt; int, std::unique_ptr&lt; TSpline3 &gt; &gt; splinesAngular</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:32</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a9a13db6a8d08916492558608b13d1032"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a9a13db6a8d08916492558608b13d1032">ActSim::TheoCrossSection::converteVToMeV</a></div><div class="ttdeci">double converteVToMeV</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:35</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a3367297b7b3c7cfc72c0aeede0ce0b10"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a3367297b7b3c7cfc72c0aeede0ce0b10">ActSim::TheoCrossSection::ParseLine</a></div><div class="ttdeci">void ParseLine(std::string &amp;line, std::vector&lt; double &gt; &amp;coeffs)</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.cxx:88</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a6f036834aa3857614cc9fff61a3d273f"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a6f036834aa3857614cc9fff61a3d273f">ActSim::TheoCrossSection::splinesAngular</a></div><div class="ttdeci">std::map&lt; int, std::unique_ptr&lt; TSpline3 &gt; &gt; splinesAngular</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:32</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_a9a13db6a8d08916492558608b13d1032"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#a9a13db6a8d08916492558608b13d1032">ActSim::TheoCrossSection::converteVToMeV</a></div><div class="ttdeci">double converteVToMeV</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:35</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -790,9 +790,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                                      1);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;SimCrossSection: successfully read Scattering XS!&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ad382b3e5b1681936a859c5b3f4e8d566"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ad382b3e5b1681936a859c5b3f4e8d566">ActSim::TheoCrossSection::vXScattering</a></div><div class="ttdeci">std::vector&lt; double &gt; vXScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:25</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae421f732b296b8bd65d77c406e6ea240"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae421f732b296b8bd65d77c406e6ea240">ActSim::TheoCrossSection::splineScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TSpline3 &gt; splineScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:27</div></div>
-<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae6d118bdf17a7ef8592387b5358d74dc"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae6d118bdf17a7ef8592387b5358d74dc">ActSim::TheoCrossSection::vYScattering</a></div><div class="ttdeci">std::vector&lt; double &gt; vYScattering</div><div class="ttdef"><b>Definition:</b> TheoCrossSection.h:26</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ad382b3e5b1681936a859c5b3f4e8d566"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ad382b3e5b1681936a859c5b3f4e8d566">ActSim::TheoCrossSection::vXScattering</a></div><div class="ttdeci">std::vector&lt; double &gt; vXScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:25</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae421f732b296b8bd65d77c406e6ea240"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae421f732b296b8bd65d77c406e6ea240">ActSim::TheoCrossSection::splineScattering</a></div><div class="ttdeci">std::unique_ptr&lt; TSpline3 &gt; splineScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:27</div></div>
+<div class="ttc" id="aclassActSim_1_1TheoCrossSection_html_ae6d118bdf17a7ef8592387b5358d74dc"><div class="ttname"><a href="classActSim_1_1TheoCrossSection.html#ae6d118bdf17a7ef8592387b5358d74dc">ActSim::TheoCrossSection::vYScattering</a></div><div class="ttdeci">std::vector&lt; double &gt; vYScattering</div><div class="ttdef"><b>Definition:</b> ActTheoCrossSection.h:26</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1363,8 +1363,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Simulation/<a class="el" href="TheoCrossSection_8h_source.html">TheoCrossSection.h</a></li>
-<li>Simulation/<a class="el" href="TheoCrossSection_8cxx.html">TheoCrossSection.cxx</a></li>
+<li>Simulation/<a class="el" href="ActTheoCrossSection_8h_source.html">ActTheoCrossSection.h</a></li>
+<li>Simulation/<a class="el" href="ActTheoCrossSection_8cxx.html">ActTheoCrossSection.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

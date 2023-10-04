@@ -79,7 +79,7 @@ $(function() {
 <p>A class holding utility functions to build up a simulation macro.  
  <a href="classActSim_1_1Runner.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="Runner_8h_source.html">Runner.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActRunner_8h_source.html">ActRunner.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ActSim::Runner:</div>
 <div class="dyncontent">
@@ -214,10 +214,10 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                           {<span class="keywordflow">return</span> silSigma * TMath::Sqrt(x[0] / 5.5);},</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                           0.0, 100.0, 1);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_a698e33770e59fedd4699600396333a13"><div class="ttname"><a href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">ActSim::Runner::fsrim</a></div><div class="ttdeci">ActPhysics::SRIM * fsrim</div><div class="ttdef"><b>Definition:</b> Runner.h:28</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_acd282d9e71570d96c56453c1609361f6"><div class="ttname"><a href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">ActSim::Runner::fRand</a></div><div class="ttdeci">TRandom3 * fRand</div><div class="ttdef"><b>Definition:</b> Runner.h:27</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_af9794214da2c7011296d1d55cce0cfa9"><div class="ttname"><a href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">ActSim::Runner::fgeo</a></div><div class="ttdeci">ActSim::Geometry * fgeo</div><div class="ttdef"><b>Definition:</b> Runner.h:29</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_afefd5b0653db133c6bfa2854d1396c0b"><div class="ttname"><a href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">ActSim::Runner::fSilResolution</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; fSilResolution</div><div class="ttdef"><b>Definition:</b> Runner.h:30</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_a698e33770e59fedd4699600396333a13"><div class="ttname"><a href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">ActSim::Runner::fsrim</a></div><div class="ttdeci">ActPhysics::SRIM * fsrim</div><div class="ttdef"><b>Definition:</b> ActRunner.h:28</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_acd282d9e71570d96c56453c1609361f6"><div class="ttname"><a href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">ActSim::Runner::fRand</a></div><div class="ttdeci">TRandom3 * fRand</div><div class="ttdef"><b>Definition:</b> ActRunner.h:27</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_af9794214da2c7011296d1d55cce0cfa9"><div class="ttname"><a href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">ActSim::Runner::fgeo</a></div><div class="ttdeci">ActSim::Geometry * fgeo</div><div class="ttdef"><b>Definition:</b> ActRunner.h:29</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_afefd5b0653db133c6bfa2854d1396c0b"><div class="ttname"><a href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">ActSim::Runner::fSilResolution</a></div><div class="ttdeci">std::unique_ptr&lt; TF1 &gt; fSilResolution</div><div class="ttdef"><b>Definition:</b> ActRunner.h:30</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -295,11 +295,11 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        };</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a1a2a450d0dc870ac8f2c6aeae8522a83"><div class="ttname"><a href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">ActSim::Geometry::GetDriftParameters</a></div><div class="ttdeci">const DriftChamber &amp; GetDriftParameters() const</div><div class="ttdef"><b>Definition:</b> Geometry.h:113</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_a331ac2915d46cd8bfabcdaef25213897"><div class="ttname"><a href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPoint XYZPoint</div><div class="ttdef"><b>Definition:</b> Runner.h:24</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a8e66a78978dde9099aa53c684d22e60c"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">ActSim::DriftChamber::Y</a></div><div class="ttdeci">double Y</div><div class="ttdef"><b>Definition:</b> Geometry.h:26</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a91de0c43f2e4af32ed3da34688e460bc"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">ActSim::DriftChamber::X</a></div><div class="ttdeci">double X</div><div class="ttdef"><b>Definition:</b> Geometry.h:25</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a9eb33eb5e36fae66c75c1a1174c7f3e0"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">ActSim::DriftChamber::Z</a></div><div class="ttdeci">double Z</div><div class="ttdef"><b>Definition:</b> Geometry.h:27</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a1a2a450d0dc870ac8f2c6aeae8522a83"><div class="ttname"><a href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">ActSim::Geometry::GetDriftParameters</a></div><div class="ttdeci">const DriftChamber &amp; GetDriftParameters() const</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:113</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_a331ac2915d46cd8bfabcdaef25213897"><div class="ttname"><a href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPoint XYZPoint</div><div class="ttdef"><b>Definition:</b> ActRunner.h:24</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a8e66a78978dde9099aa53c684d22e60c"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">ActSim::DriftChamber::Y</a></div><div class="ttdeci">double Y</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:26</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a91de0c43f2e4af32ed3da34688e460bc"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">ActSim::DriftChamber::X</a></div><div class="ttdeci">double X</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:25</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a9eb33eb5e36fae66c75c1a1174c7f3e0"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">ActSim::DriftChamber::Z</a></div><div class="ttdeci">double Z</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -382,7 +382,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1SRIM_html_a4af7ae79dac23e9ee17b4a9816c4b927"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a4af7ae79dac23e9ee17b4a9816c4b927">ActPhysics::SRIM::EvalInverse</a></div><div class="ttdeci">double EvalInverse(std::string key, double range)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:51</div></div>
 <div class="ttc" id="aclassActPhysics_1_1SRIM_html_acf1ad6e587283f386fad18f08e8b5183"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#acf1ad6e587283f386fad18f08e8b5183">ActPhysics::SRIM::EvalDirect</a></div><div class="ttdeci">double EvalDirect(std::string key, double energy)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:50</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_a3792693ce2f1e39e8ec5d8c2d7c115f3"><div class="ttname"><a href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ActSim::Runner::ApplyStragglingInMaterialToRLeft</a></div><div class="ttdeci">double ApplyStragglingInMaterialToRLeft(double RIni, double RLeft, const std::string &amp;srimKey)</div><div class="ttdef"><b>Definition:</b> Runner.cxx:77</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_a3792693ce2f1e39e8ec5d8c2d7c115f3"><div class="ttname"><a href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ActSim::Runner::ApplyStragglingInMaterialToRLeft</a></div><div class="ttdeci">double ApplyStragglingInMaterialToRLeft(double RIni, double RLeft, const std::string &amp;srimKey)</div><div class="ttdef"><b>Definition:</b> ActRunner.cxx:77</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -786,8 +786,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Simulation/<a class="el" href="Runner_8h_source.html">Runner.h</a></li>
-<li>Simulation/<a class="el" href="Runner_8cxx.html">Runner.cxx</a></li>
+<li>Simulation/<a class="el" href="ActRunner_8h_source.html">ActRunner.h</a></li>
+<li>Simulation/<a class="el" href="ActRunner_8cxx.html">ActRunner.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

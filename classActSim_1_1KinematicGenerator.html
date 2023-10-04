@@ -79,7 +79,7 @@ $(function() {
 <p>A class that wraps together <a class="el" href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a> and a TGenPhaseSpace.  
  <a href="classActSim_1_1KinematicGenerator.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="KinematicGenerator_8h_source.html">KinematicGenerator.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ActKinematicGenerator_8h_source.html">ActKinematicGenerator.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ActSim::KinematicGenerator:</div>
 <div class="dyncontent">
@@ -237,10 +237,10 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classActSim_1_1KinematicGenerator.html#a065c5e2ea930aee4a0b26c4cb320ee2b">ComputeHeavyMass</a>();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html"><div class="ttname"><a href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a></div><div class="ttdoc">A class reading NUBASE particle info.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:12</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a065c5e2ea930aee4a0b26c4cb320ee2b"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a065c5e2ea930aee4a0b26c4cb320ee2b">ActSim::KinematicGenerator::ComputeHeavyMass</a></div><div class="ttdeci">void ComputeHeavyMass()</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.cxx:50</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aa8f5e7dad80035f306f002d7e20a153b"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aa8f5e7dad80035f306f002d7e20a153b">ActSim::KinematicGenerator::fneutronPS</a></div><div class="ttdeci">int fneutronPS</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:25</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_ac427f25e8a47653b3aca080c96fcf6bd"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#ac427f25e8a47653b3aca080c96fcf6bd">ActSim::KinematicGenerator::fBinParts</a></div><div class="ttdeci">std::vector&lt; ActPhysics::Particle &gt; fBinParts</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:23</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_adfb86e7eef1053edfdfa41bc658cf5ed"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#adfb86e7eef1053edfdfa41bc658cf5ed">ActSim::KinematicGenerator::fprotonPS</a></div><div class="ttdeci">int fprotonPS</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:26</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a065c5e2ea930aee4a0b26c4cb320ee2b"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a065c5e2ea930aee4a0b26c4cb320ee2b">ActSim::KinematicGenerator::ComputeHeavyMass</a></div><div class="ttdeci">void ComputeHeavyMass()</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.cxx:50</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aa8f5e7dad80035f306f002d7e20a153b"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aa8f5e7dad80035f306f002d7e20a153b">ActSim::KinematicGenerator::fneutronPS</a></div><div class="ttdeci">int fneutronPS</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:25</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_ac427f25e8a47653b3aca080c96fcf6bd"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#ac427f25e8a47653b3aca080c96fcf6bd">ActSim::KinematicGenerator::fBinParts</a></div><div class="ttdeci">std::vector&lt; ActPhysics::Particle &gt; fBinParts</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:23</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_adfb86e7eef1053edfdfa41bc658cf5ed"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#adfb86e7eef1053edfdfa41bc658cf5ed">ActSim::KinematicGenerator::fprotonPS</a></div><div class="ttdeci">int fprotonPS</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:26</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -348,7 +348,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No KinematicGenerator implemented: both neutronPS and protonPS enabled at the same time&quot;</span>);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a60ced12b790ad20049e1e6252c56cec1"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a60ced12b790ad20049e1e6252c56cec1">ActSim::KinematicGenerator::fHeavyPart</a></div><div class="ttdeci">ActPhysics::Particle fHeavyPart</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:24</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a60ced12b790ad20049e1e6252c56cec1"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a60ced12b790ad20049e1e6252c56cec1">ActSim::KinematicGenerator::fHeavyPart</a></div><div class="ttdeci">ActPhysics::Particle fHeavyPart</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -369,7 +369,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;{</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1KinematicGenerator.html#a576301d540521d688c9d70e6eb9533c9">fGen</a>.Generate();</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a576301d540521d688c9d70e6eb9533c9"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a576301d540521d688c9d70e6eb9533c9">ActSim::KinematicGenerator::fGen</a></div><div class="ttdeci">TGenPhaseSpace fGen</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:22</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a576301d540521d688c9d70e6eb9533c9"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a576301d540521d688c9d70e6eb9533c9">ActSim::KinematicGenerator::fGen</a></div><div class="ttdeci">TGenPhaseSpace fGen</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -396,7 +396,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActSim_1_1KinematicGenerator.html#a6c23615d15c3a4e9db9eaa85fad768e9">fKin</a>;}</div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a6c23615d15c3a4e9db9eaa85fad768e9"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a6c23615d15c3a4e9db9eaa85fad768e9">ActSim::KinematicGenerator::fKin</a></div><div class="ttdeci">ActPhysics::Kinematics fKin</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:21</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a6c23615d15c3a4e9db9eaa85fad768e9"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a6c23615d15c3a4e9db9eaa85fad768e9">ActSim::KinematicGenerator::fKin</a></div><div class="ttdeci">ActPhysics::Kinematics fKin</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -443,7 +443,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html_a50444b520c562653c8d529c8ccd56fe8"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a50444b520c562653c8d529c8ccd56fe8">ActPhysics::Particle::GetMass</a></div><div class="ttdeci">double GetMass() const</div><div class="ttdoc">Return mass in MeV / c2 units.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:32</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aa971d12471d3e4c51249b4c894fe5bce"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aa971d12471d3e4c51249b4c894fe5bce">ActSim::KinematicGenerator::fEx</a></div><div class="ttdeci">double fEx</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:29</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aa971d12471d3e4c51249b4c894fe5bce"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aa971d12471d3e4c51249b4c894fe5bce">ActSim::KinematicGenerator::fEx</a></div><div class="ttdeci">double fEx</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:29</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_aa0416063fcb65b9de55da01eeb71b941"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941">ActPhysics::Constants::kMeVToGeV</a></div><div class="ttdeci">const double kMeVToGeV</div><div class="ttdoc">Scaling factor for MeV -&gt; GeV.</div><div class="ttdef"><b>Definition:</b> ActConstants.h:15</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_ae930a4a8c842f20f7ece45fc24a8d55b"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">ActPhysics::Constants::knMass</a></div><div class="ttdeci">const double knMass</div><div class="ttdoc">neutron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:12</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_afbe77d3a00bc7a28eb94709bb7f3cbfe"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">ActPhysics::Constants::kpMass</a></div><div class="ttdeci">const double kpMass</div><div class="ttdoc">proton mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:11</div></div>
@@ -543,9 +543,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classActSim_1_1KinematicGenerator.html#a576301d540521d688c9d70e6eb9533c9">fGen</a>.SetDecay(initial, finalstate.size(), &amp;(finalstate[0]));</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html">ActPhysics::Kinematics</a></div><div class="ttdef"><b>Definition:</b> ActKinematics.h:20</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a142ccb7acd22341f52636a1b93b4d752"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a142ccb7acd22341f52636a1b93b4d752">ActSim::KinematicGenerator::fEBeam</a></div><div class="ttdeci">double fEBeam</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.h:28</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aaa94ff7cf1cb70a04ea0ad2b54508a80"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aaa94ff7cf1cb70a04ea0ad2b54508a80">ActSim::KinematicGenerator::GetInitialState</a></div><div class="ttdeci">TLorentzVector GetInitialState()</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.cxx:81</div></div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aca760b4a4e8ecb54cac649bc43fe51fc"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aca760b4a4e8ecb54cac649bc43fe51fc">ActSim::KinematicGenerator::GetFinalState</a></div><div class="ttdeci">std::vector&lt; double &gt; GetFinalState()</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.cxx:92</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_a142ccb7acd22341f52636a1b93b4d752"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#a142ccb7acd22341f52636a1b93b4d752">ActSim::KinematicGenerator::fEBeam</a></div><div class="ttdeci">double fEBeam</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.h:28</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aaa94ff7cf1cb70a04ea0ad2b54508a80"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aaa94ff7cf1cb70a04ea0ad2b54508a80">ActSim::KinematicGenerator::GetInitialState</a></div><div class="ttdeci">TLorentzVector GetInitialState()</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.cxx:81</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_aca760b4a4e8ecb54cac649bc43fe51fc"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#aca760b4a4e8ecb54cac649bc43fe51fc">ActSim::KinematicGenerator::GetFinalState</a></div><div class="ttdeci">std::vector&lt; double &gt; GetFinalState()</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.cxx:92</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -616,7 +616,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{<a class="code" href="classActSim_1_1KinematicGenerator.html#a142ccb7acd22341f52636a1b93b4d752">fEBeam</a> = beamE; <a class="code" href="classActSim_1_1KinematicGenerator.html#aa971d12471d3e4c51249b4c894fe5bce">fEx</a> = Ex; <a class="code" href="classActSim_1_1KinematicGenerator.html#acc9f424119884601c95342cf23980bf1">Init</a>();}</div>
-<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_acc9f424119884601c95342cf23980bf1"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#acc9f424119884601c95342cf23980bf1">ActSim::KinematicGenerator::Init</a></div><div class="ttdeci">void Init()</div><div class="ttdef"><b>Definition:</b> KinematicGenerator.cxx:67</div></div>
+<div class="ttc" id="aclassActSim_1_1KinematicGenerator_html_acc9f424119884601c95342cf23980bf1"><div class="ttname"><a href="classActSim_1_1KinematicGenerator.html#acc9f424119884601c95342cf23980bf1">ActSim::KinematicGenerator::Init</a></div><div class="ttdeci">void Init()</div><div class="ttdef"><b>Definition:</b> ActKinematicGenerator.cxx:67</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -852,8 +852,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Simulation/<a class="el" href="KinematicGenerator_8h_source.html">KinematicGenerator.h</a></li>
-<li>Simulation/<a class="el" href="KinematicGenerator_8cxx.html">KinematicGenerator.cxx</a></li>
+<li>Simulation/<a class="el" href="ActKinematicGenerator_8h_source.html">ActKinematicGenerator.h</a></li>
+<li>Simulation/<a class="el" href="ActKinematicGenerator_8cxx.html">ActKinematicGenerator.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

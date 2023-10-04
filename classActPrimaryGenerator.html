@@ -71,7 +71,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="ActPrimaryGenerator_8hh_source.html">ActPrimaryGenerator.hh</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="Act4PrimaryGenerator_8hh_source.html">Act4PrimaryGenerator.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActPrimaryGenerator:</div>
 <div class="dyncontent">
@@ -132,7 +132,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">fParticleGun</a>-&gt;SetParticleMomentumDirection(G4ThreeVector(1, 0, 0));<span class="comment">//along x axis</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">fParticleGun</a>-&gt;SetParticleEnergy(50 * MeV);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="aclassActPrimaryGenerator_html_a841602fc13e4d43ec6a68eefd375d9b0"><div class="ttname"><a href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">ActPrimaryGenerator::fParticleGun</a></div><div class="ttdeci">G4ParticleGun * fParticleGun</div><div class="ttdef"><b>Definition:</b> ActPrimaryGenerator.hh:13</div></div>
+<div class="ttc" id="aclassActPrimaryGenerator_html_a841602fc13e4d43ec6a68eefd375d9b0"><div class="ttname"><a href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">ActPrimaryGenerator::fParticleGun</a></div><div class="ttdeci">G4ParticleGun * fParticleGun</div><div class="ttdef"><b>Definition:</b> Act4PrimaryGenerator.hh:13</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -209,7 +209,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//Set vertex position</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    G4double xVertex {G4UniformRand() * driftHalfLength};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    G4double yVertex {0.};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    G4double yVertex {G4UniformRand() * driftBox-&gt;GetYHalfLength()};</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    G4double zVertex {0.};</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">fParticleGun</a>-&gt;SetParticlePosition(G4ThreeVector(xVertex, yVertex, zVertex));</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">fParticleGun</a>-&gt;GeneratePrimaryVertex(event);</div>
@@ -241,8 +241,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Geant4/<a class="el" href="ActPrimaryGenerator_8hh_source.html">ActPrimaryGenerator.hh</a></li>
-<li>Geant4/<a class="el" href="ActPrimaryGenerator_8cc.html">ActPrimaryGenerator.cc</a></li>
+<li>Geant4/<a class="el" href="Act4PrimaryGenerator_8hh_source.html">Act4PrimaryGenerator.hh</a></li>
+<li>Geant4/<a class="el" href="Act4PrimaryGenerator_8cc.html">Act4PrimaryGenerator.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
