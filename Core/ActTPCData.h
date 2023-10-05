@@ -18,20 +18,21 @@ namespace ActRoot
     private:
         XYZPoint fPosition {-1, -1, -1};
         float fCharge {-1};
-        int fID {-1};
+        //int fID {-1};
         bool fIsSaturated {false};
     public:
         Voxel() = default;
-        Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation = false);
+        Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
+        //Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation = false);
         //Setters
         void SetPosition(const XYZPoint& pos){ fPosition = pos; }
         void SetCharge(float charge){ fCharge = charge; }
-        void SetID(int id){ fID = id; }
+        //void SetID(int id){ fID = id; }
         void SetIsSaturated(bool sat){ fIsSaturated = sat; }
         //Getters
         const XYZPoint& GetPosition() const { return fPosition; }
         float GetCharge() const { return fCharge; }
-        int GetID() const { return fID; }
+        //int GetID() const { return fID; }
         bool GetIsSaturated() const { return fIsSaturated; }
         //Print
         void Print() const;

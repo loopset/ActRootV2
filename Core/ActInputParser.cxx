@@ -1,4 +1,5 @@
 #include "ActInputParser.h"
+#include "TString.h"
 
 #include <cstddef>
 #include <exception>
@@ -92,7 +93,7 @@ bool ActRoot::InputBlock::IsVector(const std::string& token)
     else if(size == 1)
         return false;
     else
-        return true;;
+        return true;
 }
 
 
@@ -119,12 +120,54 @@ int ActRoot::InputBlock::StringToInt(const std::string& val)
     }
 }
 
+double ActRoot::InputBlock::StringToDouble(const std::string& val)
+{
+    double ret {};
+    try
+    {
+        ret = std::stod(val);
+        return ret;
+    }
+    catch (std::exception& e)
+    {
+        std::cout<<"Could not convert to double value "<<val<<'\n';
+        throw std::runtime_error(e.what());
+    }
+}
+
+bool ActRoot::InputBlock::StringToBool(const std::string& val)
+{
+    bool ret {};
+    TString aux {val}; aux.ToLower();
+    std::string lower {aux};
+    if(lower != "true" && lower != "false")
+        throw std::runtime_error("Could not convert to bool value " + val);
+    std::istringstream(lower) >> std::boolalpha >> ret;
+    return ret;
+}
+
 int ActRoot::InputBlock::GetInt(const std::string &token)
 {
     CheckTokenExists(token);
     if(IsVector(token))
         std::cout<<"Token " + token + " really is a vector";
     return StringToInt(fValues[token].front());
+}
+
+bool ActRoot::InputBlock::GetBool(const std::string &token)
+{
+    CheckTokenExists(token);
+    if(IsVector(token))
+        std::cout<<"Token " + token + " really is a vector";
+    return StringToBool(fValues[token].front());
+}
+
+double ActRoot::InputBlock::GetDouble(const std::string &token)
+{
+    CheckTokenExists(token);
+    if(IsVector(token))
+        std::cout<<"Token " + token + " really is a vector";
+    return StringToDouble(fValues[token].front());
 }
 
 std::vector<std::string> ActRoot::InputBlock::GetStringVector(const std::string& token)
@@ -137,8 +180,6 @@ std::vector<int> ActRoot::InputBlock::GetIntVector(const std::string& token)
 {
     CheckTokenExists(token);
     std::vector<int> ret {};
-    //Check if we need to expand
-    int idxExpand {-1};
     for(int v = 0; v < fValues[token].size(); v++)
     {
         const auto& val {fValues[token][v]};
@@ -164,8 +205,24 @@ std::vector<int> ActRoot::InputBlock::GetIntVector(const std::string& token)
             v += 1;
         }
     }
-    //for(const auto& val : fValues[token])
-    //ret.push_back(StringToInt(val));
+    return ret;
+}
+
+std::vector<bool> ActRoot::InputBlock::GetBoolVector(const std::string &token)
+{
+    CheckTokenExists(token);
+    std::vector<bool> ret {};
+    for(int v = 0; v < fValues[token].size(); v++)
+        ret.push_back(StringToBool(fValues[token][v]));
+    return ret;
+}
+
+std::vector<double> ActRoot::InputBlock::GetDoubleVector(const std::string &token)
+{
+    CheckTokenExists(token);
+    std::vector<double> ret {};
+    for(int v = 0; v < fValues[token].size(); v++)
+        ret.push_back(StringToDouble(fValues[token][v]));
     return ret;
 }
 

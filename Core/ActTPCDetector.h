@@ -9,6 +9,8 @@
 
 #include <memory>
 #include <string>
+#include <map>
+#include <utility>
 #include <vector>
 namespace ActRoot
 {
@@ -52,8 +54,14 @@ namespace ActRoot
         TPCParameters fPars;
         //Data
         TPCData* fData {};
-        int fCurrentRun;
-
+        //Preanalysis when reading raw data 
+        bool fCleanSaturatedVoxels {false};
+        bool fCleanPadMatrix {false};
+        double fMinTBtoDelete {20};
+        double fMinQtoDelete  {2000};
+        std::map<std::pair<int, int>,
+                 std::pair<std::vector<unsigned int>, double>> fPadMatrix;
+        
     public:
         TPCDetector() = default;
         virtual ~TPCDetector() = default;
@@ -77,6 +85,7 @@ namespace ActRoot
         
     private:
         void ReadHits(ReducedData& coas, const int& where, int& hitID);
+        void CleanPadMatrix();
     };
 }
 

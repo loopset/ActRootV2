@@ -7,6 +7,7 @@
 #include "ActTPCLegacyData.h"
 #include "TTree.h"
 
+#include <algorithm>
 #include <cstddef>
 #include <exception>
 #include <iostream>
@@ -36,11 +37,23 @@ ActRoot::TPCParameters::TPCParameters(const std::string& type)
 
 void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
-    std::vector<std::string> keys {"Type", "RebinZ"};
+    std::vector<std::string> keys {"Type", "RebinZ", "CleanSaturatedVoxels",
+        "CleanPadMatrix", "CleanPadMatrixPars"};
     //Init detector params
     fPars = TPCParameters(config->GetString("Type"));
     if(config->CheckTokenExists("RebinZ", true))
         fPars.SetREBINZ(config->GetInt("RebinZ"));
+    //Read some analysis configurations
+    if(config->CheckTokenExists("CleanSaturatedVoxels", true))
+        fCleanSaturatedVoxels = config->GetBool("CleanSaturatedVoxels");
+    if(config->CheckTokenExists("CleanPadMatrix", true))
+        fCleanPadMatrix = config->GetBool("CleanPadMatrix");
+    if(config->CheckTokenExists("CleanPadMatrixPars", true))
+    {
+        auto pars {config->GetDoubleVector("CleanPadMatrixPars")};
+        fMinTBtoDelete = pars.at(0);
+        fMinQtoDelete  = pars.at(1);
+    }
 }
 
 void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
@@ -58,8 +71,9 @@ void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run
     if(fMEvent)
         delete fMEvent;
     fMEvent = new MEventReduced;
-    fCurrentRun = run;
     tree->SetBranchAddress("data", &fMEvent);
+    //Init pad matrix!
+    fPadMatrix = {};
 }
 
 void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -73,6 +87,9 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
 void ActRoot::TPCDetector::ClearEventData()
 {
     fData->Clear();
+    //if opted to clean pad matrix
+    if(fCleanPadMatrix)
+        fPadMatrix.clear();
 }
 
 void ActRoot::TPCDetector::BuildEventData()
@@ -99,6 +116,9 @@ void ActRoot::TPCDetector::BuildEventData()
             hitID++;
         }
     }
+    //Clean pad matrix
+    if(fCleanPadMatrix)
+        CleanPadMatrix();
 }
 
 void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hitID)
@@ -128,10 +148,37 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
         
         //Build Voxel
-        Voxel hit {hitID, ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
-        fData->fVoxels.push_back(hit);
-        
+        //Apply cut on saturated flag if desired
+        if(fCleanSaturatedVoxels && coas.hasSaturation)
+        {
+            ;//if CleanSatVoxels is enables and voxel does have hasSat = true, do not fill in vector
+        }
+        else
+        {
+            Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
+            fData->fVoxels.push_back(hit);
+            //push to pad matrix if enabled
+            if(fCleanPadMatrix)
+            {
+                fPadMatrix[{padx, pady}].first.push_back(fData->fVoxels.size() - 1);
+                fPadMatrix[{padx, pady}].second += qcal;
+            }
+        }
         //Increase hit id
         hitID++;        
+    }
+}
+
+void ActRoot::TPCDetector::CleanPadMatrix()
+{
+    for(const auto& [_, pair] : fPadMatrix)
+    {
+        const auto& vals {pair.first};
+        const auto& totalQ {pair.second};
+        if(vals.size() >= fMinTBtoDelete && totalQ >= fMinQtoDelete)//threshold in time buckets and in Qtotal to delete pad data
+        {
+            for(auto it = vals.rbegin(); it != vals.rend(); it++)
+                fData->fVoxels.erase(fData->fVoxels.begin() + *it);
+        }
     }
 }

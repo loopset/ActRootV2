@@ -27,7 +27,7 @@ namespace ActRoot
         std::unordered_map<ActRoot::DetectorType, std::shared_ptr<ActRoot::VDetector>> fDetectors;//!< Pointer to detectors
         std::unordered_map<std::string, DetectorType> fDetDatabase;//!< Equivalence .detector file [Header] to VDetector pointer
         std::shared_ptr<CalibrationManager> fCalMan {};//!< CalibrationManager is now included in DetectorManager to avoid singleton
-        
+
     public:
         DetectorManager();
         DetectorManager(const std::string& file);

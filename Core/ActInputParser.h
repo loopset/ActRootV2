@@ -35,8 +35,12 @@ namespace ActRoot
         bool CheckTokenExists(const std::string& token, bool soft = false);
         std::string GetString(const std::string& token);
         int GetInt(const std::string& token);
+        bool GetBool(const std::string& token);
+        double GetDouble(const std::string& token);
         std::vector<std::string> GetStringVector(const std::string& token);
         std::vector<int> GetIntVector(const std::string& token);
+        std::vector<bool> GetBoolVector(const std::string& token);
+        std::vector<double> GetDoubleVector(const std::string& token);
         std::unordered_map<std::string, std::vector<std::string>> GetAllReadValues() const {return fValues;}
         std::vector<std::string> GetTokens() const {return fTokens;}
     private:
@@ -44,6 +48,8 @@ namespace ActRoot
         void GetValues(const std::string& line, const std::string& token, bool findTokenSeparator = true);
         bool IsVector(const std::string& token);
         int StringToInt(const std::string& val);
+        bool StringToBool(const std::string& val);
+        double StringToDouble(const std::string& val);
         std::vector<int> ExpandInt(int begin, int end);
     };
 
