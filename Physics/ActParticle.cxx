@@ -2,6 +2,7 @@
 
 #include "ActConstants.h"
 
+#include "TString.h"
 #include "TSystem.h"
 
 #include <algorithm>
@@ -45,9 +46,10 @@ void ActPhysics::Particle::ParseFile(int Z, int A, const std::string& file)
         if(a == A && z == Z && i == 0)//we will work almost always with standard gs
         {
             Extract(line);
-            break;
+            return;
         }
     }
+    throw std::runtime_error(TString::Format("No found particle with Z: %d and A: %d", Z, A));
 }
 
 void ActPhysics::Particle::ParseFile(const std::string& particle, const std::string& file)
@@ -74,9 +76,10 @@ void ActPhysics::Particle::ParseFile(const std::string& particle, const std::str
         if(name == isotope && i == 0)//we will work almost always with standard gs
         {
             Extract(line);
-            break;
+            return;;
         }
     }
+    throw std::runtime_error(TString::Format("No found particle with name: %s", particle.c_str()));
 }
 
 void ActPhysics::Particle::Extract(const std::string& line)

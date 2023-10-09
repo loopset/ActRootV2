@@ -214,8 +214,9 @@ void ActSim::Geometry::Draw()
     fCanvas->Update();
     TAxis3D::ToggleRulers();
     fCanvas->cd();
-    //canvas->WaitPrimitive();
-    //canvas->Close();
+    fCanvas->Update();
+    fCanvas->WaitPrimitive();
+    fCanvas->Close();
 }
 
 int ActSim::Geometry::GetAssemblyIndexFromTString(const TString& path)
