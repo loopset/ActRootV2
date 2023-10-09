@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['x_1480',['X',['../structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc',1,'ActSim::DriftChamber']]],
-  ['xsatenergy_1481',['xsAtEnergy',['../classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6',1,'ActSim::TheoCrossSection']]]
+  ['x_1552',['X',['../structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc',1,'ActSim::DriftChamber']]],
+  ['xsatenergy_1553',['xsAtEnergy',['../classActSim_1_1TheoCrossSection.html#a44820fbd59acee80406000d7321ff9b6',1,'ActSim::TheoCrossSection']]]
 ];

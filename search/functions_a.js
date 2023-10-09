@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['main_1090',['main',['../ActGeant4_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'ActGeant4.cc']]],
-  ['meventreduced_1091',['MEventReduced',['../classMEventReduced.html#ad67e7eacdacb2d459ad0d4efaaeeca48',1,'MEventReduced']]],
-  ['modulardetector_1092',['ModularDetector',['../classActRoot_1_1ModularDetector.html#ad317a67f624f665843c29d896ad6f71b',1,'ActRoot::ModularDetector']]],
-  ['ms_1093',['ms',['../classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159',1,'BS::timer']]],
-  ['mtexecutor_1094',['MTExecutor',['../classActRoot_1_1MTExecutor.html#a1b7cd6e99801f92cce0a0c057912e7e9',1,'ActRoot::MTExecutor']]],
-  ['multi_5ffuture_1095',['multi_future',['../classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a',1,'BS::multi_future']]]
+  ['line_1144',['Line',['../classActPhysics_1_1Line.html#aa1a46ad70bee19aeb2d7d1685a820be1',1,'ActPhysics::Line::Line()=default'],['../classActPhysics_1_1Line.html#a4a178deb2cd606f5cced01cbcc2d7b21',1,'ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)'],['../classActPhysics_1_1Line.html#abaab8509c2ae394e227777d1ee487165',1,'ActPhysics::Line::Line(const XYZPoint &amp;p1, const XYZPoint &amp;p2)'],['../classActPhysics_1_1Line.html#a83a75453bc56383b484a8ee76751aea8',1,'ActPhysics::Line::Line(const Line &amp;)=default'],['../classActPhysics_1_1Line.html#ad437e687df00f23009769eba65b745c7',1,'ActPhysics::Line::Line(Line &amp;&amp;)=default']]]
 ];
