@@ -85,14 +85,16 @@ Collaboration diagram for ActRoot::HistogramPainter:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1HistogramPainter__coll__graph.png" border="0" usemap="#aActRoot_1_1HistogramPainter_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1HistogramPainter_coll__map" id="aActRoot_1_1HistogramPainter_coll__map">
-<area shape="rect" title="&lt; A class to plot physics info in histograms" alt="" coords="198,184,393,211"/>
-<area shape="rect" href="classActRoot_1_1TPCParameters.html" title=" " alt="" coords="5,95,185,121"/>
-<area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="210,95,381,121"/>
-<area shape="rect" href="classActRoot_1_1InputWrapper.html" title=" " alt="" coords="405,95,575,121"/>
-<area shape="rect" href="classActRoot_1_1InputIterator.html" title=" " alt="" coords="150,5,313,32"/>
-<area shape="rect" href="classActRoot_1_1InputData.html" title=" " alt="" coords="337,5,483,32"/>
-<area shape="rect" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data." alt="" coords="507,5,635,32"/>
-<area shape="rect" href="classActRoot_1_1TPCData.html" title=" " alt="" coords="660,5,797,32"/>
+<area shape="rect" title="&lt; A class to plot physics info in histograms" alt="" coords="755,56,949,83"/>
+<area shape="rect" href="classActRoot_1_1TPCParameters.html" title=" " alt="" coords="483,5,663,32"/>
+<area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="487,56,658,83"/>
+<area shape="rect" href="classActRoot_1_1InputWrapper.html" title=" " alt="" coords="488,107,657,133"/>
+<area shape="rect" href="classActRoot_1_1InputIterator.html" title=" " alt="" coords="177,5,340,32"/>
+<area shape="rect" href="classActRoot_1_1InputData.html" title=" " alt="" coords="186,56,331,83"/>
+<area shape="rect" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data." alt="" coords="195,107,323,133"/>
+<area shape="rect" href="classActRoot_1_1VData.html" title=" " alt="" coords="5,157,127,184"/>
+<area shape="rect" href="classActRoot_1_1ModularData.html" title="A class storing ModularLeaf data." alt="" coords="176,157,341,184"/>
+<area shape="rect" href="classActRoot_1_1TPCData.html" title=" " alt="" coords="190,208,327,235"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -270,8 +272,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a75f85f975ecc31567358555e27132f60"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a75f85f975ecc31567358555e27132f60">ActRoot::HistogramPainter::FillSilHisto</a></div><div class="ttdeci">void FillSilHisto(int pad, const std::string &amp;layer)</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:194</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a8e0a9ce45720162212d0b8a9a1d9307b"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a8e0a9ce45720162212d0b8a9a1d9307b">ActRoot::HistogramPainter::fWrap</a></div><div class="ttdeci">InputWrapper * fWrap</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:35</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_aa5bbb3baa50a7c839717bf1e27f30240"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#aa5bbb3baa50a7c839717bf1e27f30240">ActRoot::InputWrapper::GetCurrentTPCData</a></div><div class="ttdeci">TPCData * GetCurrentTPCData() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:50</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:44</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_aa5bbb3baa50a7c839717bf1e27f30240"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#aa5bbb3baa50a7c839717bf1e27f30240">ActRoot::InputWrapper::GetCurrentTPCData</a></div><div class="ttdeci">TPCData * GetCurrentTPCData() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:58</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:47</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -318,9 +320,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a7b516af1cf20120311f9c5e21fd9b667"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a7b516af1cf20120311f9c5e21fd9b667">ActRoot::HistogramPainter::fSilMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt; fSilMap</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:32</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a98f0263eb7af4018a91a88e110e24635"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a98f0263eb7af4018a91a88e110e24635">ActRoot::InputWrapper::GetCurrentSilData</a></div><div class="ttdeci">SilData * GetCurrentSilData() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:51</div></div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:13</div></div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:14</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a98f0263eb7af4018a91a88e110e24635"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a98f0263eb7af4018a91a88e110e24635">ActRoot::InputWrapper::GetCurrentSilData</a></div><div class="ttdeci">SilData * GetCurrentSilData() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:59</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:16</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:17</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -435,10 +437,10 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_acdc8588f4a09ab13fd9e7c18b040e277"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#acdc8588f4a09ab13fd9e7c18b040e277">ActRoot::HistogramPainter::fTPC</a></div><div class="ttdeci">TPCParameters fTPC</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:29</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:43</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a53245f1683330070e850291de5c3807c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">ActRoot::TPCParameters::GetREBINZ</a></div><div class="ttdeci">int GetREBINZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:44</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:41</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:42</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:44</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a53245f1683330070e850291de5c3807c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">ActRoot::TPCParameters::GetREBINZ</a></div><div class="ttdeci">int GetREBINZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:42</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:43</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -487,7 +489,7 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:58</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a67d08ebce56f6d35c5c62921a8a0520e"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">ActRoot::InputParser::GetBlockHeaders</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetBlockHeaders() const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:315</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_adc738660741b40306747a46cef4df7a3"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#adc738660741b40306747a46cef4df7a3">ActRoot::SilParameters::ReadActions</a></div><div class="ttdeci">void ReadActions(const std::vector&lt; std::string &gt; &amp;layers, const std::vector&lt; std::string &gt; &amp;names, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActSilDetector.cxx:33</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1e802bd3dcb5435247fef0da647c82a9"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1e802bd3dcb5435247fef0da647c82a9">ActRoot::TPCParameters::SetREBINZ</a></div><div class="ttdeci">void SetREBINZ(int rebin)</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1e802bd3dcb5435247fef0da647c82a9"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1e802bd3dcb5435247fef0da647c82a9">ActRoot::TPCParameters::SetREBINZ</a></div><div class="ttdeci">void SetREBINZ(int rebin)</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:39</div></div>
 </div><!-- fragment -->
 </div>
 </div>

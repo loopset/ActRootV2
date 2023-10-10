@@ -127,6 +127,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad815ee822e6ab01db8b78459c21cdf00"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ad815ee822e6ab01db8b78459c21cdf00">ClearEventPhysics</a> ()=0</td></tr>
 <tr class="separator:ad815ee822e6ab01db8b78459c21cdf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4dc04432342163d92085611d1c51c6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">GetEventData</a> () const</td></tr>
+<tr class="separator:adf4dc04432342163d92085611d1c51c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53617e2f006666428ac510add6361fcf"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">GetEventPhysics</a> () const</td></tr>
+<tr class="separator:a53617e2f006666428ac510add6361fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af60b110730fb8f76a4fa2a948194fbba"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#af60b110730fb8f76a4fa2a948194fbba">SetEventData</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *vdata)=0</td></tr>
+<tr class="separator:af60b110730fb8f76a4fa2a948194fbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a6dd9b3b5aa37ea3b797faf0a7f3d07ca">SetMEvent</a> (<a class="el" href="classMEventReduced.html">MEventReduced</a> *mevt)</td></tr>
 <tr class="separator:a6dd9b3b5aa37ea3b797faf0a7f3d07ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850f7140986bfea024c864fe4d88c44b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMEventReduced.html">MEventReduced</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a850f7140986bfea024c864fe4d88c44b">GetMEvent</a> () const</td></tr>
@@ -329,8 +335,64 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>;}</div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>;}</div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:21</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adf4dc04432342163d92085611d1c51c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf4dc04432342163d92085611d1c51c6">&#9670;&nbsp;</a></span>GetEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetEventData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ac3e760e39651c1462f738522ef6adc7a">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a9f12e31c2611f0c17c3bbf469d843e8a">ActRoot::SilDetector</a>, and <a class="el" href="classActRoot_1_1ModularDetector.html#abcc1cb2ac6f1b4d42df893ca9596d8c6">ActRoot::ModularDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">nullptr</span>;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a53617e2f006666428ac510add6361fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53617e2f006666428ac510add6361fcf">&#9670;&nbsp;</a></span>GetEventPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetEventPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a401f94aacb49ec7ab59ef79df59a07ff">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#ae10663c5db5b6d6fd8aba2bf7d75c2e6">ActRoot::SilDetector</a>, and <a class="el" href="classActRoot_1_1ModularDetector.html#add991d41ffe012729f567c78807fbd5a">ActRoot::ModularDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">nullptr</span>;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -356,8 +418,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>;}</div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:19</div></div>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>;}</div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -562,8 +624,36 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> = calman;}</div>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> = calman;}</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="af60b110730fb8f76a4fa2a948194fbba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af60b110730fb8f76a4fa2a948194fbba">&#9670;&nbsp;</a></span>SetEventData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::SetEventData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td>
+          <td class="paramname"><em>vdata</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a163e4d49d1010c20791f3c597fb276c8">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#acfd7088e72f75c57df148adbe4762dba">ActRoot::SilDetector</a>, and <a class="el" href="classActRoot_1_1ModularDetector.html#ad98adc0753509c4b29852a84bc4c0e52">ActRoot::ModularDetector</a>.</p>
+
 </div>
 </div>
 <a id="a6dd9b3b5aa37ea3b797faf0a7f3d07ca"></a>
@@ -589,7 +679,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> = mevt;}</div>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{<a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a> = mevt;}</div>
 </div><!-- fragment -->
 </div>
 </div>
