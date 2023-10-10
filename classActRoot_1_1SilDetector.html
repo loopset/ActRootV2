@@ -115,12 +115,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a50a9ca48595dc638678f9f99c958fd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a1ae870f778209a2f9b8d43d8d4c31714">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
 <tr class="separator:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa162c5d87f2869620a153fe8001883ea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#aa162c5d87f2869620a153fe8001883ea">InitInputData</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
+<tr class="separator:aa162c5d87f2869620a153fe8001883ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae61278092e4fb15820798ce263334c9e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#ae61278092e4fb15820798ce263334c9e">InitOutputData</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
 <tr class="separator:ae61278092e4fb15820798ce263334c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a958bf029fd841fe4c4ad98f1957fea38"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a958bf029fd841fe4c4ad98f1957fea38">InitOutputPhysics</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
+<tr class="separator:a958bf029fd841fe4c4ad98f1957fea38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe4e9551b4e76cbd056abfb7240225fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#abe4e9551b4e76cbd056abfb7240225fe">BuildEventData</a> () override</td></tr>
 <tr class="separator:abe4e9551b4e76cbd056abfb7240225fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031307efeb14ab4499e257e43a637699"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a031307efeb14ab4499e257e43a637699">BuildEventPhysics</a> () override</td></tr>
+<tr class="separator:a031307efeb14ab4499e257e43a637699"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a405dc51a983235b18ba2f42c8146c1ca"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a405dc51a983235b18ba2f42c8146c1ca">ClearEventData</a> () override</td></tr>
 <tr class="separator:a405dc51a983235b18ba2f42c8146c1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace3a5d4464109378fe446ed0dce15e01"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#ace3a5d4464109378fe446ed0dce15e01">ClearEventPhysics</a> () override</td></tr>
+<tr class="separator:ace3a5d4464109378fe446ed0dce15e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
 <tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
 <tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,45 +245,75 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a2ddfd1d788241eda54cad200ce0e8bbc">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; coas : <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>-&gt;<a class="code" href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">CoboAsad</a>)</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">//locate channel!</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">int</span> co {coas.globalchannelid &gt;&gt; 11};</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span>(co == 31)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> hit = 0, size = coas.peakheight.size(); hit &lt; size; hit++)</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keyword">auto</span> vxi {coas.peaktime[hit]};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keyword">auto</span> [layer, sil] = <a class="code" href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">fPars</a>.<a class="code" href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">GetSilIndex</a>(vxi);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordflow">if</span>(sil == -1)</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="comment">//Get raw data</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordtype">float</span> raw {coas.peakheight[hit]};</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="comment">//Check threshold</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                std::string threshKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_P&quot;</span>};</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyThreshold(threshKey, raw, 3))</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="comment">//Write silicon number</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[layer].push_back(sil);                </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">//Calibrate</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                std::string calKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_E&quot;</span>};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordtype">float</span> cal {<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyCalibration(calKey, raw))};</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[layer].push_back(cal);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Raw sil = &quot;&lt;&lt;raw&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Cal sil = &quot;&lt;&lt;cal&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; coas : <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>-&gt;<a class="code" href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">CoboAsad</a>)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="comment">//locate channel!</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordtype">int</span> co {coas.globalchannelid &gt;&gt; 11};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">if</span>(co == 31)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> hit = 0, size = coas.peakheight.size(); hit &lt; size; hit++)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keyword">auto</span> vxi {coas.peaktime[hit]};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keyword">auto</span> [layer, sil] = <a class="code" href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">fPars</a>.<a class="code" href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">GetSilIndex</a>(vxi);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <span class="keywordflow">if</span>(sil == -1)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <span class="comment">//Get raw data</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordtype">float</span> raw {coas.peakheight[hit]};</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="comment">//Check threshold</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                std::string threshKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_P&quot;</span>};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyThreshold(threshKey, raw, 3))</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="comment">//Write silicon number</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[layer].push_back(sil);                </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="comment">//Calibrate</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                std::string calKey {<span class="stringliteral">&quot;Sil_&quot;</span> + layer + <span class="stringliteral">&quot;_&quot;</span> + sil + <span class="stringliteral">&quot;_E&quot;</span>};</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keywordtype">float</span> cal {<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ApplyCalibration(calKey, raw))};</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[layer].push_back(cal);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Raw sil = &quot;&lt;&lt;raw&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="comment">//std::cout&lt;&lt;&quot;Cal sil = &quot;&lt;&lt;cal&lt;&lt;&quot; |&quot;&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:13</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:14</div></div>
-<div class="ttc" id="aclassActRoot_1_1SilDetector_html_a503a920e0e914b8c08d3431f34e861cd"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector::fPars</a></div><div class="ttdeci">SilParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:43</div></div>
-<div class="ttc" id="aclassActRoot_1_1SilDetector_html_ad2b93a517a781781b9d4b0f584008ded"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector::fData</a></div><div class="ttdeci">SilData * fData</div><div class="ttdoc">Pointer to SilData.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilDetector_html_a503a920e0e914b8c08d3431f34e861cd"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector::fPars</a></div><div class="ttdeci">SilParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:44</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilDetector_html_ad2b93a517a781781b9d4b0f584008ded"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector::fData</a></div><div class="ttdeci">SilData * fData</div><div class="ttdoc">Pointer to SilData.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:46</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_a91dc241bb125283f48278c946d498345"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">ActRoot::SilParameters::GetSilIndex</a></div><div class="ttdeci">std::pair&lt; std::string, int &gt; GetSilIndex(int vxi)</div><div class="ttdef"><b>Definition:</b> ActSilDetector.cxx:55</div></div>
 <div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:19</div></div>
 <div class="ttc" id="aclassMEventReduced_html_a6be3a1f8fd6ce8274ab56d7c16cbeef5"><div class="ttname"><a href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">MEventReduced::CoboAsad</a></div><div class="ttdeci">std::vector&lt; ReducedData &gt; CoboAsad</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:30</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a031307efeb14ab4499e257e43a637699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a031307efeb14ab4499e257e43a637699">&#9670;&nbsp;</a></span>BuildEventPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::BuildEventPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a74016d6ea68c5d2aa3e79da644dabf36">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -303,10 +341,40 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">Clear</a>();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;{</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">Clear</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_ac7e53f3842dc4184d9667c255e151159"><div class="ttname"><a href="classActRoot_1_1SilData.html#ac7e53f3842dc4184d9667c255e151159">ActRoot::SilData::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">Reset stored variables in SilData.</div><div class="ttdef"><b>Definition:</b> ActSilData.cxx:4</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ace3a5d4464109378fe446ed0dce15e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace3a5d4464109378fe446ed0dce15e01">&#9670;&nbsp;</a></span>ClearEventPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::ClearEventPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ad815ee822e6ab01db8b78459c21cdf00">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -332,7 +400,41 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa162c5d87f2869620a153fe8001883ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa162c5d87f2869620a153fe8001883ea">&#9670;&nbsp;</a></span>InitInputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::InitInputData </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a084d80d65b55cd7fe00b289b80f6af65">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a> = <span class="keyword">new</span> SilData;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -408,6 +510,37 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a> = <span class="keyword">new</span> SilData;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    tree-&gt;Branch(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a958bf029fd841fe4c4ad98f1957fea38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a958bf029fd841fe4c4ad98f1957fea38">&#9670;&nbsp;</a></span>InitOutputPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::InitOutputPhysics </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#af5336c81bca5ede17014f253f06aa156">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -100,10 +100,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1a8243917fb06002212249173e30c7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44aa0fc7b16a1130765053463fc3715a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a44aa0fc7b16a1130765053463fc3715a">InitializeDataInputRaw</a> (std::shared_ptr&lt; TTree &gt; input, int run)</td></tr>
 <tr class="separator:a44aa0fc7b16a1130765053463fc3715a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447090f998ecb112bfb484df410181eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a447090f998ecb112bfb484df410181eb">InitializeDataInput</a> (std::shared_ptr&lt; TTree &gt; input)</td></tr>
+<tr class="separator:a447090f998ecb112bfb484df410181eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a559da0026fa9de6c6b71eceaf138acb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a559da0026fa9de6c6b71eceaf138acb0">InitializeDataOutput</a> (std::shared_ptr&lt; TTree &gt; output)</td></tr>
 <tr class="separator:a559da0026fa9de6c6b71eceaf138acb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75385227e1a287200f8023d1c2c53c96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a75385227e1a287200f8023d1c2c53c96">InitializePhysicsOutput</a> (std::shared_ptr&lt; TTree &gt; output)</td></tr>
+<tr class="separator:a75385227e1a287200f8023d1c2c53c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a0d004f06cf5bc901c132a94bb9f991"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a6a0d004f06cf5bc901c132a94bb9f991">BuildEventData</a> ()</td></tr>
 <tr class="separator:a6a0d004f06cf5bc901c132a94bb9f991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4c0020a51f1ffea96a97fe2cc235cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a0d4c0020a51f1ffea96a97fe2cc235cb">BuildEventPhysics</a> ()</td></tr>
+<tr class="separator:a0d4c0020a51f1ffea96a97fe2cc235cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -217,30 +223,54 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        det.second-&gt;ClearEventData();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">//This has to be splitted since MEvent could only be read from one branch at the same time</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">//And that branch is in Actar detector, so we pass the pointer manually to the other detectors</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">//1--&gt;Actar</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>])</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;BuildEventData();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">//2--&gt;Silicons</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.find(<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>) != <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.end())</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>]-&gt;SetMEvent(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;GetMEvent());</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>]-&gt;BuildEventData();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//3--&gt;Modular</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.find(<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>) != <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.end())</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>]-&gt;SetMEvent(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;GetMEvent());</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>]-&gt;BuildEventData();</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        det.second-&gt;ClearEventData();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">//This has to be splitted since MEvent could only be read from one branch at the same time</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">//And that branch is in Actar detector, so we pass the pointer manually to the other detectors</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">//1--&gt;Actar</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>])</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;BuildEventData();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">//2--&gt;Silicons</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.find(<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>) != <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.end())</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>]-&gt;SetMEvent(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;GetMEvent());</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">DetectorType::ESilicons</a>]-&gt;BuildEventData();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">//3--&gt;Modular</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.find(<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>) != <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>.end())</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>]-&gt;SetMEvent(<a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">DetectorType::EActar</a>]-&gt;GetMEvent());</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>[<a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">DetectorType::EModular</a>]-&gt;BuildEventData();</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1DetectorManager_html_af5af2efda2a1568959401693525f9cb6"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">ActRoot::DetectorManager::fDetectors</a></div><div class="ttdeci">std::unordered_map&lt; ActRoot::DetectorType, std::shared_ptr&lt; ActRoot::VDetector &gt; &gt; fDetectors</div><div class="ttdoc">Pointer to detectors.</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:27</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0d4c0020a51f1ffea96a97fe2cc235cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4c0020a51f1ffea96a97fe2cc235cb">&#9670;&nbsp;</a></span>BuildEventPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::DetectorManager::BuildEventPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        det.second-&gt;ClearEventPhysics();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        det.second-&gt;BuildEventPhysics();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -321,6 +351,28 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a447090f998ecb112bfb484df410181eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447090f998ecb112bfb484df410181eb">&#9670;&nbsp;</a></span>InitializeDataInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::DetectorManager::InitializeDataInput </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        det.second-&gt;InitInputData(input);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a44aa0fc7b16a1130765053463fc3715a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44aa0fc7b16a1130765053463fc3715a">&#9670;&nbsp;</a></span>InitializeDataInputRaw()</h2>
 
@@ -372,6 +424,28 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        det.second-&gt;InitOutputData(input);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a75385227e1a287200f8023d1c2c53c96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75385227e1a287200f8023d1c2c53c96">&#9670;&nbsp;</a></span>InitializePhysicsOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::DetectorManager::InitializePhysicsOutput </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; det : <a class="code" href="classActRoot_1_1DetectorManager.html#af5af2efda2a1568959401693525f9cb6">fDetectors</a>)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        det.second-&gt;InitOutputPhysics(output);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -67,6 +67,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -78,10 +79,19 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="ActRANSAC_8h_source.html">ActRANSAC.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aaec7e50feeaa2de591c16aaf3d02e6f2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#aaec7e50feeaa2de591c16aaf3d02e6f2">XYZPoint</a> = ROOT::Math::XYZPointF</td></tr>
+<tr class="separator:aaec7e50feeaa2de591c16aaf3d02e6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a96a7d8954e27dcb10c9da000ec62a613"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a96a7d8954e27dcb10c9da000ec62a613">RANSAC</a> ()=default</td></tr>
+<tr class="separator:a96a7d8954e27dcb10c9da000ec62a613"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8a3307f470198910969207c5f7a3251"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#ab8a3307f470198910969207c5f7a3251">RANSAC</a> (int iterations, int minPoints, double distThres)</td></tr>
 <tr class="separator:ab8a3307f470198910969207c5f7a3251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205be65fc2786a2cad50da5a444fab1d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a205be65fc2786a2cad50da5a444fab1d">~RANSAC</a> ()=default</td></tr>
+<tr class="separator:a205be65fc2786a2cad50da5a444fab1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e8329fa67b76a93a04fe8811bfb7048"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a9e8329fa67b76a93a04fe8811bfb7048">GetDistThreshold</a> () const</td></tr>
 <tr class="separator:a9e8329fa67b76a93a04fe8811bfb7048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0437e69432d736fa66491b2433b7d0c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a0437e69432d736fa66491b2433b7d0c7">GetIterations</a> () const</td></tr>
@@ -94,17 +104,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a15499b3606d9d5c4e10132e4dc78c186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3d701ce929dcee383db2b17c38f7be9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#af3d701ce929dcee383db2b17c38f7be9">SetMinPoints</a> (int minPoints)</td></tr>
 <tr class="separator:af3d701ce929dcee383db2b17c38f7be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60005e7f37e439508ea68b7657c0c130"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a60005e7f37e439508ea68b7657c0c130">Run</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels)</td></tr>
-<tr class="separator:a60005e7f37e439508ea68b7657c0c130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2361f3f7d327d65b6897281b385e77"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a9b2361f3f7d327d65b6897281b385e77">Run</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels)</td></tr>
+<tr class="separator:a9b2361f3f7d327d65b6897281b385e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d74bba6b94c714549666da80f3d4934"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a9d74bba6b94c714549666da80f3d4934">ReadConfigurationFile</a> (const std::string &amp;infile=&quot;&quot;)</td></tr>
 <tr class="separator:a9d74bba6b94c714549666da80f3d4934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a4f809716eedff41cdb2597e44cb489e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a4f809716eedff41cdb2597e44cb489e3">GetNInliers</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels, const <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;line)</td></tr>
-<tr class="separator:a4f809716eedff41cdb2597e44cb489e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae02e33c390c9e39f46b743b7e54c5c09"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#ae02e33c390c9e39f46b743b7e54c5c09">RankLines</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;remain, const <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;line)</td></tr>
-<tr class="separator:ae02e33c390c9e39f46b743b7e54c5c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0cf583f53870da9bf75a8aba5c118ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#ac0cf583f53870da9bf75a8aba5c118ef">GetNInliers</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels, <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;line)</td></tr>
+<tr class="separator:ac0cf583f53870da9bf75a8aba5c118ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5970cfd55f29ce949ff28d7c3510acae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a5970cfd55f29ce949ff28d7c3510acae">ProcessCloud</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;remain, const <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;line)</td></tr>
+<tr class="separator:a5970cfd55f29ce949ff28d7c3510acae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9c03a16147800505bcd7610f4f4c63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a7e9c03a16147800505bcd7610f4f4c63">SampleLine</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels)</td></tr>
+<tr class="separator:a7e9c03a16147800505bcd7610f4f4c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3d716577c5bed3cc22b228416613513"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae3d716577c5bed3cc22b228416613513"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#ae3d716577c5bed3cc22b228416613513">IsInVector</a> (T val, const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="separator:ae3d716577c5bed3cc22b228416613513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -117,9 +132,49 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aa710c001a5d98f30d684ab48ac6096da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#aa710c001a5d98f30d684ab48ac6096da">fNPointsToSample</a> {2}</td></tr>
 <tr class="separator:aa710c001a5d98f30d684ab48ac6096da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aaec7e50feeaa2de591c16aaf3d02e6f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaec7e50feeaa2de591c16aaf3d02e6f2">&#9670;&nbsp;</a></span>XYZPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActCluster_1_1RANSAC.html#aaec7e50feeaa2de591c16aaf3d02e6f2">ActCluster::RANSAC::XYZPoint</a> =  ROOT::Math::XYZPointF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a96a7d8954e27dcb10c9da000ec62a613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96a7d8954e27dcb10c9da000ec62a613">&#9670;&nbsp;</a></span>RANSAC() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActCluster::RANSAC::RANSAC </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab8a3307f470198910969207c5f7a3251"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8a3307f470198910969207c5f7a3251">&#9670;&nbsp;</a></span>RANSAC()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a3307f470198910969207c5f7a3251">&#9670;&nbsp;</a></span>RANSAC() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,12 +204,37 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    : <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>(iterations), <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>(minPoints), <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>(distThres)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{}</div>
-<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a3999432e2fc2baf8f58270fee13a8b77"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">ActCluster::RANSAC::fMinPoints</a></div><div class="ttdeci">int fMinPoints</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:16</div></div>
-<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a56172640121c4052c06e53346e030bad"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">ActCluster::RANSAC::fIterations</a></div><div class="ttdeci">int fIterations</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:15</div></div>
-<div class="ttc" id="aclassActCluster_1_1RANSAC_html_ad31927904733c26d7b80891eca4adc70"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">ActCluster::RANSAC::fDistThreshold</a></div><div class="ttdeci">double fDistThreshold</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:14</div></div>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    : <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>(iterations), <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>(minPoints), <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>(distThres)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{}</div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a3999432e2fc2baf8f58270fee13a8b77"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">ActCluster::RANSAC::fMinPoints</a></div><div class="ttdeci">int fMinPoints</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:23</div></div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a56172640121c4052c06e53346e030bad"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">ActCluster::RANSAC::fIterations</a></div><div class="ttdeci">int fIterations</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:22</div></div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_ad31927904733c26d7b80891eca4adc70"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">ActCluster::RANSAC::fDistThreshold</a></div><div class="ttdeci">double fDistThreshold</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:21</div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="a205be65fc2786a2cad50da5a444fab1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205be65fc2786a2cad50da5a444fab1d">&#9670;&nbsp;</a></span>~RANSAC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActCluster::RANSAC::~RANSAC </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -180,7 +260,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -206,7 +286,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,12 +312,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a4f809716eedff41cdb2597e44cb489e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f809716eedff41cdb2597e44cb489e3">&#9670;&nbsp;</a></span>GetNInliers()</h2>
+<a id="ac0cf583f53870da9bf75a8aba5c118ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0cf583f53870da9bf75a8aba5c118ef">&#9670;&nbsp;</a></span>GetNInliers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +334,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> &amp;&#160;</td>
           <td class="paramname"><em>line</em>&#160;</td>
         </tr>
         <tr>
@@ -269,11 +349,69 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> ninliers {};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : voxels)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos = voxel.GetPosition();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">double</span> err = line.<a class="code" href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">DistanceLineToPoint</a>(pos);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        err *= err;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span>(err &lt; (<a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a> * <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>))</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            ninliers++;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    line.<a class="code" href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">SetChi2</a>(1.0 / ninliers);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> ninliers;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a04ee2a39a2e99782b8816e285c6f203a"><div class="ttname"><a href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">ActPhysics::Line::SetChi2</a></div><div class="ttdeci">void SetChi2(float chi2)</div><div class="ttdef"><b>Definition:</b> ActLine.h:39</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a3896b73c4d69e8654786c2f2686500dc"><div class="ttname"><a href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">ActPhysics::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPoint &amp;point) const</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:17</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae3d716577c5bed3cc22b228416613513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3d716577c5bed3cc22b228416613513">&#9670;&nbsp;</a></span>IsInVector()</h2>
 
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActCluster::RANSAC::IsInVector </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span>(vec.size())</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">return</span> std::find(vec.begin(), vec.end(), val) != vec.end();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="ae02e33c390c9e39f46b743b7e54c5c09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae02e33c390c9e39f46b743b7e54c5c09">&#9670;&nbsp;</a></span>RankLines()</h2>
+<a id="a5970cfd55f29ce949ff28d7c3510acae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5970cfd55f29ce949ff28d7c3510acae">&#9670;&nbsp;</a></span>ProcessCloud()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -282,9 +420,9 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&gt; ActCluster::RANSAC::RankLines </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; ActCluster::RANSAC::ProcessCloud </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>remain</em>, </td>
         </tr>
         <tr>
@@ -305,7 +443,44 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::vector&lt;ActRoot::Voxel&gt; ret {};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//clear cloud according to line: delete from it voxel belonging to this line</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">auto</span> itrange {remain.end()};<span class="comment">//to work with ranges of voxels, using insert range of iterator capabilities!</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = remain.begin(); it != remain.end(); ++it)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">//Compute error</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> err {line.<a class="code" href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">DistanceLineToPoint</a>(it-&gt;GetPosition())};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">bool</span> isInLine {(err * err) &lt; (<a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a> * <a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a>)};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">//In line</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span>(isInLine &amp;&amp; (itrange == remain.end()))</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            itrange = it;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">//Not in line</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span>(!isInLine &amp;&amp; (itrange != remain.end()))</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            ret.insert(ret.end(), std::make_move_iterator(itrange), std::make_move_iterator(it));<span class="comment">//move voxels</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="comment">//and now delete positions</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            remain.erase(itrange, it);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="comment">//set new positions</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            it = itrange;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            itrange = remain.end();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">//treat last range case since we are using itrange == remain.end() as a tag</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span>(itrange != remain.end())</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keyword">auto</span> it = remain.end();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        ret.insert(ret.end(), std::make_move_iterator(itrange), std::make_move_iterator(it));</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        remain.erase(itrange, it);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9d74bba6b94c714549666da80f3d4934"></a>
@@ -323,20 +498,44 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="comment">//in progress</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//automatically get project path from gEnv</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::string project {gEnv-&gt;GetValue(<span class="stringliteral">&quot;ActRoot.ProjectHomeDir&quot;</span>, <span class="stringliteral">&quot;&quot;</span>)};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">if</span>(project.length() == 0 &amp;&amp; infile.length() == 0)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;No found RANSAC config file -&gt; Using built-in parameters&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">auto</span> dirname {project + <span class="stringliteral">&quot;configs/&quot;</span>};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    TSystemDirectory dir {dirname.c_str(), dirname.c_str()};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string ransacfile {dirname};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//list files, get only the one with extension .ransac</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>* obj : *dir.GetListOfFiles())</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span>(!obj)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        TSystemFile* file {(TSystemFile*)obj};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        TString name {file-&gt;GetName()};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span>(name.EndsWith(<span class="stringliteral">&quot;.ransac&quot;</span>))</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            ransacfile += name;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Found file = &quot;</span>&lt;&lt;ransacfile&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a60005e7f37e439508ea68b7657c0c130"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60005e7f37e439508ea68b7657c0c130">&#9670;&nbsp;</a></span>Run()</h2>
+<a id="a9b2361f3f7d327d65b6897281b385e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b2361f3f7d327d65b6897281b385e77">&#9670;&nbsp;</a></span>Run()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&gt; ActCluster::RANSAC::Run </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a> &gt; ActCluster::RANSAC::Run </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>voxels</em></td><td>)</td>
@@ -344,7 +543,97 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    std::vector&lt;ActCluster::Cluster&gt; ret;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">if</span>(voxels.size() &lt; <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span>(gEnv-&gt;GetValue(<span class="stringliteral">&quot;ActRoot.Verbose&quot;</span>, <span class="keyword">false</span>))</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            std::cout&lt;&lt;<span class="stringliteral">&quot;RANSAC::Run() Voxel size smaller than fMinPoints = &quot;</span>&lt;&lt;<a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">//Build set to compare lines</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">auto</span> lambdaCompare = [](<span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; a, <span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; b){<span class="keywordflow">return</span> a.<a class="code" href="classActPhysics_1_1Line.html#aabb767b747c1f7ce6c27e56cd49fb696">GetChi2</a>() &lt; b.GetChi2();};</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    std::set&lt;<a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>, decltype(lambdaCompare)&gt; sortedLines(lambdaCompare);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="comment">//1-&gt; Run for fIterations</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>; i++)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">//1-&gt;Sample line</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keyword">auto</span> sampled {<a class="code" href="classActCluster_1_1RANSAC.html#a7e9c03a16147800505bcd7610f4f4c63">SampleLine</a>(voxels)};</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">//2-&gt;Get inliers of line</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keyword">auto</span> inliers {<a class="code" href="classActCluster_1_1RANSAC.html#ac0cf583f53870da9bf75a8aba5c118ef">GetNInliers</a>(voxels, sampled)};</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="comment">//3-&gt; If ninliers greater than minimum, push to set of lines</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">if</span>(inliers &gt; <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            sortedLines.insert(sampled);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="comment">//2-&gt; Extract points from cloud belonging to the best scored lines</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">auto</span> remain = voxels;<span class="comment">//copy to avoid modification of init vector</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; line : sortedLines)</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span>(remain.size() &lt; <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keyword">auto</span> inlierVoxels {<a class="code" href="classActCluster_1_1RANSAC.html#a5970cfd55f29ce949ff28d7c3510acae">ProcessCloud</a>(remain, line)};</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">if</span>(inlierVoxels.size() &gt; <a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a>)<span class="comment">//assert again this condition</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="comment">//Create copy of line</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keyword">auto</span> copy = line;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="comment">//Fit it</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            copy.FitVoxels(inlierVoxels);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">//And push back to vector of clustering results!</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            ret.push_back(<a class="code" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a>(ret.size(), copy, inlierVoxels));</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<div class="ttc" id="aclassActCluster_1_1Cluster_html"><div class="ttname"><a href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:12</div></div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a5970cfd55f29ce949ff28d7c3510acae"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a5970cfd55f29ce949ff28d7c3510acae">ActCluster::RANSAC::ProcessCloud</a></div><div class="ttdeci">std::vector&lt; ActRoot::Voxel &gt; ProcessCloud(std::vector&lt; ActRoot::Voxel &gt; &amp;remain, const ActPhysics::Line &amp;line)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.cxx:69</div></div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_a7e9c03a16147800505bcd7610f4f4c63"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a7e9c03a16147800505bcd7610f4f4c63">ActCluster::RANSAC::SampleLine</a></div><div class="ttdeci">ActPhysics::Line SampleLine(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.cxx:108</div></div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_ac0cf583f53870da9bf75a8aba5c118ef"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#ac0cf583f53870da9bf75a8aba5c118ef">ActCluster::RANSAC::GetNInliers</a></div><div class="ttdeci">int GetNInliers(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, ActPhysics::Line &amp;line)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.cxx:54</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:12</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_aabb767b747c1f7ce6c27e56cd49fb696"><div class="ttname"><a href="classActPhysics_1_1Line.html#aabb767b747c1f7ce6c27e56cd49fb696">ActPhysics::Line::GetChi2</a></div><div class="ttdeci">float GetChi2() const</div><div class="ttdef"><b>Definition:</b> ActLine.h:35</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7e9c03a16147800505bcd7610f4f4c63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e9c03a16147800505bcd7610f4f4c63">&#9670;&nbsp;</a></span>SampleLine()</h2>
 
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> ActCluster::RANSAC::SampleLine </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>voxels</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">//Sample two points uniformly</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    std::vector&lt;int&gt; idxs;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    std::vector&lt;ActRoot::Voxel&gt; picked;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">while</span>(idxs.size() &lt; 2)<span class="comment">//Line = 2 points</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">int</span> i {<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(gRandom-&gt;Uniform() * voxels.size())};</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActCluster_1_1RANSAC.html#ae3d716577c5bed3cc22b228416613513">IsInVector</a>(i, idxs))</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            idxs.push_back(i);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            picked.push_back(voxels[i]);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">//Build Line</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>(picked[0].GetPosition(), picked[1].GetPosition());</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="ttc" id="aclassActCluster_1_1RANSAC_html_ae3d716577c5bed3cc22b228416613513"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#ae3d716577c5bed3cc22b228416613513">ActCluster::RANSAC::IsInVector</a></div><div class="ttdeci">bool IsInVector(T val, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:51</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5c353ad34dc1c07b765224d197ddad95"></a>
@@ -370,7 +659,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a> = thresh;}</div>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#ad31927904733c26d7b80891eca4adc70">fDistThreshold</a> = thresh;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -397,7 +686,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a> = iter;}</div>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a> = iter;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -424,7 +713,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a> = minPoints;}</div>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{<a class="code" href="classActCluster_1_1RANSAC.html#a3999432e2fc2baf8f58270fee13a8b77">fMinPoints</a> = minPoints;}</div>
 </div><!-- fragment -->
 </div>
 </div>
