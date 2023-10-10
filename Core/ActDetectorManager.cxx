@@ -65,6 +65,14 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string &file)
     }
 }
 
+std::shared_ptr<ActRoot::VDetector> ActRoot::DetectorManager::GetDetector(DetectorType type)
+{
+    if(fDetectors.count(type))
+        return fDetectors[type];
+    else
+        throw std::runtime_error("DetMan::GetDetector() received an unexistent detector!");
+}
+
 void ActRoot::DetectorManager::DeleteDelector(DetectorType type)
 {
     auto it {fDetectors.find(type)};
@@ -130,4 +138,12 @@ void ActRoot::DetectorManager::BuildEventPhysics()
         det.second->ClearEventPhysics();
         det.second->BuildEventPhysics();
     }
+}
+
+void ActRoot::DetectorManager::SetEventData(DetectorType det, VData *vdata)
+{
+    if(fDetectors.count(det))
+        fDetectors[det]->SetEventData(vdata);
+    else
+        std::cout<<"Could not locate detector!";
 }

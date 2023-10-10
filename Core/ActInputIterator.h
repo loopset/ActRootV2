@@ -1,6 +1,9 @@
 #ifndef ActInputIterator_h
 #define ActInputIterator_h
 
+#include "ActModularData.h"
+#include "ActVData.h"
+
 #include <map>
 #include <utility>
 namespace ActRoot
@@ -12,6 +15,7 @@ namespace ActRoot
     private:
         int fCurrentRun;
         int fCurrentEntry;
+        int fLastRun;
         std::map<int, int> fEntries;
 
     public:
@@ -23,6 +27,7 @@ namespace ActRoot
         bool Next();
         bool GoTo(int run, int entry);
         std::pair<int, int> GetCurrentRunEntry() const {return {fCurrentRun, fCurrentEntry};}
+        bool HasRunChanged() const {return fLastRun != fCurrentRun;}
 
     private:
         bool CheckEntryIsInRange(int run, int entry);
@@ -38,6 +43,7 @@ namespace ActRoot
         InputIterator fIt;
         TPCData* fTPCData;
         SilData* fSilData;
+        ModularData* fModularData;
 
     public:
         InputWrapper() = default;
@@ -47,10 +53,15 @@ namespace ActRoot
         bool GoNext();
         bool GoPrevious();
         bool GoTo(int run, int entry);
+
+        //Getters
         TPCData* GetCurrentTPCData() const {return fTPCData;}
         SilData* GetCurrentSilData() const {return fSilData;}
+        ModularData* GetCurrentModularData() const {return fModularData;}
         std::pair<int, int> GetCurrentStatus() const {return fIt.GetCurrentRunEntry();}
-
+        const InputIterator& GetIt() const {return fIt;}
+        InputData* GetInput() const {return fInput;}
+        
     private:
         void SetBranchAddress(int run);
     };

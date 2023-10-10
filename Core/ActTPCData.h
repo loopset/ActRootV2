@@ -4,6 +4,9 @@
 ActTPCData transforms the raw data of the detector to a calibrated event,
 ready to be clusterized
 */
+
+#include "ActVData.h"
+
 #include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
 
@@ -38,15 +41,15 @@ namespace ActRoot
         void Print() const;
     };
     
-    class TPCData
+    class TPCData : public VData
     {
     public:
         std::vector<Voxel> fVoxels;
 
         TPCData() = default;
 
-        void Clear();
-        void Print() const;
+        void Clear() override;
+        void Print() const override;
     };
 }
 

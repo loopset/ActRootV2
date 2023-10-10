@@ -117,6 +117,16 @@ void ActRoot::TPCDetector::ClearEventPhysics()
     fPhysics->Clear();
 }
 
+void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
+{
+    fData = nullptr;
+    auto casted {dynamic_cast<ActRoot::TPCData*>(vdata)};
+    if(casted)
+        fData = casted;
+    else
+        std::cout<<"Error: Could not dynamic_cast to TPCData"<<'\n';
+}
+
 void ActRoot::TPCDetector::BuildEventData()
 {
     int hitID {};

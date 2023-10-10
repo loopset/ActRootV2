@@ -1,11 +1,9 @@
 #ifndef ActEventPainter_h
 #define ActEventPainter_h
 
-#include "ActInputData.h"
 #include "RQ_OBJECT.h"
 #include "Rtypes.h"
 #include "RtypesCore.h"
-#include "ActSilDetector.h"
 #include "TCanvas.h"
 #include "TGClient.h"
 #include "TGFrame.h"
@@ -17,8 +15,8 @@
 #include "TGStatusBar.h"
 #include "TGTab.h"
 
-#include "ActTPCData.h"
-#include "ActTPCDetector.h"
+#include "ActDetectorManager.h"
+#include "ActInputData.h"
 #include "ActInputIterator.h"
 #include "ActHistogramPainter.h"
 
@@ -46,12 +44,15 @@ namespace ActRoot
         HistogramPainter fHistPainter;
         //Data to plot
         InputWrapper fWrap {};
+        //Pointer to DetMan if verbose tracking is required
+        DetectorManager* fDetMan {};
         
     public:
         EventPainter(const TGWindow* window, unsigned int width, unsigned int height);
         virtual ~EventPainter();
         
         void SetPainterAndData(const std::string& detfile, InputData* input);
+        void SetDetMan(DetectorManager* detman);
         
         virtual void CloseWindow();
         void DoExit();
@@ -66,6 +67,10 @@ namespace ActRoot
         void InitButtons();
         void InitEntryButtons();
         void DoGoTo();
+        void Execute();
+
+
+        void DoVerbosePhysics();
         
         ClassDef(EventPainter, 0);
     };

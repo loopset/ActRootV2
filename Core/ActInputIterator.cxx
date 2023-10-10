@@ -1,7 +1,7 @@
 #include "ActInputIterator.h"
 
 #include "ActInputData.h"
-#include "TF1.h"
+#include "ActModularData.h"
 #include "ActTPCData.h"
 #include "ActSilData.h"
 
@@ -19,10 +19,13 @@ ActRoot::InputIterator::InputIterator(const InputData* input)
     //Init iterators
     fCurrentRun = -1;
     fCurrentEntry = -1;
+    fLastRun = -1;
 }
 
 bool ActRoot::InputIterator::Previous()
 {
+    //Store last run number
+    fLastRun = fCurrentRun;
     //I dont want to mess up thins mixing both forward and reverse iterators
     //So I implement Previous() manually assuming we will use more Next()
     //Works fine but for sure we could have improved its implementation
@@ -49,6 +52,8 @@ bool ActRoot::InputIterator::Previous()
 
 bool ActRoot::InputIterator::Next()
 {
+    //Store position
+    fLastRun = fCurrentRun;
     //Workaround: Idk what is going on with the fRunIt after initialization
     //because it goes undefined behaviour (but only when called in EventPainter)
     if(fCurrentRun == -1)
@@ -101,6 +106,8 @@ bool ActRoot::InputIterator::CheckEntryIsInRange(int run, int entry)
 
 bool ActRoot::InputIterator::GoTo(int run, int entry)
 {
+    //Store iterator status
+    fLastRun = fCurrentRun;
     auto it = fEntries.find(run);
     if(it != fEntries.end() && CheckEntryIsInRange(run, entry))
     {
@@ -119,7 +126,9 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
 
 ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
     : fInput(input), fIt(ActRoot::InputIterator(input)),
-      fTPCData(new ActRoot::TPCData), fSilData(new ActRoot::SilData)
+      fTPCData(new ActRoot::TPCData),
+      fSilData(new ActRoot::SilData),
+      fModularData(new ActRoot::ModularData)
 {
 }
 
@@ -171,4 +180,5 @@ void ActRoot::InputWrapper::SetBranchAddress(int run)
 {
     fInput->GetTree(run)->SetBranchAddress("TPCData", &fTPCData);
     fInput->GetTree(run)->SetBranchAddress("SilData", &fSilData);
+    fInput->GetTree(run)->SetBranchAddress("ModularData", &fModularData);
 }

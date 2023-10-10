@@ -1,5 +1,6 @@
 #include "ActEventPainter.h"
 
+#include "ActDetectorManager.h"
 #include "Buttons.h"
 #include "GuiTypes.h"
 #include "ActHistogramPainter.h"
@@ -37,10 +38,19 @@ void ActRoot::EventPainter::DoExit()
     gApplication->Terminate();
 }
 
-
 void ActRoot::EventPainter::CloseWindow()
 {
     DoExit();
+}
+
+void ActRoot::EventPainter::Execute()
+{
+    if(fDetMan)
+        DoVerbosePhysics();
+    //Fill
+    DoFill();
+    //Draw
+    DoDraw();
 }
 
 void ActRoot::EventPainter::DoDraw()
@@ -68,8 +78,7 @@ void ActRoot::EventPainter::DoPreviousEvent()
     auto ok = fWrap.GoPrevious();
     if(!ok)
         return;
-    DoFill();
-    DoDraw();
+    Execute();
 }
 
 void ActRoot::EventPainter::DoNextEvent()
@@ -78,8 +87,7 @@ void ActRoot::EventPainter::DoNextEvent()
     auto ok = fWrap.GoNext();
     if(!ok)
         return;
-    DoFill();
-    DoDraw();
+    Execute();
 }
 
 void ActRoot::EventPainter::DoGoTo()
@@ -90,8 +98,7 @@ void ActRoot::EventPainter::DoGoTo()
     auto ok = fWrap.GoTo(run, entry);
     if(!ok)
         return;
-    DoFill();
-    DoDraw();
+    Execute();
 }
 
 void ActRoot::EventPainter::InitButtons()
@@ -218,4 +225,22 @@ void ActRoot::EventPainter::SetPainterAndData(const std::string& detfile, InputD
     //Init InputWrapper
     fWrap = InputWrapper(input);
     fHistPainter.SetInputWrapper(&fWrap);
+}
+
+void ActRoot::EventPainter::SetDetMan(DetectorManager *detman)
+{
+    fDetMan = detman;
+}
+
+void ActRoot::EventPainter::DoVerbosePhysics()
+{
+    //Set event data!
+    //1-> Actar
+    fDetMan->SetEventData(DetectorType::EActar, fWrap.GetCurrentTPCData());
+    //2-> Sil
+    fDetMan->SetEventData(DetectorType::ESilicons, fWrap.GetCurrentSilData());
+    //3-> Modular
+    fDetMan->SetEventData(DetectorType::EModular, fWrap.GetCurrentModularData());
+    //Do not store data; but toy pointer needed
+    fDetMan->InitializePhysicsOutput(nullptr);
 }

@@ -7,6 +7,7 @@ performed on its data
 */
 
 #include "ActCalibrationManager.h"
+#include "ActVData.h"
 #include "TTree.h"
 //#include "BS_thread_pool.hpp"
 #include "ActVDetector.h"
@@ -24,7 +25,7 @@ namespace ActRoot
     class DetectorManager
     {
     private:
-        std::unordered_map<ActRoot::DetectorType, std::shared_ptr<ActRoot::VDetector>> fDetectors;//!< Pointer to detectors
+        std::unordered_map<DetectorType, std::shared_ptr<VDetector>> fDetectors;//!< Pointer to detectors
         std::unordered_map<std::string, DetectorType> fDetDatabase;//!< Equivalence .detector file [Header] to VDetector pointer
         std::shared_ptr<CalibrationManager> fCalMan {};//!< CalibrationManager is now included in DetectorManager to avoid singleton
 
@@ -34,8 +35,11 @@ namespace ActRoot
         ~DetectorManager() {};
 
         std::shared_ptr<CalibrationManager> GetCalMan() {return fCalMan;}
+
+        std::shared_ptr<ActRoot::VDetector> GetDetector(DetectorType type);
         void DeleteDelector(DetectorType type);
         int GetNumberOfDetectors() const {return fDetectors.size();}
+        
         void ReadConfiguration(const std::string& file);
         void ReadCalibrations(const std::string& file);
         void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);
@@ -44,6 +48,8 @@ namespace ActRoot
         void InitializePhysicsOutput(std::shared_ptr<TTree> output);
         void BuildEventData();
         void BuildEventPhysics();
+
+        void SetEventData(DetectorType det, VData* vdata);
     };
 }
 #endif

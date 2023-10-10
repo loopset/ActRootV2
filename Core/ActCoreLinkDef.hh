@@ -17,6 +17,9 @@
 //virtual detector
 #pragma link C++ class ActRoot::VDetector + ;
 
+//virtual data structure
+#pragma link C++ class ActRoot::VData + ;
+
 //tpc
 #pragma link C++ class ActRoot::TPCDetector + ;
 #pragma link C++ class ActRoot::Voxel + ;

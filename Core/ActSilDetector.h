@@ -3,6 +3,7 @@
 
 #include "ActSilData.h"
 #include "ActTPCLegacyData.h"
+#include "ActVData.h"
 #include "ActVDetector.h"
 #include "TTree.h"
 #include <map>
@@ -49,20 +50,24 @@ namespace ActRoot
         SilDetector() = default;
         virtual ~SilDetector() = default;
 
-        virtual void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
-        virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
+        void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
+        void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         // void AddParameterToCalibrationManager() override;
-        virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
-        virtual void InitInputData(std::shared_ptr<TTree> tree) override;
-        virtual void InitOutputData(std::shared_ptr<TTree> tree) override;
-        virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
-        virtual void BuildEventData() override;
-        virtual void BuildEventPhysics() override;
-        virtual void ClearEventData() override;
-        virtual void ClearEventPhysics() override;
-        
-    private:
-        SilData* GetSilDataPointer() const {return fData;}
+        void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
+        void InitInputData(std::shared_ptr<TTree> tree) override;
+        void InitOutputData(std::shared_ptr<TTree> tree) override;
+        void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
+        void BuildEventData() override;
+        void BuildEventPhysics() override;
+        void ClearEventData() override;
+        void ClearEventPhysics() override;
+
+        //Getters
+        SilData* GetEventData() const override {return fData;}
+        SilData* GetEventPhysics() const override {return fData;}
+
+        //Setters
+        void SetEventData(VData* vdata) override;
     };
 }
 

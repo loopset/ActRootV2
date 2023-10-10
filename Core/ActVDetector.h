@@ -1,6 +1,7 @@
 #ifndef ActVDetector_h
 #define ActVDetector_h
 
+#include "ActVData.h"
 #include "TTree.h"
 #include "ActTPCLegacyData.h"
 #include "ActCalibrationManager.h"
@@ -29,11 +30,12 @@ namespace ActRoot
         //Interface to CalibrationManager
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) = 0;
         //Initialize data input and output
+        //With TTrees
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) = 0;
         virtual void InitInputData(std::shared_ptr<TTree> tree) = 0;
         virtual void InitOutputData(std::shared_ptr<TTree> tree) = 0;
         virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) = 0;
-
+        
         //Build events
         virtual void BuildEventData() = 0;
         virtual void BuildEventPhysics() = 0;
@@ -41,6 +43,13 @@ namespace ActRoot
         //Clear data
         virtual void ClearEventData() = 0;
         virtual void ClearEventPhysics() = 0;
+
+        //Getters
+        virtual VData* GetEventData() const {return nullptr;}
+        virtual VData* GetEventPhysics() const {return nullptr;}
+
+        //Getters
+        virtual void SetEventData(VData* vdata) = 0; 
 
         //Set and Get MEvent pointer
         void SetMEvent(MEventReduced* mevt){fMEvent = mevt;}
