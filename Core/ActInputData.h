@@ -23,6 +23,7 @@ namespace ActRoot
         
     public:
         InputData() = default;
+        InputData(const std::string& file);
         ~InputData() = default;
         InputData(const InputData& ) = default;
         InputData& operator=(const InputData& ) = default;        

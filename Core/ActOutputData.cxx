@@ -17,6 +17,11 @@ ActRoot::OutputData::OutputData(const InputData& input)
     SetSameTreesAsInput(input);
 }
 
+ActRoot::OutputData::OutputData(const std::string& file)
+{
+    ReadConfiguration(file);
+}
+
 void ActRoot::OutputData::InitFile(int run, const std::string& file)
 {
     if(fTreeName.empty())

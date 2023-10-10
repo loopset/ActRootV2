@@ -11,6 +11,11 @@
 #include <utility>
 #include <vector>
 
+ActRoot::InputData::InputData(const std::string& file)
+{
+    ReadConfiguration(file);
+}
+
 void ActRoot::InputData::AddFile(int run, const std::string &file)
 {
     if(fTreeName.empty())

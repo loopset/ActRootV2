@@ -86,6 +86,18 @@ void ActRoot::DetectorManager::InitializeDataOutput(std::shared_ptr<TTree> input
         det.second->InitOutputData(input);
 }
 
+void ActRoot::DetectorManager::InitializeDataInput(std::shared_ptr<TTree> input)
+{
+    for(auto& det : fDetectors)
+        det.second->InitInputData(input);
+}
+
+void ActRoot::DetectorManager::InitializePhysicsOutput(std::shared_ptr<TTree> output)
+{
+    for(auto& det : fDetectors)
+        det.second->InitOutputPhysics(output);
+}
+
 void ActRoot::DetectorManager::BuildEventData()
 {
     for(auto& det : fDetectors)
@@ -108,5 +120,14 @@ void ActRoot::DetectorManager::BuildEventData()
     {
         fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::EActar]->GetMEvent());
         fDetectors[DetectorType::EModular]->BuildEventData();
+    }
+}
+
+void ActRoot::DetectorManager::BuildEventPhysics()
+{
+    for(auto& det : fDetectors)
+    {
+        det.second->ClearEventPhysics();
+        det.second->BuildEventPhysics();
     }
 }

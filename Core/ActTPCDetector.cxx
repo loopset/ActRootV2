@@ -1,7 +1,11 @@
 #include "ActTPCDetector.h"
 
 #include "ActCalibrationManager.h"
+#include "ActCluster.h"
 #include "ActInputParser.h"
+#include "ActLine.h"
+#include "ActRANSAC.h"
+#include "ActTPCPhysics.h"
 #include "Math/Point3D.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
@@ -84,12 +88,33 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("TPCData", &fData);
 }
 
+void ActRoot::TPCDetector::InitInputData(std::shared_ptr<TTree> tree)
+{
+    if(fData)
+        delete fData;
+    fData = new TPCData;
+    tree->SetBranchAddress("TPCData", &fData);
+}
+
+void ActRoot::TPCDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
+{
+    if(fPhysics)
+        delete fPhysics;
+    fPhysics = new TPCPhysics;
+    //do not attatch output tree so far
+}
+
 void ActRoot::TPCDetector::ClearEventData()
 {
     fData->Clear();
-    //if opted to clean pad matrix
+    //if opted, clean pad matrix
     if(fCleanPadMatrix)
         fPadMatrix.clear();
+}
+
+void ActRoot::TPCDetector::ClearEventPhysics()
+{
+    fPhysics->Clear();
 }
 
 void ActRoot::TPCDetector::BuildEventData()
@@ -181,4 +206,13 @@ void ActRoot::TPCDetector::CleanPadMatrix()
                 fData->fVoxels.erase(fData->fVoxels.begin() + *it);
         }
     }
+}
+
+void ActRoot::TPCDetector::BuildEventPhysics()
+{
+    //Use RANSAC
+    ActCluster::RANSAC ransac {500, 20, 10.};
+    //ransac.ReadConfigurationFile();
+    fPhysics->fClusters = ransac.Run(fData->fVoxels);
+    fPhysics->Print();
 }

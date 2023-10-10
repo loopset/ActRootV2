@@ -3,9 +3,11 @@
 
 #include "ActModularData.h"
 #include "ActVDetector.h"
+#include "TTree.h"
 
 #include <cstring>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -39,9 +41,13 @@ namespace ActRoot
         virtual void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
+        virtual void InitInputData(std::shared_ptr<TTree> tree) override;
         virtual void InitOutputData(std::shared_ptr<TTree> tree) override;
+        virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
         virtual void BuildEventData() override;
+        virtual void BuildEventPhysics() override;
         virtual void ClearEventData() override;
+        virtual void ClearEventPhysics() override;
     };
 }
 

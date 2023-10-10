@@ -7,6 +7,8 @@
 #pragma link C++ nestedclass;
 #pragma link C++ nestedtypedef;
 
+#pragma link C++ class ActCluster::Cluster+;
 #pragma link C++ class ActCluster::RANSAC;
+
 
 #endif

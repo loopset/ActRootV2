@@ -92,6 +92,19 @@ void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("SilData", &fData);
 }
 
+void ActRoot::SilDetector::InitInputData(std::shared_ptr<TTree> tree)
+{
+    if(fData)
+        delete fData;
+    fData = new SilData;
+    tree->SetBranchAddress("SilData", &fData);
+}
+
+void ActRoot::SilDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
+{
+    
+}
+
 void ActRoot::SilDetector::BuildEventData()
 {
     for(auto& coas : fMEvent->CoboAsad)
@@ -125,7 +138,17 @@ void ActRoot::SilDetector::BuildEventData()
     }
 }
 
+void ActRoot::SilDetector::BuildEventPhysics()
+{
+    
+}
+
 void ActRoot::SilDetector::ClearEventData()
 {
     fData->Clear();
+}
+
+void ActRoot::SilDetector::ClearEventPhysics()
+{
+    
 }

@@ -4,8 +4,10 @@
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
 #include "ActInputData.h"
-#include "TTree.h"
+#include "ActTPCPhysics.h"
 #include "ActVDetector.h"
+
+#include "TTree.h"
 
 #include <memory>
 #include <string>
@@ -46,7 +48,6 @@ namespace ActRoot
         int GetNBCHANNEL() const {return fNB_CHANNEL;}
     };
 
-    class SilDetector;//forward declaration
     class TPCDetector : public ActRoot::VDetector
     {
     private:
@@ -61,6 +62,8 @@ namespace ActRoot
         double fMinQtoDelete  {2000};
         std::map<std::pair<int, int>,
                  std::pair<std::vector<unsigned int>, double>> fPadMatrix;
+        //Physics data
+        TPCPhysics* fPhysics {};
         
     public:
         TPCDetector() = default;
@@ -73,13 +76,13 @@ namespace ActRoot
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         // void AddParameterToCalibrationManager() override;
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
-        // void InitInputData() override;
+        virtual void InitInputData(std::shared_ptr<TTree> tree) override;
         virtual void InitOutputData(std::shared_ptr<TTree> tree) override;
-        // void InitOutputPhysics() override;
+        virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
         virtual void BuildEventData() override;
-        // void BuildEventPhysics() override;
-        void ClearEventData() override;
-        // void ClearEventPhysics() override;
+        virtual void BuildEventPhysics() override;
+        virtual void ClearEventData() override;
+        virtual void ClearEventPhysics() override;
         ////////////////////////////////
         //ActTPCData* GetDataPointer() { return fData; }
         

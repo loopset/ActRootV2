@@ -15,6 +15,6 @@ add_library(${LIB_NAME} SHARED ${sources} ${headers} ${DICTIONARY_NAME}.cxx)
 ## add headers so g++ knows where to locate them
 target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # link to ROOT
-target_link_libraries(${LIB_NAME} ${ROOT_LIBRARIES})
+target_link_libraries(${LIB_NAME} ${ROOT_LIBRARIES} ActPhysics)
 # install
 install_actroot_component(${LIB_NAME} "${headers}")

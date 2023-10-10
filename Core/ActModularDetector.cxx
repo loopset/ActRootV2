@@ -76,6 +76,19 @@ void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("ModularData", &fData);
 }
 
+void ActRoot::ModularDetector::InitInputData(std::shared_ptr<TTree> tree)
+{
+    if(fData)
+        delete fData;
+    fData = new ModularData;
+    tree->SetBranchAddress("ModularData", &fData);
+}
+
+void ActRoot::ModularDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
+{
+    
+}
+
 void ActRoot::ModularDetector::BuildEventData()
 {
     for(auto& coas : fMEvent->CoboAsad)
@@ -97,7 +110,17 @@ void ActRoot::ModularDetector::BuildEventData()
     }
 }
 
+void ActRoot::ModularDetector::BuildEventPhysics()
+{
+    
+}
+
 void ActRoot::ModularDetector::ClearEventData()
 {
     fData->Clear();
+}
+
+void ActRoot::ModularDetector::ClearEventPhysics()
+{
+    
 }

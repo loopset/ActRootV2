@@ -30,17 +30,17 @@ namespace ActRoot
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) = 0;
         //Initialize data input and output
         virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) = 0;
-        // virtual void InitInputData(){};
+        virtual void InitInputData(std::shared_ptr<TTree> tree) = 0;
         virtual void InitOutputData(std::shared_ptr<TTree> tree) = 0;
-        // virtual void InitOutputPhysics(){};
+        virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) = 0;
 
         //Build events
         virtual void BuildEventData() = 0;
-        // virtual void BuildEventPhysics(){};
+        virtual void BuildEventPhysics() = 0;
 
         //Clear data
         virtual void ClearEventData() = 0;
-        // virtual void ClearEventPhysics() {};
+        virtual void ClearEventPhysics() = 0;
 
         //Set and Get MEvent pointer
         void SetMEvent(MEventReduced* mevt){fMEvent = mevt;}

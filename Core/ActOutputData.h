@@ -23,6 +23,7 @@ namespace ActRoot
     public:
         OutputData() = default;
         OutputData(const InputData& input);
+        OutputData(const std::string& file);
         ~OutputData() = default;
         OutputData(const OutputData& ) = default;
         OutputData& operator= (const OutputData& ) = default;
