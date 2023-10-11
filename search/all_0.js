@@ -100,5 +100,6 @@ var searchData=
   ['applypadalignment_97',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
   ['applystragglinginmaterialtorleft_98',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
   ['applythreshold_99',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
-  ['constants_100',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
+  ['attachbintocluster_100',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
+  ['constants_101',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
 ];
