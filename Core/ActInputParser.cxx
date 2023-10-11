@@ -239,7 +239,7 @@ void ActRoot::InputParser::ReadFile(const std::string &filename)
     //Open file
     std::ifstream file {filename};
     if(!file)
-        throw std::runtime_error("Error! " + filename + " could not be opened");
+        throw std::runtime_error("ActRoot::InputParser: error! " + filename + " could not be opened");
     std::string rawLine {};
     bool inHeader {false};
     while (std::getline(file, rawLine))

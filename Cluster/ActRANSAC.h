@@ -22,6 +22,7 @@ namespace ActCluster
         int fIterations {150};
         int fMinPoints {20};
         int fNPointsToSample {2};//2 always for a line
+        bool fUseLmeds {false};
 
     public:
         RANSAC() = default;
@@ -42,6 +43,8 @@ namespace ActCluster
         
         //Read configuration file
         void ReadConfigurationFile(const std::string& infile = "");
+
+        void Print() const;
 
     private:
         int GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line);

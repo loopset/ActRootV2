@@ -1,6 +1,7 @@
 #ifndef ActTPCDetector_h
 #define ActTPCDetector_h
 
+#include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
 #include "ActInputData.h"
@@ -57,14 +58,17 @@ namespace ActRoot
         //Data
         TPCData* fData {};
         //Preanalysis when reading raw data 
+        bool fCleanSaturatedMEvent {false};
         bool fCleanSaturatedVoxels {false};
-        bool fCleanPadMatrix {false};
         double fMinTBtoDelete {20};
         double fMinQtoDelete  {2000};
         std::map<std::pair<int, int>,
                  std::pair<std::vector<unsigned int>, double>> fPadMatrix;
+        bool fCleanDuplicatedVoxels {false};
         //Physics data
         TPCPhysics* fPhysics {};
+        //Have a commom ransac
+        std::shared_ptr<ActCluster::RANSAC> fRansac {};
         
     public:
         TPCDetector() = default;
@@ -98,6 +102,8 @@ namespace ActRoot
     private:
         void ReadHits(ReducedData& coas, const int& where, int& hitID);
         void CleanPadMatrix();
+        void InitClusterMethod(const std::string& method);
+        void EnsureUniquenessOfVoxels();
     };
 }
 

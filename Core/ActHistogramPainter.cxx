@@ -3,22 +3,48 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActInputIterator.h"
+#include "ActTPCPhysics.h"
+
 #include "Rtypes.h"
 #include "TCanvas.h"
+#include "TColor.h"
+#include "TEnv.h"
 #include "TH2.h"
 #include "ActTPCData.h"
 #include "TString.h"
 #include "TStyle.h"
+#include "TSystem.h"
 
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
+#include <vector>
 
-ActRoot::HistogramPainter::HistogramPainter(const std::string& detfile)
+void ActRoot::HistogramPainter::ReadConfigurationFile(const std::string& file)
 {
-    ReadDetFile(detfile);
-    Init();
+    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
+    envfile += "/configs/hist.painter";
+    std::string realfile {};
+    if(!gSystem->AccessPathName(envfile.c_str()))//bizarre bool return for this function
+        realfile = envfile;
+    else if(file.length() > 0)
+        realfile = file;
+    else
+    {
+        std::cout<<"Using default configuration for HistogramPainter"<<'\n';
+        return;
+    }
+    //Init parser
+    ActRoot::InputParser parser {realfile};
+    auto hb {parser.GetBlock("HistogramPainter")};
+    if(hb->CheckTokenExists("Palette", true) && hb->CheckTokenExists("Reverse", true))
+        SetPalette(hb->GetString("Palette"), hb->GetBool("Reverse"));
+    if(hb->CheckTokenExists("Palette", true) && !hb->CheckTokenExists("Reverse", true))
+        SetPalette(hb->GetString("Palette"));
+    if(hb->CheckTokenExists("ShowStats", true))
+        fShowHistStats = hb->GetBool("ShowStats");
 }
 
 void ActRoot::HistogramPainter::ReadDetFile(const std::string& detfile)
@@ -44,9 +70,6 @@ void ActRoot::HistogramPainter::ReadDetFile(const std::string& detfile)
         auto file {config->GetString("Actions")};
         fSil.ReadActions(layers, legacy, file);
     }
-
-    //And init
-    Init();
 }
 
 void ActRoot::HistogramPainter::Init()
@@ -61,18 +84,32 @@ void ActRoot::HistogramPainter::Init()
     fCanvs[1]->Divide(3, 2);
     //Pad
     fHistTpc[1] = std::make_shared<TH2F>("hPad", "Pad;X [pad];Y [pad]",
-                                        fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
-                                        fTPC.GetNPADSY(), 0, fTPC.GetNPADSY());
+                                         fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
+                                         fTPC.GetNPADSY(), 0, fTPC.GetNPADSY());
     //Side
     fHistTpc[2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]",
-                                        fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
-                                        fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0, fTPC.GetNPADSZ());
+                                         fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
+                                         fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0, fTPC.GetNPADSZ());
     //Front
     fHistTpc[3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]",
-                                        fTPC.GetNPADSY(), 0, fTPC.GetNPADSY(),
-                                        fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0 , fTPC.GetNPADSZ());
+                                         fTPC.GetNPADSY(), 0, fTPC.GetNPADSY(),
+                                         fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0 , fTPC.GetNPADSZ());
+    ////////////////////////
+    //Clusters!
+    //Pad
+    fHistTpc[4] = std::make_shared<TH2F>("hPadC", "Clusters in pad;X [pad];Y [pad]",
+                                         fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
+                                         fTPC.GetNPADSY(), 0, fTPC.GetNPADSY());
+    //Side
+    fHistTpc[5] = std::make_shared<TH2F>("hSideC", "Clusters in side;X [pad];Z [tb]",
+                                         fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
+                                         fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0, fTPC.GetNPADSZ());
+    //Front
+    fHistTpc[6] = std::make_shared<TH2F>("hFrontC", "Clusters in front;Y [pad];Z [tb]",
+                                         fTPC.GetNPADSY(), 0, fTPC.GetNPADSY(),
+                                         fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0 , fTPC.GetNPADSZ());
     for(auto& [_, h] : fHistTpc)
-        h->SetStats(false);
+        h->SetStats(fShowHistStats);
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Silicons
     fSilMap = {
@@ -103,7 +140,7 @@ void ActRoot::HistogramPainter::Init()
                                          4, 0.5, 4.5);
     for(auto& [_, h] : fHistSil)
     {
-        h->SetStats(false);
+        h->SetStats(fShowHistStats);
         //Style for TEXT option
         h->SetMarkerColor(kRed);
         h->SetMarkerSize(1.8);
@@ -124,6 +161,7 @@ void ActRoot::HistogramPainter::Fill()
         //Front
         fHistTpc[3]->Fill(voxel.GetPosition().Y(), voxel.GetPosition().Z(), voxel.GetCharge());
     }
+    FillClusterHistos();
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Sil histograms
     //1-> Left
@@ -142,6 +180,7 @@ void ActRoot::HistogramPainter::Draw()
         fCanvs[1]->cd(pad);
         h->Draw("colz");
     }
+    DrawPolyLines();
     fCanvs[1]->Update();
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //Sil
@@ -166,6 +205,8 @@ void ActRoot::HistogramPainter::Reset()
         h->GetYaxis()->UnZoom();
         fCanvs[1]->cd(pad)->Modified();
     }
+    //Clear also polylines
+    fPolyTpc.clear();
     fCanvs[1]->Update();
     //////////////////////////////////////////////////////////////////////////////////////////////
     //Sil canvas
@@ -181,10 +222,10 @@ void ActRoot::HistogramPainter::Reset()
 }
 
 TCanvas* ActRoot::HistogramPainter::SetCanvas(int i, const std::string &title,
-                                          double w, double h)
+                                              double w, double h)
 {
     fCanvs[i] = new TCanvas(TString::Format("cHP%d", i), title.c_str(),
-                                          w, h);
+                            w, h);
     //Different settings
     fCanvs[i]->ToggleToolBar();
     //fCanvs[i]->ToggleEventStatus();
@@ -200,4 +241,117 @@ void ActRoot::HistogramPainter::FillSilHisto(int pad, const std::string& layer)
         auto bins {fSilMap[layer][N[hit]]};
         fHistSil[pad]->Fill(bins.first, bins.second, E[hit]);
     }
+}
+
+void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID)
+{
+    if(!h)
+        return;
+    auto xbin {h->GetXaxis()->FindFixBin(x)};
+    auto ybin {h->GetYaxis()->FindFixBin(y)};
+    //std::cout<<"xbin = "<<xbin<<" ybin = "<<ybin<<'\n';
+    h->SetBinContent(xbin, ybin, clusterID + 1);
+}
+
+void ActRoot::HistogramPainter::SetTPCPhysicsPointer(VData *p)
+{
+    auto casted {dynamic_cast<TPCPhysics*>(p)};
+    if(casted)
+    {
+        fTPCPhysics = casted;
+        fTPCPhysics->Print();
+    }
+    else
+        std::cout<<"Could not cast pointer to TPCPhysics"<<'\n';
+}
+
+void ActRoot::HistogramPainter::FillClusterHistos()
+{
+    if(!fTPCPhysics)
+        return;
+    for(const auto& cluster : fTPCPhysics->fClusters)
+    {
+        for(const auto& voxel : cluster.GetVoxels())
+        {
+            const auto& pos {voxel.GetPosition()};
+            if(fTPCPhysics->fClusters.size() == 1)
+            {
+                std::cout<<"Fill "<<pos<<" with ID "<<cluster.GetClusterID()<<'\n';
+            }
+            //Pad
+            AttachBinToCluster(fHistTpc[4], pos.X(), pos.Y(), cluster.GetClusterID());
+            //Side
+            AttachBinToCluster(fHistTpc[5], pos.X(), pos.Z(), cluster.GetClusterID());
+            //Front
+            AttachBinToCluster(fHistTpc[6], pos.Y(), pos.Z(), cluster.GetClusterID());
+        }
+               
+    }
+    //Set basic parameters to a better visualization of TPaletteAxis
+    int nclusters {static_cast<int>(fTPCPhysics->fClusters.size())};
+    int min {}; int max {}; int ndiv {};
+    if(nclusters <= 1)
+    {
+        ndiv = 1;
+        min = 0;
+        max = 1;
+    }
+    else
+    {
+        ndiv = nclusters;
+        min = 1;//cluster are always plotted from [1, nclusters]
+        max = nclusters;
+    }
+    std::vector<int> clusterPads {4, 5, 6};
+    for(const auto& pad : clusterPads)
+    {
+        fHistTpc[pad]->SetMinimum(min);
+        fHistTpc[pad]->SetMaximum(max);
+        fHistTpc[pad]->GetZaxis()->SetNdivisions(ndiv);// = nlabels
+    }
+}
+
+void ActRoot::HistogramPainter::DrawPolyLines()
+{
+    if(!fTPCPhysics)
+        return;
+    for(const auto& cluster : fTPCPhysics->fClusters)
+    {
+        //Pad
+        fPolyTpc[4].push_back(cluster.GetLine().GetPolyLine("xy", fTPC.GetNPADSX(), fTPC.GetNPADSY(), fTPC.GetNPADSZ()));
+        fPolyTpc[5].push_back(cluster.GetLine().GetPolyLine("xz", fTPC.GetNPADSX(), fTPC.GetNPADSY(), fTPC.GetNPADSZ()));
+        fPolyTpc[6].push_back(cluster.GetLine().GetPolyLine("yz", fTPC.GetNPADSX(), fTPC.GetNPADSY(), fTPC.GetNPADSZ()));
+    }
+    //Set line parameters
+    for(auto& [pad, proj] : fPolyTpc)
+    {
+        for(auto& poly : proj)
+        {
+            poly->SetLineWidth(2);
+            //Draw
+            fCanvs[1]->cd(pad);
+            poly->Draw("same");
+        }
+    }
+}
+
+void ActRoot::HistogramPainter::SetPalette(const std::string& name, bool reverse)
+{
+    //Set path to color palettes
+    TString path {gSystem->Getenv("ACTROOT")};
+    path += "/Core/Data/ColorPalettes/";
+    //Get Palette
+    path += name;
+    path += ".txt";
+    if(gSystem->AccessPathName(path))
+    {
+        std::cout<<BOLDRED<<"Palette named "<<name<<" does not exist in ActRoot database"<<RESET<<'\n';
+        return;
+    }
+    //Set!
+    gStyle->SetPalette(path);
+    gStyle->SetNumberContours(256);
+    //Reverse?
+    if(reverse)
+        TColor::InvertPalette();
 }

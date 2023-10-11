@@ -14,10 +14,12 @@
 #include <algorithm>
 #include <cstddef>
 #include <exception>
+#include <functional>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 ActRoot::TPCParameters::TPCParameters(const std::string& type)
@@ -47,17 +49,36 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     fPars = TPCParameters(config->GetString("Type"));
     if(config->CheckTokenExists("RebinZ", true))
         fPars.SetREBINZ(config->GetInt("RebinZ"));
-    //Read some analysis configurations
+    //MEvent -> TPCData analysis options
+    if(config->CheckTokenExists("CleanSaturatedMEvent", true))
+        fCleanSaturatedMEvent = config->GetBool("CleanSaturatedMEvent");
     if(config->CheckTokenExists("CleanSaturatedVoxels", true))
         fCleanSaturatedVoxels = config->GetBool("CleanSaturatedVoxels");
-    if(config->CheckTokenExists("CleanPadMatrix", true))
-        fCleanPadMatrix = config->GetBool("CleanPadMatrix");
-    if(config->CheckTokenExists("CleanPadMatrixPars", true))
+    if(config->CheckTokenExists("CleanSaturatedVoxelsPars", true))
     {
-        auto pars {config->GetDoubleVector("CleanPadMatrixPars")};
+        auto pars {config->GetDoubleVector("CleanSaturatedVoxelsPars")};
         fMinTBtoDelete = pars.at(0);
         fMinQtoDelete  = pars.at(1);
     }
+    if(config->CheckTokenExists("CleanDuplicatedVoxels", true))
+        fCleanDuplicatedVoxels = config->GetBool("CleanDuplicatedVoxels");
+    //TPCData -> TPCPhysics analysis options
+    if(config->CheckTokenExists("ClusterMethod"))
+        InitClusterMethod(config->GetString("ClusterMethod"));
+}
+
+void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
+{
+    if(method == "Ransac")
+    {
+        fRansac = std::make_shared<ActCluster::RANSAC>();
+        fRansac->ReadConfigurationFile();
+        fRansac->Print();
+    }
+    else if(method == "None")
+        return;
+    else
+        throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac and None");
 }
 
 void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
@@ -108,7 +129,7 @@ void ActRoot::TPCDetector::ClearEventData()
 {
     fData->Clear();
     //if opted, clean pad matrix
-    if(fCleanPadMatrix)
+    if(fCleanSaturatedVoxels)
         fPadMatrix.clear();
 }
 
@@ -151,8 +172,11 @@ void ActRoot::TPCDetector::BuildEventData()
             hitID++;
         }
     }
+    //Clean duplicated voxels
+    if(fCleanDuplicatedVoxels)
+        EnsureUniquenessOfVoxels();
     //Clean pad matrix
-    if(fCleanPadMatrix)
+    if(fCleanSaturatedVoxels)
         CleanPadMatrix();
 }
 
@@ -184,7 +208,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         
         //Build Voxel
         //Apply cut on saturated flag if desired
-        if(fCleanSaturatedVoxels && coas.hasSaturation)
+        if(fCleanSaturatedMEvent && coas.hasSaturation)
         {
             ;//if CleanSatVoxels is enables and voxel does have hasSat = true, do not fill in vector
         }
@@ -193,7 +217,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
             Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
             fData->fVoxels.push_back(hit);
             //push to pad matrix if enabled
-            if(fCleanPadMatrix)
+            if(fCleanSaturatedVoxels)
             {
                 fPadMatrix[{padx, pady}].first.push_back(fData->fVoxels.size() - 1);
                 fPadMatrix[{padx, pady}].second += qcal;
@@ -218,11 +242,42 @@ void ActRoot::TPCDetector::CleanPadMatrix()
     }
 }
 
+void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
+{
+    //Declare unordered_set
+    //Hash function
+    auto hash = [&](const Voxel& v)
+    {
+        const auto& pos {v.GetPosition()};
+        auto ret {(int)pos.X() + fPars.GetNPADSX() * (int)pos.Y() + fPars.GetNPADSX() * (int)fPars.GetNPADSY() * pos.Z()};
+        return ret;
+    };
+    auto equal = [](const Voxel& a, const Voxel& b)
+    {
+        const auto& pa {a.GetPosition()};
+        const auto& pb {b.GetPosition()};
+        bool bx {(int)pa.X() == (int)pb.X()};
+        bool by {(int)pa.Y() == (int)pb.Y()};
+        bool bz {(int)pa.Z() == (int)pb.Z()};
+        return bx && by && bz;
+    };
+    std::unordered_set<Voxel, decltype(hash), decltype(equal)> set(10, hash, equal);//10 = initial bucket count? I think it is not important
+    //Add from vector to it
+    for(const auto& voxel : fData->fVoxels)
+        set.insert(voxel);
+    //Back to vector!
+    fData->fVoxels.assign(set.begin(), set.end());
+}
+
 void ActRoot::TPCDetector::BuildEventPhysics()
 {
-    //Use RANSAC
-    ActCluster::RANSAC ransac {500, 20, 10.};
-    //ransac.ReadConfigurationFile();
-    fPhysics->fClusters = ransac.Run(fData->fVoxels);
-    fPhysics->Print();
+    //Build based on pointer existence
+    if(fRansac)
+    {
+        fPhysics->fClusters = fRansac->Run(fData->fVoxels);
+    }
+    else
+    {
+        fPhysics->fClusters = {};
+    }
 }

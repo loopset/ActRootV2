@@ -1,6 +1,12 @@
 #include "ActLine.h"
 
+#include "ActColors.h"
+#include "TEnv.h"
 #include "TMath.h"
+#include "TPolyLine.h"
+#include <cmath>
+#include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <vector>
 
@@ -150,4 +156,76 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
 	SetDirection(Pm, Ph);
 	SetChi2(fabs(dm2 / Q));
 	//WARNING: Something in this func returns nan sometimes! It is in variable dm2!
+}
+
+std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
+                                                         int maxX, int maxY, int maxZ) const
+{
+    //Check proj key is right
+    if(!(proj.Contains("xy") || proj.Contains("xz") || proj.Contains("yz")))
+        throw std::runtime_error("Wrong passed projection key, allowed values are: xy, xz and yz");
+    
+    //Parametrize line in X
+    auto slope3DXY {fDirection.Y() / fDirection.X()};
+    auto slope3DXZ {fDirection.Z() / fDirection.X()};
+    //Slope in X can be 0 if cluster is from pad saturation -> skip drawing of that line
+    if(!isfinite(slope3DXY) || !std::isfinite(slope3DXZ))
+    {
+        if(gEnv->GetValue("ActRoot.Verbose", false))
+            std::cout<<BOLDMAGENTA<<"PolyLine with slope X = 0 -> skip drawing"<<RESET<<'\n';
+        return {};
+    }
+    //Compute slopes for the different projections
+    auto offsetXY {fPoint.Y() - slope3DXY * fPoint.X()};
+    auto slopeXY  {slope3DXY};
+
+    auto offsetXZ {fPoint.Z() - slope3DXZ * fPoint.X()};
+    auto slopeXZ  {slope3DXZ};
+
+    //Build vectors
+    int npoints {300};
+    std::vector<double> vx, vy, vz;
+    //Set step
+    double x0 {0};
+    double step {1. * static_cast<double>(maxX) / npoints};
+    for(int p = 0; p < npoints; p++)
+    {
+        auto yval {offsetXY + slopeXY * x0};
+        auto zval {offsetXZ + slopeXZ * x0};
+        //filling according to projection
+        if(proj.Contains("xy"))
+        {
+            if(IsInRange(yval, 0, maxY))
+            {
+                vx.push_back(x0);
+                vy.push_back(yval);
+            }
+        }
+        else if(proj.Contains("xz"))
+        {
+            if(IsInRange(zval, 0, maxZ))
+            {
+                vx.push_back(x0);
+                vz.push_back(zval);
+            }
+        }
+        else//yz
+        {
+
+            if(IsInRange(yval, 0, maxY) && IsInRange(zval, 0, maxZ))
+            {
+                vy.push_back(yval);
+                vz.push_back(zval);
+            }
+        }
+        //add step
+        x0 += step;
+    }
+    //Return
+    if(proj.Contains("xy"))
+        return std::make_shared<TPolyLine>(vx.size(), &(vx[0]), &(vy[0]));
+    else if(proj.Contains("xz"))
+        return std::make_shared<TPolyLine>(vx.size(), &(vx[0]), &(vz[0]));
+    else//yz
+        return std::make_shared<TPolyLine>(vy.size(), &(vy[0]), &(vz[0]));
 }

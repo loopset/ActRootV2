@@ -1,16 +1,21 @@
 #include "ActRANSAC.h"
 
 #include "ActCluster.h"
+#include "ActColors.h"
+#include "ActInputParser.h"
 #include "ActLine.h"
 #include "ActTPCData.h"
 #include "TEnv.h"
+#include "TMath.h"
 #include "TRandom.h"
+#include "TSystem.h"
 #include "TSystemDirectory.h"
 #include "TSystemFile.h"
 #include "TList.h"
 #include "TString.h"
 
 #include <algorithm>
+#include <ios>
 #include <iostream>
 #include <iterator>
 #include <string>
@@ -25,44 +30,54 @@ ActCluster::RANSAC::RANSAC(int iterations, int minPoints, double distThres)
 void ActCluster::RANSAC::ReadConfigurationFile(const std::string& infile)
 {
     //automatically get project path from gEnv
-    std::string project {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    if(project.length() == 0 && infile.length() == 0)
+    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
+    envfile += "/configs/cluster.ransac";
+    std::string realfile {};
+    if(!gSystem->AccessPathName(envfile.c_str()))
+        realfile = envfile;
+    else if(infile.length() > 0)
+        realfile = infile;
+    else
     {
-        std::cout<<"No found RANSAC config file -> Using built-in parameters"<<'\n';
+        std::cout<<BOLDMAGENTA<<".ransac config file not found -> Using built-in configuration"<<'\n';
         return;
     }
-    auto dirname {project + "configs/"};
-    TSystemDirectory dir {dirname.c_str(), dirname.c_str()};
-    std::string ransacfile {dirname};
-    //list files, get only the one with extension .ransac
-    for(auto* obj : *dir.GetListOfFiles())
-    {
-        if(!obj)
-            continue;
-        TSystemFile* file {(TSystemFile*)obj};
-        TString name {file->GetName()};
-        if(name.EndsWith(".ransac"))
-        {
-            ransacfile += name;
-            break;
-        }
-    }
-    std::cout<<"Found file = "<<ransacfile<<'\n';
-    
+    //Parse!
+    ActRoot::InputParser parser {realfile};
+    auto rb {parser.GetBlock("Ransac")};
+    if(rb->CheckTokenExists("DistThreshold"))
+        fDistThreshold = rb->GetDouble("DistThreshold");
+    if(rb->CheckTokenExists("MinPoints"))
+        fMinPoints = rb->GetInt("MinPoints");
+    if(rb->CheckTokenExists("Iterations"))
+        fIterations = rb->GetInt("Iterations");
+    if(rb->CheckTokenExists("UseLmeds", true))
+        fUseLmeds = rb->GetBool("UseLmeds");
 }
 
 int ActCluster::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line)
 {
     int ninliers {};
+    std::vector<double> verrors;
     for(const auto& voxel : voxels)
     {
         const auto& pos = voxel.GetPosition();
         double err = line.DistanceLineToPoint(pos);
         err *= err;
         if(err < (fDistThreshold * fDistThreshold))
+        {
+            verrors.push_back(err);
             ninliers++;
+        }
     }
-    line.SetChi2(1.0 / ninliers);
+    //Naive implementation of other estimators simply changing the test value
+    if(fUseLmeds)
+    {
+        double weight {TMath::Median(verrors.size(), &(verrors[0]))};
+        line.SetChi2(weight / ninliers);
+    }
+    else
+        line.SetChi2(1. / ninliers);    
     return ninliers;
 }
 
@@ -164,4 +179,14 @@ std::vector<ActCluster::Cluster> ActCluster::RANSAC::Run(const std::vector<ActRo
         }
     }
     return ret;
+}
+
+void ActCluster::RANSAC::Print() const
+{
+    std::cout<<BOLDGREEN<<"==== RANSAC configuration ===="<<'\n';
+    std::cout<<"-> DistThreshold: "<<fDistThreshold<<'\n';
+    std::cout<<"-> MinPoints    : "<<fMinPoints<<'\n';
+    std::cout<<"-> Iterations   : "<<fIterations<<'\n';
+    std::cout<<"-> UseLmeds     : "<<std::boolalpha<<fUseLmeds<<'\n';
+    std::cout<<"==========================="<<RESET<<'\n';
 }

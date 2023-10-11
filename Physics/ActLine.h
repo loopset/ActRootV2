@@ -2,8 +2,13 @@
 #define ActLine_h
 
 #include "ActTPCData.h"
+
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
+#include "TPolyLine.h"
+#include "TString.h"
+
+#include <memory>
 #include <vector>
 
 namespace ActPhysics
@@ -42,9 +47,15 @@ namespace ActPhysics
         double DistanceLineToPoint(const XYZPoint& point) const;
         void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, double qThreshold = -1);
         void FitCloud(const std::vector<XYZPoint>& cloud);
-
+        std::shared_ptr<TPolyLine> GetPolyLine(TString proj = "xy",
+                                               int maxX = 128, int maxY = 128, int maxZ = 512) const;
+        
     private:
         void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge);
+        inline bool IsInRange(double val, double min, double max) const
+        {
+            return (min <= val) && (val <= max);
+        }
     };
 }
 

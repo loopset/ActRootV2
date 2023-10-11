@@ -221,7 +221,9 @@ ActRoot::EventPainter::~EventPainter()
 void ActRoot::EventPainter::SetPainterAndData(const std::string& detfile, InputData* input)
 {
     //Init HistogramPainter
-    fHistPainter.ReadDetFile(detfile);   
+    fHistPainter .ReadConfigurationFile();
+    fHistPainter.ReadDetFile(detfile);
+    fHistPainter.Init();
     //Init InputWrapper
     fWrap = InputWrapper(input);
     fHistPainter.SetInputWrapper(&fWrap);
@@ -243,4 +245,10 @@ void ActRoot::EventPainter::DoVerbosePhysics()
     fDetMan->SetEventData(DetectorType::EModular, fWrap.GetCurrentModularData());
     //Do not store data; but toy pointer needed
     fDetMan->InitializePhysicsOutput(nullptr);
+
+    //Build event
+    fDetMan->BuildEventPhysics();
+    //Set data
+    auto pointer {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};
+    fHistPainter.SetTPCPhysicsPointer(pointer);
 }

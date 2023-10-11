@@ -4,9 +4,13 @@
 #include "TCanvas.h"
 #include "TH2.h"
 #include "TH2F.h"
+
+#include "ActTPCPhysics.h"
 #include "ActSilDetector.h"
 #include "ActTPCDetector.h"
 #include "ActInputIterator.h"
+#include "ActVData.h"
+#include "TPolyLine.h"
 
 #include <map>
 #include <memory>
@@ -24,7 +28,7 @@ namespace ActRoot
         std::map<int, TCanvas*> fCanvs;
         std::map<int, std::shared_ptr<TH2F>> fHistTpc;
         std::map<int, std::shared_ptr<TH2F>> fHistSil;
-
+        std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
         //Parameters of detectors
         TPCParameters fTPC;
         SilParameters fSil;
@@ -32,13 +36,24 @@ namespace ActRoot
         std::unordered_map<std::string, std::vector<std::pair<int, int>>> fSilMap;
 
         //Pointer to Wrapper
-        InputWrapper* fWrap;
+        InputWrapper* fWrap {};
+
+        //Pointer to verbose TPCPhysics!
+        TPCPhysics* fTPCPhysics {};
+
+        //Store settings read in config file
+        bool fShowHistStats {false};
         
     public:
         HistogramPainter() = default;
-        HistogramPainter(const std::string& detfile);
 
-        //Init from file
+        //Initialization of histogram structure
+        void Init();
+        
+        //Configuration file of class
+        void ReadConfigurationFile(const std::string& file = "");
+
+        //Read detector file to visual configurations
         void ReadDetFile(const std::string& file);
 
         //Set wrapper pointer
@@ -48,14 +63,22 @@ namespace ActRoot
         void SetCanvas(int i, TCanvas* canv){fCanvs[i] = canv;}
         TCanvas* SetCanvas(int i, const std::string& title, double w, double h);
         TCanvas* GetCanvas(int i) const {return fCanvs.at(i);}
-        
+
+        //Main functions
         void Fill();
         void Draw();
         void Reset();
 
+        //SetTPCPhysics for verbose
+        void SetTPCPhysicsPointer(VData* p);
+
+        
     private:
-        void Init();
+        void SetPalette(const std::string& name, bool reverse = false);
         void FillSilHisto(int pad, const std::string& layer);
+        void FillClusterHistos();
+        void DrawPolyLines();
+        void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
     };
 }
 
