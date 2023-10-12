@@ -1,6 +1,7 @@
 #ifndef ActTPCDetector_h
 #define ActTPCDetector_h
 
+#include "ActClIMB.h"
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
@@ -69,6 +70,8 @@ namespace ActRoot
         TPCPhysics* fPhysics {};
         //Have a commom ransac
         std::shared_ptr<ActCluster::RANSAC> fRansac {};
+        //Have a common ClIMB
+        std::shared_ptr<ActCluster::ClIMB> fClimb {};
         
     public:
         TPCDetector() = default;

@@ -173,7 +173,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
     {
         if(gEnv->GetValue("ActRoot.Verbose", false))
             std::cout<<BOLDMAGENTA<<"PolyLine with slope X = 0 -> skip drawing"<<RESET<<'\n';
-        return {};
+        return {std::make_shared<TPolyLine>()};//return empty polyline
     }
     //Compute slopes for the different projections
     auto offsetXY {fPoint.Y() - slope3DXY * fPoint.X()};

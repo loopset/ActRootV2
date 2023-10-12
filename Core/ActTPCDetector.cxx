@@ -1,6 +1,7 @@
 #include "ActTPCDetector.h"
 
 #include "ActCalibrationManager.h"
+#include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActInputParser.h"
 #include "ActLine.h"
@@ -75,10 +76,17 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
         fRansac->ReadConfigurationFile();
         fRansac->Print();
     }
+    else if (method == "Climb")
+    {
+        fClimb = std::make_shared<ActCluster::ClIMB>();
+        fClimb->SetTPCParameters(&fPars);
+        fClimb->ReadConfigurationFile();
+        fClimb->Print();
+    }
     else if(method == "None")
         return;
     else
-        throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac and None");
+        throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac, Climb and None");
 }
 
 void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
@@ -275,6 +283,10 @@ void ActRoot::TPCDetector::BuildEventPhysics()
     if(fRansac)
     {
         fPhysics->fClusters = fRansac->Run(fData->fVoxels);
+    }
+    else if(fClimb)
+    {
+        fPhysics->fClusters = fClimb->Run(fData->fVoxels);
     }
     else
     {
