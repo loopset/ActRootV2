@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['magenta_611',['MAGENTA',['../ActColors_8h.html#a6f699060902f800f12aaae150f3a708e',1,'ActColors.h']]],
-  ['main_612',['main',['../ActGeant4_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'ActGeant4.cc']]],
-  ['mangular_613',['mAngular',['../classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d',1,'ActSim::TheoCrossSection']]],
-  ['meventreduced_614',['MEventReduced',['../classMEventReduced.html',1,'MEventReduced'],['../classMEventReduced.html#ad67e7eacdacb2d459ad0d4efaaeeca48',1,'MEventReduced::MEventReduced()']]],
-  ['modulardata_615',['ModularData',['../classActRoot_1_1ModularData.html',1,'ActRoot']]],
-  ['modulardetector_616',['ModularDetector',['../classActRoot_1_1ModularDetector.html',1,'ActRoot::ModularDetector'],['../classActRoot_1_1ModularDetector.html#ad317a67f624f665843c29d896ad6f71b',1,'ActRoot::ModularDetector::ModularDetector()']]],
-  ['modularparameters_617',['ModularParameters',['../classActRoot_1_1ModularParameters.html',1,'ActRoot']]],
-  ['ms_618',['ms',['../classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159',1,'BS::timer']]],
-  ['mtexecutor_619',['MTExecutor',['../classActRoot_1_1MTExecutor.html',1,'ActRoot::MTExecutor'],['../classActRoot_1_1MTExecutor.html#a1b7cd6e99801f92cce0a0c057912e7e9',1,'ActRoot::MTExecutor::MTExecutor()']]],
-  ['multi_5ffuture_620',['multi_future',['../classBS_1_1multi__future.html',1,'BS::multi_future&lt; T &gt;'],['../classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a',1,'BS::multi_future::multi_future()']]]
+  ['magenta_619',['MAGENTA',['../ActColors_8h.html#a6f699060902f800f12aaae150f3a708e',1,'ActColors.h']]],
+  ['main_620',['main',['../ActGeant4_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'ActGeant4.cc']]],
+  ['mangular_621',['mAngular',['../classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d',1,'ActSim::TheoCrossSection']]],
+  ['maskvoxelsinmatrix_622',['MaskVoxelsInMatrix',['../classActCluster_1_1ClIMB.html#acbf896a47913c22a9134a9e26dddf617',1,'ActCluster::ClIMB']]],
+  ['meventreduced_623',['MEventReduced',['../classMEventReduced.html',1,'MEventReduced'],['../classMEventReduced.html#ad67e7eacdacb2d459ad0d4efaaeeca48',1,'MEventReduced::MEventReduced()']]],
+  ['modulardata_624',['ModularData',['../classActRoot_1_1ModularData.html',1,'ActRoot']]],
+  ['modulardetector_625',['ModularDetector',['../classActRoot_1_1ModularDetector.html',1,'ActRoot::ModularDetector'],['../classActRoot_1_1ModularDetector.html#ad317a67f624f665843c29d896ad6f71b',1,'ActRoot::ModularDetector::ModularDetector()']]],
+  ['modularparameters_626',['ModularParameters',['../classActRoot_1_1ModularParameters.html',1,'ActRoot']]],
+  ['ms_627',['ms',['../classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159',1,'BS::timer']]],
+  ['mtexecutor_628',['MTExecutor',['../classActRoot_1_1MTExecutor.html',1,'ActRoot::MTExecutor'],['../classActRoot_1_1MTExecutor.html#a1b7cd6e99801f92cce0a0c057912e7e9',1,'ActRoot::MTExecutor::MTExecutor()']]],
+  ['multi_5ffuture_629',['multi_future',['../classBS_1_1multi__future.html',1,'BS::multi_future&lt; T &gt;'],['../classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a',1,'BS::multi_future::multi_future()']]]
 ];
