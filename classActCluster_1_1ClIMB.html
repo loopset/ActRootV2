@@ -509,7 +509,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">if</span>(currentCluster.size() &gt; <a class="code" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">fMinPoints</a>)</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        {</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> line {};<span class="comment">//Line</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            line.<a class="code" href="classActPhysics_1_1Line.html#af164ab4d7ac9030f6e030d133e20f834">FitVoxels</a>(currentCluster);<span class="comment">//Fit it to voxel cloud</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            line.<a class="code" href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">FitVoxels</a>(currentCluster);<span class="comment">//Fit it to voxel cloud</span></div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="comment">//and finally push back</span></div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            ret.push_back(<a class="code" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a>(ret.size(), line, currentCluster));</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
@@ -522,7 +522,7 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassActCluster_1_1ClIMB_html_acd37c415d15875fbe07a08e3375051d8"><div class="ttname"><a href="classActCluster_1_1ClIMB.html#acd37c415d15875fbe07a08e3375051d8">ActCluster::ClIMB::SampleSeed</a></div><div class="ttdeci">int SampleSeed()</div><div class="ttdef"><b>Definition:</b> ActClIMB.cxx:86</div></div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html"><div class="ttname"><a href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:12</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:17</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_af164ab4d7ac9030f6e030d133e20f834"><div class="ttname"><a href="classActPhysics_1_1Line.html#af164ab4d7ac9030f6e030d133e20f834">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, double qThreshold=-1)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:32</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a4e07e2921acbd795a90d3aeb3bf842ca"><div class="ttname"><a href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:32</div></div>
 </div><!-- fragment -->
 </div>
 </div>

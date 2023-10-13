@@ -16,5 +16,6 @@ var searchData=
   ['tpcdata_780',['TPCData',['../classActRoot_1_1TPCData.html',1,'ActRoot::TPCData'],['../classActRoot_1_1TPCData.html#a9088b0654ef90894f600d2f4b1c07476',1,'ActRoot::TPCData::TPCData()']]],
   ['tpcdetector_781',['TPCDetector',['../classActRoot_1_1TPCDetector.html',1,'ActRoot::TPCDetector'],['../classActRoot_1_1TPCDetector.html#af0c326e1e0c2d6ee2e54024052af416a',1,'ActRoot::TPCDetector::TPCDetector()']]],
   ['tpcparameters_782',['TPCParameters',['../classActRoot_1_1TPCParameters.html',1,'ActRoot::TPCParameters'],['../classActRoot_1_1TPCParameters.html#a0fbae38d08b83eb4aa4b2dbc83daaf63',1,'ActRoot::TPCParameters::TPCParameters()=default'],['../classActRoot_1_1TPCParameters.html#a95d4a752fc0689ce2cb34e3150015f29',1,'ActRoot::TPCParameters::TPCParameters(const std::string &amp;type)']]],
-  ['tpcphysics_783',['TPCPhysics',['../classActRoot_1_1TPCPhysics.html',1,'ActRoot']]]
+  ['tpcphysics_783',['TPCPhysics',['../classActRoot_1_1TPCPhysics.html',1,'ActRoot']]],
+  ['treatsaturationline_784',['TreatSaturationLine',['../classActPhysics_1_1Line.html#a3df7e1d92d5ff7c20aaf4704ae726a55',1,'ActPhysics::Line']]]
 ];

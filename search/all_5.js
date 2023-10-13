@@ -78,7 +78,7 @@ var searchData=
   ['fitcloud_296',['FitCloud',['../classActPhysics_1_1Line.html#a09d97156da72a0a91aed4610baf08d67',1,'ActPhysics::Line']]],
   ['fitcloudwiththreshold_297',['FitCloudWithThreshold',['../classActPhysics_1_1Line.html#a3683992f08a6084f7bc5b0d9657a4825',1,'ActPhysics::Line']]],
   ['fiterations_298',['fIterations',['../classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad',1,'ActCluster::RANSAC']]],
-  ['fitvoxels_299',['FitVoxels',['../classActPhysics_1_1Line.html#af164ab4d7ac9030f6e030d133e20f834',1,'ActPhysics::Line']]],
+  ['fitvoxels_299',['FitVoxels',['../classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca',1,'ActPhysics::Line']]],
   ['fkeys_300',['fKeys',['../classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16',1,'ActPhysics::SRIM']]],
   ['fkin_301',['fKin',['../classActSim_1_1KinematicGenerator.html#a6c23615d15c3a4e9db9eaa85fad768e9',1,'ActSim::KinematicGenerator']]],
   ['flastrun_302',['fLastRun',['../classActRoot_1_1InputIterator.html#ae9cc19bdf081196b911dd78934b5ec13',1,'ActRoot::InputIterator']]],

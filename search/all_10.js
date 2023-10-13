@@ -18,7 +18,7 @@ var searchData=
   ['setdefaultgas_702',['SetDefaultGas',['../classActDriftDetector.html#a732b4556171f0cafcba2b47c536cda2e',1,'ActDriftDetector']]],
   ['setdetectorconfig_703',['SetDetectorConfig',['../classActRoot_1_1MTExecutor.html#ad6c759cff37f01a15705d905cf0e7f25',1,'ActRoot::MTExecutor']]],
   ['setdetman_704',['SetDetMan',['../classActRoot_1_1EventPainter.html#acb479d2773b3012a0dbda8824438451e',1,'ActRoot::EventPainter']]],
-  ['setdirection_705',['SetDirection',['../classActPhysics_1_1Line.html#a3c9c0df60777bd1cced4ae63620f9dc8',1,'ActPhysics::Line']]],
+  ['setdirection_705',['SetDirection',['../classActPhysics_1_1Line.html#a3c9c0df60777bd1cced4ae63620f9dc8',1,'ActPhysics::Line::SetDirection(const XYZPoint &amp;p1, const XYZPoint &amp;p2)'],['../classActPhysics_1_1Line.html#a690457ecb17120283a28892de6d58b83',1,'ActPhysics::Line::SetDirection(const XYZVector &amp;direction)']]],
   ['setdistthreshold_706',['SetDistThreshold',['../classActCluster_1_1RANSAC.html#a5c353ad34dc1c07b765224d197ddad95',1,'ActCluster::RANSAC']]],
   ['setdrift_707',['SetDrift',['../classActSim_1_1Geometry.html#ae3bd97f78400953b6db4bed0de7a44fc',1,'ActSim::Geometry']]],
   ['setdriftcenterx_708',['SetDriftCenterX',['../classActDriftDetector.html#a3a5a5b86ad58a7bc2d960bb66878ab92',1,'ActDriftDetector']]],
