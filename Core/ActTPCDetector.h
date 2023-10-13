@@ -72,6 +72,7 @@ namespace ActRoot
         std::shared_ptr<ActCluster::RANSAC> fRansac {};
         //Have a common ClIMB
         std::shared_ptr<ActCluster::ClIMB> fClimb {};
+        //Parameters of clustering
         
     public:
         TPCDetector() = default;

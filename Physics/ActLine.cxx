@@ -29,21 +29,25 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPoint &point) const
 	return std::sqrt(dist2);
 }
 
-void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel> &voxels, double qThreshold)
+void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel> &voxels, bool qWeighted, double qThreshold)
 {
     std::vector<XYZPoint> cloud; std::vector<double> charge;
     for(const auto& voxel : voxels)
     {
-        if(qThreshold != -1)//charge matters
-            if(!(voxel.GetCharge() >= qThreshold))//not above threshold
+        if(qWeighted)
+        {
+            if(qThreshold != -1 && !(voxel.GetCharge() > qThreshold))
                 continue;
-        cloud.push_back(voxel.GetPosition());
-        charge.push_back(voxel.GetCharge());
+            charge.push_back(voxel.GetCharge());
+            cloud.push_back(voxel.GetPosition());
+        }
+        else
+            cloud.push_back(voxel.GetPosition());
     }
-    if(qThreshold == -1)//charge does not matter: do not specify charge vector
-        FitCloudWithThreshold(cloud, {});
-    else
+    if(qWeighted)
         FitCloudWithThreshold(cloud, charge);
+    else
+        FitCloudWithThreshold(cloud, {});
 }
 
 void ActPhysics::Line::FitCloud(const std::vector<XYZPoint> &cloud)
@@ -104,6 +108,15 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Syz -= (Ym * Zm);
   
     theta = 0.5 * atan((2. * Sxy) / (Sxx - Syy));
+
+    //Bugfix: when we have pad saturation, Sxx = Syy = 0 -> theta = nan! Then, we can return a vertical line! 
+    if(!std::isfinite(theta))
+    {
+        SetPoint(XYZPoint(Xm, Ym, Zm));
+        SetDirection(XYZVector(0, 0, 1));
+        SetChi2(-1);
+        return;
+    }
   
     K11 = (Syy + Szz) * pow(cos(theta), 2) + (Sxx + Szz) * pow(sin(theta), 2) - 2. * Sxy * cos(theta) * sin(theta);
     K22 = (Syy + Szz) * pow(sin(theta), 2) + (Sxx + Szz) * pow(cos(theta), 2) + 2. * Sxy * cos(theta) * sin(theta);
@@ -140,22 +153,12 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     XYZPoint Pm = {Xm, Ym, Zm};//gravity point
     XYZPoint Ph = {Xh, Yh, Zh};//second point
 
-	//temporary bug fix: detect if we have NaN values here dont redefine Line!
+    //just in case we are still missing some nans
 	if(std::isnan(dm2))
-	{
-        // std::cout<<"c2 "<<c2<<'\n';
-        // std::cout<<"q "<<q<<'\n';
-        // std::cout<<"r "<<r<<'\n';
-        // std::cout<<"rho "<<rho<<'\n';
-        // std::cout<<"phi "<<phi<<'\n';
-		// std::cout<<BOLDMAGENTA<<"Warning: dm2 is NaN is ActLine::FitLineToCloud due to pad saturation -> Not fitting"<<RESET<<'\n';
-		//std::cout<<"Remaining line direction X: "<<GetDirection().X()<<" Y: "<<GetDirection().Y()<< " Z: "<<GetDirection().Z()<<'\n';
-		return;
-	}
+        return;
 	SetPoint(Pm);
 	SetDirection(Pm, Ph);
 	SetChi2(fabs(dm2 / Q));
-	//WARNING: Something in this func returns nan sometimes! It is in variable dm2!
 }
 
 std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
@@ -173,7 +176,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
     {
         if(gEnv->GetValue("ActRoot.Verbose", false))
             std::cout<<BOLDMAGENTA<<"PolyLine with slope X = 0 -> skip drawing"<<RESET<<'\n';
-        return {std::make_shared<TPolyLine>()};//return empty polyline
+        return {TreatSaturationLine(proj, maxZ)};//return empty polyline
     }
     //Compute slopes for the different projections
     auto offsetXY {fPoint.Y() - slope3DXY * fPoint.X()};
@@ -228,4 +231,35 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
         return std::make_shared<TPolyLine>(vx.size(), &(vx[0]), &(vz[0]));
     else//yz
         return std::make_shared<TPolyLine>(vy.size(), &(vy[0]), &(vz[0]));
+}
+
+std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, int maxZ) const
+{
+    //So for this line the slope is 0 in both X and Y
+    int npoints {300};
+    std::vector<double> vx, vy, vz;
+    //Set step
+    double z0 {0};
+    double step {1. * static_cast<double>(maxZ) / npoints};
+    for(int i = 0; i < npoints; i++)
+    {
+        if(IsInRange(z0, 0, maxZ))
+        {
+            vx.push_back(fPoint.X());
+            vy.push_back(fPoint.Y());
+            vz.push_back(z0);
+        }
+        z0 += step;
+    }
+    //Return
+    std::shared_ptr<TPolyLine> ret;
+    if(proj.Contains("xy"))
+        ret = std::make_shared<TPolyLine>(vx.size(), &(vx[0]), &(vy[0]));
+    else if(proj.Contains("xz"))
+        ret = std::make_shared<TPolyLine>(vx.size(), &(vx[0]), &(vz[0]));
+    else//yz
+        ret = std::make_shared<TPolyLine>(vy.size(), &(vy[0]), &(vz[0]));
+    //To identify these events!
+    ret->SetLineStyle(2);
+    return ret;
 }

@@ -274,10 +274,6 @@ void ActRoot::HistogramPainter::FillClusterHistos()
         for(const auto& voxel : cluster.GetVoxels())
         {
             const auto& pos {voxel.GetPosition()};
-            if(fTPCPhysics->fClusters.size() == 1)
-            {
-                std::cout<<"Fill "<<pos<<" with ID "<<cluster.GetClusterID()<<'\n';
-            }
             //Pad
             AttachBinToCluster(fHistTpc[4], pos.X(), pos.Y(), cluster.GetClusterID());
             //Side

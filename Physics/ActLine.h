@@ -41,11 +41,12 @@ namespace ActPhysics
         
         void SetPoint(const XYZPoint& point){fPoint = point;}
         void SetDirection(const XYZPoint& p1, const XYZPoint& p2){fDirection = p1 - p2;}
+        void SetDirection(const XYZVector& direction){fDirection = direction;}
         void SetChi2(float chi2){fChi2 = chi2;}
 
         //Utility funtions
         double DistanceLineToPoint(const XYZPoint& point) const;
-        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, double qThreshold = -1);
+        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1);
         void FitCloud(const std::vector<XYZPoint>& cloud);
         std::shared_ptr<TPolyLine> GetPolyLine(TString proj = "xy",
                                                int maxX = 128, int maxY = 128, int maxZ = 512) const;
@@ -56,6 +57,7 @@ namespace ActPhysics
         {
             return (min <= val) && (val <= max);
         }
+        std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ) const;
     };
 }
 
