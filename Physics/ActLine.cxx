@@ -76,7 +76,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Sxx = Syy = Szz = Sxy = Sxz = Syz = 0.;
     bool doChargeWeight = (points.size() == charge.size());
   
-    for (int i = 0; i < points.size(); ++i) {
+    for (int i = 0, maxsize = points.size(); i < maxsize; ++i) {
         const auto hitQ = doChargeWeight ? charge[i] : 1.;
         const auto &pos = points[i];
         Q += hitQ / 10.;
