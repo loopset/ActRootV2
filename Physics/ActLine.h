@@ -13,53 +13,49 @@
 
 namespace ActPhysics
 {
-    class Line
-    {
-    public:
-        using XYZPoint  = ROOT::Math::XYZPointF;
-        using XYZVector = ROOT::Math::XYZVectorF;
+class Line
+{
+public:
+    using XYZPoint = ROOT::Math::XYZPointF;
+    using XYZVector = ROOT::Math::XYZVectorF;
 
-    private:
-        XYZPoint fPoint {-1, -1, -1};
-        XYZVector fDirection {-1, -1, -1};
-        float fChi2 {-1};
+private:
+    XYZPoint fPoint {-1, -1, -1};
+    XYZVector fDirection {-1, -1, -1};
+    float fChi2 {-1};
 
-    public:
-        Line() = default;
-        Line(XYZPoint point, XYZVector direction, float chi);
-        Line(const XYZPoint& p1, const XYZPoint& p2);
-        Line(const Line& ) = default;
-        Line(Line&& ) = default;
-        Line &operator=(const Line& ) = default;
-        Line &operator=(Line&& ) = default;
-        ~Line() = default;
+public:
+    Line() = default;
+    Line(XYZPoint point, XYZVector direction, float chi);
+    Line(const XYZPoint& p1, const XYZPoint& p2);
+    Line(const Line&) = default;
+    Line(Line&&) = default;
+    Line& operator=(const Line&) = default;
+    Line& operator=(Line&&) = default;
+    ~Line() = default;
 
-        //Getters and setters
-        XYZPoint GetPoint() const {return fPoint;}
-        XYZVector GetDirection() const {return fDirection;}
-        float GetChi2() const {return fChi2;}
-        
-        void SetPoint(const XYZPoint& point){fPoint = point;}
-        void SetDirection(const XYZPoint& p1, const XYZPoint& p2){fDirection = p1 - p2;}
-        void SetDirection(const XYZVector& direction){fDirection = direction;}
-        void SetChi2(float chi2){fChi2 = chi2;}
+    // Getters and setters
+    XYZPoint GetPoint() const { return fPoint; }
+    XYZVector GetDirection() const { return fDirection; }
+    float GetChi2() const { return fChi2; }
 
-        //Utility funtions
-        double DistanceLineToPoint(const XYZPoint& point) const;
-        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1);
-        void FitCloud(const std::vector<XYZPoint>& cloud);
-        std::shared_ptr<TPolyLine> GetPolyLine(TString proj = "xy",
-                                               int maxX = 128, int maxY = 128, int maxZ = 512) const;
-        
-    private:
-        void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge);
-        inline bool IsInRange(double val, double min, double max) const
-        {
-            return (min <= val) && (val <= max);
-        }
-        std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ) const;
-    };
-}
+    void SetPoint(const XYZPoint& point) { fPoint = point; }
+    void SetDirection(const XYZPoint& p1, const XYZPoint& p2) { fDirection = p1 - p2; }
+    void SetDirection(const XYZVector& direction) { fDirection = direction; }
+    void SetChi2(float chi2) { fChi2 = chi2; }
+
+    // Utility funtions
+    double DistanceLineToPoint(const XYZPoint& point) const;
+    void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1);
+    void FitCloud(const std::vector<XYZPoint>& cloud);
+    std::shared_ptr<TPolyLine> GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512) const;
+
+private:
+    void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge);
+    inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
+    std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ) const;
+};
+} // namespace ActPhysics
 
 
 #endif
