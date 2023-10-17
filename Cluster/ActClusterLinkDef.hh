@@ -10,6 +10,6 @@
 #pragma link C++ class ActCluster::Cluster+;
 #pragma link C++ class ActCluster::RANSAC;
 #pragma link C++ class ActCluster::ClIMB;
-
+#pragma link C++ class ActCluster::MultiStep;
 
 #endif

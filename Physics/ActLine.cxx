@@ -158,7 +158,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
         return;
 	SetPoint(Pm);
 	SetDirection(Pm, Ph);
-	SetChi2(fabs(dm2 / Q));
+	SetChi2(fabs(dm2));// do not divide by charge!
 }
 
 std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj,
