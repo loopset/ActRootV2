@@ -616,7 +616,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#a23e8b6a7d64d6f61ced409b6dd8afa1f">fChi2</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#a23e8b6a7d64d6f61ced409b6dd8afa1f">fChi2</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -642,7 +642,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -668,7 +668,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#ab939eabda53de904c7e3c90a2d7636ca">fPoint</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Line.html#ab939eabda53de904c7e3c90a2d7636ca">fPoint</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -780,7 +780,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a2b84f8175fb29d37505b3bba66f56581"><div class="ttname"><a href="classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581">ActPhysics::Line::IsInRange</a></div><div class="ttdeci">bool IsInRange(double val, double min, double max) const</div><div class="ttdef"><b>Definition:</b> ActLine.h:56</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a2b84f8175fb29d37505b3bba66f56581"><div class="ttname"><a href="classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581">ActPhysics::Line::IsInRange</a></div><div class="ttdeci">bool IsInRange(double val, double min, double max) const</div><div class="ttdef"><b>Definition:</b> ActLine.h:55</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html_a3df7e1d92d5ff7c20aaf4704ae726a55"><div class="ttname"><a href="classActPhysics_1_1Line.html#a3df7e1d92d5ff7c20aaf4704ae726a55">ActPhysics::Line::TreatSaturationLine</a></div><div class="ttdeci">std::shared_ptr&lt; TPolyLine &gt; TreatSaturationLine(TString proj, int maxZ) const</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:236</div></div>
 </div><!-- fragment -->
 </div>
@@ -824,9 +824,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">return</span> (min &lt;= val) &amp;&amp; (val &lt;= max);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{ <span class="keywordflow">return</span> (min &lt;= val) &amp;&amp; (val &lt;= max); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -905,7 +903,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{<a class="code" href="classActPhysics_1_1Line.html#a23e8b6a7d64d6f61ced409b6dd8afa1f">fChi2</a> = chi2;}</div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <a class="code" href="classActPhysics_1_1Line.html#a23e8b6a7d64d6f61ced409b6dd8afa1f">fChi2</a> = chi2; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -942,7 +940,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{<a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a> = p1 - p2;}</div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a> = p1 - p2; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -969,7 +967,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{<a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a> = direction;}</div>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <a class="code" href="classActPhysics_1_1Line.html#a84ff975f4442a32748d720f8e4583fc1">fDirection</a> = direction; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -996,7 +994,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{<a class="code" href="classActPhysics_1_1Line.html#ab939eabda53de904c7e3c90a2d7636ca">fPoint</a> = point;}</div>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{ <a class="code" href="classActPhysics_1_1Line.html#ab939eabda53de904c7e3c90a2d7636ca">fPoint</a> = point; }</div>
 </div><!-- fragment -->
 </div>
 </div>

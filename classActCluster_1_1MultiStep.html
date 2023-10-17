@@ -83,6 +83,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a392592bce6de89c7ec9a9353d0b7725f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6730aad6dbbf6acd493cfd106963ec7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#aa6730aad6dbbf6acd493cfd106963ec7">MultiStep</a> (std::vector&lt; <a class="el" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a> &gt; *clusters)</td></tr>
 <tr class="separator:aa6730aad6dbbf6acd493cfd106963ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a705131897b1382b1194474b7a32bc8ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a705131897b1382b1194474b7a32bc8ac">ReadConfigurationFile</a> (const std::string &amp;infile=&quot;&quot;)</td></tr>
+<tr class="separator:a705131897b1382b1194474b7a32bc8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -130,9 +132,53 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    : <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>(clusters)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{}</div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a141ededfb7a02c5e09bddfa943299fbf"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; * fClusters</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:12</div></div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    : <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>(clusters)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a141ededfb7a02c5e09bddfa943299fbf"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; * fClusters</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:13</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a705131897b1382b1194474b7a32bc8ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a705131897b1382b1194474b7a32bc8ac">&#9670;&nbsp;</a></span>ReadConfigurationFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActCluster::MultiStep::ReadConfigurationFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>infile</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// automatically get project path from gEnv</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::string envfile {gEnv-&gt;GetValue(<span class="stringliteral">&quot;ActRoot.ProjectHomeDir&quot;</span>, <span class="stringliteral">&quot;&quot;</span>)};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    envfile += <span class="stringliteral">&quot;/configs/filter.climb&quot;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string realfile {};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span>(!gSystem-&gt;AccessPathName(envfile.c_str()))</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        realfile = envfile;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(infile.length() &gt; 0)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        realfile = infile;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a> &lt;&lt; <span class="stringliteral">&quot;.ransac config file not found -&gt; Using built-in configuration&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Parse!</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {realfile};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">auto</span> mb {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;MultiStep&quot;</span>)};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;ChiSquareThresh&quot;</span>))</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        ;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:58</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:307</div></div>
 </div><!-- fragment -->
 </div>
 </div>

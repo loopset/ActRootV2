@@ -74,27 +74,31 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ActMultiStep_h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ActCluster_8h.html">ActCluster.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceActCluster.html">ActCluster</a> </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html">    9</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classActCluster_1_1MultiStep.html">MultiStep</a> </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">   12</a></span>&#160;        std::vector&lt;ActCluster::Cluster&gt;* <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a> {}; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">   15</a></span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">MultiStep</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">MultiStep</a>(std::vector&lt;ActCluster::Cluster&gt;* clusters);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !ActMultiStep_h</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceActCluster.html">ActCluster</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classActCluster_1_1MultiStep.html">MultiStep</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">   13</a></span>&#160;    std::vector&lt;ActCluster::Cluster&gt;* <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a> {};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">   16</a></span>&#160;    <a class="code" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">MultiStep</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">MultiStep</a>(std::vector&lt;ActCluster::Cluster&gt;* clusters);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// Read config file</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActCluster_1_1MultiStep.html#a705131897b1382b1194474b7a32bc8ac">ReadConfigurationFile</a>(<span class="keyword">const</span> std::string&amp; infile = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace ActCluster</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !ActMultiStep_h</span></div>
 <div class="ttc" id="aActCluster_8h_html"><div class="ttname"><a href="ActCluster_8h.html">ActCluster.h</a></div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html"><div class="ttname"><a href="classActCluster_1_1MultiStep.html">ActCluster::MultiStep</a></div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:10</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a141ededfb7a02c5e09bddfa943299fbf"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; * fClusters</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:12</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html"><div class="ttname"><a href="classActCluster_1_1MultiStep.html">ActCluster::MultiStep</a></div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:11</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a141ededfb7a02c5e09bddfa943299fbf"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; * fClusters</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:13</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a392592bce6de89c7ec9a9353d0b7725f"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f">ActCluster::MultiStep::MultiStep</a></div><div class="ttdeci">MultiStep()=default</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a705131897b1382b1194474b7a32bc8ac"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a705131897b1382b1194474b7a32bc8ac">ActCluster::MultiStep::ReadConfigurationFile</a></div><div class="ttdeci">void ReadConfigurationFile(const std::string &amp;infile=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> ActMultiStep.cxx:18</div></div>
 <div class="ttc" id="anamespaceActCluster_html"><div class="ttname"><a href="namespaceActCluster.html">ActCluster</a></div><div class="ttdoc">A namespace with all clustering utilities.</div><div class="ttdef"><b>Definition:</b> ActClIMB.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
