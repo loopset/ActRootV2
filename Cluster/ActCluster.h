@@ -13,6 +13,7 @@ namespace ActCluster
     {
     public:
         using XYZPoint = ROOT::Math::XYZPointF;
+
     private:
         ActPhysics::Line fLine {};
         std::vector<ActRoot::Voxel> fVoxels {};
@@ -23,19 +24,21 @@ namespace ActCluster
         Cluster(int id, const ActPhysics::Line& line, const std::vector<ActRoot::Voxel>& voxels);
         ~Cluster() = default;
 
-        //Getters and settes
-        const ActPhysics::Line& GetLine() const {return fLine;}
-        const std::vector<ActRoot::Voxel> GetVoxels() const {return fVoxels;}
-        int GetClusterID() const {return fClusterID;}
-        
-        void SetLine(const ActPhysics::Line& line) {fLine = line;}
-        void SetVoxels(const std::vector<ActRoot::Voxel>& voxels){fVoxels = voxels;}
-        void SetClusterID(int id){fClusterID = id;}
+        // Getters and settes
+        const ActPhysics::Line& GetLine() const { return fLine; }
+        const std::vector<ActRoot::Voxel>& GetVoxels() const { return fVoxels; }
+        std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; }
+        int GetClusterID() const { return fClusterID; }
 
-        //Basic funtions to MultiStep algorithm
+        void SetLine(const ActPhysics::Line& line) { fLine = line; }
+        void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
+        void SetClusterID(int id) { fClusterID = id; }
+
+        // Basic funtions to MultiStep algorithm
         XYZPoint GetGravityPoint();
+        void ReFit();
     };
 
-}
+} // namespace ActCluster
 
 #endif

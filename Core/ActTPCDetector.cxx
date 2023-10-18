@@ -5,6 +5,7 @@
 #include "ActCluster.h"
 #include "ActInputParser.h"
 #include "ActLine.h"
+#include "ActMultiStep.h"
 #include "ActRANSAC.h"
 #include "ActTPCPhysics.h"
 #include "Math/Point3D.h"
@@ -82,6 +83,11 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
         fClimb->SetTPCParameters(&fPars);
         fClimb->ReadConfigurationFile();
         fClimb->Print();
+        //ClIMB also requires multistep algorithm
+        fMultiStep = std::make_shared<ActCluster::MultiStep>();
+        fMultiStep->ReadConfigurationFile();
+        fMultiStep->SetClimb(fClimb);
+        fMultiStep->Print();
     }
     else if(method == "None")
         return;
@@ -287,6 +293,9 @@ void ActRoot::TPCDetector::BuildEventPhysics()
     else if(fClimb)
     {
         fPhysics->fClusters = fClimb->Run(fData->fVoxels);
+        //Apply MultiStep algorithm
+        fMultiStep->SetClusters(&(fPhysics->fClusters));
+        fMultiStep->RunBreakBeamClusters();
     }
     else
     {

@@ -2,29 +2,30 @@
 #define ActTPCDetector_h
 
 #include "ActClIMB.h"
+#include "ActInputData.h"
+#include "ActMultiStep.h"
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
-#include "ActInputData.h"
 #include "ActTPCPhysics.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
 
 #include "TTree.h"
 
+#include <map>
 #include <memory>
 #include <string>
-#include <map>
 #include <utility>
 #include <vector>
 namespace ActRoot
 {
-    class InputBlock;//forward declaration
+    class InputBlock; // forward declaration
 
     class TPCParameters
     {
     private:
-        double fPadSide {2};//mm
+        double fPadSide {2}; // mm
         int fNPADSX;
         int fNPADSY;
         int fNPADSZ;
@@ -37,49 +38,49 @@ namespace ActRoot
     public:
         TPCParameters() = default;
         TPCParameters(const std::string& type);
-        //Setters
-        void SetREBINZ(int rebin) {fREBINZ = rebin;}
-        //Getters
-        double GetPadSide() const {return fPadSide;}
-        int GetNPADSX() const {return fNPADSX;}
-        int GetNPADSY() const {return fNPADSY;}
-        int GetNPADSZ() const {return fNPADSZ;}
-        int GetREBINZ() const {return fREBINZ;}
-        int GetNBCOBO() const {return fNB_COBO;}
-        int GetNBASAD() const {return fNB_ASAD;}
-        int GetNBAGET() const {return fNB_AGET;}
-        int GetNBCHANNEL() const {return fNB_CHANNEL;}
+        // Setters
+        void SetREBINZ(int rebin) { fREBINZ = rebin; }
+        // Getters
+        double GetPadSide() const { return fPadSide; }
+        int GetNPADSX() const { return fNPADSX; }
+        int GetNPADSY() const { return fNPADSY; }
+        int GetNPADSZ() const { return fNPADSZ; }
+        int GetREBINZ() const { return fREBINZ; }
+        int GetNBCOBO() const { return fNB_COBO; }
+        int GetNBASAD() const { return fNB_ASAD; }
+        int GetNBAGET() const { return fNB_AGET; }
+        int GetNBCHANNEL() const { return fNB_CHANNEL; }
     };
 
     class TPCDetector : public ActRoot::VDetector
     {
     private:
-        //Parameters of detector
+        // Parameters of detector
         TPCParameters fPars;
-        //Data
+        // Data
         TPCData* fData {};
-        //Preanalysis when reading raw data 
+        // Preanalysis when reading raw data
         bool fCleanSaturatedMEvent {false};
         bool fCleanSaturatedVoxels {false};
         double fMinTBtoDelete {20};
-        double fMinQtoDelete  {2000};
-        std::map<std::pair<int, int>,
-                 std::pair<std::vector<unsigned int>, double>> fPadMatrix;
+        double fMinQtoDelete {2000};
+        std::map<std::pair<int, int>, std::pair<std::vector<unsigned int>, double>> fPadMatrix;
         bool fCleanDuplicatedVoxels {false};
-        //Physics data
+        // Physics data
         TPCPhysics* fPhysics {};
-        //Have a commom ransac
+        // Have a commom ransac
         std::shared_ptr<ActCluster::RANSAC> fRansac {};
-        //Have a common ClIMB
+        // Have a common ClIMB
         std::shared_ptr<ActCluster::ClIMB> fClimb {};
-        //Parameters of clustering
-        
+        // Have common filters
+        std::shared_ptr<ActCluster::MultiStep> fMultiStep {};
+
     public:
         TPCDetector() = default;
         virtual ~TPCDetector() = default;
 
-        //Getters
-        const TPCParameters& GetTPCPars() const {return fPars;}
+        // Getters
+        const TPCParameters& GetTPCPars() const { return fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
@@ -93,22 +94,22 @@ namespace ActRoot
         void ClearEventData() override;
         void ClearEventPhysics() override;
 
-        //Base class getters
-        TPCData* GetEventData() const override {return fData;}
-        TPCPhysics* GetEventPhysics() const override {return fPhysics;}
+        // Base class getters
+        TPCData* GetEventData() const override { return fData; }
+        TPCPhysics* GetEventPhysics() const override { return fPhysics; }
 
-        //And setters
+        // And setters
         void SetEventData(VData* vdata) override;
-        
+
         ////////////////////////////////
-        //ActTPCData* GetDataPointer() { return fData; }
-        
+        // ActTPCData* GetDataPointer() { return fData; }
+
     private:
         void ReadHits(ReducedData& coas, const int& where, int& hitID);
         void CleanPadMatrix();
         void InitClusterMethod(const std::string& method);
         void EnsureUniquenessOfVoxels();
     };
-}
+} // namespace ActRoot
 
 #endif
