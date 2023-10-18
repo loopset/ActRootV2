@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lorentzboostx_1716',['LorentzBoostX',['../classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2',1,'ActPhysics::Kinematics']]]
+  ['ittype_1745',['ItType',['../classActCluster_1_1MultiStep.html#a7ab012a7422e5c5351fc720576dc0190',1,'ActCluster::MultiStep']]]
 ];
