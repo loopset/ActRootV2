@@ -160,9 +160,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.clear();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{ <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.clear(); }</div>
 <div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:53</div></div>
 </div><!-- fragment -->
 </div>
@@ -192,8 +190,8 @@ Public Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData</a>.</p>
 <div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;==== TPCData ====&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;-&gt; Voxels size = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.size()&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;==== TPCData ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Voxels size = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>)</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        voxel.Print();</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>

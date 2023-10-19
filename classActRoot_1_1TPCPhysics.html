@@ -170,11 +170,14 @@ Public Attributes</h2></td></tr>
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData</a>.</p>
 <div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;==== TPCPhysics ====&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;N clusters = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.size()&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;N of clusters = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.size()&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; cluster : <a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;  Cluster n &quot;</span>&lt;&lt;cluster.GetClusterID()&lt;&lt;<span class="stringliteral">&quot; with &quot;</span>&lt;&lt;cluster.GetVoxels().size()&lt;&lt;<span class="stringliteral">&quot; voxels&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;   </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;====================&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        cluster.Print();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        cluster.GetLine().Print();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }  </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;======================&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

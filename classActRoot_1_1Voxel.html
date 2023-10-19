@@ -185,8 +185,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    : <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a>(pos), <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a>(charge), <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a>(hasSaturation)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{}</div>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    : <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a>(pos)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    , <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a>(charge)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    , <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a>(hasSaturation)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1Voxel_html_a22d10623362a9feefced5db98cc6e222"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">ActRoot::Voxel::fPosition</a></div><div class="ttdeci">XYZPoint fPosition</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:23</div></div>
 <div class="ttc" id="aclassActRoot_1_1Voxel_html_a256c956acb9be4ec1f4760965615f99d"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">ActRoot::Voxel::fCharge</a></div><div class="ttdeci">float fCharge</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:24</div></div>
 <div class="ttc" id="aclassActRoot_1_1Voxel_html_ad9d8714d3fda570e7933876d702d0a9e"><div class="ttname"><a href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">ActRoot::Voxel::fIsSaturated</a></div><div class="ttdeci">bool fIsSaturated</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:26</div></div>
@@ -286,12 +289,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;== Voxel ==&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot; -&gt; Position  = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot; -&gt; Charge    = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot; -&gt; Has sat ? = &quot;</span>&lt;&lt;std::boolalpha&lt;&lt;<a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;== Voxel ==&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot; -&gt; Position  = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot; -&gt; Charge    = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot; -&gt; Has sat ? = &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

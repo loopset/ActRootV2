@@ -107,8 +107,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a65a6f8ef00dc4b646d11e9e8978b65ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a65a6f8ef00dc4b646d11e9e8978b65ce">GetGravityPointInRegion</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels, double xmin, double xmax)</td></tr>
-<tr class="separator:a65a6f8ef00dc4b646d11e9e8978b65ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46de77fe936e025dfec5258b1519c731"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a46de77fe936e025dfec5258b1519c731">IsInBeamCylinder</a> (const <a class="el" href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">XYZPoint</a> &amp;pos, const <a class="el" href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">XYZPoint</a> &amp;gravity)</td></tr>
 <tr class="separator:a46de77fe936e025dfec5258b1519c731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -118,6 +116,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a141ededfb7a02c5e09bddfa943299fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a060e7fc8411d67971e5b3ae8f3b7fae4"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActCluster_1_1ClIMB.html">ActCluster::ClIMB</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a> {}</td></tr>
 <tr class="separator:a060e7fc8411d67971e5b3ae8f3b7fae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace233f950a62e8712a9bc1464bfbe3ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">fIsEnabled</a></td></tr>
+<tr class="separator:ace233f950a62e8712a9bc1464bfbe3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d99a9dcfe25f02529d465b94102a84a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a1d99a9dcfe25f02529d465b94102a84a">fFitNotBeam</a></td></tr>
+<tr class="separator:a1d99a9dcfe25f02529d465b94102a84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad737133965eec7a877be0d5854ff44f2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a></td></tr>
 <tr class="separator:ad737133965eec7a877be0d5854ff44f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17be949f74a148930feb2236fb202025"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a></td></tr>
@@ -219,67 +221,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>; }</div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a141ededfb7a02c5e09bddfa943299fbf"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; * fClusters</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:26</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a65a6f8ef00dc4b646d11e9e8978b65ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65a6f8ef00dc4b646d11e9e8978b65ce">&#9670;&nbsp;</a></span>GetGravityPointInRegion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">ActCluster::MultiStep::XYZPoint</a> ActCluster::MultiStep::GetGravityPointInRegion </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>voxels</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xmin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xmax</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">XYZPoint</a> gravity {};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> count {};</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : voxels)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos {voxel.GetPosition()};</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">if</span>((xmin &lt;= pos.X()) &amp;&amp; (pos.X() &lt;= xmax))</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            gravity += <a class="code" href="classActCluster_1_1MultiStep.html#a564e87640c0b4d4ecd7b76b98d982f07">XYZVector</a> {pos};</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            count++;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    gravity /= count;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> gravity;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a18d623597d5c5742bf092b3b34bbe6d2"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a18d623597d5c5742bf092b3b34bbe6d2">ActCluster::MultiStep::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPointF XYZPoint</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:21</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a564e87640c0b4d4ecd7b76b98d982f07"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a564e87640c0b4d4ecd7b76b98d982f07">ActCluster::MultiStep::XYZVector</a></div><div class="ttdeci">ROOT::Math::XYZVectorF XYZVector</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -316,14 +259,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">bool</span> condY {(gravity.Y() - <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a>) &lt;= pos.Y() &amp;&amp; pos.Y() &lt;= (gravity.Y() + <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a>)};</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">bool</span> condZ {(gravity.Z() - <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a>) &lt;= pos.Z() &amp;&amp; pos.Z() &lt;= (gravity.Z() + <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a>)};</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> condY &amp;&amp; condZ;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a2b3ba466b07b692424d84964761d8de1"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">ActCluster::MultiStep::fBeamWindowY</a></div><div class="ttdeci">double fBeamWindowY</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:33</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_af1a54dece3f90bd2ec1a78234fc3c22b"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">ActCluster::MultiStep::fBeamWindowZ</a></div><div class="ttdeci">double fBeamWindowZ</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:34</div></div>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">bool</span> condY {(gravity.Y() - <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a>) &lt;= pos.Y() &amp;&amp; pos.Y() &lt;= (gravity.Y() + <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a>)};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">bool</span> condZ {(gravity.Z() - <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a>) &lt;= pos.Z() &amp;&amp; pos.Z() &lt;= (gravity.Z() + <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a>)};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> condY &amp;&amp; condZ;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a2b3ba466b07b692424d84964761d8de1"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">ActCluster::MultiStep::fBeamWindowY</a></div><div class="ttdeci">double fBeamWindowY</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:36</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_af1a54dece3f90bd2ec1a78234fc3c22b"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">ActCluster::MultiStep::fBeamWindowZ</a></div><div class="ttdeci">double fBeamWindowZ</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -341,18 +284,25 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== MultiStep settings ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Chi2 thresh   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; X extent beam : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BeamWindowY   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BeamWindowZ   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;=======================&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== MultiStep settings ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; IsEnabled     : &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">fIsEnabled</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">fIsEnabled</a>)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; FitNotBeam    : &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#a1d99a9dcfe25f02529d465b94102a84a">fFitNotBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Chi2 thresh   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; X extent beam : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BeamWindowY   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BeamWindowZ   : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;=======================&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a17be949f74a148930feb2236fb202025"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">ActCluster::MultiStep::fEntranceBeamRegionX</a></div><div class="ttdeci">double fEntranceBeamRegionX</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:32</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_ad737133965eec7a877be0d5854ff44f2"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">ActCluster::MultiStep::fChi2Threshold</a></div><div class="ttdeci">double fChi2Threshold</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:31</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a17be949f74a148930feb2236fb202025"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">ActCluster::MultiStep::fEntranceBeamRegionX</a></div><div class="ttdeci">double fEntranceBeamRegionX</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:35</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a1d99a9dcfe25f02529d465b94102a84a"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a1d99a9dcfe25f02529d465b94102a84a">ActCluster::MultiStep::fFitNotBeam</a></div><div class="ttdeci">bool fFitNotBeam</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:33</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_ace233f950a62e8712a9bc1464bfbe3ae"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">ActCluster::MultiStep::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:31</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_ad737133965eec7a877be0d5854ff44f2"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">ActCluster::MultiStep::fChi2Threshold</a></div><div class="ttdeci">double fChi2Threshold</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:34</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -371,33 +321,37 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// automatically get project path from gEnv</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string envfile {gEnv-&gt;GetValue(<span class="stringliteral">&quot;ActRoot.ProjectHomeDir&quot;</span>, <span class="stringliteral">&quot;&quot;</span>)};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    envfile += <span class="stringliteral">&quot;/configs/filter.climb&quot;</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::string realfile {};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span>(!gSystem-&gt;AccessPathName(envfile.c_str()))</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        realfile = envfile;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(infile.length() &gt; 0)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        realfile = infile;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a> &lt;&lt; <span class="stringliteral">&quot;.ransac config file not found -&gt; Using built-in configuration&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Parse!</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {realfile};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">auto</span> mb {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;MultiStep&quot;</span>)};</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;Chi2Threshold&quot;</span>))</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;Chi2Threshold&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;EntranceBeamRegionX&quot;</span>))</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;EntranceBeamRegionX&quot;</span>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowY&quot;</span>))</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowY&quot;</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>))</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// automatically get project path from gEnv</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::string envfile {gEnv-&gt;GetValue(<span class="stringliteral">&quot;ActRoot.ProjectHomeDir&quot;</span>, <span class="stringliteral">&quot;&quot;</span>)};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    envfile += <span class="stringliteral">&quot;/configs/filter.climb&quot;</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::string realfile {};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span>(!gSystem-&gt;AccessPathName(envfile.c_str()))</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        realfile = envfile;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(infile.length() &gt; 0)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        realfile = infile;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a> &lt;&lt; <span class="stringliteral">&quot;.ransac config file not found -&gt; Using built-in configuration&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Parse!</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {realfile};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">auto</span> mb {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;MultiStep&quot;</span>)};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;IsEnabled&quot;</span>))</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">fIsEnabled</a> = mb-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;FitNotBeam&quot;</span>))</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a1d99a9dcfe25f02529d465b94102a84a">fFitNotBeam</a> = mb-&gt;GetBool(<span class="stringliteral">&quot;FitNotBeam&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;Chi2Threshold&quot;</span>))</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;Chi2Threshold&quot;</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;EntranceBeamRegionX&quot;</span>))</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;EntranceBeamRegionX&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowY&quot;</span>))</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#a2b3ba466b07b692424d84964761d8de1">fBeamWindowY</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowY&quot;</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span>(mb-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>))</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classActCluster_1_1MultiStep.html#af1a54dece3f90bd2ec1a78234fc3c22b">fBeamWindowZ</a> = mb-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:58</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:307</div></div>
@@ -418,59 +372,62 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt;ActCluster::Cluster&gt; toAppend {};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;begin(); it != <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;end(); it++)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// 1-&gt; Check whether we meet conditions to execute this</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span>(it-&gt;GetLine().GetChi2() &lt; <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a>)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// 2-&gt; Calculate gravity point in region</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">auto</span> gravity {<a class="code" href="classActCluster_1_1MultiStep.html#a65a6f8ef00dc4b646d11e9e8978b65ce">GetGravityPointInRegion</a>(it-&gt;GetVoxels(), 0, <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a>)};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// Return if it is nan</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span>(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;Running for cluster &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;Gravity = &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// 3-&gt;Modify original cluster: move non-beam voxels outside to</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">//  be clusterized independently</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">auto</span>&amp; refToVoxels {it-&gt;GetRefToVoxels()};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Original size = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">auto</span> toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                    [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                        const auto&amp; pos {voxel.GetPosition()};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                        <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1MultiStep.html#a46de77fe936e025dfec5258b1519c731">IsInBeamCylinder</a>(pos, gravity);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                    })};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// Create vector to move to</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::vector&lt;ActRoot::Voxel&gt; notBeam {};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        refToVoxels.erase(toMove, refToVoxels.end());</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Remaining beam = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Not beam       = &quot;</span> &lt;&lt; notBeam.size() &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// ReFit remaining voxels!</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        it-&gt;ReFit();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">// 4-&gt; Run cluster algorithm again</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">auto</span> newClusters = <a class="code" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a>-&gt;Run(notBeam);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">// Move to vector</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Append clusters to original TPCData</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*<a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>));</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Reset cluster index</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">int</span> <span class="keywordtype">id</span> {};</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;begin(); it != <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;end(); it++)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        it-&gt;SetClusterID(<span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">id</span>++;</div>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">fIsEnabled</a>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::vector&lt;ActCluster::Cluster&gt; toAppend {};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;begin(); it != <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;end(); it++)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// 1-&gt; Check whether we meet conditions to execute this</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span>(it-&gt;GetLine().GetChi2() &lt; <a class="code" href="classActCluster_1_1MultiStep.html#ad737133965eec7a877be0d5854ff44f2">fChi2Threshold</a>)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// 2-&gt; Calculate gravity point in region</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">auto</span> gravity {it-&gt;GetGravityPointInRegion(0, <a class="code" href="classActCluster_1_1MultiStep.html#a17be949f74a148930feb2236fb202025">fEntranceBeamRegionX</a>)};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">// Return if it is nan</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span>(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;Running for cluster &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;Gravity = &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// 3-&gt;Modify original cluster: move non-beam voxels outside to</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">//  be clusterized independently</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">auto</span>&amp; refToVoxels {it-&gt;GetRefToVoxels()};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Original size = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">auto</span> toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                    [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                        const auto&amp; pos {voxel.GetPosition()};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                        <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1MultiStep.html#a46de77fe936e025dfec5258b1519c731">IsInBeamCylinder</a>(pos, gravity);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                    })};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// Create vector to move to</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        std::vector&lt;ActRoot::Voxel&gt; notBeam {};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        refToVoxels.erase(toMove, refToVoxels.end());</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Remaining beam = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Not beam       = &quot;</span> &lt;&lt; notBeam.size() &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">// ReFit remaining voxels!</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        it-&gt;ReFit();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// 4-&gt; Run cluster algorithm again</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        std::vector&lt;ActCluster::Cluster&gt; newClusters;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActCluster_1_1MultiStep.html#a1d99a9dcfe25f02529d465b94102a84a">fFitNotBeam</a>)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            newClusters = <a class="code" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a>-&gt;Run(notBeam);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="comment">// Move to vector</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Append clusters to original TPCData</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*<a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>));</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Reset cluster index</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">int</span> <span class="keywordtype">id</span> {};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;begin(); it != <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;end(); it++)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        it-&gt;SetClusterID(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">id</span>++;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a4a6c893a1703c33ede7d702fe5f97c91"><div class="ttname"><a href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a></div><div class="ttdeci">#define BOLDGREEN</div><div class="ttdef"><b>Definition:</b> ActColors.h:17</div></div>
 <div class="ttc" id="aActColors_8h_html_ab912d02c7998c3d47d05f87be4e2c920"><div class="ttname"><a href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a></div><div class="ttdeci">#define BOLDRED</div><div class="ttdef"><b>Definition:</b> ActColors.h:16</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a060e7fc8411d67971e5b3ae8f3b7fae4"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">ActCluster::MultiStep::fClimb</a></div><div class="ttdeci">std::shared_ptr&lt; ActCluster::ClIMB &gt; fClimb</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:28</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a46de77fe936e025dfec5258b1519c731"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a46de77fe936e025dfec5258b1519c731">ActCluster::MultiStep::IsInBeamCylinder</a></div><div class="ttdeci">bool IsInBeamCylinder(const XYZPoint &amp;pos, const XYZPoint &amp;gravity)</div><div class="ttdef"><b>Definition:</b> ActMultiStep.cxx:118</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a65a6f8ef00dc4b646d11e9e8978b65ce"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a65a6f8ef00dc4b646d11e9e8978b65ce">ActCluster::MultiStep::GetGravityPointInRegion</a></div><div class="ttdeci">XYZPoint GetGravityPointInRegion(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, double xmin, double xmax)</div><div class="ttdef"><b>Definition:</b> ActMultiStep.cxx:99</div></div>
+<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a46de77fe936e025dfec5258b1519c731"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a46de77fe936e025dfec5258b1519c731">ActCluster::MultiStep::IsInBeamCylinder</a></div><div class="ttdeci">bool IsInBeamCylinder(const XYZPoint &amp;pos, const XYZPoint &amp;gravity)</div><div class="ttdef"><b>Definition:</b> ActMultiStep.cxx:108</div></div>
 <div class="ttc" id="aclassActRoot_1_1Voxel_html"><div class="ttname"><a href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a></div><div class="ttdef"><b>Definition:</b> ActTPCData.h:18</div></div>
 </div><!-- fragment -->
 </div>
@@ -498,7 +455,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <a class="code" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a> = climb; }</div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <a class="code" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a> = climb; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -525,7 +482,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{ <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a> = clusters; }</div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a> = clusters; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -651,6 +608,50 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">double ActCluster::MultiStep::fEntranceBeamRegionX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d99a9dcfe25f02529d465b94102a84a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d99a9dcfe25f02529d465b94102a84a">&#9670;&nbsp;</a></span>fFitNotBeam</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActCluster::MultiStep::fFitNotBeam</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace233f950a62e8712a9bc1464bfbe3ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace233f950a62e8712a9bc1464bfbe3ae">&#9670;&nbsp;</a></span>fIsEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActCluster::MultiStep::fIsEnabled</td>
         </tr>
       </table>
   </td>

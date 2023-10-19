@@ -117,10 +117,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4594f2170f024dc8204e04f8603e7d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbab73e36f9a8499be831633e3249da3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#adbab73e36f9a8499be831633e3249da3">SetClusterID</a> (int id)</td></tr>
 <tr class="separator:adbab73e36f9a8499be831633e3249da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70fb7de28a9cc1991759a5b0fc779c47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#a70fb7de28a9cc1991759a5b0fc779c47">GetGravityPoint</a> ()</td></tr>
-<tr class="separator:a70fb7de28a9cc1991759a5b0fc779c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a864361b1f1760a5af4a499cd5dce40a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#a864361b1f1760a5af4a499cd5dce40a3">GetGravityPointInRegion</a> (double xmin, double xmax, double ymin=-1, double ymax=-1, double zmin=-1, double zmax=-1)</td></tr>
+<tr class="separator:a864361b1f1760a5af4a499cd5dce40a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5662f836582c6851fac013d721078353"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#a5662f836582c6851fac013d721078353">ReFit</a> ()</td></tr>
 <tr class="separator:a5662f836582c6851fac013d721078353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a596c135e0d33d58d6306c3e39d1fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#af8a596c135e0d33d58d6306c3e39d1fa">Print</a> () const</td></tr>
+<tr class="separator:af8a596c135e0d33d58d6306c3e39d1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -205,11 +207,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    : <a class="code" href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">fClusterID</a>(<span class="keywordtype">id</span>)</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    , <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>(line)</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    , <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>(voxels)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    : <a class="code" href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">fClusterID</a>(<span class="keywordtype">id</span>)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    , <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>(line)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    , <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>(voxels)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_a201eb6263e2feae29f1d0ba38376c101"><div class="ttname"><a href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">ActCluster::Cluster::fVoxels</a></div><div class="ttdeci">std::vector&lt; ActRoot::Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActCluster.h:19</div></div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_a327b83df7b63ecf43545735092fcee97"><div class="ttname"><a href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">ActCluster::Cluster::fLine</a></div><div class="ttdeci">ActPhysics::Line fLine</div><div class="ttdef"><b>Definition:</b> ActCluster.h:18</div></div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_acbb5e1d1d1fa9ce3c454cb9a272f5cc6"><div class="ttname"><a href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">ActCluster::Cluster::fClusterID</a></div><div class="ttdeci">int fClusterID</div><div class="ttdef"><b>Definition:</b> ActCluster.h:20</div></div>
@@ -268,38 +270,85 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a70fb7de28a9cc1991759a5b0fc779c47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70fb7de28a9cc1991759a5b0fc779c47">&#9670;&nbsp;</a></span>GetGravityPoint()</h2>
+<a id="a864361b1f1760a5af4a499cd5dce40a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a864361b1f1760a5af4a499cd5dce40a3">&#9670;&nbsp;</a></span>GetGravityPointInRegion()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">ActCluster::Cluster::XYZPoint</a> ActCluster::Cluster::GetGravityPoint </td>
+          <td class="memname"><a class="el" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">ActCluster::Cluster::XYZPoint</a> ActCluster::Cluster::GetGravityPointInRegion </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>xmin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>xmax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ymin</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ymax</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>zmin</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>zmax</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">float</span> xsum {};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">float</span> ysum {};</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">float</span> zsum {};</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos {voxel.GetPosition()};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        xsum += pos.X();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        ysum += pos.Y();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        zsum += pos.Z();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// Divide by size of vector</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    xsum /= <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>.size();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ysum /= <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>.size();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    zsum /= <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>.size();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">XYZPoint</a>(xsum, ysum, zsum);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">float</span> xsum {};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">float</span> ysum {};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">float</span> zsum {};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> count {};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos {voxel.GetPosition()};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">bool</span> condX {(xmin &lt;= pos.X()) &amp;&amp; (pos.X() &lt;= xmax)};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">bool</span> condY {<span class="keyword">true</span>};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">if</span>(ymin != -1 &amp;&amp; ymax != -1)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            condY = (ymin &lt;= pos.Y()) &amp;&amp; (pos.Y() &lt;= ymax);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> condZ {<span class="keyword">true</span>};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span>(zmin != -1 &amp;&amp; zmax != -1)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            condZ = (zmin &lt;= pos.Z()) &amp;&amp; (pos.Z() &lt;= zmax);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span>(condX &amp;&amp; condY &amp;&amp; condZ)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            xsum += pos.X();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            ysum += pos.Y();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            zsum += pos.Z();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            count++;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Divide by count of voxels</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    xsum /= count;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ysum /= count;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    zsum /= count;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">XYZPoint</a>(xsum, ysum, zsum);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_ab5bc88443fffc4fc4c1adcd5590643d8"><div class="ttname"><a href="classActCluster_1_1Cluster.html#ab5bc88443fffc4fc4c1adcd5590643d8">ActCluster::Cluster::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPointF XYZPoint</div><div class="ttdef"><b>Definition:</b> ActCluster.h:15</div></div>
 </div><!-- fragment -->
 </div>
@@ -382,6 +431,30 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="af8a596c135e0d33d58d6306c3e39d1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8a596c135e0d33d58d6306c3e39d1fa">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActCluster::Cluster::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;.... Cluster &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">fClusterID</a> &lt;&lt; <span class="stringliteral">&quot; ....&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; N of voxels : &quot;</span> &lt;&lt; <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;....................&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
+<div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a5662f836582c6851fac013d721078353"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5662f836582c6851fac013d721078353">&#9670;&nbsp;</a></span>ReFit()</h2>
 
@@ -396,8 +469,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>.<a class="code" href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">FitVoxels</a>(<a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>); }</div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a4e07e2921acbd795a90d3aeb3bf842ca"><div class="ttname"><a href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:32</div></div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>.<a class="code" href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">FitVoxels</a>(<a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>); }</div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a4e07e2921acbd795a90d3aeb3bf842ca"><div class="ttname"><a href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
