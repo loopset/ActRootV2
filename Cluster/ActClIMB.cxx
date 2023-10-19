@@ -10,6 +10,7 @@
 #include "TRandom.h"
 #include "TSystem.h"
 
+#include <algorithm>
 #include <functional>
 #include <iostream>
 #include <set>
@@ -137,7 +138,7 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
         auto seed {SampleSeed()};
         //Major structures
         //--- Vector to hold voxels in the current cluster
-        std::vector<ActRoot::Voxel> currentCluster {fVoxels[seed]};
+        std::vector<ActRoot::Voxel> currentCluster {std::move(fVoxels[seed])};
         //--- Indexes processed during construction of this cluster
         std::set<int, std::greater<int>> currentIndexes {seed};
         //3-> Initialize generation 0
@@ -154,13 +155,13 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
             //Push back voxels and indexes
             for(const auto& index : gen1)
             {
-                currentCluster.push_back(fVoxels[index]);
+                currentCluster.push_back(std::move(fVoxels[index]));
                 currentIndexes.insert(index);
             }
             //Set gen0 to new iteration!
             gen0 = gen1;
         }
-        //Delete voxels in just formed cluster
+        //Delete voxels in just formed cluster, despite being moved
         for(const auto index : currentIndexes)
             fVoxels.erase(fVoxels.begin() + index);
         //Create Cluster structure and fit!
@@ -170,7 +171,7 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
             ActPhysics::Line line {};//Line
             line.FitVoxels(currentCluster);//Fit it to voxel cloud
             //and finally push back
-            ret.push_back(ActCluster::Cluster(ret.size(), line, currentCluster));
+            ret.push_back(ActCluster::Cluster(ret.size(), std::move(line), std::move(currentCluster)));
         }
     }
     fVoxels.clear();

@@ -11,6 +11,7 @@
 #include "TSystem.h"
 
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <iterator>
 #include <string>
@@ -47,81 +48,79 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
 
 void ActCluster::MultiStep::RunBreakBeamClusters()
 {
-    // 1-> Check whether we need to do this step
+    std::vector<ActCluster::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
+        // 1-> Check whether we meet conditions to execute this
         if(it->GetLine().GetChi2() < fChi2Threshold)
             continue;
-        // 2-> Get voxels outside beam region
-        auto notbeam {SeparateBeamRegion(it)};
-        for(const auto& e : notbeam)
-            std::cout<<BOLDGREEN<<"after func = "<<e.GetPosition()<<'\n';
-        // 3-> Clusterize not beam voxels
-        ClusterNotBeamRegion(notbeam);
+        // 2-> Calculate gravity point in region
+        auto gravity {GetGravityPointInRegion(it->GetVoxels(), 0, fEntranceBeamRegionX)};
+        // Return if it is nan
+        if(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))
+            continue;
+
+        std::cout << BOLDGREEN << "Running for cluster " << it->GetClusterID() << '\n';
+        std::cout << BOLDRED << "Gravity = " << gravity << '\n';
+        // 3->Modify original cluster: move non-beam voxels outside to
+        //  be clusterized independently
+        auto& refToVoxels {it->GetRefToVoxels()};
+        std::cout << "Original size = " << refToVoxels.size() << '\n';
+        auto toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        const auto& pos {voxel.GetPosition()};
+                                        return IsInBeamCylinder(pos, gravity);
+                                    })};
+        // Create vector to move to
+        std::vector<ActRoot::Voxel> notBeam {};
+        std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));
+        refToVoxels.erase(toMove, refToVoxels.end());
+        std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
+        std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
+        // ReFit remaining voxels!
+        it->ReFit();
+        // 4-> Run cluster algorithm again
+        auto newClusters = fClimb->Run(notBeam);
+        // Move to vector
+        std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+    }
+    // Append clusters to original TPCData
+    std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*fClusters));
+    // Reset cluster index
+    int id {};
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    {
+        it->SetClusterID(id);
+        id++;
     }
 }
 
-std::vector<ActRoot::Voxel> ActCluster::MultiStep::SeparateBeamRegion(ItType cluster)
+ActCluster::MultiStep::XYZPoint ActCluster::MultiStep::GetGravityPointInRegion(const std::vector<ActRoot::Voxel>& voxels,
+                                                                               double xmin, double xmax)
 {
-    // Debug
-    // std::cout << BOLDRED << "Breaking cluster n " << cluster->GetClusterID() << '\n';
-    // std::vector<ActRoot::Voxel> ret {};
-    // // Get mean below fEntranceBeamRegionX
-    // ROOT::Math::XYZPointF gravity {};
-    // int count {};
-    // for(const auto& voxel : cluster->GetVoxels())
-    // {
-    //     const auto& pos {voxel.GetPosition()};
-    //     if(pos.X() < fEntranceBeamRegionX)
-    //     {
-    //         gravity += ROOT::Math::XYZVectorF {pos};
-    //         count++;
-    //     }
-    // }
-    // gravity /= count;
-    // std::cout << "-> Gravity point at entrance = " << gravity << '\n';
-    // // Open cylinder around mean point
-    // // and move not beam-like voxels
-    // auto& refvoxels {cluster->GetRefToVoxels()};
-    // for(auto it = refvoxels.begin(); it != refvoxels.end(); it++)
-    // {
-    //     const auto& pos {it->GetPosition()};
-    //     if(IsInBeamCylinder(pos, gravity))
-    //         continue;
-    //     ret.push_back(*it);
-        //refvoxels.erase(it);
-    // }
-    // for(const auto& e : refvoxels)
-    //     std::cout<<BOLDCYAN<<"original = "<<e.GetPosition()<<'\n';
-    // for(const auto& e : ret)
-    //     std::cout << "no beam el = " << e.GetPosition() << '\n';
-    //
-    // 1-> Partition keeps voxels in cylinder
-    // auto toMove =
-    //     std::stable_partition(refvoxels.begin(), refvoxels.end(),
-    //                           [&](const ActRoot::Voxel& voxel) { return IsInBeamCylinder(voxel.GetPosition(), gravity); });
-    // // 2-> Move to ret vector
-    // std::move(toMove, refvoxels.end(), std::back_inserter(ret));
-    // // 3-> Erase from original vector
-    // refvoxels.erase(toMove, refvoxels.end());
-    // for(const auto& e : refvoxels)
-    //     std::cout<<BOLDGREEN<<"remaining = "<<e.GetPosition()<<'\n';
-    // for(const auto& e : ret)
-    //     std::cout<<BOLDRED<<" ret = "<<e.GetPosition()<<'\n';
-    //
-    // std::cout << "-> Beam size = " << refvoxels.size() << '\n';
-    // std::cout << "-> Not beam size = " << ret.size() << RESET << '\n';
-    // return std::move(ret);
-    return {};
+    XYZPoint gravity {};
+    int count {};
+    for(const auto& voxel : voxels)
+    {
+        const auto& pos {voxel.GetPosition()};
+        if((xmin <= pos.X()) && (pos.X() <= xmax))
+        {
+            gravity += XYZVector {pos};
+            count++;
+        }
+    }
+    gravity /= count;
+    return gravity;
 }
 
-void ActCluster::MultiStep::ClusterNotBeamRegion(const std::vector<ActRoot::Voxel>& voxels)
+
+bool ActCluster::MultiStep::IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity)
 {
-    // Cluster again
-    auto notBeamClusters = fClimb->Run(voxels);
-    // Insert back
-    fClusters->insert(fClusters->end(), std::make_move_iterator(notBeamClusters.begin()),
-                      std::make_move_iterator(notBeamClusters.end()));
+    bool condY {(gravity.Y() - fBeamWindowY) <= pos.Y() && pos.Y() <= (gravity.Y() + fBeamWindowY)};
+    bool condZ {(gravity.Z() - fBeamWindowZ) <= pos.Z() && pos.Z() <= (gravity.Z() + fBeamWindowZ)};
+
+    return condY && condZ;
 }
 
 void ActCluster::MultiStep::Print() const

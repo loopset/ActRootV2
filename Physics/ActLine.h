@@ -27,11 +27,7 @@ private:
 public:
     Line() = default;
     Line(XYZPoint point, XYZVector direction, float chi);
-    Line(const XYZPoint& p1, const XYZPoint& p2);
-    Line(const Line&) = default;
-    Line(Line&&) = default;
-    Line& operator=(const Line&) = default;
-    Line& operator=(Line&&) = default;
+    Line(const XYZPoint& p1, const XYZPoint& p2); 
     ~Line() = default;
 
     // Getters and setters

@@ -28,10 +28,10 @@ namespace ActRoot
     public:
         Voxel() = default;
         Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
-        Voxel(const Voxel&) = default;
-        Voxel& operator=(const Voxel&) = default;
-        Voxel(Voxel&&) = default;
-        Voxel& operator=(Voxel&&) = default;
+        // Voxel(const Voxel&) = default;
+        // Voxel& operator=(const Voxel&) = default;
+        // Voxel(Voxel&&) = default;
+        // Voxel& operator=(Voxel&&) = default;
         // Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation = false);
         // Setters
         void SetPosition(const XYZPoint& pos) { fPosition = pos; }
