@@ -27,7 +27,10 @@ namespace ActCluster
         // Pointer to current ClIMB
         std::shared_ptr<ActCluster::ClIMB> fClimb {};
         // Settings of the different parts
+        // General flag to control whether this is enabled or not
+        bool fIsEnabled;
         // 1-> Break multi beam events
+        bool fFitNotBeam;
         double fChi2Threshold;
         double fEntranceBeamRegionX;
         double fBeamWindowY;
@@ -50,7 +53,6 @@ namespace ActCluster
         void RunBreakBeamClusters();
 
     private:
-        XYZPoint GetGravityPointInRegion(const std::vector<ActRoot::Voxel>& voxels, double xmin, double xmax);
         bool IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity);
     };
 } // namespace ActCluster

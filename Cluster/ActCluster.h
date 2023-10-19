@@ -34,9 +34,13 @@ namespace ActCluster
         void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
         void SetClusterID(int id) { fClusterID = id; }
 
-        // Basic funtions to MultiStep algorithm
-        XYZPoint GetGravityPoint();
+        // Basic funtions to interface with MultiStep algorithm
+        XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
+                                         double zmax = -1);
         void ReFit();
+
+        //Display info function
+        void Print() const;
     };
 
 } // namespace ActCluster
