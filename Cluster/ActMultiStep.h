@@ -4,6 +4,7 @@
 #include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActTPCData.h"
+
 #include "Math/Point3Dfwd.h"
 
 #include <algorithm>
@@ -33,6 +34,8 @@ namespace ActCluster
         bool fFitNotBeam;
         double fChi2Threshold;
         double fEntranceBeamRegionX;
+        double fMinSpanX;
+        double fLengthXToBreak;
         double fBeamWindowY;
         double fBeamWindowZ;
 

@@ -28,6 +28,12 @@ namespace ActRoot
     public:
         Voxel() = default;
         Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
+        // Overload comparison operators
+        friend bool operator<(const Voxel& v1, const Voxel& v2) { return v1.fPosition.X() < v2.fPosition.X(); }
+        friend bool operator>(const Voxel& v1, const Voxel& v2) { return !(operator<(v2, v1)); }
+        friend bool operator<=(const Voxel& v1, const Voxel& v2) { return !(operator>(v1, v2)); }
+        friend bool operator>=(const Voxel& v1, const Voxel& v2) { return !(operator<(v1, v2)); }
+
         // Voxel(const Voxel&) = default;
         // Voxel& operator=(const Voxel&) = default;
         // Voxel(Voxel&&) = default;

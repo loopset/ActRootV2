@@ -3,12 +3,13 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
-
 #include "ActTPCData.h"
-#include "Math/Point3Dfwd.h"
-#include "Math/Vector3Dfwd.h"
+
 #include "TEnv.h"
 #include "TSystem.h"
+
+#include "Math/Point3Dfwd.h"
+#include "Math/Vector3Dfwd.h"
 
 #include <algorithm>
 #include <cmath>
@@ -43,6 +44,10 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fFitNotBeam = mb->GetBool("FitNotBeam");
     if(mb->CheckTokenExists("Chi2Threshold"))
         fChi2Threshold = mb->GetDouble("Chi2Threshold");
+    if(mb->CheckTokenExists("MinSpanX"))
+        fMinSpanX = mb->GetDouble("MinSpanX");
+    if(mb->CheckTokenExists("LengthXToBreak"))
+        fLengthXToBreak = mb->GetDouble("LengthXToBreak");
     if(mb->CheckTokenExists("EntranceBeamRegionX"))
         fEntranceBeamRegionX = mb->GetDouble("EntranceBeamRegionX");
     if(mb->CheckTokenExists("BeamWindowY"))
@@ -61,8 +66,14 @@ void ActCluster::MultiStep::RunBreakBeamClusters()
         // 1-> Check whether we meet conditions to execute this
         if(it->GetLine().GetChi2() < fChi2Threshold)
             continue;
+        std::cout << BOLDGREEN << "Original Chi2 = " << it->GetLine().GetChi2() << '\n';
+        // 2-> Check cluster has enough X extent
+        auto [xmin, xmax] = it->GetXRange();
+        if(fMinSpanX > (xmax - xmin))
+            continue;
         // 2-> Calculate gravity point in region
-        auto gravity {it->GetGravityPointInRegion(0, fEntranceBeamRegionX)};
+        // auto gravity {it->GetGravityPointInRegion(0, fEntranceBeamRegionX)};
+        auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
         // Return if it is nan
         if(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))
             continue;
@@ -87,6 +98,8 @@ void ActCluster::MultiStep::RunBreakBeamClusters()
         std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
         // ReFit remaining voxels!
         it->ReFit();
+        // Reset ranges
+        it->ReFillSets();
         // 4-> Run cluster algorithm again
         std::vector<ActCluster::Cluster> newClusters;
         if(fFitNotBeam)
@@ -119,11 +132,13 @@ void ActCluster::MultiStep::Print() const
     std::cout << "-> IsEnabled     : " << std::boolalpha << fIsEnabled << '\n';
     if(fIsEnabled)
     {
-        std::cout << "-> FitNotBeam    : " << std::boolalpha << fFitNotBeam << '\n';
-        std::cout << "-> Chi2 thresh   : " << fChi2Threshold << '\n';
-        std::cout << "-> X extent beam : " << fEntranceBeamRegionX << '\n';
-        std::cout << "-> BeamWindowY   : " << fBeamWindowY << '\n';
-        std::cout << "-> BeamWindowZ   : " << fBeamWindowZ << '\n';
+        std::cout << "-> FitNotBeam     : " << std::boolalpha << fFitNotBeam << '\n';
+        std::cout << "-> Chi2 thresh    : " << fChi2Threshold << '\n';
+        std::cout << "-> MinSpanX       : " << fMinSpanX << '\n';
+        std::cout << "-> LengthXToBreak : " << fLengthXToBreak << '\n';
+        std::cout << "-> X extent beam  : " << fEntranceBeamRegionX << '\n';
+        std::cout << "-> BeamWindowY    : " << fBeamWindowY << '\n';
+        std::cout << "-> BeamWindowZ    : " << fBeamWindowZ << '\n';
     }
     std::cout << "=======================" << RESET << '\n';
 }
