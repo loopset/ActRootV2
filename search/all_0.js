@@ -83,7 +83,7 @@ var searchData=
   ['actsimulationlinkdef_2ehh_80',['ActSimulationLinkDef.hh',['../ActSimulationLinkDef_8hh.html',1,'']]],
   ['actsrim_2ecxx_81',['ActSRIM.cxx',['../ActSRIM_8cxx.html',1,'']]],
   ['actsrim_2eh_82',['ActSRIM.h',['../ActSRIM_8h.html',1,'']]],
-  ['actsteppingaction_83',['ActSteppingAction',['../classActSteppingAction.html',1,'ActSteppingAction'],['../classActSteppingAction.html#a1dcd1b2c0f0da90463b7a02e6b9b726a',1,'ActSteppingAction::ActSteppingAction()']]],
+  ['actsteppingaction_83',['ActSteppingAction',['../classActSteppingAction.html#a1dcd1b2c0f0da90463b7a02e6b9b726a',1,'ActSteppingAction::ActSteppingAction()'],['../classActSteppingAction.html',1,'ActSteppingAction']]],
   ['acttheocrosssection_2ecxx_84',['ActTheoCrossSection.cxx',['../ActTheoCrossSection_8cxx.html',1,'']]],
   ['acttheocrosssection_2eh_85',['ActTheoCrossSection.h',['../ActTheoCrossSection_8h.html',1,'']]],
   ['acttpcdata_2ecxx_86',['ActTPCData.cxx',['../ActTPCData_8cxx.html',1,'']]],
@@ -99,11 +99,12 @@ var searchData=
   ['addegas_96',['AddEgas',['../classActEventAction.html#a2ea83956a12dab50410cbbc6417ebb40',1,'ActEventAction']]],
   ['addfile_97',['AddFile',['../classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876',1,'ActRoot::InputData']]],
   ['addline_98',['AddLine',['../classActRoot_1_1InputBlock.html#a6d628ab49d736793a8e0ba06aa71a2b1',1,'ActRoot::InputBlock']]],
-  ['applycalibration_99',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
-  ['applylookup_100',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
-  ['applypadalignment_101',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
-  ['applystragglinginmaterialtorleft_102',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
-  ['applythreshold_103',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
-  ['attachbintocluster_104',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['constants_105',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
+  ['addvoxel_99',['AddVoxel',['../classActCluster_1_1Cluster.html#acb731f5307cb4c81b46ba61d20026360',1,'ActCluster::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActCluster_1_1Cluster.html#aac567cb73673905d790cc25ec6db1faf',1,'ActCluster::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
+  ['applycalibration_100',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
+  ['applylookup_101',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
+  ['applypadalignment_102',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
+  ['applystragglinginmaterialtorleft_103',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
+  ['applythreshold_104',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
+  ['attachbintocluster_105',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
+  ['constants_106',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
 ];
