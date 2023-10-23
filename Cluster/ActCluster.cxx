@@ -23,17 +23,20 @@ void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
     const auto& pos {voxel.GetPosition()};
     fXSet.insert(pos.X());
     fYSet.insert(pos.Y());
+    fZSet.insert(pos.Z());
 }
 
 void ActCluster::Cluster::FillSets()
 {
     fXSet.clear(); 
     fYSet.clear();
+    fZSet.clear();
     for(const auto& voxel : fVoxels)
     {
         const auto& pos {voxel.GetPosition()};
         fXSet.insert(pos.X());
         fYSet.insert(pos.Y());
+        fZSet.insert(pos.Z());
     }
 }
 
@@ -122,9 +125,11 @@ void ActCluster::Cluster::Print() const
 {
     auto [xmin, xmax] = GetXRange();
     auto [ymin, ymax] = GetYRange();
+    auto [zmin, zmax] = GetZRange();
     std::cout << BOLDCYAN << ".... Cluster " << fClusterID << " ...." << '\n';
     std::cout << "-> N of voxels : " << fVoxels.size() << '\n';
     std::cout << "-> X range     : [" << xmin << " , " << xmax << "]" << '\n';
     std::cout << "-> Y range     : [" << ymin << " , " << ymax << "]" << '\n';
+    std::cout << "-> Z range     : [" << zmin << " , " << zmax << "]" << '\n';
     std::cout << "...................." << RESET << '\n';
 }

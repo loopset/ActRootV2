@@ -23,6 +23,7 @@ namespace ActCluster
         std::vector<ActRoot::Voxel> fVoxels {};
         std::set<float> fXSet {};
         std::set<float> fYSet {};
+        std::set<float> fZSet {};
         int fClusterID {};
 
     public:
@@ -49,6 +50,7 @@ namespace ActCluster
         // Get extents
         std::pair<float, float> GetXRange() const { return {*fXSet.begin(), *fXSet.rbegin()}; }
         std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
+        std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
 
         XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
                                          double zmax = -1);

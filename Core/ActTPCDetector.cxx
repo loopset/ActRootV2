@@ -88,6 +88,7 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
         fMultiStep = std::make_shared<ActCluster::MultiStep>();
         fMultiStep->ReadConfigurationFile();
         fMultiStep->SetClimb(fClimb);
+        fMultiStep->SetTPCParameters(&fPars);
         fMultiStep->Print();
     }
     else if (method == "None")
@@ -298,7 +299,7 @@ void ActRoot::TPCDetector::BuildEventPhysics()
         fPhysics->fClusters = fClimb->Run(fData->fVoxels);
         // Apply MultiStep algorithm
         fMultiStep->SetClusters(&(fPhysics->fClusters));
-        fMultiStep->RunBreakBeamClusters();
+        fMultiStep->Run();
     }
     else
     {

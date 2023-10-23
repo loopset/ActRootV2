@@ -13,6 +13,11 @@
 #include <string>
 #include <vector>
 
+// forward declaration
+namespace ActRoot
+{
+    class TPCParameters;
+}
 namespace ActCluster
 {
     class MultiStep
@@ -23,6 +28,8 @@ namespace ActCluster
         using XYZVector = ROOT::Math::XYZVectorF;
 
     private:
+        // Pointer to TPC Parameters
+        ActRoot::TPCParameters* fTPC {};
         // Pointer to vector to analyze
         std::vector<ActCluster::Cluster>* fClusters {};
         // Pointer to current ClIMB
@@ -31,13 +38,26 @@ namespace ActCluster
         // General flag to control whether this is enabled or not
         bool fIsEnabled;
         // 1-> Break multi beam events
+        bool fEnableBreakMultiBeam;
         bool fFitNotBeam;
         double fChi2Threshold;
-        double fEntranceBeamRegionX;
         double fMinSpanX;
         double fLengthXToBreak;
         double fBeamWindowY;
         double fBeamWindowZ;
+        // 2-> Clean pileup of beams
+        bool fEnableCleanPileUp;
+        double fPileUpXPercent;
+        double fBeamLowerZ;
+        double fBeamUpperZ;
+        // 3-> Clean deltas and vertical Z
+        bool fEnableCleanDeltasAndZs;
+        double fZDirectionThreshold;
+        double fZMinSpanInPlane;
+        // 4-> Merge similar tracks
+        bool fEnableMerge;
+        double fMergeDistThreshold;
+        double fMergeChi2Threshold;
 
     public:
         MultiStep() = default;
@@ -45,6 +65,7 @@ namespace ActCluster
         // Print method
         void Print() const;
         // Setters and getters
+        void SetTPCParameters(ActRoot::TPCParameters* pars) { fTPC = pars; }
         void SetClusters(std::vector<ActCluster::Cluster>* clusters) { fClusters = clusters; }
         std::vector<ActCluster::Cluster>* GetClusters() const { return fClusters; }
         void SetClimb(std::shared_ptr<ActCluster::ClIMB> climb) { fClimb = climb; }
@@ -52,11 +73,22 @@ namespace ActCluster
         // Read config file
         void ReadConfigurationFile(const std::string& infile = "");
 
+        // Main method
+        void Run();
+        // Initial clean of pileup beams
+        void CleanPileup();
+        // Cleaning of deltas and pure vertical tracks
+        void CleanDeltasAndZs();
         // Break multibeam events
-        void RunBreakBeamClusters();
+        void BreakBeamClusters();
+        // Merge quasialigned tracks which got broken due to non-continuity
+        void MergeSimilarTracks();
 
     private:
         bool IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity);
+        template <typename T>
+        bool RangesOverlap(T x1, T x2, T y1, T y2);
+        void ResetIndex();
     };
 } // namespace ActCluster
 

@@ -5,6 +5,7 @@
 #include "TEnv.h"
 #include "TMath.h"
 #include "TPolyLine.h"
+
 #include <cmath>
 #include <iostream>
 #include <memory>
@@ -12,9 +13,9 @@
 #include <vector>
 
 ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)
-    : fPoint(point)
-    , fDirection(direction)
-    , fChi2(chi)
+    : fPoint(point),
+      fDirection(direction),
+      fChi2(chi)
 {
 }
 
@@ -55,7 +56,10 @@ void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool
         FitCloudWithThreshold(cloud, {});
 }
 
-void ActPhysics::Line::FitCloud(const std::vector<XYZPoint>& cloud) { FitCloudWithThreshold(cloud, {}); }
+void ActPhysics::Line::FitCloud(const std::vector<XYZPoint>& cloud)
+{
+    FitCloudWithThreshold(cloud, {});
+}
 
 void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge)
 {
@@ -146,7 +150,8 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
           2. * Sxy * std::cos(theta) * std::sin(theta);
     K22 = (Syy + Szz) * std::pow(std::sin(theta), 2) + (Sxx + Szz) * std::pow(std::cos(theta), 2) +
           2. * Sxy * std::cos(theta) * std::sin(theta);
-    // K12 = -Sxy * (std::pow(std::cos(theta), 2) - std::pow(sin(theta), 2)) + (Sxx - Syy) * std::cos(theta) * sin(theta);
+    // K12 = -Sxy * (std::pow(std::cos(theta), 2) - std::pow(sin(theta), 2)) + (Sxx - Syy) * std::cos(theta) *
+    // sin(theta);
     K10 = Sxz * std::cos(theta) + Syz * std::sin(theta);
     K01 = -Sxz * std::sin(theta) + Syz * std::cos(theta);
     K00 = Sxx + Syy;
@@ -179,8 +184,8 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
 
     XYZPoint Pm = {static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)}; // gravity point
     XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
-    XYZPoint Sigmas = {static_cast<float>(std::sqrt(Sxx)), static_cast<float>(std::sqrt(Syy)),
-                       static_cast<float>(std::sqrt(Szz))}; // sigmas are computed from matrix elements directly
+    XYZPoint Sigmas = {static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
+                       static_cast<float>(std::sqrt(std::abs(Szz)))}; // sigmas are computed from matrix elements directly
     // Still one more check of NaN; return default parameters in this case
     if(std::isnan(dm2))
         return;
@@ -295,9 +300,9 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, i
 void ActPhysics::Line::Print() const
 {
     std::cout << BOLDGREEN << "---- Line parameters ----" << '\n';
-    std::cout << "-> Point     : " << fPoint << '\n';
-    std::cout << "-> Sigmas    : " << fSigmas << '\n';
-    std::cout << "-> Direction : " << fDirection << '\n';
-    std::cout << "-> Chi2      : " << fChi2 << '\n';
+    std::cout << "-> Point      : " << fPoint << '\n';
+    std::cout << "-> Sigmas     : " << fSigmas << '\n';
+    std::cout << "-> UDirection : " << fDirection.Unit() << '\n';
+    std::cout << "-> Chi2       : " << fChi2 << '\n';
     std::cout << "-----------------------------" << RESET << '\n';
 }
