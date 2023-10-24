@@ -50,14 +50,20 @@ namespace ActCluster
         double fPileUpXPercent;
         double fBeamLowerZ;
         double fBeamUpperZ;
-        // 3-> Clean deltas and vertical Z
-        bool fEnableCleanDeltasAndZs;
+        // 3-> Clean vertical Z
+        bool fEnableCleanZs;
         double fZDirectionThreshold;
         double fZMinSpanInPlane;
         // 4-> Merge similar tracks
         bool fEnableMerge;
+        double fMergeMinParallelFactor;
         double fMergeDistThreshold;
         double fMergeChi2Threshold;
+        double fMergeChi2CoverageFactor;
+        // 5-> Clean remaining clusters
+        bool fEnableCleanDeltas;
+        double fDeltaChi2Threshold;
+        double fDeltaMaxVoxels;
 
     public:
         MultiStep() = default;
@@ -77,8 +83,10 @@ namespace ActCluster
         void Run();
         // Initial clean of pileup beams
         void CleanPileup();
-        // Cleaning of deltas and pure vertical tracks
-        void CleanDeltasAndZs();
+        // Cleaning of Zs
+        void CleanZs();
+        // Cleaning of remaining clusters: likely delta e-
+        void CleanDeltas();
         // Break multibeam events
         void BreakBeamClusters();
         // Merge quasialigned tracks which got broken due to non-continuity

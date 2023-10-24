@@ -134,7 +134,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Sxz -= (Xm * Zm);
     Syz -= (Ym * Zm);
 
-    theta = 0.5 * atan((2. * Sxy) / (Sxx - Syy));
+    theta = 0.5 * std::atan((2. * Sxy) / (Sxx - Syy));
 
     // Bugfix: when we have pad saturation, Sxx = Syy = 0 -> theta = nan! Then, we can return a vertical line!
     if(!std::isfinite(theta))

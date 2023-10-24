@@ -7,6 +7,8 @@
 #include "ActTPCDetector.h"
 
 #include "TEnv.h"
+#include "TMath.h"
+#include "TMathBase.h"
 #include "TSystem.h"
 
 #include "Math/Point3Dfwd.h"
@@ -68,9 +70,9 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fBeamLowerZ = mb->GetDouble("BeamLowerZ");
     if(mb->CheckTokenExists("BeamUpperZ"))
         fBeamUpperZ = mb->GetDouble("BeamUpperZ");
-    // Parameters of cleaning deltas and vertical tracks
-    if(mb->CheckTokenExists("EnableCleanDeltasAndZs"))
-        fEnableCleanDeltasAndZs = mb->GetBool("EnableCleanDeltasAndZs");
+    // Parameters of cleaning vertical tracks
+    if(mb->CheckTokenExists("EnableCleanZs"))
+        fEnableCleanZs = mb->GetBool("EnableCleanZs");
     if(mb->CheckTokenExists("ZDirectionThreshold"))
         fZDirectionThreshold = mb->GetDouble("ZDirectionThreshold");
     if(mb->CheckTokenExists("ZMinSpanInPlane"))
@@ -78,10 +80,21 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // Merge similar tracks
     if(mb->CheckTokenExists("EnableMerge"))
         fEnableMerge = mb->GetBool("EnableMerge");
+    if(mb->CheckTokenExists("MergeMinParallelFactor"))
+        fMergeMinParallelFactor = mb->GetDouble("MergeMinParallelFactor");
     if(mb->CheckTokenExists("MergeDistThreshold"))
         fMergeDistThreshold = mb->GetDouble("MergeDistThreshold");
     if(mb->CheckTokenExists("MergeChi2Threshold"))
         fMergeChi2Threshold = mb->GetDouble("MergeChi2Threshold");
+    if(mb->CheckTokenExists("MergeChi2CoverageF"))
+        fMergeChi2CoverageFactor = mb->GetDouble("MergeChi2CoverageF");
+    // Clean delta electrons and remaining non-apt cluster
+    if(mb->CheckTokenExists("EnableCleanDeltas"))
+        fEnableCleanDeltas = mb->GetBool("EnableCleanDeltas");
+    if(mb->CheckTokenExists("DeltaChi2Threshold"))
+        fDeltaChi2Threshold = mb->GetDouble("DeltaChi2Threshold");
+    if(mb->CheckTokenExists("DeltaMaxVoxels"))
+        fDeltaMaxVoxels = mb->GetDouble("DeltaMaxVoxels");
 }
 
 template <typename T>
@@ -107,18 +120,20 @@ void ActCluster::MultiStep::Run()
     if(!fIsEnabled)
         return;
     // Set order of algorithms here, and whether they run or not
+    if(fEnableCleanPileUp)
+        CleanPileup();
     if(fEnableBreakMultiBeam)
         BreakBeamClusters();
     if(fEnableMerge)
         MergeSimilarTracks();
-    if(fEnableCleanPileUp)
-        CleanPileup();
-    if(fEnableCleanDeltasAndZs)
-        CleanDeltasAndZs();
+    if(fEnableCleanZs)
+        CleanZs();
+    if(fEnableCleanDeltas)
+        CleanDeltas();
     ResetIndex();
 }
 
-void ActCluster::MultiStep::CleanDeltasAndZs()
+void ActCluster::MultiStep::CleanZs()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -129,7 +144,22 @@ void ActCluster::MultiStep::CleanDeltasAndZs()
         auto [ymin, ymax] {it->GetYRange()};
         bool isNarrow {(xmax - xmin) <= fZMinSpanInPlane || (ymax - ymin) <= fZMinSpanInPlane};
         // Delete if yes
-        if(isVertical && isNarrow)
+        if(isVertical && isNarrow) // for Z particles going upwards in Z
+            it = fClusters->erase(it);
+        else
+            it++;
+    }
+}
+
+void ActCluster::MultiStep::CleanDeltas()
+{
+    for(auto it = fClusters->begin(); it != fClusters->end();)
+    {
+        // 1-> Check whether cluster has an exceptionally large Chi2
+        bool hasLargeChi {it->GetLine().GetChi2() >= fDeltaChi2Threshold};
+        // 2-> If has less voxels than required
+        bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
+        if(hasLargeChi || isSmall)
             it = fClusters->erase(it);
         else
             it++;
@@ -218,11 +248,22 @@ void ActCluster::MultiStep::MergeSimilarTracks()
 {
     for(auto out = fClusters->begin(); out != fClusters->end(); out++)
     {
-        for(auto in = out + 1; in != fClusters->end();)
+        for(auto in = fClusters->begin(); in != fClusters->end();)
         {
+            if(in == out)
+            {
+                in++;
+                continue;
+            }
             auto gravity {in->GetLine().GetPoint()};
             auto dist {out->GetLine().DistanceLineToPoint(gravity)};
-            if(dist < fMergeDistThreshold)
+            auto maxDm2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+            bool isBellowDistance {dist <= TMath::Sqrt(maxDm2)};
+            // use other model
+            auto outDir {out->GetLine().GetDirection().Unit()};
+            auto inDir {in->GetLine().GetDirection().Unit()};
+            bool areParallel {TMath::Abs(outDir.Dot(inDir)) >= fMergeMinParallelFactor};
+            if(isBellowDistance || areParallel) // if(areParallel) // if(dist < fMergeDistThreshold)
             {
                 // Create auxiliar line
                 ActPhysics::Line aux {};
@@ -230,7 +271,20 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 auto inner {in->GetVoxels()};
                 test.insert(test.end(), inner.begin(), inner.end());
                 aux.FitVoxels(test);
-                if(aux.GetChi2() < fMergeChi2Threshold)
+                std::cout << "Parallel factor = " << outDir.Dot(inDir) << '\n';
+                std::cout << "dist < maxDm2 = " << dist << " < " << maxDm2 << '\n';
+                // New chi2
+                auto newChi2 {aux.GetChi2()};
+                // Determine old chi2
+                double oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+                // if(out->GetSizeOfVoxels() >= in->GetSizeOfVoxels())
+                //     oldChi2 = out->GetLine().GetChi2();
+                // else
+                //     oldChi2 = in->GetLine().GetChi2();
+                std::cout << "Old Chi2 = " << oldChi2 << '\n';
+                std::cout << "New Chi2 = " << aux.GetChi2() << '\n';
+                bool isInCover {newChi2 <= (1. + fMergeChi2CoverageFactor) * oldChi2};
+                if(isInCover) // if(aux.GetChi2() < fMergeChi2Threshold)
                 {
                     in = fClusters->erase(in);
                     // And push voxels to main
@@ -264,7 +318,7 @@ void ActCluster::MultiStep::Print() const
 {
     std::cout << BOLDCYAN << "==== MultiStep settings ====" << '\n';
     std::cout << "-> IsEnabled        : " << std::boolalpha << fIsEnabled << '\n';
-    std::cout << "-----------------------"<<'\n';
+    std::cout << "-----------------------" << '\n';
     if(fIsEnabled)
     {
         if(fEnableBreakMultiBeam)
@@ -275,25 +329,33 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> LengthXToBreak   : " << fLengthXToBreak << '\n';
             std::cout << "-> BeamWindowY      : " << fBeamWindowY << '\n';
             std::cout << "-> BeamWindowZ      : " << fBeamWindowZ << '\n';
-            std::cout << "-----------------------"<<'\n';
+            std::cout << "-----------------------" << '\n';
         }
         if(fEnableMerge)
         {
             std::cout << "-> MergeDistThresh  : " << fMergeDistThreshold << '\n';
             std::cout << "-> MergeChi2Thresh  : " << fMergeDistThreshold << '\n';
-            std::cout << "-----------------------"<<'\n';}
+            std::cout << "-> MergeChi2CoverF  : " << fMergeChi2CoverageFactor << '\n';
+            std::cout << "-----------------------" << '\n';
+        }
         if(fEnableCleanPileUp)
         {
             std::cout << "-> PileUpXPercent   : " << fPileUpXPercent << '\n';
             std::cout << "-> BeamLowerZ       : " << fBeamLowerZ << '\n';
             std::cout << "-> BeamUpperZ       : " << fBeamUpperZ << '\n';
-            std::cout << "-----------------------"<<'\n';
+            std::cout << "-----------------------" << '\n';
         }
-        if(fEnableCleanDeltasAndZs)
+        if(fEnableCleanZs)
         {
             std::cout << "-> ZDirectionThresh : " << fZDirectionThreshold << '\n';
             std::cout << "-> ZMinSpanInPlane  : " << fZMinSpanInPlane << '\n';
-            std::cout << "-----------------------"<<'\n';
+            std::cout << "-----------------------" << '\n';
+        }
+        if(fEnableCleanDeltas)
+        {
+            std::cout << "-> DeltaChi2Thresh  : " << fDeltaChi2Threshold << '\n';
+            std::cout << "-> DeltaMaxVoxels   : " << fDeltaMaxVoxels << '\n';
+            std::cout << "-----------------------" << '\n';
         }
     }
     std::cout << "=======================" << RESET << '\n';
