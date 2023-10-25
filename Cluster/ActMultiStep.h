@@ -91,12 +91,20 @@ namespace ActCluster
         void BreakBeamClusters();
         // Merge quasialigned tracks which got broken due to non-continuity
         void MergeSimilarTracks();
+        // Frontier matching
+        void FrontierMatching();
 
     private:
         bool IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity);
         template <typename T>
         bool RangesOverlap(T x1, T x2, T y1, T y2);
+        template<typename T>
+        bool RangesTouch(T x1, T x2, T y1, T y2);
+        bool ClustersOverlap3D(ItType out, ItType in);
+        XYZPoint DetermineBreakPoint(ItType it);
+        
         void ResetIndex();
+        void DetermineBeamLikes();
     };
 } // namespace ActCluster
 

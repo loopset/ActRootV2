@@ -16,6 +16,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <complex>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -105,6 +106,24 @@ bool ActCluster::MultiStep::RangesOverlap(T x1, T x2, T y1, T y2)
     return condA && condB;
 }
 
+template <typename T>
+bool ActCluster::MultiStep::RangesTouch(T x1, T x2, T y1, T y2)
+{
+    // Convert to int to avoid any issues with float precision
+    x1 = static_cast<int>(x1);
+    x2 = static_cast<int>(x2);
+    y1 = static_cast<int>(y1);
+    y2 = static_cast<int>(y2);
+    bool touch {};
+    if(y1 < x1 && y2 < x1) // [y1, y2] ... [x1, x2]
+        touch = std::abs(x1 - y2) == 1;
+    else if(y1 > x2 && y2 > x2) // [x1, x2] ... [y1, y2]
+        touch = std::abs(y1 - x2) == 1;
+    else
+        touch = false;
+    return touch;
+}
+
 void ActCluster::MultiStep::ResetIndex()
 {
     int idx {};
@@ -131,6 +150,7 @@ void ActCluster::MultiStep::Run()
     if(fEnableCleanDeltas)
         CleanDeltas();
     ResetIndex();
+    // FrontierMatching();
 }
 
 void ActCluster::MultiStep::CleanZs()
@@ -191,6 +211,66 @@ void ActCluster::MultiStep::CleanPileup()
             it++;
     }
 }
+
+ActCluster::MultiStep::XYZPoint ActCluster::MultiStep::DetermineBreakPoint(ItType it)
+{
+    const auto& xy {it->GetXYMap()};
+    const auto& xz {it->GetXZMap()};
+
+    // Run in increasing X order
+    int diff {2};
+    int idx {};
+    int ibreak {};
+    float xbreak {};
+    int yCount {};
+    std::vector<double> vwidthY {};
+    int zCount {};
+    std::vector<double> vwidthZ {};
+    for(const auto& [x, yset] : xy)
+    {
+        const auto& zset {xz.at(x)};
+        int ySize {static_cast<int>(yset.size())};
+        int zSize {static_cast<int>(zset.size())};
+        std::cout << "X = " << x << " y.size() = " << ySize << " y.old() = " << yCount << '\n';
+        if(idx != 0)
+        {
+            if(std::abs(ySize - yCount) > diff || std::abs(zSize - zCount) > diff)
+            {
+                if(ibreak == 0)
+                {
+                    xbreak = x;
+                }
+                if(ibreak == 2)
+                    break;
+                ibreak++;
+            }
+            else
+            {
+                yCount = ySize;
+                zCount = zSize;
+            }
+        }
+        else
+        {
+            yCount = ySize;
+            zCount = zSize;
+            // write widths
+            vwidthY.push_back(ySize);
+            vwidthZ.push_back(zSize);
+        }
+        idx++;
+    }
+    // Set break point
+    // float ybreak {static_cast<float>(TMath::Mean(xy.at(xbreak).begin(), xy.at(xbreak).end()))};
+    // float zbreak {static_cast<float>(TMath::Mean(xz.at(xbreak).begin(), xz.at(xbreak).end()))};
+    // Compute widths
+    float widthY {static_cast<float>(TMath::Mean(vwidthY.begin(), vwidthY.end()))};
+    float widthZ {static_cast<float>(TMath::Mean(vwidthZ.begin(), vwidthZ.end()))};
+    std::cout<<"Width Y = "<<widthY<<'\n';
+    std::cout<<"WIdth Z = "<<widthZ<<'\n';
+    return XYZPoint {xbreak, widthY, widthZ};
+}
+
 void ActCluster::MultiStep::BreakBeamClusters()
 {
     std::vector<ActCluster::Cluster> toAppend {};
@@ -210,6 +290,20 @@ void ActCluster::MultiStep::BreakBeamClusters()
         // Return if it is nan
         if(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))
             continue;
+        // for(const auto& [x, set] : it->GetXYMap())
+        // {
+        //     std::cout << "X = " << x << " with set" << '\n';
+        //     for(const auto& y : set)
+        //         std::cout << "  Y = " << y << '\n';
+        // }
+        // for(const auto& [x, set] : it->GetXZMap())
+        // {
+        //     std::cout << "X = " << x << " with set" << '\n';
+        //     for(const auto& z : set)
+        //         std::cout << "  Z = " << z << '\n';
+        // }
+        auto breakPoint {DetermineBreakPoint(it)};
+        std::cout << "Break point = " << breakPoint << '\n';
 
         std::cout << BOLDGREEN << "Running for cluster " << it->GetClusterID() << '\n';
         std::cout << BOLDRED << "Gravity = " << gravity << '\n';
@@ -312,6 +406,67 @@ bool ActCluster::MultiStep::IsInBeamCylinder(const XYZPoint& pos, const XYZPoint
     bool condZ {(gravity.Z() - fBeamWindowZ) <= pos.Z() && pos.Z() <= (gravity.Z() + fBeamWindowZ)};
 
     return condY && condZ;
+}
+
+void ActCluster::MultiStep::DetermineBeamLikes()
+{
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    {
+        // Conditions to meet
+        // 1 -> XRange starts in entrance of ACTAR
+        auto [xmin, xmax] {it->GetXRange()};
+        bool isInEntrance {xmin < 3};
+        // 2 -> X direction is close to 1
+        auto uDir {it->GetLine().GetDirection().Unit()};
+        bool isAlongX {TMath::Abs(uDir.X()) >= 0.92};
+        if(isInEntrance && isAlongX)
+            it->SetBeamLike(true);
+    }
+}
+
+bool ActCluster::MultiStep::ClustersOverlap3D(ItType out, ItType in)
+{
+    // X
+    auto [xMinOut, xMaxOut] {out->GetXRange()};
+    auto [xMinIn, xMaxIn] {in->GetXRange()};
+    bool isInX {RangesOverlap(xMinOut, xMaxOut, xMinIn, xMaxIn)};
+    bool touchesX {RangesTouch(xMinOut, xMaxOut, xMinIn, xMaxIn)};
+    // Y
+    auto [yMinOut, yMaxOut] {out->GetYRange()};
+    auto [yMinIn, yMaxIn] {in->GetYRange()};
+    bool isInY {RangesOverlap(yMinOut, yMaxOut, yMinIn, yMaxIn)};
+    bool touchesY {RangesTouch(yMinOut, yMaxOut, yMinIn, yMaxIn)};
+    // Z
+    auto [zMinOut, zMaxOut] {out->GetZRange()};
+    auto [zMinIn, zMaxIn] {in->GetZRange()};
+    bool isInZ {RangesOverlap(zMinOut, zMaxOut, zMinIn, zMaxIn)};
+    bool touchesZ {RangesTouch(zMinOut, zMaxOut, zMinIn, zMaxIn)};
+    return (isInX || touchesX) && (isInY || touchesY) && (isInZ || touchesZ);
+}
+
+void ActCluster::MultiStep::FrontierMatching()
+{
+    DetermineBeamLikes();
+    // Iterate over map
+    for(auto out = fClusters->begin(); out != fClusters->end(); out++)
+    {
+        if(!out->GetIsBeamLike())
+            continue;
+        std::cout << BOLDCYAN << "Cluster " << out->GetClusterID() << " is beam-like" << '\n';
+        for(auto in = fClusters->begin(); in != fClusters->end(); in++)
+        {
+            if(in == out || in->GetIsBeamLike())
+                continue;
+            if(ClustersOverlap3D(out, in))
+            {
+                std::cout << "Overlaps with cluster " << in->GetClusterID() << '\n';
+                // Print Y extent of beam
+                for(const auto& [pad, count] : out->GetYMap())
+                    std::cout << "Pad: " << pad << " count: " << count << '\n';
+            }
+        }
+    }
+    std::cout << RESET << '\n';
 }
 
 void ActCluster::MultiStep::Print() const

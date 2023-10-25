@@ -24,6 +24,10 @@ void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
     fXSet.insert(pos.X());
     fYSet.insert(pos.Y());
     fZSet.insert(pos.Z());
+    //for maps
+    fYMap[pos.Y()] += 1;
+    fXYMap[pos.X()].insert(pos.Y());
+    fXZMap[pos.X()].insert(pos.Z());
 }
 
 void ActCluster::Cluster::FillSets()
@@ -31,12 +35,20 @@ void ActCluster::Cluster::FillSets()
     fXSet.clear(); 
     fYSet.clear();
     fZSet.clear();
+    //Maps
+    fYMap.clear();
+    fXYMap.clear();
+    fXZMap.clear();
     for(const auto& voxel : fVoxels)
     {
         const auto& pos {voxel.GetPosition()};
         fXSet.insert(pos.X());
         fYSet.insert(pos.Y());
         fZSet.insert(pos.Z());
+        //Map
+        fYMap[pos.Y()] += 1;
+        fXYMap[pos.X()].insert(pos.Y());
+        fXZMap[pos.X()].insert(pos.Z());
     }
 }
 
