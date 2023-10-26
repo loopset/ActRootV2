@@ -5,6 +5,7 @@
 #include "ActInputParser.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
+#include "ActInterval.h"
 
 #include "TEnv.h"
 #include "TMath.h"
@@ -216,59 +217,80 @@ ActCluster::MultiStep::XYZPoint ActCluster::MultiStep::DetermineBreakPoint(ItTyp
 {
     const auto& xy {it->GetXYMap()};
     const auto& xz {it->GetXZMap()};
-
-    // Run in increasing X order
-    int diff {2};
-    int idx {};
-    int ibreak {};
-    float xbreak {};
-    int yCount {};
-    std::vector<double> vwidthY {};
-    int zCount {};
-    std::vector<double> vwidthZ {};
+    // Create interval object
+    IntervalMap<int> ivsY;
+    IntervalMap<int> ivsZ;
     for(const auto& [x, yset] : xy)
-    {
-        const auto& zset {xz.at(x)};
-        int ySize {static_cast<int>(yset.size())};
-        int zSize {static_cast<int>(zset.size())};
-        std::cout << "X = " << x << " y.size() = " << ySize << " y.old() = " << yCount << '\n';
-        if(idx != 0)
-        {
-            if(std::abs(ySize - yCount) > diff || std::abs(zSize - zCount) > diff)
-            {
-                if(ibreak == 0)
-                {
-                    xbreak = x;
-                }
-                if(ibreak == 2)
-                    break;
-                ibreak++;
-            }
-            else
-            {
-                yCount = ySize;
-                zCount = zSize;
-            }
-        }
-        else
-        {
-            yCount = ySize;
-            zCount = zSize;
-            // write widths
-            vwidthY.push_back(ySize);
-            vwidthZ.push_back(zSize);
-        }
-        idx++;
-    }
-    // Set break point
-    // float ybreak {static_cast<float>(TMath::Mean(xy.at(xbreak).begin(), xy.at(xbreak).end()))};
-    // float zbreak {static_cast<float>(TMath::Mean(xz.at(xbreak).begin(), xz.at(xbreak).end()))};
-    // Compute widths
-    float widthY {static_cast<float>(TMath::Mean(vwidthY.begin(), vwidthY.end()))};
-    float widthZ {static_cast<float>(TMath::Mean(vwidthZ.begin(), vwidthZ.end()))};
-    std::cout<<"Width Y = "<<widthY<<'\n';
-    std::cout<<"WIdth Z = "<<widthZ<<'\n';
-    return XYZPoint {xbreak, widthY, widthZ};
+        ivsY.BuildFromSet(x, yset);
+    for(const auto& [x, zset] : xz)
+        ivsZ.BuildFromSet(x, zset);
+
+    std::cout<<BOLDCYAN<<" ==== Y ==== "<<'\n';
+    ivsY.Print();
+    std::cout<<" ==== Z ==== "<<'\n';
+    ivsZ.Print();
+    
+    int length {3};
+    auto xbreak {ivsY.GetKeyAtLength(length)};
+    std::cout<<"X with Y = "<<xbreak<<" when length > "<<length<<'\n';
+    auto xbreak2 {ivsZ.GetKeyAtLength(length)};
+    std::cout<<"X with Z = "<<xbreak2<<" when length > "<<length<<'\n';
+    return {};
+    //
+    // // Run in increasing X order
+    // int diff {2};
+    // int idx {};
+    // int ibreak {};
+    // float xbreak {};
+    // int yCount {};
+    // std::vector<double> vwidthY {};
+    // int zCount {};
+    // std::vector<double> vwidthZ {};
+    // for(const auto& [x, yset] : xy)
+    // {
+    //     const auto& zset {xz.at(x)};
+    //     int ySize {static_cast<int>(yset.size())};
+    //     int zSize {static_cast<int>(zset.size())};
+    //     std::cout << "X = " << x << " y.size() = " << ySize << " y.old() = " << yCount << '\n';
+    //     if(idx != 0)
+    //     {
+    //         if(std::abs(ySize - yCount) > diff || std::abs(zSize - zCount) > diff)
+    //         {
+    //             if(ibreak == 0)
+    //             {
+    //                 xbreak = x;
+    //             }
+    //             if(ibreak == 2)
+    //                 break;
+    //             ibreak++;
+    //         }
+    //         else
+    //         {
+    //             yCount = ySize;
+    //             zCount = zSize;
+    //             vwidthY.push_back(ySize);
+    //             vwidthZ.push_back(zSize);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         yCount = ySize;
+    //         zCount = zSize;
+    //         // write widths
+    //         vwidthY.push_back(ySize);
+    //         vwidthZ.push_back(zSize);
+    //     }
+    //     idx++;
+    // }
+    // // Set break point
+    // // float ybreak {static_cast<float>(TMath::Mean(xy.at(xbreak).begin(), xy.at(xbreak).end()))};
+    // // float zbreak {static_cast<float>(TMath::Mean(xz.at(xbreak).begin(), xz.at(xbreak).end()))};
+    // // Compute widths
+    // auto widthY {static_cast<float>(TMath::Mean(vwidthY.begin(), vwidthY.end()))};
+    // auto widthZ {static_cast<float>(TMath::Mean(vwidthZ.begin(), vwidthZ.end()))};
+    // std::cout<<"Width Y = "<<widthY<<'\n';
+    // std::cout<<"WIdth Z = "<<widthZ<<'\n';
+    // return XYZPoint {xbreak, widthY, widthZ};
 }
 
 void ActCluster::MultiStep::BreakBeamClusters()

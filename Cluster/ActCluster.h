@@ -26,8 +26,8 @@ namespace ActCluster
         std::set<float> fYSet {};
         std::set<float> fZSet {};
         std::map<float, int> fYMap {};
-        std::map<float, std::set<float>> fXYMap {};
-        std::map<float, std::set<float>> fXZMap {};
+        std::map<int, std::set<int>> fXYMap {};
+        std::map<int, std::set<int>> fXZMap {};
         int fClusterID {};
         bool fIsBeamLike {};
 
@@ -59,8 +59,8 @@ namespace ActCluster
         std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
         std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
         const std::map<float, int>& GetYMap() const { return fYMap; }
-        const std::map<float, std::set<float>> GetXYMap() const {return fXYMap;};
-        const std::map<float, std::set<float>> GetXZMap() const {return fXZMap;};
+        const std::map<int, std::set<int>> GetXYMap() const {return fXYMap;};
+        const std::map<int, std::set<int>> GetXZMap() const {return fXZMap;};
 
         XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
                                          double zmax = -1);
