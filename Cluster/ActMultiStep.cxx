@@ -3,9 +3,10 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
+#include "ActInterval.h"
+#include "ActLine.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
-#include "ActInterval.h"
 
 #include "TEnv.h"
 #include "TMath.h"
@@ -18,6 +19,7 @@
 #include <algorithm>
 #include <cmath>
 #include <complex>
+#include <cstddef>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -63,6 +65,8 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fBeamWindowY = mb->GetDouble("BeamWindowY");
     if(mb->CheckTokenExists("BeamWindowZ"))
         fBeamWindowZ = mb->GetDouble("BeamWindowZ");
+    if(mb->CheckTokenExists("BreakLengthThreshold"))
+        fBreakLengthThres = mb->GetInt("BreakLengthThreshold");
     // Parameters of cleaning of pileup
     if(mb->CheckTokenExists("EnableCleanPileUp"))
         fEnableCleanPileUp = mb->GetBool("EnableCleanPileUp");
@@ -84,10 +88,6 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fEnableMerge = mb->GetBool("EnableMerge");
     if(mb->CheckTokenExists("MergeMinParallelFactor"))
         fMergeMinParallelFactor = mb->GetDouble("MergeMinParallelFactor");
-    if(mb->CheckTokenExists("MergeDistThreshold"))
-        fMergeDistThreshold = mb->GetDouble("MergeDistThreshold");
-    if(mb->CheckTokenExists("MergeChi2Threshold"))
-        fMergeChi2Threshold = mb->GetDouble("MergeChi2Threshold");
     if(mb->CheckTokenExists("MergeChi2CoverageF"))
         fMergeChi2CoverageFactor = mb->GetDouble("MergeChi2CoverageF");
     // Clean delta electrons and remaining non-apt cluster
@@ -99,38 +99,21 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fDeltaMaxVoxels = mb->GetDouble("DeltaMaxVoxels");
 }
 
-template <typename T>
-bool ActCluster::MultiStep::RangesOverlap(T x1, T x2, T y1, T y2)
-{
-    bool condA {static_cast<int>(x1) <= static_cast<int>(y2)};
-    bool condB {static_cast<int>(x2) >= static_cast<int>(y1)};
-    return condA && condB;
-}
-
-template <typename T>
-bool ActCluster::MultiStep::RangesTouch(T x1, T x2, T y1, T y2)
-{
-    // Convert to int to avoid any issues with float precision
-    x1 = static_cast<int>(x1);
-    x2 = static_cast<int>(x2);
-    y1 = static_cast<int>(y1);
-    y2 = static_cast<int>(y2);
-    bool touch {};
-    if(y1 < x1 && y2 < x1) // [y1, y2] ... [x1, x2]
-        touch = std::abs(x1 - y2) == 1;
-    else if(y1 > x2 && y2 > x2) // [x1, x2] ... [y1, y2]
-        touch = std::abs(y1 - x2) == 1;
-    else
-        touch = false;
-    return touch;
-}
-
 void ActCluster::MultiStep::ResetIndex()
 {
     int idx {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++, idx++)
     {
         it->SetClusterID(idx);
+    }
+}
+
+void ActCluster::MultiStep::PrintStep() const
+{
+    for(const auto& cluster : *fClusters)
+    {
+        cluster.Print();
+        cluster.GetLine().Print();
     }
 }
 
@@ -213,84 +196,37 @@ void ActCluster::MultiStep::CleanPileup()
     }
 }
 
-ActCluster::MultiStep::XYZPoint ActCluster::MultiStep::DetermineBreakPoint(ItType it)
+std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiStep::DetermineBreakPoint(ItType it)
 {
-    const auto& xy {it->GetXYMap()};
-    const auto& xz {it->GetXZMap()};
+    const auto& xyMap {it->GetXYMap()};
+    const auto& xzMap {it->GetXZMap()};
     // Create interval object
     IntervalMap<int> ivsY;
     IntervalMap<int> ivsZ;
-    for(const auto& [x, yset] : xy)
+    for(const auto& [x, yset] : xyMap)
+    {
         ivsY.BuildFromSet(x, yset);
-    for(const auto& [x, zset] : xz)
-        ivsZ.BuildFromSet(x, zset);
+        ivsZ.BuildFromSet(x, xzMap.at(x), fTPC->GetREBINZ());
+    }
 
-    std::cout<<BOLDCYAN<<" ==== Y ==== "<<'\n';
+    std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
     ivsY.Print();
-    std::cout<<" ==== Z ==== "<<'\n';
+    std::cout << " ==== Z ==== " << '\n';
     ivsZ.Print();
-    
-    int length {3};
-    auto xbreak {ivsY.GetKeyAtLength(length)};
-    std::cout<<"X with Y = "<<xbreak<<" when length > "<<length<<'\n';
-    auto xbreak2 {ivsZ.GetKeyAtLength(length)};
-    std::cout<<"X with Z = "<<xbreak2<<" when length > "<<length<<'\n';
-    return {};
-    //
-    // // Run in increasing X order
-    // int diff {2};
-    // int idx {};
-    // int ibreak {};
-    // float xbreak {};
-    // int yCount {};
-    // std::vector<double> vwidthY {};
-    // int zCount {};
-    // std::vector<double> vwidthZ {};
-    // for(const auto& [x, yset] : xy)
-    // {
-    //     const auto& zset {xz.at(x)};
-    //     int ySize {static_cast<int>(yset.size())};
-    //     int zSize {static_cast<int>(zset.size())};
-    //     std::cout << "X = " << x << " y.size() = " << ySize << " y.old() = " << yCount << '\n';
-    //     if(idx != 0)
-    //     {
-    //         if(std::abs(ySize - yCount) > diff || std::abs(zSize - zCount) > diff)
-    //         {
-    //             if(ibreak == 0)
-    //             {
-    //                 xbreak = x;
-    //             }
-    //             if(ibreak == 2)
-    //                 break;
-    //             ibreak++;
-    //         }
-    //         else
-    //         {
-    //             yCount = ySize;
-    //             zCount = zSize;
-    //             vwidthY.push_back(ySize);
-    //             vwidthZ.push_back(zSize);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         yCount = ySize;
-    //         zCount = zSize;
-    //         // write widths
-    //         vwidthY.push_back(ySize);
-    //         vwidthZ.push_back(zSize);
-    //     }
-    //     idx++;
-    // }
-    // // Set break point
-    // // float ybreak {static_cast<float>(TMath::Mean(xy.at(xbreak).begin(), xy.at(xbreak).end()))};
-    // // float zbreak {static_cast<float>(TMath::Mean(xz.at(xbreak).begin(), xz.at(xbreak).end()))};
-    // // Compute widths
-    // auto widthY {static_cast<float>(TMath::Mean(vwidthY.begin(), vwidthY.end()))};
-    // auto widthZ {static_cast<float>(TMath::Mean(vwidthZ.begin(), vwidthZ.end()))};
-    // std::cout<<"Width Y = "<<widthY<<'\n';
-    // std::cout<<"WIdth Z = "<<widthZ<<'\n';
-    // return XYZPoint {xbreak, widthY, widthZ};
+
+    // Ranges
+    auto [xmin, xmax] {it->GetXRange()};
+    auto breakY {ivsY.GetKeyAtLength(fBreakLengthThres, 4)};
+    std::cout << "X with Y = " << breakY << '\n';
+    auto widthY {ivsY.GetMeanSizeInRange(xmin, breakY)};
+    std::cout << "Width Y = " << widthY << '\n';
+    // Widths
+    auto breakZ {ivsZ.GetKeyAtLength(fBreakLengthThres, 4)};
+    std::cout << "X with Z = " << breakZ << '\n';
+    auto widthZ {ivsZ.GetMeanSizeInRange(xmin, breakZ)};
+    std::cout << "Width Z = " << widthZ << '\n';
+
+    return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ * fTPC->GetREBINZ()};
 }
 
 void ActCluster::MultiStep::BreakBeamClusters()
@@ -307,26 +243,17 @@ void ActCluster::MultiStep::BreakBeamClusters()
         if(fMinSpanX > (xmax - xmin))
             continue;
         // 2-> Calculate gravity point in region
-        // auto gravity {it->GetGravityPointInRegion(0, fEntranceBeamRegionX)};
         auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
         // Return if it is nan
         if(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))
             continue;
-        // for(const auto& [x, set] : it->GetXYMap())
-        // {
-        //     std::cout << "X = " << x << " with set" << '\n';
-        //     for(const auto& y : set)
-        //         std::cout << "  Y = " << y << '\n';
-        // }
-        // for(const auto& [x, set] : it->GetXZMap())
-        // {
-        //     std::cout << "X = " << x << " with set" << '\n';
-        //     for(const auto& z : set)
-        //         std::cout << "  Z = " << z << '\n';
-        // }
-        auto breakPoint {DetermineBreakPoint(it)};
-        std::cout << "Break point = " << breakPoint << '\n';
-
+        auto res {DetermineBreakPoint(it)};
+        auto bp {std::get<0>(res)};
+        auto autoWY {std::get<1>(res)};
+        auto autoWZ {std::get<2>(res)};
+        std::cout << "Break point = " << bp << '\n';
+        bool useBreakingPoint {bp.X() > (xmin + fLengthXToBreak)};
+        std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
         std::cout << BOLDGREEN << "Running for cluster " << it->GetClusterID() << '\n';
         std::cout << BOLDRED << "Gravity = " << gravity << '\n';
         // 3->Modify original cluster: move non-beam voxels outside to
@@ -337,7 +264,10 @@ void ActCluster::MultiStep::BreakBeamClusters()
                                     [&](const ActRoot::Voxel& voxel)
                                     {
                                         const auto& pos {voxel.GetPosition()};
-                                        return IsInBeamCylinder(pos, gravity);
+                                        if(useBreakingPoint)
+                                            return AutoIsInBeam(pos, gravity, (double)bp.X(), autoWY, autoWZ);
+                                        else
+                                            return ManualIsInBeam(pos, gravity);
                                     })};
         // Create vector to move to
         std::vector<ActRoot::Voxel> notBeam {};
@@ -349,6 +279,8 @@ void ActCluster::MultiStep::BreakBeamClusters()
         it->ReFit();
         // Reset ranges
         it->ReFillSets();
+        // Set it is beam-like so do not merge
+        it->SetBeamLike(true);
         // 4-> Run cluster algorithm again
         std::vector<ActCluster::Cluster> newClusters;
         if(fFitNotBeam)
@@ -362,72 +294,80 @@ void ActCluster::MultiStep::BreakBeamClusters()
 
 void ActCluster::MultiStep::MergeSimilarTracks()
 {
-    for(auto out = fClusters->begin(); out != fClusters->end(); out++)
+    for(size_t i = 0; i < fClusters->size(); i++)
     {
-        for(auto in = fClusters->begin(); in != fClusters->end();)
+        for(size_t j = 0; j < fClusters->size(); j++)
         {
-            if(in == out)
-            {
-                in++;
+            if(i == j) // exclude comparison of same cluster
                 continue;
-            }
+            // Get clusters as iterators
+            auto out {fClusters->begin() + i};
+            auto in {fClusters->begin() + j};
+
+            // If any of them is beam-like, do not merge
+            if(out->GetIsBeamLike() || in->GetIsBeamLike())
+                continue;
+
+            // 1-> Compare by distance from gravity point to line!
             auto gravity {in->GetLine().GetPoint()};
             auto dist {out->GetLine().DistanceLineToPoint(gravity)};
-            auto maxDm2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
-            bool isBellowDistance {dist <= TMath::Sqrt(maxDm2)};
-            // use other model
+            // Get threshold distance to merge
+            auto distThresh {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+            bool isBelowThresh {dist < std::sqrt(distThresh)};
+
+            // 2-> Compare by paralelity
             auto outDir {out->GetLine().GetDirection().Unit()};
             auto inDir {in->GetLine().GetDirection().Unit()};
-            bool areParallel {TMath::Abs(outDir.Dot(inDir)) >= fMergeMinParallelFactor};
-            if(isBellowDistance || areParallel) // if(areParallel) // if(dist < fMergeDistThreshold)
+            bool areParallel {std::abs(outDir.Dot(inDir)) > fMergeMinParallelFactor};
+
+            // 3-> Check if fits improves
+            if(isBelowThresh || areParallel)
             {
-                // Create auxiliar line
                 ActPhysics::Line aux {};
-                auto test {out->GetVoxels()};
-                auto inner {in->GetVoxels()};
-                test.insert(test.end(), inner.begin(), inner.end());
-                aux.FitVoxels(test);
-                std::cout << "Parallel factor = " << outDir.Dot(inDir) << '\n';
-                std::cout << "dist < maxDm2 = " << dist << " < " << maxDm2 << '\n';
-                // New chi2
+                auto outVoxels {out->GetVoxels()};
+                auto inVoxels {in->GetVoxels()};
+                outVoxels.insert(outVoxels.end(), inVoxels.begin(), inVoxels.end());
+                aux.FitVoxels(outVoxels);
+                // Compare Chi2
                 auto newChi2 {aux.GetChi2()};
-                // Determine old chi2
-                double oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
-                // if(out->GetSizeOfVoxels() >= in->GetSizeOfVoxels())
-                //     oldChi2 = out->GetLine().GetChi2();
-                // else
-                //     oldChi2 = in->GetLine().GetChi2();
-                std::cout << "Old Chi2 = " << oldChi2 << '\n';
-                std::cout << "New Chi2 = " << aux.GetChi2() << '\n';
-                bool isInCover {newChi2 <= (1. + fMergeChi2CoverageFactor) * oldChi2};
-                if(isInCover) // if(aux.GetChi2() < fMergeChi2Threshold)
+                auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+                bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
+                // Then, move and erase in iterator!
+                std::cout << BOLDMAGENTA << "dist < distThresh = " << dist << " < " << distThresh << '\n';
+                std::cout << "are parallel = " << std::boolalpha << areParallel << '\n';
+                std::cout << "newChi2 < oldChi2 = " << newChi2 << " < " << oldChi2 << RESET << '\n';
+                if(improvesFit)
                 {
-                    in = fClusters->erase(in);
-                    // And push voxels to main
-                    std::cout << BOLDMAGENTA << "Merging cluster " << in->GetClusterID() << '\n';
-                    auto& refvoxels {out->GetRefToVoxels()};
-                    std::cout << "Init size = " << refvoxels.size() << '\n';
-                    std::move(inner.begin(), inner.end(), std::back_inserter(refvoxels));
-                    std::cout << "After size = " << refvoxels.size() << RESET << '\n';
+                    std::cout << BOLDMAGENTA << "Merging cluster in " << in->GetClusterID() << " with cluster out "
+                              << out->GetClusterID() << RESET << '\n';
+                    auto& refVoxels {out->GetRefToVoxels()};
+                    std::move(inVoxels.begin(), inVoxels.end(), std::back_inserter(refVoxels));
+                    // Refit and recompute ranges
                     out->ReFit();
                     out->ReFillSets();
+                    // Erase!
+                    fClusters->erase(in);
                 }
-                else
-                    in++;
             }
-            else
-                in++;
         }
-        // Delete
     }
 }
 
-bool ActCluster::MultiStep::IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity)
+bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity)
 {
-    bool condY {(gravity.Y() - fBeamWindowY) <= pos.Y() && pos.Y() <= (gravity.Y() + fBeamWindowY)};
-    bool condZ {(gravity.Z() - fBeamWindowZ) <= pos.Z() && pos.Z() <= (gravity.Z() + fBeamWindowZ)};
-
+    bool condY {(gravity.Y() - fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + fBeamWindowY)};
+    bool condZ {(gravity.Z() - fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + fBeamWindowZ)};
     return condY && condZ;
+}
+
+template <typename T>
+bool ActCluster::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T widthY, T widthZ,
+                                         T offset)
+{
+    bool condX {pos.X() < xBreak + offset};
+    bool condY {(gravity.Y() - widthY) <= pos.Y() && pos.Y() <= (gravity.Y() + widthY)};
+    bool condZ {(gravity.Z() - widthZ) <= pos.Z() && pos.Z() <= (gravity.Z() + widthZ)};
+    return condX && condY && condZ;
 }
 
 void ActCluster::MultiStep::DetermineBeamLikes()
@@ -444,51 +384,6 @@ void ActCluster::MultiStep::DetermineBeamLikes()
         if(isInEntrance && isAlongX)
             it->SetBeamLike(true);
     }
-}
-
-bool ActCluster::MultiStep::ClustersOverlap3D(ItType out, ItType in)
-{
-    // X
-    auto [xMinOut, xMaxOut] {out->GetXRange()};
-    auto [xMinIn, xMaxIn] {in->GetXRange()};
-    bool isInX {RangesOverlap(xMinOut, xMaxOut, xMinIn, xMaxIn)};
-    bool touchesX {RangesTouch(xMinOut, xMaxOut, xMinIn, xMaxIn)};
-    // Y
-    auto [yMinOut, yMaxOut] {out->GetYRange()};
-    auto [yMinIn, yMaxIn] {in->GetYRange()};
-    bool isInY {RangesOverlap(yMinOut, yMaxOut, yMinIn, yMaxIn)};
-    bool touchesY {RangesTouch(yMinOut, yMaxOut, yMinIn, yMaxIn)};
-    // Z
-    auto [zMinOut, zMaxOut] {out->GetZRange()};
-    auto [zMinIn, zMaxIn] {in->GetZRange()};
-    bool isInZ {RangesOverlap(zMinOut, zMaxOut, zMinIn, zMaxIn)};
-    bool touchesZ {RangesTouch(zMinOut, zMaxOut, zMinIn, zMaxIn)};
-    return (isInX || touchesX) && (isInY || touchesY) && (isInZ || touchesZ);
-}
-
-void ActCluster::MultiStep::FrontierMatching()
-{
-    DetermineBeamLikes();
-    // Iterate over map
-    for(auto out = fClusters->begin(); out != fClusters->end(); out++)
-    {
-        if(!out->GetIsBeamLike())
-            continue;
-        std::cout << BOLDCYAN << "Cluster " << out->GetClusterID() << " is beam-like" << '\n';
-        for(auto in = fClusters->begin(); in != fClusters->end(); in++)
-        {
-            if(in == out || in->GetIsBeamLike())
-                continue;
-            if(ClustersOverlap3D(out, in))
-            {
-                std::cout << "Overlaps with cluster " << in->GetClusterID() << '\n';
-                // Print Y extent of beam
-                for(const auto& [pad, count] : out->GetYMap())
-                    std::cout << "Pad: " << pad << " count: " << count << '\n';
-            }
-        }
-    }
-    std::cout << RESET << '\n';
 }
 
 void ActCluster::MultiStep::Print() const
@@ -510,8 +405,7 @@ void ActCluster::MultiStep::Print() const
         }
         if(fEnableMerge)
         {
-            std::cout << "-> MergeDistThresh  : " << fMergeDistThreshold << '\n';
-            std::cout << "-> MergeChi2Thresh  : " << fMergeDistThreshold << '\n';
+            std::cout << "-> MergeMinParallel : " << fMergeMinParallelFactor << '\n';
             std::cout << "-> MergeChi2CoverF  : " << fMergeChi2CoverageFactor << '\n';
             std::cout << "-----------------------" << '\n';
         }

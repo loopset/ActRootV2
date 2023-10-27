@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <tuple>
 
 // forward declaration
 namespace ActRoot
@@ -45,6 +46,7 @@ namespace ActCluster
         double fLengthXToBreak;
         double fBeamWindowY;
         double fBeamWindowZ;
+        int fBreakLengthThres;
         // 2-> Clean pileup of beams
         bool fEnableCleanPileUp;
         double fPileUpXPercent;
@@ -57,8 +59,6 @@ namespace ActCluster
         // 4-> Merge similar tracks
         bool fEnableMerge;
         double fMergeMinParallelFactor;
-        double fMergeDistThreshold;
-        double fMergeChi2Threshold;
         double fMergeChi2CoverageFactor;
         // 5-> Clean remaining clusters
         bool fEnableCleanDeltas;
@@ -91,19 +91,14 @@ namespace ActCluster
         void BreakBeamClusters();
         // Merge quasialigned tracks which got broken due to non-continuity
         void MergeSimilarTracks();
-        // Frontier matching
-        void FrontierMatching();
 
     private:
-        bool IsInBeamCylinder(const XYZPoint& pos, const XYZPoint& gravity);
-        template <typename T>
-        bool RangesOverlap(T x1, T x2, T y1, T y2);
+        bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity);
         template<typename T>
-        bool RangesTouch(T x1, T x2, T y1, T y2);
-        bool ClustersOverlap3D(ItType out, ItType in);
-        XYZPoint DetermineBreakPoint(ItType it);
-        
+        bool AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T meanWidthY, T meanWidthZ, T offset = 2);
+        std::tuple<XYZPoint, double, double> DetermineBreakPoint(ItType it);
         void ResetIndex();
+        void PrintStep() const;
         void DetermineBeamLikes();
     };
 } // namespace ActCluster

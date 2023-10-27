@@ -1,6 +1,7 @@
 #ifndef ActInterval_h
 #define ActInterval_h
 
+#include "TMath.h"
 #include <algorithm>
 #include <cstddef>
 #include <iostream>
@@ -57,9 +58,9 @@ namespace ActCluster
             return Interval {std::max(fStart, other.GetStart()), std::min(fStop, other.GetStop())};
         }
         // Get size of interval!
-        T Length() { return (fStop + 1) - fStart; } //+1 since this is a []-type interval, not usual [)
+        T Length() const { return (fStop + 1) - fStart; } //+1 since this is a []-type interval, not usual [)
         // Distance to other interval
-        T Distance(const Interval& other) //-1 by the same means
+        T Distance(const Interval& other) const //-1 by the same means
         {
             // Check overlap
             if(Overlaps(other))
@@ -91,11 +92,19 @@ namespace ActCluster
     public:
         void Add(T key, const Interval<T>& interval) { fMap[key].push_back(interval); }
         std::vector<Interval<T>> GetIntervals(T key) { return fMap[key]; }
-        const std::map<T, std::vector<Interval<T>>> GetMap() const { return fMap; }
+        const std::map<T, std::vector<Interval<T>>>& GetMap() const { return fMap; }
         bool IsSplit(T key) { return fMap[key].size() > 1; }
         size_t GetSizeInKey(T key) { return fMap[key].size(); }
-        void BuildFromSet(T key, const std::set<T>& set)
+        void BuildFromSet(T key, const std::set<T>& values, int scaling = 1)
         {
+            // Copy
+            std::set<T> set;
+            // Apply transformation function for Z values
+            if(scaling != 1)
+                std::transform(values.begin(), values.end(), std::inserter(set, set.begin()), 
+                               [&](const auto& e){return e / scaling;});
+            else
+                set = values;
             T start {*set.begin()};
             T stop {start};
             auto it {set.begin()};
@@ -215,6 +224,22 @@ namespace ActCluster
                     isContiguous = false;
             }
             return axis;
+        }
+        double GetMeanSizeInRange(T start, T stop)
+        {
+            std::vector<T> lengths;
+            for(const auto& [x, vec] : fMap)
+            {
+                if(!(start <= x && x <= stop))
+                    continue;
+                if(x > stop)
+                    break;
+                T length {};
+                for(const auto& e : vec)
+                    length += e.Length();
+                lengths.push_back(length);
+            }
+            return TMath::Mean(lengths.begin(), lengths.end());
         }
         void Print() const
         {
