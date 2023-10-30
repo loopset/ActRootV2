@@ -3,7 +3,7 @@
 
 #include "TCanvas.h"
 #include "TH2.h"
-#include "TH2F.h"
+#include "TH2D.h"
 
 #include "ActTPCPhysics.h"
 #include "ActSilDetector.h"
@@ -26,8 +26,8 @@ namespace ActRoot
     {
     private:
         std::map<int, TCanvas*> fCanvs;
-        std::map<int, std::shared_ptr<TH2F>> fHistTpc;
-        std::map<int, std::shared_ptr<TH2F>> fHistSil;
+        std::map<int, std::shared_ptr<TH2D>> fHistTpc;
+        std::map<int, std::shared_ptr<TH2D>> fHistSil;
         std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
         //Parameters of detectors
         TPCParameters fTPC;
@@ -78,7 +78,7 @@ namespace ActRoot
         void FillSilHisto(int pad, const std::string& layer);
         void FillClusterHistos();
         void DrawPolyLines();
-        void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
+        void AttachBinToCluster(std::shared_ptr<TH2D> h, double x, double y, int clusterID);
     };
 }
 

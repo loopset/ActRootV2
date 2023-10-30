@@ -12,7 +12,7 @@ namespace ActRoot
     class ModularData : public VData
     {
     public:
-        std::unordered_map<std::string, float> fLeaves; //!< Each leaf holds a float variable in a map
+        std::unordered_map<std::string, double> fLeaves; //!< Each leaf holds a double variable in a map
 
         void Clear() override; //!< Reset data
         void Print() const override; //!< Print stored data

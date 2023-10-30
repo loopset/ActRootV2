@@ -25,8 +25,8 @@ namespace ActCluster
     {
     public:
         using ItType = std::vector<ActCluster::Cluster>::iterator;
-        using XYZPoint = ROOT::Math::XYZPointF;
-        using XYZVector = ROOT::Math::XYZVectorF;
+        using XYZPoint = ROOT::Math::XYZPoint;
+        using XYZVector = ROOT::Math::XYZVector;
 
     private:
         // Pointer to TPC Parameters

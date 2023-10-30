@@ -9,9 +9,9 @@
 
 #pragma link C++ class ActCluster::Cluster+;
 #pragma link C++ class ActCluster::Interval<int>+;
-#pragma link C++ class ActCluster::Interval<float>+;
+#pragma link C++ class ActCluster::Interval<double>+;
 #pragma link C++ class ActCluster::IntervalMap<int>+;
-#pragma link C++ class ActCluster::IntervalMap<float>+;
+#pragma link C++ class ActCluster::IntervalMap<double>+;
 
 #pragma link C++ class ActCluster::RANSAC;
 #pragma link C++ class ActCluster::ClIMB;

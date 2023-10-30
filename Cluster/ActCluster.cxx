@@ -5,6 +5,7 @@
 
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
+#include "Math/Vector3Dfwd.h"
 
 #include <algorithm>
 #include <iostream>
@@ -68,13 +69,14 @@ void ActCluster::Cluster::AddVoxel(ActRoot::Voxel&& voxel)
 ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInRegion(double xmin, double xmax, double ymin,
                                                                            double ymax, double zmin, double zmax)
 {
-    float xsum {};
-    float ysum {};
-    float zsum {};
+    double xsum {};
+    double ysum {};
+    double zsum {};
     int count {};
     for(const auto& voxel : fVoxels)
     {
-        const auto& pos {voxel.GetPosition()};
+        auto pos {voxel.GetPosition()};
+        pos += ROOT::Math::XYZVector{0.5, 0.5, 0.5};// correct always by bin center
         bool condX {(xmin <= pos.X()) && (pos.X() <= xmax)};
         bool condY {true};
         if(ymin != -1 && ymax != -1)
@@ -101,15 +103,15 @@ ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInRegion(doubl
 ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInXRange(double length)
 {
     auto [xmin, xmax] = GetXRange();
-    float xbreak {static_cast<float>(xmin + length)};
-    float xsum {};
-    float ysum {};
-    float zsum {};
+    double xbreak {xmin + length};
+    double xsum {};
+    double ysum {};
+    double zsum {};
     int count {};
     for(const auto& voxel : fVoxels)
     {
         auto pos {voxel.GetPosition()};
-        pos += ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}; // add always 0.5 to be in center of bin
+        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5}; // add always 0.5 to be in center of bin
         bool condX {(xmin <= pos.X()) && (pos.X() <= xbreak)};
         if(condX)
         {

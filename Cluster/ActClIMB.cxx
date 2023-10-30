@@ -149,10 +149,10 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
         {
             auto gen1 {ScanNeighborhood(gen0)};
             //Check no indexes are repeated
-            for(auto& g0 : gen0)
-                for(auto& g1 : gen1)
-                    if(g1 == g0)
-                        throw std::runtime_error("gen0 == gen1 at some point");
+            // for(auto& g0 : gen0)
+            //     for(auto& g1 : gen1)
+            //         if(g1 == g0)
+            //             throw std::runtime_error("gen0 == gen1 at some point");
             //Push back voxels and indexes
             for(const auto& index : gen1)
             {

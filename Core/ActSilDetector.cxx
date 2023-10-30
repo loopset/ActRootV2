@@ -130,7 +130,7 @@ void ActRoot::SilDetector::BuildEventData()
                 if(sil == -1)
                     continue;
                 //Get raw data
-                float raw {coas.peakheight[hit]};
+                double raw {coas.peakheight[hit]};
                 //Check threshold
                 std::string threshKey {"Sil_" + layer + "_" + sil + "_P"};
                 if(!fCalMan->ApplyThreshold(threshKey, raw, 3))
@@ -139,7 +139,7 @@ void ActRoot::SilDetector::BuildEventData()
                 fData->fSiN[layer].push_back(sil);                
                 //Calibrate
                 std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
-                float cal {static_cast<float>(fCalMan->ApplyCalibration(calKey, raw))};
+                double cal {fCalMan->ApplyCalibration(calKey, raw)};
                 fData->fSiE[layer].push_back(cal);
                 //std::cout<<"Raw sil = "<<raw<<" |"<<'\n';
                 //std::cout<<"Cal sil = "<<cal<<" |"<<'\n';

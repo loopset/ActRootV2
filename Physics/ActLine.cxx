@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include <vector>
 
-ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)
+ActPhysics::Line::Line(XYZPoint point, XYZVector direction, double chi)
     : fPoint(point),
       fDirection(direction),
       fChi2(chi)
@@ -143,7 +143,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     // Bugfix: when we have pad saturation, Sxx = Syy = 0 -> theta = nan! Then, we can return a vertical line!
     if(!std::isfinite(theta))
     {
-        SetPoint(XYZPoint(static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)));
+        SetPoint(XYZPoint(Xm, Ym, Zm));
         SetDirection(XYZVector(0, 0, 1));
         SetSigmas(XYZPoint(0, 0, 0));
         SetChi2(-1);
@@ -186,18 +186,17 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Yh = ((1. + a * a) * Ym - a * b * Xm + b * Zm) / (1. + a * a + b * b);
     Zh = ((a * a + b * b) * Zm + a * Xm + b * Ym) / (1. + a * a + b * b);
 
-    XYZPoint Pm = {static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)}; // gravity point
-    XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
-    XYZPoint Sigmas = {
-        static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
-        static_cast<float>(std::sqrt(std::abs(Szz)))}; // sigmas are computed from matrix elements directly
+    XYZPoint Pm = {Xm, Ym, Zm}; // gravity point
+    XYZPoint Ph = {Xh, Yh, Zh}; // second point
+    XYZPoint Sigmas = {std::sqrt(std::abs(Sxx)), std::sqrt(std::abs(Syy)),
+                       std::sqrt(std::abs(Szz))}; // sigmas are computed from matrix elements directly
     // Still one more check of NaN; return default parameters in this case
     if(std::isnan(dm2))
         return;
     SetPoint(Pm);
     SetDirection(Pm, Ph);
     SetSigmas(Sigmas);
-    SetChi2(fabs(dm2)); // do not divide by charge!
+    SetChi2(abs(dm2)); // do not divide by charge!
 }
 
 std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX, int maxY, int maxZ) const

@@ -17,15 +17,15 @@ namespace ActCluster
     class Cluster
     {
     public:
-        using XYZPoint = ROOT::Math::XYZPointF;
+        using XYZPoint = ROOT::Math::XYZPoint;
 
     private:
         ActPhysics::Line fLine {};
         std::vector<ActRoot::Voxel> fVoxels {};
-        std::set<float> fXSet {};
-        std::set<float> fYSet {};
-        std::set<float> fZSet {};
-        std::map<float, int> fYMap {};
+        std::set<double> fXSet {};
+        std::set<double> fYSet {};
+        std::set<double> fZSet {};
+        std::map<double, int> fYMap {};
         std::map<int, std::set<int>> fXYMap {};
         std::map<int, std::set<int>> fXZMap {};
         int fClusterID {};
@@ -55,10 +55,10 @@ namespace ActCluster
         void AddVoxel(ActRoot::Voxel&& voxel);      //! By moving in push_back
 
         // Get extents
-        std::pair<float, float> GetXRange() const { return {*fXSet.begin(), *fXSet.rbegin()}; }
-        std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
-        std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
-        const std::map<float, int>& GetYMap() const { return fYMap; }
+        std::pair<double, double> GetXRange() const { return {*fXSet.begin(), *fXSet.rbegin()}; }
+        std::pair<double, double> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
+        std::pair<double, double> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
+        const std::map<double, int>& GetYMap() const { return fYMap; }
         const std::map<int, std::set<int>> GetXYMap() const { return fXYMap; };
         const std::map<int, std::set<int>> GetXZMap() const { return fXZMap; };
 

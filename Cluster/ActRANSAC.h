@@ -17,7 +17,7 @@ namespace ActCluster
     class RANSAC
     {
     public:
-        using XYZPoint = ROOT::Math::XYZPointF;
+        using XYZPoint = ROOT::Math::XYZPoint;
 
     private:
         double fDistThreshold {15};

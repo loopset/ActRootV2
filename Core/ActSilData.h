@@ -13,7 +13,7 @@ namespace ActRoot
     class SilData : public VData
     {
     public:
-        std::unordered_map<std::string, std::vector<float>> fSiE; //!< Calibrated silicon energy
+        std::unordered_map<std::string, std::vector<double>> fSiE; //!< Calibrated silicon energy
         std::unordered_map<std::string, std::vector<int>> fSiN; //!< Silicon number
         SilData() = default;
 

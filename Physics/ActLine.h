@@ -17,18 +17,18 @@ namespace ActPhysics
     class Line
     {
     public:
-        using XYZPoint = ROOT::Math::XYZPointF;
-        using XYZVector = ROOT::Math::XYZVectorF;
+        using XYZPoint = ROOT::Math::XYZPoint;
+        using XYZVector = ROOT::Math::XYZVector;
 
     private:
         XYZPoint fSigmas {-1, -1, -1};
         XYZPoint fPoint {-1, -1, -1};
         XYZVector fDirection {-1, -1, -1};
-        float fChi2 {-1};
+        double fChi2 {-1};
 
     public:
         Line() = default;
-        Line(XYZPoint point, XYZVector direction, float chi);
+        Line(XYZPoint point, XYZVector direction, double chi);
         Line(const XYZPoint& p1, const XYZPoint& p2);
         ~Line() = default;
 
@@ -36,13 +36,13 @@ namespace ActPhysics
         XYZPoint GetPoint() const { return fPoint; }
         XYZPoint GetSigmas() const { return fSigmas; }
         XYZVector GetDirection() const { return fDirection; }
-        float GetChi2() const { return fChi2; }
+        double GetChi2() const { return fChi2; }
 
         void SetPoint(const XYZPoint& point) { fPoint = point; }
         void SetSigmas(const XYZPoint& sigmas) { fSigmas = sigmas; }
         void SetDirection(const XYZPoint& p1, const XYZPoint& p2) { fDirection = p1 - p2; }
         void SetDirection(const XYZVector& direction) { fDirection = direction; }
-        void SetChi2(float chi2) { fChi2 = chi2; }
+        void SetChi2(double chi2) { fChi2 = chi2; }
 
         // Utility funtions
         double DistanceLineToPoint(const XYZPoint& point) const;

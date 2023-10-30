@@ -211,11 +211,11 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         return;
     for (size_t i = 0, maxI = coas.peakheight.size(); i < maxI; i++)
     {
-        float padz {coas.peaktime[i]};
+        double padz {coas.peaktime[i]};
         if (padz < 0)
             continue;
-        float qraw {coas.peakheight[i]};
-        float qcal {static_cast<float>(fCalMan->ApplyPadAlignment(where, qraw))};
+        double qraw {coas.peakheight[i]};
+        double qcal {fCalMan->ApplyPadAlignment(where, qraw)};
 
         // Apply rebinning (if desired)
         int binZ {(int)padz / fPars.GetREBINZ()};
@@ -229,7 +229,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         }
         else
         {
-            Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
+            Voxel hit {ROOT::Math::XYZPoint(padx, pady, padz), qcal, coas.hasSaturation};
             fData->fVoxels.push_back(hit);
             // push to pad matrix if enabled
             if (fCleanSaturatedVoxels)
