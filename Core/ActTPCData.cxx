@@ -1,14 +1,17 @@
 #include "ActTPCData.h"
-
 #include <ios>
 #include <iostream>
 
-ActRoot::Voxel::Voxel(const XYZPoint& pos, double charge, bool hasSaturation)
-    : fPosition(pos),
-      fCharge(charge),
-      fIsSaturated(hasSaturation)
+ActRoot::Voxel::Voxel(const XYZPoint& pos, float charge, bool hasSaturation)
+    : fPosition(pos)
+    , fCharge(charge)
+    , fIsSaturated(hasSaturation)
 {
 }
+
+// ActRoot::Voxel::Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation)
+//     : fID(id), fPosition(pos), fCharge(charge), fIsSaturated(hasSaturation)
+// {}
 
 void ActRoot::Voxel::Print() const
 {
@@ -18,10 +21,7 @@ void ActRoot::Voxel::Print() const
     std::cout << " -> Has sat ? = " << std::boolalpha << fIsSaturated << '\n';
 }
 
-void ActRoot::TPCData::Clear()
-{
-    fVoxels.clear();
-}
+void ActRoot::TPCData::Clear() { fVoxels.clear(); }
 
 void ActRoot::TPCData::Print() const
 {

@@ -8,7 +8,7 @@
 #include <tuple>
 #include <vector>
 
-// forward declaration to avoid circular dependencies
+//forward declaration to avoid circular dependencies
 namespace ActRoot
 {
     class TPCParameters;
@@ -20,31 +20,27 @@ namespace ActCluster
     class ClIMB
     {
     private:
-        std::vector<std::vector<std::vector<int>>> fMatrix; //!< 3D matrix to locate clusters in space
-        std::vector<ActRoot::Voxel> fVoxels;                //!< Local copy of vector to be treated
-        ActRoot::TPCParameters* fTPC {}; //!< Pointer to TPC parameters needed to define algorithm parameters
-        int fMinPoints;                  //!< Minimum of points to form a cluster
+        std::vector<std::vector<std::vector<int>>> fMatrix;//!< 3D matrix to locate clusters in space
+        std::vector<ActRoot::Voxel> fVoxels;//!< Local copy of vector to be treated
+        ActRoot::TPCParameters* fTPC {};//!< Pointer to TPC parameters needed to define algorithm parameters
+        int fMinPoints;//!< Minimum of points to form a cluster
     public:
         ClIMB() = default;
         ClIMB(ActRoot::TPCParameters* tpc, int minPoints);
         ~ClIMB() = default;
 
-        // Read config file
+        //Read config file
         void ReadConfigurationFile(const std::string& infile = "");
 
-        // Setters and getters
-        void SetMinPoints(int minPoints) { fMinPoints = minPoints; }
-        int GetMinPoints() const { return fMinPoints; }
-        void SetTPCParameters(ActRoot::TPCParameters* tpc)
-        {
-            fTPC = tpc;
-            InitMatrix();
-        }
+        //Setters and getters
+        void SetMinPoints(int minPoints){fMinPoints = minPoints;}
+        int GetMinPoints() const {return fMinPoints;}
+        void SetTPCParameters(ActRoot::TPCParameters* tpc){fTPC = tpc; InitMatrix();}
 
-        // Main method
+        //Main method
         std::vector<ActCluster::Cluster> Run(const std::vector<ActRoot::Voxel>& voxels);
 
-        // Print
+        //Print
         void Print() const;
 
     private:
@@ -55,6 +51,6 @@ namespace ActCluster
         void MaskVoxelsInMatrix(int index);
         int SampleSeed();
     };
-} // namespace ActCluster
+}
 
 #endif

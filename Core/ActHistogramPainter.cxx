@@ -83,29 +83,29 @@ void ActRoot::HistogramPainter::Init()
     //TPC
     fCanvs[1]->Divide(3, 2);
     //Pad
-    fHistTpc[1] = std::make_shared<TH2D>("hPad", "Pad;X [pad];Y [pad]",
+    fHistTpc[1] = std::make_shared<TH2F>("hPad", "Pad;X [pad];Y [pad]",
                                          fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
                                          fTPC.GetNPADSY(), 0, fTPC.GetNPADSY());
     //Side
-    fHistTpc[2] = std::make_shared<TH2D>("hSide", "Side;X [pad];Z [tb]",
+    fHistTpc[2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]",
                                          fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
                                          fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0, fTPC.GetNPADSZ());
     //Front
-    fHistTpc[3] = std::make_shared<TH2D>("hFront", "Front;Y [pad];Z [tb]",
+    fHistTpc[3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]",
                                          fTPC.GetNPADSY(), 0, fTPC.GetNPADSY(),
                                          fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0 , fTPC.GetNPADSZ());
     ////////////////////////
     //Clusters!
     //Pad
-    fHistTpc[4] = std::make_shared<TH2D>("hPadC", "Clusters in pad;X [pad];Y [pad]",
+    fHistTpc[4] = std::make_shared<TH2F>("hPadC", "Clusters in pad;X [pad];Y [pad]",
                                          fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
                                          fTPC.GetNPADSY(), 0, fTPC.GetNPADSY());
     //Side
-    fHistTpc[5] = std::make_shared<TH2D>("hSideC", "Clusters in side;X [pad];Z [tb]",
+    fHistTpc[5] = std::make_shared<TH2F>("hSideC", "Clusters in side;X [pad];Z [tb]",
                                          fTPC.GetNPADSX(), 0, fTPC.GetNPADSX(),
                                          fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0, fTPC.GetNPADSZ());
     //Front
-    fHistTpc[6] = std::make_shared<TH2D>("hFrontC", "Clusters in front;Y [pad];Z [tb]",
+    fHistTpc[6] = std::make_shared<TH2F>("hFrontC", "Clusters in front;Y [pad];Z [tb]",
                                          fTPC.GetNPADSY(), 0, fTPC.GetNPADSY(),
                                          fTPC.GetNPADSZ() / fTPC.GetREBINZ(), 0 , fTPC.GetNPADSZ());
     for(auto& [_, h] : fHistTpc)
@@ -127,15 +127,15 @@ void ActRoot::HistogramPainter::Init()
     };
     fCanvs[2]->Divide(3, 2);
     //Left
-    fHistSil[1] = std::make_shared<TH2D>("hL0", "L0;Col;Row",
+    fHistSil[1] = std::make_shared<TH2F>("hL0", "L0;Col;Row",
                                          3, 0.5, 3.5,
                                          3, 0.5, 3.5);
     //Front L0
-    fHistSil[5] = std::make_shared<TH2D>("hF0", "F0;Col;Row",
+    fHistSil[5] = std::make_shared<TH2F>("hF0", "F0;Col;Row",
                                          3, 0.5, 3.5,
                                          4, 0.5, 4.5);
     //Front L1
-    fHistSil[6] = std::make_shared<TH2D>("hF1", "F1;Col;Row",
+    fHistSil[6] = std::make_shared<TH2F>("hF1", "F1;Col;Row",
                                          3, 0.5, 3.5,
                                          4, 0.5, 4.5);
     for(auto& [_, h] : fHistSil)
@@ -243,7 +243,7 @@ void ActRoot::HistogramPainter::FillSilHisto(int pad, const std::string& layer)
     }
 }
 
-void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2D> h, double x, double y, int clusterID)
+void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID)
 {
     if(!h)
         return;
