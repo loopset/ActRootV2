@@ -754,7 +754,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                <span class="keyword">auto</span> outVoxels {out-&gt;GetVoxels()};</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                <span class="keyword">auto</span> inVoxels {in-&gt;GetVoxels()};</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                outVoxels.insert(outVoxels.end(), inVoxels.begin(), inVoxels.end());</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                aux.<a class="code" href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">FitVoxels</a>(outVoxels);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                aux.<a class="code" href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">FitVoxels</a>(outVoxels);</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <span class="comment">// Compare Chi2</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                <span class="keyword">auto</span> newChi2 {aux.GetChi2()};</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                <span class="keyword">auto</span> oldChi2 {std::max(out-&gt;GetLine().GetChi2(), in-&gt;GetLine().GetChi2())};</div>
@@ -782,8 +782,8 @@ template&lt;typename T &gt; </div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a4bf4540fb0f9597badaf1361c5a733a2"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a4bf4540fb0f9597badaf1361c5a733a2">ActCluster::MultiStep::fMergeMinParallelFactor</a></div><div class="ttdeci">double fMergeMinParallelFactor</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:61</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a53f934b5a978ea0a2d203e7ad31869db"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a53f934b5a978ea0a2d203e7ad31869db">ActCluster::MultiStep::fMergeChi2CoverageFactor</a></div><div class="ttdeci">double fMergeChi2CoverageFactor</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:62</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:17</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a4e07e2921acbd795a90d3aeb3bf842ca"><div class="ttname"><a href="classActPhysics_1_1Line.html#a4e07e2921acbd795a90d3aeb3bf842ca">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:37</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:18</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a275d0a3f2233991694375c993f6e3de4"><div class="ttname"><a href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>
