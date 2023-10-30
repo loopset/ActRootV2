@@ -4,7 +4,7 @@
 #include "ActLine.h"
 #include "ActTPCData.h"
 
-#include "Math/Point3Dfwd.h"
+#include "Math/Point3D.h"
 
 #include <algorithm>
 #include <map>
@@ -59,8 +59,8 @@ namespace ActCluster
         std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
         std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
         const std::map<float, int>& GetYMap() const { return fYMap; }
-        const std::map<int, std::set<int>> GetXYMap() const {return fXYMap;};
-        const std::map<int, std::set<int>> GetXZMap() const {return fXZMap;};
+        const std::map<int, std::set<int>> GetXYMap() const { return fXYMap; };
+        const std::map<int, std::set<int>> GetXZMap() const { return fXZMap; };
 
         XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
                                          double zmax = -1);

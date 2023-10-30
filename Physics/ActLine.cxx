@@ -34,7 +34,8 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
     return std::sqrt(dist2);
 }
 
-void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, double qThreshold)
+void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, double qThreshold,
+                                 bool correctOffset)
 {
     std::vector<XYZPoint> cloud;
     std::vector<double> charge;
@@ -51,17 +52,18 @@ void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool
             cloud.push_back(voxel.GetPosition());
     }
     if(qWeighted)
-        FitCloudWithThreshold(cloud, charge);
+        FitCloudWithThreshold(cloud, charge, correctOffset);
     else
-        FitCloudWithThreshold(cloud, {});
+        FitCloudWithThreshold(cloud, {}, correctOffset);
 }
 
-void ActPhysics::Line::FitCloud(const std::vector<XYZPoint>& cloud)
+void ActPhysics::Line::FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset)
 {
-    FitCloudWithThreshold(cloud, {});
+    FitCloudWithThreshold(cloud, {}, correctOffset);
 }
 
-void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge)
+void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
+                                             bool correctOffset)
 {
     //------3D Line Regression
     //----- adapted from: http://fr.scribd.com/doc/31477970/Regressions-et-trajectoires-3D
@@ -105,7 +107,9 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     for(int i = 0, maxsize = points.size(); i < maxsize; ++i)
     {
         const auto hitQ = doChargeWeight ? charge[i] : 1.;
-        const auto& pos = points[i];
+        auto pos = points[i];
+        if(correctOffset)
+            pos += XYZVector {0.5, 0.5, 0.5};
         Q += hitQ / 10.;
         Xm += pos.X() * hitQ / 10.;
         Ym += pos.Y() * hitQ / 10.;
@@ -184,8 +188,9 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
 
     XYZPoint Pm = {static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)}; // gravity point
     XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
-    XYZPoint Sigmas = {static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
-                       static_cast<float>(std::sqrt(std::abs(Szz)))}; // sigmas are computed from matrix elements directly
+    XYZPoint Sigmas = {
+        static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
+        static_cast<float>(std::sqrt(std::abs(Szz)))}; // sigmas are computed from matrix elements directly
     // Still one more check of NaN; return default parameters in this case
     if(std::isnan(dm2))
         return;

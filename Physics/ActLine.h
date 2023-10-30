@@ -3,10 +3,11 @@
 
 #include "ActTPCData.h"
 
-#include "Math/Point3D.h"
-#include "Math/Vector3D.h"
 #include "TPolyLine.h"
 #include "TString.h"
+
+#include "Math/Point3D.h"
+#include "Math/Vector3D.h"
 
 #include <memory>
 #include <vector>
@@ -45,15 +46,18 @@ namespace ActPhysics
 
         // Utility funtions
         double DistanceLineToPoint(const XYZPoint& point) const;
-        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1);
-        void FitCloud(const std::vector<XYZPoint>& cloud);
-        std::shared_ptr<TPolyLine> GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512) const;
+        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1,
+                       bool correctOffset = true);
+        void FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset = true);
+        std::shared_ptr<TPolyLine>
+        GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512) const;
 
-        //Display parameters of line 
+        // Display parameters of line
         void Print() const;
 
     private:
-        void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge);
+        void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
+                                   bool correctOffset);
         inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
         std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ) const;
     };

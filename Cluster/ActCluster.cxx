@@ -3,7 +3,8 @@
 #include "ActColors.h"
 #include "ActTPCData.h"
 
-#include "Math/Point3Dfwd.h"
+#include "Math/Point3D.h"
+#include "Math/Vector3D.h"
 
 #include <algorithm>
 #include <iostream>
@@ -107,7 +108,8 @@ ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInXRange(doubl
     int count {};
     for(const auto& voxel : fVoxels)
     {
-        const auto& pos {voxel.GetPosition()};
+        auto pos {voxel.GetPosition()};
+        pos += ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}; // add always 0.5 to be in center of bin
         bool condX {(xmin <= pos.X()) && (pos.X() <= xbreak)};
         if(condX)
         {
