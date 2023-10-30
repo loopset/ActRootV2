@@ -3,6 +3,7 @@
 
 #include "TMath.h"
 #include <algorithm>
+#include <cmath>
 #include <cstddef>
 #include <iostream>
 #include <iterator>
@@ -137,6 +138,13 @@ namespace ActCluster
             // Sort vector (lower intervals at beginning)
             std::sort(fMap[key].begin(), fMap[key].end());
         }
+        void BuildFromMap(const std::map<T, std::set<T>>& map, int scaling = 1)
+        {
+            for(const auto& [key, set] : map)
+            {
+                BuildFromSet(key, set, scaling);
+            }
+        }
         T GetMaximumSeparation(T key)
         {
             T max {};
@@ -249,6 +257,20 @@ namespace ActCluster
                 for(const auto& val : vec)
                     std::cout << "  " << val << '\n';
             }
+        }
+        Interval<T> GetFront()
+        {
+            if(fMap.begin() != fMap.end())
+                return fMap.begin()->second.front();
+            else
+             return {};
+        }
+        Interval<T> GetBack()
+        {
+            if(fMap.rbegin() != fMap.rend())
+                return fMap.rbegin()->second.front();
+            else
+             return {};
         }
     };
 

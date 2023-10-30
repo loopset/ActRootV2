@@ -109,7 +109,6 @@ ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInXRange(doubl
     for(const auto& voxel : fVoxels)
     {
         auto pos {voxel.GetPosition()};
-        pos += ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}; // add always 0.5 to be in center of bin
         bool condX {(xmin <= pos.X()) && (pos.X() <= xbreak)};
         if(condX)
         {

@@ -67,6 +67,11 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fBeamWindowZ = mb->GetDouble("BeamWindowZ");
     if(mb->CheckTokenExists("BreakLengthThreshold"))
         fBreakLengthThres = mb->GetInt("BreakLengthThreshold");
+    // Parameters to break multitracks
+    if(mb->CheckTokenExists("EnableBreakMultiTracks"))
+        fEnableBreakMultiTracks = mb->GetBool("EnableBreakMultiTracks");
+    if(mb->CheckTokenExists("BeamWindowScaling"))
+        fBeamWindowScaling = mb->GetDouble("BeamWindowScaling");
     // Parameters of cleaning of pileup
     if(mb->CheckTokenExists("EnableCleanPileUp"))
         fEnableCleanPileUp = mb->GetBool("EnableCleanPileUp");
@@ -125,16 +130,19 @@ void ActCluster::MultiStep::Run()
     // Set order of algorithms here, and whether they run or not
     if(fEnableCleanPileUp)
         CleanPileup();
-    if(fEnableBreakMultiBeam)
-        BreakBeamClusters();
-    if(fEnableMerge)
-        MergeSimilarTracks();
     if(fEnableCleanZs)
         CleanZs();
+    if(fEnableBreakMultiBeam)
+    {
+        BreakBeamClusters();
+        if(fEnableBreakMultiTracks)
+            BreakTrackClusters(); // this method is dependent on the previous!
+    }
+    if(fEnableMerge)
+        MergeSimilarTracks();
     if(fEnableCleanDeltas)
         CleanDeltas();
     ResetIndex();
-    // FrontierMatching();
 }
 
 void ActCluster::MultiStep::CleanZs()
@@ -232,63 +240,140 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
 void ActCluster::MultiStep::BreakBeamClusters()
 {
     std::vector<ActCluster::Cluster> toAppend {};
-    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    for(auto it = fClusters->begin(); it != fClusters->end();)
     {
         // 1-> Check whether we meet conditions to execute this
-        if(it->GetLine().GetChi2() < fChi2Threshold)
+        bool isBadFit {it->GetLine().GetChi2() > fChi2Threshold};
+        auto [xmin, xmax] {it->GetXRange()};
+        bool hasMinXExtent {fMinSpanX > (xmax - xmin)};
+        if(!isBadFit && !hasMinXExtent)
+        {
+            it++;
             continue;
-        std::cout << BOLDGREEN << "Original Chi2 = " << it->GetLine().GetChi2() << '\n';
-        // 2-> Check cluster has enough X extent
-        auto [xmin, xmax] = it->GetXRange();
-        if(fMinSpanX > (xmax - xmin))
-            continue;
-        // 2-> Calculate gravity point in region
-        auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
-        // Return if it is nan
-        if(std::isnan(gravity.X()) || std::isnan(gravity.Y()) || std::isnan(gravity.Z()))
-            continue;
-        auto res {DetermineBreakPoint(it)};
-        auto bp {std::get<0>(res)};
-        auto autoWY {std::get<1>(res)};
-        auto autoWZ {std::get<2>(res)};
-        std::cout << "Break point = " << bp << '\n';
-        bool useBreakingPoint {bp.X() > (xmin + fLengthXToBreak)};
-        std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
-        std::cout << BOLDGREEN << "Running for cluster " << it->GetClusterID() << '\n';
-        std::cout << BOLDRED << "Gravity = " << gravity << '\n';
-        // 3->Modify original cluster: move non-beam voxels outside to
-        //  be clusterized independently
-        auto& refToVoxels {it->GetRefToVoxels()};
-        std::cout << "Original size = " << refToVoxels.size() << '\n';
-        auto toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),
-                                    [&](const ActRoot::Voxel& voxel)
-                                    {
-                                        const auto& pos {voxel.GetPosition()};
-                                        if(useBreakingPoint)
-                                            return AutoIsInBeam(pos, gravity, (double)bp.X(), autoWY, autoWZ);
-                                        else
-                                            return ManualIsInBeam(pos, gravity);
-                                    })};
-        // Create vector to move to
-        std::vector<ActRoot::Voxel> notBeam {};
-        std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));
-        refToVoxels.erase(toMove, refToVoxels.end());
-        std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
-        std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
-        // ReFit remaining voxels!
-        it->ReFit();
-        // Reset ranges
-        it->ReFillSets();
-        // Set it is beam-like so do not merge
-        it->SetBeamLike(true);
-        // 4-> Run cluster algorithm again
-        std::vector<ActCluster::Cluster> newClusters;
-        if(fFitNotBeam)
-            newClusters = fClimb->Run(notBeam);
-        // Move to vector
-        std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+        }
+        else
+        {
+            // 2-> Compute gravity point
+            auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
+            // 3-> PRELIMINARY: experimental method to get finer breaking point (a sort of preliminary reaction point)
+            // based on cluster topology
+            auto preliminary {DetermineBreakPoint(it)};
+            auto bp {std::get<0>(preliminary)};     // breaking point
+            auto autoWY {std::get<1>(preliminary)}; // mean width along Y
+            auto autoWZ {std::get<2>(preliminary)}; // mean width along Z
+            bool useBreakingPoint {bp.X() >
+                                   (xmin + fLengthXToBreak)}; // since it is very preliminary, does not workk all the
+                                                              // times, fallback to default method if so
+
+            std::cout << BOLDRED << "Breaking beam cluster " << it->GetClusterID() << '\n';
+            std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
+            std::cout << "XExtent = [" << xmin << ", " << xmax << "]" << '\n';
+            std::cout << "Break point = " << bp << '\n';
+            std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
+            std::cout << "Gravity = " << gravity << '\n';
+
+            // 3->Modify original cluster: move non-beam voxels outside to
+            //  be clusterized independently
+            auto& refToVoxels {it->GetRefToVoxels()};
+            std::cout << "Original size = " << refToVoxels.size() << '\n';
+            auto toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),
+                                        [&](const ActRoot::Voxel& voxel)
+                                        {
+                                            const auto& pos {voxel.GetPosition()};
+                                            if(useBreakingPoint)
+                                                return AutoIsInBeam(pos, gravity, (double)bp.X(), autoWY, autoWZ);
+                                            else
+                                                return ManualIsInBeam(pos, gravity);
+                                        })};
+            // Create vector to move to
+            std::vector<ActRoot::Voxel> notBeam {};
+            std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));
+            refToVoxels.erase(toMove, refToVoxels.end());
+            std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
+            std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
+            // Check if satisfies minimum voxel requirement to be clusterized again
+            if(refToVoxels.size() <= fClimb->GetMinPoints())
+            {
+                // Delete remaining beam-like cluster
+                it = fClusters->erase(it);
+            }
+            else
+            {
+                // Reprocess
+                it->ReFit();
+                // Reset ranges
+                it->ReFillSets();
+                // Set it is beam-like
+                it->SetBeamLike(true);
+                // And of course, add to iterator
+                it++;
+            }
+            // 4-> Run cluster algorithm again (if asked... should delete this flag)
+            std::vector<ActCluster::Cluster> newClusters;
+            if(fFitNotBeam)
+                newClusters = fClimb->Run(notBeam);
+            // Move to vector
+            std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+        }
     }
     // Append clusters to original TPCData
+    std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*fClusters));
+}
+
+void ActCluster::MultiStep::BreakTrackClusters()
+{
+    std::vector<ActCluster::Cluster> toAppend {};
+    for(auto it = fClusters->begin(); it != fClusters->end();)
+    {
+        // 1-> Check whether cluster needs breaking
+        bool isBadFit {it->GetLine().GetChi2() > fChi2Threshold};
+        if(!isBadFit)
+        {
+            it++;
+            continue;
+        }
+        else
+        {
+            // 2-> Get gravity point to break based on previous BreakBeamClusters
+            XYZPoint gravity {};
+            for(auto in = fClusters->begin(); in != fClusters->end(); in++)
+                if(in->GetIsBeamLike())
+                    gravity = in->GetGravityPointInXRange(fLengthXToBreak);
+            std::cout << BOLDCYAN << "Breaking track cluster" << '\n';
+            std::cout << "New gravity : " << gravity << '\n';
+            // 3-> Identify voxels to move
+            auto& refVoxels {it->GetRefToVoxels()};
+            std::cout << "Init size = " << refVoxels.size() << '\n';
+            auto toMove {std::partition(refVoxels.begin(), refVoxels.end(),
+                                        [&](const ActRoot::Voxel& voxel)
+                                        {
+                                            const auto& pos {voxel.GetPosition()};
+                                            return ManualIsInBeam(pos, gravity, fBeamWindowScaling);
+                                        })};
+            // 4-> Move
+            std::vector<ActRoot::Voxel> breakable {};
+            std::move(toMove, refVoxels.end(), std::back_inserter(breakable));
+            refVoxels.erase(toMove, refVoxels.end());
+            // 5-> Reprocess or delete if minimum number of points criterium is not met
+            if(refVoxels.size() <= fClimb->GetMinPoints())
+            {
+                it = fClusters->erase(it);
+            }
+            else
+            {
+                it->ReFit();
+                it->ReFillSets();
+                it++;
+            }
+            //  5-> Re cluster
+            auto newClusters {fClimb->Run(breakable)};
+            std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+            // Set not to merge these new ones
+            for(auto& ncl : newClusters)
+                ncl.SetToMerge(false);
+        }
+    }
+    // Write to vector of clusters
     std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*fClusters));
 }
 
@@ -304,8 +389,8 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             auto out {fClusters->begin() + i};
             auto in {fClusters->begin() + j};
 
-            // If any of them is beam-like, do not merge
-            if(out->GetIsBeamLike() || in->GetIsBeamLike())
+            // If any of them is set not to merge, do not do that :)
+            if(!out->GetToMerge() || !in->GetToMerge())
                 continue;
 
             // 1-> Compare by distance from gravity point to line!
@@ -353,10 +438,10 @@ void ActCluster::MultiStep::MergeSimilarTracks()
     }
 }
 
-bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity)
+bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
 {
-    bool condY {(gravity.Y() - fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + fBeamWindowY)};
-    bool condZ {(gravity.Z() - fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + fBeamWindowZ)};
+    bool condY {(gravity.Y() - scale * fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + scale * fBeamWindowY)};
+    bool condZ {(gravity.Z() - scale * fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + scale * fBeamWindowZ)};
     return condY && condZ;
 }
 
@@ -401,6 +486,11 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> LengthXToBreak   : " << fLengthXToBreak << '\n';
             std::cout << "-> BeamWindowY      : " << fBeamWindowY << '\n';
             std::cout << "-> BeamWindowZ      : " << fBeamWindowZ << '\n';
+            std::cout << "-----------------------" << '\n';
+        }
+        if(fEnableBreakMultiTracks)
+        {
+            std::cout << "-> BeamWindowScale  : " << fBeamWindowScaling << '\n';
             std::cout << "-----------------------" << '\n';
         }
         if(fEnableMerge)

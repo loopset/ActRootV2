@@ -47,6 +47,9 @@ namespace ActCluster
         double fBeamWindowY;
         double fBeamWindowZ;
         int fBreakLengthThres;
+        // 1.1-> Break multitrack clusters
+        bool fEnableBreakMultiTracks;
+        double fBeamWindowScaling;
         // 2-> Clean pileup of beams
         bool fEnableCleanPileUp;
         double fPileUpXPercent;
@@ -89,11 +92,13 @@ namespace ActCluster
         void CleanDeltas();
         // Break multibeam events
         void BreakBeamClusters();
+        // Break multitrack events
+        void BreakTrackClusters();
         // Merge quasialigned tracks which got broken due to non-continuity
         void MergeSimilarTracks();
 
     private:
-        bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity);
+        bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale = 1);
         template<typename T>
         bool AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T meanWidthY, T meanWidthZ, T offset = 2);
         std::tuple<XYZPoint, double, double> DetermineBreakPoint(ItType it);

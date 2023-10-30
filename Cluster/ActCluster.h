@@ -30,6 +30,7 @@ namespace ActCluster
         std::map<int, std::set<int>> fXZMap {};
         int fClusterID {};
         bool fIsBeamLike {};
+        bool fToMerge {true};
 
     public:
         Cluster() = default;
@@ -44,11 +45,13 @@ namespace ActCluster
         int GetSizeOfVoxels() const { return fVoxels.size(); }
         int GetClusterID() const { return fClusterID; }
         bool GetIsBeamLike() const { return fIsBeamLike; }
+        bool GetToMerge() const { return fToMerge; }
 
         void SetLine(const ActPhysics::Line& line) { fLine = line; }
         void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
         void SetClusterID(int id) { fClusterID = id; }
         void SetBeamLike(bool isBeam) { fIsBeamLike = isBeam; }
+        void SetToMerge(bool toMerge) { fToMerge = toMerge; }
 
         // Adders of voxels
         void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back
@@ -59,8 +62,8 @@ namespace ActCluster
         std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
         std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
         const std::map<float, int>& GetYMap() const { return fYMap; }
-        const std::map<int, std::set<int>> GetXYMap() const { return fXYMap; };
-        const std::map<int, std::set<int>> GetXZMap() const { return fXZMap; };
+        const std::map<int, std::set<int>>& GetXYMap() const { return fXYMap; };
+        const std::map<int, std::set<int>>& GetXZMap() const { return fXZMap; };
 
         XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
                                          double zmax = -1);
