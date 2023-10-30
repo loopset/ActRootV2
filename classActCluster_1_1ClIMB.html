@@ -321,7 +321,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">fMinPoints</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">fMinPoints</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -489,10 +489,10 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        {</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keyword">auto</span> gen1 {<a class="code" href="classActCluster_1_1ClIMB.html#a209f8ca654a76236ea7b6199efb462b2">ScanNeighborhood</a>(gen0)};</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="comment">//Check no indexes are repeated</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g0 : gen0)</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g1 : gen1)</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                    <span class="keywordflow">if</span>(g1 == g0)</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;gen0 == gen1 at some point&quot;</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="comment">// for(auto&amp; g0 : gen0)</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="comment">//     for(auto&amp; g1 : gen1)</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="comment">//         if(g1 == g0)</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">//             throw std::runtime_error(&quot;gen0 == gen1 at some point&quot;);</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="comment">//Push back voxels and indexes</span></div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; index : gen1)</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            {</div>
@@ -521,7 +521,7 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassActCluster_1_1ClIMB_html_a3ea0db415bc4f1c65b49c6e3bec78fdb"><div class="ttname"><a href="classActCluster_1_1ClIMB.html#a3ea0db415bc4f1c65b49c6e3bec78fdb">ActCluster::ClIMB::FillMatrix</a></div><div class="ttdeci">void FillMatrix()</div><div class="ttdef"><b>Definition:</b> ActClIMB.cxx:63</div></div>
 <div class="ttc" id="aclassActCluster_1_1ClIMB_html_acd37c415d15875fbe07a08e3375051d8"><div class="ttname"><a href="classActCluster_1_1ClIMB.html#acd37c415d15875fbe07a08e3375051d8">ActCluster::ClIMB::SampleSeed</a></div><div class="ttdeci">int SampleSeed()</div><div class="ttdef"><b>Definition:</b> ActClIMB.cxx:87</div></div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html"><div class="ttname"><a href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:18</div></div>
-<div class="ttc" id="aclassActCluster_1_1Cluster_html_acb731f5307cb4c81b46ba61d20026360"><div class="ttname"><a href="classActCluster_1_1Cluster.html#acb731f5307cb4c81b46ba61d20026360">ActCluster::Cluster::AddVoxel</a></div><div class="ttdeci">void AddVoxel(const ActRoot::Voxel &amp;voxel)</div><div class="ttdef"><b>Definition:</b> ActCluster.cxx:56</div></div>
+<div class="ttc" id="aclassActCluster_1_1Cluster_html_acb731f5307cb4c81b46ba61d20026360"><div class="ttname"><a href="classActCluster_1_1Cluster.html#acb731f5307cb4c81b46ba61d20026360">ActCluster::Cluster::AddVoxel</a></div><div class="ttdeci">void AddVoxel(const ActRoot::Voxel &amp;voxel)</div><div class="ttdef"><b>Definition:</b> ActCluster.cxx:57</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -638,7 +638,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{<a class="code" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">fMinPoints</a> = minPoints;}</div>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{ <a class="code" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">fMinPoints</a> = minPoints; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -665,7 +665,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{<a class="code" href="classActCluster_1_1ClIMB.html#a7384bf1eb5304e4fecdbfd56d4fcc348">fTPC</a> = tpc; <a class="code" href="classActCluster_1_1ClIMB.html#aac285ea11b2d32e969e800d7ef3e7555">InitMatrix</a>();}</div>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classActCluster_1_1ClIMB.html#a7384bf1eb5304e4fecdbfd56d4fcc348">fTPC</a> = tpc;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classActCluster_1_1ClIMB.html#aac285ea11b2d32e969e800d7ef3e7555">InitMatrix</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>

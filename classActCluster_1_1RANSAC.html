@@ -81,8 +81,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aaec7e50feeaa2de591c16aaf3d02e6f2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#aaec7e50feeaa2de591c16aaf3d02e6f2">XYZPoint</a> = ROOT::Math::XYZPointF</td></tr>
-<tr class="separator:aaec7e50feeaa2de591c16aaf3d02e6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76116bdcee6d6a705a370cadca80af28"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1RANSAC.html#a76116bdcee6d6a705a370cadca80af28">XYZPoint</a> = ROOT::Math::XYZPoint</td></tr>
+<tr class="separator:a76116bdcee6d6a705a370cadca80af28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -137,14 +137,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a8e380d8326045be8e764db2b753ad099"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aaec7e50feeaa2de591c16aaf3d02e6f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaec7e50feeaa2de591c16aaf3d02e6f2">&#9670;&nbsp;</a></span>XYZPoint</h2>
+<a id="a76116bdcee6d6a705a370cadca80af28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76116bdcee6d6a705a370cadca80af28">&#9670;&nbsp;</a></span>XYZPoint</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classActCluster_1_1RANSAC.html#aaec7e50feeaa2de591c16aaf3d02e6f2">ActCluster::RANSAC::XYZPoint</a> =  ROOT::Math::XYZPointF</td>
+          <td class="memname">using <a class="el" href="classActCluster_1_1RANSAC.html#a76116bdcee6d6a705a370cadca80af28">ActCluster::RANSAC::XYZPoint</a> =  ROOT::Math::XYZPoint</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -374,15 +374,15 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classActCluster_1_1RANSAC.html#a8e380d8326045be8e764db2b753ad099">fUseLmeds</a>)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">double</span> weight {TMath::Median(verrors.size(), &amp;(verrors[0]))};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        line.<a class="code" href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">SetChi2</a>(weight / ninliers);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        line.<a class="code" href="classActPhysics_1_1Line.html#a49e4276e776c7d9451ef824e4885dac1">SetChi2</a>(weight / ninliers);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        line.<a class="code" href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">SetChi2</a>(1. / ninliers);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        line.<a class="code" href="classActPhysics_1_1Line.html#a49e4276e776c7d9451ef824e4885dac1">SetChi2</a>(1. / ninliers);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> ninliers;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
 <div class="ttc" id="aclassActCluster_1_1RANSAC_html_a8e380d8326045be8e764db2b753ad099"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a8e380d8326045be8e764db2b753ad099">ActCluster::RANSAC::fUseLmeds</a></div><div class="ttdeci">bool fUseLmeds</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:27</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a04ee2a39a2e99782b8816e285c6f203a"><div class="ttname"><a href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">ActPhysics::Line::SetChi2</a></div><div class="ttdeci">void SetChi2(float chi2)</div><div class="ttdef"><b>Definition:</b> ActLine.h:45</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html_a3896b73c4d69e8654786c2f2686500dc"><div class="ttname"><a href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">ActPhysics::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPoint &amp;point) const</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:28</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a49e4276e776c7d9451ef824e4885dac1"><div class="ttname"><a href="classActPhysics_1_1Line.html#a49e4276e776c7d9451ef824e4885dac1">ActPhysics::Line::SetChi2</a></div><div class="ttdeci">void SetChi2(double chi2)</div><div class="ttdef"><b>Definition:</b> ActLine.h:45</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -600,7 +600,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">// Build set to compare lines</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">auto</span> lambdaCompare = [](<span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; a, <span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; b) { <span class="keywordflow">return</span> a.<a class="code" href="classActPhysics_1_1Line.html#aabb767b747c1f7ce6c27e56cd49fb696">GetChi2</a>() &lt; b.GetChi2(); };</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">auto</span> lambdaCompare = [](<span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; a, <span class="keyword">const</span> <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>&amp; b) { <span class="keywordflow">return</span> a.<a class="code" href="classActPhysics_1_1Line.html#a94ff5332a2f9f11342d6bca988a9fcc6">GetChi2</a>() &lt; b.GetChi2(); };</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    std::set&lt;<a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a>, decltype(lambdaCompare)&gt; sortedLines(lambdaCompare);</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">// 1-&gt; Run for fIterations</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classActCluster_1_1RANSAC.html#a56172640121c4052c06e53346e030bad">fIterations</a>; i++)</div>
@@ -637,7 +637,7 @@ template&lt;typename T &gt; </div>
 <div class="ttc" id="aclassActCluster_1_1RANSAC_html_a7e9c03a16147800505bcd7610f4f4c63"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#a7e9c03a16147800505bcd7610f4f4c63">ActCluster::RANSAC::SampleLine</a></div><div class="ttdeci">ActPhysics::Line SampleLine(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.cxx:128</div></div>
 <div class="ttc" id="aclassActCluster_1_1RANSAC_html_ac0cf583f53870da9bf75a8aba5c118ef"><div class="ttname"><a href="classActCluster_1_1RANSAC.html#ac0cf583f53870da9bf75a8aba5c118ef">ActCluster::RANSAC::GetNInliers</a></div><div class="ttdeci">int GetNInliers(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, ActPhysics::Line &amp;line)</div><div class="ttdef"><b>Definition:</b> ActRANSAC.cxx:62</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:18</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_aabb767b747c1f7ce6c27e56cd49fb696"><div class="ttname"><a href="classActPhysics_1_1Line.html#aabb767b747c1f7ce6c27e56cd49fb696">ActPhysics::Line::GetChi2</a></div><div class="ttdeci">float GetChi2() const</div><div class="ttdef"><b>Definition:</b> ActLine.h:39</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a94ff5332a2f9f11342d6bca988a9fcc6"><div class="ttname"><a href="classActPhysics_1_1Line.html#a94ff5332a2f9f11342d6bca988a9fcc6">ActPhysics::Line::GetChi2</a></div><div class="ttdeci">double GetChi2() const</div><div class="ttdef"><b>Definition:</b> ActLine.h:39</div></div>
 </div><!-- fragment -->
 </div>
 </div>
