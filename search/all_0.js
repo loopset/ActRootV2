@@ -108,6 +108,6 @@ var searchData=
   ['applystragglinginmaterialtorleft_105',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
   ['applythreshold_106',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
   ['attachbintocluster_107',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['autoisinbeam_108',['AutoIsInBeam',['../classActCluster_1_1MultiStep.html#af9f6cc4dc7a9ee09225c0fd2fc333ad0',1,'ActCluster::MultiStep']]],
+  ['autoisinbeam_108',['AutoIsInBeam',['../classActCluster_1_1MultiStep.html#a75fe12b08637da2587726f3298fe2d44',1,'ActCluster::MultiStep']]],
   ['constants_109',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
 ];
