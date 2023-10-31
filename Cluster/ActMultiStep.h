@@ -11,6 +11,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 #include <tuple>
 
@@ -96,6 +97,8 @@ namespace ActCluster
         void BreakTrackClusters();
         // Merge quasialigned tracks which got broken due to non-continuity
         void MergeSimilarTracks();
+        // Find Reaction Point if it exists
+        void FindReactionPoint();
 
     private:
         bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale = 1);
@@ -105,6 +108,8 @@ namespace ActCluster
         void ResetIndex();
         void PrintStep() const;
         void DetermineBeamLikes();
+        // Using matrix calculus, returns two closest point between two lines in 3D
+        std::tuple<XYZPoint, XYZPoint, double> ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB);
     };
 } // namespace ActCluster
 

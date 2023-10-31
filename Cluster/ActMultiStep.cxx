@@ -11,6 +11,9 @@
 #include "TEnv.h"
 #include "TMath.h"
 #include "TMathBase.h"
+#include "TMatrixD.h"
+#include "TMatrixDfwd.h"
+#include "TMatrixF.h"
 #include "TSystem.h"
 
 #include "Math/Point3Dfwd.h"
@@ -24,8 +27,11 @@
 #include <ios>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <set>
 #include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
 
 void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
@@ -138,11 +144,14 @@ void ActCluster::MultiStep::Run()
         if(fEnableBreakMultiTracks)
             BreakTrackClusters(); // this method is dependent on the previous!
     }
+    ResetIndex();
     if(fEnableMerge)
         MergeSimilarTracks();
     if(fEnableCleanDeltas)
         CleanDeltas();
     ResetIndex();
+    // Preliminary: find reaction point
+    FindReactionPoint();
 }
 
 void ActCluster::MultiStep::CleanZs()
@@ -216,23 +225,23 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
         ivsY.BuildFromSet(x, yset);
         ivsZ.BuildFromSet(x, xzMap.at(x), fTPC->GetREBINZ());
     }
-
-    std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
-    ivsY.Print();
-    std::cout << " ==== Z ==== " << '\n';
-    ivsZ.Print();
-
+    //
+    // std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
+    // ivsY.Print();
+    // std::cout << " ==== Z ==== " << '\n';
+    // ivsZ.Print();
+    //
     // Ranges
     auto [xmin, xmax] {it->GetXRange()};
     auto breakY {ivsY.GetKeyAtLength(fBreakLengthThres, 4)};
-    std::cout << "X with Y = " << breakY << '\n';
+    // std::cout << "X with Y = " << breakY << '\n';
     auto widthY {ivsY.GetMeanSizeInRange(xmin, breakY)};
-    std::cout << "Width Y = " << widthY << '\n';
+    // std::cout << "Width Y = " << widthY << '\n';
     // Widths
     auto breakZ {ivsZ.GetKeyAtLength(fBreakLengthThres, 4)};
-    std::cout << "X with Z = " << breakZ << '\n';
+    // std::cout << "X with Z = " << breakZ << '\n';
     auto widthZ {ivsZ.GetMeanSizeInRange(xmin, breakZ)};
-    std::cout << "Width Z = " << widthZ << '\n';
+    // std::cout << "Width Z = " << widthZ << '\n';
 
     return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ * fTPC->GetREBINZ()};
 }
@@ -258,12 +267,11 @@ void ActCluster::MultiStep::BreakBeamClusters()
             // 3-> PRELIMINARY: experimental method to get finer breaking point (a sort of preliminary reaction point)
             // based on cluster topology
             auto preliminary {DetermineBreakPoint(it)};
-            auto bp {std::get<0>(preliminary)};     // breaking point
-            auto autoWY {std::get<1>(preliminary)}; // mean width along Y
-            auto autoWZ {std::get<2>(preliminary)}; // mean width along Z
-            bool useBreakingPoint {bp.X() >
-                                   (xmin + fLengthXToBreak)}; // since it is very preliminary, does not workk all the
-                                                              // times, fallback to default method if so
+            auto bp {std::get<0>(preliminary)};                  // breaking point
+            auto autoWY {std::get<1>(preliminary)};              // mean width along Y
+            auto autoWZ {std::get<2>(preliminary)};              // mean width along Z
+            bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all the
+                                                                 // times, fallback to default method if so
 
             std::cout << BOLDRED << "Breaking beam cluster " << it->GetClusterID() << '\n';
             std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
@@ -340,7 +348,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
                 if(in->GetIsBeamLike())
                     gravity = in->GetGravityPointInXRange(fLengthXToBreak);
             std::cout << BOLDCYAN << "Breaking track cluster" << '\n';
-            std::cout << "New gravity : " << gravity << '\n';
+            std::cout << "New gravity : " << gravity << RESET << '\n';
             // 3-> Identify voxels to move
             auto& refVoxels {it->GetRefToVoxels()};
             std::cout << "Init size = " << refVoxels.size() << '\n';
@@ -379,11 +387,14 @@ void ActCluster::MultiStep::BreakTrackClusters()
 
 void ActCluster::MultiStep::MergeSimilarTracks()
 {
-    for(size_t i = 0; i < fClusters->size(); i++)
+    std::set<int, std::greater<int>> toDelete {};
+    for(size_t i = 0, isize = fClusters->size(); i < isize; i++)
     {
-        for(size_t j = 0; j < fClusters->size(); j++)
+        for(size_t j = 0, jsize = fClusters->size(); j < jsize; j++)
         {
-            if(i == j) // exclude comparison of same cluster
+            bool isIinSet {toDelete.find(i) != toDelete.end()};
+            bool isJinSet {toDelete.find(j) != toDelete.end()};
+            if(i == j || isIinSet || isJinSet) // exclude comparison of same cluster and other already to be deleted
                 continue;
             // Get clusters as iterators
             auto out {fClusters->begin() + i};
@@ -430,12 +441,15 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                     // Refit and recompute ranges
                     out->ReFit();
                     out->ReFillSets();
-                    // Erase!
-                    fClusters->erase(in);
+                    // Mark to delete afterwards!
+                    toDelete.insert(j);
                 }
             }
         }
     }
+    // Indeed delete
+    for(const auto& idx : toDelete) // toDelete is sorted in greater order
+        fClusters->erase(fClusters->begin() + idx);
 }
 
 bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
@@ -468,6 +482,76 @@ void ActCluster::MultiStep::DetermineBeamLikes()
         bool isAlongX {TMath::Abs(uDir.X()) >= 0.92};
         if(isInEntrance && isAlongX)
             it->SetBeamLike(true);
+    }
+}
+
+std::tuple<ActCluster::MultiStep::XYZPoint, ActCluster::MultiStep::XYZPoint, double>
+ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB)
+{
+    // Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866
+    // 1-> Normalize all directions
+    vA = vA.Unit();
+    vB = vB.Unit();
+    // 2-> Get cross product and normalize it
+    auto vC {vB.Cross(vA)};
+    vC = vC.Unit();
+    // 3-> Matrices to solve system of equations in Math StackExchange
+    TMatrixD left {3, 3}; // 3x3 matrix with double precision
+    // Fill left matrix with columns as each ABC vector
+    XYZVector vecs[3] {vA, -vB, vC};
+    for(int col = 0; col < 3; col++)
+    {
+        double components[3] {};
+        vecs[col].GetCoordinates(components);
+        for(int row = 0; row < 3; row++)
+            left[row][col] = components[row];
+    }
+    TMatrixD right {3, 1};
+    auto diff {pB - pA};
+    double components[3] {};
+    diff.GetCoordinates(components);
+    right.SetMatrixArray(components);
+    // 4-> Invert left to solve system
+    TMatrixD invLeft {TMatrixD::kInverted, left};
+    // 5-> Solve system of linear eqs
+    auto res {TMatrixD(invLeft, TMatrixD::kMult, right)};
+    // 6-> Return results {point in A, point in B, distance AB}
+    return {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};
+}
+
+void ActCluster::MultiStep::FindReactionPoint()
+{
+    // Explanation: distance between clusters in pair <i, j>, storing RP as 3rd value
+    typedef std::tuple<double, std::pair<int, int>, XYZPoint> SetValue;
+    // Build comparator func
+    auto comp {[](const SetValue& left, const SetValue& right) { return std::get<0>(left) < std::get<0>(right); }};
+    // Declare set
+    std::set<SetValue, decltype(comp)> set {comp};
+    // Run
+    for(int i = 0, size = fClusters->size(); i < size; i++)
+    {
+        for(int j = i + 1; j < size; j++)
+        {
+            // Get clusters as iterators
+            auto out {fClusters->begin() + i};
+            auto in {fClusters->begin() + j};
+
+            // Run function
+            auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
+                                               in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+            XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+            // we indeed confirmed that distance is correctly calculated in ComputeRPin3D
+            // auto manual {TMath::Sqrt(TMath::Power(pA.X() - pB.X(), 2) + TMath::Power(pA.Y() - pB.Y(), 2) +
+            // TMath::Power(pA.Z() - pB.Z(), 2))}; std::cout<<"Manual dist = "<<manual<<'\n'; std::cout<<"Auto dist = "<<dist<<'\n';
+            set.insert({dist, {i, j}, rp});
+        }
+    }
+    // Print
+    for(auto it = set.begin(); it != set.end(); it++)
+    {
+        std::cout << BOLDYELLOW << "<i,j> : <" << std::get<1>(*it).first << ", " << std::get<1>(*it).second << ">"
+                  << '\n';
+        std::cout << "dist : " << std::get<0>(*it) << " with RP : " << std::get<2>(*it) << RESET << '\n';
     }
 }
 
