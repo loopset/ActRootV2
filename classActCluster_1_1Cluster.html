@@ -447,7 +447,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos {voxel.<a class="code" href="classActRoot_1_1Voxel.html#a3f48899d03859fd3ca92d179d73f1615">GetPosition</a>()};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos {voxel.<a class="code" href="classActRoot_1_1Voxel.html#a294dfb5c1b1022731ee2e30e2530b9c8">GetPosition</a>()};</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a6d6244b6ece0469087fdc2048d577db6">fXSet</a>.insert(pos.X());</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a9d66adbb378df05d3d0c570e8ffac082">fYSet</a>.insert(pos.Y());</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#ad7caf870997130e4495e153ae85f711f">fZSet</a>.insert(pos.Z());</div>
@@ -456,7 +456,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a89b40230d12867ffb52e7542d27b1f25">fXYMap</a>[(int)pos.X()].insert((<span class="keywordtype">int</span>)pos.Y());</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#afd4c3257c4dd70588c2a9192b7b88f93">fXZMap</a>[(int)pos.X()].insert((<span class="keywordtype">int</span>)pos.Z());</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1Voxel_html_a3f48899d03859fd3ca92d179d73f1615"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a3f48899d03859fd3ca92d179d73f1615">ActRoot::Voxel::GetPosition</a></div><div class="ttdeci">const XYZPointI &amp; GetPosition() const</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:53</div></div>
+<div class="ttc" id="aclassActRoot_1_1Voxel_html_a294dfb5c1b1022731ee2e30e2530b9c8"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a294dfb5c1b1022731ee2e30e2530b9c8">ActRoot::Voxel::GetPosition</a></div><div class="ttdeci">const XYZPoint &amp; GetPosition() const</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:48</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1003,7 +1003,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>.<a class="code" href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">FitVoxels</a>(<a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a275d0a3f2233991694375c993f6e3de4"><div class="ttname"><a href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:38</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a275d0a3f2233991694375c993f6e3de4"><div class="ttname"><a href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>

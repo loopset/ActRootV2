@@ -357,7 +357,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a> = {};</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    }</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:75</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:59</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a09aec05a553ff01429d14cc35a91f2d9"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a09aec05a553ff01429d14cc35a91f2d9">ActRoot::TPCDetector::fRansac</a></div><div class="ttdeci">std::shared_ptr&lt; ActCluster::RANSAC &gt; fRansac</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:72</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a207b41743c6f6cac7f8ca23869115eeb"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">ActRoot::TPCDetector::fData</a></div><div class="ttdeci">TPCData * fData</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:61</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a213d43894ec6b09ccee9a5e1d9d4cb08"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">ActRoot::TPCDetector::fPhysics</a></div><div class="ttdeci">TPCPhysics * fPhysics</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:70</div></div>
@@ -974,7 +974,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            Voxel hit {<a class="code" href="classActRoot_1_1Voxel.html#ab73471ecf80abb204023f515e8126db1">ActRoot::Voxel::XYZPointI</a>(padx, pady, padz), qcal, coas.<a class="code" href="classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b">hasSaturation</a>};</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.<a class="code" href="classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b">hasSaturation</a>};</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            <a class="code" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a>-&gt;<a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.push_back(hit);</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="comment">// push to pad matrix if enabled</span></div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classActRoot_1_1TPCDetector.html#a2844d3049d0f8a08f7f862a450603219">fCleanSaturatedVoxels</a>)</div>
@@ -988,7 +988,6 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    }</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a53245f1683330070e850291de5c3807c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">ActRoot::TPCParameters::GetREBINZ</a></div><div class="ttdeci">int GetREBINZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:48</div></div>
-<div class="ttc" id="aclassActRoot_1_1Voxel_html_ab73471ecf80abb204023f515e8126db1"><div class="ttname"><a href="classActRoot_1_1Voxel.html#ab73471ecf80abb204023f515e8126db1">ActRoot::Voxel::XYZPointI</a></div><div class="ttdeci">ROOT::Math::PositionVector3D&lt; ROOT::Math::Cartesian3D&lt; int &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; XYZPointI</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:23</div></div>
 <div class="ttc" id="aclassReducedData_html_a1d5ddd6ddc028c11e7e7c3698e22f56b"><div class="ttname"><a href="classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b">ReducedData::hasSaturation</a></div><div class="ttdeci">bool hasSaturation</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:17</div></div>
 <div class="ttc" id="aclassReducedData_html_a3178a4300890ba16016cd0e5bc3ed9eb"><div class="ttname"><a href="classReducedData.html#a3178a4300890ba16016cd0e5bc3ed9eb">ReducedData::peakheight</a></div><div class="ttdeci">std::vector&lt; float &gt; peakheight</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:18</div></div>
 <div class="ttc" id="aclassReducedData_html_a495366e7b72c0d7bd568cf2e42485f73"><div class="ttname"><a href="classReducedData.html#a495366e7b72c0d7bd568cf2e42485f73">ReducedData::peaktime</a></div><div class="ttdeci">std::vector&lt; float &gt; peaktime</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:19</div></div>
@@ -1028,7 +1027,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Error: Could not dynamic_cast to TPCData&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1TPCData_html"><div class="ttname"><a href="classActRoot_1_1TPCData.html">ActRoot::TPCData</a></div><div class="ttdef"><b>Definition:</b> ActTPCData.h:73</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html"><div class="ttname"><a href="classActRoot_1_1TPCData.html">ActRoot::TPCData</a></div><div class="ttdef"><b>Definition:</b> ActTPCData.h:57</div></div>
 </div><!-- fragment -->
 </div>
 </div>
