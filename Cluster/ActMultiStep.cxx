@@ -438,7 +438,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
     }
 }
 
-bool ActCluster::MultiStep::ManualIsInBeam(const ActRoot::Voxel::XYZPointI& pos, const XYZPoint& gravity, double scale)
+bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
 {
     bool condY {(gravity.Y() - scale * fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + scale * fBeamWindowY)};
     bool condZ {(gravity.Z() - scale * fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + scale * fBeamWindowZ)};
@@ -446,8 +446,8 @@ bool ActCluster::MultiStep::ManualIsInBeam(const ActRoot::Voxel::XYZPointI& pos,
 }
 
 template <typename T>
-bool ActCluster::MultiStep::AutoIsInBeam(const ActRoot::Voxel::XYZPointI& pos, const XYZPoint& gravity, T xBreak,
-                                         T widthY, T widthZ, T offset)
+bool ActCluster::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T widthY, T widthZ,
+                                         T offset)
 {
     bool condX {pos.X() < xBreak + offset};
     bool condY {(gravity.Y() - widthY) <= pos.Y() && pos.Y() <= (gravity.Y() + widthY)};

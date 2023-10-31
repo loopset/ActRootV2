@@ -229,7 +229,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         }
         else
         {
-            Voxel hit {ActRoot::Voxel::XYZPointI(padx, pady, padz), qcal, coas.hasSaturation};
+            Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
             fData->fVoxels.push_back(hit);
             // push to pad matrix if enabled
             if (fCleanSaturatedVoxels)

@@ -2,7 +2,7 @@
 #include <ios>
 #include <iostream>
 
-ActRoot::Voxel::Voxel(const XYZPointI& pos, float charge, bool hasSaturation)
+ActRoot::Voxel::Voxel(const XYZPoint& pos, float charge, bool hasSaturation)
     : fPosition(pos)
     , fCharge(charge)
     , fIsSaturated(hasSaturation)

@@ -65,7 +65,7 @@ int ActCluster::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, A
     std::vector<double> verrors;
     for (const auto& voxel : voxels)
     {
-        const auto& pos = voxel.GetPositionAs<float>();
+        const auto& pos = voxel.GetPosition();
         double err = line.DistanceLineToPoint(pos);
         err *= err;
         if (err < (fDistThreshold * fDistThreshold))
@@ -94,7 +94,7 @@ ActCluster::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActP
     for (auto it = remain.begin(); it != remain.end(); ++it)
     {
         // Compute error
-        double err {line.DistanceLineToPoint(it->GetPositionAs<float>())};
+        double err {line.DistanceLineToPoint(it->GetPosition())};
         bool isInLine {(err * err) < (fDistThreshold * fDistThreshold)};
 
         // In line
@@ -140,7 +140,7 @@ ActPhysics::Line ActCluster::RANSAC::SampleLine(const std::vector<ActRoot::Voxel
         }
     }
     // Build Line
-    return ActPhysics::Line(picked[0].GetPositionAs<float>(), picked[1].GetPositionAs<float>());
+    return ActPhysics::Line(picked[0].GetPosition(), picked[1].GetPosition());
 }
 
 std::vector<ActCluster::Cluster> ActCluster::RANSAC::Run(const std::vector<ActRoot::Voxel>& voxels)
