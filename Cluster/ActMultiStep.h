@@ -98,9 +98,9 @@ namespace ActCluster
         void MergeSimilarTracks();
 
     private:
-        bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale = 1);
+        bool ManualIsInBeam(const ActRoot::Voxel::XYZPointI& pos, const XYZPoint& gravity, double scale = 1);
         template<typename T>
-        bool AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T meanWidthY, T meanWidthZ, T offset = 2);
+        bool AutoIsInBeam(const ActRoot::Voxel::XYZPointI& pos, const XYZPoint& gravity, T xBreak, T meanWidthY, T meanWidthZ, T offset = 2);
         std::tuple<XYZPoint, double, double> DetermineBreakPoint(ItType it);
         void ResetIndex();
         void PrintStep() const;

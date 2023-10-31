@@ -1,6 +1,7 @@
 #include "ActLine.h"
 
 #include "ActColors.h"
+#include "ActTPCData.h"
 
 #include "TEnv.h"
 #include "TMath.h"
@@ -46,10 +47,10 @@ void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool
             if(qThreshold != -1 && !(voxel.GetCharge() > qThreshold))
                 continue;
             charge.push_back(voxel.GetCharge());
-            cloud.push_back(voxel.GetPosition());
+            cloud.push_back(voxel.GetPositionAs<float>());
         }
         else
-            cloud.push_back(voxel.GetPosition());
+            cloud.push_back(voxel.GetPositionAs<float>());
     }
     if(qWeighted)
         FitCloudWithThreshold(cloud, charge, correctOffset);
