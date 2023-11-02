@@ -246,6 +246,9 @@ $(function() {
 <li>fEnableMerge
 : <a class="el" href="classActCluster_1_1MultiStep.html#a6e87c320d63435cb56c678ffab99539c">ActCluster::MultiStep</a>
 </li>
+<li>fEnableRP
+: <a class="el" href="classActCluster_1_1MultiStep.html#acd54e0de0cee9842d16bc3517d37abdc">ActCluster::MultiStep</a>
+</li>
 <li>fEntries
 : <a class="el" href="classActRoot_1_1InputIterator.html#ab7847016791c9a0553e9b0a1801c2e46">ActRoot::InputIterator</a>
 </li>
@@ -283,6 +286,9 @@ $(function() {
 </li>
 <li>fgeo
 : <a class="el" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">ActSim::Runner</a>
+</li>
+<li>fHasValidRP
+: <a class="el" href="classActCluster_1_1Cluster.html#a0bce3fe3707445656b6a637c29266931">ActCluster::Cluster</a>
 </li>
 <li>fHasXOffset
 : <a class="el" href="structActSim_1_1SilAssembly.html#aa85e96089d736a49448612608a8f5802">ActSim::SilAssembly</a>
@@ -402,6 +408,9 @@ $(function() {
 </li>
 <li>fMap
 : <a class="el" href="classActCluster_1_1IntervalMap.html#a2c5d4ca0a233a214547d30be8db6b3db">ActCluster::IntervalMap&lt; T &gt;</a>
+</li>
+<li>fMarkerTpc
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ada094b3914a064a75e3ca5f1727742f3">ActRoot::HistogramPainter</a>
 </li>
 <li>fMass
 : <a class="el" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle</a>
@@ -553,8 +562,8 @@ $(function() {
 <li>fPhysics
 : <a class="el" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">ActRoot::TPCDetector</a>
 </li>
-<li>fPileUpXPercent
-: <a class="el" href="classActCluster_1_1MultiStep.html#ac3414106583c60df322933c01cc10c24">ActCluster::MultiStep</a>
+<li>fPileUpChangeZThreshold
+: <a class="el" href="classActCluster_1_1MultiStep.html#a4603920afe94eb383303aec601db8446">ActCluster::MultiStep</a>
 </li>
 <li>fPInitialCM
 : <a class="el" href="classActPhysics_1_1Kinematics.html#a331304ad1c6058f8d0b32f94431cfc92">ActPhysics::Kinematics</a>
@@ -591,6 +600,19 @@ $(function() {
 </li>
 <li>fREBINZ
 : <a class="el" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">ActRoot::TPCParameters</a>
+</li>
+<li>fRPDistThreshold
+: <a class="el" href="classActCluster_1_1MultiStep.html#a7bd2de555d75200d2ae0c1c352d5c705">ActCluster::MultiStep</a>
+</li>
+<li>fRPMaskXY
+: <a class="el" href="classActCluster_1_1MultiStep.html#a2fddd1eddd3b695abe71f0ef73de546b">ActCluster::MultiStep</a>
+</li>
+<li>fRPMaskZ
+: <a class="el" href="classActCluster_1_1MultiStep.html#a5d52cbcdac2787f9b8d6aa109509351a">ActCluster::MultiStep</a>
+</li>
+<li>fRPs
+: <a class="el" href="classActCluster_1_1MultiStep.html#ae2cbc7787ae02ae72e64da1b1ece6006">ActCluster::MultiStep</a>
+, <a class="el" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">ActRoot::TPCPhysics</a>
 </li>
 <li>fRunButton
 : <a class="el" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">ActRoot::EventPainter</a>
@@ -693,6 +715,9 @@ $(function() {
 <li>fTheta4Lab
 : <a class="el" href="classActPhysics_1_1Kinematics.html#aaef6d43ecd2be47820972043aa54b673">ActPhysics::Kinematics</a>
 </li>
+<li>fToDelete
+: <a class="el" href="classActCluster_1_1Cluster.html#a9cdf75be04d62c0d13781f531f84ec8e">ActCluster::Cluster</a>
+</li>
 <li>fTokens
 : <a class="el" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock</a>
 </li>
@@ -719,6 +744,9 @@ $(function() {
 <li>fTPCPhysics
 : <a class="el" href="classActRoot_1_1HistogramPainter.html#a5bbcdf23e0d35a98cc6512690cf5e6fe">ActRoot::HistogramPainter</a>
 </li>
+<li>fTrackChi2Threshold
+: <a class="el" href="classActCluster_1_1MultiStep.html#afb260f2660aaedd555ff6d8aa191a7fd">ActCluster::MultiStep</a>
+</li>
 <li>fTreeName
 : <a class="el" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">ActRoot::InputData</a>
 , <a class="el" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">ActRoot::OutputData</a>
@@ -738,6 +766,12 @@ $(function() {
 </li>
 <li>fUnitSilVols
 : <a class="el" href="classActSim_1_1Geometry.html#a44134e4efa18112e8daa85f4575e389e">ActSim::Geometry</a>
+</li>
+<li>fUnreactedMinParallelFactor
+: <a class="el" href="classActCluster_1_1MultiStep.html#a92f4377ddf009c8783cd4ed7cdc68526">ActCluster::MultiStep</a>
+</li>
+<li>fUnreactedMinPercentX
+: <a class="el" href="classActCluster_1_1MultiStep.html#a42bdd0a1c5f1a0fe9292b43162174dd5">ActCluster::MultiStep</a>
 </li>
 <li>fUseLmeds
 : <a class="el" href="classActCluster_1_1RANSAC.html#a8e380d8326045be8e764db2b753ad099">ActCluster::RANSAC</a>
