@@ -11,6 +11,7 @@
 #include "ActInputIterator.h"
 #include "ActVData.h"
 #include "TPolyLine.h"
+#include "TTree.h"
 
 #include <map>
 #include <memory>
@@ -29,6 +30,7 @@ namespace ActRoot
         std::map<int, std::shared_ptr<TH2F>> fHistTpc;
         std::map<int, std::shared_ptr<TH2F>> fHistSil;
         std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
+        std::map<int, std::shared_ptr<TPolyMarker>> fMarkerTpc;
         //Parameters of detectors
         TPCParameters fTPC;
         SilParameters fSil;
@@ -78,6 +80,7 @@ namespace ActRoot
         void FillSilHisto(int pad, const std::string& layer);
         void FillClusterHistos();
         void DrawPolyLines();
+        void DrawPolyMarkers();
         void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
     };
 }

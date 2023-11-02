@@ -7,6 +7,7 @@
 #include "Math/Vector3D.h"
 
 #include <algorithm>
+#include <ios>
 #include <iostream>
 
 ActCluster::Cluster::Cluster(int id) : fClusterID(id) {}
@@ -144,5 +145,9 @@ void ActCluster::Cluster::Print() const
     std::cout << "-> X range     : [" << xmin << " , " << xmax << "]" << '\n';
     std::cout << "-> Y range     : [" << ymin << " , " << ymax << "]" << '\n';
     std::cout << "-> Z range     : [" << zmin << " , " << zmax << "]" << '\n';
+    std::cout << "-> IsBeamLike? : " << std::boolalpha << fIsBeamLike << '\n';
+    std::cout << "-> IsToMerge?  : " << std::boolalpha << fToMerge << '\n';
+    std::cout << "-> HasValidRP? : " << std::boolalpha << fHasValidRP << '\n';
+    std::cout << "-> IsToDelete? : " << std::boolalpha << fToDelete << '\n';
     std::cout << "...................." << RESET << '\n';
 }

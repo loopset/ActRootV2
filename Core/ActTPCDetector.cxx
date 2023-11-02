@@ -299,6 +299,7 @@ void ActRoot::TPCDetector::BuildEventPhysics()
         fPhysics->fClusters = fClimb->Run(fData->fVoxels);
         // Apply MultiStep algorithm
         fMultiStep->SetClusters(&(fPhysics->fClusters));
+        fMultiStep->SetRPs(&(fPhysics->fRPs));
         fMultiStep->Run();
     }
     else

@@ -29,8 +29,10 @@ namespace ActCluster
         std::map<int, std::set<int>> fXYMap {};
         std::map<int, std::set<int>> fXZMap {};
         int fClusterID {};
-        bool fIsBeamLike {};
+        bool fIsBeamLike {false};
         bool fToMerge {true};
+        bool fToDelete {false};
+        bool fHasValidRP {false};
 
     public:
         Cluster() = default;
@@ -46,12 +48,16 @@ namespace ActCluster
         int GetClusterID() const { return fClusterID; }
         bool GetIsBeamLike() const { return fIsBeamLike; }
         bool GetToMerge() const { return fToMerge; }
+        bool GetToDelete() const { return fToDelete; }
+        bool GetHasValidRP() const { return fHasValidRP; }
 
         void SetLine(const ActPhysics::Line& line) { fLine = line; }
         void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
         void SetClusterID(int id) { fClusterID = id; }
         void SetBeamLike(bool isBeam) { fIsBeamLike = isBeam; }
         void SetToMerge(bool toMerge) { fToMerge = toMerge; }
+        void SetToDelete(bool toDelete) { fToDelete = toDelete; }
+        void SetHasValidRP(bool hasValidRP) { fHasValidRP = hasValidRP; }
 
         // Adders of voxels
         void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back

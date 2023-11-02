@@ -16,8 +16,8 @@
 #include "TMatrixF.h"
 #include "TSystem.h"
 
-#include "Math/Point3Dfwd.h"
-#include "Math/Vector3Dfwd.h"
+#include "Math/Point3D.h"
+#include "Math/Vector3D.h"
 
 #include <algorithm>
 #include <cmath>
@@ -76,13 +76,15 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // Parameters to break multitracks
     if(mb->CheckTokenExists("EnableBreakMultiTracks"))
         fEnableBreakMultiTracks = mb->GetBool("EnableBreakMultiTracks");
+    if(mb->CheckTokenExists("TrackChi2Threshold"))
+        fTrackChi2Threshold = mb->GetDouble("TrackChi2Threshold");
     if(mb->CheckTokenExists("BeamWindowScaling"))
         fBeamWindowScaling = mb->GetDouble("BeamWindowScaling");
     // Parameters of cleaning of pileup
     if(mb->CheckTokenExists("EnableCleanPileUp"))
         fEnableCleanPileUp = mb->GetBool("EnableCleanPileUp");
-    if(mb->CheckTokenExists("PileUpXPercent"))
-        fPileUpXPercent = mb->GetDouble("PileUpXPercent");
+    if(mb->CheckTokenExists("PileUpChangeZThresh"))
+        fPileUpChangeZThreshold = mb->GetDouble("PileUpChangeZThresh");
     if(mb->CheckTokenExists("BeamLowerZ"))
         fBeamLowerZ = mb->GetDouble("BeamLowerZ");
     if(mb->CheckTokenExists("BeamUpperZ"))
@@ -108,6 +110,19 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fDeltaChi2Threshold = mb->GetDouble("DeltaChi2Threshold");
     if(mb->CheckTokenExists("DeltaMaxVoxels"))
         fDeltaMaxVoxels = mb->GetDouble("DeltaMaxVoxels");
+    // Clean unreacted beam events
+    if(mb->CheckTokenExists("EnableRP"))
+        fEnableRP = mb->GetBool("EnableRP");
+    if(mb->CheckTokenExists("UnreactedMinPercentX"))
+        fUnreactedMinPercentX = mb->GetDouble("UnreactedMinPercentX");
+    if(mb->CheckTokenExists("UnreactedMinParallelFactor"))
+        fUnreactedMinParallelFactor = mb->GetDouble("UnreactedMinParallelFactor");
+    if(mb->CheckTokenExists("RPDistThreshold"))
+        fRPDistThreshold = mb->GetDouble("RPDistThreshold");
+    if(mb->CheckTokenExists("RPMaskXY"))
+        fRPMaskXY = mb->GetDouble("RPMaskXY");
+    if(mb->CheckTokenExists("RPMaskZ"))
+        fRPMaskZ = mb->GetDouble("RPMaskZ");
 }
 
 void ActCluster::MultiStep::ResetIndex()
@@ -144,14 +159,19 @@ void ActCluster::MultiStep::Run()
         if(fEnableBreakMultiTracks)
             BreakTrackClusters(); // this method is dependent on the previous!
     }
-    ResetIndex();
     if(fEnableMerge)
         MergeSimilarTracks();
     if(fEnableCleanDeltas)
         CleanDeltas();
+    // Preliminary: find reaction point and tag unreacted beam clusters
+    if(fEnableRP)
+    {
+        DetermineBeamLikes();
+        FindRP();
+        DeleteInvalidClusters();
+        DeterminePreciseRP();
+    }
     ResetIndex();
-    // Preliminary: find reaction point
-    FindReactionPoint();
 }
 
 void ActCluster::MultiStep::CleanZs()
@@ -191,20 +211,14 @@ void ActCluster::MultiStep::CleanPileup()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
-        // 1-> Eval condition of X range
-        auto [xmin, xmax] {it->GetXRange()};
-        auto range {(xmax - xmin)};
-        auto tpcRange {fTPC->GetNPADSX() - 1};
-        if(range < (tpcRange * fPileUpXPercent))
-        {
-            it++;
-            continue;
-        }
-        // 2-> If so, delete if it is outside beam region
+        // 1-> Eval condition of Z range
+        auto [zmin, zmax] {it->GetZRange()};
+        bool isConstantZ {(double)(zmin - zmax) / fTPC->GetREBINZ() <= fPileUpChangeZThreshold};
+        // std::cout << "ZRange : [" << zmin << ", " << zmax << "]" << '\n';
+        // 2-> Get condition: out of beam region
         auto zm {it->GetLine().GetPoint().Z()};
-        bool mustDelete {(zm < fBeamLowerZ) || (zm > fBeamUpperZ)};
-        // 3-> Delete if necessary
-        if(mustDelete)
+        bool isInBeamZ {fBeamLowerZ <= zm && zm <= fBeamUpperZ};
+        if(isConstantZ && !isInBeamZ)
         {
             it = fClusters->erase(it);
         }
@@ -373,12 +387,12 @@ void ActCluster::MultiStep::BreakTrackClusters()
                 it->ReFillSets();
                 it++;
             }
-            //  5-> Re cluster
+            // 5-> Re cluster
             auto newClusters {fClimb->Run(breakable)};
-            std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
             // Set not to merge these new ones
             for(auto& ncl : newClusters)
                 ncl.SetToMerge(false);
+            std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
         }
     }
     // Write to vector of clusters
@@ -455,7 +469,8 @@ void ActCluster::MultiStep::MergeSimilarTracks()
 bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
 {
     bool condY {(gravity.Y() - scale * fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + scale * fBeamWindowY)};
-    bool condZ {(gravity.Z() - scale * fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + scale * fBeamWindowZ)};
+    bool condZ {(gravity.Z() - scale * fBeamWindowZ * fTPC->GetREBINZ()) < pos.Z() &&
+                pos.Z() < (gravity.Z() + scale * fBeamWindowZ * fTPC->GetREBINZ())};
     return condY && condZ;
 }
 
@@ -471,18 +486,29 @@ bool ActCluster::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gr
 
 void ActCluster::MultiStep::DetermineBeamLikes()
 {
+    int nBeam {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
-        // Conditions to meet
-        // 1 -> XRange starts in entrance of ACTAR
+        // 1-> Check if XRange constitutes an important amount of XLength of ACTAR
         auto [xmin, xmax] {it->GetXRange()};
-        bool isInEntrance {xmin < 3};
-        // 2 -> X direction is close to 1
+        bool isLongEnough {(xmax - xmin) >= fUnreactedMinPercentX * fTPC->GetNPADSX()};
+        // 2-> Is mainly along X direction
         auto uDir {it->GetLine().GetDirection().Unit()};
-        bool isAlongX {TMath::Abs(uDir.X()) >= 0.92};
-        if(isInEntrance && isAlongX)
+        bool isAlongX {TMath::Abs(uDir.X()) >= fUnreactedMinParallelFactor};
+        // 3-> Tag it as beam-like and count
+        if(isLongEnough && isAlongX)
+        {
             it->SetBeamLike(true);
+            nBeam++;
+        }
     }
+    // Particular case in which there is only one beam cluster (RP search wont run in that case)
+    if(fClusters->size() == 1 && fClusters->begin()->GetIsBeamLike())
+        fClusters->begin()->SetToDelete(true);
+    // Print
+    std::cout << BOLDYELLOW << "==== Clean Unreacted beam ====" << '\n';
+    std::cout << "-> N beam clusters  : " << nBeam << '\n';
+    std::cout << "-> N total clusters : " << fClusters->size() << RESET << '\n';
 }
 
 std::tuple<ActCluster::MultiStep::XYZPoint, ActCluster::MultiStep::XYZPoint, double>
@@ -519,7 +545,16 @@ ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZ
     return {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};
 }
 
-void ActCluster::MultiStep::FindReactionPoint()
+bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
+{
+    // This function has to consider the 0.5 offset
+    bool isInX {0.5 <= rp.X() && rp.X() <= fTPC->GetNPADSX() + 0.5};
+    bool isInY {0.5 <= rp.Y() && rp.Y() <= fTPC->GetNPADSY() + 0.5};
+    bool isInZ {0.5 <= rp.Z() && rp.Z() <= fTPC->GetNPADSZ() + 0.5};
+    return isInX && isInY && isInZ;
+}
+
+void ActCluster::MultiStep::FindRP()
 {
     // Explanation: distance between clusters in pair <i, j>, storing RP as 3rd value
     typedef std::tuple<double, std::pair<int, int>, XYZPoint> SetValue;
@@ -530,28 +565,106 @@ void ActCluster::MultiStep::FindReactionPoint()
     // Run
     for(int i = 0, size = fClusters->size(); i < size; i++)
     {
+        // Get clusters as iterators
+        auto out {fClusters->begin() + i};
         for(int j = i + 1; j < size; j++)
         {
             // Get clusters as iterators
-            auto out {fClusters->begin() + i};
             auto in {fClusters->begin() + j};
 
             // Run function
             auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
                                                in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+            // Build RP as mean of A and B
             XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+
+            // Check that all points are valid
+            bool checkA {IsRPValid(pA)};
+            bool checkB {IsRPValid(pB)};
+            bool checkRP {IsRPValid(rp)};
+            // And finally that distance AB is bellow threshold
+            bool checkDist {dist <= fRPDistThreshold};
+            if(checkA && checkB && checkRP && checkDist)
+            {
+                set.insert({dist, {i, j}, rp});
+                // Set flag has valid RP
+                out->SetHasValidRP(true);
+                in->SetHasValidRP(true);
+            }
+            else
+            {
+                continue;
+            }
             // we indeed confirmed that distance is correctly calculated in ComputeRPin3D
             // auto manual {TMath::Sqrt(TMath::Power(pA.X() - pB.X(), 2) + TMath::Power(pA.Y() - pB.Y(), 2) +
-            // TMath::Power(pA.Z() - pB.Z(), 2))}; std::cout<<"Manual dist = "<<manual<<'\n'; std::cout<<"Auto dist = "<<dist<<'\n';
-            set.insert({dist, {i, j}, rp});
+            // TMath::Power(pA.Z() - pB.Z(), 2))}; std::cout<<"Manual dist = "<<manual<<'\n'; std::cout<<"Auto dist =
+            // "<<dist<<'\n';
         }
     }
-    // Print
-    for(auto it = set.begin(); it != set.end(); it++)
+    // Mark to delete according to whether they have valid or not RP
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
-        std::cout << BOLDYELLOW << "<i,j> : <" << std::get<1>(*it).first << ", " << std::get<1>(*it).second << ">"
-                  << '\n';
-        std::cout << "dist : " << std::get<0>(*it) << " with RP : " << std::get<2>(*it) << RESET << '\n';
+        if(!it->GetHasValidRP())
+            it->SetToDelete(true);
+    }
+    // Write to map and print, only the first one (with the best score)
+    // for(auto it = set.begin(); it != set.begin()++; it++)
+    // {
+    if(set.size() > 0)
+    {
+        // Unpack values to write
+        auto i {std::get<1>(*set.begin()).first};
+        auto j {std::get<1>(*set.begin()).second};
+        auto rp {std::get<2>(*set.begin())};
+        // Insert in map
+        fRPs->insert({{i, j}, rp});
+        // Print
+        std::cout << BOLDYELLOW << "<i,j> : <" << i << ", " << j << ">" << '\n';
+        std::cout << "dist : " << std::get<0>(*set.begin()) << " with RP : " << rp << RESET << '\n';
+    }
+    // }
+}
+
+void ActCluster::MultiStep::DeleteInvalidClusters()
+{
+    for(auto it = fClusters->begin(); it != fClusters->end();)
+    {
+        if(it->GetToDelete())
+            it = fClusters->erase(it);
+        else
+            it++;
+    }
+}
+
+
+void ActCluster::MultiStep::DeterminePreciseRP()
+{
+    // Must be executed after cleaning of invalid clusters
+    // 1-> Get best RP: the one with the lowest dist
+    const auto& rp {fRPs->begin()->second};
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    {
+        std::cout << "Chosen RP : " << rp << '\n';
+        // 2-> Create sphere-like masked zone aroung RP
+        auto& refVoxels {it->GetRefToVoxels()};
+        // And delete them
+        refVoxels.erase(
+            std::remove_if(refVoxels.begin(), refVoxels.end(),
+                           [&](const ActRoot::Voxel& voxel)
+                           {
+                               // Correct voxel by +0.5
+                               const auto& pos {voxel.GetPosition()};
+                               ROOT::Math::XYZPoint point {pos.X() + 0.5, pos.Y() + 0.5, pos.Z() + 0.5};
+                               bool condX {(rp.X() - fRPMaskXY) <= point.X() && point.X() <= (rp.X() + fRPMaskXY)};
+                               bool condY {(rp.Y() - fRPMaskXY) <= point.Y() && point.Y() <= (rp.Y() + fRPMaskXY)};
+                               bool condZ {(rp.Z() - fRPMaskZ * fTPC->GetREBINZ()) <= point.Z() &&
+                                           point.Z() <= (rp.Z() + fRPMaskZ * fTPC->GetREBINZ())};
+                               return condX && condY && condZ;
+                           }),
+            refVoxels.end());
+        // 3-> Refit them
+        it->ReFit();
+        it->ReFillSets();
     }
 }
 
@@ -585,7 +698,7 @@ void ActCluster::MultiStep::Print() const
         }
         if(fEnableCleanPileUp)
         {
-            std::cout << "-> PileUpXPercent   : " << fPileUpXPercent << '\n';
+            std::cout << "-> PileUpChangeZ    : " << fPileUpChangeZThreshold << '\n';
             std::cout << "-> BeamLowerZ       : " << fBeamLowerZ << '\n';
             std::cout << "-> BeamUpperZ       : " << fBeamUpperZ << '\n';
             std::cout << "-----------------------" << '\n';
