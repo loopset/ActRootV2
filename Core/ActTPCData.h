@@ -29,16 +29,20 @@ namespace ActRoot
         Voxel() = default;
         Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
         // Overload comparison operators
-        friend bool operator<(const Voxel& v1, const Voxel& v2) { return v1.fPosition.X() < v2.fPosition.X(); }
-        friend bool operator>(const Voxel& v1, const Voxel& v2) { return !(operator<(v2, v1)); }
+        friend bool operator<(const Voxel& v1, const Voxel& v2)
+        {
+            const auto& p1 {v1.GetPosition()};
+            const auto& p2 {v2.GetPosition()};
+            if(p1.X() != p2.X())
+                return p1.X() < p2.X();
+            if(p1.Y() != p2.Y())
+                return p1.Y() < p2.Y();
+            return p1.Z() < p2.Z();
+        }
+        friend bool operator>(const Voxel& v1, const Voxel& v2) { return operator<(v2, v1); }
         friend bool operator<=(const Voxel& v1, const Voxel& v2) { return !(operator>(v1, v2)); }
         friend bool operator>=(const Voxel& v1, const Voxel& v2) { return !(operator<(v1, v2)); }
 
-        // Voxel(const Voxel&) = default;
-        // Voxel& operator=(const Voxel&) = default;
-        // Voxel(Voxel&&) = default;
-        // Voxel& operator=(Voxel&&) = default;
-        // Voxel(int id, const XYZPoint& pos, float charge, bool hasSaturation = false);
         // Setters
         void SetPosition(const XYZPoint& pos) { fPosition = pos; }
         void SetCharge(float charge) { fCharge = charge; }

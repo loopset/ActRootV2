@@ -42,6 +42,7 @@ namespace ActCluster
 
         // Getters and setters
         const ActPhysics::Line& GetLine() const { return fLine; }
+        ActPhysics::Line& GetRefToLine() { return fLine; }
         const std::vector<ActRoot::Voxel>& GetVoxels() const { return fVoxels; }
         std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; }
         int GetSizeOfVoxels() const { return fVoxels.size(); }
@@ -64,9 +65,9 @@ namespace ActCluster
         void AddVoxel(ActRoot::Voxel&& voxel);      //! By moving in push_back
 
         // Get extents
-        std::pair<float, float> GetXRange() const { return {*fXSet.begin(), *fXSet.rbegin()}; }
-        std::pair<float, float> GetYRange() const { return {*fYSet.begin(), *fYSet.rbegin()}; }
-        std::pair<float, float> GetZRange() const { return {*fZSet.begin(), *fZSet.rbegin()}; }
+        std::pair<float, float> GetXRange() const;
+        std::pair<float, float> GetYRange() const;
+        std::pair<float, float> GetZRange() const;
         const std::map<float, int>& GetYMap() const { return fYMap; }
         const std::map<int, std::set<int>>& GetXYMap() const { return fXYMap; };
         const std::map<int, std::set<int>>& GetXZMap() const { return fXZMap; };

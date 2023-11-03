@@ -4,6 +4,7 @@
 
 #include "TEnv.h"
 #include "TMath.h"
+#include "TMathBase.h"
 #include "TPolyLine.h"
 
 #include <cmath>
@@ -25,6 +26,17 @@ ActPhysics::Line::Line(const XYZPoint& p1, const XYZPoint& p2)
     SetDirection(p1, p2);
 }
 
+void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp)
+{
+    auto dir {fPoint - rp};
+    // Set same signs in direction as the previous vector
+    // Usually used to set the direction of propagation after finding a RP
+    // TMath::Sign(a, b) returns a (fDirection) with the same sign as b (dir using rp)
+    fDirection.SetX(TMath::Sign(fDirection.X(), dir.X()));
+    fDirection.SetY(TMath::Sign(fDirection.Y(), dir.Y()));
+    fDirection.SetZ(TMath::Sign(fDirection.Z(), dir.Z()));
+}
+
 double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
 {
     auto vec = point - fPoint;
@@ -32,6 +44,13 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
     double dist2 = nD.Mag2() / fDirection.Mag2();
 
     return std::sqrt(dist2);
+}
+
+ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoint& point) const 
+{
+    auto vToPoint {point - fPoint};
+    auto vInLine {fDirection * (fDirection.Dot(vToPoint) / fDirection.Mag2())};
+    return fPoint + vInLine;
 }
 
 void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, double qThreshold,

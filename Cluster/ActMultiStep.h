@@ -79,6 +79,8 @@ namespace ActCluster
         double fRPDistThreshold;
         double fRPMaskXY;
         double fRPMaskZ;
+        std::vector<int> fAllowedMults;
+        double fRPPivotDist;
 
     public:
         MultiStep() = default;

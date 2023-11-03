@@ -28,6 +28,7 @@
 #include <iostream>
 #include <iterator>
 #include <map>
+#include <pstl/glue_algorithm_defs.h>
 #include <set>
 #include <string>
 #include <tuple>
@@ -123,6 +124,10 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fRPMaskXY = mb->GetDouble("RPMaskXY");
     if(mb->CheckTokenExists("RPMaskZ"))
         fRPMaskZ = mb->GetDouble("RPMaskZ");
+    if(mb->CheckTokenExists("AllowedMults"))
+        fAllowedMults = mb->GetIntVector("AllowedMults");
+    if(mb->CheckTokenExists("RPPivotDist"))
+        fRPPivotDist = mb->GetDouble("RPPivotDist");
 }
 
 void ActCluster::MultiStep::ResetIndex()
@@ -200,6 +205,8 @@ void ActCluster::MultiStep::CleanDeltas()
         bool hasLargeChi {it->GetLine().GetChi2() >= fDeltaChi2Threshold};
         // 2-> If has less voxels than required
         bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
+        std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
+        std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
         if(hasLargeChi || isSmall)
             it = fClusters->erase(it);
         else
@@ -636,16 +643,16 @@ void ActCluster::MultiStep::DeleteInvalidClusters()
     }
 }
 
-
 void ActCluster::MultiStep::DeterminePreciseRP()
 {
     // Must be executed after cleaning of invalid clusters
     // 1-> Get best RP: the one with the lowest dist
     const auto& rp {fRPs->begin()->second};
+    std::vector<ActCluster::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
-        std::cout << "Chosen RP : " << rp << '\n';
-        // 2-> Create sphere-like masked zone aroung RP
+        std::cout << "Number of Voxels : " << it->GetSizeOfVoxels() << " in ID : " << it->GetClusterID() << '\n';
+        // 2-> Create sphere-like masked zone around RP
         auto& refVoxels {it->GetRefToVoxels()};
         // And delete them
         refVoxels.erase(
@@ -662,9 +669,112 @@ void ActCluster::MultiStep::DeterminePreciseRP()
                                return condX && condY && condZ;
                            }),
             refVoxels.end());
+        // 3-> If cluster is beam-like, recluster the voxels AFTER RP
+        std::cout << "IsBeam?" << std::boolalpha << it->GetIsBeamLike() << '\n';
+        if(it->GetIsBeamLike() && fClusters->size() == 2) // only when heavy recoil was not separeted from the rest
+        {
+            // Init size
+            auto initSize {it->GetSizeOfVoxels()};
+            std::vector<ActRoot::Voxel> recluster {};
+            auto toMove {std::partition(refVoxels.begin(), refVoxels.end(),
+                                        [&](const ActRoot::Voxel& voxel)
+                                        {
+                                            const auto& pos {voxel.GetPosition()};
+                                            ROOT::Math::XYZPoint point {pos.X() + 0.5, pos.Y() + 0.5, pos.Z() + 0.5};
+                                            bool condX {point.X() > (rp.X() + fRPMaskXY)};
+                                            return condX;
+                                        })};
+            auto afterSize {std::distance(refVoxels.begin(), toMove)};
+            // Cross check to avoid deleting voxels before RP when
+            // SetBeamLike == true due to a bad breaking point
+            if(afterSize != 0)
+            {
+                std::move(toMove, refVoxels.end(), std::back_inserter(recluster));
+                refVoxels.erase(toMove, refVoxels.end());
+                std::cout << "Init size : " << initSize << '\n';
+                std::cout << "After size : " << afterSize << '\n';
+                // Re cluster
+                if(recluster.size() > fClimb->GetMinPoints())
+                {
+                    std::cout << "recluster size : " << recluster.size() << '\n';
+                    auto newClusters {fClimb->Run(recluster)};
+                    for(const auto& ncl : newClusters)
+                    {
+                        std::cout << "New cluster size : " << ncl.GetSizeOfVoxels() << '\n';
+                    }
+                    std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+                }
+            }
+        }
         // 3-> Refit them
         it->ReFit();
         it->ReFillSets();
+    }
+    std::move(toAppend.begin(), toAppend.end(), std::back_inserter(*fClusters));
+
+    // Delete clusters with 0 voxels
+    for(auto it = fClusters->begin(); it != fClusters->end();)
+    {
+        if(it->GetSizeOfVoxels() <= fClimb->GetMinPoints())
+            it = fClusters->erase(it);
+        else
+            it++;
+    }
+    ResetIndex();
+
+    // Refit using finer method
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    {
+        // Declare variables
+        const auto& line {it->GetLine()};
+        const auto& gp {line.GetPoint()};
+        auto& refVoxels {it->GetRefToVoxels()};
+        // Set same sign as rp
+        it->GetRefToLine().AlignUsingPoint(rp);
+        // Sort them according to relative position to RP
+        if(gp.X() < rp.X())
+            std::sort(refVoxels.begin(), refVoxels.end(), std::greater<ActRoot::Voxel>());
+        else
+            std::sort(refVoxels.begin(), refVoxels.end());
+        // Get init point
+        const auto& init {refVoxels.front()};
+        // Get end point
+        const auto& end {refVoxels.back()};
+        //// PROJECTIONS ON LINE, relative to GP of line (correct by +0.5 offset)
+        auto projInit {line.ProjectionPointOnLine(init.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
+        auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
+        // Get pivot points, according to position respect to RP
+        auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
+        auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
+        // Remove points outside regions
+        refVoxels.erase(std::remove_if(refVoxels.begin(), refVoxels.end(),
+                                       [&](const ActRoot::Voxel& voxel)
+                                       {
+                                           const auto& pos {voxel.GetPosition()};
+                                           auto point {pos + XYZVector {0.5, 0.5, 0.5}};
+                                           auto proj {line.ProjectionPointOnLine(point)};
+                                           bool isInCapInit {(proj - projInit).R() <= fRPPivotDist};
+                                           bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist};
+                                           return isInCapInit || isInCapEnd;
+                                       }),
+                        refVoxels.end());
+        // Refit if enough voxels remain
+        if(refVoxels.size() > fClimb->GetMinPoints())
+        {
+            it->ReFit();
+            it->ReFillSets();
+        }
+        // Else, keep old fit... have to check whether this is fine... we should not delete voxels in this case
+        //  Print
+        std::cout << "==== Cluster " << it->GetClusterID() << " ====" << '\n';
+        std::cout << "Init : " << refVoxels.front().GetPosition() << '\n';
+        std::cout << "Proj Init : " << projInit << '\n';
+        std::cout << "Pivot Init : " << pivotInit << '\n';
+        std::cout << "End : " << refVoxels.back().GetPosition() << '\n';
+        std::cout << "Proj End : " << projEnd << '\n';
+        std::cout << "Pivot End : " << pivotEnd << '\n';
+        std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
+        std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
     }
 }
 
@@ -683,10 +793,12 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> LengthXToBreak   : " << fLengthXToBreak << '\n';
             std::cout << "-> BeamWindowY      : " << fBeamWindowY << '\n';
             std::cout << "-> BeamWindowZ      : " << fBeamWindowZ << '\n';
+            std::cout << "-> BreakLenThresh   : " << fBreakLengthThres << '\n';
             std::cout << "-----------------------" << '\n';
         }
         if(fEnableBreakMultiTracks)
         {
+            std::cout << "-> TrackChi2Thresh  : " << fTrackChi2Threshold << '\n';
             std::cout << "-> BeamWindowScale  : " << fBeamWindowScaling << '\n';
             std::cout << "-----------------------" << '\n';
         }
@@ -714,6 +826,15 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> DeltaChi2Thresh  : " << fDeltaChi2Threshold << '\n';
             std::cout << "-> DeltaMaxVoxels   : " << fDeltaMaxVoxels << '\n';
             std::cout << "-----------------------" << '\n';
+        }
+        if(fEnableRP)
+        {
+            std::cout << "-> UnreactMinPerX   : " << fUnreactedMinPercentX << '\n';
+            std::cout << "-> UnreactMinParal  : " << fUnreactedMinParallelFactor << '\n';
+            std::cout << "-> RPDistThresh     : " << fRPDistThreshold << '\n';
+            std::cout << "-> RPMaskXY         : " << fRPMaskXY << '\n';
+            std::cout << "-> RPMaskZ          : " << fRPMaskZ << '\n';
+            std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
         }
     }
     std::cout << "=======================" << RESET << '\n';

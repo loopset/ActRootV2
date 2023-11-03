@@ -45,7 +45,9 @@ namespace ActPhysics
         void SetChi2(float chi2) { fChi2 = chi2; }
 
         // Utility funtions
+        void AlignUsingPoint(const XYZPoint& rp);
         double DistanceLineToPoint(const XYZPoint& point) const;
+        XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
         void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1,
                        bool correctOffset = true);
         void FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset = true);

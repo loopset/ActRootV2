@@ -135,6 +135,30 @@ void ActCluster::Cluster::ReFillSets()
     FillSets();
 }
 
+std::pair<float, float> ActCluster::Cluster::GetXRange() const
+{
+    if(fXSet.size() > 0)
+        return {*fXSet.begin(), *fXSet.rbegin()};
+    else
+        return {0, 0};
+}
+
+std::pair<float, float> ActCluster::Cluster::GetYRange() const 
+{
+    if(fYSet.size() > 0)
+        return {*fYSet.begin(), *fYSet.rbegin()};
+    else
+        return {0 ,0};
+}
+
+std::pair<float, float> ActCluster::Cluster::GetZRange() const 
+{
+    if(fZSet.size())
+        return {*fZSet.begin(), *fZSet.rbegin()};
+    else
+        return {0, 0};
+}
+
 void ActCluster::Cluster::Print() const
 {
     auto [xmin, xmax] = GetXRange();
