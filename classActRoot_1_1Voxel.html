@@ -231,7 +231,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -257,7 +257,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -283,7 +283,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -333,7 +333,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a> = charge; }</div>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#a256c956acb9be4ec1f4760965615f99d">fCharge</a> = charge; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -360,7 +360,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a> = sat; }</div>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">fIsSaturated</a> = sat; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -387,7 +387,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a> = pos; }</div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <a class="code" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">fPosition</a> = pos; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -425,7 +425,15 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{ <span class="keywordflow">return</span> v1.fPosition.X() &lt; v2.fPosition.X(); }</div>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; p1 {v1.GetPosition()};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; p2 {v2.GetPosition()};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">if</span>(p1.X() != p2.X())</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordflow">return</span> p1.X() &lt; p2.X();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">if</span>(p1.Y() != p2.Y())</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">return</span> p1.Y() &lt; p2.Y();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> p1.Z() &lt; p2.Z();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -462,8 +470,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <span class="keywordflow">return</span> !(<a class="code" href="classActRoot_1_1Voxel.html#a5fbe6368683f60f0a0c0fe5363ae7e40">operator&gt;</a>(v1, v2)); }</div>
-<div class="ttc" id="aclassActRoot_1_1Voxel_html_a5fbe6368683f60f0a0c0fe5363ae7e40"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a5fbe6368683f60f0a0c0fe5363ae7e40">ActRoot::Voxel::operator&gt;</a></div><div class="ttdeci">friend bool operator&gt;(const Voxel &amp;v1, const Voxel &amp;v2)</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:33</div></div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <span class="keywordflow">return</span> !(<a class="code" href="classActRoot_1_1Voxel.html#a5fbe6368683f60f0a0c0fe5363ae7e40">operator&gt;</a>(v1, v2)); }</div>
+<div class="ttc" id="aclassActRoot_1_1Voxel_html_a5fbe6368683f60f0a0c0fe5363ae7e40"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a5fbe6368683f60f0a0c0fe5363ae7e40">ActRoot::Voxel::operator&gt;</a></div><div class="ttdeci">friend bool operator&gt;(const Voxel &amp;v1, const Voxel &amp;v2)</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:42</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -500,7 +508,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> !(<a class="code" href="classActRoot_1_1Voxel.html#a4b60815e99e8dd6ef3119b9f1f9334d5">operator&lt;</a>(v2, v1)); }</div>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1Voxel.html#a4b60815e99e8dd6ef3119b9f1f9334d5">operator&lt;</a>(v2, v1); }</div>
 <div class="ttc" id="aclassActRoot_1_1Voxel_html_a4b60815e99e8dd6ef3119b9f1f9334d5"><div class="ttname"><a href="classActRoot_1_1Voxel.html#a4b60815e99e8dd6ef3119b9f1f9334d5">ActRoot::Voxel::operator&lt;</a></div><div class="ttdeci">friend bool operator&lt;(const Voxel &amp;v1, const Voxel &amp;v2)</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:32</div></div>
 </div><!-- fragment -->
 </div>
@@ -538,7 +546,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <span class="keywordflow">return</span> !(<a class="code" href="classActRoot_1_1Voxel.html#a4b60815e99e8dd6ef3119b9f1f9334d5">operator&lt;</a>(v1, v2)); }</div>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <span class="keywordflow">return</span> !(<a class="code" href="classActRoot_1_1Voxel.html#a4b60815e99e8dd6ef3119b9f1f9334d5">operator&lt;</a>(v1, v2)); }</div>
 </div><!-- fragment -->
 </div>
 </div>

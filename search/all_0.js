@@ -102,12 +102,13 @@ var searchData=
   ['addfile_99',['AddFile',['../classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876',1,'ActRoot::InputData']]],
   ['addline_100',['AddLine',['../classActRoot_1_1InputBlock.html#a6d628ab49d736793a8e0ba06aa71a2b1',1,'ActRoot::InputBlock']]],
   ['addvoxel_101',['AddVoxel',['../classActCluster_1_1Cluster.html#acb731f5307cb4c81b46ba61d20026360',1,'ActCluster::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActCluster_1_1Cluster.html#aac567cb73673905d790cc25ec6db1faf',1,'ActCluster::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
-  ['applycalibration_102',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
-  ['applylookup_103',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
-  ['applypadalignment_104',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
-  ['applystragglinginmaterialtorleft_105',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
-  ['applythreshold_106',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
-  ['attachbintocluster_107',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['autoisinbeam_108',['AutoIsInBeam',['../classActCluster_1_1MultiStep.html#af9f6cc4dc7a9ee09225c0fd2fc333ad0',1,'ActCluster::MultiStep']]],
-  ['constants_109',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
+  ['alignusingpoint_102',['AlignUsingPoint',['../classActPhysics_1_1Line.html#a36ce532fe0f45c9df3eb257f8432db4b',1,'ActPhysics::Line']]],
+  ['applycalibration_103',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
+  ['applylookup_104',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
+  ['applypadalignment_105',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
+  ['applystragglinginmaterialtorleft_106',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
+  ['applythreshold_107',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager']]],
+  ['attachbintocluster_108',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
+  ['autoisinbeam_109',['AutoIsInBeam',['../classActCluster_1_1MultiStep.html#af9f6cc4dc7a9ee09225c0fd2fc333ad0',1,'ActCluster::MultiStep']]],
+  ['constants_110',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
 ];
