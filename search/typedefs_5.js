@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['threevector_1988',['ThreeVector',['../classActPhysics_1_1Kinematics.html#a450e6d58fcbd8f214eb0ca693bc6f8e0',1,'ActPhysics::Kinematics']]]
+  ['rangetype_1993',['RangeType',['../classActCluster_1_1Cluster.html#aa2d733279dec18e10354344216244282',1,'ActCluster::Cluster']]]
 ];
