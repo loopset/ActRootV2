@@ -11,6 +11,7 @@
 #include "ActVData.h"
 #include "ActVDetector.h"
 
+#include "TStopwatch.h"
 #include "TTree.h"
 
 #include <map>
@@ -68,6 +69,8 @@ namespace ActRoot
         bool fCleanDuplicatedVoxels {false};
         // Physics data
         TPCPhysics* fPhysics {};
+        // Timer for cluster (only cluster) step
+        TStopwatch fClusterClock;
         // Have a commom ransac
         std::shared_ptr<ActCluster::RANSAC> fRansac {};
         // Have a common ClIMB
@@ -100,6 +103,9 @@ namespace ActRoot
 
         // And setters
         void SetEventData(VData* vdata) override;
+
+        // Printer of parameters
+        void PrintReports() const override;
 
         ////////////////////////////////
         // ActTPCData* GetDataPointer() { return fData; }

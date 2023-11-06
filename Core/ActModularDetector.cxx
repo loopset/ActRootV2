@@ -1,8 +1,9 @@
 #include "ActModularDetector.h"
 
-#include "ActModularData.h"
-#include "TString.h"
 #include "ActInputParser.h"
+#include "ActModularData.h"
+
+#include "TString.h"
 
 #include <fstream>
 #include <iostream>
@@ -17,14 +18,16 @@ std::string ActRoot::ModularParameters::GetName(int vxi)
         return "";
 }
 
-void ActRoot::ModularParameters::ReadActions(const std::vector<std::string> &names,
-                                             const std::string &file)
+void ActRoot::ModularParameters::ReadActions(const std::vector<std::string>& names, const std::string& file)
 {
     std::ifstream streamer {file};
     if(!streamer)
         throw std::runtime_error("No Action file for ModularParameters");
-    TString key {}; int vxi {}; int aux0 {}; int aux1 {};
-    while (streamer >> key >> vxi >> aux0 >> aux1)
+    TString key {};
+    int vxi {};
+    int aux0 {};
+    int aux1 {};
+    while(streamer >> key >> vxi >> aux0 >> aux1)
     {
         for(int i = 0; i < names.size(); i++)
         {
@@ -39,28 +42,28 @@ void ActRoot::ModularParameters::ReadActions(const std::vector<std::string> &nam
 
 void ActRoot::ModularParameters::Print() const
 {
-    std::cout<<"==== ModularParameters ===="<<'\n';
+    std::cout << "==== ModularParameters ====" << '\n';
     for(const auto& [key, val] : fVXI)
     {
-        std::cout<<"-- VXI: "<<key<<" contains Modular "<<val<<'\n';
+        std::cout << "-- VXI: " << key << " contains Modular " << val << '\n';
     }
-    std::cout<<"======================="<<'\n';
+    std::cout << "=======================" << '\n';
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void ActRoot::ModularDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
-    //Read action file
+    // Read action file
     auto names {config->GetStringVector("Names")};
     auto file {config->GetString("Actions")};
     fPars.ReadActions(names, file);
-    //fPars.Print();
+    // fPars.Print();
 }
 
 void ActRoot::ModularDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
-    ;//Do not calibrate Modular Leaves so far
+    ; // Do not calibrate Modular Leaves so far
 }
 
 void ActRoot::ModularDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
@@ -84,19 +87,16 @@ void ActRoot::ModularDetector::InitInputData(std::shared_ptr<TTree> tree)
     tree->SetBranchAddress("ModularData", &fData);
 }
 
-void ActRoot::ModularDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
-{
-    
-}
+void ActRoot::ModularDetector::InitOutputPhysics(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::ModularDetector::SetEventData(VData *vdata)
+void ActRoot::ModularDetector::SetEventData(VData* vdata)
 {
     fData = nullptr;
     auto casted {dynamic_cast<ActRoot::ModularData*>(vdata)};
     if(casted)
         fData = casted;
     else
-        std::cout<<"Could not dynamic_cast to ModularData!"<<'\n';
+        std::cout << "Could not dynamic_cast to ModularData!" << '\n';
 }
 
 
@@ -104,7 +104,7 @@ void ActRoot::ModularDetector::BuildEventData()
 {
     for(auto& coas : fMEvent->CoboAsad)
     {
-        //locate channel!
+        // locate channel!
         int co {coas.globalchannelid >> 11};
         if(co == 31)
         {
@@ -114,24 +114,20 @@ void ActRoot::ModularDetector::BuildEventData()
                 auto leaf {fPars.GetName(vxi)};
                 if(leaf.length() == 0)
                     continue;
-                //Write
+                // Write
                 fData->fLeaves[leaf] = coas.peakheight[hit];
             }
         }
     }
 }
 
-void ActRoot::ModularDetector::BuildEventPhysics()
-{
-    
-}
+void ActRoot::ModularDetector::BuildEventPhysics() {}
 
 void ActRoot::ModularDetector::ClearEventData()
 {
     fData->Clear();
 }
 
-void ActRoot::ModularDetector::ClearEventPhysics()
-{
-    
-}
+void ActRoot::ModularDetector::ClearEventPhysics() {}
+
+void ActRoot::ModularDetector::PrintReports() const {}

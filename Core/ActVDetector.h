@@ -58,6 +58,9 @@ namespace ActRoot
         //Set and Get CalibrationManager pointer
         void SetCalMan(std::shared_ptr<CalibrationManager> calman){fCalMan = calman;}
         std::shared_ptr<CalibrationManager> GetCalMan() const {return fCalMan;}
+
+        // Print reports
+        virtual void PrintReports() const = 0;
     };
 }
 

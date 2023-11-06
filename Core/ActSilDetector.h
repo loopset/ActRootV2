@@ -5,7 +5,9 @@
 #include "ActTPCLegacyData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+
 #include "TTree.h"
+
 #include <map>
 #include <string>
 #include <unordered_map>
@@ -16,7 +18,7 @@ namespace ActRoot
 {
     //! A class holding basic silicon parameters
     /*!
-      For now, just keeps sizes of silicons 
+      For now, just keeps sizes of silicons
       using strings as identifiers and VXI equivalences
     */
     class SilParameters
@@ -24,28 +26,28 @@ namespace ActRoot
     private:
         std::unordered_map<std::string, int> fSizes; //!< Sizes of silicons based on string, for [0, max]
         std::map<int, std::pair<std::string, int>> fVXI;
+
     public:
-        //Setters
-        void SetLayer(const std::string& key, int size){fSizes[key] = size;}
-        //Getters
+        // Setters
+        void SetLayer(const std::string& key, int size) { fSizes[key] = size; }
+        // Getters
         std::vector<std::string> GetKeys() const;
-        int GetSizeOf(const std::string& key){return fSizes[key];}
-        void Print() const;//!< Dump info stored
+        int GetSizeOf(const std::string& key) { return fSizes[key]; }
+        void Print() const; //!< Dump info stored
         std::pair<std::string, int> GetSilIndex(int vxi);
-        void ReadActions(const std::vector<std::string>& layers,
-                         const std::vector<std::string>& names,
+        void ReadActions(const std::vector<std::string>& layers, const std::vector<std::string>& names,
                          const std::string& file);
     };
-    
+
     //! Silicon detector class
     class SilDetector : public VDetector
     {
     private:
-        //Parameters
-        SilParameters fPars;//!< Basic detector configurations
-        //Data
+        // Parameters
+        SilParameters fPars; //!< Basic detector configurations
+        // Data
         SilData* fData {}; //!< Pointer to SilData
-        
+
     public:
         SilDetector() = default;
         virtual ~SilDetector() = default;
@@ -62,13 +64,15 @@ namespace ActRoot
         void ClearEventData() override;
         void ClearEventPhysics() override;
 
-        //Getters
-        SilData* GetEventData() const override {return fData;}
-        SilData* GetEventPhysics() const override {return fData;}
+        // Getters
+        SilData* GetEventData() const override { return fData; }
+        SilData* GetEventPhysics() const override { return fData; }
 
-        //Setters
+        // Setters
         void SetEventData(VData* vdata) override;
+
+        void PrintReports() const override;
     };
-}
+} // namespace ActRoot
 
 #endif

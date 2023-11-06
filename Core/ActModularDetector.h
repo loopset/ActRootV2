@@ -2,8 +2,8 @@
 #define ActModularDetector_h
 
 #include "ActModularData.h"
-#include "ActVDetector.h"
 #include "ActVData.h"
+#include "ActVDetector.h"
 
 #include "TTree.h"
 
@@ -20,8 +20,9 @@ namespace ActRoot
     {
     private:
         std::map<int, std::string> fVXI;
+
     public:
-        std::string GetName(int vxi);//!< Get name of ModularLeaf according to Action file
+        std::string GetName(int vxi); //!< Get name of ModularLeaf according to Action file
         void ReadActions(const std::vector<std::string>& names,
                          const std::string& file); //!< Read Action file
         void Print() const;
@@ -31,10 +32,10 @@ namespace ActRoot
     class ModularDetector : public VDetector
     {
     private:
-        //Parameters
-        ModularParameters fPars;//!< Basic detector configurations
-        //Data
-        ModularData* fData {};//!< Pointer to Data
+        // Parameters
+        ModularParameters fPars; //!< Basic detector configurations
+        // Data
+        ModularData* fData {}; //!< Pointer to Data
 
     public:
         ModularDetector() = default;
@@ -51,14 +52,16 @@ namespace ActRoot
         void ClearEventData() override;
         void ClearEventPhysics() override;
 
-        //Getters
-        ModularData* GetEventData() const override {return fData;}
-        ModularData* GetEventPhysics() const override {return fData;}
+        // Getters
+        ModularData* GetEventData() const override { return fData; }
+        ModularData* GetEventPhysics() const override { return fData; }
 
-        //Setters
-        void SetEventData(VData* vdata) override; 
-        
+        // Setters
+        void SetEventData(VData* vdata) override;
+
+        // Print any reports from analysis
+        void PrintReports() const override;
     };
-}
+} // namespace ActRoot
 
 #endif

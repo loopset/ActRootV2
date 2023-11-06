@@ -4,8 +4,9 @@
 #include "ActInputParser.h"
 #include "ActSilData.h"
 #include "ActTPCLegacyData.h"
-#include "TString.h"
+
 #include "TRegexp.h"
+#include "TString.h"
 
 #include <fstream>
 #include <iostream>
@@ -24,26 +25,30 @@ std::vector<std::string> ActRoot::SilParameters::GetKeys() const
 
 void ActRoot::SilParameters::Print() const
 {
-    std::cout<<"==== SilParameters ===="<<'\n';
+    std::cout << "==== SilParameters ====" << '\n';
     for(const auto& [key, vals] : fVXI)
-        std::cout<<"-- VXI: "<<key<<" contains Sil "<<vals.first<<" at idx "<<vals.second<<'\n';
-    std::cout<<"======================="<<'\n';
+        std::cout << "-- VXI: " << key << " contains Sil " << vals.first << " at idx " << vals.second << '\n';
+    std::cout << "=======================" << '\n';
 }
 
-void ActRoot::SilParameters::ReadActions(const std::vector<std::string> &layers, const std::vector<std::string> &names, const std::string &file)
+void ActRoot::SilParameters::ReadActions(const std::vector<std::string>& layers, const std::vector<std::string>& names,
+                                         const std::string& file)
 {
     std::ifstream streamer {file};
     if(!streamer)
         throw std::runtime_error("No Action file for SilParameters");
-    TString key {}; int vxi {}; int aux0 {}; int aux1 {};
-    while (streamer >> key >> vxi >> aux0 >> aux1)
+    TString key {};
+    int vxi {};
+    int aux0 {};
+    int aux1 {};
+    while(streamer >> key >> vxi >> aux0 >> aux1)
     {
         for(int i = 0; i < names.size(); i++)
         {
             auto index {key.Index(names[i].c_str())};
-            if(index != -1)//-1 implies not found
+            if(index != -1) //-1 implies not found
             {
-                //and now get index
+                // and now get index
                 auto length {names[i].length()};
                 fVXI[vxi] = {layers[i], std::stoi(std::string(key).substr(index + length))};
                 break;
@@ -63,13 +68,13 @@ std::pair<std::string, int> ActRoot::SilParameters::GetSilIndex(int vxi)
 
 void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
-    //Read layer setup
+    // Read layer setup
     auto layers {config->GetStringVector("Layers")};
-    //Read action file
+    // Read action file
     auto legacy {config->GetStringVector("Names")};
     auto file {config->GetString("Actions")};
     fPars.ReadActions(layers, legacy, file);
-    //fPars.Print();
+    // fPars.Print();
 }
 
 void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
@@ -100,26 +105,23 @@ void ActRoot::SilDetector::InitInputData(std::shared_ptr<TTree> tree)
     tree->SetBranchAddress("SilData", &fData);
 }
 
-void ActRoot::SilDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
-{
-    
-}
+void ActRoot::SilDetector::InitOutputPhysics(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::SilDetector::SetEventData(VData *vdata)
+void ActRoot::SilDetector::SetEventData(VData* vdata)
 {
     fData = nullptr;
     auto casted {dynamic_cast<ActRoot::SilData*>(vdata)};
     if(casted)
         fData = casted;
     else
-        std::cout<<"Could not dynamic_cast to SilData!"<<'\n';
+        std::cout << "Could not dynamic_cast to SilData!" << '\n';
 }
 
 void ActRoot::SilDetector::BuildEventData()
 {
     for(auto& coas : fMEvent->CoboAsad)
     {
-        //locate channel!
+        // locate channel!
         int co {coas.globalchannelid >> 11};
         if(co == 31)
         {
@@ -129,36 +131,32 @@ void ActRoot::SilDetector::BuildEventData()
                 auto [layer, sil] = fPars.GetSilIndex(vxi);
                 if(sil == -1)
                     continue;
-                //Get raw data
+                // Get raw data
                 float raw {coas.peakheight[hit]};
-                //Check threshold
+                // Check threshold
                 std::string threshKey {"Sil_" + layer + "_" + sil + "_P"};
                 if(!fCalMan->ApplyThreshold(threshKey, raw, 3))
                     continue;
-                //Write silicon number
-                fData->fSiN[layer].push_back(sil);                
-                //Calibrate
+                // Write silicon number
+                fData->fSiN[layer].push_back(sil);
+                // Calibrate
                 std::string calKey {"Sil_" + layer + "_" + sil + "_E"};
                 float cal {static_cast<float>(fCalMan->ApplyCalibration(calKey, raw))};
                 fData->fSiE[layer].push_back(cal);
-                //std::cout<<"Raw sil = "<<raw<<" |"<<'\n';
-                //std::cout<<"Cal sil = "<<cal<<" |"<<'\n';
+                // std::cout<<"Raw sil = "<<raw<<" |"<<'\n';
+                // std::cout<<"Cal sil = "<<cal<<" |"<<'\n';
             }
         }
     }
 }
 
-void ActRoot::SilDetector::BuildEventPhysics()
-{
-    
-}
+void ActRoot::SilDetector::BuildEventPhysics() {}
 
 void ActRoot::SilDetector::ClearEventData()
 {
     fData->Clear();
 }
 
-void ActRoot::SilDetector::ClearEventPhysics()
-{
-    
-}
+void ActRoot::SilDetector::ClearEventPhysics() {}
+
+void ActRoot::SilDetector::PrintReports() const {}

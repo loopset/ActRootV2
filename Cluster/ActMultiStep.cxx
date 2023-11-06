@@ -14,6 +14,7 @@
 #include "TMatrixD.h"
 #include "TMatrixDfwd.h"
 #include "TMatrixF.h"
+#include "TStopwatch.h"
 #include "TSystem.h"
 
 #include "Math/Point3D.h"
@@ -47,7 +48,7 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         realfile = infile;
     else
     {
-        std::cout << BOLDMAGENTA << ".ransac config file not found -> Using built-in configuration" << '\n';
+        std::cout << BOLDMAGENTA << "filter.climb config file not found -> Using built-in configuration" << '\n';
         return;
     }
 
@@ -57,6 +58,8 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // General parameters
     if(mb->CheckTokenExists("IsEnabled"))
         fIsEnabled = mb->GetBool("IsEnabled");
+    if(mb->CheckTokenExists("IsVerbose"))
+        fIsVerbose = mb->GetBool("IsVerbose");
     // Parameters of break multibeam
     if(mb->CheckTokenExists("EnableBreakMultiBeam"))
         fEnableBreakMultiBeam = mb->GetBool("EnableBreakMultiBeam");
@@ -128,6 +131,22 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fAllowedMults = mb->GetIntVector("AllowedMults");
     if(mb->CheckTokenExists("RPPivotDist"))
         fRPPivotDist = mb->GetDouble("RPPivotDist");
+
+    // Init clocks
+    for(int i = 0; i < 8; i++)
+    {
+        fClocks.push_back(TStopwatch {});
+    }
+    // Set labels of them
+    fCLabels = std::vector<std::string>(8);
+    fCLabels[0] = "CleanPileup";
+    fCLabels[1] = "CleanZs";
+    fCLabels[2] = "BreakBeam";
+    fCLabels[3] = "BreakTracks";
+    fCLabels[4] = "MergeSimilarTracks";
+    fCLabels[5] = "CleanDeltas";
+    fCLabels[6] = "FindRP";
+    fCLabels[7] = "FindPreciseRP";
 }
 
 void ActCluster::MultiStep::ResetIndex()
@@ -155,28 +174,65 @@ void ActCluster::MultiStep::Run()
         return;
     // Set order of algorithms here, and whether they run or not
     if(fEnableCleanPileUp)
+    {
+        fClocks[0].Start(false);
         CleanPileup();
+        fClocks[0].Stop();
+    }
     if(fEnableCleanZs)
+    {
+        fClocks[1].Start(false);
         CleanZs();
+        fClocks[1].Stop();
+    }
     if(fEnableBreakMultiBeam)
     {
+        fClocks[2].Start(false);
         BreakBeamClusters();
+        fClocks[2].Stop();
         if(fEnableBreakMultiTracks)
+        {
+            fClocks[3].Start(false);
             BreakTrackClusters(); // this method is dependent on the previous!
+            fClocks[3].Stop();
+        }
     }
     if(fEnableMerge)
+    {
+        fClocks[4].Start(false);
         MergeSimilarTracks();
+        fClocks[4].Stop();
+    }
     if(fEnableCleanDeltas)
+    {
+        fClocks[5].Start(false);
         CleanDeltas();
+        fClocks[5].Stop();
+    }
     // Preliminary: find reaction point and tag unreacted beam clusters
     if(fEnableRP)
     {
         DetermineBeamLikes();
+        fClocks[6].Start(false);
         FindRP();
+        fClocks[6].Stop();
         DeleteInvalidClusters();
+        fClocks[7].Start(false);
         DeterminePreciseRP();
+        fClocks[7].Stop();
     }
     ResetIndex();
+}
+
+void ActCluster::MultiStep::PrintClocks() const
+{
+    std::cout << BOLDYELLOW << "==== MultiStep time report ====" << '\n';
+    for(int i = 0; i < fCLabels.size(); i++)
+    {
+        std::cout << "Timer : " << fCLabels[i] << '\n';
+        fClocks[i].Print();
+    }
+    std::cout << RESET << '\n';
 }
 
 void ActCluster::MultiStep::CleanZs()
@@ -205,8 +261,13 @@ void ActCluster::MultiStep::CleanDeltas()
         bool hasLargeChi {it->GetLine().GetChi2() >= fDeltaChi2Threshold};
         // 2-> If has less voxels than required
         bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
-        std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
-        std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
+        if(fIsVerbose)
+        {
+            std::cout << BOLDCYAN << "---- CleanDeltas verbose ----" << '\n';
+            std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
+            std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
+            std::cout << "-------------------" << RESET << '\n';
+        }
         if(hasLargeChi || isSmall)
             it = fClusters->erase(it);
         else
@@ -294,17 +355,10 @@ void ActCluster::MultiStep::BreakBeamClusters()
             bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all the
                                                                  // times, fallback to default method if so
 
-            std::cout << BOLDRED << "Breaking beam cluster " << it->GetClusterID() << '\n';
-            std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
-            std::cout << "XExtent = [" << xmin << ", " << xmax << "]" << '\n';
-            std::cout << "Break point = " << bp << '\n';
-            std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
-            std::cout << "Gravity = " << gravity << '\n';
-
             // 3->Modify original cluster: move non-beam voxels outside to
             //  be clusterized independently
             auto& refToVoxels {it->GetRefToVoxels()};
-            std::cout << "Original size = " << refToVoxels.size() << '\n';
+            auto initSize {refToVoxels.size()};
             auto toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),
                                         [&](const ActRoot::Voxel& voxel)
                                         {
@@ -318,8 +372,20 @@ void ActCluster::MultiStep::BreakBeamClusters()
             std::vector<ActRoot::Voxel> notBeam {};
             std::move(toMove, refToVoxels.end(), std::back_inserter(notBeam));
             refToVoxels.erase(toMove, refToVoxels.end());
-            std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
-            std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
+
+            if(fIsVerbose)
+            {
+                std::cout << BOLDGREEN << "---- BreakBeam verbose for ID : " << it->GetClusterID() << " ----" << '\n';
+                std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
+                std::cout << "XExtent = [" << xmin << ", " << xmax << "]" << '\n';
+                std::cout << "Break point = " << bp << '\n';
+                std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
+                std::cout << "Gravity = " << gravity << '\n';
+                std::cout << "Init size beam = " << initSize << '\n';
+                std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
+                std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
+                std::cout << "-------------------" << RESET << '\n';
+            }
             // Check if satisfies minimum voxel requirement to be clusterized again
             if(refToVoxels.size() <= fClimb->GetMinPoints())
             {
@@ -368,17 +434,23 @@ void ActCluster::MultiStep::BreakTrackClusters()
             for(auto in = fClusters->begin(); in != fClusters->end(); in++)
                 if(in->GetIsBeamLike())
                     gravity = in->GetGravityPointInXRange(fLengthXToBreak);
-            std::cout << BOLDCYAN << "Breaking track cluster" << '\n';
-            std::cout << "New gravity : " << gravity << RESET << '\n';
             // 3-> Identify voxels to move
             auto& refVoxels {it->GetRefToVoxels()};
-            std::cout << "Init size = " << refVoxels.size() << '\n';
+            auto initSize {refVoxels.size()};
             auto toMove {std::partition(refVoxels.begin(), refVoxels.end(),
                                         [&](const ActRoot::Voxel& voxel)
                                         {
                                             const auto& pos {voxel.GetPosition()};
                                             return ManualIsInBeam(pos, gravity, fBeamWindowScaling);
                                         })};
+            if(fIsVerbose)
+            {
+                std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----" << '\n';
+                std::cout << "New gravity : " << gravity << RESET << '\n';
+                std::cout << "Init size : " << initSize << '\n';
+                std::cout << "After size : " << refVoxels.size() << '\n';
+                std::cout << "-------------------------" << '\n';
+            }
             // 4-> Move
             std::vector<ActRoot::Voxel> breakable {};
             std::move(toMove, refVoxels.end(), std::back_inserter(breakable));
@@ -450,13 +522,18 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
                 bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
                 // Then, move and erase in iterator!
-                std::cout << BOLDMAGENTA << "dist < distThresh = " << dist << " < " << distThresh << '\n';
-                std::cout << "are parallel = " << std::boolalpha << areParallel << '\n';
-                std::cout << "newChi2 < oldChi2 = " << newChi2 << " < " << oldChi2 << RESET << '\n';
                 if(improvesFit)
                 {
-                    std::cout << BOLDMAGENTA << "Merging cluster in " << in->GetClusterID() << " with cluster out "
-                              << out->GetClusterID() << RESET << '\n';
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
+                        std::cout << "dist < distThresh ? : " << dist << " < " << distThresh << '\n';
+                        std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
+                        std::cout << "newChi2 < oldChi2 ? : " << newChi2 << " < " << oldChi2 << RESET << '\n';
+                        std::cout << "Merging cluster in : " << in->GetClusterID()
+                                  << " with cluster out : " << out->GetClusterID() << '\n';
+                        std::cout << "-----------------------" << RESET << '\n';
+                    }
                     auto& refVoxels {out->GetRefToVoxels()};
                     std::move(inVoxels.begin(), inVoxels.end(), std::back_inserter(refVoxels));
                     // Refit and recompute ranges
@@ -513,9 +590,13 @@ void ActCluster::MultiStep::DetermineBeamLikes()
     if(fClusters->size() == 1 && fClusters->begin()->GetIsBeamLike())
         fClusters->begin()->SetToDelete(true);
     // Print
-    std::cout << BOLDYELLOW << "==== Clean Unreacted beam ====" << '\n';
-    std::cout << "-> N beam clusters  : " << nBeam << '\n';
-    std::cout << "-> N total clusters : " << fClusters->size() << RESET << '\n';
+    if(fIsVerbose)
+    {
+        std::cout << BOLDYELLOW << "---- Beam-Like ID verbose ----" << '\n';
+        std::cout << "-> N beam clusters  : " << nBeam << '\n';
+        std::cout << "-> N total clusters : " << fClusters->size() << '\n';
+        std::cout << "-------------------------" << RESET << '\n';
+    }
 }
 
 std::tuple<ActCluster::MultiStep::XYZPoint, ActCluster::MultiStep::XYZPoint, double>
@@ -626,8 +707,8 @@ void ActCluster::MultiStep::FindRP()
         // Insert in map
         fRPs->insert({{i, j}, rp});
         // Print
-        std::cout << BOLDYELLOW << "<i,j> : <" << i << ", " << j << ">" << '\n';
-        std::cout << "dist : " << std::get<0>(*set.begin()) << " with RP : " << rp << RESET << '\n';
+        // std::cout << BOLDYELLOW << "<i,j> : <" << i << ", " << j << ">" << '\n';
+        // std::cout << "dist : " << std::get<0>(*set.begin()) << " with RP : " << rp << RESET << '\n';
     }
     // }
 }
@@ -651,7 +732,6 @@ void ActCluster::MultiStep::DeterminePreciseRP()
     std::vector<ActCluster::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
-        std::cout << "Number of Voxels : " << it->GetSizeOfVoxels() << " in ID : " << it->GetClusterID() << '\n';
         // 2-> Create sphere-like masked zone around RP
         auto& refVoxels {it->GetRefToVoxels()};
         // And delete them
@@ -670,7 +750,6 @@ void ActCluster::MultiStep::DeterminePreciseRP()
                            }),
             refVoxels.end());
         // 3-> If cluster is beam-like, recluster the voxels AFTER RP
-        std::cout << "IsBeam?" << std::boolalpha << it->GetIsBeamLike() << '\n';
         if(it->GetIsBeamLike() && fClusters->size() == 2) // only when heavy recoil was not separeted from the rest
         {
             // Init size
@@ -691,16 +770,23 @@ void ActCluster::MultiStep::DeterminePreciseRP()
             {
                 std::move(toMove, refVoxels.end(), std::back_inserter(recluster));
                 refVoxels.erase(toMove, refVoxels.end());
-                std::cout << "Init size : " << initSize << '\n';
-                std::cout << "After size : " << afterSize << '\n';
                 // Re cluster
                 if(recluster.size() > fClimb->GetMinPoints())
                 {
-                    std::cout << "recluster size : " << recluster.size() << '\n';
                     auto newClusters {fClimb->Run(recluster)};
-                    for(const auto& ncl : newClusters)
+                    if(fIsVerbose)
                     {
-                        std::cout << "New cluster size : " << ncl.GetSizeOfVoxels() << '\n';
+                        std::cout << BOLDGREEN << "---- FindRP verbose ----" << '\n';
+                        std::cout << "-> For event with beam + light tracks" << '\n';
+                        std::cout << "-> Original init size : " << initSize << '\n';
+                        std::cout << "-> Original end size : " << afterSize << '\n';
+                        std::cout << "-> To recluster size : " << recluster.size() << '\n';
+
+                        for(const auto& ncl : newClusters)
+                        {
+                            std::cout << "-> New cluster size : " << ncl.GetSizeOfVoxels() << '\n';
+                        }
+                        std::cout << RESET;
                     }
                     std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
                 }
@@ -766,15 +852,19 @@ void ActCluster::MultiStep::DeterminePreciseRP()
         }
         // Else, keep old fit... have to check whether this is fine... we should not delete voxels in this case
         //  Print
-        std::cout << "==== Cluster " << it->GetClusterID() << " ====" << '\n';
-        std::cout << "Init : " << refVoxels.front().GetPosition() << '\n';
-        std::cout << "Proj Init : " << projInit << '\n';
-        std::cout << "Pivot Init : " << pivotInit << '\n';
-        std::cout << "End : " << refVoxels.back().GetPosition() << '\n';
-        std::cout << "Proj End : " << projEnd << '\n';
-        std::cout << "Pivot End : " << pivotEnd << '\n';
-        std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
-        std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
+        if(fIsVerbose)
+        {
+            std::cout << BOLDMAGENTA << "--- FindPreciseRP verbose for ID : " << it->GetClusterID() << " ----" << '\n';
+            std::cout << "Init : " << refVoxels.front().GetPosition() << '\n';
+            std::cout << "Proj Init : " << projInit << '\n';
+            std::cout << "Pivot Init : " << pivotInit << '\n';
+            std::cout << "End : " << refVoxels.back().GetPosition() << '\n';
+            std::cout << "Proj End : " << projEnd << '\n';
+            std::cout << "Pivot End : " << pivotEnd << '\n';
+            std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
+            std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
+            std::cout << "------------------------------" << RESET << '\n';
+        }
     }
 }
 
@@ -782,6 +872,7 @@ void ActCluster::MultiStep::Print() const
 {
     std::cout << BOLDCYAN << "==== MultiStep settings ====" << '\n';
     std::cout << "-> IsEnabled        : " << std::boolalpha << fIsEnabled << '\n';
+    std::cout << "-> IsVerbose        : " << std::boolalpha << fIsVerbose << '\n';
     std::cout << "-----------------------" << '\n';
     if(fIsEnabled)
     {

@@ -4,6 +4,7 @@
 #include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActTPCData.h"
+#include "TStopwatch.h"
 
 #include "Math/Point3Dfwd.h"
 
@@ -81,6 +82,11 @@ namespace ActCluster
         double fRPMaskZ;
         std::vector<int> fAllowedMults;
         double fRPPivotDist;
+        // Vector of TStopwatch to asses performance of algorithm
+        std::vector<TStopwatch> fClocks;
+        std::vector<std::string> fCLabels;
+        // Bool to set verbose mode
+        bool fIsVerbose;
 
     public:
         MultiStep() = default;
@@ -97,6 +103,9 @@ namespace ActCluster
 
         // Read config file
         void ReadConfigurationFile(const std::string& infile = "");
+
+        // Print time reports
+        void PrintClocks() const;
 
         // Main method
         void Run();

@@ -3,6 +3,7 @@
 #include "ActCalibrationManager.h"
 #include "ActClIMB.h"
 #include "ActCluster.h"
+#include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActLine.h"
 #include "ActMultiStep.h"
@@ -292,11 +293,15 @@ void ActRoot::TPCDetector::BuildEventPhysics()
     // Build based on pointer existence
     if (fRansac)
     {
+        fClusterClock.Start(false);
         fPhysics->fClusters = fRansac->Run(fData->fVoxels);
+        fClusterClock.Stop();
     }
     else if (fClimb)
     {
+        fClusterClock.Start(false);
         fPhysics->fClusters = fClimb->Run(fData->fVoxels);
+        fClusterClock.Stop();
         // Apply MultiStep algorithm
         fMultiStep->SetClusters(&(fPhysics->fClusters));
         fMultiStep->SetRPs(&(fPhysics->fRPs));
@@ -306,4 +311,14 @@ void ActRoot::TPCDetector::BuildEventPhysics()
     {
         fPhysics->fClusters = {};
     }
+}
+
+void ActRoot::TPCDetector::PrintReports() const 
+{
+    std::cout << BOLDGREEN << "---- ClusterMethod.Run() timer ----"<<'\n';
+    fClusterClock.Print();
+    std::cout<<RESET;
+    
+    if(fMultiStep)
+        fMultiStep->PrintClocks();
 }
