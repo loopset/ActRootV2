@@ -22,36 +22,36 @@ ActCluster::Cluster::Cluster(int id, const ActPhysics::Line& line, const std::ve
 
 void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
 {
-    const auto& pos {voxel.GetPosition()};
-    fXSet.insert(pos.X());
-    fYSet.insert(pos.Y());
-    fZSet.insert(pos.Z());
-    // for maps
-    fYMap[pos.Y()] += 1;
-    fXYMap[(int)pos.X()].insert((int)pos.Y());
-    fXZMap[(int)pos.X()].insert((int)pos.Z());
+    // const auto& pos {voxel.GetPosition()};
+    // fXSet.insert(pos.X());
+    // fYSet.insert(pos.Y());
+    // fZSet.insert(pos.Z());
+    // // for maps
+    // fYMap[pos.Y()] += 1;
+    // fXYMap[(int)pos.X()].insert((int)pos.Y());
+    // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
 
 void ActCluster::Cluster::FillSets()
 {
-    fXSet.clear();
-    fYSet.clear();
-    fZSet.clear();
-    // Maps
-    fYMap.clear();
-    fXYMap.clear();
-    fXZMap.clear();
-    for(const auto& voxel : fVoxels)
-    {
-        const auto& pos {voxel.GetPosition()};
-        fXSet.insert(pos.X());
-        fYSet.insert(pos.Y());
-        fZSet.insert(pos.Z());
-        // Map
-        fYMap[pos.Y()] += 1;
-        fXYMap[(int)pos.X()].insert((int)pos.Y());
-        fXZMap[(int)pos.X()].insert((int)pos.Z());
-    }
+    // fXSet.clear();
+    // fYSet.clear();
+    // fZSet.clear();
+    // // Maps
+    // fYMap.clear();
+    // fXYMap.clear();
+    // fXZMap.clear();
+    // for(const auto& voxel : fVoxels)
+    // {
+    //     const auto& pos {voxel.GetPosition()};
+    //     fXSet.insert(pos.X());
+    //     fYSet.insert(pos.Y());
+    //     fZSet.insert(pos.Z());
+    //     // Map
+    //     fYMap[pos.Y()] += 1;
+    //     fXYMap[(int)pos.X()].insert((int)pos.Y());
+    //     fXZMap[(int)pos.X()].insert((int)pos.Z());
+    // }
 }
 
 void ActCluster::Cluster::AddVoxel(const ActRoot::Voxel& voxel)
