@@ -22,6 +22,7 @@ namespace ActCluster
     private:
         std::vector<std::vector<std::vector<int>>> fMatrix;//!< 3D matrix to locate clusters in space
         std::vector<ActRoot::Voxel> fVoxels;//!< Local copy of vector to be treated
+        std::vector<int> fIndexes;
         ActRoot::TPCParameters* fTPC {};//!< Pointer to TPC parameters needed to define algorithm parameters
         int fMinPoints;//!< Minimum of points to form a cluster
     public:

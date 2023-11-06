@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <functional>
 #include <iostream>
+#include <numeric>
 #include <set>
 #include <string>
 #include <tuple>
@@ -128,6 +129,9 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
 std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels)
 {
     fVoxels = voxels; // copy in internal variable to avoid modifications
+    // Init Indexes structure
+    fIndexes = std::vector<int>(fVoxels.size());
+    std::iota(fIndexes.begin(), fIndexes.end(), 0);
     std::vector<ActCluster::Cluster> ret;
     // while(fVoxels.size() > 0)
     // {
@@ -174,5 +178,6 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
     //     }
     // }
     fVoxels.clear();
+    fIndexes.clear();
     return ret;
 }
