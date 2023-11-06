@@ -132,6 +132,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:add991d41ffe012729f567c78807fbd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad98adc0753509c4b29852a84bc4c0e52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#ad98adc0753509c4b29852a84bc4c0e52">SetEventData</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *vdata) override</td></tr>
 <tr class="separator:ad98adc0753509c4b29852a84bc4c0e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46972c17fd3f30a86b08c0bdaca20f9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#a46972c17fd3f30a86b08c0bdaca20f9a">PrintReports</a> () const override</td></tr>
+<tr class="separator:a46972c17fd3f30a86b08c0bdaca20f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
 <tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
 <tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,7 +246,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; coas : <a class="code" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">fMEvent</a>-&gt;<a class="code" href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">CoboAsad</a>)</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">//locate channel!</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// locate channel!</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">int</span> co {coas.globalchannelid &gt;&gt; 11};</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span>(co == 31)</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        {</div>
@@ -254,16 +256,16 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keyword">auto</span> leaf {<a class="code" href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">fPars</a>.<a class="code" href="classActRoot_1_1ModularParameters.html#aa45039a96d7bf97885ef9b5d7ff2c9e1">GetName</a>(vxi)};</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">if</span>(leaf.length() == 0)</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">//Write</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">// Write</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>-&gt;<a class="code" href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">fLeaves</a>[leaf] = coas.peakheight[hit];</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1ModularData_html_afc6dce928041f57a1778a76786d6ea50"><div class="ttname"><a href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">ActRoot::ModularData::fLeaves</a></div><div class="ttdeci">std::unordered_map&lt; std::string, float &gt; fLeaves</div><div class="ttdoc">Each leaf holds a float variable in a map.</div><div class="ttdef"><b>Definition:</b> ActModularData.h:15</div></div>
-<div class="ttc" id="aclassActRoot_1_1ModularDetector_html_add69c1d7b6d604225131a6e903d37929"><div class="ttname"><a href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">ActRoot::ModularDetector::fData</a></div><div class="ttdeci">ModularData * fData</div><div class="ttdoc">Pointer to Data.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.h:37</div></div>
-<div class="ttc" id="aclassActRoot_1_1ModularDetector_html_af04936367992bbff9529788a8374df8e"><div class="ttname"><a href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">ActRoot::ModularDetector::fPars</a></div><div class="ttdeci">ModularParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.h:35</div></div>
-<div class="ttc" id="aclassActRoot_1_1ModularParameters_html_aa45039a96d7bf97885ef9b5d7ff2c9e1"><div class="ttname"><a href="classActRoot_1_1ModularParameters.html#aa45039a96d7bf97885ef9b5d7ff2c9e1">ActRoot::ModularParameters::GetName</a></div><div class="ttdeci">std::string GetName(int vxi)</div><div class="ttdoc">Get name of ModularLeaf according to Action file.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.cxx:11</div></div>
+<div class="ttc" id="aclassActRoot_1_1ModularDetector_html_add69c1d7b6d604225131a6e903d37929"><div class="ttname"><a href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">ActRoot::ModularDetector::fData</a></div><div class="ttdeci">ModularData * fData</div><div class="ttdoc">Pointer to Data.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1ModularDetector_html_af04936367992bbff9529788a8374df8e"><div class="ttname"><a href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">ActRoot::ModularDetector::fPars</a></div><div class="ttdeci">ModularParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.h:36</div></div>
+<div class="ttc" id="aclassActRoot_1_1ModularParameters_html_aa45039a96d7bf97885ef9b5d7ff2c9e1"><div class="ttname"><a href="classActRoot_1_1ModularParameters.html#aa45039a96d7bf97885ef9b5d7ff2c9e1">ActRoot::ModularParameters::GetName</a></div><div class="ttdeci">std::string GetName(int vxi)</div><div class="ttdoc">Get name of ModularLeaf according to Action file.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.cxx:12</div></div>
 <div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
 <div class="ttc" id="aclassMEventReduced_html_a6be3a1f8fd6ce8274ab56d7c16cbeef5"><div class="ttname"><a href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">MEventReduced::CoboAsad</a></div><div class="ttdeci">std::vector&lt; ReducedData &gt; CoboAsad</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:30</div></div>
 </div><!-- fragment -->
@@ -293,9 +295,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a74016d6ea68c5d2aa3e79da644dabf36">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,9 +323,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>-&gt;<a class="code" href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">Clear</a>();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>-&gt;<a class="code" href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">Clear</a>();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1ModularData_html_a7190e1377bd4f014ba84aa132a5a4c4d"><div class="ttname"><a href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">ActRoot::ModularData::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdoc">Reset data.</div><div class="ttdef"><b>Definition:</b> ActModularData.cxx:4</div></div>
 </div><!-- fragment -->
 </div>
@@ -354,9 +354,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ad815ee822e6ab01db8b78459c21cdf00">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -384,7 +382,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -412,7 +410,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -441,12 +439,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a084d80d65b55cd7fe00b289b80f6af65">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a> = <span class="keyword">new</span> ModularData;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a> = <span class="keyword">new</span> ModularData;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -485,9 +483,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ae290737344013d689e7d74edf4edfe2b">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    ;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    ;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -516,12 +514,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a39d539f2ddc28bfd318b0d19ca2de3f0">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a> = <span class="keyword">new</span> ModularData;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    tree-&gt;Branch(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a> = <span class="keyword">new</span> ModularData;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    tree-&gt;Branch(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -550,9 +548,35 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#af5336c81bca5ede17014f253f06aa156">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a46972c17fd3f30a86b08c0bdaca20f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46972c17fd3f30a86b08c0bdaca20f9a">&#9670;&nbsp;</a></span>PrintReports()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::ModularDetector::PrintReports </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ac6111dbded8f6ba09f480ad072a3086d">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -581,9 +605,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    ;<span class="comment">//Do not calibrate Modular Leaves so far</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    ; <span class="comment">// Do not calibrate Modular Leaves so far</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -612,14 +636,14 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#af3ee43c1271b1e9e66b77939e77d9e57">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//Read action file</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">auto</span> names {config-&gt;GetStringVector(<span class="stringliteral">&quot;Names&quot;</span>)};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">auto</span> file {config-&gt;GetString(<span class="stringliteral">&quot;Actions&quot;</span>)};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">fPars</a>.<a class="code" href="classActRoot_1_1ModularParameters.html#abe499811e2311734308d3064fe66ed99">ReadActions</a>(names, file);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//fPars.Print();</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1ModularParameters_html_abe499811e2311734308d3064fe66ed99"><div class="ttname"><a href="classActRoot_1_1ModularParameters.html#abe499811e2311734308d3064fe66ed99">ActRoot::ModularParameters::ReadActions</a></div><div class="ttdeci">void ReadActions(const std::vector&lt; std::string &gt; &amp;names, const std::string &amp;file)</div><div class="ttdoc">Read Action file.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.cxx:20</div></div>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Read action file</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">auto</span> names {config-&gt;GetStringVector(<span class="stringliteral">&quot;Names&quot;</span>)};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">auto</span> file {config-&gt;GetString(<span class="stringliteral">&quot;Actions&quot;</span>)};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">fPars</a>.<a class="code" href="classActRoot_1_1ModularParameters.html#abe499811e2311734308d3064fe66ed99">ReadActions</a>(names, file);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// fPars.Print();</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1ModularParameters_html_abe499811e2311734308d3064fe66ed99"><div class="ttname"><a href="classActRoot_1_1ModularParameters.html#abe499811e2311734308d3064fe66ed99">ActRoot::ModularParameters::ReadActions</a></div><div class="ttdeci">void ReadActions(const std::vector&lt; std::string &gt; &amp;names, const std::string &amp;file)</div><div class="ttdoc">Read Action file.</div><div class="ttdef"><b>Definition:</b> ActModularDetector.cxx:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -654,7 +678,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span>(casted)</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a> = casted;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Could not dynamic_cast to ModularData!&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not dynamic_cast to ModularData!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1ModularData_html"><div class="ttname"><a href="classActRoot_1_1ModularData.html">ActRoot::ModularData</a></div><div class="ttdoc">A class storing ModularLeaf data.</div><div class="ttdef"><b>Definition:</b> ActModularData.h:13</div></div>
 </div><!-- fragment -->
