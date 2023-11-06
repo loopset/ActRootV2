@@ -129,50 +129,50 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
 {
     fVoxels = voxels; // copy in internal variable to avoid modifications
     std::vector<ActCluster::Cluster> ret;
-    while(fVoxels.size() > 0)
-    {
-        // 1->Prepare 3D matrix for each iteration, with new indexes
-        FillMatrix();
-        // 2->Set cluster seed point
-        auto seed {SampleSeed()};
-        // Major structures
-        //--- Current cluster class
-        ActCluster::Cluster currentCluster {static_cast<int>(ret.size())};
-        currentCluster.AddVoxel(std::move(fVoxels[seed]));
-        //--- Indexes processed during construction of this cluster
-        std::set<int, std::greater<int>> currentIndexes {seed};
-        // 3-> Initialize generation 0
-        std::vector<int> gen0 {seed};
-        // 4-> Loop until no new neighbors are found!
-        while(gen0.size() > 0)
-        {
-            auto gen1 {ScanNeighborhood(gen0)};
-            // Check no indexes are repeated
-            //  for(auto& g0 : gen0)
-            //      for(auto& g1 : gen1)
-            //          if(g1 == g0)
-            //              throw std::runtime_error("gen0 == gen1 at some point");
-            // Push back voxels and indexes
-            for(const auto& index : gen1)
-            {
-                currentCluster.AddVoxel(std::move(fVoxels[index]));
-                currentIndexes.insert(index);
-            }
-            // Set gen0 to new iteration!
-            gen0 = gen1;
-        }
-        // Delete voxels in just formed cluster, despite being moved
-        for(const auto index : currentIndexes)
-            fVoxels.erase(fVoxels.begin() + index);
-        // Check whether to validate cluster or not
-        // Just if threshold is overcome
-        if(currentCluster.GetSizeOfVoxels() > fMinPoints)
-        {
-            // Of course, fit it before pushing
-            currentCluster.ReFit();
-            ret.push_back(std::move(currentCluster));
-        }
-    }
+    // while(fVoxels.size() > 0)
+    // {
+    //     // 1->Prepare 3D matrix for each iteration, with new indexes
+    //     FillMatrix();
+    //     // 2->Set cluster seed point
+    //     auto seed {SampleSeed()};
+    //     // Major structures
+    //     //--- Current cluster class
+    //     ActCluster::Cluster currentCluster {static_cast<int>(ret.size())};
+    //     currentCluster.AddVoxel(std::move(fVoxels[seed]));
+    //     //--- Indexes processed during construction of this cluster
+    //     std::set<int, std::greater<int>> currentIndexes {seed};
+    //     // 3-> Initialize generation 0
+    //     std::vector<int> gen0 {seed};
+    //     // 4-> Loop until no new neighbors are found!
+    //     while(gen0.size() > 0)
+    //     {
+    //         auto gen1 {ScanNeighborhood(gen0)};
+    //         // Check no indexes are repeated
+    //         //  for(auto& g0 : gen0)
+    //         //      for(auto& g1 : gen1)
+    //         //          if(g1 == g0)
+    //         //              throw std::runtime_error("gen0 == gen1 at some point");
+    //         // Push back voxels and indexes
+    //         for(const auto& index : gen1)
+    //         {
+    //             currentCluster.AddVoxel(std::move(fVoxels[index]));
+    //             currentIndexes.insert(index);
+    //         }
+    //         // Set gen0 to new iteration!
+    //         gen0 = gen1;
+    //     }
+    //     // Delete voxels in just formed cluster, despite being moved
+    //     for(const auto index : currentIndexes)
+    //         fVoxels.erase(fVoxels.begin() + index);
+    //     // Check whether to validate cluster or not
+    //     // Just if threshold is overcome
+    //     if(currentCluster.GetSizeOfVoxels() > fMinPoints)
+    //     {
+    //         // Of course, fit it before pushing
+    //         currentCluster.ReFit();
+    //         ret.push_back(std::move(currentCluster));
+    //     }
+    // }
     fVoxels.clear();
     return ret;
 }
