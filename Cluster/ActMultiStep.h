@@ -82,6 +82,8 @@ namespace ActCluster
         double fRPMaskZ;
         std::vector<int> fAllowedMults;
         double fRPPivotDist;
+        // 7-> Clean bad fits at the very begining of the algorithm
+        bool fEnableCleanBadFits;
         // Vector of TStopwatch to asses performance of algorithm
         std::vector<TStopwatch> fClocks;
         std::vector<std::string> fCLabels;
@@ -109,6 +111,8 @@ namespace ActCluster
 
         // Main method
         void Run();
+        // Erase bad fits: Chi2 = -1
+        void CleanBadFits();
         // Initial clean of pileup beams
         void CleanPileup();
         // Cleaning of Zs

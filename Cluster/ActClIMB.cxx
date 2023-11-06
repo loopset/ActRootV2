@@ -84,11 +84,9 @@ void ActCluster::ClIMB::MaskVoxelsInMatrix(int index)
     fMatrix[x][y][z] = -1;
 }
 
-int ActCluster::ClIMB::SampleSeed()
+void ActCluster::ClIMB::MaskVoxelsInIndex(int index)
 {
-    auto seed {static_cast<int>(gRandom->Uniform() * fVoxels.size())};
-    MaskVoxelsInMatrix(seed);
-    return seed;
+    fIndexes[index] = -1;
 }
 
 std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen0)
@@ -117,7 +115,9 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
                     if(index != -1)
                     {
                         gen1.push_back(index);
+                        // Mask them both in matrix and in indexes vector
                         MaskVoxelsInMatrix(index);
+                        MaskVoxelsInIndex(index);
                     }
                 }
             }
@@ -126,58 +126,68 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
     return gen1;
 }
 
+void ActCluster::ClIMB::InitIndexes()
+{
+    // Clear
+    fIndexes.clear();
+    // Allocate enough memory
+    fIndexes.reserve(fVoxels.size());
+    // Set size
+    fIndexes.resize(fVoxels.size());
+    // Fill
+    std::iota(fIndexes.begin(), fIndexes.end(), 0);
+}
+
 std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels)
 {
+    fVoxels.clear();
     fVoxels = voxels; // copy in internal variable to avoid modifications
     // Init Indexes structure
-    fIndexes = std::vector<int>(fVoxels.size());
-    std::iota(fIndexes.begin(), fIndexes.end(), 0);
+    InitIndexes();
+    // Fill matrix
+    FillMatrix();
+    // Prepare return valie
     std::vector<ActCluster::Cluster> ret;
-    // while(fVoxels.size() > 0)
-    // {
-    //     // 1->Prepare 3D matrix for each iteration, with new indexes
-    //     FillMatrix();
-    //     // 2->Set cluster seed point
-    //     auto seed {SampleSeed()};
-    //     // Major structures
-    //     //--- Current cluster class
-    //     ActCluster::Cluster currentCluster {static_cast<int>(ret.size())};
-    //     currentCluster.AddVoxel(std::move(fVoxels[seed]));
-    //     //--- Indexes processed during construction of this cluster
-    //     std::set<int, std::greater<int>> currentIndexes {seed};
-    //     // 3-> Initialize generation 0
-    //     std::vector<int> gen0 {seed};
-    //     // 4-> Loop until no new neighbors are found!
-    //     while(gen0.size() > 0)
-    //     {
-    //         auto gen1 {ScanNeighborhood(gen0)};
-    //         // Check no indexes are repeated
-    //         //  for(auto& g0 : gen0)
-    //         //      for(auto& g1 : gen1)
-    //         //          if(g1 == g0)
-    //         //              throw std::runtime_error("gen0 == gen1 at some point");
-    //         // Push back voxels and indexes
-    //         for(const auto& index : gen1)
-    //         {
-    //             currentCluster.AddVoxel(std::move(fVoxels[index]));
-    //             currentIndexes.insert(index);
-    //         }
-    //         // Set gen0 to new iteration!
-    //         gen0 = gen1;
-    //     }
-    //     // Delete voxels in just formed cluster, despite being moved
-    //     for(const auto index : currentIndexes)
-    //         fVoxels.erase(fVoxels.begin() + index);
-    //     // Check whether to validate cluster or not
-    //     // Just if threshold is overcome
-    //     if(currentCluster.GetSizeOfVoxels() > fMinPoints)
-    //     {
-    //         // Of course, fit it before pushing
-    //         currentCluster.ReFit();
-    //         ret.push_back(std::move(currentCluster));
-    //     }
-    // }
-    fVoxels.clear();
-    fIndexes.clear();
-    return ret;
+    // Getter of seed based on fIndex being masked (=-1)
+    auto lambda {[](const int& i){return i == -1;}};
+    auto it {std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda)};
+    while(it != fIndexes.end())//(fVoxels.size() > 0)
+    {
+        // 1->Set seed of cluster as first non-masked element of fIndexes
+        auto seed {*it};
+        // Mask it!
+        MaskVoxelsInMatrix(seed);
+        MaskVoxelsInIndex(seed);
+        // 2-> Create current cluster
+        ActCluster::Cluster currentCluster {static_cast<int>(ret.size())};
+        currentCluster.AddVoxel(std::move(fVoxels[seed]));
+        // 3-> Initialize generation 0
+        std::vector<int> gen0 {seed};
+        // 4-> Loop until no new neighbors are found!
+        while(gen0.size() > 0)
+        {
+            auto gen1 {ScanNeighborhood(gen0)};
+            // Check no indexes are repeated
+            //  for(auto& g0 : gen0)
+            //      for(auto& g1 : gen1)
+            //          if(g1 == g0)
+            //              throw std::runtime_error("gen0 == gen1 at some point");
+            // Push back voxels and indexes
+            for(const auto& index : gen1)
+                currentCluster.AddVoxel(std::move(fVoxels[index]));
+            // Set gen0 to new iteration!
+            gen0 = gen1;
+        }
+        // Check whether to validate cluster or not
+        // based on number of voxels
+        if(currentCluster.GetSizeOfVoxels() > fMinPoints)
+        {
+            // Of course, fit it before pushing
+            currentCluster.ReFit();
+            ret.push_back(std::move(currentCluster));
+        }
+        //Prepare iterator for next iteration
+        it = std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda);
+    }
+    return std::move(ret);
 }

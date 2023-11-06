@@ -46,11 +46,12 @@ namespace ActCluster
 
     private:
         void InitMatrix();
+        void InitIndexes();
         void FillMatrix();
         std::vector<int> ScanNeighborhood(const std::vector<int>& gen0);
         std::tuple<int, int, int> GetCoordinates(int index);
         void MaskVoxelsInMatrix(int index);
-        int SampleSeed();
+        void MaskVoxelsInIndex(int index);
     };
 }
 

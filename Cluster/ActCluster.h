@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <string>
 #include <utility>
 #include <vector>
 namespace ActCluster
@@ -18,14 +19,17 @@ namespace ActCluster
     {
     public:
         using XYZPoint = ROOT::Math::XYZPointF;
+        typedef std::pair<float, float> RangeType;
 
     private:
+        // Line with fit parameters
         ActPhysics::Line fLine {};
+        // Voxels belonging to clusters
         std::vector<ActRoot::Voxel> fVoxels {};
-        std::set<float> fXSet {};
-        std::set<float> fYSet {};
-        std::set<float> fZSet {};
-        std::map<float, int> fYMap {};
+        // Ranges of each dimension
+        RangeType fXRange {1111, -1};
+        RangeType fYRange {1111, -1};
+        RangeType fZRange {1111, -1};
         std::map<int, std::set<int>> fXYMap {};
         std::map<int, std::set<int>> fXZMap {};
         int fClusterID {};
@@ -42,9 +46,9 @@ namespace ActCluster
 
         // Getters and setters
         const ActPhysics::Line& GetLine() const { return fLine; }
-        ActPhysics::Line& GetRefToLine() { return fLine; }
+        ActPhysics::Line& GetRefToLine() { return fLine; } // non-const: allows to change inner variable
         const std::vector<ActRoot::Voxel>& GetVoxels() const { return fVoxels; }
-        std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; }
+        std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; } // non-const: allows to change inner variable
         int GetSizeOfVoxels() const { return fVoxels.size(); }
         int GetClusterID() const { return fClusterID; }
         bool GetIsBeamLike() const { return fIsBeamLike; }
@@ -68,7 +72,6 @@ namespace ActCluster
         std::pair<float, float> GetXRange() const;
         std::pair<float, float> GetYRange() const;
         std::pair<float, float> GetZRange() const;
-        const std::map<float, int>& GetYMap() const { return fYMap; }
         const std::map<int, std::set<int>>& GetXYMap() const { return fXYMap; };
         const std::map<int, std::set<int>>& GetXZMap() const { return fXZMap; };
 
@@ -85,6 +88,7 @@ namespace ActCluster
         void Print() const;
 
     private:
+        void UpdateRange(float val, RangeType& range);
         void FillSets(const ActRoot::Voxel& voxel);
         void FillSets();
     };

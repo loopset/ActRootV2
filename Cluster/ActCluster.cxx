@@ -20,38 +20,45 @@ ActCluster::Cluster::Cluster(int id, const ActPhysics::Line& line, const std::ve
     FillSets(); // not sure yet... X and Y extents can only be computed at fill time for ClIMB
 }
 
+void ActCluster::Cluster::UpdateRange(float val, RangeType& range)
+{
+    // Min
+    if(val < range.first)
+        range.first = val;
+    // Max
+    if(val > range.second)
+        range.second = val;
+}
+
 void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
 {
-    // const auto& pos {voxel.GetPosition()};
-    // fXSet.insert(pos.X());
-    // fYSet.insert(pos.Y());
-    // fZSet.insert(pos.Z());
-    // // for maps
-    // fYMap[pos.Y()] += 1;
+    const auto& pos {voxel.GetPosition()};
+    UpdateRange(pos.X(), fXRange);
+    UpdateRange(pos.Y(), fYRange);
+    UpdateRange(pos.Z(), fZRange);
+    //
     // fXYMap[(int)pos.X()].insert((int)pos.Y());
     // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
 
 void ActCluster::Cluster::FillSets()
 {
-    // fXSet.clear();
-    // fYSet.clear();
-    // fZSet.clear();
-    // // Maps
-    // fYMap.clear();
+    fXRange = {1111, -1};
+    fYRange = {1111, -1};
+    fZRange = {1111, -1};
+
     // fXYMap.clear();
     // fXZMap.clear();
-    // for(const auto& voxel : fVoxels)
-    // {
-    //     const auto& pos {voxel.GetPosition()};
-    //     fXSet.insert(pos.X());
-    //     fYSet.insert(pos.Y());
-    //     fZSet.insert(pos.Z());
-    //     // Map
-    //     fYMap[pos.Y()] += 1;
-    //     fXYMap[(int)pos.X()].insert((int)pos.Y());
-    //     fXZMap[(int)pos.X()].insert((int)pos.Z());
-    // }
+    for(const auto& voxel : fVoxels)
+    {
+        const auto& pos {voxel.GetPosition()};
+        UpdateRange(pos.X(), fXRange);
+        UpdateRange(pos.Y(), fYRange);
+        UpdateRange(pos.Z(), fZRange);
+        //
+        // fXYMap[(int)pos.X()].insert((int)pos.Y());
+        // fXZMap[(int)pos.X()].insert((int)pos.Z());
+    }
 }
 
 void ActCluster::Cluster::AddVoxel(const ActRoot::Voxel& voxel)
@@ -137,24 +144,24 @@ void ActCluster::Cluster::ReFillSets()
 
 std::pair<float, float> ActCluster::Cluster::GetXRange() const
 {
-    if(fXSet.size() > 0)
-        return {*fXSet.begin(), *fXSet.rbegin()};
+    if(fXRange.second != -1)
+        return fXRange;
     else
         return {0, 0};
 }
 
-std::pair<float, float> ActCluster::Cluster::GetYRange() const 
+std::pair<float, float> ActCluster::Cluster::GetYRange() const
 {
-    if(fYSet.size() > 0)
-        return {*fYSet.begin(), *fYSet.rbegin()};
+    if(fYRange.second != -1)
+        return fYRange;
     else
-        return {0 ,0};
+        return {0, 0};
 }
 
-std::pair<float, float> ActCluster::Cluster::GetZRange() const 
+std::pair<float, float> ActCluster::Cluster::GetZRange() const
 {
-    if(fZSet.size())
-        return {*fZSet.begin(), *fZSet.rbegin()};
+    if(fZRange.second != -1)
+        return fZRange;
     else
         return {0, 0};
 }

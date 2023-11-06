@@ -114,7 +114,7 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fDeltaChi2Threshold = mb->GetDouble("DeltaChi2Threshold");
     if(mb->CheckTokenExists("DeltaMaxVoxels"))
         fDeltaMaxVoxels = mb->GetDouble("DeltaMaxVoxels");
-    // Clean unreacted beam events
+    // RP calculation
     if(mb->CheckTokenExists("EnableRP"))
         fEnableRP = mb->GetBool("EnableRP");
     if(mb->CheckTokenExists("UnreactedMinPercentX"))
@@ -131,14 +131,12 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fAllowedMults = mb->GetIntVector("AllowedMults");
     if(mb->CheckTokenExists("RPPivotDist"))
         fRPPivotDist = mb->GetDouble("RPPivotDist");
+    // Clean bad fits
+    if(mb->CheckTokenExists("EnableCleanBadFits"))
+        fEnableCleanBadFits = mb->GetBool("EnableCleanBadFits");
 
-    // Init clocks
-    for(int i = 0; i < 8; i++)
-    {
-        fClocks.push_back(TStopwatch {});
-    }
-    // Set labels of them
-    fCLabels = std::vector<std::string>(8);
+    // Init clocks to assess performance
+    fCLabels = std::vector<std::string>(9);
     fCLabels[0] = "CleanPileup";
     fCLabels[1] = "CleanZs";
     fCLabels[2] = "BreakBeam";
@@ -147,6 +145,12 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     fCLabels[5] = "CleanDeltas";
     fCLabels[6] = "FindRP";
     fCLabels[7] = "FindPreciseRP";
+    fCLabels[8] = "CleanBadFits";
+    // Init clocks
+    for(int i = 0, size = fCLabels.size(); i < size; i++)
+    {
+        fClocks.push_back(TStopwatch());
+    }
 }
 
 void ActCluster::MultiStep::ResetIndex()
@@ -173,6 +177,12 @@ void ActCluster::MultiStep::Run()
     if(!fIsEnabled)
         return;
     // Set order of algorithms here, and whether they run or not
+    if(fEnableCleanBadFits)
+    {
+        fClocks[8].Start(false);
+        CleanBadFits();
+        fClocks[8].Stop();
+    }
     if(fEnableCleanPileUp)
     {
         fClocks[0].Start(false);
@@ -235,6 +245,18 @@ void ActCluster::MultiStep::PrintClocks() const
     std::cout << RESET << '\n';
 }
 
+void ActCluster::MultiStep::CleanBadFits()
+{
+    for(auto it = fClusters->begin(); it != fClusters->end();)
+    {
+        bool isBadFit {it->GetLine().GetChi2() == -1};
+        if(isBadFit)
+            it = fClusters->erase(it);
+        else
+            it++;
+    }
+}
+
 void ActCluster::MultiStep::CleanZs()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
@@ -261,6 +283,8 @@ void ActCluster::MultiStep::CleanDeltas()
         bool hasLargeChi {it->GetLine().GetChi2() >= fDeltaChi2Threshold};
         // 2-> If has less voxels than required
         bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
+        // 3-> If after all there are clusters with Chi2 = -1
+        bool isBadFit {it->GetLine().GetChi2() == -1};
         if(fIsVerbose)
         {
             std::cout << BOLDCYAN << "---- CleanDeltas verbose ----" << '\n';
@@ -268,7 +292,7 @@ void ActCluster::MultiStep::CleanDeltas()
             std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
             std::cout << "-------------------" << RESET << '\n';
         }
-        if(hasLargeChi || isSmall)
+        if(hasLargeChi || isSmall || isBadFit)
             it = fClusters->erase(it);
         else
             it++;
@@ -446,10 +470,10 @@ void ActCluster::MultiStep::BreakTrackClusters()
             if(fIsVerbose)
             {
                 std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----" << '\n';
-                std::cout << "New gravity : " << gravity << RESET << '\n';
+                std::cout << "New gravity : " << gravity << '\n';
                 std::cout << "Init size : " << initSize << '\n';
                 std::cout << "After size : " << refVoxels.size() << '\n';
-                std::cout << "-------------------------" << '\n';
+                std::cout << "-------------------------" << RESET << '\n';
             }
             // 4-> Move
             std::vector<ActRoot::Voxel> breakable {};
