@@ -134,8 +134,14 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // Clean bad fits
     if(mb->CheckTokenExists("EnableCleanBadFits"))
         fEnableCleanBadFits = mb->GetBool("EnableCleanBadFits");
+ 
+    // Init clocks here
+    InitClocks();
+}
 
-    // Init clocks to assess performance
+void ActCluster::MultiStep::InitClocks()
+{
+    // Declare labels to each clock
     fCLabels = std::vector<std::string>(9);
     fCLabels[0] = "CleanPileup";
     fCLabels[1] = "CleanZs";
@@ -146,11 +152,9 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     fCLabels[6] = "FindRP";
     fCLabels[7] = "FindPreciseRP";
     fCLabels[8] = "CleanBadFits";
-    // Init clocks
+    // Push back clocks to vector
     for(int i = 0, size = fCLabels.size(); i < size; i++)
-    {
         fClocks.push_back(TStopwatch());
-    }
 }
 
 void ActCluster::MultiStep::ResetIndex()
@@ -372,12 +376,12 @@ void ActCluster::MultiStep::BreakBeamClusters()
             auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
             // 3-> PRELIMINARY: experimental method to get finer breaking point (a sort of preliminary reaction point)
             // based on cluster topology
-            auto preliminary {DetermineBreakPoint(it)};
-            auto bp {std::get<0>(preliminary)};                  // breaking point
-            auto autoWY {std::get<1>(preliminary)};              // mean width along Y
-            auto autoWZ {std::get<2>(preliminary)};              // mean width along Z
-            bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all the
-                                                                 // times, fallback to default method if so
+            // auto preliminary {DetermineBreakPoint(it)};
+            // auto bp {std::get<0>(preliminary)};                  // breaking point
+            // auto autoWY {std::get<1>(preliminary)};              // mean width along Y
+            // auto autoWZ {std::get<2>(preliminary)};              // mean width along Z
+            // bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all the
+            //                                                      // times, fallback to default method if so
 
             // 3->Modify original cluster: move non-beam voxels outside to
             //  be clusterized independently
@@ -387,10 +391,11 @@ void ActCluster::MultiStep::BreakBeamClusters()
                                         [&](const ActRoot::Voxel& voxel)
                                         {
                                             const auto& pos {voxel.GetPosition()};
-                                            if(useBreakingPoint)
-                                                return AutoIsInBeam(pos, gravity, (double)bp.X(), autoWY, autoWZ);
-                                            else
-                                                return ManualIsInBeam(pos, gravity);
+                                            // if(useBreakingPoint)
+                                            //     return AutoIsInBeam(pos, gravity, (double)bp.X(), autoWY, autoWZ);
+                                            // else
+                                            //     return ManualIsInBeam(pos, gravity);
+                                            return ManualIsInBeam(pos, gravity);
                                         })};
             // Create vector to move to
             std::vector<ActRoot::Voxel> notBeam {};
@@ -402,8 +407,8 @@ void ActCluster::MultiStep::BreakBeamClusters()
                 std::cout << BOLDGREEN << "---- BreakBeam verbose for ID : " << it->GetClusterID() << " ----" << '\n';
                 std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
                 std::cout << "XExtent = [" << xmin << ", " << xmax << "]" << '\n';
-                std::cout << "Break point = " << bp << '\n';
-                std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
+                // std::cout << "Break point = " << bp << '\n';
+                // std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
                 std::cout << "Gravity = " << gravity << '\n';
                 std::cout << "Init size beam = " << initSize << '\n';
                 std::cout << "Remaining beam = " << refToVoxels.size() << '\n';

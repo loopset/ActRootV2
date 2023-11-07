@@ -36,7 +36,7 @@ void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
     UpdateRange(pos.X(), fXRange);
     UpdateRange(pos.Y(), fYRange);
     UpdateRange(pos.Z(), fZRange);
-    //
+    // 
     // fXYMap[(int)pos.X()].insert((int)pos.Y());
     // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
@@ -46,7 +46,7 @@ void ActCluster::Cluster::FillSets()
     fXRange = {1111, -1};
     fYRange = {1111, -1};
     fZRange = {1111, -1};
-
+    //
     // fXYMap.clear();
     // fXZMap.clear();
     for(const auto& voxel : fVoxels)

@@ -135,12 +135,19 @@ namespace ActCluster
         void DeterminePreciseRP();
 
     private:
+        // Initialize clocks to measure execution time of each step
+        void InitClocks();
+        // Check if voxel is in cylindir using manually-given widths
         bool ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale = 1);
+        // Do the same but using auto-determined widths
         template <typename T>
         bool
         AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T meanWidthY, T meanWidthZ, T offset = 2);
+        // Use preliminary method to obtain a better aproximation to the RP
         std::tuple<XYZPoint, double, double> DetermineBreakPoint(ItType it);
+        // Reset indexes of fClusters
         void ResetIndex();
+        // Print during execution of each step
         void PrintStep() const;
         // Using matrix calculus, returns two closest point between two lines in 3D
         std::tuple<XYZPoint, XYZPoint, double> ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB);

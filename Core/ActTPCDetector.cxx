@@ -317,7 +317,7 @@ void ActRoot::TPCDetector::PrintReports() const
 {
     std::cout << BOLDGREEN << "---- ClusterMethod.Run() timer ----" << '\n';
     fClusterClock.Print();
-    std::cout << RESET;
+    std::cout << RESET << '\n';
 
     if(fMultiStep)
         fMultiStep->PrintClocks();

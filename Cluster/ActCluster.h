@@ -83,7 +83,6 @@ namespace ActCluster
         void ReFit();      //! Fit or redo fit of current voxels
         void ReFillSets(); //! Refill sets after an external operation modifies them
 
-
         // Display info function
         void Print() const;
 
