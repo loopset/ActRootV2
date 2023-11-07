@@ -139,7 +139,10 @@ void ActRoot::TPCDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
     if(fPhysics)
         delete fPhysics;
     fPhysics = new TPCPhysics;
-    // do not attatch output tree so far
+    if(tree)
+    {
+        tree->Branch("TPCPhysics", &fPhysics);
+    }
 }
 
 void ActRoot::TPCDetector::ClearEventData()
@@ -306,6 +309,7 @@ void ActRoot::TPCDetector::BuildEventPhysics()
         fMultiStep->SetClusters(&(fPhysics->fClusters));
         fMultiStep->SetRPs(&(fPhysics->fRPs));
         fMultiStep->Run();
+
     }
     else
     {

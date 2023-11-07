@@ -1,15 +1,15 @@
 #include "ActMTExecutor.h"
 
-#include "BS_thread_pool.h"
-
 #include "ActCalibrationManager.h"
+#include "ActColors.h"
 #include "ActDetectorManager.h"
 #include "ActInputData.h"
 #include "ActOutputData.h"
-#include "ActColors.h"
 
 #include "TROOT.h"
 #include "TStopwatch.h"
+
+#include "BS_thread_pool.h"
 
 #include <iomanip>
 #include <iostream>
@@ -24,26 +24,25 @@ ActRoot::MTExecutor::MTExecutor(int nthreads)
       fRunsPerThread(nthreads),
       fProgress(nthreads)
 {
-    //Mandatory to be very cautious with concurrency
+    // Mandatory to be very cautious with concurrency
     ROOT::EnableThreadSafety();
     ROOT::EnableImplicitMT(nthreads);
 }
 
-void ActRoot::MTExecutor::SetInputAndOutput(InputData *in, OutputData *out)
+void ActRoot::MTExecutor::SetInputAndOutput(InputData* in, OutputData* out)
 {
-    //Assign
+    // Assign
     fInput = in;
     fOutput = out;
-    //Compute runs per worker
+    // Compute runs per worker
     ComputeRunsPerThread();
 }
 
-void ActRoot::MTExecutor::SetDetectorConfig(const std::string &detfile,
-                                            const std::string& calfile)
+void ActRoot::MTExecutor::SetDetectorConfig(const std::string& detfile, const std::string& calfile)
 {
     for(int d = 0; d < fDetMans.size(); d++)
     {
-        if(IsThreadEmpty(d))//skip empty threads
+        if(IsThreadEmpty(d)) // skip empty threads
             continue;
         fDetMans[d] = DetectorManager(detfile);
         fDetMans[d].ReadCalibrations(calfile);
@@ -63,16 +62,16 @@ void ActRoot::MTExecutor::ComputeRunsPerThread()
         idx++;
     }
 
-    //Print
-    std::cout<<"----- MTExecutor -----"<<'\n';
+    // Print
+    std::cout << "----- MTExecutor -----" << '\n';
     for(int t = 0; t < fRunsPerThread.size(); t++)
     {
-        std::cout<<"Thread "<<t<<'\n';
+        std::cout << "Thread " << t << '\n';
         for(auto& run : fRunsPerThread[t])
         {
-            std::cout<<"-> Run "<<run<<'\n';
+            std::cout << "-> Run " << run << '\n';
         }
-        std::cout<<"------------------------"<<'\n';
+        std::cout << "------------------------" << '\n';
     }
 }
 
@@ -93,8 +92,10 @@ void ActRoot::MTExecutor::PrintProgress(int thread, int run, double current, dou
     if(current >= fProgress[thread].second)
     {
         auto percent {static_cast<int>(100 * current / total)};
-        ftpcout.print("\r", "                                             ", BS::synced_stream::flush);//to avoid garbage in cout, sinc \r does not clean previous line
-        ftpcout.print("\r", BOLDGREEN, "Run ", run, " -> ", std::string(percent / fPercentPrint, (style) ? '|' : '#'), percent, "%", RESET, BS::synced_stream::flush);
+        ftpcout.print("\r", "                                             ",
+                      BS::synced_stream::flush); // to avoid garbage in cout, sinc \r does not clean previous line
+        ftpcout.print("\r", BOLDGREEN, "Run ", run, " -> ", std::string(percent / fPercentPrint, (style) ? '|' : '#'),
+                      percent, "%", RESET, BS::synced_stream::flush);
         fProgress[thread].second += fProgress[thread].first;
         style = !style;
     }
@@ -102,18 +103,18 @@ void ActRoot::MTExecutor::PrintProgress(int thread, int run, double current, dou
 
 void ActRoot::MTExecutor::BuildEventData()
 {
-    //Build lambda per worker
+    // Build lambda per worker
     auto build = [this](const int thread)
     {
-        //ftpcout.println("Running thread ",thread);
+        // ftpcout.println("Running thread ",thread);
         for(const auto& run : fRunsPerThread[thread])
         {
-            //ftpcout.println("->Run ", run);
+            // ftpcout.println("->Run ", run);
             fDetMans[thread].InitializeDataInputRaw(fInput->GetTree(run), run);
             fDetMans[thread].InitializeDataOutput(fOutput->GetTree(run));
             auto nentries {fInput->GetNEntries(run)};
             StepProgress(thread, nentries);
-            //Run for each entry!
+            // Run for each entry!
             for(int entry = 0; entry < nentries; entry++)
             {
                 fInput->GetEntry(run, entry);
@@ -121,10 +122,12 @@ void ActRoot::MTExecutor::BuildEventData()
                 fOutput->Fill(run);
                 PrintProgress(thread, run, entry, nentries);
             }
+            fOutput->Close(run);
         }
     };
-    //And push to ThreadPool!
-    TStopwatch timer {}; timer.Start();
+    // And push to ThreadPool!
+    TStopwatch timer {};
+    timer.Start();
     for(int thread = 0; thread < fDetMans.size(); thread++)
     {
         if(!IsThreadEmpty(thread))
@@ -132,6 +135,6 @@ void ActRoot::MTExecutor::BuildEventData()
     }
     ftp.wait_for_tasks();
     timer.Stop();
-    std::cout<<std::endl;
+    std::cout << std::endl;
     timer.Print();
 }

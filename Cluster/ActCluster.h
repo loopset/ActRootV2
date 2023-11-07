@@ -30,8 +30,8 @@ namespace ActCluster
         RangeType fXRange {1111, -1};
         RangeType fYRange {1111, -1};
         RangeType fZRange {1111, -1};
-        std::map<int, std::set<int>> fXYMap {};
-        std::map<int, std::set<int>> fXZMap {};
+        std::map<int, std::set<int>> fXYMap {}; //!
+        std::map<int, std::set<int>> fXZMap {}; //!
         int fClusterID {};
         bool fIsBeamLike {false};
         bool fToMerge {true};

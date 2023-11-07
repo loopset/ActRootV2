@@ -5,6 +5,7 @@
 void ActRoot::TPCPhysics::Clear()
 {
     fClusters.clear();
+    fRPs.clear();
 }
 
 void ActRoot::TPCPhysics::Print() const
