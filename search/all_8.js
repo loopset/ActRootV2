@@ -32,12 +32,13 @@ var searchData=
   ['is_5fpaused_709',['is_paused',['../classBS_1_1thread__pool.html#adc7938f7b2b9140c3f6e729b48db79b2',1,'BS::thread_pool']]],
   ['isblockheader_710',['IsBlockHeader',['../classActRoot_1_1InputParser.html#a3e968e68984921da98111fa13b905bf0',1,'ActRoot::InputParser']]],
   ['iscomment_711',['IsComment',['../classActRoot_1_1InputParser.html#a8be92077c1262b087d0b408e49cc5cc0',1,'ActRoot::InputParser']]],
-  ['isinrange_712',['IsInRange',['../classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581',1,'ActPhysics::Line']]],
-  ['isinside_713',['IsInside',['../classActRoot_1_1CutsManager.html#ad6af23e4d80989490ce5f326505d61f7',1,'ActRoot::CutsManager']]],
-  ['isinvector_714',['IsInVector',['../classActCluster_1_1RANSAC.html#ae3d716577c5bed3cc22b228416613513',1,'ActCluster::RANSAC']]],
-  ['isrpvalid_715',['IsRPValid',['../classActCluster_1_1MultiStep.html#a6bafc6472b95992a6a5e03d50d7756c6',1,'ActCluster::MultiStep']]],
-  ['issplit_716',['IsSplit',['../classActCluster_1_1IntervalMap.html#aa5a258be807d033ac9628ac44be4c570',1,'ActCluster::IntervalMap']]],
-  ['isthreadempty_717',['IsThreadEmpty',['../classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3',1,'ActRoot::MTExecutor']]],
-  ['isvector_718',['IsVector',['../classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7',1,'ActRoot::InputBlock']]],
-  ['ittype_719',['ItType',['../classActCluster_1_1MultiStep.html#a7ab012a7422e5c5351fc720576dc0190',1,'ActCluster::MultiStep']]]
+  ['isincage_712',['IsInCage',['../classActCluster_1_1ClIMB.html#a02dccf91064b9e97e172e63d4e81633f',1,'ActCluster::ClIMB']]],
+  ['isinrange_713',['IsInRange',['../classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581',1,'ActPhysics::Line']]],
+  ['isinside_714',['IsInside',['../classActRoot_1_1CutsManager.html#ad6af23e4d80989490ce5f326505d61f7',1,'ActRoot::CutsManager']]],
+  ['isinvector_715',['IsInVector',['../classActCluster_1_1RANSAC.html#ae3d716577c5bed3cc22b228416613513',1,'ActCluster::RANSAC']]],
+  ['isrpvalid_716',['IsRPValid',['../classActCluster_1_1MultiStep.html#a6bafc6472b95992a6a5e03d50d7756c6',1,'ActCluster::MultiStep']]],
+  ['issplit_717',['IsSplit',['../classActCluster_1_1IntervalMap.html#aa5a258be807d033ac9628ac44be4c570',1,'ActCluster::IntervalMap']]],
+  ['isthreadempty_718',['IsThreadEmpty',['../classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3',1,'ActRoot::MTExecutor']]],
+  ['isvector_719',['IsVector',['../classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7',1,'ActRoot::InputBlock']]],
+  ['ittype_720',['ItType',['../classActCluster_1_1MultiStep.html#a7ab012a7422e5c5351fc720576dc0190',1,'ActCluster::MultiStep']]]
 ];
