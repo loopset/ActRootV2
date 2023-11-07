@@ -88,6 +88,14 @@ void ActCluster::ClIMB::MaskVoxelsInIndex(int index)
 {
     fIndexes[index] = -1;
 }
+template<typename T>
+bool ActCluster::ClIMB::IsInCage(T x, T y, T z)
+{
+    bool condX {0 <= x && x < fTPC->GetNPADSX()};
+    bool condY {0 <= y && y < fTPC->GetNPADSY()};
+    bool condZ {0 <= z && z < fTPC->GetNPADSZ() / fTPC->GetREBINZ()};
+    return condX && condY && condZ;
+}
 
 std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen0)
 {
@@ -104,14 +112,10 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
                     if(ix == 0 && iy == 0 && iz == 0) // skip self point
                         continue;
                     int index {};
-                    try
-                    {
-                        index = fMatrix.at(x + ix).at(y + iy).at(z + iz);
-                    }
-                    catch(std::exception& e)
-                    {
+                    if(IsInCage(x + ix, y + iy, z + iz))
+                        index = fMatrix[x + ix][y + iy][z + iz];
+                    else
                         continue;
-                    }
                     if(index != -1)
                     {
                         gen1.push_back(index);
@@ -140,7 +144,6 @@ void ActCluster::ClIMB::InitIndexes()
 
 std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels)
 {
-    fVoxels.clear();
     fVoxels = voxels; // copy in internal variable to avoid modifications
     // Init Indexes structure
     InitIndexes();
@@ -189,5 +192,6 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
         //Prepare iterator for next iteration
         it = std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda);
     }
+    fVoxels.clear();
     return std::move(ret);
 }

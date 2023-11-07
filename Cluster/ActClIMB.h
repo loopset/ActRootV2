@@ -52,6 +52,8 @@ namespace ActCluster
         std::tuple<int, int, int> GetCoordinates(int index);
         void MaskVoxelsInMatrix(int index);
         void MaskVoxelsInIndex(int index);
+        template<typename T>
+        bool IsInCage(T x, T y, T z);
     };
 }
 
