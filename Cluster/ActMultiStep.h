@@ -75,9 +75,9 @@ namespace ActCluster
         double fDeltaMaxVoxels;
         // 6-> Determine RP and clean unreacted beam
         bool fEnableRP;
-        double fUnreactedMinPercentX;
-        double fUnreactedMinParallelFactor;
-        double fRPDistThreshold;
+        double fBeamLikeXMinThresh;
+        double fBeamLikeParallelF;
+        double fRPDistThresh;
         double fRPMaskXY;
         double fRPMaskZ;
         std::vector<int> fAllowedMults;
@@ -153,6 +153,8 @@ namespace ActCluster
         std::tuple<XYZPoint, XYZPoint, double> ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB);
         // Check if RP is valid according to ranges
         bool IsRPValid(const XYZPoint& rp);
+        // Get -very- preliminary theta to rank RPs
+        double GetThetaAngle(const XYZVector& dir);
     };
 } // namespace ActCluster
 

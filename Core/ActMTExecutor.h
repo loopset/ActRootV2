@@ -44,6 +44,7 @@ namespace ActRoot
         void SetInputAndOutput(InputData* in, OutputData* out);
         void SetDetectorConfig(const std::string& detfile, const std::string& calfile);
         void BuildEventData();
+        void BuildEventPhysics();
 
     private:
         void ComputeRunsPerThread();

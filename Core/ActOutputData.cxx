@@ -6,6 +6,7 @@
 #include "TFile.h"
 #include "TMacro.h"
 #include "TObject.h"
+#include "TSystem.h"
 #include "TTree.h"
 
 #include <iostream>
@@ -74,6 +75,7 @@ void ActRoot::OutputData::Close(int run)
     // Write to file assigned to tree in run
     // option kWriteDelete erases previous cycle metadata
     // keeping only the highest
+    fFiles[run]->cd();
     fTrees[run]->Write("", TObject::kWriteDelete);
     // Close file
     fFiles[run]->Close();

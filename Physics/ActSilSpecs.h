@@ -26,6 +26,9 @@ namespace ActPhysics
         SilUnit() = default;
         SilUnit(double height, double width, double thick) : fHeight(height), fWidth(width), fThick(thick) {}
         void Print() const;
+        double GetWidth() const { return fWidth; }
+        double GetHeight() const { return fHeight; };
+        double GetThickness() const { return fThick; }
     };
 
     class SilLayer

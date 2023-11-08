@@ -38,6 +38,7 @@ void ActPhysics::SilSpecs::Print() const
         layer.Print();
         std::cout << std::endl;
     }
+    std::cout << RESET;
 }
 
 void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)

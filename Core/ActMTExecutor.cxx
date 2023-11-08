@@ -120,7 +120,45 @@ void ActRoot::MTExecutor::BuildEventData()
                 fInput->GetEntry(run, entry);
                 fDetMans[thread].BuildEventData();
                 fOutput->Fill(run);
-                PrintProgress(thread, run, entry, nentries);
+                PrintProgress(thread, run, entry + 1, nentries);
+            }
+            fOutput->Close(run);
+        }
+    };
+    // And push to ThreadPool!
+    TStopwatch timer {};
+    timer.Start();
+    for(int thread = 0; thread < fDetMans.size(); thread++)
+    {
+        if(!IsThreadEmpty(thread))
+            ftp.push_task(build, thread);
+    }
+    ftp.wait_for_tasks();
+    timer.Stop();
+    std::cout << std::endl;
+    timer.Print();
+}
+
+void ActRoot::MTExecutor::BuildEventPhysics()
+{
+    // Build lambda per worker
+    auto build = [this](const int thread)
+    {
+        // ftpcout.println("Running thread ",thread);
+        for(const auto& run : fRunsPerThread[thread])
+        {
+            // ftpcout.println("->Run ", run);
+            fDetMans[thread].InitializeDataInput(fInput->GetTree(run));
+            fDetMans[thread].InitializePhysicsOutput(fOutput->GetTree(run));
+            auto nentries {fInput->GetNEntries(run)};
+            StepProgress(thread, nentries);
+            // Run for each entry!
+            for(int entry = 0; entry < nentries; entry++)
+            {
+                fInput->GetEntry(run, entry);
+                fDetMans[thread].BuildEventPhysics();
+                fOutput->Fill(run);
+                PrintProgress(thread, run, entry + 1, nentries);
             }
             fOutput->Close(run);
         }

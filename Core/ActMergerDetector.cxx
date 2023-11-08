@@ -1,17 +1,18 @@
 #include "ActMergerDetector.h"
 
-#include "ActTPCDetector.h"
-#include "ActSilDetector.h"
-#include "ActModularDetector.h"
-
 #include "ActModularData.h"
+#include "ActModularDetector.h"
 #include "ActSilData.h"
+#include "ActSilDetector.h"
+#include "ActSilSpecs.h"
+#include "ActTPCDetector.h"
 #include "ActTPCPhysics.h"
 
 #include "TTree.h"
 
 #include <iostream>
 #include <memory>
+#include <string>
 
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
 {
@@ -32,11 +33,20 @@ void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
         delete fModularData;
     fModularData = new ModularData;
     tree->SetBranchAddress("ModularData", &fModularData);
+
+    // Disable TPCData: we only need clusters
+    tree->SetBranchStatus("TPCData", false);
 }
 
 void ActRoot::MergerDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::MergerDetector::MergeEvent() 
+void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
 {
-
+    fSilSpecs = std::make_shared<ActPhysics::SilSpecs>();
+    fSilSpecs->ReadFile(file);
+    fSilSpecs->Print();
 }
+
+void ActRoot::MergerDetector::MergeEvent() {}
+
+void ActRoot::MergerDetector::ComputeSiliconPoint() {}

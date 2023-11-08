@@ -117,12 +117,12 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // RP calculation
     if(mb->CheckTokenExists("EnableRP"))
         fEnableRP = mb->GetBool("EnableRP");
-    if(mb->CheckTokenExists("UnreactedMinPercentX"))
-        fUnreactedMinPercentX = mb->GetDouble("UnreactedMinPercentX");
-    if(mb->CheckTokenExists("UnreactedMinParallelFactor"))
-        fUnreactedMinParallelFactor = mb->GetDouble("UnreactedMinParallelFactor");
-    if(mb->CheckTokenExists("RPDistThreshold"))
-        fRPDistThreshold = mb->GetDouble("RPDistThreshold");
+    if(mb->CheckTokenExists("BeamLikeXMinThresh"))
+        fBeamLikeXMinThresh = mb->GetDouble("BeamLikeXMinThresh");
+    if(mb->CheckTokenExists("BeamLikeParallelF"))
+        fBeamLikeParallelF = mb->GetDouble("BeamLikeParallelF");
+    if(mb->CheckTokenExists("RPDistThresh"))
+        fRPDistThresh = mb->GetDouble("RPDistThresh");
     if(mb->CheckTokenExists("RPMaskXY"))
         fRPMaskXY = mb->GetDouble("RPMaskXY");
     if(mb->CheckTokenExists("RPMaskZ"))
@@ -233,6 +233,7 @@ void ActCluster::MultiStep::Run()
         DeleteInvalidClusters();
         fClocks[7].Start(false);
         DeterminePreciseRP();
+        FindRP(); // again, but using finer fits
         fClocks[7].Stop();
     }
     ResetIndex();
@@ -604,20 +605,19 @@ void ActCluster::MultiStep::DetermineBeamLikes()
     {
         // 1-> Check if XRange constitutes an important amount of XLength of ACTAR
         auto [xmin, xmax] {it->GetXRange()};
-        bool isLongEnough {(xmax - xmin) >= fUnreactedMinPercentX * fTPC->GetNPADSX()};
+        // bool isLongEnough {(xmax - xmin) >= fBeamLikeXMinThresh * fTPC->GetNPADSX()};
+        // 1-> Check xMin is below threshold
+        bool isInEntrance {xmin <= fBeamLikeXMinThresh};
         // 2-> Is mainly along X direction
         auto uDir {it->GetLine().GetDirection().Unit()};
-        bool isAlongX {TMath::Abs(uDir.X()) >= fUnreactedMinParallelFactor};
+        bool isAlongX {TMath::Abs(uDir.X()) >= fBeamLikeParallelF};
         // 3-> Tag it as beam-like and count
-        if(isLongEnough && isAlongX)
+        if(isInEntrance && isAlongX)
         {
             it->SetBeamLike(true);
             nBeam++;
         }
     }
-    // Particular case in which there is only one beam cluster (RP search wont run in that case)
-    if(fClusters->size() == 1 && fClusters->begin()->GetIsBeamLike())
-        fClusters->begin()->SetToDelete(true);
     // Print
     if(fIsVerbose)
     {
@@ -671,12 +671,21 @@ bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
     return isInX && isInY && isInZ;
 }
 
+double ActCluster::MultiStep::GetThetaAngle(const XYZVector& dir)
+{
+    // we should use beam-like direction... but for 
+    // the time being is more than enough this approx.
+    XYZVector beam {1, 0, 0};
+    return TMath::Abs(TMath::ACos(beam.Dot(dir.Unit())) * TMath::RadToDeg());
+}
+
 void ActCluster::MultiStep::FindRP()
 {
-    // Explanation: distance between clusters in pair <i, j>, storing RP as 3rd value
+    fRPs->clear();
+    // Explanation: angle between clusters in pair <i, j>, storing RP as 3rd value
     typedef std::tuple<double, std::pair<int, int>, XYZPoint> SetValue;
     // Build comparator func
-    auto comp {[](const SetValue& left, const SetValue& right) { return std::get<0>(left) < std::get<0>(right); }};
+    auto comp {[](const SetValue& left, const SetValue& right) { return std::get<0>(left) > std::get<0>(right); }};
     // Declare set
     std::set<SetValue, decltype(comp)> set {comp};
     // Run
@@ -700,10 +709,12 @@ void ActCluster::MultiStep::FindRP()
             bool checkB {IsRPValid(pB)};
             bool checkRP {IsRPValid(rp)};
             // And finally that distance AB is bellow threshold
-            bool checkDist {dist <= fRPDistThreshold};
+            bool checkDist {dist <= fRPDistThresh};
             if(checkA && checkB && checkRP && checkDist)
             {
-                set.insert({dist, {i, j}, rp});
+                auto thetaIn {GetThetaAngle(in->GetLine().GetDirection())};
+                auto thetaOut {GetThetaAngle(out->GetLine().GetDirection())};
+                set.insert({TMath::Max(thetaIn, thetaOut), {i, j}, rp});
                 // Set flag has valid RP
                 out->SetHasValidRP(true);
                 in->SetHasValidRP(true);
@@ -724,6 +735,9 @@ void ActCluster::MultiStep::FindRP()
         if(!it->GetHasValidRP())
             it->SetToDelete(true);
     }
+    // Case in which there is only one track
+    if(fClusters->size() == 1)
+        fClusters->begin()->SetToDelete(true);
     // Write to map and print, only the first one (with the best score)
     // for(auto it = set.begin(); it != set.begin()++; it++)
     // {
@@ -949,9 +963,9 @@ void ActCluster::MultiStep::Print() const
         }
         if(fEnableRP)
         {
-            std::cout << "-> UnreactMinPerX   : " << fUnreactedMinPercentX << '\n';
-            std::cout << "-> UnreactMinParal  : " << fUnreactedMinParallelFactor << '\n';
-            std::cout << "-> RPDistThresh     : " << fRPDistThreshold << '\n';
+            std::cout << "-> BeamLikeXMin     : " << fBeamLikeXMinThresh << '\n';
+            std::cout << "-> BeamLikeParall   : " << fBeamLikeParallelF << '\n';
+            std::cout << "-> RPDistThresh     : " << fRPDistThresh << '\n';
             std::cout << "-> RPMaskXY         : " << fRPMaskXY << '\n';
             std::cout << "-> RPMaskZ          : " << fRPMaskZ << '\n';
             std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
