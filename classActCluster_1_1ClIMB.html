@@ -595,7 +595,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="classActCluster_1_1ClIMB.html#a3ada57f5779a8bd3a2153f7891aeb549">InitIndexes</a>();</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="comment">// Fill matrix</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="classActCluster_1_1ClIMB.html#a3ea0db415bc4f1c65b49c6e3bec78fdb">FillMatrix</a>();</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="comment">// Prepare return valie</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="comment">// Prepare return value</span></div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    std::vector&lt;ActCluster::Cluster&gt; ret;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">// Getter of seed based on fIndex being masked (=-1)</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">auto</span> lambda {[](<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; i){<span class="keywordflow">return</span> i == -1;}};</div>
@@ -703,7 +703,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> gen1;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> std::move(gen1);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
 <div class="ttc" id="aclassActCluster_1_1ClIMB_html_a02dccf91064b9e97e172e63d4e81633f"><div class="ttname"><a href="classActCluster_1_1ClIMB.html#a02dccf91064b9e97e172e63d4e81633f">ActCluster::ClIMB::IsInCage</a></div><div class="ttdeci">bool IsInCage(T x, T y, T z)</div><div class="ttdef"><b>Definition:</b> ActClIMB.cxx:92</div></div>
 </div><!-- fragment -->

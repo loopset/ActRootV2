@@ -106,6 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad317a67f624f665843c29d896ad6f71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2de99e30bc7925ef887553531261d1cf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#a2de99e30bc7925ef887553531261d1cf">~ModularDetector</a> ()=default</td></tr>
 <tr class="separator:a2de99e30bc7925ef887553531261d1cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb1f091f9c0a3fd8cee4bb9899828d5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1ModularParameters.html">ModularParameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#aeb1f091f9c0a3fd8cee4bb9899828d5a">GetParametersPointer</a> ()</td></tr>
+<tr class="separator:aeb1f091f9c0a3fd8cee4bb9899828d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc3e06d560820da0d28c4141b0438cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#aacc3e06d560820da0d28c4141b0438cb">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:aacc3e06d560820da0d28c4141b0438cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1411e2137d42052e143959996b50238d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularDetector.html#a1411e2137d42052e143959996b50238d">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
@@ -382,7 +384,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -410,7 +412,33 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularDetector.html#add69c1d7b6d604225131a6e903d37929">fData</a>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aeb1f091f9c0a3fd8cee4bb9899828d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb1f091f9c0a3fd8cee4bb9899828d5a">&#9670;&nbsp;</a></span>GetParametersPointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1ModularParameters.html">ModularParameters</a>* ActRoot::ModularDetector::GetParametersPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <span class="keywordflow">return</span> &amp;<a class="code" href="classActRoot_1_1ModularDetector.html#af04936367992bbff9529788a8374df8e">fPars</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>

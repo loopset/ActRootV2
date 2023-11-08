@@ -110,6 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af23aafc92aa386c970bf460cf2b2663e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9386bed12200ccadb71e6601e9dc2d51"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a9386bed12200ccadb71e6601e9dc2d51">GetTPCPars</a> () const</td></tr>
 <tr class="separator:a9386bed12200ccadb71e6601e9dc2d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8fd3b3ac926e6fd99ede3ab5bc561da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#ad8fd3b3ac926e6fd99ede3ab5bc561da">GetParametersPointer</a> ()</td></tr>
+<tr class="separator:ad8fd3b3ac926e6fd99ede3ab5bc561da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6514e434dfa289be7fa1656e1624d972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a6514e434dfa289be7fa1656e1624d972">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a6514e434dfa289be7fa1656e1624d972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25fc444541ee68c98cfea43b5775c969"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a25fc444541ee68c98cfea43b5775c969">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
@@ -563,7 +565,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -591,7 +593,33 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad8fd3b3ac926e6fd99ede3ab5bc561da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8fd3b3ac926e6fd99ede3ab5bc561da">&#9670;&nbsp;</a></span>GetParametersPointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActRoot_1_1TPCParameters.html">TPCParameters</a>* ActRoot::TPCDetector::GetParametersPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{<span class="keywordflow">return</span> &amp;<a class="code" href="classActRoot_1_1TPCDetector.html#a0dfe427358f3425b6f2f54f741ff7aca">fPars</a>;}</div>
 </div><!-- fragment -->
 </div>
 </div>
