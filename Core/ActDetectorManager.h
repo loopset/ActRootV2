@@ -7,6 +7,7 @@ performed on its data
 */
 
 #include "ActCalibrationManager.h"
+#include "ActMergerDetector.h"
 #include "ActVData.h"
 
 #include "TTree.h"
@@ -36,30 +37,45 @@ namespace ActRoot
                                                                     //!< VDetector pointer
         std::shared_ptr<CalibrationManager> fCalMan {}; //!< CalibrationManager is now included in DetectorManager to
                                                         //!< avoid singleton
+        std::shared_ptr<MergerDetector> fMerger {}; //!< Merge detector in final step (does not inheritate from VDetector so
+                                                //!< far)
 
     public:
         DetectorManager();
         DetectorManager(const std::string& file);
         ~DetectorManager() {};
 
+        // Getters and deleters of detectors
         std::shared_ptr<CalibrationManager> GetCalMan() { return fCalMan; }
-
         std::shared_ptr<ActRoot::VDetector> GetDetector(DetectorType type);
         void DeleteDelector(DetectorType type);
         int GetNumberOfDetectors() const { return fDetectors.size(); }
 
+        // Read configurations
         void ReadConfiguration(const std::string& file);
         void ReadCalibrations(const std::string& file);
+
+        // Init INPUT data
         void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);
         void InitializeDataInput(std::shared_ptr<TTree> input);
+        void InitializeMergerInput(std::shared_ptr<TTree> input);
+
+        // Init OUTPUT data
         void InitializeDataOutput(std::shared_ptr<TTree> output);
         void InitializePhysicsOutput(std::shared_ptr<TTree> output);
+        void InitializeMergerOutput(std::shared_ptr<TTree> output);
+
+        // Builder of EVENTs
         void BuildEventData();
         void BuildEventPhysics();
+        void BuildEventMerger();
 
         void PrintReports() const;
 
         void SetEventData(DetectorType det, VData* vdata);
+
+    private:
+        void SendParametersToMerger();
     };
 } // namespace ActRoot
 #endif

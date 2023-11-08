@@ -2,6 +2,7 @@
 
 #include "ActCalibrationManager.h"
 #include "ActInputParser.h"
+#include "ActMergerDetector.h"
 #include "ActModularDetector.h"
 #include "ActSilDetector.h"
 #include "ActTPCData.h"
@@ -27,6 +28,8 @@ ActRoot::DetectorManager::DetectorManager()
     };
     // Initialize Calibration Manager
     fCalMan = std::make_shared<CalibrationManager>();
+    // Always init merger detector
+    fMerger = std::make_shared<MergerDetector>();
 }
 
 ActRoot::DetectorManager::DetectorManager(const std::string& file) : DetectorManager()
@@ -54,6 +57,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
         // Set CalibrationManager pointer
         fDetectors[fDetDatabase[det]]->SetCalMan(fCalMan);
     }
+    // Pass parameters to Merger detector
+    SendParametersToMerger();
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
@@ -62,6 +67,28 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
     for(const auto& det : parser.GetBlockHeaders())
     {
         fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
+    }
+}
+
+void ActRoot::DetectorManager::SendParametersToMerger()
+{
+    // TPC
+    if(fDetectors.count(DetectorType::EActar))
+    {
+        auto p {std::dynamic_pointer_cast<TPCDetector>(fDetectors[DetectorType::EActar])};
+        fMerger->SetTPCParameters(p->GetParametersPointer());
+    }
+    // Silicons
+    if(fDetectors.count(DetectorType::ESilicons))
+    {
+        auto p {std::dynamic_pointer_cast<SilDetector>(fDetectors[DetectorType::ESilicons])};
+        fMerger->SetSilParameters(p->GetParametersPointer());
+    }
+    // Modular
+    if(fDetectors.count(DetectorType::EModular))
+    {
+        auto p {std::dynamic_pointer_cast<ModularDetector>(fDetectors[DetectorType::EModular])};
+        fMerger->SetModularParameters(p->GetParametersPointer());
     }
 }
 
@@ -152,4 +179,19 @@ void ActRoot::DetectorManager::SetEventData(DetectorType det, VData* vdata)
         fDetectors[det]->SetEventData(vdata);
     else
         std::cout << "Could not locate detector!";
+}
+
+void ActRoot::DetectorManager::InitializeMergerInput(std::shared_ptr<TTree> tree)
+{
+    fMerger->InitInputMerger(tree);
+}
+
+void ActRoot::DetectorManager::InitializeMergerOutput(std::shared_ptr<TTree> tree)
+{
+    fMerger->InitOutputMerger(tree);
+}
+
+void ActRoot::DetectorManager::BuildEventMerger()
+{
+    fMerger->MergeEvent();
 }

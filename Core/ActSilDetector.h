@@ -52,6 +52,9 @@ namespace ActRoot
         SilDetector() = default;
         virtual ~SilDetector() = default;
 
+        // Parameter getters
+        SilParameters* GetParametersPointer() { return &fPars; }
+
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         // void AddParameterToCalibrationManager() override;

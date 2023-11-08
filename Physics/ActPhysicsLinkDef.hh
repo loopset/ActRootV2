@@ -13,4 +13,8 @@
 
 #pragma link C++ class ActPhysics::Line+;
 
+#pragma link C++ class ActPhysics::SilUnit;
+#pragma link C++ class ActPhysics::SilLayer;
+#pragma link C++ class ActPhysics::SilSpecs;
+
 #endif

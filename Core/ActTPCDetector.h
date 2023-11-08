@@ -84,6 +84,7 @@ namespace ActRoot
 
         // Getters
         const TPCParameters& GetTPCPars() const { return fPars; }
+        TPCParameters* GetParametersPointer() {return &fPars;}
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;

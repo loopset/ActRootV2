@@ -41,6 +41,9 @@ namespace ActRoot
         ModularDetector() = default;
         virtual ~ModularDetector() = default;
 
+        // Pointer to parameters
+        ModularParameters* GetParametersPointer() { return &fPars; }
+
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;

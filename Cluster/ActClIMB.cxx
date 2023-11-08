@@ -127,7 +127,7 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
             }
         }
     }
-    return gen1;
+    return std::move(gen1);
 }
 
 void ActCluster::ClIMB::InitIndexes()
@@ -149,7 +149,7 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
     InitIndexes();
     // Fill matrix
     FillMatrix();
-    // Prepare return valie
+    // Prepare return value
     std::vector<ActCluster::Cluster> ret;
     // Getter of seed based on fIndex being masked (=-1)
     auto lambda {[](const int& i){return i == -1;}};
