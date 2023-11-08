@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActRoot_1_1MergerDetector-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -100,12 +101,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaca0b6879aee6de367caa76f938646ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a228258aa73956719460fd0e88fee180f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a228258aa73956719460fd0e88fee180f">SetModularParameters</a> (<a class="el" href="classActRoot_1_1ModularParameters.html">ModularParameters</a> *modPars)</td></tr>
 <tr class="separator:a228258aa73956719460fd0e88fee180f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f4fc62e655e46ce1c43d347267ac78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a22f4fc62e655e46ce1c43d347267ac78">ReadSilSpecs</a> (const std::string &amp;file)</td></tr>
+<tr class="separator:a22f4fc62e655e46ce1c43d347267ac78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac515812bf1f5e9353ef16ae82c4a55a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#ac515812bf1f5e9353ef16ae82c4a55a5">InitInputMerger</a> (std::shared_ptr&lt; TTree &gt; tree)</td></tr>
 <tr class="separator:ac515812bf1f5e9353ef16ae82c4a55a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa25f4d4d3e505b21b3ef10e7cccdac82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#aa25f4d4d3e505b21b3ef10e7cccdac82">InitOutputMerger</a> (std::shared_ptr&lt; TTree &gt; tree)</td></tr>
 <tr class="separator:aa25f4d4d3e505b21b3ef10e7cccdac82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b82dbbe5caf2e4f4efd0208c0f84eca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a3b82dbbe5caf2e4f4efd0208c0f84eca">MergeEvent</a> ()</td></tr>
 <tr class="separator:a3b82dbbe5caf2e4f4efd0208c0f84eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1511468bff7afc1bed38e89a16c1eb32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a1511468bff7afc1bed38e89a16c1eb32">ComputeSiliconPoint</a> ()</td></tr>
+<tr class="separator:a1511468bff7afc1bed38e89a16c1eb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -117,12 +125,40 @@ Private Attributes</h2></td></tr>
 <tr class="separator:af6f8fb7de504694e56d2e84a3553ef80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a074d2118c8ea86020c98357bba749a0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1SilData.html">SilData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a> {}</td></tr>
 <tr class="separator:a074d2118c8ea86020c98357bba749a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb51ce9ccec6eb2fd4641f18b0cd93b6"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilSpecs.html">ActPhysics::SilSpecs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a> {}</td></tr>
+<tr class="separator:abb51ce9ccec6eb2fd4641f18b0cd93b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98af5b95db671fd42a48a74ef23e7b7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1ModularParameters.html">ModularParameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">fModularPars</a> {}</td></tr>
 <tr class="separator:a98af5b95db671fd42a48a74ef23e7b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab33ec1a276d8cd062094d972fc582117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1ModularData.html">ModularData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a> {}</td></tr>
 <tr class="separator:ab33ec1a276d8cd062094d972fc582117"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1511468bff7afc1bed38e89a16c1eb32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1511468bff7afc1bed38e89a16c1eb32">&#9670;&nbsp;</a></span>ComputeSiliconPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::MergerDetector::ComputeSiliconPoint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ac515812bf1f5e9353ef16ae82c4a55a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac515812bf1f5e9353ef16ae82c4a55a5">&#9670;&nbsp;</a></span>InitInputMerger()</h2>
 
@@ -138,28 +174,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// TPC physics</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a> = <span class="keyword">new</span> TPCPhysics;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;TPCPhysics&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Silicon data</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a> = <span class="keyword">new</span> SilData;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Modular data</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a> = <span class="keyword">new</span> ModularData;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a074d2118c8ea86020c98357bba749a0b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">ActRoot::MergerDetector::fSilData</a></div><div class="ttdeci">SilData * fSilData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:26</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab33ec1a276d8cd062094d972fc582117"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">ActRoot::MergerDetector::fModularData</a></div><div class="ttdeci">ModularData * fModularData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:29</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab90662293a35043551429cef4a79a04f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">ActRoot::MergerDetector::fTPCPhyiscs</a></div><div class="ttdeci">TPCPhysics * fTPCPhyiscs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:23</div></div>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// TPC physics</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a> = <span class="keyword">new</span> TPCPhysics;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;TPCPhysics&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Silicon data</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a> = <span class="keyword">new</span> SilData;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">fSilData</a>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Modular data</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a> = <span class="keyword">new</span> ModularData;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">fModularData</a>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Disable TPCData: we only need clusters</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    tree-&gt;SetBranchStatus(<span class="stringliteral">&quot;TPCData&quot;</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a074d2118c8ea86020c98357bba749a0b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">ActRoot::MergerDetector::fSilData</a></div><div class="ttdeci">SilData * fSilData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:29</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab33ec1a276d8cd062094d972fc582117"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">ActRoot::MergerDetector::fModularData</a></div><div class="ttdeci">ModularData * fModularData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:33</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab90662293a35043551429cef4a79a04f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">ActRoot::MergerDetector::fTPCPhyiscs</a></div><div class="ttdeci">TPCPhysics * fTPCPhyiscs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:26</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -178,7 +217,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{}</div>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -196,9 +235,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a22f4fc62e655e46ce1c43d347267ac78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f4fc62e655e46ce1c43d347267ac78">&#9670;&nbsp;</a></span>ReadSilSpecs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::MergerDetector::ReadSilSpecs </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a> = std::make_shared&lt;ActPhysics::SilSpecs&gt;();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a>-&gt;ReadFile(file);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a>-&gt;Print();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_abb51ce9ccec6eb2fd4641f18b0cd93b6"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">ActRoot::MergerDetector::fSilSpecs</a></div><div class="ttdeci">std::shared_ptr&lt; ActPhysics::SilSpecs &gt; fSilSpecs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:30</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -225,8 +286,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">fModularPars</a> = modPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a98af5b95db671fd42a48a74ef23e7b7f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector::fModularPars</a></div><div class="ttdeci">ModularParameters * fModularPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:28</div></div>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">fModularPars</a> = modPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a98af5b95db671fd42a48a74ef23e7b7f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector::fModularPars</a></div><div class="ttdeci">ModularParameters * fModularPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:32</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -253,8 +314,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">fSilPars</a> = silPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af6f8fb7de504694e56d2e84a3553ef80"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">ActRoot::MergerDetector::fSilPars</a></div><div class="ttdeci">SilParameters * fSilPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:25</div></div>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">fSilPars</a> = silPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af6f8fb7de504694e56d2e84a3553ef80"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">ActRoot::MergerDetector::fSilPars</a></div><div class="ttdeci">SilParameters * fSilPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:28</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -281,8 +342,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">fTPCPars</a> = tpcPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a5977583cbd2479a5f2c65be6d1d28cb5"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector::fTPCPars</a></div><div class="ttdeci">TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:22</div></div>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">fTPCPars</a> = tpcPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a5977583cbd2479a5f2c65be6d1d28cb5"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector::fTPCPars</a></div><div class="ttdeci">TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,6 +425,28 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classActRoot_1_1SilParameters.html">SilParameters</a>* ActRoot::MergerDetector::fSilPars {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb51ce9ccec6eb2fd4641f18b0cd93b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb51ce9ccec6eb2fd4641f18b0cd93b6">&#9670;&nbsp;</a></span>fSilSpecs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classActPhysics_1_1SilSpecs.html">ActPhysics::SilSpecs</a>&gt; ActRoot::MergerDetector::fSilSpecs {}</td>
         </tr>
       </table>
   </td>

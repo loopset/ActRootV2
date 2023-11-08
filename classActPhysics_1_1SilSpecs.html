@@ -115,8 +115,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition:</b> ActSilSpecs.h:60</div></div>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; }</div>
+<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition:</b> ActSilSpecs.h:63</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -142,8 +142,10 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        layer.Print();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
+<div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -162,15 +164,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; name : parser.GetBlockHeaders())</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        SilLayer layer;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        layer.ReadConfiguration(parser.GetBlock(name));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name] = layer;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; name : parser.GetBlockHeaders())</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        SilLayer layer;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        layer.ReadConfiguration(parser.GetBlock(name));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name] = layer;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:58</div></div>
 </div><!-- fragment -->
 </div>

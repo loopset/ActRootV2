@@ -162,10 +162,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">SetSameTreesAsInput</a>(input);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a538e7c324ee8abd9861d2e994af62abb"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">ActRoot::OutputData::SetSameTreesAsInput</a></div><div class="ttdeci">void SetSameTreesAsInput(const InputData &amp;input)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:62</div></div>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">SetSameTreesAsInput</a>(input);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a538e7c324ee8abd9861d2e994af62abb"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">ActRoot::OutputData::SetSameTreesAsInput</a></div><div class="ttdeci">void SetSameTreesAsInput(const InputData &amp;input)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:63</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -184,10 +184,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a7cdca4b8b393159876f3c48880730936">ReadConfiguration</a>(file);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a7cdca4b8b393159876f3c48880730936"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a7cdca4b8b393159876f3c48880730936">ActRoot::OutputData::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:38</div></div>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a7cdca4b8b393159876f3c48880730936">ReadConfiguration</a>(file);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a7cdca4b8b393159876f3c48880730936"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a7cdca4b8b393159876f3c48880730936">ActRoot::OutputData::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:39</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -258,14 +258,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Write to file assigned to tree in run</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// option kWriteDelete erases previous cycle metadata</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// keeping only the highest</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run]-&gt;Write(<span class="stringliteral">&quot;&quot;</span>, TObject::kWriteDelete);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Close file</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run]-&gt;Close();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Write to file assigned to tree in run</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// option kWriteDelete erases previous cycle metadata</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// keeping only the highest</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run]-&gt;cd();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run]-&gt;Write(<span class="stringliteral">&quot;&quot;</span>, TObject::kWriteDelete);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Close file</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run]-&gt;Close();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1OutputData_html_a4f167ee9292cf7b894b5f0f2d196d196"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">ActRoot::OutputData::fFiles</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TFile &gt; &gt; fFiles</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1OutputData_html_af3a76bc7cd3e0c0559d5421fd66a4241"><div class="ttname"><a href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">ActRoot::OutputData::fTrees</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TTree &gt; &gt; fTrees</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:21</div></div>
 </div><!-- fragment -->
@@ -286,9 +287,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run]-&gt;Fill();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run]-&gt;Fill();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -370,15 +371,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a>.empty())</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No TreeName given to ActRoot::OutputData!&quot;</span>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Initializing TTree &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a> &lt;&lt; <span class="stringliteral">&quot; for run &quot;</span> &lt;&lt; run &lt;&lt; <span class="stringliteral">&quot; in file &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; file &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run] = std::make_shared&lt;TFile&gt;(file.c_str(), <span class="stringliteral">&quot;recreate&quot;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run] = std::make_shared&lt;TTree&gt;(<a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a>.c_str(), <span class="stringliteral">&quot;ActRoot event data&quot;</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a>.empty())</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No TreeName given to ActRoot::OutputData!&quot;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Initializing TTree &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a> &lt;&lt; <span class="stringliteral">&quot; for run &quot;</span> &lt;&lt; run &lt;&lt; <span class="stringliteral">&quot; in file &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; file &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>[run] = std::make_shared&lt;TFile&gt;(file.c_str(), <span class="stringliteral">&quot;recreate&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#af3a76bc7cd3e0c0559d5421fd66a4241">fTrees</a>[run] = std::make_shared&lt;TTree&gt;(<a class="code" href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">fTreeName</a>.c_str(), <span class="stringliteral">&quot;ActRoot event data&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1OutputData_html_adcc83fde6634ac6e9fe6501d3f84b9ab"><div class="ttname"><a href="classActRoot_1_1OutputData.html#adcc83fde6634ac6e9fe6501d3f84b9ab">ActRoot::OutputData::fTreeName</a></div><div class="ttdeci">std::string fTreeName</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:22</div></div>
 </div><!-- fragment -->
 </div>
@@ -424,32 +425,32 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a>.empty())</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Run list is empty. Pass InputData object to get same output data as input!&quot;</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;OutputData&quot;</span>)};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Keys available in file</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::vector&lt;std::string&gt; keys {<span class="stringliteral">&quot;TreeName&quot;</span>, <span class="stringliteral">&quot;FilePath&quot;</span>, <span class="stringliteral">&quot;FileBegin&quot;</span>, <span class="stringliteral">&quot;FileEnd&quot;</span>};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Set output</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">SetTreeName</a>(block-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>));</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">auto</span> path {block-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">auto</span> begin {block-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string end {};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        end = block-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a>)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), begin.c_str(), run, end.c_str())};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">InitFile</a>(run, fullname.Data());</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a>.empty())</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Run list is empty. Pass InputData object to get same output data as input!&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;OutputData&quot;</span>)};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Keys available in file</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::vector&lt;std::string&gt; keys {<span class="stringliteral">&quot;TreeName&quot;</span>, <span class="stringliteral">&quot;FilePath&quot;</span>, <span class="stringliteral">&quot;FileBegin&quot;</span>, <span class="stringliteral">&quot;FileEnd&quot;</span>};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Set output</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">SetTreeName</a>(block-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">auto</span> path {block-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">auto</span> begin {block-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::string end {};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        end = block-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), begin.c_str(), run, end.c_str())};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">InitFile</a>(run, fullname.Data());</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:58</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:307</div></div>
 <div class="ttc" id="aclassActRoot_1_1OutputData_html_a00ce8a6c8f41c90b8c5f167512f73654"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">ActRoot::OutputData::fRuns</a></div><div class="ttdeci">std::vector&lt; int &gt; fRuns</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:19</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6ec7808e1341b86e1a3abbc97d154ae4"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">ActRoot::OutputData::InitFile</a></div><div class="ttdeci">void InitFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:27</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6ec7808e1341b86e1a3abbc97d154ae4"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6ec7808e1341b86e1a3abbc97d154ae4">ActRoot::OutputData::InitFile</a></div><div class="ttdeci">void InitFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:28</div></div>
 <div class="ttc" id="aclassActRoot_1_1OutputData_html_ac3578b268132cd45bed5240d7c092ace"><div class="ttname"><a href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">ActRoot::OutputData::SetTreeName</a></div><div class="ttdeci">void SetTreeName(const std::string &amp;treeName)</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:34</div></div>
 </div><!-- fragment -->
 </div>
@@ -469,9 +470,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a> = input.GetTreeList();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654">fRuns</a> = input.GetTreeList();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -527,17 +528,17 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Store metadata as TMacro class, which has all the functionality required</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    TMacro mcr {file.c_str(), description.c_str()};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// mcr.ReadFile(file.c_str()); // not necessary since this constructor already reads the filter</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// But we need to reset name</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">auto</span> idx {file.find_last_of(<span class="stringliteral">&quot;/&quot;</span>)};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    mcr.SetTitle(file.substr(idx + 1).c_str());</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Write</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [_, file] : <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        file-&gt;WriteObject(&amp;mcr, mcr.GetName());</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// Store metadata as TMacro class, which has all the functionality required</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    TMacro mcr {file.c_str(), description.c_str()};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// mcr.ReadFile(file.c_str()); // not necessary since this constructor already reads the filter</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// But we need to reset name</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">auto</span> idx {file.find_last_of(<span class="stringliteral">&quot;/&quot;</span>)};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    mcr.SetTitle(file.substr(idx + 1).c_str());</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Write</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [_, file] : <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>)</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        file-&gt;WriteObject(&amp;mcr, mcr.GetName());</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
