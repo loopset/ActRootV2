@@ -100,6 +100,8 @@ Collaboration diagram for ActRoot::ModularData:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a884675c493a9944f0ee8f0c0f74f85f3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularData.html#a884675c493a9944f0ee8f0c0f74f85f3">Get</a> (const std::string &amp;leave)</td></tr>
+<tr class="separator:a884675c493a9944f0ee8f0c0f74f85f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7190e1377bd4f014ba84aa132a5a4c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">Clear</a> () override</td></tr>
 <tr class="memdesc:a7190e1377bd4f014ba84aa132a5a4c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset data.  <a href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">More...</a><br /></td></tr>
 <tr class="separator:a7190e1377bd4f014ba84aa132a5a4c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +148,33 @@ Public Attributes</h2></td></tr>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">fLeaves</a>.clear();</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1ModularData_html_afc6dce928041f57a1778a76786d6ea50"><div class="ttname"><a href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">ActRoot::ModularData::fLeaves</a></div><div class="ttdeci">std::unordered_map&lt; std::string, float &gt; fLeaves</div><div class="ttdoc">Each leaf holds a float variable in a map.</div><div class="ttdef"><b>Definition:</b> ActModularData.h:15</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a884675c493a9944f0ee8f0c0f74f85f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884675c493a9944f0ee8f0c0f74f85f3">&#9670;&nbsp;</a></span>Get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ActRoot::ModularData::Get </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>leave</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1ModularData.html#afc6dce928041f57a1778a76786d6ea50">fLeaves</a>[leave];}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -281,8 +281,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:16</div></div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:17</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:23</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:24</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_a503a920e0e914b8c08d3431f34e861cd"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector::fPars</a></div><div class="ttdeci">SilParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:47</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_ad2b93a517a781781b9d4b0f584008ded"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector::fData</a></div><div class="ttdeci">SilData * fData</div><div class="ttdoc">Pointer to SilData.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:49</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_a91dc241bb125283f48278c946d498345"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">ActRoot::SilParameters::GetSilIndex</a></div><div class="ttdeci">std::pair&lt; std::string, int &gt; GetSilIndex(int vxi)</div><div class="ttdef"><b>Definition:</b> ActSilDetector.cxx:60</div></div>
@@ -347,7 +347,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;{</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>-&gt;<a class="code" href="classActRoot_1_1SilData.html#a048f4c6460699bf0f68cfc882cb38159">Clear</a>();</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html_a048f4c6460699bf0f68cfc882cb38159"><div class="ttname"><a href="classActRoot_1_1SilData.html#a048f4c6460699bf0f68cfc882cb38159">ActRoot::SilData::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdoc">Reset stored variables in SilData.</div><div class="ttdef"><b>Definition:</b> ActSilData.cxx:4</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html_a048f4c6460699bf0f68cfc882cb38159"><div class="ttname"><a href="classActRoot_1_1SilData.html#a048f4c6460699bf0f68cfc882cb38159">ActRoot::SilData::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdoc">Reset stored variables in SilData.</div><div class="ttdef"><b>Definition:</b> ActSilData.cxx:30</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -731,7 +731,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not dynamic_cast to SilData!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1SilData_html"><div class="ttname"><a href="classActRoot_1_1SilData.html">ActRoot::SilData</a></div><div class="ttdoc">A class holding simple Silicon data.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:14</div></div>
+<div class="ttc" id="aclassActRoot_1_1SilData_html"><div class="ttname"><a href="classActRoot_1_1SilData.html">ActRoot::SilData</a></div><div class="ttdoc">A class holding simple Silicon data.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
