@@ -7,6 +7,7 @@ performed on its data
 */
 
 #include "ActCalibrationManager.h"
+#include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActVData.h"
 
@@ -75,6 +76,7 @@ namespace ActRoot
         void SetEventData(DetectorType det, VData* vdata);
 
     private:
+        void InitMerger(std::shared_ptr<InputBlock> block);
         void SendParametersToMerger();
     };
 } // namespace ActRoot

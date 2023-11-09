@@ -28,8 +28,6 @@ ActRoot::DetectorManager::DetectorManager()
     };
     // Initialize Calibration Manager
     fCalMan = std::make_shared<CalibrationManager>();
-    // Always init merger detector
-    fMerger = std::make_shared<MergerDetector>();
 }
 
 ActRoot::DetectorManager::DetectorManager(const std::string& file) : DetectorManager()
@@ -50,6 +48,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::SilDetector>();
         else if(det == "Modular")
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::ModularDetector>();
+        else if (det == "Merger")
+            continue;
         else
             throw std::runtime_error("Detector " + det + " not found in Manager database");
         // Read config file
@@ -57,8 +57,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
         // Set CalibrationManager pointer
         fDetectors[fDetDatabase[det]]->SetCalMan(fCalMan);
     }
-    // Pass parameters to Merger detector
-    SendParametersToMerger();
+    // Init Merger detector separately
+    InitMerger(parser.GetBlock("Merger"));
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
@@ -68,6 +68,14 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
     {
         fDetectors[fDetDatabase[det]]->ReadCalibrations(parser.GetBlock(det));
     }
+}
+
+void ActRoot::DetectorManager::InitMerger(std::shared_ptr<InputBlock> block)
+{
+    fMerger = std::make_shared<MergerDetector>();
+    SendParametersToMerger();
+    fMerger->ReadConfiguration(block);
+    fMerger->Print();
 }
 
 void ActRoot::DetectorManager::SendParametersToMerger()
@@ -193,5 +201,6 @@ void ActRoot::DetectorManager::InitializeMergerOutput(std::shared_ptr<TTree> tre
 
 void ActRoot::DetectorManager::BuildEventMerger()
 {
+    fMerger->ClearOutputMerger();
     fMerger->MergeEvent();
 }

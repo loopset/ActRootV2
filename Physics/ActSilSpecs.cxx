@@ -3,8 +3,10 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 
+#include <exception>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 #include <string>
 
 void ActPhysics::SilUnit::Print() const
@@ -19,9 +21,10 @@ void ActPhysics::SilUnit::Print() const
 void ActPhysics::SilLayer::Print() const
 {
     std::cout << "--------------------" << '\n';
-    std::cout << "-> idx : <X || Y, Z>" << '\n';
+    std::cout << "-> idx : <X || Y, Z> [mm] ; thresh [MeV]" << '\n';
     for(const auto& [idx, pair] : fPlacements)
-        std::cout << "   " << idx << " : <" << pair.first << ", " << pair.second << ">" << '\n';
+        std::cout << "   " << idx << " : <" << pair.first << ", " << pair.second << "> ; " << fThresholds.at(idx)
+                  << '\n';
     std::cout << "-> Point  : " << fPoint << " [pads]" << '\n';
     std::cout << "-> Normal : " << fNormal << '\n';
     std::cout << "-> Unit   : " << '\n';
@@ -52,29 +55,57 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
     }
     fUnit = SilUnit {unitVals[0], unitVals[1], unitVals[2]};
     // Get placements
-    auto allKeys {block->GetAllReadValues()};
-    for(const auto& [key, vals] : allKeys)
+    auto placements {block->GetMappedValuesVectorOf<double>("i")};
+    for(const auto& [idx, vals] : placements)
     {
-        if(!(key.rfind("i", 0) == 0)) // check this is an i-like command to add placements
-            continue;
-        auto idx {std::stoi(key.substr(1))};
-        auto pair {block->GetDoubleVector(key)};
-        fPlacements[idx] = {pair[0], pair[1]};
+        fPlacements[idx] = {vals[0], vals[1]};
+        fThresholds[idx] = 0.;
     }
     // Add offset and normal vector
     // 1-> Point aka offset
     if(block->CheckTokenExists("Point"))
     {
         auto aux {block->GetDoubleVector("Point")};
-        fPoint = {aux[0], aux[1], aux[2]};
+        fPoint = {(float)aux[0], (float)aux[1], (float)aux[2]};
     }
     // 2-> Plane normal
     if(block->CheckTokenExists("Normal"))
     {
         auto aux {block->GetDoubleVector("Normal")};
-        fNormal = {aux[0], aux[1], aux[2]};
+        fNormal = {(float)aux[0], (float)aux[1], (float)aux[2]};
+    }
+    // Thresholds
+    if(block->CheckTokenExists("CommomThresh", true))
+    {
+        auto thresh {block->GetDouble("CommomThresh")};
+        for(const auto& [idx, _] : fPlacements)
+            fThresholds[idx] = thresh;
+    }
+    // Set thresholds
+    auto threshs {block->GetMappedValuesAs<double>("t")};
+    if(threshs.size() > 0)
+    {
+        for(const auto& [idx, _] : fPlacements)
+        {
+            try
+            {
+                fThresholds[idx] = threshs.at(idx);
+            }
+            catch(std::exception& e)
+            {
+                throw std::runtime_error("While reading independent threshs, missing t command for idx : " +
+                                         std::to_string(idx));
+            }
+        }
     }
 }
+
+ActPhysics::SilLayer::XYZPoint
+ActPhysics::SilLayer::GetSiliconPointOfTrack(const XYZPoint& otherPoint, const XYZVector& otherVec) const
+{
+    return otherPoint + (((fPoint - otherPoint).Dot(fNormal)) / otherVec.Dot(fNormal)) * otherVec;
+}
+
 
 void ActPhysics::SilSpecs::ReadFile(const std::string& file)
 {

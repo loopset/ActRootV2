@@ -34,15 +34,15 @@ namespace ActPhysics
     class SilLayer
     {
     public:
-        using XYZPointD = ROOT::Math::XYZPointD;
-        using XYZVectorD = ROOT::Math::XYZVectorD;
+        using XYZPoint = ROOT::Math::XYZPointF;
+        using XYZVector = ROOT::Math::XYZVectorF;
 
     private:
         std::map<int, std::pair<double, double>> fPlacements;
         std::map<int, double> fThresholds;
         SilUnit fUnit;
-        XYZPointD fPoint;   //!< Point of layer: basically, contains offset
-        XYZVectorD fNormal; //!< Normal vector of silicon plane
+        XYZPoint fPoint;   //!< Point of layer: basically, contains offset
+        XYZVector fNormal; //!< Normal vector of silicon plane
 
     public:
         SilLayer() = default;
@@ -52,9 +52,17 @@ namespace ActPhysics
         // Getters and setters
         const std::map<int, std::pair<double, double>>& GetPlacements() const { return fPlacements; }
         const std::map<int, double>& GetThresholds() const { return fThresholds; }
+        template <typename T>
+        bool ApplyThreshold(int idx, T val) const
+        {
+            return fThresholds.at(idx) <= val;
+        }
         const SilUnit& GetUnit() const { return fUnit; }
-        const XYZPointD& GetPoint() const { return fPoint; }
-        const XYZVectorD& GetNormal() const { return fNormal; }
+        const XYZPoint& GetPoint() const { return fPoint; }
+        const XYZVector& GetNormal() const { return fNormal; }
+
+        // Other functions of interest
+        XYZPoint GetSiliconPointOfTrack(const XYZPoint& point, const XYZVector& vector) const;
     };
 
     class SilSpecs

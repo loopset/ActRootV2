@@ -54,10 +54,11 @@
 
 // merger detector
 #pragma link C++ class ActRoot::MergerDetector;
+#pragma link C++ class ActRoot::MergerData + ;
 
 // utils: cuts manager
-#pragma link C++ class ActRoot::CutsManager < int>;
-#pragma link C++ class ActRoot::CutsManager < std::string>;
+#pragma link C++ class ActRoot::CutsManager <int>;
+#pragma link C++ class ActRoot::CutsManager <std::string>;
 
 // MTExecutor
 #pragma link C++ class ActRoot::MTExecutor;
