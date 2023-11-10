@@ -45,19 +45,14 @@ namespace ActRoot
 
         // Parameters of algorithm
         // GATCONF cuts
-        std::map<int, std::string> fGatMap {};
-        bool fForceGat {};
+        std::map<int, std::vector<std::string>> fGatMap {};
         // Event multiplicity and beam-likeness
         bool fForceBeamLike {};
         std::vector<int> fNotBMults {};
-        // Apply silicon finer threshold and check multiplicity
-        bool fForceSilMult {};
         //Store iterators to beam, light and heavy
         decltype(TPCPhysics::fClusters)::iterator fBeamIt;
         decltype(TPCPhysics::fClusters)::iterator fLightIt;
         decltype(TPCPhysics::fClusters)::iterator fHeavyIt;
-        // Store name of impacted Si layer
-        std::string fHitSilLayer {};
         
     public:
         // Setters of pointer to Parameters in DetMan
@@ -86,6 +81,8 @@ namespace ActRoot
     private:
         void ReadSilSpecs(const std::string& file);
         bool IsDoable();
+        bool GateGATCONFandTrackMult();
+        bool GateSilMult();
         void LightOrHeavy();
         void ComputeSiliconPoint();
         void Reset();

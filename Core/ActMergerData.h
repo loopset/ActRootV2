@@ -7,6 +7,8 @@
 #include "Math/Point3Dfwd.h"
 #include "Math/Vector3D.h"
 #include "Math/Vector3Dfwd.h"
+#include <string>
+#include <vector>
 
 namespace ActRoot
 {
@@ -19,7 +21,10 @@ namespace ActRoot
     public:
         XYZPoint fRP {-1, -1, -1};
         XYZPoint fSP {-1, -1, -1};
-
+        std::vector<std::string> fSilLayers {};
+        std::vector<float> fSilEs {};
+        std::vector<float> fSilNs {};
+       
         void Clear() override;
         void Print() const override;
     };

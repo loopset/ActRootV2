@@ -29,6 +29,7 @@
 #pragma link C++ class ActRoot::DetectorManager;
 #pragma link C++ class ActRoot::InputData;
 #pragma link C++ class ActRoot::OutputData;
+#pragma link C++ class ActRoot::JoinData;
 #pragma link C++ enum class ActRoot::DetectorType + ;
 #pragma link C++ class ActRoot::InputBlock;
 #pragma link C++ class ActRoot::InputParser;

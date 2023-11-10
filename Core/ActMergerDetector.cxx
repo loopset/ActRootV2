@@ -2,6 +2,7 @@
 
 #include "ActColors.h"
 #include "ActInputParser.h"
+#include "ActMergerData.h"
 #include "ActModularData.h"
 #include "ActModularDetector.h"
 #include "ActSilData.h"
@@ -14,6 +15,8 @@
 #include "TMathBase.h"
 #include "TTree.h"
 
+#include <algorithm>
+#include <functional>
 #include <ios>
 #include <iostream>
 #include <iterator>
@@ -21,6 +24,7 @@
 #include <set>
 #include <string>
 #include <utility>
+#include <vector>
 
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
@@ -28,19 +32,14 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     if(block->CheckTokenExists("SilSpecsFile"))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
     // Map GATCONFS to SilLayers, using gat command
-    auto gatMap {block->GetMappedValuesAs<std::string>("gat")};
+    auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
     if(gatMap.size() > 0)
         fGatMap = gatMap;
-    // GATCONF force?
-    if(block->CheckTokenExists("ForceGATCONF"))
-        fForceGat = block->GetBool("ForceGATCONF");
     // Beam-like and multiplicities
     if(block->CheckTokenExists("ForceBeamLike"))
         fForceBeamLike = block->GetBool("ForceBeamLike");
     if(block->CheckTokenExists("NotBeamMults"))
         fNotBMults = block->GetIntVector("NotBeamMults");
-    if(block->CheckTokenExists("ForceSilMult"))
-        fForceSilMult = block->GetBool("ForceSilMult");
 }
 
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
@@ -71,6 +70,7 @@ void ActRoot::MergerDetector::InitOutputMerger(std::shared_ptr<TTree> tree)
 {
     if(fMergerData)
         delete fMergerData;
+    fMergerData = new MergerData;
     tree->Branch("MergerData", &fMergerData);
 }
 
@@ -95,16 +95,25 @@ void ActRoot::MergerDetector::MergeEvent()
 
 bool ActRoot::MergerDetector::IsDoable()
 {
+    auto condA {GateGATCONFandTrackMult()};
+    if(!condA)
+        return condA;
+    else
+    {
+        auto condB {GateSilMult()};
+        return condB;
+    }
+}
+
+bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
+{
     // 1-> Apply GATCONF cut
     bool isInGat {true};
     auto gat {(int)fModularData->Get("GATCONF")};
-    if(fForceGat)
-    {
-        if(fGatMap.count(gat))
-            isInGat = true;
-        else
-            isInGat = false;
-    }
+    if(fGatMap.count(gat))
+        isInGat = true;
+    else
+        isInGat = false;
     // 2-> Has BL cluster and not BL mult
     bool hasBL {true};
     bool hasMult {false};
@@ -131,19 +140,33 @@ bool ActRoot::MergerDetector::IsDoable()
     {
         hasMult = IsInVector((int)fTPCPhyiscs->fClusters.size(), fNotBMults);
     }
-    bool condA {isInGat && hasBL && hasMult};
-    if(!condA)
-        return false;
-    else
+    return isInGat && hasBL && hasMult;
+}
+
+bool ActRoot::MergerDetector::GateSilMult()
+{
+    // 1-> Apply finer thresholds in SilSpecs
+    fSilData->ApplyFinerThresholds(fSilSpecs);
+    // 2-> Check and write silicon data
+    int withE {};
+    int withMult {};
+    for(const auto& layer : fGatMap[(int)fModularData->Get("GATCONF")])
     {
-        fHitSilLayer = fGatMap[gat];
-        fSilData->ApplyFinerThresholds(fSilSpecs);
-        // 3->Check silicon multiplicity
-        if(fForceSilMult)
-            return fSilData->GetMult(fHitSilLayer) == 1; // force sil mult = 1
-        else
-            return true;
+        // Only check mult of layers with E >  threshold!
+        if(int mult {fSilData->GetMult(layer)}; mult > 0)
+        {
+            withE++;
+            if(mult == 1)
+            {
+                withMult++;
+                // Write data
+                fMergerData->fSilLayers.push_back(layer);
+                fMergerData->fSilEs.push_back(fSilData->fSiE[layer].front());
+                fMergerData->fSilNs.push_back(fSilData->fSiN[layer].front());
+            }
+        }
     }
+    return withE == withMult;
 }
 
 void ActRoot::MergerDetector::Reset()
@@ -153,7 +176,6 @@ void ActRoot::MergerDetector::Reset()
     fLightIt = fTPCPhyiscs->fClusters.end();
     fHeavyIt = fTPCPhyiscs->fClusters.end();
     // Reset other variables
-    fHitSilLayer = {};
 }
 
 double ActRoot::MergerDetector::GetTheta(const XYZVector& beam, const XYZVector& other)
@@ -188,11 +210,11 @@ void ActRoot::MergerDetector::LightOrHeavy()
 
 void ActRoot::MergerDetector::ComputeSiliconPoint()
 {
-    fMergerData->fSP = fSilSpecs->GetLayer(fHitSilLayer)
+    fMergerData->fSP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
                            .GetSiliconPointOfTrack(fMergerData->fRP, fLightIt->GetLine().GetDirection().Unit());
     // Redefine signs just in case
     fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
-    fMergerData->Print();
+    // fMergerData->Print();
 }
 
 void ActRoot::MergerDetector::ClearOutputMerger()
@@ -205,10 +227,13 @@ void ActRoot::MergerDetector::Print() const
     std::cout << BOLDYELLOW << ":::: Merger detector ::::" << '\n';
     std::cout << "-> GATCONF map   : " << '\n';
     for(const auto& [key, vals] : fGatMap)
-        std::cout << "   " << key << " = " << vals << '\n';
-    std::cout << "-> ForceGATCONF  ? " << std::boolalpha << fForceGat << '\n';
+    {
+        std::cout << "   " << key << " = ";
+        for(const auto& s : vals)
+            std::cout << s << ", ";
+        std::cout << '\n';
+    }
     std::cout << "-> ForceBeamLike ? " << std::boolalpha << fForceBeamLike << '\n';
-    std::cout << "-> ForceSilMult  ? " << std::boolalpha << fForceSilMult << '\n';
     std::cout << "-> NotBeamMults  : ";
     for(const auto& m : fNotBMults)
         std::cout << m << ", ";
