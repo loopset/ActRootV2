@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['vdetector_1747',['VDetector',['../classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37',1,'ActRoot::VDetector']]],
-  ['voxel_1748',['Voxel',['../classActRoot_1_1Voxel.html#a8d13a75dd95a1e43a933c4a43636fa75',1,'ActRoot::Voxel::Voxel()=default'],['../classActRoot_1_1Voxel.html#a5b70e3884d47f6060913b4e8e3d3f461',1,'ActRoot::Voxel::Voxel(const XYZPoint &amp;pos, float charge, bool hasSaturation=false)']]]
+  ['unpause_1759',['unpause',['../classBS_1_1thread__pool.html#ad57048e0479f878af3ac3a27031a2d6e',1,'BS::thread_pool']]],
+  ['updategeometry_1760',['UpdateGeometry',['../classActDriftDetector.html#afbdf1400fd9965b4aa045cb8b17e3b32',1,'ActDriftDetector']]],
+  ['updaterange_1761',['UpdateRange',['../classActCluster_1_1Cluster.html#a03bd944609b4560350280df10b98d724',1,'ActCluster::Cluster']]],
+  ['usersteppingaction_1762',['UserSteppingAction',['../classActSteppingAction.html#a5e4252fe24cb2a6059e0e0e16d01140b',1,'ActSteppingAction']]]
 ];

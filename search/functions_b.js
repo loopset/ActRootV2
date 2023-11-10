@@ -1,15 +1,6 @@
 var searchData=
 [
-  ['main_1583',['main',['../ActGeant4_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'ActGeant4.cc']]],
-  ['manualisinbeam_1584',['ManualIsInBeam',['../classActCluster_1_1MultiStep.html#a9124f3b024b84b971e964326ebf336b1',1,'ActCluster::MultiStep']]],
-  ['maskvoxelsinindex_1585',['MaskVoxelsInIndex',['../classActCluster_1_1ClIMB.html#a463445f28c540c82b92eb9d5c7dbe657',1,'ActCluster::ClIMB']]],
-  ['maskvoxelsinmatrix_1586',['MaskVoxelsInMatrix',['../classActCluster_1_1ClIMB.html#acbf896a47913c22a9134a9e26dddf617',1,'ActCluster::ClIMB']]],
-  ['mergeevent_1587',['MergeEvent',['../classActRoot_1_1MergerDetector.html#a3b82dbbe5caf2e4f4efd0208c0f84eca',1,'ActRoot::MergerDetector']]],
-  ['mergesimilartracks_1588',['MergeSimilarTracks',['../classActCluster_1_1MultiStep.html#acf61ed4e30cbad211124a7dc396cf486',1,'ActCluster::MultiStep']]],
-  ['meventreduced_1589',['MEventReduced',['../classMEventReduced.html#ad67e7eacdacb2d459ad0d4efaaeeca48',1,'MEventReduced']]],
-  ['modulardetector_1590',['ModularDetector',['../classActRoot_1_1ModularDetector.html#ad317a67f624f665843c29d896ad6f71b',1,'ActRoot::ModularDetector']]],
-  ['ms_1591',['ms',['../classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159',1,'BS::timer']]],
-  ['mtexecutor_1592',['MTExecutor',['../classActRoot_1_1MTExecutor.html#a1b7cd6e99801f92cce0a0c057912e7e9',1,'ActRoot::MTExecutor']]],
-  ['multi_5ffuture_1593',['multi_future',['../classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a',1,'BS::multi_future']]],
-  ['multistep_1594',['MultiStep',['../classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f',1,'ActCluster::MultiStep']]]
+  ['length_1595',['Length',['../classActCluster_1_1Interval.html#a3a1aeec52b6a4464ce9cb86efa377209',1,'ActCluster::Interval']]],
+  ['lightorheavy_1596',['LightOrHeavy',['../classActRoot_1_1MergerDetector.html#a6e648156c52ebf690dd9c049060c9fd6',1,'ActRoot::MergerDetector']]],
+  ['line_1597',['Line',['../classActPhysics_1_1Line.html#aa1a46ad70bee19aeb2d7d1685a820be1',1,'ActPhysics::Line::Line()=default'],['../classActPhysics_1_1Line.html#a4a178deb2cd606f5cced01cbcc2d7b21',1,'ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)'],['../classActPhysics_1_1Line.html#abaab8509c2ae394e227777d1ee487165',1,'ActPhysics::Line::Line(const XYZPoint &amp;p1, const XYZPoint &amp;p2)']]]
 ];

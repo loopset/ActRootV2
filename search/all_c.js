@@ -1,8 +1,21 @@
 var searchData=
 [
-  ['next_817',['Next',['../classActRoot_1_1InputIterator.html#ab4bc333d9b1820946ef43bfc907dd40c',1,'ActRoot::InputIterator']]],
-  ['nignoredlinesangular_818',['nIgnoredLinesAngular',['../classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78',1,'ActSim::TheoCrossSection']]],
-  ['nignoredlinesscattering_819',['nIgnoredLinesScattering',['../classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78',1,'ActSim::TheoCrossSection']]],
-  ['nlegendrecoeffs_820',['nLegendreCoeffs',['../classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088',1,'ActSim::TheoCrossSection']]],
-  ['num_5fblocks_821',['num_blocks',['../classBS_1_1blocks.html#ae07e5d2a3a7ee244222f9045f69c64da',1,'BS::blocks']]]
+  ['magenta_806',['MAGENTA',['../ActColors_8h.html#a6f699060902f800f12aaae150f3a708e',1,'ActColors.h']]],
+  ['main_807',['main',['../ActGeant4_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'ActGeant4.cc']]],
+  ['mangular_808',['mAngular',['../classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d',1,'ActSim::TheoCrossSection']]],
+  ['manualisinbeam_809',['ManualIsInBeam',['../classActCluster_1_1MultiStep.html#a9124f3b024b84b971e964326ebf336b1',1,'ActCluster::MultiStep']]],
+  ['maskvoxelsinindex_810',['MaskVoxelsInIndex',['../classActCluster_1_1ClIMB.html#a463445f28c540c82b92eb9d5c7dbe657',1,'ActCluster::ClIMB']]],
+  ['maskvoxelsinmatrix_811',['MaskVoxelsInMatrix',['../classActCluster_1_1ClIMB.html#acbf896a47913c22a9134a9e26dddf617',1,'ActCluster::ClIMB']]],
+  ['mergeevent_812',['MergeEvent',['../classActRoot_1_1MergerDetector.html#a3b82dbbe5caf2e4f4efd0208c0f84eca',1,'ActRoot::MergerDetector']]],
+  ['mergerdata_813',['MergerData',['../classActRoot_1_1MergerData.html',1,'ActRoot']]],
+  ['mergerdetector_814',['MergerDetector',['../classActRoot_1_1MergerDetector.html',1,'ActRoot']]],
+  ['mergesimilartracks_815',['MergeSimilarTracks',['../classActCluster_1_1MultiStep.html#acf61ed4e30cbad211124a7dc396cf486',1,'ActCluster::MultiStep']]],
+  ['meventreduced_816',['MEventReduced',['../classMEventReduced.html#ad67e7eacdacb2d459ad0d4efaaeeca48',1,'MEventReduced::MEventReduced()'],['../classMEventReduced.html',1,'MEventReduced']]],
+  ['modulardata_817',['ModularData',['../classActRoot_1_1ModularData.html',1,'ActRoot']]],
+  ['modulardetector_818',['ModularDetector',['../classActRoot_1_1ModularDetector.html',1,'ActRoot::ModularDetector'],['../classActRoot_1_1ModularDetector.html#ad317a67f624f665843c29d896ad6f71b',1,'ActRoot::ModularDetector::ModularDetector()']]],
+  ['modularparameters_819',['ModularParameters',['../classActRoot_1_1ModularParameters.html',1,'ActRoot']]],
+  ['ms_820',['ms',['../classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159',1,'BS::timer']]],
+  ['mtexecutor_821',['MTExecutor',['../classActRoot_1_1MTExecutor.html',1,'ActRoot::MTExecutor'],['../classActRoot_1_1MTExecutor.html#a1b7cd6e99801f92cce0a0c057912e7e9',1,'ActRoot::MTExecutor::MTExecutor()']]],
+  ['multi_5ffuture_822',['multi_future',['../classBS_1_1multi__future.html',1,'BS::multi_future&lt; T &gt;'],['../classBS_1_1multi__future.html#a320812d6a9287fa2aedf3deab6edee1a',1,'BS::multi_future::multi_future()']]],
+  ['multistep_823',['MultiStep',['../classActCluster_1_1MultiStep.html',1,'ActCluster::MultiStep'],['../classActCluster_1_1MultiStep.html#a392592bce6de89c7ec9a9353d0b7725f',1,'ActCluster::MultiStep::MultiStep()']]]
 ];

@@ -116,6 +116,12 @@ Public Attributes</h2></td></tr>
 <tr class="separator:abcad18a948b4335d59369824943cc770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb4507403b40049537bec8a6bd7668a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1MergerData.html#a4f79a0a8a7b9e557b1894836d38d8ee9">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> {-1, -1, -1}</td></tr>
 <tr class="separator:a7cb4507403b40049537bec8a6bd7668a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a> {}</td></tr>
+<tr class="separator:a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada67cf8c69c1579243a0d01627e22fa6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">fSilEs</a> {}</td></tr>
+<tr class="separator:ada67cf8c69c1579243a0d01627e22fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69d2f2398710d273fead1b4aef3d41ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">fSilNs</a> {}</td></tr>
+<tr class="separator:a69d2f2398710d273fead1b4aef3d41ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4f79a0a8a7b9e557b1894836d38d8ee9"></a>
@@ -205,12 +211,18 @@ Public Attributes</h2></td></tr>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;:::: MergerData ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; RP : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; SP : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Silicons : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.size(); i++)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;   layer : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>[i] &lt;&lt; <span class="stringliteral">&quot; idx : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">fSilNs</a>[i] &lt;&lt; <span class="stringliteral">&quot; E : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">fSilEs</a>[i] &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a4a6c893a1703c33ede7d702fe5f97c91"><div class="ttname"><a href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a></div><div class="ttdeci">#define BOLDGREEN</div><div class="ttdef"><b>Definition:</b> ActColors.h:17</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:21</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a69d2f2398710d273fead1b4aef3d41ba"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">ActRoot::MergerData::fSilNs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilNs</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:26</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">ActRoot::MergerData::fSilLayers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fSilLayers</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:24</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:23</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ada67cf8c69c1579243a0d01627e22fa6"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">ActRoot::MergerData::fSilEs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilEs</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -223,6 +235,48 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classActRoot_1_1MergerData.html#a4f79a0a8a7b9e557b1894836d38d8ee9">XYZPoint</a> ActRoot::MergerData::fRP {-1, -1, -1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada67cf8c69c1579243a0d01627e22fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada67cf8c69c1579243a0d01627e22fa6">&#9670;&nbsp;</a></span>fSilEs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ActRoot::MergerData::fSilEs {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">&#9670;&nbsp;</a></span>fSilLayers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; ActRoot::MergerData::fSilLayers {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69d2f2398710d273fead1b4aef3d41ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d2f2398710d273fead1b4aef3d41ba">&#9670;&nbsp;</a></span>fSilNs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ActRoot::MergerData::fSilNs {}</td>
         </tr>
       </table>
 </div><div class="memdoc">

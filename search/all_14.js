@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['wait_1010',['wait',['../classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7',1,'BS::multi_future']]],
-  ['wait_5ffor_5ftasks_1011',['wait_for_tasks',['../classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8',1,'BS::thread_pool']]],
-  ['wait_5ffor_5ftasks_5fduration_1012',['wait_for_tasks_duration',['../classBS_1_1thread__pool.html#a980dc3c8de9114dc63b0fbfc979b031d',1,'BS::thread_pool']]],
-  ['wait_5ffor_5ftasks_5funtil_1013',['wait_for_tasks_until',['../classBS_1_1thread__pool.html#a0bf42daf5d4e6536a32af2279c95b351',1,'BS::thread_pool']]],
-  ['waiting_1014',['waiting',['../classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40',1,'BS::thread_pool']]],
-  ['white_1015',['WHITE',['../ActColors_8h.html#a87b537f5fa5c109d3c05c13d6b18f382',1,'ActColors.h']]],
-  ['worker_1016',['worker',['../classBS_1_1thread__pool.html#a6f36df0501ab738b10baee833e9ed960',1,'BS::thread_pool']]],
-  ['workers_5frunning_1017',['workers_running',['../classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9',1,'BS::thread_pool']]],
-  ['writegeometry_1018',['WriteGeometry',['../classActSim_1_1Geometry.html#a3d3aca94f12412b0f97439b19357cd47',1,'ActSim::Geometry']]],
-  ['writemetadata_1019',['WriteMetadata',['../classActRoot_1_1OutputData.html#ade1e383735a4583483d74783264702d7',1,'ActRoot::OutputData']]]
+  ['vdata_1013',['VData',['../classActRoot_1_1VData.html',1,'ActRoot']]],
+  ['vdetector_1014',['VDetector',['../classActRoot_1_1VDetector.html',1,'ActRoot::VDetector'],['../classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37',1,'ActRoot::VDetector::VDetector()']]],
+  ['voxel_1015',['Voxel',['../classActRoot_1_1Voxel.html',1,'ActRoot::Voxel'],['../classActRoot_1_1Voxel.html#a8d13a75dd95a1e43a933c4a43636fa75',1,'ActRoot::Voxel::Voxel()=default'],['../classActRoot_1_1Voxel.html#a5b70e3884d47f6060913b4e8e3d3f461',1,'ActRoot::Voxel::Voxel(const XYZPoint &amp;pos, float charge, bool hasSaturation=false)']]],
+  ['vxscattering_1016',['vXScattering',['../classActSim_1_1TheoCrossSection.html#ad382b3e5b1681936a859c5b3f4e8d566',1,'ActSim::TheoCrossSection']]],
+  ['vyscattering_1017',['vYScattering',['../classActSim_1_1TheoCrossSection.html#ae6d118bdf17a7ef8592387b5358d74dc',1,'ActSim::TheoCrossSection']]]
 ];
