@@ -29,7 +29,6 @@
 #include <iostream>
 #include <iterator>
 #include <map>
-#include <pstl/glue_algorithm_defs.h>
 #include <set>
 #include <string>
 #include <tuple>
@@ -534,6 +533,8 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             // Get threshold distance to merge
             auto distThresh {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
             bool isBelowThresh {dist < std::sqrt(distThresh)};
+            std::cout << "dist : " << dist << '\n';
+            std::cout << "distThresh: " << distThresh << '\n';
 
             // 2-> Compare by paralelity
             auto outDir {out->GetLine().GetDirection().Unit()};
@@ -797,7 +798,7 @@ void ActCluster::MultiStep::DeterminePreciseRP()
                            }),
             refVoxels.end());
         // 3-> If cluster is beam-like, recluster the voxels AFTER RP
-        if(it->GetIsBeamLike() && fClusters->size() == 2) // only when heavy recoil was not separeted from the rest
+        if(it->GetIsBeamLike() && fClusters->size() >= 2) // only when heavy recoil was not separeted from the rest
         {
             // Init size
             auto initSize {it->GetSizeOfVoxels()};
