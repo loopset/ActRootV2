@@ -187,17 +187,18 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    : <a class="code" href="structActSim_1_1SilAssembly.html#ae9c03a04bbbcefcdcecc9e60a8a020e7">fIndex</a>(index), <a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>(unit)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span>(alongx)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a0e23feb38918751852fda7f59f1c29d6">fIsAlongX</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(alongy)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a4e42515449a330b00821199608bb23d9">fIsAlongY</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(alongy &amp;&amp; alongx)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;AlongX &amp;&amp; AlongY not allowed!&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No Along[X,Y] was set!&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    : <a class="code" href="structActSim_1_1SilAssembly.html#ae9c03a04bbbcefcdcecc9e60a8a020e7">fIndex</a>(index),</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      <a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>(unit)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">if</span>(alongx)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a0e23feb38918751852fda7f59f1c29d6">fIsAlongX</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(alongy)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a4e42515449a330b00821199608bb23d9">fIsAlongY</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(alongy &amp;&amp; alongx)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;AlongX &amp;&amp; AlongY not allowed!&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No Along[X,Y] was set!&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_a0e23feb38918751852fda7f59f1c29d6"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#a0e23feb38918751852fda7f59f1c29d6">ActSim::SilAssembly::fIsAlongX</a></div><div class="ttdeci">bool fIsAlongX</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:60</div></div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_a355decf85b2dfe0480bc149fcc037a19"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">ActSim::SilAssembly::fUnit</a></div><div class="ttdeci">SilUnit fUnit</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:57</div></div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_a4e42515449a330b00821199608bb23d9"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#a4e42515449a330b00821199608bb23d9">ActSim::SilAssembly::fIsAlongY</a></div><div class="ttdeci">bool fIsAlongY</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:60</div></div>
@@ -245,20 +246,20 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;** SilAssembly number &quot;</span>&lt;&lt;<a class="code" href="structActSim_1_1SilAssembly.html#ae9c03a04bbbcefcdcecc9e60a8a020e7">fIndex</a>&lt;&lt;<span class="stringliteral">&quot; **&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Using SilUnit = &quot;</span>&lt;&lt;<a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>.<a class="code" href="structActSim_1_1SilUnit.html#aa8dfc2279d73e57e30c34028a51b86fc">fIndex</a>&lt;&lt;<span class="stringliteral">&quot; with specs&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>.<a class="code" href="structActSim_1_1SilUnit.html#ac225a85f505d4cb5ec013a5a46af4407">Print</a>();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot; Placements = &quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [index, place] : <a class="code" href="structActSim_1_1SilAssembly.html#ab1ab94e23e3ce4c7500b07c9d61bac3f">fPlacements</a>)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;    i = &quot;</span>&lt;&lt;index&lt;&lt;<span class="stringliteral">&quot; first = &quot;</span>&lt;&lt;place.first&lt;&lt;<span class="stringliteral">&quot; second = &quot;</span>&lt;&lt;place.second&lt;&lt;<span class="stringliteral">&quot; cm&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;****************************&quot;</span>&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;** SilAssembly number &quot;</span> &lt;&lt; <a class="code" href="structActSim_1_1SilAssembly.html#ae9c03a04bbbcefcdcecc9e60a8a020e7">fIndex</a> &lt;&lt; <span class="stringliteral">&quot; **&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Using SilUnit = &quot;</span> &lt;&lt; <a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>.<a class="code" href="structActSim_1_1SilUnit.html#aa8dfc2279d73e57e30c34028a51b86fc">fIndex</a> &lt;&lt; <span class="stringliteral">&quot; with specs&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="structActSim_1_1SilAssembly.html#a355decf85b2dfe0480bc149fcc037a19">fUnit</a>.<a class="code" href="structActSim_1_1SilUnit.html#ac225a85f505d4cb5ec013a5a46af4407">Print</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot; Placements = &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [index, place] : <a class="code" href="structActSim_1_1SilAssembly.html#ab1ab94e23e3ce4c7500b07c9d61bac3f">fPlacements</a>)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;    i = &quot;</span> &lt;&lt; index &lt;&lt; <span class="stringliteral">&quot; first = &quot;</span> &lt;&lt; place.first &lt;&lt; <span class="stringliteral">&quot; second = &quot;</span> &lt;&lt; place.second &lt;&lt; <span class="stringliteral">&quot; cm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;****************************&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_ab1ab94e23e3ce4c7500b07c9d61bac3f"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#ab1ab94e23e3ce4c7500b07c9d61bac3f">ActSim::SilAssembly::fPlacements</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; double, double &gt; &gt; fPlacements</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:58</div></div>
 <div class="ttc" id="astructActSim_1_1SilUnit_html_aa8dfc2279d73e57e30c34028a51b86fc"><div class="ttname"><a href="structActSim_1_1SilUnit.html#aa8dfc2279d73e57e30c34028a51b86fc">ActSim::SilUnit::fIndex</a></div><div class="ttdeci">unsigned int fIndex</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:40</div></div>
-<div class="ttc" id="astructActSim_1_1SilUnit_html_ac225a85f505d4cb5ec013a5a46af4407"><div class="ttname"><a href="structActSim_1_1SilUnit.html#ac225a85f505d4cb5ec013a5a46af4407">ActSim::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:66</div></div>
+<div class="ttc" id="astructActSim_1_1SilUnit_html_ac225a85f505d4cb5ec013a5a46af4407"><div class="ttname"><a href="structActSim_1_1SilUnit.html#ac225a85f505d4cb5ec013a5a46af4407">ActSim::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:69</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -342,18 +343,18 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span>(xoffset != -1)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">fOffset</a>.first = xoffset;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#aa85e96089d736a49448612608a8f5802">fHasXOffset</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span>(yoffset != -1)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">fOffset</a>.second = yoffset;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#afd62802d876f57fdb9302eb50b5d1563">fHasYOffset</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span>(xoffset != -1)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">fOffset</a>.first = xoffset;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#aa85e96089d736a49448612608a8f5802">fHasXOffset</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(yoffset != -1)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">fOffset</a>.second = yoffset;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="structActSim_1_1SilAssembly.html#afd62802d876f57fdb9302eb50b5d1563">fHasYOffset</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_a2a791eb3257712d9ead479942f5d81be"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">ActSim::SilAssembly::fOffset</a></div><div class="ttdeci">std::pair&lt; double, double &gt; fOffset</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:59</div></div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_aa85e96089d736a49448612608a8f5802"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#aa85e96089d736a49448612608a8f5802">ActSim::SilAssembly::fHasXOffset</a></div><div class="ttdeci">bool fHasXOffset</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:61</div></div>
 <div class="ttc" id="astructActSim_1_1SilAssembly_html_afd62802d876f57fdb9302eb50b5d1563"><div class="ttname"><a href="structActSim_1_1SilAssembly.html#afd62802d876f57fdb9302eb50b5d1563">ActSim::SilAssembly::fHasYOffset</a></div><div class="ttdeci">bool fHasYOffset</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:61</div></div>
