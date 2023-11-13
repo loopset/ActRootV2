@@ -119,6 +119,7 @@ namespace ActPhysics
         std::tuple<double, double, double, double> GetMasses() const;
         FourVector GetPInitialLab() const { return fPInitialLab; }
         double GetQValue() const { return fQvalue; }
+        double GetT1Thresh() const;
 	
     private:
         void SetRecoilsCMKinematicsThrough3(double fTheta3CMRads, double phi3CMRads);

@@ -133,8 +133,8 @@ ActSim::Runner::XYZPoint ActSim::Runner::SampleVertex(double meanY, double sigma
     }
     else
     {
-        y = fRand->Uniform() * fgeo->GetDriftParameters().Y * 2 *10.;
-        z = fRand->Uniform() * fgeo->GetDriftParameters().Z * 2 * 10.;
+        y = fRand->Gaus(meanY, sigmaY);
+        z = fRand->Gaus(meanZ, sigmaZ);
         ret = {x, y, z};
     }
     return ret;
