@@ -2,6 +2,7 @@
 #define ActInputData_h
 
 #include "ActInputParser.h"
+
 #include "TChain.h"
 #include "TTree.h"
 #include "TUUID.h"
@@ -20,6 +21,7 @@ namespace ActRoot
         std::vector<int> fRuns;
         std::map<int, std::shared_ptr<TFile>> fFiles;
         std::map<int, std::shared_ptr<TTree>> fTrees;
+        std::map<int, std::vector<int>> fManualEntries;
         std::string fTreeName;
         std::string fFriendName;
         bool fHasFriend {};
@@ -43,10 +45,12 @@ namespace ActRoot
         std::vector<int> GetTreeList() const { return fRuns; }
         void GetEntry(int run, int entry);
         int GetNEntries(int run) const { return fTrees.at(run)->GetEntries(); }
+        const std::map<int, std::vector<int>>& GetManualEntries() const { return fManualEntries; }
 
     private:
         void AddFile(int run, const std::string& file);
         void AddFriend(std::shared_ptr<InputBlock> fb);
+        void AddManualEntries(const std::string& file);
     };
 } // namespace ActRoot
 #endif

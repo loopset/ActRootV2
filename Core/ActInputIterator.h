@@ -6,17 +6,21 @@
 
 #include <map>
 #include <utility>
+#include <vector>
 namespace ActRoot
 {
-    //forward declaration
+    // forward declaration
     class InputData;
     class InputIterator
     {
-    private:
+    private: 
         int fCurrentRun;
         int fCurrentEntry;
         int fLastRun;
         std::map<int, int> fEntries;
+        bool fIsManual {};
+        std::map<int, std::vector<int>> fManual;
+        int fManIdx;
 
     public:
         InputIterator() = default;
@@ -26,14 +30,16 @@ namespace ActRoot
         bool Previous();
         bool Next();
         bool GoTo(int run, int entry);
-        std::pair<int, int> GetCurrentRunEntry() const {return {fCurrentRun, fCurrentEntry};}
-        bool HasRunChanged() const {return fLastRun != fCurrentRun;}
+        std::pair<int, int> GetCurrentRunEntry() const { return {fCurrentRun, fCurrentEntry}; }
+        bool HasRunChanged() const { return fLastRun != fCurrentRun; }
 
     private:
         bool CheckEntryIsInRange(int run, int entry);
+        std::pair<int, int> GetManualNext();
+        std::pair<int, int> GetManualPrev();
     };
 
-    //more forward declarations
+    // more forward declarations
     class TPCData;
     class SilData;
     class InputWrapper
@@ -54,16 +60,16 @@ namespace ActRoot
         bool GoPrevious();
         bool GoTo(int run, int entry);
 
-        //Getters
-        TPCData* GetCurrentTPCData() const {return fTPCData;}
-        SilData* GetCurrentSilData() const {return fSilData;}
-        ModularData* GetCurrentModularData() const {return fModularData;}
-        std::pair<int, int> GetCurrentStatus() const {return fIt.GetCurrentRunEntry();}
-        const InputIterator& GetIt() const {return fIt;}
-        InputData* GetInput() const {return fInput;}
-        
+        // Getters
+        TPCData* GetCurrentTPCData() const { return fTPCData; }
+        SilData* GetCurrentSilData() const { return fSilData; }
+        ModularData* GetCurrentModularData() const { return fModularData; }
+        std::pair<int, int> GetCurrentStatus() const { return fIt.GetCurrentRunEntry(); }
+        const InputIterator& GetIt() const { return fIt; }
+        InputData* GetInput() const { return fInput; }
+
     private:
         void SetBranchAddress(int run);
     };
-}
+} // namespace ActRoot
 #endif

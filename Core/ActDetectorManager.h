@@ -69,7 +69,7 @@ namespace ActRoot
         // Builder of EVENTs
         void BuildEventData();
         void BuildEventPhysics();
-        void BuildEventMerger();
+        void BuildEventMerger(int run, int entry);
 
         void PrintReports() const;
 

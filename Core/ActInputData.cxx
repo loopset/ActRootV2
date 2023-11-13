@@ -6,6 +6,8 @@
 #include "TString.h"
 #include "TTree.h"
 
+#include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <memory>
@@ -37,7 +39,8 @@ void ActRoot::InputData::ReadConfiguration(const std::string& file)
     ActRoot::InputParser parser {file};
     auto block {parser.GetBlock("InputData")};
     // Keys available in file
-    std::vector<std::string> keys {"TreeName", "FilePath", "FileBegin", "FileList", "FileEnd", "HasFriend"};
+    std::vector<std::string> keys {"TreeName", "FilePath",  "FileBegin",    "FileList",
+                                   "FileEnd",  "HasFriend", "ManualEntries"};
     // Set input data
     auto tree {block->GetString("TreeName")};
     fTreeName = tree;
@@ -56,6 +59,8 @@ void ActRoot::InputData::ReadConfiguration(const std::string& file)
     }
     if(fHasFriend)
         AddFriend(parser.GetBlock("FriendData"));
+    if(block->CheckTokenExists("ManualEntries", true))
+        AddManualEntries(block->GetString("ManualEntries"));
 }
 
 void ActRoot::InputData::GetEntry(int run, int entry)
@@ -79,4 +84,24 @@ void ActRoot::InputData::AddFriend(std::shared_ptr<InputBlock> fb)
         fTrees[run]->AddFriend(fFriendName.c_str(), fullname.Data());
         std::cout << "Adding Friend TTree " << fFriendName << " in " << fullname << '\n';
     }
+}
+
+void ActRoot::InputData::AddManualEntries(const std::string& file)
+{
+    // Read file
+    std::ifstream streamer {file.c_str()};
+    if(!streamer)
+        throw std::runtime_error("Could not open InputData::ManualEntries file");
+    int run {};
+    int entry {};
+    while(streamer >> run >> entry)
+    {
+        // Check if run is in list
+        bool isKnown {std::find(fRuns.begin(), fRuns.end(), run) != fRuns.end()};
+        if(!isKnown)
+            continue;
+        // Add to map
+        fManualEntries[run].push_back(entry);
+    }
+    streamer.close();
 }

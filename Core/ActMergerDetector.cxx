@@ -176,6 +176,8 @@ void ActRoot::MergerDetector::Reset()
     fLightIt = fTPCPhyiscs->fClusters.end();
     fHeavyIt = fTPCPhyiscs->fClusters.end();
     // Reset other variables
+    fMergerData->fRun = fCurrentRun;
+    fMergerData->fEntry = fCurrentEntry;
 }
 
 double ActRoot::MergerDetector::GetTheta(const XYZVector& beam, const XYZVector& other)
@@ -198,8 +200,8 @@ void ActRoot::MergerDetector::LightOrHeavy()
         auto theta {GetTheta(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
         set.insert({TMath::Abs(theta), i});
     }
-    // for(const auto& pair : set)
-    //     std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
+    for(const auto& pair : set)
+        std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
     // Set iterators
     fLightIt = fTPCPhyiscs->fClusters.begin() + set.begin()->second;
     if(set.size() > 1)

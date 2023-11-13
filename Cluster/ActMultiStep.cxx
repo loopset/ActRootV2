@@ -134,7 +134,7 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // Clean bad fits
     if(mb->CheckTokenExists("EnableCleanBadFits"))
         fEnableCleanBadFits = mb->GetBool("EnableCleanBadFits");
- 
+
     // Init clocks here
     InitClocks();
 }
@@ -381,7 +381,8 @@ void ActCluster::MultiStep::BreakBeamClusters()
             // auto bp {std::get<0>(preliminary)};                  // breaking point
             // auto autoWY {std::get<1>(preliminary)};              // mean width along Y
             // auto autoWZ {std::get<2>(preliminary)};              // mean width along Z
-            // bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all the
+            // bool useBreakingPoint {bp.X() > (xmin + fMinSpanX)}; // since it is very preliminary, does not workk all
+            // the
             //                                                      // times, fallback to default method if so
 
             // 3->Modify original cluster: move non-beam voxels outside to
@@ -538,6 +539,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             auto outDir {out->GetLine().GetDirection().Unit()};
             auto inDir {in->GetLine().GetDirection().Unit()};
             bool areParallel {std::abs(outDir.Dot(inDir)) > fMergeMinParallelFactor};
+            std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
 
             // 3-> Check if fits improves
             if(isBelowThresh || areParallel)
@@ -551,6 +553,8 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 auto newChi2 {aux.GetChi2()};
                 auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
                 bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
+                std::cout << "old chi2 : " << oldChi2 << '\n';
+                std::cout << "new chi2 :  " << newChi2 << '\n';
                 // Then, move and erase in iterator!
                 if(improvesFit)
                 {
@@ -673,7 +677,7 @@ bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
 
 double ActCluster::MultiStep::GetThetaAngle(const XYZVector& dir)
 {
-    // we should use beam-like direction... but for 
+    // we should use beam-like direction... but for
     // the time being is more than enough this approx.
     XYZVector beam {1, 0, 0};
     return TMath::Abs(TMath::ACos(beam.Dot(dir.Unit())) * TMath::RadToDeg());

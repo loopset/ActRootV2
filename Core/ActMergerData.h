@@ -24,6 +24,8 @@ namespace ActRoot
         std::vector<std::string> fSilLayers {};
         std::vector<float> fSilEs {};
         std::vector<float> fSilNs {};
+        int fEntry {-1};
+        int fRun {-1};
        
         void Clear() override;
         void Print() const override;

@@ -199,8 +199,9 @@ void ActRoot::DetectorManager::InitializeMergerOutput(std::shared_ptr<TTree> tre
     fMerger->InitOutputMerger(tree);
 }
 
-void ActRoot::DetectorManager::BuildEventMerger()
+void ActRoot::DetectorManager::BuildEventMerger(int run, int entry)
 {
     fMerger->ClearOutputMerger();
+    fMerger->SetCurrentRunEntry(run, entry);
     fMerger->MergeEvent();
 }

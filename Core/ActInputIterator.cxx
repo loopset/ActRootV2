@@ -2,35 +2,66 @@
 
 #include "ActInputData.h"
 #include "ActModularData.h"
-#include "ActTPCData.h"
 #include "ActSilData.h"
+#include "ActTPCData.h"
 
-#include <map>
-#include <utility>
+#include <algorithm>
 #include <iostream>
+#include <iterator>
+#include <map>
+#include <stdexcept>
+#include <utility>
 
 ActRoot::InputIterator::InputIterator(const InputData* input)
 {
-    //Init entries log
+    // Init entries log, depeding on whether is manual or not
+    fManual = input->GetManualEntries();
+    if(fManual.size() > 0)
+        fIsManual = true;
     for(const auto& [run, tree] : input->GetTrees())
     {
+        if(fIsManual && (fManual.find(run) == fManual.end()))
+            continue;
         fEntries[run] = tree->GetEntries();
     }
-    //Init iterators
+    // Init iterators
     fCurrentRun = -1;
     fCurrentEntry = -1;
     fLastRun = -1;
+    fManIdx = -1;
+}
+
+std::pair<int, int> ActRoot::InputIterator::GetManualPrev()
+{
+    fManIdx -= 1;
+    if(fManIdx < 0)
+    {
+        // find previous run
+        auto it {fManual.find(fCurrentRun)};
+        if(it == fManual.begin())
+            throw std::runtime_error("Could not go past beginning of manual entries");
+        else
+        {
+            it = std::prev(it);
+            fCurrentRun = it->first;
+            fManIdx = it->second.size() - 1;
+        }
+    }
+    return {fCurrentRun, fManual[fCurrentRun][fManIdx]};
 }
 
 bool ActRoot::InputIterator::Previous()
 {
-    //Store last run number
-    fLastRun = fCurrentRun;
-    //I dont want to mess up thins mixing both forward and reverse iterators
-    //So I implement Previous() manually assuming we will use more Next()
-    //Works fine but for sure we could have improved its implementation
-    if(fCurrentRun == -1)//this would happen if we at the very first iteration previous instead of next
+    // I dont want to mess up thins mixing both forward and reverse iterators
+    // So I implement Previous() manually assuming we will use more Next()
+    // Works fine but for sure we could have improved its implementation
+    if(fCurrentRun == -1) // this would happen if we at the very first iteration previous instead of next
         return false;
+    if(fIsManual)
+    {
+        auto [run, entry] {GetManualPrev()};
+        return GoTo(run, entry);
+    }
     if(CheckEntryIsInRange(fCurrentRun, fCurrentEntry - 1))
     {
         fCurrentEntry -= 1;
@@ -44,21 +75,46 @@ bool ActRoot::InputIterator::Previous()
             fCurrentEntry = fEntries[fCurrentRun] - 1;
         }
         else
-            return false;//reached end of database
+            return false; // reached end of database
     }
-    //std::cout<<"Run = "<<fRunIt->first<<" entry = "<<fCurrentEntry<<'\n';
+    // std::cout<<"Run = "<<fRunIt->first<<" entry = "<<fCurrentEntry<<'\n';
     return true;
+}
+
+std::pair<int, int> ActRoot::InputIterator::GetManualNext()
+{
+    if(fManIdx == -1)
+        fManIdx = 0;
+    else
+        fManIdx += 1;
+    if(fManIdx >= fManual[fCurrentRun].size())
+    {
+        // find next run
+        auto it {fManual.find(fCurrentRun)};
+        it = std::next(it);
+        if(it != fManual.end())
+        {
+            fCurrentRun = it->first;
+            fManIdx = 0;
+        }
+        else
+            throw std::runtime_error("Could not advance: reached end of manual entries");
+    }
+    return {fCurrentRun, fManual[fCurrentRun][fManIdx]};
 }
 
 bool ActRoot::InputIterator::Next()
 {
-    //Store position
-    fLastRun = fCurrentRun;
-    //Workaround: Idk what is going on with the fRunIt after initialization
-    //because it goes undefined behaviour (but only when called in EventPainter)
+    // Workaround: Idk what is going on with the fRunIt after initialization
+    // because it goes undefined behaviour (but only when called in EventPainter)
     if(fCurrentRun == -1)
     {
         fCurrentRun = fEntries.begin()->first;
+    }
+    if(fIsManual)
+    {
+        auto [run, entry] {GetManualNext()};
+        return GoTo(run, entry);
     }
     if(CheckEntryIsInRange(fCurrentRun, fCurrentEntry + 1))
     {
@@ -76,27 +132,6 @@ bool ActRoot::InputIterator::Next()
             return false;
     }
     return true;
-    // //Increase entry
-    // for(; fRunIt != fEntries.end(); fRunIt++)
-    // {
-    //     fCurrentRun = fRunIt->first;
-    //     // std::cout<<"fRunIt in Next() = "<<fRunIt._M_node<<'\n';
-    //     // for(auto& [run, entrie] : fEntries)
-    //     //     std::cout<<"Run = "<<run<<" entries = "<<entrie<<'\n';
-    //     // std::cout<<"fCurrentRun = "<<fCurrentRun<<'\n';
-    //     if(CheckEntryIsInRange(fRunIt->first, fCurrentEntry + 1))
-    //     {
-    //         fCurrentEntry += 1;
-    //         break;
-    //     }
-    //     fCurrentEntry = -1;
-    // }
-    // //Check if it is last entry
-    // bool reachedEnd {fRunIt == fEntries.end()};
-    // if(reachedEnd)
-    //     return false;
-    // std::cout<<"Run = "<<fRunIt->first<<" entry = "<<fCurrentEntry<<'\n';
-    // return true;
 }
 
 bool ActRoot::InputIterator::CheckEntryIsInRange(int run, int entry)
@@ -106,18 +141,23 @@ bool ActRoot::InputIterator::CheckEntryIsInRange(int run, int entry)
 
 bool ActRoot::InputIterator::GoTo(int run, int entry)
 {
-    //Store iterator status
+    // Store iterator status
     fLastRun = fCurrentRun;
     auto it = fEntries.find(run);
     if(it != fEntries.end() && CheckEntryIsInRange(run, entry))
     {
         fCurrentRun = run;
         fCurrentEntry = entry;
+        if(fIsManual)
+        {
+            auto manIt {std::find(fManual[fCurrentRun].begin(), fManual[fCurrentRun].end(), entry)};
+            fManIdx = std::distance(fManual[fCurrentRun].begin(), manIt);
+        }
         return true;
     }
     else
     {
-        std::cout<<"InpuIterator::GoTo received wrong run or entry"<<'\n';
+        std::cout << "InpuIterator::GoTo received wrong run or entry" << '\n';
         return false;
     }
 }
@@ -125,7 +165,8 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
-    : fInput(input), fIt(ActRoot::InputIterator(input)),
+    : fInput(input),
+      fIt(ActRoot::InputIterator(input)),
       fTPCData(new ActRoot::TPCData),
       fSilData(new ActRoot::SilData),
       fModularData(new ActRoot::ModularData)
