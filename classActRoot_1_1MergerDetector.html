@@ -110,6 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaca0b6879aee6de367caa76f938646ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a228258aa73956719460fd0e88fee180f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a228258aa73956719460fd0e88fee180f">SetModularParameters</a> (<a class="el" href="classActRoot_1_1ModularParameters.html">ModularParameters</a> *modPars)</td></tr>
 <tr class="separator:a228258aa73956719460fd0e88fee180f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a339b24b2798faf41b1e6acf18b2527aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a339b24b2798faf41b1e6acf18b2527aa">SetCurrentRunEntry</a> (int run, int entry)</td></tr>
+<tr class="separator:a339b24b2798faf41b1e6acf18b2527aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36300c0472aab6b095f74a8d8704f119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a36300c0472aab6b095f74a8d8704f119">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; block)</td></tr>
 <tr class="separator:a36300c0472aab6b095f74a8d8704f119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac515812bf1f5e9353ef16ae82c4a55a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#ac515812bf1f5e9353ef16ae82c4a55a5">InitInputMerger</a> (std::shared_ptr&lt; TTree &gt; tree)</td></tr>
@@ -163,6 +165,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ab33ec1a276d8cd062094d972fc582117"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70a7ab4a8a5b25d936276f0f7e99a5f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1MergerData.html">MergerData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a> {}</td></tr>
 <tr class="separator:a70a7ab4a8a5b25d936276f0f7e99a5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a047fedb851759a1abf9dd3a23c68cfcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a047fedb851759a1abf9dd3a23c68cfcc">fCurrentRun</a> {}</td></tr>
+<tr class="separator:a047fedb851759a1abf9dd3a23c68cfcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e69fd2cf989561aeeb4a8d418ed8fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a25e69fd2cf989561aeeb4a8d418ed8fc">fCurrentEntry</a> {}</td></tr>
+<tr class="separator:a25e69fd2cf989561aeeb4a8d418ed8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87d7e1cb74a50401e43ca40bfd2763fa"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">fGatMap</a> {}</td></tr>
 <tr class="separator:a87d7e1cb74a50401e43ca40bfd2763fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d1e7f682a1fe8ff80139f2d61ad6d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">fForceBeamLike</a> {}</td></tr>
@@ -220,11 +226,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;{</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">Clear</a>();</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;{</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">Clear</a>();</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a6fe8f48864e1ca108d8a866a86ff683a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">ActRoot::MergerData::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdef"><b>Definition:</b> ActMergerData.cxx:7</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a70a7ab4a8a5b25d936276f0f7e99a5f3"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">ActRoot::MergerDetector::fMergerData</a></div><div class="ttdeci">MergerData * fMergerData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:44</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a70a7ab4a8a5b25d936276f0f7e99a5f3"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">ActRoot::MergerDetector::fMergerData</a></div><div class="ttdeci">MergerData * fMergerData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:46</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,18 +256,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;{</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a>-&gt;GetLayer(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.front())</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                           .GetSiliconPointOfTrack(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>, <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a>-&gt;GetLine().GetDirection().Unit());</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="comment">// Redefine signs just in case</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a>-&gt;GetRefToLine().AlignUsingPoint(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="comment">// fMergerData-&gt;Print();</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;{</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">fSilSpecs</a>-&gt;GetLayer(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.front())</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                           .GetSiliconPointOfTrack(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>, <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a>-&gt;GetLine().GetDirection().Unit());</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="comment">// Redefine signs just in case</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a>-&gt;GetRefToLine().AlignUsingPoint(<a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="comment">// fMergerData-&gt;Print();</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">ActRoot::MergerData::fSilLayers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fSilLayers</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:24</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:23</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:22</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a30f746bb743249f7d77c6a6ba832ab8d"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">ActRoot::MergerDetector::fLightIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fLightIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:54</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_abb51ce9ccec6eb2fd4641f18b0cd93b6"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">ActRoot::MergerDetector::fSilSpecs</a></div><div class="ttdeci">std::shared_ptr&lt; ActPhysics::SilSpecs &gt; fSilSpecs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:39</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a30f746bb743249f7d77c6a6ba832ab8d"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">ActRoot::MergerDetector::fLightIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fLightIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:58</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_abb51ce9ccec6eb2fd4641f18b0cd93b6"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#abb51ce9ccec6eb2fd4641f18b0cd93b6">ActRoot::MergerDetector::fSilSpecs</a></div><div class="ttdeci">std::shared_ptr&lt; ActPhysics::SilSpecs &gt; fSilSpecs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:41</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,13 +329,13 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">return</span> isInGat &amp;&amp; hasBL &amp;&amp; hasMult;</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a12d1e7f682a1fe8ff80139f2d61ad6d7"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">ActRoot::MergerDetector::fForceBeamLike</a></div><div class="ttdeci">bool fForceBeamLike</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:50</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a21bcd5ae15954aa18f755115bc83992b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b">ActRoot::MergerDetector::IsInVector</a></div><div class="ttdeci">bool IsInVector(T val, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:91</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a53af0f2c4f1defb9532d413cada7b438"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">ActRoot::MergerDetector::fBeamIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fBeamIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:53</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a87d7e1cb74a50401e43ca40bfd2763fa"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">ActRoot::MergerDetector::fGatMap</a></div><div class="ttdeci">std::map&lt; int, std::vector&lt; std::string &gt; &gt; fGatMap</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:48</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab33ec1a276d8cd062094d972fc582117"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">ActRoot::MergerDetector::fModularData</a></div><div class="ttdeci">ModularData * fModularData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:42</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab3e406bd5760f16901e68e6a95f54ddf"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">ActRoot::MergerDetector::fNotBMults</a></div><div class="ttdeci">std::vector&lt; int &gt; fNotBMults</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:51</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab90662293a35043551429cef4a79a04f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">ActRoot::MergerDetector::fTPCPhyiscs</a></div><div class="ttdeci">TPCPhysics * fTPCPhyiscs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:35</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a12d1e7f682a1fe8ff80139f2d61ad6d7"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">ActRoot::MergerDetector::fForceBeamLike</a></div><div class="ttdeci">bool fForceBeamLike</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:54</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a21bcd5ae15954aa18f755115bc83992b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b">ActRoot::MergerDetector::IsInVector</a></div><div class="ttdeci">bool IsInVector(T val, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:101</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a53af0f2c4f1defb9532d413cada7b438"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">ActRoot::MergerDetector::fBeamIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fBeamIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:57</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a87d7e1cb74a50401e43ca40bfd2763fa"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">ActRoot::MergerDetector::fGatMap</a></div><div class="ttdeci">std::map&lt; int, std::vector&lt; std::string &gt; &gt; fGatMap</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:52</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab33ec1a276d8cd062094d972fc582117"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab33ec1a276d8cd062094d972fc582117">ActRoot::MergerDetector::fModularData</a></div><div class="ttdeci">ModularData * fModularData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:44</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab3e406bd5760f16901e68e6a95f54ddf"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">ActRoot::MergerDetector::fNotBMults</a></div><div class="ttdeci">std::vector&lt; int &gt; fNotBMults</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:55</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab90662293a35043551429cef4a79a04f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">ActRoot::MergerDetector::fTPCPhyiscs</a></div><div class="ttdeci">TPCPhysics * fTPCPhyiscs</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:37</div></div>
 <div class="ttc" id="aclassActRoot_1_1ModularData_html_a884675c493a9944f0ee8f0c0f74f85f3"><div class="ttname"><a href="classActRoot_1_1ModularData.html#a884675c493a9944f0ee8f0c0f74f85f3">ActRoot::ModularData::Get</a></div><div class="ttdeci">float Get(const std::string &amp;leave)</div><div class="ttdef"><b>Definition:</b> ActModularData.h:17</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_ae912f48fae8835b293b86fcfccfd970c"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">ActRoot::TPCPhysics::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; fClusters</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:19</div></div>
 </div><!-- fragment -->
@@ -383,7 +389,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a69d2f2398710d273fead1b4aef3d41ba"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">ActRoot::MergerData::fSilNs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilNs</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:26</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_ada67cf8c69c1579243a0d01627e22fa6"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">ActRoot::MergerData::fSilEs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilEs</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:25</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a074d2118c8ea86020c98357bba749a0b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">ActRoot::MergerDetector::fSilData</a></div><div class="ttdeci">SilData * fSilData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a074d2118c8ea86020c98357bba749a0b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a074d2118c8ea86020c98357bba749a0b">ActRoot::MergerDetector::fSilData</a></div><div class="ttdeci">SilData * fSilData</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:40</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:23</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:24</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_ae39307d78705c53db206432365fe65ca"><div class="ttname"><a href="classActRoot_1_1SilData.html#ae39307d78705c53db206432365fe65ca">ActRoot::SilData::GetMult</a></div><div class="ttdeci">int GetMult(const std::string &amp;key)</div><div class="ttdef"><b>Definition:</b> ActSilData.h:28</div></div>
@@ -424,10 +430,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;{</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">auto</span> dot {beam.Unit().Dot(other.Unit())};</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">auto</span> dot {beam.Unit().Dot(other.Unit())};</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -567,9 +573,9 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">return</span> std::find(vec.begin(), vec.end(), val) != vec.end();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">return</span> std::find(vec.begin(), vec.end(), val) != vec.end();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -595,30 +601,30 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;{</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">// .first = angle; .second = index; larger angles at begin</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keyword">auto</span> lambda {[](<span class="keyword">const</span> std::pair&lt;double, int&gt;&amp; a, <span class="keyword">const</span> std::pair&lt;double, int&gt;&amp; b) { <span class="keywordflow">return</span> a.first &gt; b.first; }};</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    std::set&lt;std::pair&lt;double, int&gt;, decltype(lambda)&gt; set(lambda);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.size(); i &lt; size; i++)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keyword">auto</span> it {<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + i};</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">if</span>(it == <a class="code" href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">fBeamIt</a>)</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="comment">// Get angle</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keyword">auto</span> theta {<a class="code" href="classActRoot_1_1MergerDetector.html#a3ae904efbe012ce7461b0c5bc8b58148">GetTheta</a>(<a class="code" href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">fBeamIt</a>-&gt;GetLine().GetDirection(), it-&gt;GetLine().GetDirection())};</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        set.insert({TMath::Abs(theta), i});</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="comment">// for(const auto&amp; pair : set)</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">//     std::cout &lt;&lt; &quot;Theta : &quot; &lt;&lt; pair.first &lt;&lt; &quot; at : &quot; &lt;&lt; pair.second &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">// Set iterators</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + set.begin()-&gt;second;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">if</span>(set.size() &gt; 1)</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">fHeavyIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + std::next(set.begin())-&gt;second;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="comment">// Set RP to MergerData</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">fRPs</a>.begin()-&gt;second;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a3ae904efbe012ce7461b0c5bc8b58148"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a3ae904efbe012ce7461b0c5bc8b58148">ActRoot::MergerDetector::GetTheta</a></div><div class="ttdeci">double GetTheta(const XYZVector &amp;beam, const XYZVector &amp;other)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:181</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a6e091cbc118eaeeefbaf4ebdd8066d4b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">ActRoot::MergerDetector::fHeavyIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fHeavyIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:55</div></div>
+<div class="fragment"><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="comment">// .first = angle; .second = index; larger angles at begin</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keyword">auto</span> lambda {[](<span class="keyword">const</span> std::pair&lt;double, int&gt;&amp; a, <span class="keyword">const</span> std::pair&lt;double, int&gt;&amp; b) { <span class="keywordflow">return</span> a.first &gt; b.first; }};</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    std::set&lt;std::pair&lt;double, int&gt;, decltype(lambda)&gt; set(lambda);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.size(); i &lt; size; i++)</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keyword">auto</span> it {<a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + i};</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">if</span>(it == <a class="code" href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">fBeamIt</a>)</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="comment">// Get angle</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keyword">auto</span> theta {<a class="code" href="classActRoot_1_1MergerDetector.html#a3ae904efbe012ce7461b0c5bc8b58148">GetTheta</a>(<a class="code" href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">fBeamIt</a>-&gt;GetLine().GetDirection(), it-&gt;GetLine().GetDirection())};</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        set.insert({TMath::Abs(theta), i});</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; pair : set)</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Theta : &quot;</span> &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot; at : &quot;</span> &lt;&lt; pair.second &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="comment">// Set iterators</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + set.begin()-&gt;second;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">if</span>(set.size() &gt; 1)</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">fHeavyIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.begin() + std::next(set.begin())-&gt;second;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="comment">// Set RP to MergerData</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">fRPs</a>.begin()-&gt;second;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a3ae904efbe012ce7461b0c5bc8b58148"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a3ae904efbe012ce7461b0c5bc8b58148">ActRoot::MergerDetector::GetTheta</a></div><div class="ttdeci">double GetTheta(const XYZVector &amp;beam, const XYZVector &amp;other)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:183</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a6e091cbc118eaeeefbaf4ebdd8066d4b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">ActRoot::MergerDetector::fHeavyIt</a></div><div class="ttdeci">decltype(TPCPhysics::fClusters) ::iterator fHeavyIt</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:59</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_aaff5002d84e32e1fac221c24ac53b102"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">ActRoot::TPCPhysics::fRPs</a></div><div class="ttdeci">std::map&lt; std::pair&lt; int, int &gt;, XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:20</div></div>
 </div><!-- fragment -->
 </div>
@@ -647,8 +653,8 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// 3-&gt; Compute SP</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a1511468bff7afc1bed38e89a16c1eb32">ComputeSiliconPoint</a>();</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a1511468bff7afc1bed38e89a16c1eb32"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a1511468bff7afc1bed38e89a16c1eb32">ActRoot::MergerDetector::ComputeSiliconPoint</a></div><div class="ttdeci">void ComputeSiliconPoint()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:211</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a6e648156c52ebf690dd9c049060c9fd6"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a6e648156c52ebf690dd9c049060c9fd6">ActRoot::MergerDetector::LightOrHeavy</a></div><div class="ttdeci">void LightOrHeavy()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:187</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a1511468bff7afc1bed38e89a16c1eb32"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a1511468bff7afc1bed38e89a16c1eb32">ActRoot::MergerDetector::ComputeSiliconPoint</a></div><div class="ttdeci">void ComputeSiliconPoint()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:213</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a6e648156c52ebf690dd9c049060c9fd6"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a6e648156c52ebf690dd9c049060c9fd6">ActRoot::MergerDetector::LightOrHeavy</a></div><div class="ttdeci">void LightOrHeavy()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:189</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ad0525ec00e28421e5a5f5fcd56852e64"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ad0525ec00e28421e5a5f5fcd56852e64">ActRoot::MergerDetector::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:172</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af5373cf155f684dac231f665cb1fd1b8"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af5373cf155f684dac231f665cb1fd1b8">ActRoot::MergerDetector::IsDoable</a></div><div class="ttdeci">bool IsDoable()</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:96</div></div>
 </div><!-- fragment -->
@@ -668,24 +674,24 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;:::: Merger detector ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; GATCONF map   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">fGatMap</a>)</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot; = &quot;</span>;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; s : vals)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            std::cout &lt;&lt; s &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceBeamLike ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">fForceBeamLike</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NotBeamMults  : &quot;</span>;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : <a class="code" href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">fNotBMults</a>)</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        std::cout &lt;&lt; m &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="comment">// fSilSpecs-&gt;Print();</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;{</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;:::: Merger detector ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; GATCONF map   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">fGatMap</a>)</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot; = &quot;</span>;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; s : vals)</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            std::cout &lt;&lt; s &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceBeamLike ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">fForceBeamLike</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NotBeamMults  : &quot;</span>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : <a class="code" href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">fNotBMults</a>)</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        std::cout &lt;&lt; m &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="comment">// fSilSpecs-&gt;Print();</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 </div><!-- fragment -->
@@ -783,7 +789,53 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">fLightIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.end();</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">fHeavyIt</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">fTPCPhyiscs</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>.end();</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">// Reset other variables</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#a047fedb851759a1abf9dd3a23c68cfcc">fCurrentRun</a>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a> = <a class="code" href="classActRoot_1_1MergerDetector.html#a25e69fd2cf989561aeeb4a8d418ed8fc">fCurrentEntry</a>;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae059249bb08da1af62454f780c312870"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">ActRoot::MergerData::fRun</a></div><div class="ttdeci">int fRun</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:28</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae85251a9da31626e19dcdd25ad521405"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">ActRoot::MergerData::fEntry</a></div><div class="ttdeci">int fEntry</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:27</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a047fedb851759a1abf9dd3a23c68cfcc"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a047fedb851759a1abf9dd3a23c68cfcc">ActRoot::MergerDetector::fCurrentRun</a></div><div class="ttdeci">int fCurrentRun</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:49</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a25e69fd2cf989561aeeb4a8d418ed8fc"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a25e69fd2cf989561aeeb4a8d418ed8fc">ActRoot::MergerDetector::fCurrentEntry</a></div><div class="ttdeci">int fCurrentEntry</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:50</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a339b24b2798faf41b1e6acf18b2527aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a339b24b2798faf41b1e6acf18b2527aa">&#9670;&nbsp;</a></span>SetCurrentRunEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::MergerDetector::SetCurrentRunEntry </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>entry</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <a class="code" href="classActRoot_1_1MergerDetector.html#a047fedb851759a1abf9dd3a23c68cfcc">fCurrentRun</a> = run;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="classActRoot_1_1MergerDetector.html#a25e69fd2cf989561aeeb4a8d418ed8fc">fCurrentEntry</a> = entry;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -810,8 +862,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">fModularPars</a> = modPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a98af5b95db671fd42a48a74ef23e7b7f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector::fModularPars</a></div><div class="ttdeci">ModularParameters * fModularPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:41</div></div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">fModularPars</a> = modPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a98af5b95db671fd42a48a74ef23e7b7f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector::fModularPars</a></div><div class="ttdeci">ModularParameters * fModularPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:43</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -838,8 +890,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">fSilPars</a> = silPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af6f8fb7de504694e56d2e84a3553ef80"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">ActRoot::MergerDetector::fSilPars</a></div><div class="ttdeci">SilParameters * fSilPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:37</div></div>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">fSilPars</a> = silPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af6f8fb7de504694e56d2e84a3553ef80"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af6f8fb7de504694e56d2e84a3553ef80">ActRoot::MergerDetector::fSilPars</a></div><div class="ttdeci">SilParameters * fSilPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:39</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -866,8 +918,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">fTPCPars</a> = tpcPars; }</div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a5977583cbd2479a5f2c65be6d1d28cb5"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector::fTPCPars</a></div><div class="ttdeci">TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:34</div></div>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{ <a class="code" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">fTPCPars</a> = tpcPars; }</div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a5977583cbd2479a5f2c65be6d1d28cb5"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector::fTPCPars</a></div><div class="ttdeci">TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -883,6 +935,50 @@ template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">decltype(<a class="el" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">TPCPhysics::fClusters</a>) ::iterator ActRoot::MergerDetector::fBeamIt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25e69fd2cf989561aeeb4a8d418ed8fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25e69fd2cf989561aeeb4a8d418ed8fc">&#9670;&nbsp;</a></span>fCurrentEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::MergerDetector::fCurrentEntry {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a047fedb851759a1abf9dd3a23c68cfcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a047fedb851759a1abf9dd3a23c68cfcc">&#9670;&nbsp;</a></span>fCurrentRun</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActRoot::MergerDetector::fCurrentRun {}</td>
         </tr>
       </table>
   </td>

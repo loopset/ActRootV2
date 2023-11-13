@@ -117,8 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6a0d004f06cf5bc901c132a94bb9f991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d4c0020a51f1ffea96a97fe2cc235cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a0d4c0020a51f1ffea96a97fe2cc235cb">BuildEventPhysics</a> ()</td></tr>
 <tr class="separator:a0d4c0020a51f1ffea96a97fe2cc235cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60f21cf67005cfa0ce204b1e0776007d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a60f21cf67005cfa0ce204b1e0776007d">BuildEventMerger</a> ()</td></tr>
-<tr class="separator:a60f21cf67005cfa0ce204b1e0776007d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c7a8d0830d454ceae5533a2a9862c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#aa0c7a8d0830d454ceae5533a2a9862c4">BuildEventMerger</a> (int run, int entry)</td></tr>
+<tr class="separator:aa0c7a8d0830d454ceae5533a2a9862c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03cb73a76a1fe2ddfaf2709d5ab344b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#a03cb73a76a1fe2ddfaf2709d5ab344b1">PrintReports</a> () const</td></tr>
 <tr class="separator:a03cb73a76a1fe2ddfaf2709d5ab344b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca84cce43b360789343b6187e5ca117b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DetectorManager.html#aca84cce43b360789343b6187e5ca117b">SetEventData</a> (<a class="el" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6">DetectorType</a> det, <a class="el" href="classActRoot_1_1VData.html">VData</a> *vdata)</td></tr>
@@ -271,8 +271,8 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a60f21cf67005cfa0ce204b1e0776007d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60f21cf67005cfa0ce204b1e0776007d">&#9670;&nbsp;</a></span>BuildEventMerger()</h2>
+<a id="aa0c7a8d0830d454ceae5533a2a9862c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c7a8d0830d454ceae5533a2a9862c4">&#9670;&nbsp;</a></span>BuildEventMerger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -280,15 +280,27 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void ActRoot::DetectorManager::BuildEventMerger </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>entry</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;{</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a21a0fba3ee3db6b91f33a57e77015a02">fMerger</a>-&gt;ClearOutputMerger();</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a21a0fba3ee3db6b91f33a57e77015a02">fMerger</a>-&gt;MergeEvent();</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;}</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a21a0fba3ee3db6b91f33a57e77015a02">fMerger</a>-&gt;SetCurrentRunEntry(run, entry);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="classActRoot_1_1DetectorManager.html#a21a0fba3ee3db6b91f33a57e77015a02">fMerger</a>-&gt;MergeEvent();</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a21a0fba3ee3db6b91f33a57e77015a02"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a21a0fba3ee3db6b91f33a57e77015a02">ActRoot::DetectorManager::fMerger</a></div><div class="ttdeci">std::shared_ptr&lt; MergerDetector &gt; fMerger</div><div class="ttdoc">far)</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:41</div></div>
 </div><!-- fragment -->
 </div>
