@@ -87,10 +87,21 @@ void ActRoot::MergerDetector::MergeEvent()
     Reset();
     if(!IsDoable())
         return;
+    //
     // 2-> Identify light and heavy
     LightOrHeavy();
     // 3-> Compute SP
     ComputeSiliconPoint();
+    // 4-> Scale points to RebinZ
+    ScaleToRebinZ();
+}
+
+void ActRoot::MergerDetector::ScaleToRebinZ()
+{
+    // RP
+    fMergerData->fRP.SetZ(fMergerData->fRP.Z() * fTPCPars->GetREBINZ());
+    // SP
+    fMergerData->fSP.SetZ(fMergerData->fSP.Z() * fTPCPars->GetREBINZ());
 }
 
 bool ActRoot::MergerDetector::IsDoable()

@@ -74,7 +74,7 @@ std::tuple<int, int, int> ActCluster::ClIMB::GetCoordinates(int index)
     const auto& pos {fVoxels[index].GetPosition()};
     auto x {(int)pos.X()};
     auto y {(int)pos.Y()};
-    auto z {(int)(pos.Z() / fTPC->GetREBINZ())};
+    auto z {(int)pos.Z()};
     return {x, y, z};
 }
 
@@ -93,7 +93,7 @@ bool ActCluster::ClIMB::IsInCage(T x, T y, T z)
 {
     bool condX {0 <= x && x < fTPC->GetNPADSX()};
     bool condY {0 <= y && y < fTPC->GetNPADSY()};
-    bool condZ {0 <= z && z < fTPC->GetNPADSZ() / fTPC->GetREBINZ()};
+    bool condZ {0 <= z && z < (fTPC->GetNPADSZ() / fTPC->GetREBINZ())};
     return condX && condY && condZ;
 }
 

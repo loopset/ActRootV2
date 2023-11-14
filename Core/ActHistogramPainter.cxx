@@ -163,9 +163,9 @@ void ActRoot::HistogramPainter::Fill()
         // Pad
         fHistTpc[1]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Y(), voxel.GetCharge());
         // Side
-        fHistTpc[2]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Z(), voxel.GetCharge());
+        fHistTpc[2]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Z() * fTPC.GetREBINZ(), voxel.GetCharge());
         // Front
-        fHistTpc[3]->Fill(voxel.GetPosition().Y(), voxel.GetPosition().Z(), voxel.GetCharge());
+        fHistTpc[3]->Fill(voxel.GetPosition().Y(), voxel.GetPosition().Z() * fTPC.GetREBINZ(), voxel.GetCharge());
     }
     FillClusterHistos();
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,9 +283,9 @@ void ActRoot::HistogramPainter::FillClusterHistos()
             // Pad
             AttachBinToCluster(fHistTpc[4], pos.X(), pos.Y(), cluster.GetClusterID());
             // Side
-            AttachBinToCluster(fHistTpc[5], pos.X(), pos.Z(), cluster.GetClusterID());
+            AttachBinToCluster(fHistTpc[5], pos.X(), pos.Z() * fTPC.GetREBINZ(), cluster.GetClusterID());
             // Front
-            AttachBinToCluster(fHistTpc[6], pos.Y(), pos.Z(), cluster.GetClusterID());
+            AttachBinToCluster(fHistTpc[6], pos.Y(), pos.Z() * fTPC.GetREBINZ(), cluster.GetClusterID());
         }
     }
     // Set basic parameters to a better visualization of TPaletteAxis
@@ -356,9 +356,9 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
         // Pad
         fMarkerTpc[4]->SetNextPoint(rp.X(), rp.Y());
         // Side
-        fMarkerTpc[5]->SetNextPoint(rp.X(), rp.Z());
+        fMarkerTpc[5]->SetNextPoint(rp.X(), rp.Z() * fTPC.GetREBINZ());
         // Front
-        fMarkerTpc[6]->SetNextPoint(rp.Y(), rp.Z());
+        fMarkerTpc[6]->SetNextPoint(rp.Y(), rp.Z() / fTPC.GetREBINZ());
     }
     // Set marker and draw
     for(auto& [pad, proj] : fMarkerTpc)

@@ -223,7 +223,8 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
 
         // Apply rebinning (if desired)
         int binZ {(int)padz / fPars.GetREBINZ()};
-        padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
+        padz = (float)binZ;//store z as binNumber instead of binCenter
+        // padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
 
         // Build Voxel
         // Apply cut on saturated flag if desired

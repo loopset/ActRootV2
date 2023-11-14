@@ -309,10 +309,10 @@ void ActCluster::MultiStep::CleanPileup()
     {
         // 1-> Eval condition of Z range
         auto [zmin, zmax] {it->GetZRange()};
-        bool isConstantZ {(double)(zmin - zmax) / fTPC->GetREBINZ() <= fPileUpChangeZThreshold};
+        bool isConstantZ {(double)(zmin - zmax) <= fPileUpChangeZThreshold};
         // std::cout << "ZRange : [" << zmin << ", " << zmax << "]" << '\n';
         // 2-> Get condition: out of beam region
-        auto zm {it->GetLine().GetPoint().Z()};
+        auto zm {it->GetLine().GetPoint().Z() * fTPC->GetREBINZ()};
         bool isInBeamZ {fBeamLowerZ <= zm && zm <= fBeamUpperZ};
         if(isConstantZ && !isInBeamZ)
         {
@@ -333,7 +333,7 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
     for(const auto& [x, yset] : xyMap)
     {
         ivsY.BuildFromSet(x, yset);
-        ivsZ.BuildFromSet(x, xzMap.at(x), fTPC->GetREBINZ());
+        ivsZ.BuildFromSet(x, xzMap.at(x));
     }
     //
     // std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
@@ -353,7 +353,7 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
     auto widthZ {ivsZ.GetMeanSizeInRange(xmin, breakZ)};
     // std::cout << "Width Z = " << widthZ << '\n';
 
-    return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ * fTPC->GetREBINZ()};
+    return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ};
 }
 
 void ActCluster::MultiStep::BreakBeamClusters()
@@ -364,8 +364,9 @@ void ActCluster::MultiStep::BreakBeamClusters()
         // 1-> Check whether we meet conditions to execute this
         bool isBadFit {it->GetLine().GetChi2() > fChi2Threshold};
         auto [xmin, xmax] {it->GetXRange()};
-        bool hasMinXExtent {fMinSpanX > (xmax - xmin)};
-        if(!isBadFit && !hasMinXExtent)
+        bool hasMinXExtent {(xmax - xmin) > fMinSpanX};
+        auto isBreakable {isBadFit && hasMinXExtent};
+        if(!isBreakable)
         {
             it++;
             continue;
@@ -406,8 +407,10 @@ void ActCluster::MultiStep::BreakBeamClusters()
             if(fIsVerbose)
             {
                 std::cout << BOLDGREEN << "---- BreakBeam verbose for ID : " << it->GetClusterID() << " ----" << '\n';
-                std::cout << "Chi2 = " << it->GetLine().GetChi2() << '\n';
-                std::cout << "XExtent = [" << xmin << ", " << xmax << "]" << '\n';
+                std::cout << "Chi2          = " << it->GetLine().GetChi2() << '\n';
+                std::cout << "isBadFit      = " << std::boolalpha << isBadFit << '\n';
+                std::cout << "XExtent       = [" << xmin << ", " << xmax << "]" << '\n';
+                std::cout << "hasMinXExtent ? " << std::boolalpha << hasMinXExtent << '\n';
                 // std::cout << "Break point = " << bp << '\n';
                 // std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
                 std::cout << "Gravity = " << gravity << '\n';
@@ -513,7 +516,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
     std::set<int, std::greater<int>> toDelete {};
     for(size_t i = 0, isize = fClusters->size(); i < isize; i++)
     {
-        for(size_t j = 0, jsize = fClusters->size(); j < jsize; j++)
+        for(size_t j = i + 1, jsize = fClusters->size(); j < jsize; j++)
         {
             bool isIinSet {toDelete.find(i) != toDelete.end()};
             bool isJinSet {toDelete.find(j) != toDelete.end()};
@@ -528,21 +531,26 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 continue;
 
             // 1-> Compare by distance from gravity point to line!
-            auto gravity {in->GetLine().GetPoint()};
-            auto dist {out->GetLine().DistanceLineToPoint(gravity)};
+            auto gravIn {in->GetLine().GetPoint()};
+            auto distIn {out->GetLine().DistanceLineToPoint(gravIn)};
+            auto gravOut {out->GetLine().GetPoint()};
+            auto distOut {in->GetLine().DistanceLineToPoint(gravOut)};
+            auto dist {std::min(distIn, distOut)};
             // Get threshold distance to merge
-            auto distThresh {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+            auto threshIn {in->GetLine().GetChi2()};
+            auto threshOut {out->GetLine().GetChi2()};
+            auto distThresh {std::max(threshIn, threshOut)};
             bool isBelowThresh {dist < std::sqrt(distThresh)};
-            std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
-            std::cout << "dist : " << dist << '\n';
-            std::cout << "distThresh: " << distThresh << '\n';
-            std::cout << "------------------" << '\n';
+            // std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
+            // std::cout << "dist : " << dist << '\n';
+            // std::cout << "distThresh: " << distThresh << '\n';
+            // std::cout << "------------------" << '\n';
 
             // 2-> Compare by paralelity
             auto outDir {out->GetLine().GetDirection().Unit()};
             auto inDir {in->GetLine().GetDirection().Unit()};
             bool areParallel {std::abs(outDir.Dot(inDir)) > fMergeMinParallelFactor};
-            std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
+            // std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
 
             // 3-> Check if fits improves
             if(isBelowThresh || areParallel)
@@ -554,10 +562,12 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 aux.FitVoxels(outVoxels);
                 // Compare Chi2
                 auto newChi2 {aux.GetChi2()};
-                auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+                // oldChi2 is obtained by quadratic sum of chi2s
+                auto oldChi2 {std::sqrt(std::pow(out->GetLine().GetChi2(), 2) + std::pow(in->GetLine().GetChi2(), 2))};
+                // auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
                 bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
-                std::cout << "old chi2 : " << oldChi2 << '\n';
-                std::cout << "new chi2 :  " << newChi2 << '\n';
+                // std::cout << "old chi2 : " << oldChi2 << '\n';
+                // std::cout << "new chi2 :  " << newChi2 << '\n';
                 // Then, move and erase in iterator!
                 if(improvesFit)
                 {
@@ -590,8 +600,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
 bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
 {
     bool condY {(gravity.Y() - scale * fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + scale * fBeamWindowY)};
-    bool condZ {(gravity.Z() - scale * fBeamWindowZ * fTPC->GetREBINZ()) < pos.Z() &&
-                pos.Z() < (gravity.Z() + scale * fBeamWindowZ * fTPC->GetREBINZ())};
+    bool condZ {(gravity.Z() - scale * fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + scale * fBeamWindowZ)};
     return condY && condZ;
 }
 
@@ -794,8 +803,7 @@ void ActCluster::MultiStep::DeterminePreciseRP()
                                ROOT::Math::XYZPoint point {pos.X() + 0.5, pos.Y() + 0.5, pos.Z() + 0.5};
                                bool condX {(rp.X() - fRPMaskXY) <= point.X() && point.X() <= (rp.X() + fRPMaskXY)};
                                bool condY {(rp.Y() - fRPMaskXY) <= point.Y() && point.Y() <= (rp.Y() + fRPMaskXY)};
-                               bool condZ {(rp.Z() - fRPMaskZ * fTPC->GetREBINZ()) <= point.Z() &&
-                                           point.Z() <= (rp.Z() + fRPMaskZ * fTPC->GetREBINZ())};
+                               bool condZ {(rp.Z() - fRPMaskZ) <= point.Z() && point.Z() <= (rp.Z() + fRPMaskZ)};
                                return condX && condY && condZ;
                            }),
             refVoxels.end());

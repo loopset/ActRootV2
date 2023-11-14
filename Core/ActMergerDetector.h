@@ -91,6 +91,7 @@ namespace ActRoot
     private:
         void ReadSilSpecs(const std::string& file);
         bool IsDoable();
+        void ScaleToRebinZ();
         bool GateGATCONFandTrackMult();
         bool GateSilMult();
         void LightOrHeavy();

@@ -26,6 +26,14 @@ ActPhysics::Line::Line(const XYZPoint& p1, const XYZPoint& p2)
     SetDirection(p1, p2);
 }
 
+void ActPhysics::Line::ScaleZ(float scale)
+{
+    // Point
+    fPoint.SetZ(fPoint.Z() * scale);
+    // Direction
+    fDirection.SetZ(fDirection.Z() * scale);
+}
+
 void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp)
 {
     auto dir {fPoint - rp};
@@ -46,7 +54,7 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
     return std::sqrt(dist2);
 }
 
-ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoint& point) const 
+ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoint& point) const
 {
     auto vToPoint {point - fPoint};
     auto vInLine {fDirection * (fDirection.Dot(vToPoint) / fDirection.Mag2())};
@@ -174,7 +182,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     K22 = (Syy + Szz) * std::pow(std::sin(theta), 2) + (Sxx + Szz) * std::pow(std::cos(theta), 2) +
           2. * Sxy * std::cos(theta) * std::sin(theta);
     // K12 = -Sxy * (std::pow(std::cos(theta), 2) - std::pow(sin(theta), 2)) + (Sxx - Syy) * std::cos(theta) *
-    // sin(theta);
+    // sin(theta)cos;
     K10 = Sxz * std::cos(theta) + Syz * std::sin(theta);
     K01 = -Sxz * std::sin(theta) + Syz * std::cos(theta);
     K00 = Sxx + Syy;
@@ -219,7 +227,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     SetChi2(fabs(dm2)); // do not divide by charge!
 }
 
-std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX, int maxY, int maxZ) const
+std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX, int maxY, int maxZ, int rebinZ) const
 {
     // Check proj key is right
     if(!(proj.Contains("xy") || proj.Contains("xz") || proj.Contains("yz")))
@@ -227,19 +235,19 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX,
 
     // Parametrize line in X
     auto slope3DXY {fDirection.Y() / fDirection.X()};
-    auto slope3DXZ {fDirection.Z() / fDirection.X()};
+    auto slope3DXZ {fDirection.Z() * rebinZ / fDirection.X()};
     // Slope in X can be 0 if cluster is from pad saturation -> skip drawing of that line
     if(!isfinite(slope3DXY) || !std::isfinite(slope3DXZ))
     {
         if(gEnv->GetValue("ActRoot.Verbose", false))
             std::cout << BOLDMAGENTA << "PolyLine with slope X = 0 -> skip drawing" << RESET << '\n';
-        return {TreatSaturationLine(proj, maxZ)}; // return empty polyline
+        return {TreatSaturationLine(proj, maxZ, rebinZ)}; // return empty polyline
     }
     // Compute slopes for the different projections
     auto offsetXY {fPoint.Y() - slope3DXY * fPoint.X()};
     auto slopeXY {slope3DXY};
 
-    auto offsetXZ {fPoint.Z() - slope3DXZ * fPoint.X()};
+    auto offsetXZ {fPoint.Z() * rebinZ - slope3DXZ * fPoint.X()};
     auto slopeXZ {slope3DXZ};
 
     // Build vectors
@@ -290,7 +298,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX,
         return std::make_shared<TPolyLine>(vy.size(), &(vy[0]), &(vz[0]));
 }
 
-std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, int maxZ) const
+std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, int maxZ, int rebinZ) const
 {
     // So for this line the slope is 0 in both X and Y
     int npoints {300};

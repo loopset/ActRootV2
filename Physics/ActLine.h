@@ -45,6 +45,7 @@ namespace ActPhysics
         void SetChi2(float chi2) { fChi2 = chi2; }
 
         // Utility funtions
+        void ScaleZ(float scale);
         void AlignUsingPoint(const XYZPoint& rp);
         double DistanceLineToPoint(const XYZPoint& point) const;
         XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
@@ -52,7 +53,7 @@ namespace ActPhysics
                        bool correctOffset = true);
         void FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset = true);
         std::shared_ptr<TPolyLine>
-        GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512) const;
+        GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512, int rebinZ = 4) const;
 
         // Display parameters of line
         void Print() const;
@@ -61,7 +62,7 @@ namespace ActPhysics
         void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
                                    bool correctOffset);
         inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
-        std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ) const;
+        std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ, int rebinZ) const;
     };
 } // namespace ActPhysics
 
