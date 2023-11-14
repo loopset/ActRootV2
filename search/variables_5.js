@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gasmaterial_2124',['gasMaterial',['../classActDriftDetector.html#a44cbf860c686848ef74001acd95094ad',1,'ActDriftDetector']]],
-  ['globalchannelid_2125',['globalchannelid',['../classReducedData.html#a46e555975be9eca27677509f0dcd238a',1,'ReducedData']]]
+  ['gasmaterial_2129',['gasMaterial',['../classActDriftDetector.html#a44cbf860c686848ef74001acd95094ad',1,'ActDriftDetector']]],
+  ['globalchannelid_2130',['globalchannelid',['../classReducedData.html#a46e555975be9eca27677509f0dcd238a',1,'ReducedData']]]
 ];

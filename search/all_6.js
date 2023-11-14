@@ -128,7 +128,7 @@ var searchData=
   ['getpinitiallab_680',['GetPInitialLab',['../classActPhysics_1_1Kinematics.html#af73c6c83d1643fe9d4e9f0b28020bcf3',1,'ActPhysics::Kinematics']]],
   ['getplacements_681',['GetPlacements',['../classActPhysics_1_1SilLayer.html#a241993680da24da6c9427ec175ec26fb',1,'ActPhysics::SilLayer']]],
   ['getpoint_682',['GetPoint',['../classActPhysics_1_1Line.html#a02ff201fd1c1f4ee63799143fc2ae62f',1,'ActPhysics::Line::GetPoint()'],['../classActPhysics_1_1SilLayer.html#a8926383e27742f3c25d2d7453d7e0b31',1,'ActPhysics::SilLayer::GetPoint()']]],
-  ['getpolyline_683',['GetPolyLine',['../classActPhysics_1_1Line.html#a0ae31d0e2ef527c04256e5b0f3d69caf',1,'ActPhysics::Line']]],
+  ['getpolyline_683',['GetPolyLine',['../classActPhysics_1_1Line.html#a99ac329382e92948d463685043f52083',1,'ActPhysics::Line']]],
   ['getposition_684',['GetPosition',['../classActRoot_1_1Voxel.html#a294dfb5c1b1022731ee2e30e2530b9c8',1,'ActRoot::Voxel']]],
   ['getqvalue_685',['GetQValue',['../classActPhysics_1_1Kinematics.html#a7778267c7cb039fb74cdd93739789491',1,'ActPhysics::Kinematics']]],
   ['getrand_686',['GetRand',['../classActSim_1_1Runner.html#a76481714ac2c1ddc1147b7422186d5a4',1,'ActSim::Runner']]],
