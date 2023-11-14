@@ -533,8 +533,10 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             // Get threshold distance to merge
             auto distThresh {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
             bool isBelowThresh {dist < std::sqrt(distThresh)};
+            std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
             std::cout << "dist : " << dist << '\n';
             std::cout << "distThresh: " << distThresh << '\n';
+            std::cout << "------------------" << '\n';
 
             // 2-> Compare by paralelity
             auto outDir {out->GetLine().GetDirection().Unit()};
