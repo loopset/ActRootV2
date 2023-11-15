@@ -88,6 +88,7 @@ namespace ActRoot
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
+        void Reconfigure() override;
         // void AddParameterToCalibrationManager() override;
         void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
         void InitInputData(std::shared_ptr<TTree> tree) override;

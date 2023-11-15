@@ -18,9 +18,11 @@ void ActRoot::TPCPhysics::Print() const
         cluster.GetLine().Print();
     }
     std::cout << "Reaction Points :" << '\n';
-    for(const auto& [pair, rp] : fRPs)
+    int i {-1};
+    for(const auto& rp : fRPs)
     {
-        std::cout << "  <" << pair.first << ", " << pair.second << "> : " << rp << '\n';
+        i++;
+        std::cout << "  " << i << " : " << rp << '\n';
     }
     std::cout << "======================" << '\n';
 }

@@ -56,6 +56,7 @@ namespace ActRoot
         SilParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
+        void Reconfigure() override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         // void AddParameterToCalibrationManager() override;
         void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;

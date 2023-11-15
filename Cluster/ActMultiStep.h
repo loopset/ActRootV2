@@ -37,7 +37,7 @@ namespace ActCluster
         // Pointer to vector to analyze
         std::vector<ActCluster::Cluster>* fClusters {};
         // Pointer to RP vector
-        std::map<std::pair<int, int>, XYZPoint>* fRPs {};
+        std::vector<XYZPoint>* fRPs {};
         // Pointer to current ClIMB
         std::shared_ptr<ActCluster::ClIMB> fClimb {};
         // Settings of the different parts
@@ -58,7 +58,7 @@ namespace ActCluster
         double fBeamWindowScaling;
         // 2-> Clean pileup of beams
         bool fEnableCleanPileUp;
-        double fPileUpChangeZThreshold;
+        double fPileUpXPercent;
         double fBeamLowerZ;
         double fBeamUpperZ;
         // 3-> Clean vertical Z
@@ -74,13 +74,15 @@ namespace ActCluster
         double fDeltaChi2Threshold;
         double fDeltaMaxVoxels;
         // 6-> Determine RP and clean unreacted beam
-        bool fEnableRP;
+        bool fEnableRPRoutine;
         double fBeamLikeXMinThresh;
         double fBeamLikeParallelF;
+        bool fEnableRPDelete;
         double fRPDistThresh;
+        double fRPDistValidate;
+        bool fEnableFineRP;
         double fRPMaskXY;
         double fRPMaskZ;
-        std::vector<int> fAllowedMults;
         double fRPPivotDist;
         // 7-> Clean bad fits at the very begining of the algorithm
         bool fEnableCleanBadFits;
@@ -100,8 +102,8 @@ namespace ActCluster
         void SetClusters(std::vector<ActCluster::Cluster>* clusters) { fClusters = clusters; }
         std::vector<ActCluster::Cluster>* GetClusters() const { return fClusters; }
         void SetClimb(std::shared_ptr<ActCluster::ClIMB> climb) { fClimb = climb; }
-        void SetRPs(std::map<std::pair<int, int>, XYZPoint>* rps) { fRPs = rps; }
-        std::map<std::pair<int, int>, XYZPoint>* GetRPs() const { return fRPs; }
+        void SetRPs(std::vector<XYZPoint>* rps) { fRPs = rps; }
+        std::vector<XYZPoint>* GetRPs() const { return fRPs; }
 
         // Read config file
         void ReadConfigurationFile(const std::string& infile = "");

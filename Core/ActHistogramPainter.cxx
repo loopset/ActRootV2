@@ -351,14 +351,14 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
     fMarkerTpc[4] = std::make_shared<TPolyMarker>();
     fMarkerTpc[5] = std::make_shared<TPolyMarker>();
     fMarkerTpc[6] = std::make_shared<TPolyMarker>();
-    for(const auto& [indexes, rp] : fTPCPhysics->fRPs)
+    for(const auto& rp : fTPCPhysics->fRPs)
     {
         // Pad
         fMarkerTpc[4]->SetNextPoint(rp.X(), rp.Y());
         // Side
         fMarkerTpc[5]->SetNextPoint(rp.X(), rp.Z() * fTPC.GetREBINZ());
         // Front
-        fMarkerTpc[6]->SetNextPoint(rp.Y(), rp.Z() / fTPC.GetREBINZ());
+        fMarkerTpc[6]->SetNextPoint(rp.Y(), rp.Z() * fTPC.GetREBINZ());
     }
     // Set marker and draw
     for(auto& [pad, proj] : fMarkerTpc)

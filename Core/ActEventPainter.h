@@ -58,6 +58,7 @@ namespace ActRoot
         void DoExit();
         void DoDraw();
         void DoFill();
+        void DoReconfAndExecute();
         void DoReset();
         void DoPreviousEvent();
         void DoNextEvent();

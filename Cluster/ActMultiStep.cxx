@@ -86,8 +86,8 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     // Parameters of cleaning of pileup
     if(mb->CheckTokenExists("EnableCleanPileUp"))
         fEnableCleanPileUp = mb->GetBool("EnableCleanPileUp");
-    if(mb->CheckTokenExists("PileUpChangeZThresh"))
-        fPileUpChangeZThreshold = mb->GetDouble("PileUpChangeZThresh");
+    if(mb->CheckTokenExists("PileUpXPercent"))
+        fPileUpXPercent = mb->GetDouble("PileUpXPercent");
     if(mb->CheckTokenExists("BeamLowerZ"))
         fBeamLowerZ = mb->GetDouble("BeamLowerZ");
     if(mb->CheckTokenExists("BeamUpperZ"))
@@ -114,20 +114,27 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
     if(mb->CheckTokenExists("DeltaMaxVoxels"))
         fDeltaMaxVoxels = mb->GetDouble("DeltaMaxVoxels");
     // RP calculation
-    if(mb->CheckTokenExists("EnableRP"))
-        fEnableRP = mb->GetBool("EnableRP");
+    if(mb->CheckTokenExists("EnableRPRoutine"))
+        fEnableRPRoutine = mb->GetBool("EnableRPRoutine");
+    //// Find Beam-like
     if(mb->CheckTokenExists("BeamLikeXMinThresh"))
         fBeamLikeXMinThresh = mb->GetDouble("BeamLikeXMinThresh");
     if(mb->CheckTokenExists("BeamLikeParallelF"))
         fBeamLikeParallelF = mb->GetDouble("BeamLikeParallelF");
+    //// Delete cluster without valid RP
+    if(mb->CheckTokenExists("EnableRPDelete"))
+        fEnableRPDelete = mb->GetBool("EnableRPDelete");
     if(mb->CheckTokenExists("RPDistThresh"))
         fRPDistThresh = mb->GetDouble("RPDistThresh");
+    if(mb->CheckTokenExists("RPDistValidate"))
+        fRPDistValidate = mb->GetDouble("RPDistValidate");
+    //// Enable finer determination of RP
+    if(mb->CheckTokenExists("EnableFineRP"))
+        fEnableFineRP = mb->GetBool("EnableFineRP");
     if(mb->CheckTokenExists("RPMaskXY"))
         fRPMaskXY = mb->GetDouble("RPMaskXY");
     if(mb->CheckTokenExists("RPMaskZ"))
         fRPMaskZ = mb->GetDouble("RPMaskZ");
-    if(mb->CheckTokenExists("AllowedMults"))
-        fAllowedMults = mb->GetIntVector("AllowedMults");
     if(mb->CheckTokenExists("RPPivotDist"))
         fRPPivotDist = mb->GetDouble("RPPivotDist");
     // Clean bad fits
@@ -180,24 +187,6 @@ void ActCluster::MultiStep::Run()
     if(!fIsEnabled)
         return;
     // Set order of algorithms here, and whether they run or not
-    if(fEnableCleanBadFits)
-    {
-        fClocks[8].Start(false);
-        CleanBadFits();
-        fClocks[8].Stop();
-    }
-    if(fEnableCleanPileUp)
-    {
-        fClocks[0].Start(false);
-        CleanPileup();
-        fClocks[0].Stop();
-    }
-    if(fEnableCleanZs)
-    {
-        fClocks[1].Start(false);
-        CleanZs();
-        fClocks[1].Stop();
-    }
     if(fEnableBreakMultiBeam)
     {
         fClocks[2].Start(false);
@@ -216,6 +205,25 @@ void ActCluster::MultiStep::Run()
         MergeSimilarTracks();
         fClocks[4].Stop();
     }
+
+    if(fEnableCleanBadFits)
+    {
+        fClocks[8].Start(false);
+        CleanBadFits();
+        fClocks[8].Stop();
+    }
+    if(fEnableCleanPileUp)
+    {
+        fClocks[0].Start(false);
+        CleanPileup();
+        fClocks[0].Stop();
+    }
+    if(fEnableCleanZs)
+    {
+        fClocks[1].Start(false);
+        CleanZs();
+        fClocks[1].Stop();
+    }
     if(fEnableCleanDeltas)
     {
         fClocks[5].Start(false);
@@ -223,17 +231,21 @@ void ActCluster::MultiStep::Run()
         fClocks[5].Stop();
     }
     // Preliminary: find reaction point and tag unreacted beam clusters
-    if(fEnableRP)
+    if(fEnableRPRoutine)
     {
-        DetermineBeamLikes();
         fClocks[6].Start(false);
+        DetermineBeamLikes();
         FindRP();
         fClocks[6].Stop();
-        DeleteInvalidClusters();
-        fClocks[7].Start(false);
-        DeterminePreciseRP();
-        FindRP(); // again, but using finer fits
-        fClocks[7].Stop();
+        if(fEnableRPDelete)
+            DeleteInvalidClusters();
+        if(fEnableFineRP)
+        {
+            fClocks[7].Start(false);
+            DeterminePreciseRP();
+            // FindRP(); // again, but using finer fits
+            fClocks[7].Stop();
+        }
     }
     ResetIndex();
 }
@@ -307,14 +319,21 @@ void ActCluster::MultiStep::CleanPileup()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
-        // 1-> Eval condition of Z range
-        auto [zmin, zmax] {it->GetZRange()};
-        bool isConstantZ {(double)(zmin - zmax) <= fPileUpChangeZThreshold};
-        // std::cout << "ZRange : [" << zmin << ", " << zmax << "]" << '\n';
+        // 1-> Eval condition of X range
+        auto [xmin, xmax] {it->GetXRange()};
+        bool spansActarX {(xmax - xmin) > fPileUpXPercent * fTPC->GetNPADSX()};
+        // auto [zmin, zmax] {it->GetZRange()};
+        // bool isConstantZ {(double)(zmax - zmin) <= fPileUpXPercent};
+        // std::cout << "XRange : [" << xmin << ", " << xmax << "]" << '\n';
+        // std::cout << "spansActarX ? " << std::boolalpha << spansActarX << '\n';
         // 2-> Get condition: out of beam region
-        auto zm {it->GetLine().GetPoint().Z() * fTPC->GetREBINZ()};
-        bool isInBeamZ {fBeamLowerZ <= zm && zm <= fBeamUpperZ};
-        if(isConstantZ && !isInBeamZ)
+        auto [zmin, zmax] {it->GetZRange()};
+        zmin *= fTPC->GetREBINZ();
+        zmax *= fTPC->GetREBINZ();
+        bool isInBeamZMin {fBeamLowerZ <= zmin && zmin <= fBeamUpperZ};
+        bool isInBeamZMax {fBeamLowerZ <= zmax && zmax <= fBeamUpperZ};
+        bool isInBeamZ {isInBeamZMin || isInBeamZMax};
+        if(spansActarX && !isInBeamZ)
         {
             it = fClusters->erase(it);
         }
@@ -413,11 +432,11 @@ void ActCluster::MultiStep::BreakBeamClusters()
                 std::cout << "hasMinXExtent ? " << std::boolalpha << hasMinXExtent << '\n';
                 // std::cout << "Break point = " << bp << '\n';
                 // std::cout << "Using breaking point ? " << std::boolalpha << useBreakingPoint << '\n';
-                std::cout << "Gravity = " << gravity << '\n';
+                std::cout << "Gravity        = " << gravity << '\n';
+                std::cout << "Init clusters  = " << fClusters->size() << '\n';
                 std::cout << "Init size beam = " << initSize << '\n';
                 std::cout << "Remaining beam = " << refToVoxels.size() << '\n';
                 std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
-                std::cout << "-------------------" << RESET << '\n';
             }
             // Check if satisfies minimum voxel requirement to be clusterized again
             if(refToVoxels.size() <= fClimb->GetMinPoints())
@@ -442,6 +461,11 @@ void ActCluster::MultiStep::BreakBeamClusters()
                 newClusters = fClimb->Run(notBeam);
             // Move to vector
             std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+            if(fIsVerbose)
+            {
+                std::cout << BOLDGREEN << "New clusters   = " << newClusters.size() << RESET << '\n';
+                std::cout << "-------------------" << RESET << '\n';
+            }
         }
     }
     // Append clusters to original TPCData
@@ -481,7 +505,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
                 std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----" << '\n';
                 std::cout << "New gravity : " << gravity << '\n';
                 std::cout << "Init size : " << initSize << '\n';
-                std::cout << "After size : " << refVoxels.size() << '\n';
+                std::cout << "After size : " << std::distance(refVoxels.begin(), toMove) << '\n';
                 std::cout << "-------------------------" << RESET << '\n';
             }
             // 4-> Move
@@ -683,7 +707,7 @@ bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
     // This function has to consider the 0.5 offset
     bool isInX {0.5 <= rp.X() && rp.X() <= fTPC->GetNPADSX() + 0.5};
     bool isInY {0.5 <= rp.Y() && rp.Y() <= fTPC->GetNPADSY() + 0.5};
-    bool isInZ {0.5 <= rp.Z() && rp.Z() <= fTPC->GetNPADSZ() + 0.5};
+    bool isInZ {0.5 <= rp.Z() && rp.Z() <= (double)fTPC->GetNPADSZ() / fTPC->GetREBINZ() + 0.5};
     return isInX && isInY && isInZ;
 }
 
@@ -697,13 +721,13 @@ double ActCluster::MultiStep::GetThetaAngle(const XYZVector& dir)
 
 void ActCluster::MultiStep::FindRP()
 {
-    fRPs->clear();
-    // Explanation: angle between clusters in pair <i, j>, storing RP as 3rd value
-    typedef std::tuple<double, std::pair<int, int>, XYZPoint> SetValue;
-    // Build comparator func
-    auto comp {[](const SetValue& left, const SetValue& right) { return std::get<0>(left) > std::get<0>(right); }};
-    // Declare set
-    std::set<SetValue, decltype(comp)> set {comp};
+    // Case in which there is only one track: automatically mark to delete
+    if(fClusters->size() == 1)
+        fClusters->begin()->SetToDelete(true);
+
+    typedef std::vector<std::pair<XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair of indexes as values
+    // Declare vector of RPs
+    RPVector rps;
     // Run
     for(int i = 0, size = fClusters->size(); i < size; i++)
     {
@@ -724,52 +748,76 @@ void ActCluster::MultiStep::FindRP()
             bool checkA {IsRPValid(pA)};
             bool checkB {IsRPValid(pB)};
             bool checkRP {IsRPValid(rp)};
+            auto checkPoints {checkA && checkB && checkRP};
             // And finally that distance AB is bellow threshold
             bool checkDist {dist <= fRPDistThresh};
-            if(checkA && checkB && checkRP && checkDist)
-            {
-                auto thetaIn {GetThetaAngle(in->GetLine().GetDirection())};
-                auto thetaOut {GetThetaAngle(out->GetLine().GetDirection())};
-                set.insert({TMath::Max(thetaIn, thetaOut), {i, j}, rp});
-                // Set flag has valid RP
-                out->SetHasValidRP(true);
-                in->SetHasValidRP(true);
-            }
+            std::cout << " -- RP conditionals --" << '\n';
+            std::cout << "-> checkPoints ? " << std::boolalpha << checkPoints << '\n';
+            std::cout << "-> checkDist ? " << std::boolalpha << checkDist << '\n';
+            if(checkPoints && checkDist)
+                rps.push_back({rp, {i, j}});
             else
-            {
                 continue;
-            }
             // we indeed confirmed that distance is correctly calculated in ComputeRPin3D
             // auto manual {TMath::Sqrt(TMath::Power(pA.X() - pB.X(), 2) + TMath::Power(pA.Y() - pB.Y(), 2) +
             // TMath::Power(pA.Z() - pB.Z(), 2))}; std::cout<<"Manual dist = "<<manual<<'\n'; std::cout<<"Auto dist =
             // "<<dist<<'\n';
         }
     }
-    // Mark to delete according to whether they have valid or not RP
-    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    // Process RP: delete outliers
+    if(rps.size() > 1)
     {
-        if(!it->GetHasValidRP())
+        for(auto out = rps.begin(); out != rps.end();)
+        {
+            bool isInlier {false};
+            for(auto in = rps.begin(); in != rps.end(); in++)
+            {
+                if(in == out)
+                    continue;
+                auto outRP {out->first};
+                auto inRP {in->first};
+                auto dist {(outRP - inRP).R()};
+                std::cout << "dist : " << dist << '\n';
+                if(dist < fRPDistValidate)
+                {
+                    isInlier = true;
+                    break;
+                }
+            }
+            if(isInlier)
+                out++;
+            else
+                out = rps.erase(out);
+        }
+    }
+
+    // Add indexes of clusters to keep
+    std::set<int, std::greater<int>> toKeep;
+    for(const auto& pair : rps)
+    {
+        auto [_, idxs] {pair};
+        toKeep.insert(idxs.first);
+        toKeep.insert(idxs.second);
+    }
+    for(int i = 0, size = fClusters->size(); i < size; i++)
+    {
+        auto it {fClusters->begin() + i};
+        auto isToKeep {toKeep.find(i) != toKeep.end()};
+        if(isToKeep)
+            it->SetToDelete(false);
+        else
             it->SetToDelete(true);
     }
-    // Case in which there is only one track
-    if(fClusters->size() == 1)
-        fClusters->begin()->SetToDelete(true);
-    // Write to map and print, only the first one (with the best score)
-    // for(auto it = set.begin(); it != set.begin()++; it++)
-    // {
-    if(set.size() > 0)
+    // Compute mean of RPs
+    XYZPoint rp {};
+    for(const auto& pair : rps)
     {
-        // Unpack values to write
-        auto i {std::get<1>(*set.begin()).first};
-        auto j {std::get<1>(*set.begin()).second};
-        auto rp {std::get<2>(*set.begin())};
-        // Insert in map
-        fRPs->insert({{i, j}, rp});
-        // Print
-        // std::cout << BOLDYELLOW << "<i,j> : <" << i << ", " << j << ">" << '\n';
-        // std::cout << "dist : " << std::get<0>(*set.begin()) << " with RP : " << rp << RESET << '\n';
+        auto [p, _] {pair};
+        rp += XYZVector {p};
     }
-    // }
+    rp /= rps.size();
+    fRPs->clear();
+    fRPs->push_back(rp);
 }
 
 void ActCluster::MultiStep::DeleteInvalidClusters()
@@ -786,8 +834,8 @@ void ActCluster::MultiStep::DeleteInvalidClusters()
 void ActCluster::MultiStep::DeterminePreciseRP()
 {
     // Must be executed after cleaning of invalid clusters
-    // 1-> Get best RP: the one with the lowest dist
-    const auto& rp {fRPs->begin()->second};
+    // 1-> Get the unique RP (for legacy reasons it is still kept as a vector)
+    const auto& rp {fRPs->front()};
     std::vector<ActCluster::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
@@ -812,7 +860,6 @@ void ActCluster::MultiStep::DeterminePreciseRP()
         {
             // Init size
             auto initSize {it->GetSizeOfVoxels()};
-            std::vector<ActRoot::Voxel> recluster {};
             auto toMove {std::partition(refVoxels.begin(), refVoxels.end(),
                                         [&](const ActRoot::Voxel& voxel)
                                         {
@@ -822,31 +869,27 @@ void ActCluster::MultiStep::DeterminePreciseRP()
                                             return condX;
                                         })};
             auto afterSize {std::distance(refVoxels.begin(), toMove)};
-            // Cross check to avoid deleting voxels before RP when
-            // SetBeamLike == true due to a bad breaking point
-            if(afterSize != 0)
+            auto newSize {initSize - afterSize};
+            // Cross check to avoid emptying remaning cluster
+            // and to create a new cluster with enough voxels
+            if(afterSize > fClimb->GetMinPoints() && newSize > fClimb->GetMinPoints())
             {
-                std::move(toMove, refVoxels.end(), std::back_inserter(recluster));
+                std::vector<ActRoot::Voxel> newVoxels;
+                std::move(toMove, refVoxels.end(), std::back_inserter(newVoxels));
                 refVoxels.erase(toMove, refVoxels.end());
-                // Re cluster
-                if(recluster.size() > fClimb->GetMinPoints())
+                ActCluster::Cluster newCluster {(int)fClusters->size()};
+                newCluster.SetVoxels(newVoxels);
+                newCluster.ReFit();
+                newCluster.ReFillSets();
+                toAppend.push_back(std::move(newCluster));
+                if(fIsVerbose)
                 {
-                    auto newClusters {fClimb->Run(recluster)};
-                    if(fIsVerbose)
-                    {
-                        std::cout << BOLDGREEN << "---- FindRP verbose ----" << '\n';
-                        std::cout << "-> For event with beam + light tracks" << '\n';
-                        std::cout << "-> Original init size : " << initSize << '\n';
-                        std::cout << "-> Original end size : " << afterSize << '\n';
-                        std::cout << "-> To recluster size : " << recluster.size() << '\n';
-
-                        for(const auto& ncl : newClusters)
-                        {
-                            std::cout << "-> New cluster size : " << ncl.GetSizeOfVoxels() << '\n';
-                        }
-                        std::cout << RESET;
-                    }
-                    std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
+                    std::cout << BOLDGREEN << "---- FindRP verbose ----" << '\n';
+                    std::cout << "-> For event with beam + light tracks" << '\n';
+                    std::cout << "-> Init beam size : " << initSize << '\n';
+                    std::cout << "-> After beam size : " << afterSize << '\n';
+                    std::cout << "-> New cluster size : " << newSize << '\n';
+                    std::cout << "-------------------------" << RESET << '\n';
                 }
             }
         }
@@ -888,8 +931,8 @@ void ActCluster::MultiStep::DeterminePreciseRP()
         auto projInit {line.ProjectionPointOnLine(init.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
         auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
         // Get pivot points, according to position respect to RP
-        auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
-        auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
+        // auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
+        // auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // Remove points outside regions
         refVoxels.erase(std::remove_if(refVoxels.begin(), refVoxels.end(),
                                        [&](const ActRoot::Voxel& voxel)
@@ -915,10 +958,8 @@ void ActCluster::MultiStep::DeterminePreciseRP()
             std::cout << BOLDMAGENTA << "--- FindPreciseRP verbose for ID : " << it->GetClusterID() << " ----" << '\n';
             std::cout << "Init : " << refVoxels.front().GetPosition() << '\n';
             std::cout << "Proj Init : " << projInit << '\n';
-            std::cout << "Pivot Init : " << pivotInit << '\n';
             std::cout << "End : " << refVoxels.back().GetPosition() << '\n';
             std::cout << "Proj End : " << projEnd << '\n';
-            std::cout << "Pivot End : " << pivotEnd << '\n';
             std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
             std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
             std::cout << "------------------------------" << RESET << '\n';
@@ -959,7 +1000,7 @@ void ActCluster::MultiStep::Print() const
         }
         if(fEnableCleanPileUp)
         {
-            std::cout << "-> PileUpChangeZ    : " << fPileUpChangeZThreshold << '\n';
+            std::cout << "-> PileUpChangeZ    : " << fPileUpXPercent << '\n';
             std::cout << "-> BeamLowerZ       : " << fBeamLowerZ << '\n';
             std::cout << "-> BeamUpperZ       : " << fBeamUpperZ << '\n';
             std::cout << "-----------------------" << '\n';
@@ -976,11 +1017,14 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> DeltaMaxVoxels   : " << fDeltaMaxVoxels << '\n';
             std::cout << "-----------------------" << '\n';
         }
-        if(fEnableRP)
+        if(fEnableRPRoutine)
         {
             std::cout << "-> BeamLikeXMin     : " << fBeamLikeXMinThresh << '\n';
             std::cout << "-> BeamLikeParall   : " << fBeamLikeParallelF << '\n';
+            std::cout << "-> EnableRPDelete   ? " << std::boolalpha << fEnableRPDelete << '\n';
             std::cout << "-> RPDistThresh     : " << fRPDistThresh << '\n';
+            std::cout << "-> RPDistValidate   : " << fRPDistValidate << '\n';
+            std::cout << "-> EnableFineRP     ? " << std::boolalpha << fEnableFineRP << '\n';
             std::cout << "-> RPMaskXY         : " << fRPMaskXY << '\n';
             std::cout << "-> RPMaskZ          : " << fRPMaskZ << '\n';
             std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';

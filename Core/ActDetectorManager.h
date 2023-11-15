@@ -54,6 +54,7 @@ namespace ActRoot
 
         // Read configurations
         void ReadConfiguration(const std::string& file);
+        void Reconfigure();
         void ReadCalibrations(const std::string& file);
 
         // Init INPUT data

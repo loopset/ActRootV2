@@ -218,7 +218,7 @@ void ActRoot::MergerDetector::LightOrHeavy()
     if(set.size() > 1)
         fHeavyIt = fTPCPhyiscs->fClusters.begin() + std::next(set.begin())->second;
     // Set RP to MergerData
-    fMergerData->fRP = fTPCPhyiscs->fRPs.begin()->second;
+    fMergerData->fRP = fTPCPhyiscs->fRPs.front();
 }
 
 void ActRoot::MergerDetector::ComputeSiliconPoint()

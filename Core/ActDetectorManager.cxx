@@ -61,6 +61,12 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
     InitMerger(parser.GetBlock("Merger"));
 }
 
+void ActRoot::DetectorManager::Reconfigure()
+{
+    for(auto& [_, det] : fDetectors)
+        det->Reconfigure();
+}
+
 void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
 {
     ActRoot::InputParser parser {file};

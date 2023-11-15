@@ -131,3 +131,5 @@ void ActRoot::ModularDetector::ClearEventData()
 void ActRoot::ModularDetector::ClearEventPhysics() {}
 
 void ActRoot::ModularDetector::PrintReports() const {}
+
+void ActRoot::ModularDetector::Reconfigure() {}

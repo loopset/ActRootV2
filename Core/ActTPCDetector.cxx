@@ -327,3 +327,12 @@ void ActRoot::TPCDetector::PrintReports() const
     if(fMultiStep)
         fMultiStep->PrintClocks();
 }
+
+void ActRoot::TPCDetector::Reconfigure()
+{
+    if(fMultiStep)
+    {
+        fMultiStep->ReadConfigurationFile();
+        fMultiStep->Print();
+    }
+}

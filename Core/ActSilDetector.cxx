@@ -160,3 +160,5 @@ void ActRoot::SilDetector::ClearEventData()
 void ActRoot::SilDetector::ClearEventPhysics() {}
 
 void ActRoot::SilDetector::PrintReports() const {}
+
+void ActRoot::SilDetector::Reconfigure() {}
