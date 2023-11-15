@@ -113,6 +113,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2fae42112509ff8c712e9a1234803776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb2941129f36f270c9b0f856ad18076f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#abb2941129f36f270c9b0f856ad18076f">ReadConfiguration</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:abb2941129f36f270c9b0f856ad18076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f33cf51bacd75331649d5bdede86b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a56f33cf51bacd75331649d5bdede86b2">Reconfigure</a> () override</td></tr>
+<tr class="separator:a56f33cf51bacd75331649d5bdede86b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a9ca48595dc638678f9f99c958fd1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a50a9ca48595dc638678f9f99c958fd1a">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a50a9ca48595dc638678f9f99c958fd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ae870f778209a2f9b8d43d8d4c31714"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilDetector.html#a1ae870f778209a2f9b8d43d8d4c31714">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
@@ -169,7 +171,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy dependency to MEvent... Could be changed in future.  <a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">More...</a><br /></td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> {}</td></tr>
-<tr class="memdesc:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classActRoot_1_1CalibrationManager.html" title="Class managing all calibrations (NO LONGER a singleton)">CalibrationManager</a> to avoid working with singleton.  <a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">More...</a><br /></td></tr>
 <tr class="separator:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -286,8 +287,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_a503a920e0e914b8c08d3431f34e861cd"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#a503a920e0e914b8c08d3431f34e861cd">ActRoot::SilDetector::fPars</a></div><div class="ttdeci">SilParameters fPars</div><div class="ttdoc">Basic detector configurations.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:47</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilDetector_html_ad2b93a517a781781b9d4b0f584008ded"><div class="ttname"><a href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">ActRoot::SilDetector::fData</a></div><div class="ttdeci">SilData * fData</div><div class="ttdoc">Pointer to SilData.</div><div class="ttdef"><b>Definition:</b> ActSilDetector.h:49</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_a91dc241bb125283f48278c946d498345"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#a91dc241bb125283f48278c946d498345">ActRoot::SilParameters::GetSilIndex</a></div><div class="ttdeci">std::pair&lt; std::string, int &gt; GetSilIndex(int vxi)</div><div class="ttdef"><b>Definition:</b> ActSilDetector.cxx:60</div></div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:21</div></div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:21</div></div>
 <div class="ttc" id="aclassMEventReduced_html_a6be3a1f8fd6ce8274ab56d7c16cbeef5"><div class="ttname"><a href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">MEventReduced::CoboAsad</a></div><div class="ttdeci">std::vector&lt; ReducedData &gt; CoboAsad</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:30</div></div>
 </div><!-- fragment -->
 </div>
@@ -403,7 +404,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -431,7 +432,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1SilDetector.html#ad2b93a517a781781b9d4b0f584008ded">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -695,6 +696,34 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// fPars.Print();</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilParameters_html_adc738660741b40306747a46cef4df7a3"><div class="ttname"><a href="classActRoot_1_1SilParameters.html#adc738660741b40306747a46cef4df7a3">ActRoot::SilParameters::ReadActions</a></div><div class="ttdeci">void ReadActions(const std::vector&lt; std::string &gt; &amp;layers, const std::vector&lt; std::string &gt; &amp;names, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActSilDetector.cxx:34</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a56f33cf51bacd75331649d5bdede86b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f33cf51bacd75331649d5bdede86b2">&#9670;&nbsp;</a></span>Reconfigure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::SilDetector::Reconfigure </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a12cdd93b549b551df67f5e96e8df0f16">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -116,6 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6514e434dfa289be7fa1656e1624d972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25fc444541ee68c98cfea43b5775c969"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#a25fc444541ee68c98cfea43b5775c969">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config) override</td></tr>
 <tr class="separator:a25fc444541ee68c98cfea43b5775c969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7db519b45ddb5d232e792e2f715d85a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#ab7db519b45ddb5d232e792e2f715d85a">Reconfigure</a> () override</td></tr>
+<tr class="separator:ab7db519b45ddb5d232e792e2f715d85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7de9c7a228fbae0d61df089cb40916f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#af7de9c7a228fbae0d61df089cb40916f">InitInputRawData</a> (std::shared_ptr&lt; TTree &gt; tree, int run) override</td></tr>
 <tr class="separator:af7de9c7a228fbae0d61df089cb40916f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad005d1add137eae033d9ce54a3c26608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCDetector.html#ad005d1add137eae033d9ce54a3c26608">InitInputData</a> (std::shared_ptr&lt; TTree &gt; tree) override</td></tr>
@@ -201,7 +203,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy dependency to MEvent... Could be changed in future.  <a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">More...</a><br /></td></tr>
 <tr class="separator:afc475c3fe37b340d5e78bba54fde2748 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> {}</td></tr>
-<tr class="memdesc:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classActRoot_1_1CalibrationManager.html" title="Class managing all calibrations (NO LONGER a singleton)">CalibrationManager</a> to avoid working with singleton.  <a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">More...</a><br /></td></tr>
 <tr class="separator:a4d8fea032d928ce494d6a116f9df0517 inherit pro_attribs_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -316,7 +317,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1db8c26e06e6d3ed0b488e211cda6b1f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1db8c26e06e6d3ed0b488e211cda6b1f">ActRoot::TPCParameters::GetNBAGET</a></div><div class="ttdeci">int GetNBAGET() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:52</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a7e281ad97885397b97a0463d4e3382f6"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a7e281ad97885397b97a0463d4e3382f6">ActRoot::TPCParameters::GetNBASAD</a></div><div class="ttdeci">int GetNBASAD() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:51</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_aa4f95a4f3d4825ac4a6bf752d8460955"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#aa4f95a4f3d4825ac4a6bf752d8460955">ActRoot::TPCParameters::GetNBCHANNEL</a></div><div class="ttdeci">int GetNBCHANNEL() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:53</div></div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_afc475c3fe37b340d5e78bba54fde2748"><div class="ttname"><a href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector::fMEvent</a></div><div class="ttdeci">MEventReduced * fMEvent</div><div class="ttdoc">Legacy dependency to MEvent... Could be changed in future.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:21</div></div>
 <div class="ttc" id="aclassMEventReduced_html_a6be3a1f8fd6ce8274ab56d7c16cbeef5"><div class="ttname"><a href="classMEventReduced.html#a6be3a1f8fd6ce8274ab56d7c16cbeef5">MEventReduced::CoboAsad</a></div><div class="ttdeci">std::vector&lt; ReducedData &gt; CoboAsad</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:30</div></div>
 </div><!-- fragment -->
 </div>
@@ -360,7 +361,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a6e8adebde843123e711657a905fef9ba">fClusterClock</a>.Stop();</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="comment">// Apply MultiStep algorithm</span></div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;SetClusters(&amp;(<a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>));</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;SetRPs(&amp;(<a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">fRPs</a>));</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;SetRPs(&amp;(<a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>-&gt;<a class="code" href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">fRPs</a>));</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;Run();</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
@@ -376,8 +377,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a5f3da549aebc81f6427a04ee0fdfffcc"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a5f3da549aebc81f6427a04ee0fdfffcc">ActRoot::TPCDetector::fClimb</a></div><div class="ttdeci">std::shared_ptr&lt; ActCluster::ClIMB &gt; fClimb</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:77</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a6e8adebde843123e711657a905fef9ba"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a6e8adebde843123e711657a905fef9ba">ActRoot::TPCDetector::fClusterClock</a></div><div class="ttdeci">TStopwatch fClusterClock</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:73</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCDetector_html_a9a9700f1f23e467d30937a7d5ba17b82"><div class="ttname"><a href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">ActRoot::TPCDetector::fMultiStep</a></div><div class="ttdeci">std::shared_ptr&lt; ActCluster::MultiStep &gt; fMultiStep</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:79</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_aaff5002d84e32e1fac221c24ac53b102"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">ActRoot::TPCPhysics::fRPs</a></div><div class="ttdeci">std::map&lt; std::pair&lt; int, int &gt;, XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_ae912f48fae8835b293b86fcfccfd970c"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">ActRoot::TPCPhysics::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; fClusters</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:19</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_af5fb71da761bb70de03649e9ca5c4c9e"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">ActRoot::TPCPhysics::fRPs</a></div><div class="ttdeci">std::vector&lt; XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:20</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -565,7 +566,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a207b41743c6f6cac7f8ca23869115eeb">fData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -593,7 +594,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented from <a class="el" href="classActRoot_1_1VDetector.html#a53617e2f006666428ac510add6361fcf">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">fPhysics</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -922,7 +923,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Pad align table</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ReadPadAlign(config-&gt;GetString(<span class="stringliteral">&quot;PadAlign&quot;</span>));</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdoc">Pointer to CalibrationManager to avoid working with singleton.</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:21</div></div>
+<div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1072,6 +1073,40 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassReducedData_html_a1d5ddd6ddc028c11e7e7c3698e22f56b"><div class="ttname"><a href="classReducedData.html#a1d5ddd6ddc028c11e7e7c3698e22f56b">ReducedData::hasSaturation</a></div><div class="ttdeci">bool hasSaturation</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:17</div></div>
 <div class="ttc" id="aclassReducedData_html_a3178a4300890ba16016cd0e5bc3ed9eb"><div class="ttname"><a href="classReducedData.html#a3178a4300890ba16016cd0e5bc3ed9eb">ReducedData::peakheight</a></div><div class="ttdeci">std::vector&lt; float &gt; peakheight</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:18</div></div>
 <div class="ttc" id="aclassReducedData_html_a495366e7b72c0d7bd568cf2e42485f73"><div class="ttname"><a href="classReducedData.html#a495366e7b72c0d7bd568cf2e42485f73">ReducedData::peaktime</a></div><div class="ttdeci">std::vector&lt; float &gt; peaktime</div><div class="ttdef"><b>Definition:</b> ActTPCLegacyData.h:19</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab7db519b45ddb5d232e792e2f715d85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7db519b45ddb5d232e792e2f715d85a">&#9670;&nbsp;</a></span>Reconfigure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::TPCDetector::Reconfigure </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a12cdd93b549b551df67f5e96e8df0f16">ActRoot::VDetector</a>.</p>
+<div class="fragment"><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;{</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>)</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    {</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;ReadConfigurationFile();</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">fMultiStep</a>-&gt;Print();</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -75,9 +75,9 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ActCluster_8h.html">ActCluster.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ActVData_8h.html">ActVData.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Math/Point3D.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;Math/Point3D.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceActRoot.html">ActRoot</a></div>
@@ -88,13 +88,13 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classActRoot_1_1TPCPhysics.html#a07a49e111b809d4d84e0225c3166981e">   17</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classActRoot_1_1TPCPhysics.html#a07a49e111b809d4d84e0225c3166981e">XYZPoint</a> = ROOT::Math::XYZPointF;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">   19</a></span>&#160;        std::vector&lt;ActCluster::Cluster&gt; <a class="code" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">fClusters</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">   20</a></span>&#160;        std::map&lt;std::pair&lt;int, int&gt;, <a class="code" href="classActRoot_1_1TPCPhysics.html#a07a49e111b809d4d84e0225c3166981e">XYZPoint</a>&gt; <a class="code" href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">fRPs</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">   20</a></span>&#160;        std::vector&lt;XYZPoint&gt; <a class="code" href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">fRPs</a>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1TPCPhysics.html#a2873aa34b130b5ca81850b79cc55b701">Clear</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1TPCPhysics.html#a8fe5c1ce4b077acaaadd1f88eb578ed5">Print</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <span class="comment">// namespace ActRoot</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aActCluster_8h_html"><div class="ttname"><a href="ActCluster_8h.html">ActCluster.h</a></div></div>
@@ -103,8 +103,8 @@ $(function() {
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_a07a49e111b809d4d84e0225c3166981e"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#a07a49e111b809d4d84e0225c3166981e">ActRoot::TPCPhysics::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPointF XYZPoint</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:17</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_a2873aa34b130b5ca81850b79cc55b701"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#a2873aa34b130b5ca81850b79cc55b701">ActRoot::TPCPhysics::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.cxx:5</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_a8fe5c1ce4b077acaaadd1f88eb578ed5"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#a8fe5c1ce4b077acaaadd1f88eb578ed5">ActRoot::TPCPhysics::Print</a></div><div class="ttdeci">void Print() const override</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.cxx:11</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_aaff5002d84e32e1fac221c24ac53b102"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#aaff5002d84e32e1fac221c24ac53b102">ActRoot::TPCPhysics::fRPs</a></div><div class="ttdeci">std::map&lt; std::pair&lt; int, int &gt;, XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_ae912f48fae8835b293b86fcfccfd970c"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">ActRoot::TPCPhysics::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; fClusters</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:19</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCPhysics_html_af5fb71da761bb70de03649e9ca5c4c9e"><div class="ttname"><a href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">ActRoot::TPCPhysics::fRPs</a></div><div class="ttdeci">std::vector&lt; XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCPhysics.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1VData_html"><div class="ttname"><a href="classActRoot_1_1VData.html">ActRoot::VData</a></div><div class="ttdef"><b>Definition:</b> ActVData.h:7</div></div>
 <div class="ttc" id="anamespaceActRoot_html"><div class="ttname"><a href="namespaceActRoot.html">ActRoot</a></div><div class="ttdef"><b>Definition:</b> ActClIMB.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
