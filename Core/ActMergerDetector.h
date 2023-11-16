@@ -7,6 +7,7 @@
 #include "ActSilData.h"
 #include "ActSilSpecs.h"
 #include "ActTPCPhysics.h"
+#include "ActVData.h"
 
 #include "TTree.h"
 
@@ -53,6 +54,9 @@ namespace ActRoot
         // Event multiplicity and beam-likeness
         bool fForceBeamLike {};
         std::vector<int> fNotBMults {};
+        // Gate on XVertex position!
+        double fGateRPX {};
+
         // Store iterators to beam, light and heavy
         decltype(TPCPhysics::fClusters)::iterator fBeamIt;
         decltype(TPCPhysics::fClusters)::iterator fLightIt;
@@ -63,6 +67,9 @@ namespace ActRoot
         void SetTPCParameters(TPCParameters* tpcPars) { fTPCPars = tpcPars; }
         void SetSilParameters(SilParameters* silPars) { fSilPars = silPars; }
         void SetModularParameters(ModularParameters* modPars) { fModularPars = modPars; }
+        void SetEventData(VData* vdata);
+        // Getters
+        MergerData* GetMergerData() const { return fMergerData; }
 
         // Setter of entry and run number to be written to current MergerData
         void SetCurrentRunEntry(int run, int entry)
@@ -94,6 +101,7 @@ namespace ActRoot
         void ScaleToRebinZ();
         bool GateGATCONFandTrackMult();
         bool GateSilMult();
+        bool GateOthers();
         void LightOrHeavy();
         void ComputeSiliconPoint();
         void Reset();

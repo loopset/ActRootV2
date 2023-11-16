@@ -10,6 +10,7 @@
 #include "ActSilSpecs.h"
 #include "ActTPCDetector.h"
 #include "ActTPCPhysics.h"
+#include "ActVData.h"
 
 #include "TMath.h"
 #include "TMathBase.h"
@@ -40,6 +41,19 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fForceBeamLike = block->GetBool("ForceBeamLike");
     if(block->CheckTokenExists("NotBeamMults"))
         fNotBMults = block->GetIntVector("NotBeamMults");
+    // Gate on XVertex
+    if(block->CheckTokenExists("GateRPX"))
+        fGateRPX = block->GetDouble("GateRPX");
+}
+
+void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
+{
+    if(auto casted {dynamic_cast<TPCPhysics*>(vdata)}; casted)
+        fTPCPhyiscs = casted;
+    if(auto casted {dynamic_cast<SilData*>(vdata)}; casted)
+        fSilData = casted;
+    if(auto casted {dynamic_cast<ModularData*>(vdata)}; casted)
+        fModularData = casted;
 }
 
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
@@ -71,7 +85,8 @@ void ActRoot::MergerDetector::InitOutputMerger(std::shared_ptr<TTree> tree)
     if(fMergerData)
         delete fMergerData;
     fMergerData = new MergerData;
-    tree->Branch("MergerData", &fMergerData);
+    if(tree)
+        tree->Branch("MergerData", &fMergerData);
 }
 
 void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
@@ -96,17 +111,9 @@ void ActRoot::MergerDetector::MergeEvent()
     ScaleToRebinZ();
 }
 
-void ActRoot::MergerDetector::ScaleToRebinZ()
-{
-    // RP
-    fMergerData->fRP.SetZ(fMergerData->fRP.Z() * fTPCPars->GetREBINZ());
-    // SP
-    fMergerData->fSP.SetZ(fMergerData->fSP.Z() * fTPCPars->GetREBINZ());
-}
-
 bool ActRoot::MergerDetector::IsDoable()
 {
-    auto condA {GateGATCONFandTrackMult()};
+    auto condA {GateGATCONFandTrackMult() && GateOthers()};
     if(!condA)
         return condA;
     else
@@ -130,19 +137,19 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     bool hasMult {false};
     if(fForceBeamLike)
     {
-        bool hasIt {false};
+        int bl {};
         int notBL {};
         for(auto it = fTPCPhyiscs->fClusters.begin(); it != fTPCPhyiscs->fClusters.end(); it++)
         {
-            if(it->GetIsBeamLike() && !hasIt) // admit only one beam-like
+            if(it->GetIsBeamLike())
             {
-                hasIt = true;
                 fBeamIt = it;
+                bl++;
             }
             else
                 notBL++;
         }
-        hasBL = hasIt;
+        hasBL = (bl == 1); // admit only one BL
         hasMult = IsInVector(notBL, fNotBMults);
         // if(notBL > 2)
         // std::cout << "hasMult? " << std::boolalpha << hasMult << '\n';
@@ -180,6 +187,14 @@ bool ActRoot::MergerDetector::GateSilMult()
     return withE == withMult;
 }
 
+bool ActRoot::MergerDetector::GateOthers()
+{
+    bool condRPX {false};
+    if(fTPCPhyiscs->fRPs.size() > 0)
+        condRPX = fTPCPhyiscs->fRPs.front().X() > fGateRPX;
+    return condRPX;
+}
+
 void ActRoot::MergerDetector::Reset()
 {
     // Reset iterators before moving on to work with them
@@ -199,6 +214,13 @@ double ActRoot::MergerDetector::GetTheta(const XYZVector& beam, const XYZVector&
 
 void ActRoot::MergerDetector::LightOrHeavy()
 {
+    // Firstly, set sign of X direction of BL to be always positive
+    fMergerData->fRP = fTPCPhyiscs->fRPs.front();
+    // std::cout << "BL.point : " << fBeamIt->GetLine().GetPoint() << '\n';
+    // std::cout << "Raw BL.dir : " << fBeamIt->GetLine().GetDirection() << '\n';
+    auto& refLine {fBeamIt->GetRefToLine()};
+    refLine.GetDirection().SetX(std::abs(refLine.GetDirection().X()));
+    // std::cout << "Aligned BL.dir : " << fBeamIt->GetLine().GetDirection() << '\n';
     // .first = angle; .second = index; larger angles at begin
     auto lambda {[](const std::pair<double, int>& a, const std::pair<double, int>& b) { return a.first > b.first; }};
     std::set<std::pair<double, int>, decltype(lambda)> set(lambda);
@@ -217,8 +239,6 @@ void ActRoot::MergerDetector::LightOrHeavy()
     fLightIt = fTPCPhyiscs->fClusters.begin() + set.begin()->second;
     if(set.size() > 1)
         fHeavyIt = fTPCPhyiscs->fClusters.begin() + std::next(set.begin())->second;
-    // Set RP to MergerData
-    fMergerData->fRP = fTPCPhyiscs->fRPs.front();
 }
 
 void ActRoot::MergerDetector::ComputeSiliconPoint()
@@ -228,6 +248,14 @@ void ActRoot::MergerDetector::ComputeSiliconPoint()
     // Redefine signs just in case
     fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
     // fMergerData->Print();
+}
+
+void ActRoot::MergerDetector::ScaleToRebinZ()
+{
+    // RP
+    fMergerData->fRP.SetZ(fMergerData->fRP.Z() * fTPCPars->GetREBINZ());
+    // SP
+    fMergerData->fSP.SetZ(fMergerData->fSP.Z() * fTPCPars->GetREBINZ());
 }
 
 void ActRoot::MergerDetector::ClearOutputMerger()
@@ -251,6 +279,7 @@ void ActRoot::MergerDetector::Print() const
     for(const auto& m : fNotBMults)
         std::cout << m << ", ";
     std::cout << '\n';
+    std::cout << "-> GateRPX       : " << fGateRPX << '\n';
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }

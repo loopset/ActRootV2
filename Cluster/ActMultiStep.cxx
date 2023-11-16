@@ -603,7 +603,9 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                         std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
                         std::cout << "newChi2 < oldChi2 ? : " << newChi2 << " < " << oldChi2 << RESET << '\n';
                         std::cout << "Merging cluster in : " << in->GetClusterID()
-                                  << " with cluster out : " << out->GetClusterID() << '\n';
+                                  << " with size : " << in->GetSizeOfVoxels() << '\n';
+                        std::cout << " with cluster out : " << out->GetClusterID()
+                                  << " and size : " << out->GetSizeOfVoxels() << '\n';
                         std::cout << "-----------------------" << RESET << '\n';
                     }
                     auto& refVoxels {out->GetRefToVoxels()};
@@ -823,6 +825,8 @@ void ActCluster::MultiStep::FindPreliminaryRP()
             // std::cout << " -- RP conditionals --" << '\n';
             // std::cout << "-> checkPoints ? " << std::boolalpha << checkPoints << '\n';
             // std::cout << "-> checkDist ? " << std::boolalpha << checkDist << '\n';
+            // std::cout << "-> rp : " << rp << '\n';
+            // std::cout << "===========" << '\n';
             if(checkPoints && checkDist)
                 rps.push_back({rp, {i, j}});
             else
@@ -936,6 +940,14 @@ void ActCluster::MultiStep::PerformFinerFits()
                                bool condX {(rp.X() - fRPMaskXY) <= point.X() && point.X() <= (rp.X() + fRPMaskXY)};
                                bool condY {(rp.Y() - fRPMaskXY) <= point.Y() && point.Y() <= (rp.Y() + fRPMaskXY)};
                                bool condZ {(rp.Z() - fRPMaskZ) <= point.Z() && point.Z() <= (rp.Z() + fRPMaskZ)};
+                               // if(condX && condY && condZ)
+                               // {
+                               //     std::cout << "point : " << point << '\n';
+                               //     std::cout << "xmin : " << rp.X() - fRPMaskXY << " rp.X : " << rp.X()
+                               //               << " xmax : " << rp.X() + fRPMaskXY << '\n';
+                               //     std::cout << "ymin : " << rp.Y() - fRPMaskXY << " rp.Y : " << rp.Y()
+                               //               << " ymax : " << rp.Y() + fRPMaskXY << '\n';
+                               // }
                                return condX && condY && condZ;
                            }),
             refVoxels.end());

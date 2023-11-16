@@ -26,7 +26,8 @@ namespace ActRoot
     {
         EActar,
         ESilicons,
-        EModular
+        EModular,
+        EMerger
     };
 
     //! Main class interfacing all analysis detectors, with calibrations and main methods
@@ -38,8 +39,8 @@ namespace ActRoot
                                                                     //!< VDetector pointer
         std::shared_ptr<CalibrationManager> fCalMan {}; //!< CalibrationManager is now included in DetectorManager to
                                                         //!< avoid singleton
-        std::shared_ptr<MergerDetector> fMerger {}; //!< Merge detector in final step (does not inheritate from VDetector so
-                                                //!< far)
+        std::shared_ptr<MergerDetector> fMerger {};     //!< Merge detector in final step (does not inheritate from
+                                                    //!< VDetector so far)
 
     public:
         DetectorManager();
@@ -49,6 +50,7 @@ namespace ActRoot
         // Getters and deleters of detectors
         std::shared_ptr<CalibrationManager> GetCalMan() { return fCalMan; }
         std::shared_ptr<ActRoot::VDetector> GetDetector(DetectorType type);
+        std::shared_ptr<ActRoot::MergerDetector> GetMerger() { return fMerger; };
         void DeleteDelector(DetectorType type);
         int GetNumberOfDetectors() const { return fDetectors.size(); }
 

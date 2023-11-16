@@ -46,7 +46,7 @@ namespace ActPhysics
 
         // Utility funtions
         void ScaleZ(float scale);
-        void AlignUsingPoint(const XYZPoint& rp);
+        void AlignUsingPoint(const XYZPoint& rp, bool isRecoil = true);
         double DistanceLineToPoint(const XYZPoint& point) const;
         XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
         void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1,

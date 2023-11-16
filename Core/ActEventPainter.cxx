@@ -256,7 +256,17 @@ void ActRoot::EventPainter::DoVerbosePhysics()
 
     // Build event
     fDetMan->BuildEventPhysics();
+
     // Set data
     auto pointer {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};
     fHistPainter.SetTPCPhysicsPointer(pointer);
+
+    // Set merger data
+    fDetMan->SetEventData(DetectorType::EMerger, pointer);
+    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetCurrentSilData());
+    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetCurrentModularData());
+    fDetMan->InitializeMergerOutput(nullptr);
+    // And run also merger
+    fDetMan->BuildEventMerger(-1, -1);
+    fDetMan->GetMerger()->GetMergerData()->Print();
 }

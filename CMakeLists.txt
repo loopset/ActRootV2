@@ -8,6 +8,7 @@ project(ActRoot)
 set(CMAKE_CXX_STANDARD 17) # same as ROOT built for Ubuntu
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE) # force require this standard
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_INSTALL_MESSAGE LAZY) # print only updates of installed files
 
 # read Geant4 options
 option(BUILD_GEANT4 "Build ActGeant4 library" OFF)#disabled by default

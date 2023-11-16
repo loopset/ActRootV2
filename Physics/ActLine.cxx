@@ -34,9 +34,13 @@ void ActPhysics::Line::ScaleZ(float scale)
     fDirection.SetZ(fDirection.Z() * scale);
 }
 
-void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp)
+void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp, bool isRecoil)
 {
-    auto dir {fPoint - rp};
+    XYZVector dir {};
+    if(isRecoil)
+        dir = fPoint - rp;
+    else
+        dir = rp - fPoint;
     // Set same signs in direction as the previous vector
     // Usually used to set the direction of propagation after finding a RP
     // TMath::Sign(a, b) returns a (fDirection) with the same sign as b (dir using rp)

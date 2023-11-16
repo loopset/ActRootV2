@@ -48,7 +48,7 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::SilDetector>();
         else if(det == "Modular")
             fDetectors[fDetDatabase[det]] = std::make_shared<ActRoot::ModularDetector>();
-        else if (det == "Merger")
+        else if(det == "Merger")
             continue;
         else
             throw std::runtime_error("Detector " + det + " not found in Manager database");
@@ -189,7 +189,9 @@ void ActRoot::DetectorManager::PrintReports() const
 
 void ActRoot::DetectorManager::SetEventData(DetectorType det, VData* vdata)
 {
-    if(fDetectors.count(det))
+    if(det == DetectorType::EMerger)
+        fMerger->SetEventData(vdata);
+    else if(fDetectors.count(det))
         fDetectors[det]->SetEventData(vdata);
     else
         std::cout << "Could not locate detector!";
