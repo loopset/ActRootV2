@@ -12,6 +12,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <tuple>
 #include <utility>
@@ -30,6 +31,8 @@ namespace ActCluster
         using ItType = std::vector<ActCluster::Cluster>::iterator;
         using XYZPoint = ROOT::Math::XYZPointF;
         using XYZVector = ROOT::Math::XYZVectorF;
+        using RPValue = std::pair<XYZPoint, std::pair<int, int>>;
+        using RPCluster = std::pair<XYZPoint, std::set<int>>;
 
     private:
         // Pointer to TPC Parameters
@@ -128,13 +131,15 @@ namespace ActCluster
         // Merge quasialigned tracks which got broken due to non-continuity
         void MergeSimilarTracks();
         // Find Reaction Point if it exists
-        void FindRP();
+        void FindPreliminaryRP();
         // Determine beam-like clusters
         void DetermineBeamLikes();
         // Delete clusters without valid RP
         void DeleteInvalidClusters();
-        // Determine precise RP
-        void DeterminePreciseRP();
+        // Do tricks to the clusters to obtain a finer fit
+        void PerformFinerFits();
+        // And finally determine the fine-tuned RP
+        void FindPreciseRP();
 
     private:
         // Initialize clocks to measure execution time of each step
@@ -156,7 +161,9 @@ namespace ActCluster
         // Check if RP is valid according to ranges
         bool IsRPValid(const XYZPoint& rp);
         // Get -very- preliminary theta to rank RPs
-        double GetThetaAngle(const XYZVector& dir);
+        double GetThetaAngle(const XYZVector& beam, const XYZVector& recoil);
+        // Cluster preliminary reaction points
+        std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     };
 } // namespace ActCluster
 
