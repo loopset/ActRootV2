@@ -112,7 +112,7 @@ var searchData=
   ['addline_109',['AddLine',['../classActRoot_1_1InputBlock.html#a6d628ab49d736793a8e0ba06aa71a2b1',1,'ActRoot::InputBlock']]],
   ['addmanualentries_110',['AddManualEntries',['../classActRoot_1_1InputData.html#a9edfbefb6f63133d1c1b625932597901',1,'ActRoot::InputData']]],
   ['addvoxel_111',['AddVoxel',['../classActCluster_1_1Cluster.html#acb731f5307cb4c81b46ba61d20026360',1,'ActCluster::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActCluster_1_1Cluster.html#aac567cb73673905d790cc25ec6db1faf',1,'ActCluster::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
-  ['alignusingpoint_112',['AlignUsingPoint',['../classActPhysics_1_1Line.html#a36ce532fe0f45c9df3eb257f8432db4b',1,'ActPhysics::Line']]],
+  ['alignusingpoint_112',['AlignUsingPoint',['../classActPhysics_1_1Line.html#a0d41bc39dca62547c1a88e3b3f31af5a',1,'ActPhysics::Line']]],
   ['applycalibration_113',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
   ['applyfinerthresholds_114',['ApplyFinerThresholds',['../classActRoot_1_1SilData.html#afbc40f7b0c5132b1b5ffc19507d9fd03',1,'ActRoot::SilData']]],
   ['applylookup_115',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
