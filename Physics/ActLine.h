@@ -10,6 +10,7 @@
 #include "Math/Vector3D.h"
 
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace ActPhysics
@@ -45,7 +46,7 @@ namespace ActPhysics
         void SetChi2(float chi2) { fChi2 = chi2; }
 
         // Utility funtions
-        void ScaleZ(float scale);
+        void Scale(float xy, float z);
         void AlignUsingPoint(const XYZPoint& rp, bool isRecoil = true);
         double DistanceLineToPoint(const XYZPoint& point) const;
         XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
@@ -61,6 +62,9 @@ namespace ActPhysics
     private:
         void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
                                    bool correctOffset);
+        void Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
+                         const std::string& degenerated = "z");
+        void Chi2Dfrom3D(const std::vector<XYZPoint>& points, bool correctOffset);
         inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
         std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ, int rebinZ) const;
     };

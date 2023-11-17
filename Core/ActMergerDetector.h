@@ -56,6 +56,9 @@ namespace ActRoot
         std::vector<int> fNotBMults {};
         // Gate on XVertex position!
         double fGateRPX {};
+        // Drift conversion
+        bool fEnableConversion {};
+        double fDriftFactor {};
 
         // Store iterators to beam, light and heavy
         decltype(TPCPhysics::fClusters)::iterator fBeamIt;
@@ -98,14 +101,17 @@ namespace ActRoot
     private:
         void ReadSilSpecs(const std::string& file);
         bool IsDoable();
-        void ScaleToRebinZ();
+        void ConvertToPhysicalUnits();
         bool GateGATCONFandTrackMult();
         bool GateSilMult();
         bool GateOthers();
         void LightOrHeavy();
         void ComputeSiliconPoint();
+        void ComputeAngles();
         void Reset();
-        double GetTheta(const XYZVector& beam, const XYZVector& other);
+        double GetTheta3D(const XYZVector& beam, const XYZVector& other);
+        XYZVector RotateTrack(XYZVector beam, XYZVector track);
+        void ScalePoint(XYZPoint& point, float xy, float z);
         template <typename T>
         inline bool IsInVector(T val, const std::vector<T>& vec)
         {

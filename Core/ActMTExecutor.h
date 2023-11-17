@@ -45,6 +45,7 @@ namespace ActRoot
         void SetDetectorConfig(const std::string& detfile, const std::string& calfile);
         void BuildEventData();
         void BuildEventPhysics();
+        void BuildEventMerger();
 
     private:
         void ComputeRunsPerThread();

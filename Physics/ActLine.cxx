@@ -11,6 +11,8 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <string>
+#include <type_traits>
 #include <vector>
 
 ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)
@@ -26,12 +28,16 @@ ActPhysics::Line::Line(const XYZPoint& p1, const XYZPoint& p2)
     SetDirection(p1, p2);
 }
 
-void ActPhysics::Line::ScaleZ(float scale)
+void ActPhysics::Line::Scale(float xy, float z)
 {
     // Point
-    fPoint.SetZ(fPoint.Z() * scale);
+    fPoint.SetX(fPoint.X() * xy);
+    fPoint.SetY(fPoint.Y() * xy);
+    fPoint.SetZ(fPoint.Z() * z);
     // Direction
-    fDirection.SetZ(fDirection.Z() * scale);
+    fDirection.SetX(fDirection.X() * xy);
+    fDirection.SetY(fDirection.Y() * xy);
+    fDirection.SetZ(fDirection.Z() * z);
 }
 
 void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp, bool isRecoil)
@@ -141,16 +147,16 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
         auto pos = points[i];
         if(correctOffset)
             pos += XYZVector {0.5, 0.5, 0.5};
-        Q += hitQ / 10.;
-        Xm += pos.X() * hitQ / 10.;
-        Ym += pos.Y() * hitQ / 10.;
-        Zm += pos.Z() * hitQ / 10.;
-        Sxx += pos.X() * pos.X() * hitQ / 10.;
-        Syy += pos.Y() * pos.Y() * hitQ / 10.;
-        Szz += pos.Z() * pos.Z() * hitQ / 10.;
-        Sxy += pos.X() * pos.Y() * hitQ / 10.;
-        Sxz += pos.X() * pos.Z() * hitQ / 10.;
-        Syz += pos.Y() * pos.Z() * hitQ / 10.;
+        Q += hitQ;
+        Xm += pos.X() * hitQ;
+        Ym += pos.Y() * hitQ;
+        Zm += pos.Z() * hitQ;
+        Sxx += pos.X() * pos.X() * hitQ;
+        Syy += pos.Y() * pos.Y() * hitQ;
+        Szz += pos.Z() * pos.Z() * hitQ;
+        Sxy += pos.X() * pos.Y() * hitQ;
+        Sxz += pos.X() * pos.Z() * hitQ;
+        Syz += pos.Y() * pos.Z() * hitQ;
     }
 
     Xm /= Q;
@@ -169,18 +175,29 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Sxz -= (Xm * Zm);
     Syz -= (Ym * Zm);
 
-    theta = 0.5 * std::atan((2. * Sxy) / (Sxx - Syy));
-
-    // Bugfix: when we have pad saturation, Sxx = Syy = 0 -> theta = nan! Then, we can return a vertical line!
-    if(!std::isfinite(theta))
+    // Write basic values altough fit might not be doable
+    fPoint = {(float)Xm, (float)Ym, (float)Zm};
+    fSigmas = {(float)std::sqrt(std::abs(Sxx)), (float)std::sqrt(std::abs(Syy)), (float)std::sqrt(std::abs(Szz))};
+    // Undoable 3D fit -> fallbacking to 2D
+    if(Sxx == 0 || Syy == 0 || Szz == 0)
     {
-        SetPoint(XYZPoint(static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)));
-        SetDirection(XYZVector(0, 0, 1));
-        SetSigmas(XYZPoint(0, 0, 0));
-        SetChi2(-1);
+        if(Sxx == 0 && Syy != 0 && Szz != 0)
+            Fit2Dfrom3D(Ym, Zm, Syy, Szz, Syz, Q, "x");
+        else if(Syy == 0 && Sxx != 0 && Szz != 0)
+            Fit2Dfrom3D(Xm, Zm, Sxx, Szz, Sxz, Q, "y");
+        else if(Szz == 0 && Sxx != 0 && Syy != 0)
+            Fit2Dfrom3D(Xm, Ym, Sxx, Syy, Sxy, Q, "z");
+        else // handle case with more than one Sii == 0 -> return bad fit
+        {
+            fDirection = {std::nanf("bad fit"), std::nanf("bad fit"), std::nanf("bad fit")};
+            return;
+        }
+        // and recompute Chi2 after fitting
+        Chi2Dfrom3D(points, correctOffset);
         return;
     }
-
+    // Doable 3D fit
+    theta = 0.5 * std::atan((2. * Sxy) / (Sxx - Syy));
     K11 = (Syy + Szz) * std::pow(std::cos(theta), 2) + (Sxx + Szz) * std::pow(std::sin(theta), 2) -
           2. * Sxy * std::cos(theta) * std::sin(theta);
     K22 = (Syy + Szz) * std::pow(std::sin(theta), 2) + (Sxx + Szz) * std::pow(std::cos(theta), 2) +
@@ -213,22 +230,74 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     a = -K10 * std::cos(theta) / (K11 - dm2) + K01 * std::sin(theta) / (K22 - dm2);
     b = -K10 * std::sin(theta) / (K11 - dm2) - K01 * std::cos(theta) / (K22 - dm2);
 
+    // std::cout << "Sxx : " << Sxx << " Syy : " << Syy << " Szz : " << Szz << '\n';
+    // std::cout << "Sxy : " << Sxy << " Sxz : " << Sxz << " Syz : " << Syz << '\n';
+    // std::cout << " K11 : " << K11 << " K22 : " << K22 << '\n';
+    // std::cout << "K10 : " << K10 << " K01 : " << K01 << " K00 : " << K00 << '\n';
+    // std::cout << "c2 : " << c2 << " c1 : " << c1 << " c0 : " << c0 << '\n';
+    // std::cout << "p : " << p << " q : " << q << " r : " << r << '\n';
+    // std::cout << "rho : " << rho << " phi : " << phi << " dm2 : " << dm2 << '\n';
+    // std::cout << "a : " << a << " b : " << b << '\n';
+    // std::cout << "=======" << '\n';
+
     Xh = ((1. + b * b) * Xm - a * b * Ym + a * Zm) / (1. + a * a + b * b);
     Yh = ((1. + a * a) * Ym - a * b * Xm + b * Zm) / (1. + a * a + b * b);
     Zh = ((a * a + b * b) * Zm + a * Xm + b * Ym) / (1. + a * a + b * b);
-
-    XYZPoint Pm = {static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)}; // gravity point
+    
     XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
-    XYZPoint Sigmas = {
-        static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
-        static_cast<float>(std::sqrt(std::abs(Szz)))}; // sigmas are computed from matrix elements directly
-    // Still one more check of NaN; return default parameters in this case
-    if(std::isnan(dm2))
+    SetDirection(fPoint, Ph);
+    fChi2 = std::fabs(dm2); // do not divide by charge!
+}
+
+void ActPhysics::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
+                                   const std::string& degenerated)
+{
+    // Based on: https://stackoverflow.com/questions/11449617/how-to-fit-the-2d-scatter-data-with-a-line-with-c
+    // and in:
+    // https://math.stackexchange.com/questions/2037610/given-the-equation-of-a-straight-line-how-would-i-find-a-direction-vector
+    // Revert all variable to their state before /= Q and -= MiMj
+    Sij += Mi * Mj;
+    Sjj += Mj * Mj;
+    Sii += Mi * Mi;
+    //////////////
+    Sij *= w;
+    Sjj *= w;
+    Sii *= w;
+    Mj *= w;
+    Mi *= w;
+    //////////////
+    double denom {w * Sii - std::pow(Mi, 2)};
+    if(std::isnan(1. / denom))// NaN!! vertical line
+    {
+        fDirection = {std::nanf("bad fit"), std::nanf("bad fit"), std::nanf("bad fit")};
         return;
-    SetPoint(Pm);
-    SetDirection(Pm, Ph);
-    SetSigmas(Sigmas);
-    SetChi2(fabs(dm2)); // do not divide by charge!
+    }
+    double m {-(w * Sij - Mi * Mj) / denom};
+    //// Write
+    if(degenerated == "x")
+        fDirection = {0, 1, (float)-m};
+    else if(degenerated == "y")
+        fDirection = {1, 0, (float)-m};
+    else
+        fDirection = {1, (float)-m, 0};
+}
+
+void ActPhysics::Line::Chi2Dfrom3D(const std::vector<XYZPoint>& points, bool correctOffset)
+{
+    // Check fit is good
+    if(std::isnan(fDirection.Z()))
+        return;
+    // We use the built-in function
+    double dm2 {};
+    for(int i = 0, size = points.size(); i < size; i++)
+    {
+        auto pos {points[i]};
+        if(correctOffset)
+            pos += XYZVector {0.5, 0.5, 0.5};
+        dm2 += std::pow(DistanceLineToPoint(pos), 2);
+    }
+    dm2 /= points.size();
+    fChi2 = std::sqrt(dm2);
 }
 
 std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX, int maxY, int maxZ, int rebinZ) const
@@ -241,7 +310,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX,
     auto slope3DXY {fDirection.Y() / fDirection.X()};
     auto slope3DXZ {fDirection.Z() * rebinZ / fDirection.X()};
     // Slope in X can be 0 if cluster is from pad saturation -> skip drawing of that line
-    if(!isfinite(slope3DXY) || !std::isfinite(slope3DXZ))
+    if(!std::isfinite(slope3DXY) || !std::isfinite(slope3DXZ))
     {
         if(gEnv->GetValue("ActRoot.Verbose", false))
             std::cout << BOLDMAGENTA << "PolyLine with slope X = 0 -> skip drawing" << RESET << '\n';

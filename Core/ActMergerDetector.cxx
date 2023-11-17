@@ -14,9 +14,11 @@
 
 #include "TMath.h"
 #include "TMathBase.h"
+#include "Math/RotationZYX.h"
 #include "TTree.h"
 
 #include <algorithm>
+#include <cmath>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -44,6 +46,11 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Gate on XVertex
     if(block->CheckTokenExists("GateRPX"))
         fGateRPX = block->GetDouble("GateRPX");
+    // Conversion to physical units
+    if(block->CheckTokenExists("EnableConversion"))
+        fEnableConversion = block->GetBool("EnableConversion");
+    if(block->CheckTokenExists("DriftFactor"))
+        fDriftFactor = block->GetDouble("DriftFactor");
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -101,14 +108,20 @@ void ActRoot::MergerDetector::MergeEvent()
     // 1-> Reset iterators
     Reset();
     if(!IsDoable())
+    {
+        fMergerData->Clear();
         return;
+    }
     //
     // 2-> Identify light and heavy
     LightOrHeavy();
     // 3-> Compute SP
     ComputeSiliconPoint();
-    // 4-> Scale points to RebinZ
-    ScaleToRebinZ();
+    // 4-> Scale points to physical dimensions
+    // if conversion is disabled, no further steps can be done!
+    if(!fEnableConversion)
+        return;
+    ConvertToPhysicalUnits();
 }
 
 bool ActRoot::MergerDetector::IsDoable()
@@ -206,7 +219,7 @@ void ActRoot::MergerDetector::Reset()
     fMergerData->fEntry = fCurrentEntry;
 }
 
-double ActRoot::MergerDetector::GetTheta(const XYZVector& beam, const XYZVector& other)
+double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVector& other)
 {
     auto dot {beam.Unit().Dot(other.Unit())};
     return TMath::ACos(dot) * TMath::RadToDeg();
@@ -216,11 +229,10 @@ void ActRoot::MergerDetector::LightOrHeavy()
 {
     // Firstly, set sign of X direction of BL to be always positive
     fMergerData->fRP = fTPCPhyiscs->fRPs.front();
-    // std::cout << "BL.point : " << fBeamIt->GetLine().GetPoint() << '\n';
-    // std::cout << "Raw BL.dir : " << fBeamIt->GetLine().GetDirection() << '\n';
     auto& refLine {fBeamIt->GetRefToLine()};
-    refLine.GetDirection().SetX(std::abs(refLine.GetDirection().X()));
-    // std::cout << "Aligned BL.dir : " << fBeamIt->GetLine().GetDirection() << '\n';
+    const auto& oldDir {refLine.GetDirection()};
+    refLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});
+    // Rank by larger angle
     // .first = angle; .second = index; larger angles at begin
     auto lambda {[](const std::pair<double, int>& a, const std::pair<double, int>& b) { return a.first > b.first; }};
     std::set<std::pair<double, int>, decltype(lambda)> set(lambda);
@@ -230,11 +242,11 @@ void ActRoot::MergerDetector::LightOrHeavy()
         if(it == fBeamIt)
             continue;
         // Get angle
-        auto theta {GetTheta(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
+        auto theta {GetTheta3D(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
         set.insert({TMath::Abs(theta), i});
     }
-    for(const auto& pair : set)
-        std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
+    // for(const auto& pair : set)
+    //     std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
     // Set iterators
     fLightIt = fTPCPhyiscs->fClusters.begin() + set.begin()->second;
     if(set.size() > 1)
@@ -250,12 +262,37 @@ void ActRoot::MergerDetector::ComputeSiliconPoint()
     // fMergerData->Print();
 }
 
-void ActRoot::MergerDetector::ScaleToRebinZ()
+ActRoot::MergerDetector::XYZVector ActRoot::MergerDetector::RotateTrack(XYZVector beam, XYZVector track)
 {
-    // RP
-    fMergerData->fRP.SetZ(fMergerData->fRP.Z() * fTPCPars->GetREBINZ());
-    // SP
-    fMergerData->fSP.SetZ(fMergerData->fSP.Z() * fTPCPars->GetREBINZ());
+    // Ensure unitary vecs
+    beam = beam.Unit();
+    track = track.Unit();
+    // Compute rotated angles
+    auto z {TMath::ATan2(beam.Y(), beam.X())};
+    auto y {TMath::ATan2(beam.Z(), beam.X())};
+    auto x {TMath::ATan2(beam.Z(), beam.Y())};
+    
+    ROOT::Math::RotationZYX rot {-z, -y, -x}; // following ACTAR's ref frame
+    return rot(track).Unit();
+}
+
+void ActRoot::MergerDetector::ScalePoint(XYZPoint& point, float xy, float z)
+{
+    point.SetX(point.X() * xy);
+    point.SetY(point.Y() * xy);
+    point.SetZ(point.Z() * z);
+}
+
+void ActRoot::MergerDetector::ConvertToPhysicalUnits()
+{
+    // Convert points
+    auto xy {fTPCPars->GetPadSide()};
+    ScalePoint(fMergerData->fRP, xy, fDriftFactor);
+    ScalePoint(fMergerData->fSP, xy, fDriftFactor);
+
+    // Scale Line in Clusters
+    for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
+        it->GetRefToLine().Scale(xy, fDriftFactor);
 }
 
 void ActRoot::MergerDetector::ClearOutputMerger()

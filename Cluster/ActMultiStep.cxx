@@ -265,7 +265,7 @@ void ActCluster::MultiStep::CleanBadFits()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
-        bool isBadFit {it->GetLine().GetChi2() == -1};
+        bool isBadFit {std::isnan(it->GetLine().GetDirection().Z())};
         if(isBadFit)
             it = fClusters->erase(it);
         else
@@ -1061,6 +1061,7 @@ void ActCluster::MultiStep::PerformFinerFits()
             std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
             std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
             std::cout << "------------------------------" << RESET << '\n';
+            it->GetLine().Print();
         }
     }
 }
