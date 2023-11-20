@@ -62,6 +62,9 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fMatchUseZ = block->GetBool("MatchUseZ");
     if(block->CheckTokenExists("ZOffset"))
         fZOffset = block->GetDouble("ZOffset");
+    // Enable QProfile
+    if(block->CheckTokenExists("EnableQProfile"))
+        fEnableQProfile = block->GetBool("EnableQProfile");
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -149,7 +152,8 @@ void ActRoot::MergerDetector::MergeEvent()
     ComputeAngles();
     // 7-> Qave and charge profile computations
     ComputeQave();
-    ComputeQProfile();
+    if(fEnableQProfile)
+        ComputeQProfile();
 }
 
 bool ActRoot::MergerDetector::IsDoable()
@@ -400,7 +404,9 @@ void ActRoot::MergerDetector::ComputeQave()
 void ActRoot::MergerDetector::ComputeQProfile()
 {
     // 0-> Init histogram
+    TH1::AddDirectory(false);
     fMergerData->fQProfile = TH1F("hQProfile", "QProfile", 100, -5, 150);
+    fMergerData->fQProfile.SetTitle("QProfile;dist [mm];Q [au]");
     // Voxels should be already ordered
     // 1-> Ref point is vector.begin() projection on line
     auto ref {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
@@ -453,9 +459,10 @@ void ActRoot::MergerDetector::Print() const
         std::cout << m << ", ";
     std::cout << '\n';
     std::cout << "-> GateRPX       : " << fGateRPX << '\n';
-    std::cout << "-> EnableMatch   : " << std::boolalpha << fEnableMatch << '\n';
-    std::cout << "-> MatchUseZ     : " << std::boolalpha << fMatchUseZ << '\n';
+    std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
+    std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
     std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
+    std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }

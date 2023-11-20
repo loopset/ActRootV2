@@ -309,6 +309,14 @@ void ActRoot::InputParser::Print() const
     }
 }
 
+bool ActRoot::InputParser::CheckBlockExists(const std::string& token) const
+{
+    for(auto& block : fBlocks)
+        if(block->GetBlockName() == token)
+            return true;
+    return false;
+}
+
 ActRoot::BlockPtr ActRoot::InputParser::GetBlock(const std::string& token) const
 {
     for(auto& block : fBlocks)

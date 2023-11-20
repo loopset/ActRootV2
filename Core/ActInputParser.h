@@ -118,6 +118,7 @@ namespace ActRoot
 
         void ReadFile(const std::string& filename);
         void Print() const;
+        bool CheckBlockExists(const std::string& token) const;
         BlockPtr GetBlock(const std::string& header) const;
         std::vector<std::string> GetBlockHeaders() const;
 

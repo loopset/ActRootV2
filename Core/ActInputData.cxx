@@ -16,9 +16,9 @@
 #include <utility>
 #include <vector>
 
-ActRoot::InputData::InputData(const std::string& file)
+ActRoot::InputData::InputData(const std::string& file, bool outputAsFriend)
 {
-    ReadConfiguration(file);
+    ReadConfiguration(file, outputAsFriend);
 }
 
 void ActRoot::InputData::AddFile(int run, const std::string& file)
@@ -34,7 +34,7 @@ void ActRoot::InputData::AddFile(int run, const std::string& file)
     fTrees[run] = std::shared_ptr<TTree>(fFiles[run]->Get<TTree>(fTreeName.data()));
 }
 
-void ActRoot::InputData::ReadConfiguration(const std::string& file)
+void ActRoot::InputData::ReadConfiguration(const std::string& file, bool outputAsFriend)
 {
     ActRoot::InputParser parser {file};
     auto block {parser.GetBlock("InputData")};
@@ -59,6 +59,8 @@ void ActRoot::InputData::ReadConfiguration(const std::string& file)
     }
     if(fHasFriend)
         AddFriend(parser.GetBlock("FriendData"));
+    if(outputAsFriend)
+        AddFriend(parser.GetBlock("OutputData"));
     if(block->CheckTokenExists("ManualEntries", true))
         AddManualEntries(block->GetString("ManualEntries"));
 }

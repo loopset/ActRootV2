@@ -5,7 +5,9 @@
 #include "ActInputData.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
+#include "ActMergerData.h"
 #include "ActTPCData.h"
+#include "ActTPCPhysics.h"
 
 #include "TApplication.h"
 #include "TCanvas.h"
@@ -246,11 +248,11 @@ void ActRoot::EventPainter::DoVerbosePhysics()
 {
     // Set event data!
     // 1-> Actar
-    fDetMan->SetEventData(DetectorType::EActar, fWrap.GetCurrentTPCData());
+    fDetMan->SetEventData(DetectorType::EActar, fWrap.GetTPCData());
     // 2-> Sil
-    fDetMan->SetEventData(DetectorType::ESilicons, fWrap.GetCurrentSilData());
+    fDetMan->SetEventData(DetectorType::ESilicons, fWrap.GetSilData());
     // 3-> Modular
-    fDetMan->SetEventData(DetectorType::EModular, fWrap.GetCurrentModularData());
+    fDetMan->SetEventData(DetectorType::EModular, fWrap.GetModularData());
     // Do not store data; but toy pointer needed
     fDetMan->InitializePhysicsOutput(nullptr);
 
@@ -258,15 +260,18 @@ void ActRoot::EventPainter::DoVerbosePhysics()
     fDetMan->BuildEventPhysics();
 
     // Set data
-    auto pointer {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};
-    fHistPainter.SetTPCPhysicsPointer(pointer);
+    auto tpcPhys {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};
+    tpcPhys->Print();
+    fWrap.SetTPCPhysics(dynamic_cast<TPCPhysics*>(tpcPhys));
 
     // Set merger data
-    fDetMan->SetEventData(DetectorType::EMerger, pointer);
-    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetCurrentSilData());
-    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetCurrentModularData());
+    fDetMan->SetEventData(DetectorType::EMerger, tpcPhys);
+    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetSilData());
+    fDetMan->SetEventData(DetectorType::EMerger, fWrap.GetModularData());
     fDetMan->InitializeMergerOutput(nullptr);
     // And run also merger
     fDetMan->BuildEventMerger(-1, -1);
-    fDetMan->GetMerger()->GetMergerData()->Print();
+    auto md {fDetMan->GetMerger()->GetMergerData()};
+    md->Print();
+    fWrap.SetMergerData(dynamic_cast<MergerData*>(md));
 }

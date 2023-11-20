@@ -63,6 +63,8 @@ namespace ActRoot
         bool fEnableMatch {};
         bool fMatchUseZ {};
         double fZOffset {};
+        // Enable computation of QProfile
+        bool fEnableQProfile {};
 
         // Store iterators to beam, light and heavy
         decltype(TPCPhysics::fClusters)::iterator fBeamIt;

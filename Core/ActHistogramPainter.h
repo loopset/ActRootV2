@@ -41,11 +41,6 @@ namespace ActRoot
         //Pointer to Wrapper
         InputWrapper* fWrap {};
 
-        //Pointer to verbose TPCPhysics!
-        TPCPhysics* fTPCPhysics {};
-        //Pointer to verbose MergerData
-        MergerData* fMergerData {};
-
         //Store settings read in config file
         bool fShowHistStats {false};
         
@@ -73,11 +68,6 @@ namespace ActRoot
         void Fill();
         void Draw();
         void Reset();
-
-        //SetTPCPhysics for verbose
-        void SetTPCPhysicsPointer(VData* p);
-        void SetMergerData(VData* p);
-
         
     private:
         void SetPalette(const std::string& name, bool reverse = false);

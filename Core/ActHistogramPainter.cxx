@@ -159,7 +159,7 @@ void ActRoot::HistogramPainter::Init()
 void ActRoot::HistogramPainter::Fill()
 {
     // TPC histograms
-    for(auto& voxel : fWrap->GetCurrentTPCData()->fVoxels)
+    for(auto& voxel : fWrap->GetTPCData()->fVoxels)
     {
         // Pad
         fHistTpc[1]->Fill(voxel.GetPosition().X(), voxel.GetPosition().Y(), voxel.GetCharge());
@@ -200,6 +200,12 @@ void ActRoot::HistogramPainter::Draw()
     // Draw also pad
     fCanvs[2]->cd(4);
     fHistTpc[1]->Draw("colz");
+    // Draw also QProfile
+    if(fWrap->GetMergerData())
+    {
+        fCanvs[2]->cd(3);
+        fWrap->GetMergerData()->fQProfile.Draw("hist");
+    }
     fCanvs[2]->Update();
 }
 
@@ -227,6 +233,7 @@ void ActRoot::HistogramPainter::Reset()
         fCanvs[2]->cd(pad)->Modified();
     }
     fCanvs[2]->cd(4)->Modified();
+    fCanvs[2]->cd(3)->Modified();
     fCanvs[2]->Update();
 }
 
@@ -241,8 +248,8 @@ TCanvas* ActRoot::HistogramPainter::SetCanvas(int i, const std::string& title, d
 
 void ActRoot::HistogramPainter::FillSilHisto(int pad, const std::string& layer)
 {
-    auto E {fWrap->GetCurrentSilData()->fSiE[layer]};
-    auto N {fWrap->GetCurrentSilData()->fSiN[layer]};
+    auto E {fWrap->GetSilData()->fSiE[layer]};
+    auto N {fWrap->GetSilData()->fSiN[layer]};
     for(int hit = 0, sizeE = E.size(); hit < sizeE; hit++)
     {
         auto bins {fSilMap[layer][N[hit]]};
@@ -260,31 +267,11 @@ void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2F> h, doub
     h->SetBinContent(xbin, ybin, clusterID + 1);
 }
 
-void ActRoot::HistogramPainter::SetTPCPhysicsPointer(VData* p)
-{
-    auto casted {dynamic_cast<TPCPhysics*>(p)};
-    if(casted)
-    {
-        fTPCPhysics = casted;
-        fTPCPhysics->Print();
-    }
-    else
-        std::cout << "Could not cast pointer to TPCPhysics" << '\n';
-}
-
-void ActRoot::HistogramPainter::SetMergerData(VData* p)
-{
-    if(auto casted {dynamic_cast<MergerData*>(p)}; casted)
-        fMergerData = casted;
-    else
-        std::cout << "Could not cast pointer to MergerData" << '\n';
-}
-
 void ActRoot::HistogramPainter::FillClusterHistos()
 {
-    if(!fTPCPhysics)
+    if(!fWrap->GetTPCPhysics())
         return;
-    for(const auto& cluster : fTPCPhysics->fClusters)
+    for(const auto& cluster : fWrap->GetTPCPhysics()->fClusters)
     {
         for(const auto& voxel : cluster.GetVoxels())
         {
@@ -298,7 +285,7 @@ void ActRoot::HistogramPainter::FillClusterHistos()
         }
     }
     // Set basic parameters to a better visualization of TPaletteAxis
-    int nclusters {static_cast<int>(fTPCPhysics->fClusters.size())};
+    int nclusters {static_cast<int>(fWrap->GetTPCPhysics()->fClusters.size())};
     int min {};
     int max {};
     int ndiv {};
@@ -325,9 +312,9 @@ void ActRoot::HistogramPainter::FillClusterHistos()
 
 void ActRoot::HistogramPainter::DrawPolyLines()
 {
-    if(!fTPCPhysics)
+    if(!fWrap->GetTPCPhysics())
         return;
-    for(const auto& cluster : fTPCPhysics->fClusters)
+    for(const auto& cluster : fWrap->GetTPCPhysics()->fClusters)
     {
         // Pad
         fPolyTpc[4].push_back(
@@ -354,13 +341,13 @@ void ActRoot::HistogramPainter::DrawPolyLines()
 
 void ActRoot::HistogramPainter::DrawPolyMarkers()
 {
-    if(!fTPCPhysics)
+    if(!fWrap->GetTPCPhysics())
         return;
     // Reset and init
     fMarkerTpc[4] = std::make_shared<TPolyMarker>();
     fMarkerTpc[5] = std::make_shared<TPolyMarker>();
     fMarkerTpc[6] = std::make_shared<TPolyMarker>();
-    for(const auto& rp : fTPCPhysics->fRPs)
+    for(const auto& rp : fWrap->GetTPCPhysics()->fRPs)
     {
         // Pad
         fMarkerTpc[4]->SetNextPoint(rp.X(), rp.Y());

@@ -28,12 +28,12 @@ namespace ActRoot
 
     public:
         InputData() = default;
-        InputData(const std::string& file);
+        InputData(const std::string& file, bool outputAsFriend = false);
         ~InputData() = default;
         InputData(const InputData&) = default;
         InputData& operator=(const InputData&) = default;
 
-        void ReadConfiguration(const std::string& file);
+        void ReadConfiguration(const std::string& file, bool outputAsFriend = false);
 
         // Setters
         void SetTreeName(const std::string& treeName) { fTreeName = treeName; };

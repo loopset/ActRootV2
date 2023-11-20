@@ -1,9 +1,11 @@
 #include "ActInputIterator.h"
 
 #include "ActInputData.h"
+#include "ActMergerData.h"
 #include "ActModularData.h"
 #include "ActSilData.h"
 #include "ActTPCData.h"
+#include "ActTPCPhysics.h"
 
 #include <algorithm>
 #include <iostream>
@@ -164,14 +166,7 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input)
-    : fInput(input),
-      fIt(ActRoot::InputIterator(input)),
-      fTPCData(new ActRoot::TPCData),
-      fSilData(new ActRoot::SilData),
-      fModularData(new ActRoot::ModularData)
-{
-}
+ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input) : fInput(input), fIt(ActRoot::InputIterator(input)) {}
 
 bool ActRoot::InputWrapper::GoNext()
 {
@@ -219,7 +214,36 @@ bool ActRoot::InputWrapper::GoTo(int run, int entry)
 
 void ActRoot::InputWrapper::SetBranchAddress(int run)
 {
-    fInput->GetTree(run)->SetBranchAddress("TPCData", &fTPCData);
-    fInput->GetTree(run)->SetBranchAddress("SilData", &fSilData);
-    fInput->GetTree(run)->SetBranchAddress("ModularData", &fModularData);
+    auto tree {fInput->GetTree(run)};
+    // Set branch addresses if branches exists
+    if(tree->FindBranch("TPCData"))
+    {
+        if(!fTPCData)
+            fTPCData = new TPCData;
+        tree->SetBranchAddress("TPCData", &fTPCData);
+    }
+    if(tree->FindBranch("SilData"))
+    {
+        if(!fSilData)
+            fSilData = new SilData;
+        tree->SetBranchAddress("SilData", &fSilData);
+    }
+    if(tree->FindBranch("ModularData"))
+    {
+        if(!fModularData)
+            fModularData = new ModularData;
+        tree->SetBranchAddress("ModularData", &fModularData);
+    }
+    if(tree->FindBranch("TPCPhysics"))
+    {
+        if(!fTPCPhysics)
+            fTPCPhysics = new TPCPhysics;
+        tree->SetBranchAddress("TPCPhysics", &fTPCPhysics);
+    }
+    if(tree->FindBranch("MergerData"))
+    {
+        if(!fMergerData)
+            fMergerData = new MergerData;
+        tree->SetBranchAddress("MergerData", &fMergerData);
+    }
 }

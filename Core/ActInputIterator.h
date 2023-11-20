@@ -1,7 +1,6 @@
 #ifndef ActInputIterator_h
 #define ActInputIterator_h
 
-#include "ActModularData.h"
 #include "ActVData.h"
 
 #include <map>
@@ -13,7 +12,7 @@ namespace ActRoot
     class InputData;
     class InputIterator
     {
-    private: 
+    private:
         int fCurrentRun;
         int fCurrentEntry;
         int fLastRun;
@@ -42,14 +41,22 @@ namespace ActRoot
     // more forward declarations
     class TPCData;
     class SilData;
+    class ModularData;
+    class TPCPhysics;
+    class MergerData;
     class InputWrapper
     {
     private:
-        InputData* fInput;
+        InputData* fInput {};
         InputIterator fIt;
-        TPCData* fTPCData;
-        SilData* fSilData;
-        ModularData* fModularData;
+        // Data
+        TPCData* fTPCData {};
+        SilData* fSilData {};
+        ModularData* fModularData {};
+        // Physics
+        TPCPhysics* fTPCPhysics {};
+        // Merger data
+        MergerData* fMergerData {};
 
     public:
         InputWrapper() = default;
@@ -60,13 +67,22 @@ namespace ActRoot
         bool GoPrevious();
         bool GoTo(int run, int entry);
 
-        // Getters
-        TPCData* GetCurrentTPCData() const { return fTPCData; }
-        SilData* GetCurrentSilData() const { return fSilData; }
-        ModularData* GetCurrentModularData() const { return fModularData; }
+        // Get current data
+        TPCData* GetTPCData() const { return fTPCData; }
+        SilData* GetSilData() const { return fSilData; }
+        ModularData* GetModularData() const { return fModularData; }
+        TPCPhysics* GetTPCPhysics() const { return fTPCPhysics; }
+        MergerData* GetMergerData() const { return fMergerData; }
         std::pair<int, int> GetCurrentStatus() const { return fIt.GetCurrentRunEntry(); }
         const InputIterator& GetIt() const { return fIt; }
         InputData* GetInput() const { return fInput; }
+
+        // Setters of data
+        void SetTPCData(TPCData* data) { fTPCData = data; }
+        void SetSilData(SilData* data) { fSilData = data; }
+        void SetModularData(ModularData* data) { fModularData = data; }
+        void SetTPCPhysics(TPCPhysics* data) { fTPCPhysics = data; }
+        void SetMergerData(MergerData* data) { fMergerData = data; }
 
     private:
         void SetBranchAddress(int run);
