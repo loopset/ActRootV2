@@ -88,6 +88,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a263ead6a33280786e11c09111b16562a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a073a08c8ac0a9b17225fc8e6e27ecbc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputParser.html#a073a08c8ac0a9b17225fc8e6e27ecbc6">Print</a> () const</td></tr>
 <tr class="separator:a073a08c8ac0a9b17225fc8e6e27ecbc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2f69128698a24a410f4740ceecfb77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputParser.html#acb2f69128698a24a410f4740ceecfb77">CheckBlockExists</a> (const std::string &amp;token) const</td></tr>
+<tr class="separator:acb2f69128698a24a410f4740ceecfb77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a171a94bd3f09160982d9402e72176850"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceActRoot.html#a68d199cc2990311709795d0ded060fc2">BlockPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a> (const std::string &amp;header) const</td></tr>
 <tr class="separator:a171a94bd3f09160982d9402e72176850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67d08ebce56f6d35c5c62921a8a0520e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">GetBlockHeaders</a> () const</td></tr>
@@ -161,6 +163,31 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acb2f69128698a24a410f4740ceecfb77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2f69128698a24a410f4740ceecfb77">&#9670;&nbsp;</a></span>CheckBlockExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::InputParser::CheckBlockExists </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;{</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; block : <a class="code" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">fBlocks</a>)</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keywordflow">if</span>(block-&gt;GetBlockName() == token)</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html_a36c4915e95f7984b5a45ef7edd2197c9"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">ActRoot::InputParser::fBlocks</a></div><div class="ttdeci">std::vector&lt; BlockPtr &gt; fBlocks</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:113</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a171a94bd3f09160982d9402e72176850"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a171a94bd3f09160982d9402e72176850">&#9670;&nbsp;</a></span>GetBlock()</h2>
 
@@ -176,13 +203,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;{</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; block : <a class="code" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">fBlocks</a>)</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keywordflow">if</span>(block-&gt;GetBlockName() == token)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">return</span> block;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No token &quot;</span> + token + <span class="stringliteral">&quot; was found in file!&quot;</span>);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html_a36c4915e95f7984b5a45ef7edd2197c9"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">ActRoot::InputParser::fBlocks</a></div><div class="ttdeci">std::vector&lt; BlockPtr &gt; fBlocks</div><div class="ttdef"><b>Definition:</b> ActInputParser.h:113</div></div>
+<div class="fragment"><div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;{</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; block : <a class="code" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">fBlocks</a>)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keywordflow">if</span>(block-&gt;GetBlockName() == token)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <span class="keywordflow">return</span> block;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No token &quot;</span> + token + <span class="stringliteral">&quot; was found in file!&quot;</span>);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -200,14 +226,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;{</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    std::vector&lt;std::string&gt; headers {};</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; block : <a class="code" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">fBlocks</a>)</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        headers.push_back(block-&gt;GetBlockName());</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span> headers;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;{</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    std::vector&lt;std::string&gt; headers {};</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; block : <a class="code" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">fBlocks</a>)</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    {</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        headers.push_back(block-&gt;GetBlockName());</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keywordflow">return</span> headers;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
