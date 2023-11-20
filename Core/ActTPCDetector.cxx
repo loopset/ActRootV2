@@ -17,6 +17,7 @@
 #include "Math/Point3D.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstddef>
 #include <exception>
 #include <functional>
@@ -223,7 +224,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
 
         // Apply rebinning (if desired)
         int binZ {(int)padz / fPars.GetREBINZ()};
-        padz = (float)binZ;//store z as binNumber instead of binCenter
+        padz = (float)binZ; // store z as binNumber instead of binCenter
         // padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
 
         // Build Voxel
@@ -271,7 +272,7 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
     {
         const auto& pos {v.GetPosition()};
         auto ret {(int)pos.X() + fPars.GetNPADSX() * (int)pos.Y() +
-                  fPars.GetNPADSX() * (int)fPars.GetNPADSY() * pos.Z()};
+                  fPars.GetNPADSX() * fPars.GetNPADSY() * (int)pos.Z()};
         return ret;
     };
     auto equal = [](const Voxel& a, const Voxel& b)
@@ -289,6 +290,10 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
     for(const auto& voxel : fData->fVoxels)
         set.insert(voxel);
     // Back to vector!
+    // auto initSize {(int)fData->fVoxels.size()};
+    // auto setSize {(int)set.size()};
+    // if(initSize != setSize)
+    //     std::cout << "Cleaned some voxels! diff : " << (initSize - setSize) << '\n';
     fData->fVoxels.assign(set.begin(), set.end());
 }
 
@@ -310,7 +315,6 @@ void ActRoot::TPCDetector::BuildEventPhysics()
         fMultiStep->SetClusters(&(fPhysics->fClusters));
         fMultiStep->SetRPs(&(fPhysics->fRPs));
         fMultiStep->Run();
-
     }
     else
     {
