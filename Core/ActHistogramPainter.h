@@ -5,6 +5,7 @@
 #include "TH2.h"
 #include "TH2F.h"
 
+#include "ActMergerData.h"
 #include "ActTPCPhysics.h"
 #include "ActSilDetector.h"
 #include "ActTPCDetector.h"
@@ -42,6 +43,8 @@ namespace ActRoot
 
         //Pointer to verbose TPCPhysics!
         TPCPhysics* fTPCPhysics {};
+        //Pointer to verbose MergerData
+        MergerData* fMergerData {};
 
         //Store settings read in config file
         bool fShowHistStats {false};
@@ -73,6 +76,7 @@ namespace ActRoot
 
         //SetTPCPhysics for verbose
         void SetTPCPhysicsPointer(VData* p);
+        void SetMergerData(VData* p);
 
         
     private:

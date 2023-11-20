@@ -2,6 +2,7 @@
 #define ActSilSpecs
 
 #include "ActInputParser.h"
+#include "ActTPCDetector.h"
 
 #include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
@@ -14,6 +15,14 @@
 
 namespace ActPhysics
 {
+    enum class SilSide
+    {
+        ELeft,
+        ERight,
+        EFront,
+        EBack
+    };
+
     //! A class representing a unit of silicon detector: geometry specs
     class SilUnit
     {
@@ -40,9 +49,10 @@ namespace ActPhysics
     private:
         std::map<int, std::pair<double, double>> fPlacements;
         std::map<int, double> fThresholds;
-        SilUnit fUnit;
+        SilUnit fUnit; //!< Specifications of unit silicon
         XYZPoint fPoint;   //!< Point of layer: basically, contains offset
         XYZVector fNormal; //!< Normal vector of silicon plane
+        SilSide fSide; //!< Enum to spec side of layer with respect to ACTAR's frame
 
     public:
         SilLayer() = default;
@@ -63,6 +73,8 @@ namespace ActPhysics
 
         // Other functions of interest
         XYZPoint GetSiliconPointOfTrack(const XYZPoint& point, const XYZVector& vector) const;
+        XYZPoint GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const XYZPoint& point, const XYZVector& vector) const;
+        bool MatchesRealPlacement(int i, const XYZPoint& sp, bool useZ = true) const;
     };
 
     class SilSpecs

@@ -59,6 +59,10 @@ namespace ActRoot
         // Drift conversion
         bool fEnableConversion {};
         double fDriftFactor {};
+        // Matching of silicon placement
+        bool fEnableMatch {};
+        bool fMatchUseZ {};
+        double fZOffset {};
 
         // Store iterators to beam, light and heavy
         decltype(TPCPhysics::fClusters)::iterator fBeamIt;
@@ -106,9 +110,16 @@ namespace ActRoot
         bool GateSilMult();
         bool GateOthers();
         void LightOrHeavy();
+        void ComputeBoundaryPoint();
         void ComputeSiliconPoint();
+        void CorrectZOffset();
+        bool MatchSPtoRealPlacement();
         void ComputeAngles();
+        void ComputeQave();
+        void ComputeQProfile();
         void Reset();
+        //// Even inner functions
+        void MoveZ(XYZPoint& p);
         double GetTheta3D(const XYZVector& beam, const XYZVector& other);
         XYZVector RotateTrack(XYZVector beam, XYZVector track);
         void ScalePoint(XYZPoint& point, float xy, float z);

@@ -8,14 +8,17 @@
 #include "ActSilData.h"
 #include "ActSilDetector.h"
 #include "ActSilSpecs.h"
+#include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActTPCPhysics.h"
 #include "ActVData.h"
 
+#include "TH1.h"
 #include "TMath.h"
 #include "TMathBase.h"
-#include "Math/RotationZYX.h"
 #include "TTree.h"
+
+#include "Math/RotationZYX.h"
 
 #include <algorithm>
 #include <cmath>
@@ -24,6 +27,7 @@
 #include <iostream>
 #include <iterator>
 #include <memory>
+#include <numeric>
 #include <set>
 #include <string>
 #include <utility>
@@ -51,6 +55,13 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fEnableConversion = block->GetBool("EnableConversion");
     if(block->CheckTokenExists("DriftFactor"))
         fDriftFactor = block->GetDouble("DriftFactor");
+    // Match SP to real placement
+    if(block->CheckTokenExists("EnableMatch"))
+        fEnableMatch = block->GetBool("EnableMatch");
+    if(block->CheckTokenExists("MatchUseZ"))
+        fMatchUseZ = block->GetBool("MatchUseZ");
+    if(block->CheckTokenExists("ZOffset"))
+        fZOffset = block->GetDouble("ZOffset");
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -115,13 +126,30 @@ void ActRoot::MergerDetector::MergeEvent()
     //
     // 2-> Identify light and heavy
     LightOrHeavy();
-    // 3-> Compute SP
+    // 3-> Compute SP and BP
+    ComputeBoundaryPoint();
     ComputeSiliconPoint();
     // 4-> Scale points to physical dimensions
     // if conversion is disabled, no further steps can be done!
     if(!fEnableConversion)
         return;
     ConvertToPhysicalUnits();
+    // 5-> Match or not to silicon real placement
+    if(fEnableMatch)
+    {
+        if(fMatchUseZ)
+            CorrectZOffset();
+        if(!MatchSPtoRealPlacement())
+        {
+            fMergerData->Clear();
+            return;
+        }
+    }
+    // 6-> Get angles
+    ComputeAngles();
+    // 7-> Qave and charge profile computations
+    ComputeQave();
+    ComputeQProfile();
 }
 
 bool ActRoot::MergerDetector::IsDoable()
@@ -255,11 +283,44 @@ void ActRoot::MergerDetector::LightOrHeavy()
 
 void ActRoot::MergerDetector::ComputeSiliconPoint()
 {
-    fMergerData->fSP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-                           .GetSiliconPointOfTrack(fMergerData->fRP, fLightIt->GetLine().GetDirection().Unit());
+    fMergerData->fSP =
+        fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+            .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection().Unit());
     // Redefine signs just in case
     fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
     // fMergerData->Print();
+    // And compute track length
+    fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+}
+
+void ActRoot::MergerDetector::MoveZ(XYZPoint& p)
+{
+    p.SetZ(p.Z() + fZOffset);
+}
+
+void ActRoot::MergerDetector::CorrectZOffset()
+{
+    // Basically for all points
+    // 1-> RP
+    MoveZ(fMergerData->fRP);
+    // 2-> SP
+    MoveZ(fMergerData->fSP);
+    // 3-> Por all iterators
+    for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
+    {
+        auto p {it->GetLine().GetPoint()};
+        MoveZ(p);
+        it->GetRefToLine().SetPoint(p);
+    }
+}
+
+bool ActRoot::MergerDetector::MatchSPtoRealPlacement()
+{
+    // Use only first value in std::vector<int> of Ns
+    auto n {fMergerData->fSilNs.front()};
+    auto layer {fMergerData->fSilLayers.front()};
+    // And check!
+    return fSilSpecs->GetLayer(layer).MatchesRealPlacement(n, fMergerData->fSP, fMatchUseZ);
 }
 
 ActRoot::MergerDetector::XYZVector ActRoot::MergerDetector::RotateTrack(XYZVector beam, XYZVector track)
@@ -271,7 +332,7 @@ ActRoot::MergerDetector::XYZVector ActRoot::MergerDetector::RotateTrack(XYZVecto
     auto z {TMath::ATan2(beam.Y(), beam.X())};
     auto y {TMath::ATan2(beam.Z(), beam.X())};
     auto x {TMath::ATan2(beam.Z(), beam.Y())};
-    
+
     ROOT::Math::RotationZYX rot {-z, -y, -x}; // following ACTAR's ref frame
     return rot(track).Unit();
 }
@@ -288,11 +349,86 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
     // Convert points
     auto xy {fTPCPars->GetPadSide()};
     ScalePoint(fMergerData->fRP, xy, fDriftFactor);
+    ScalePoint(fMergerData->fBP, xy, fDriftFactor);
     ScalePoint(fMergerData->fSP, xy, fDriftFactor);
 
     // Scale Line in Clusters
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
         it->GetRefToLine().Scale(xy, fDriftFactor);
+
+    // And recompute track length
+    fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+}
+
+void ActRoot::MergerDetector::ComputeAngles()
+{
+    // Using the simpler 3D version
+    auto theta {TMath::ACos(fBeamIt->GetLine().GetDirection().Unit().Dot(fLightIt->GetLine().GetDirection().Unit()))};
+    theta *= TMath::RadToDeg();
+    // For phi, we use {0, 0, 1} as reference
+    auto phi {TMath::ACos(XYZVector {0, 0, 1}.Dot(fLightIt->GetLine().GetDirection().Unit()))};
+    phi *= TMath::RadToDeg();
+    // Write to MergerData
+    fMergerData->fThetaLight = theta;
+    fMergerData->fPhiLight = phi;
+}
+
+void ActRoot::MergerDetector::ComputeBoundaryPoint()
+{
+    fMergerData->fBP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+                           .GetBoundaryPointOfTrack(fTPCPars, fLightIt->GetLine().GetPoint(),
+                                                    fLightIt->GetLine().GetDirection().Unit());
+}
+
+void ActRoot::MergerDetector::ComputeQave()
+{
+    std::sort(fLightIt->GetRefToVoxels().begin(), fLightIt->GetRefToVoxels().end());
+    // Get min
+    auto min {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
+    auto max {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().back().GetPosition())};
+    // Convert them to physical points
+    ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
+    ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
+    // Dist in mm
+    auto dist {(max - min).R()};
+    // Sum to obtain total Q
+    auto qTotal {std::accumulate(fLightIt->GetVoxels().begin(), fLightIt->GetVoxels().end(), 0.f,
+                                 [](float sum, const Voxel& v) { return sum + v.GetCharge(); })};
+    fMergerData->fQave = qTotal / dist;
+}
+
+void ActRoot::MergerDetector::ComputeQProfile()
+{
+    // 0-> Init histogram
+    fMergerData->fQProfile = TH1F("hQProfile", "QProfile", 100, -5, 150);
+    // Voxels should be already ordered
+    // 1-> Ref point is vector.begin() projection on line
+    auto ref {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
+    // Convert to physical units
+    ScalePoint(ref, fTPCPars->GetPadSide(), fDriftFactor);
+    // Use 3 divisions in voxel to obtain a better profile
+    float div {1.f / 3};
+    for(const auto& v : fLightIt->GetVoxels())
+    {
+        const auto& pos {v.GetPosition()};
+        auto q {v.GetCharge()};
+        // Run for 3 divisions
+        for(int ix = -1; ix < 2; ix++)
+        {
+            for(int iy = -1; iy < 2; iy++)
+            {
+                for(int iz = -1; iz < 2; iz++)
+                {
+                    XYZPoint bin {pos.X() + ix * div, pos.Y() + iy * div, pos.Z() + iz * div};
+                    // Project it on line
+                    auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
+                    ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
+                    auto dist {(proj - ref).R()};
+                    fMergerData->fQProfile.Fill(dist, q / 27);
+                }
+            }
+        }
+    }
 }
 
 void ActRoot::MergerDetector::ClearOutputMerger()
@@ -317,6 +453,9 @@ void ActRoot::MergerDetector::Print() const
         std::cout << m << ", ";
     std::cout << '\n';
     std::cout << "-> GateRPX       : " << fGateRPX << '\n';
+    std::cout << "-> EnableMatch   : " << std::boolalpha << fEnableMatch << '\n';
+    std::cout << "-> MatchUseZ     : " << std::boolalpha << fMatchUseZ << '\n';
+    std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }

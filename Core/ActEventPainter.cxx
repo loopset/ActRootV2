@@ -171,11 +171,11 @@ void ActRoot::EventPainter::InitTabs()
     fTabManager = new TGTab(this, 500, 400);
     AddFrame(fTabManager, new TGLayoutHints(kLHintsTop | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
     // Tab 1
-    fTab1 = fTabManager->AddTab("2D histos");
+    fTab1 = fTabManager->AddTab("TPC & clusters");
     fFrame1 = new TGCompositeFrame(fTab1, 500, 400, kHorizontalFrame);
     fTab1->AddFrame(fFrame1, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
     // Tab 2
-    fTab2 = fTabManager->AddTab("future");
+    fTab2 = fTabManager->AddTab("Sil & others");
     fFrame2 = new TGCompositeFrame(fTab2, 500, 400, kHorizontalFrame);
     fTab2->AddFrame(fFrame2, new TGLayoutHints(kLHintsTop | kLHintsLeft | kLHintsExpandX | kLHintsExpandY, 2, 2, 0, 0));
     // Map all

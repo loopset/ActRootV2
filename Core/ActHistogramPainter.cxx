@@ -3,6 +3,7 @@
 #include "ActColors.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
+#include "ActMergerData.h"
 #include "ActTPCData.h"
 #include "ActTPCPhysics.h"
 
@@ -269,6 +270,14 @@ void ActRoot::HistogramPainter::SetTPCPhysicsPointer(VData* p)
     }
     else
         std::cout << "Could not cast pointer to TPCPhysics" << '\n';
+}
+
+void ActRoot::HistogramPainter::SetMergerData(VData* p)
+{
+    if(auto casted {dynamic_cast<MergerData*>(p)}; casted)
+        fMergerData = casted;
+    else
+        std::cout << "Could not cast pointer to MergerData" << '\n';
 }
 
 void ActRoot::HistogramPainter::FillClusterHistos()
