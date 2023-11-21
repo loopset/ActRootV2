@@ -211,15 +211,15 @@ bool ActRoot::MergerDetector::GateSilMult()
     // 1-> Apply finer thresholds in SilSpecs
     fSilData->ApplyFinerThresholds(fSilSpecs);
     // 2-> Check and write silicon data
-    int withE {};
+    int withHits {};
     int withMult {};
     for(const auto& layer : fGatMap[(int)fModularData->Get("GATCONF")])
     {
-        // Only check mult of layers with E >  threshold!
+        // Check only layers with hits over threshold!
         if(int mult {fSilData->GetMult(layer)}; mult > 0)
         {
-            withE++;
-            if(mult == 1)
+            withHits++;
+            if(mult == 1) // and now add to multiplicity == 1 counter
             {
                 withMult++;
                 // Write data
@@ -229,7 +229,8 @@ bool ActRoot::MergerDetector::GateSilMult()
             }
         }
     }
-    return withE == withMult;
+    return (withHits == withMult) &&
+           (withHits > 0); // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
 }
 
 bool ActRoot::MergerDetector::GateOthers()
