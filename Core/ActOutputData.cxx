@@ -76,11 +76,12 @@ void ActRoot::OutputData::Close(int run)
     // Write to file assigned to tree in run
     // option kWriteDelete erases previous cycle metadata
     // keeping only the highest
-    // fFiles[run]->cd();
-    // fTrees[run]->Write("", TObject::kWriteDelete);
     fFiles[run]->Write("", TObject::kWriteDelete);
     // Close file
     fFiles[run]->Close();
+    // Delete pointers
+    fTrees[run].reset();
+    fFiles[run].reset();
 }
 
 void ActRoot::OutputData::WriteMetadata(const std::string& file, const std::string& description)

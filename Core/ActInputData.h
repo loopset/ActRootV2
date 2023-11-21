@@ -47,6 +47,9 @@ namespace ActRoot
         int GetNEntries(int run) const { return fTrees.at(run)->GetEntries(); }
         const std::map<int, std::vector<int>>& GetManualEntries() const { return fManualEntries; }
 
+        // Close files once processed
+        void Close(int run);
+
     private:
         void AddFile(int run, const std::string& file);
         void AddFriend(std::shared_ptr<InputBlock> fb);

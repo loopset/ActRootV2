@@ -8,11 +8,14 @@
 
 #include "TROOT.h"
 #include "TStopwatch.h"
+#include "TString.h"
+#include "TTree.h"
 
 #include "BS_thread_pool.h"
 
 #include <iomanip>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <thread>
 #include <utility>
@@ -109,7 +112,6 @@ void ActRoot::MTExecutor::BuildEventData()
         // ftpcout.println("Running thread ",thread);
         for(const auto& run : fRunsPerThread[thread])
         {
-            // ftpcout.println("->Run ", run);
             fDetMans[thread].InitializeDataInputRaw(fInput->GetTree(run), run);
             fDetMans[thread].InitializeDataOutput(fOutput->GetTree(run));
             auto nentries {fInput->GetNEntries(run)};
@@ -123,6 +125,7 @@ void ActRoot::MTExecutor::BuildEventData()
                 PrintProgress(thread, run, entry + 1, nentries);
             }
             fOutput->Close(run);
+            fInput->Close(run);
         }
     };
     // And push to ThreadPool!
@@ -161,6 +164,7 @@ void ActRoot::MTExecutor::BuildEventPhysics()
                 PrintProgress(thread, run, entry + 1, nentries);
             }
             fOutput->Close(run);
+            fInput->Close(run);
         }
     };
     // And push to ThreadPool!
@@ -199,6 +203,7 @@ void ActRoot::MTExecutor::BuildEventMerger()
                 PrintProgress(thread, run, entry + 1, nentries);
             }
             fOutput->Close(run);
+            fInput->Close(run);
         }
     };
     // And push to ThreadPool!
