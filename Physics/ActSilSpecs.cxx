@@ -165,3 +165,15 @@ void ActPhysics::SilSpecs::ReadFile(const std::string& file)
         fLayers[name] = layer;
     }
 }
+
+const ActPhysics::SilLayer& ActPhysics::SilSpecs::GetLayer(const std::string& name)
+{
+    try
+    {
+        return fLayers.at(name);
+    }
+    catch(std::exception& e)
+    {
+        throw std::runtime_error("Could not locate layer : " + name);
+    }
+}

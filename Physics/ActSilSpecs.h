@@ -85,7 +85,7 @@ namespace ActPhysics
     public:
         void ReadFile(const std::string& file);
         void Print() const;
-        const SilLayer& GetLayer(const std::string& name) { return fLayers[name]; }
+        const SilLayer& GetLayer(const std::string& name);
     };
 } // namespace ActPhysics
 
