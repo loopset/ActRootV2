@@ -432,7 +432,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
                     ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
                     auto dist {(proj - ref).R()};
-                    fMergerData->fQProfile.Fill(dist, q / 27);
+                    // fMergerData->fQProfile.Fill(dist, q / 27);
                 }
             }
         }
