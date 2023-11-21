@@ -22,6 +22,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -388,7 +389,7 @@ void ActRoot::MergerDetector::ComputeBoundaryPoint()
 void ActRoot::MergerDetector::ComputeQave()
 {
     std::sort(fLightIt->GetRefToVoxels().begin(), fLightIt->GetRefToVoxels().end());
-    // Get min
+    // Get min 
     auto min {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
     auto max {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().back().GetPosition())};
     // Convert them to physical points

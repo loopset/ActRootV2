@@ -1031,25 +1031,29 @@ void ActCluster::MultiStep::PerformFinerFits()
         // Get pivot points, according to position respect to RP
         // auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
-        // Remove points outside regions
-        refVoxels.erase(std::remove_if(refVoxels.begin(), refVoxels.end(),
-                                       [&](const ActRoot::Voxel& voxel)
-                                       {
-                                           const auto& pos {voxel.GetPosition()};
-                                           auto point {pos + XYZVector {0.5, 0.5, 0.5}};
-                                           auto proj {line.ProjectionPointOnLine(point)};
-                                           bool isInCapInit {(proj - projInit).R() <= fRPPivotDist};
-                                           bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist};
-                                           return isInCapInit || isInCapEnd;
-                                       }),
-                        refVoxels.end());
+        // Get iterator to last element to be kept
+        auto itDelete {std::remove_if(refVoxels.begin(), refVoxels.end(),
+                                      [&](const ActRoot::Voxel& voxel)
+                                      {
+                                          const auto& pos {voxel.GetPosition()};
+                                          auto point {pos + XYZVector {0.5, 0.5, 0.5}};
+                                          auto proj {line.ProjectionPointOnLine(point)};
+                                          bool isInCapInit {(proj - projInit).R() <= fRPPivotDist};
+                                          bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist};
+                                          return isInCapInit || isInCapEnd;
+                                      })};
+        auto afterSize {std::distance(refVoxels.begin(), itDelete)};
         // Refit if enough voxels remain
-        if(refVoxels.size() > fClimb->GetMinPoints())
+        if(afterSize > fClimb->GetMinPoints())
         {
+            // indeed remove voxels
+            refVoxels.erase(itDelete, refVoxels.end());
+            // and refit
             it->ReFit();
             it->ReFillSets();
         }
-        // Else, keep old fit... have to check whether this is fine... we should not delete voxels in this case
+        else
+            ; // Else, do not delete and keep old fit
         //  Print
         if(fIsVerbose)
         {
