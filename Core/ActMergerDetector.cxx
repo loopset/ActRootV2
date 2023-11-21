@@ -434,6 +434,9 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     auto dist {(proj - ref).R()};
                     if(std::isfinite(dist) && std::isfinite(q))
                         fMergerData->fQProfile.Fill(dist, q / 27);
+                    // we have a weird segmentation fault (only in MT mode?!) when not checking for NaN is dist or q
+                    // the log yields some warning from the TH1::Sumw2 func... something wrong with q?
+                    // must be checked in the future
                 }
             }
         }
