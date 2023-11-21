@@ -389,7 +389,7 @@ void ActRoot::MergerDetector::ComputeBoundaryPoint()
 void ActRoot::MergerDetector::ComputeQave()
 {
     std::sort(fLightIt->GetRefToVoxels().begin(), fLightIt->GetRefToVoxels().end());
-    // Get min 
+    // Get min
     auto min {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
     auto max {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().back().GetPosition())};
     // Convert them to physical points
@@ -432,7 +432,11 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
                     ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
                     auto dist {(proj - ref).R()};
-                    // fMergerData->fQProfile.Fill(dist, q / 27);
+                    if(!std::isfinite(dist))
+                        std::cout << "dist is nan" << '\n';
+                    if(!std::isfinite(q))
+                        std::cout << "q is nan" << '\n';
+                    fMergerData->fQProfile.Fill(dist, q / 27);
                 }
             }
         }
