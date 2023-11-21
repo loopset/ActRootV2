@@ -108,6 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af15abe9b19269234cda2031b4fa277f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3e094e41af6a493e163b0c308715372"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, std::vector&lt; int &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputData.html#ac3e094e41af6a493e163b0c308715372">GetManualEntries</a> () const</td></tr>
 <tr class="separator:ac3e094e41af6a493e163b0c308715372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ab5b41327518cc55e9f355c75068fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputData.html#a80ab5b41327518cc55e9f355c75068fb">Close</a> (int run)</td></tr>
+<tr class="separator:a80ab5b41327518cc55e9f355c75068fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -381,6 +383,30 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    streamer.close();</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_aebf4e03e5fecfd2b8db38bbaf6c1b363"><div class="ttname"><a href="classActRoot_1_1InputData.html#aebf4e03e5fecfd2b8db38bbaf6c1b363">ActRoot::InputData::fManualEntries</a></div><div class="ttdeci">std::map&lt; int, std::vector&lt; int &gt; &gt; fManualEntries</div><div class="ttdef"><b>Definition:</b> ActInputData.h:24</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a80ab5b41327518cc55e9f355c75068fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ab5b41327518cc55e9f355c75068fb">&#9670;&nbsp;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::InputData::Close </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run].reset();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run]-&gt;Close();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run].reset();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
