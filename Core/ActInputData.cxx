@@ -126,7 +126,5 @@ void ActRoot::InputData::AddManualEntries(const std::string& file)
 void ActRoot::InputData::Close(int run)
 {
     fTrees[run].reset();
-    fFiles[run]->Close();
     fFiles[run].reset();
-
 }
