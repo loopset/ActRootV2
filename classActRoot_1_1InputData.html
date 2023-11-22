@@ -191,7 +191,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a71ae7e6129821c99f8cebf9a8c5405ca">ReadConfiguration</a>(file, outputAsFriend);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a71ae7e6129821c99f8cebf9a8c5405ca"><div class="ttname"><a href="classActRoot_1_1InputData.html#a71ae7e6129821c99f8cebf9a8c5405ca">ActRoot::InputData::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file, bool outputAsFriend=false)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:37</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a71ae7e6129821c99f8cebf9a8c5405ca"><div class="ttname"><a href="classActRoot_1_1InputData.html#a71ae7e6129821c99f8cebf9a8c5405ca">ActRoot::InputData::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(const std::string &amp;file, bool outputAsFriend=false)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:38</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -290,7 +290,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run]-&gt;IsZombie())</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;This file isZombie!&quot;</span>);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run] = std::shared_ptr&lt;TTree&gt;(<a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run]-&gt;Get&lt;TTree&gt;(<a class="code" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">fTreeName</a>.data()));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run]-&gt;SetDirectory(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a3a901f9c5b6c45014a926a8b6bf3c5fa"><div class="ttname"><a href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">ActRoot::InputData::fFiles</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TFile &gt; &gt; fFiles</div><div class="ttdef"><b>Definition:</b> ActInputData.h:22</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a68aecdcd1b2f365219a72181877c36f6"><div class="ttname"><a href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">ActRoot::InputData::fTreeName</a></div><div class="ttdeci">std::string fTreeName</div><div class="ttdef"><b>Definition:</b> ActInputData.h:25</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_aadfbb25daffc9731aefa29150b088d1a"><div class="ttname"><a href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">ActRoot::InputData::fTrees</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; TTree &gt; &gt; fTrees</div><div class="ttdef"><b>Definition:</b> ActInputData.h:23</div></div>
@@ -320,22 +321,22 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Process keys in the same way as InputData</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">auto</span> tree {fb-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>)};</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a> = tree;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">auto</span> path {fb-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">auto</span> name {fb-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    std::string end {};</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span>(fb-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        end = fb-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), name.c_str(), run, end.c_str())};</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run]-&gt;AddFriend(<a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a>.c_str(), fullname.Data());</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Adding Friend TTree &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a> &lt;&lt; <span class="stringliteral">&quot; in &quot;</span> &lt;&lt; fullname &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Process keys in the same way as InputData</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">auto</span> tree {fb-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>)};</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a> = tree;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">auto</span> path {fb-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">auto</span> name {fb-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    std::string end {};</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span>(fb-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        end = fb-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), name.c_str(), run, end.c_str())};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run]-&gt;AddFriend(<a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a>.c_str(), fullname.Data());</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Adding Friend TTree &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">fFriendName</a> &lt;&lt; <span class="stringliteral">&quot; in &quot;</span> &lt;&lt; fullname &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_aed608cf97c325955bffa7678839d74f6"><div class="ttname"><a href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">ActRoot::InputData::fRuns</a></div><div class="ttdeci">std::vector&lt; int &gt; fRuns</div><div class="ttdef"><b>Definition:</b> ActInputData.h:21</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_af07b81cc4fb64b391c83482cd7cd17bd"><div class="ttname"><a href="classActRoot_1_1InputData.html#af07b81cc4fb64b391c83482cd7cd17bd">ActRoot::InputData::fFriendName</a></div><div class="ttdeci">std::string fFriendName</div><div class="ttdef"><b>Definition:</b> ActInputData.h:26</div></div>
 </div><!-- fragment -->
@@ -364,24 +365,24 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Read file</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    std::ifstream streamer {file.c_str()};</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not open InputData::ManualEntries file&quot;</span>);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">int</span> run {};</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">int</span> entry {};</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">while</span>(streamer &gt;&gt; run &gt;&gt; entry)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// Check if run is in list</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">bool</span> isKnown {std::find(<a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.begin(), <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end(), run) != <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end()};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span>(!isKnown)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">// Add to map</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#aebf4e03e5fecfd2b8db38bbaf6c1b363">fManualEntries</a>[run].push_back(entry);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    streamer.close();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// Read file</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    std::ifstream streamer {file.c_str()};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not open InputData::ManualEntries file&quot;</span>);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">int</span> run {};</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">int</span> entry {};</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">while</span>(streamer &gt;&gt; run &gt;&gt; entry)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="comment">// Check if run is in list</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">bool</span> isKnown {std::find(<a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.begin(), <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end(), run) != <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end()};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">if</span>(!isKnown)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// Add to map</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#aebf4e03e5fecfd2b8db38bbaf6c1b363">fManualEntries</a>[run].push_back(entry);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    streamer.close();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_aebf4e03e5fecfd2b8db38bbaf6c1b363"><div class="ttname"><a href="classActRoot_1_1InputData.html#aebf4e03e5fecfd2b8db38bbaf6c1b363">ActRoot::InputData::fManualEntries</a></div><div class="ttdeci">std::map&lt; int, std::vector&lt; int &gt; &gt; fManualEntries</div><div class="ttdef"><b>Definition:</b> ActInputData.h:24</div></div>
 </div><!-- fragment -->
 </div>
@@ -401,10 +402,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run].reset();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run].reset();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run]-&gt;Close();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run].reset();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a3a901f9c5b6c45014a926a8b6bf3c5fa">fFiles</a>[run].reset();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -433,9 +435,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run]-&gt;GetEntry(entry);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aadfbb25daffc9731aefa29150b088d1a">fTrees</a>[run]-&gt;GetEntry(entry);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -622,55 +624,55 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;InputData&quot;</span>)};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Keys available in file</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::vector&lt;std::string&gt; keys {<span class="stringliteral">&quot;TreeName&quot;</span>, <span class="stringliteral">&quot;FilePath&quot;</span>,  <span class="stringliteral">&quot;FileBegin&quot;</span>,    <span class="stringliteral">&quot;FileList&quot;</span>,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                   <span class="stringliteral">&quot;FileEnd&quot;</span>,  <span class="stringliteral">&quot;HasFriend&quot;</span>, <span class="stringliteral">&quot;ManualEntries&quot;</span>};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Set input data</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">auto</span> tree {block-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>)};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">fTreeName</a> = tree;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">auto</span> path {block-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">auto</span> name {block-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a> = block-&gt;GetIntVector(<span class="stringliteral">&quot;FileList&quot;</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string end {};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        end = block-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;HasFriend&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a4b5cc84e14e896da124041078eb9e48b">fHasFriend</a> = block-&gt;GetBool(<span class="stringliteral">&quot;HasFriend&quot;</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Add option to exclude some runs from run list</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;ExcludeList&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">auto</span> ex {block-&gt;GetIntVector(<span class="stringliteral">&quot;ExcludeList&quot;</span>)};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// Delete them from fRuns</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; e : ex)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keyword">auto</span> it {std::find(<a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.begin(), <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end(), e)};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span>(it != <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end())</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.erase(it);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Add files!</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), name.c_str(), run, end.c_str())};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876">AddFile</a>(run, fullname.Data());</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Add FriendData object if desired</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputData.html#a4b5cc84e14e896da124041078eb9e48b">fHasFriend</a>)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">AddFriend</a>(parser.GetBlock(<span class="stringliteral">&quot;FriendData&quot;</span>));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Use output olso as a friend (only accesible in macro; no file key to do this)</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span>(outputAsFriend)</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">AddFriend</a>(parser.GetBlock(<span class="stringliteral">&quot;OutputData&quot;</span>));</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// Use manual entries mode</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;ManualEntries&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a9edfbefb6f63133d1c1b625932597901">AddManualEntries</a>(block-&gt;GetString(<span class="stringliteral">&quot;ManualEntries&quot;</span>));</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;InputData&quot;</span>)};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Keys available in file</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::vector&lt;std::string&gt; keys {<span class="stringliteral">&quot;TreeName&quot;</span>, <span class="stringliteral">&quot;FilePath&quot;</span>,  <span class="stringliteral">&quot;FileBegin&quot;</span>,    <span class="stringliteral">&quot;FileList&quot;</span>,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                   <span class="stringliteral">&quot;FileEnd&quot;</span>,  <span class="stringliteral">&quot;HasFriend&quot;</span>, <span class="stringliteral">&quot;ManualEntries&quot;</span>};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Set input data</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">auto</span> tree {block-&gt;GetString(<span class="stringliteral">&quot;TreeName&quot;</span>)};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#a68aecdcd1b2f365219a72181877c36f6">fTreeName</a> = tree;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">auto</span> path {block-&gt;GetString(<span class="stringliteral">&quot;FilePath&quot;</span>)};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">auto</span> name {block-&gt;GetString(<span class="stringliteral">&quot;FileBegin&quot;</span>)};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a> = block-&gt;GetIntVector(<span class="stringliteral">&quot;FileList&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string end {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;FileEnd&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        end = block-&gt;GetString(<span class="stringliteral">&quot;FileEnd&quot;</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;HasFriend&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a4b5cc84e14e896da124041078eb9e48b">fHasFriend</a> = block-&gt;GetBool(<span class="stringliteral">&quot;HasFriend&quot;</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Add option to exclude some runs from run list</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;ExcludeList&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">auto</span> ex {block-&gt;GetIntVector(<span class="stringliteral">&quot;ExcludeList&quot;</span>)};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="comment">// Delete them from fRuns</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; e : ex)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keyword">auto</span> it {std::find(<a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.begin(), <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end(), e)};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span>(it != <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.end())</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>.erase(it);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Add files!</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6">fRuns</a>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">auto</span> fullname {TString::Format(<span class="stringliteral">&quot;%s%s%04d%s.root&quot;</span>, path.c_str(), name.c_str(), run, end.c_str())};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876">AddFile</a>(run, fullname.Data());</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Add FriendData object if desired</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1InputData.html#a4b5cc84e14e896da124041078eb9e48b">fHasFriend</a>)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">AddFriend</a>(parser.GetBlock(<span class="stringliteral">&quot;FriendData&quot;</span>));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Use output olso as a friend (only accesible in macro; no file key to do this)</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span>(outputAsFriend)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">AddFriend</a>(parser.GetBlock(<span class="stringliteral">&quot;OutputData&quot;</span>));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Use manual entries mode</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;ManualEntries&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="classActRoot_1_1InputData.html#a9edfbefb6f63133d1c1b625932597901">AddManualEntries</a>(block-&gt;GetString(<span class="stringliteral">&quot;ManualEntries&quot;</span>));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a422df4b022acf17702bea913a198b876"><div class="ttname"><a href="classActRoot_1_1InputData.html#a422df4b022acf17702bea913a198b876">ActRoot::InputData::AddFile</a></div><div class="ttdeci">void AddFile(int run, const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:24</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputData_html_a4b5cc84e14e896da124041078eb9e48b"><div class="ttname"><a href="classActRoot_1_1InputData.html#a4b5cc84e14e896da124041078eb9e48b">ActRoot::InputData::fHasFriend</a></div><div class="ttdeci">bool fHasFriend</div><div class="ttdef"><b>Definition:</b> ActInputData.h:27</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a7fc0594cdf0301c1d0cdb35ffd55854f"><div class="ttname"><a href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">ActRoot::InputData::AddFriend</a></div><div class="ttdeci">void AddFriend(std::shared_ptr&lt; InputBlock &gt; fb)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:89</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a9edfbefb6f63133d1c1b625932597901"><div class="ttname"><a href="classActRoot_1_1InputData.html#a9edfbefb6f63133d1c1b625932597901">ActRoot::InputData::AddManualEntries</a></div><div class="ttdeci">void AddManualEntries(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:107</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a7fc0594cdf0301c1d0cdb35ffd55854f"><div class="ttname"><a href="classActRoot_1_1InputData.html#a7fc0594cdf0301c1d0cdb35ffd55854f">ActRoot::InputData::AddFriend</a></div><div class="ttdeci">void AddFriend(std::shared_ptr&lt; InputBlock &gt; fb)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:90</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a9edfbefb6f63133d1c1b625932597901"><div class="ttname"><a href="classActRoot_1_1InputData.html#a9edfbefb6f63133d1c1b625932597901">ActRoot::InputData::AddManualEntries</a></div><div class="ttdeci">void AddManualEntries(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:108</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:111</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:320</div></div>
 </div><!-- fragment -->
