@@ -76,10 +76,8 @@ void ActRoot::OutputData::Close(int run)
     // Write to file assigned to tree in run
     // option kWriteDelete erases previous cycle metadata
     // keeping only the highest
-    fFiles[run]->Write("", TObject::kWriteDelete);
-    // Close file
-    fFiles[run]->Close();
-    // Delete pointers
+    fFiles[run]->Write();
+    // Delete pointers (automatically calls destructor)
     fTrees[run].reset();
     fFiles[run].reset();
 }

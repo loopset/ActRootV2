@@ -80,6 +80,11 @@ void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
 
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
 {
+    // Disable branch of TPCData::fVoxels... 
+    // SetBranchStatus does not work with TPCData.fClusters...
+    // You need to specify the _member_name !!!
+    tree->SetBranchStatus("fVoxels*", false);
+    
     // TPC physics
     if(fTPCPhyiscs)
         delete fTPCPhyiscs;
@@ -97,9 +102,6 @@ void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
         delete fModularData;
     fModularData = new ModularData;
     tree->SetBranchAddress("ModularData", &fModularData);
-
-    // Disable TPCData: we only need clusters
-    tree->SetBranchStatus("TPCData", false);
 }
 
 void ActRoot::MergerDetector::InitOutputMerger(std::shared_ptr<TTree> tree)

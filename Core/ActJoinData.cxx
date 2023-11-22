@@ -5,6 +5,7 @@
 #include "TChain.h"
 #include "TString.h"
 
+#include <algorithm>
 #include <memory>
 #include <string>
 
@@ -29,6 +30,18 @@ void ActRoot::JoinData::ReadFile(const std::string& file)
     // Get input data to get run list
     auto in {parser.GetBlock("InputData")};
     auto runs {in->GetIntVector("FileList")};
+
+    // Delete any excluded run from list
+    if(in->CheckTokenExists("ExcludeList"))
+    {
+        auto toDelete {in->GetIntVector("ExcludeList")};
+        for(const auto& run : toDelete)
+        {
+            auto it {std::find(runs.begin(), runs.end(), run)};
+            if(it != runs.end())
+                runs.erase(it);
+        }
+    }
 
     // Init classes
     fChain = std::make_shared<TChain>(tree.c_str());
