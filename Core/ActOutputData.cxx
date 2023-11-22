@@ -78,6 +78,7 @@ void ActRoot::OutputData::Close(int run)
     // keeping only the highest
     fFiles[run]->Write();
     // Delete pointers (automatically calls destructor)
+    fFiles[run]->Close();
     fTrees[run].reset();
     fFiles[run].reset();
 }

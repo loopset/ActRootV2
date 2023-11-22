@@ -32,6 +32,7 @@ void ActRoot::InputData::AddFile(int run, const std::string& file)
     if(fFiles[run]->IsZombie())
         throw std::runtime_error("This file isZombie!");
     fTrees[run] = std::shared_ptr<TTree>(fFiles[run]->Get<TTree>(fTreeName.data()));
+    fTrees[run]->SetDirectory(nullptr);
 }
 
 void ActRoot::InputData::ReadConfiguration(const std::string& file, bool outputAsFriend)
@@ -125,6 +126,7 @@ void ActRoot::InputData::AddManualEntries(const std::string& file)
 }
 void ActRoot::InputData::Close(int run)
 {
+    fFiles[run]->Close();
     fTrees[run].reset();
     fFiles[run].reset();
 }
