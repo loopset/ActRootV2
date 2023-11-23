@@ -42,7 +42,6 @@ namespace ActRoot
     class TPCData;
     class SilData;
     class ModularData;
-    class TPCPhysics;
     class MergerData;
     class InputWrapper
     {
@@ -53,8 +52,6 @@ namespace ActRoot
         TPCData* fTPCData {};
         SilData* fSilData {};
         ModularData* fModularData {};
-        // Physics
-        TPCPhysics* fTPCPhysics {};
         // Merger data
         MergerData* fMergerData {};
 
@@ -71,7 +68,6 @@ namespace ActRoot
         TPCData* GetTPCData() const { return fTPCData; }
         SilData* GetSilData() const { return fSilData; }
         ModularData* GetModularData() const { return fModularData; }
-        TPCPhysics* GetTPCPhysics() const { return fTPCPhysics; }
         MergerData* GetMergerData() const { return fMergerData; }
         std::pair<int, int> GetCurrentStatus() const { return fIt.GetCurrentRunEntry(); }
         const InputIterator& GetIt() const { return fIt; }
@@ -81,7 +77,6 @@ namespace ActRoot
         void SetTPCData(TPCData* data) { fTPCData = data; }
         void SetSilData(SilData* data) { fSilData = data; }
         void SetModularData(ModularData* data) { fModularData = data; }
-        void SetTPCPhysics(TPCPhysics* data) { fTPCPhysics = data; }
         void SetMergerData(MergerData* data) { fMergerData = data; }
 
     private:

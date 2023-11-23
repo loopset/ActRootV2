@@ -174,7 +174,10 @@ void ActRoot::TPCDetector::BuildEventData()
         CleanPadMatrix();
 
     // And now build clusters!
-    fData->fClusters = fClimb->Run(*fVoxels);
+    std::cout<<"Size of voxels : "<<fVoxels->size()<<'\n';
+    const auto& [cluster, noise] = fClimb->Run(*fVoxels);
+    fData->fClusters = std::move(cluster);
+    std::cout<<"Size of clusters : "<<fData->fClusters.size()<<'\n';
 }
 
 void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)

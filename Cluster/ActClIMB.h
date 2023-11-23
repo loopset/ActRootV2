@@ -6,9 +6,10 @@
 
 #include <string>
 #include <tuple>
+#include <utility>
 #include <vector>
 
-//forward declaration to avoid circular dependencies
+// forward declaration to avoid circular dependencies
 namespace ActRoot
 {
     class TPCParameters;
@@ -19,29 +20,36 @@ namespace ActCluster
     //! Implementation of a continuity-based cluster algorithm by J. Lois-Fuentes
     class ClIMB
     {
+    public:
+        typedef std::pair<std::vector<Cluster>, std::vector<ActRoot::Voxel>> RetType;
+
     private:
-        std::vector<std::vector<std::vector<int>>> fMatrix;//!< 3D matrix to locate clusters in space
-        std::vector<ActRoot::Voxel> fVoxels;//!< Local copy of vector to be treated
+        std::vector<std::vector<std::vector<int>>> fMatrix; //!< 3D matrix to locate clusters in space
+        std::vector<ActRoot::Voxel> fVoxels;                //!< Local copy of vector to be treated
         std::vector<int> fIndexes;
-        ActRoot::TPCParameters* fTPC {};//!< Pointer to TPC parameters needed to define algorithm parameters
-        int fMinPoints;//!< Minimum of points to form a cluster
+        ActRoot::TPCParameters* fTPC {}; //!< Pointer to TPC parameters needed to define algorithm parameters
+        int fMinPoints;                  //!< Minimum of points to form a cluster
     public:
         ClIMB() = default;
         ClIMB(ActRoot::TPCParameters* tpc, int minPoints);
         ~ClIMB() = default;
 
-        //Read config file
+        // Read config file
         void ReadConfigurationFile(const std::string& infile = "");
 
-        //Setters and getters
-        void SetMinPoints(int minPoints){fMinPoints = minPoints;}
-        int GetMinPoints() const {return fMinPoints;}
-        void SetTPCParameters(ActRoot::TPCParameters* tpc){fTPC = tpc; InitMatrix();}
+        // Setters and getters
+        void SetMinPoints(int minPoints) { fMinPoints = minPoints; }
+        int GetMinPoints() const { return fMinPoints; }
+        void SetTPCParameters(ActRoot::TPCParameters* tpc)
+        {
+            fTPC = tpc;
+            InitMatrix();
+        }
 
-        //Main method
-        std::vector<ActCluster::Cluster> Run(const std::vector<ActRoot::Voxel>& voxels);
+        // Main method
+        RetType Run(const std::vector<ActRoot::Voxel>& voxels, bool returnNoise = false);
 
-        //Print
+        // Print
         void Print() const;
 
     private:
@@ -52,9 +60,9 @@ namespace ActCluster
         std::tuple<int, int, int> GetCoordinates(int index);
         void MaskVoxelsInMatrix(int index);
         void MaskVoxelsInIndex(int index);
-        template<typename T>
+        template <typename T>
         bool IsInCage(T x, T y, T z);
     };
-}
+} // namespace ActCluster
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "ActCluster.h"
 #include "ActVData.h"
+#include "ActVoxel.h"
 
 #include "Math/Point3D.h"
 
@@ -16,8 +17,9 @@ namespace ActRoot
     public:
         using XYZPoint = ROOT::Math::XYZPointF;
 
-        std::vector<ActCluster::Cluster> fClusters;
-        std::vector<XYZPoint> fRPs;
+        std::vector<ActCluster::Cluster> fClusters {};
+        std::vector<Voxel> fRaw {};
+        std::vector<XYZPoint> fRPs {};
 
     public:
         void Clear() override;

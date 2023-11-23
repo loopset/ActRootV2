@@ -5,6 +5,7 @@
 void ActRoot::TPCData::Clear()
 {
     fClusters.clear();
+    fRaw.clear();
     fRPs.clear();
 }
 
@@ -17,6 +18,7 @@ void ActRoot::TPCData::Print() const
         cluster.Print();
         cluster.GetLine().Print();
     }
+    std::cout << "Noise or Raw voxels size = " << fRaw.size() << '\n';
     std::cout << "Reaction Points :" << '\n';
     int i {-1};
     for(const auto& rp : fRPs)

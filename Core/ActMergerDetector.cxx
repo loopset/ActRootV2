@@ -70,6 +70,10 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     TH1::AddDirectory(false);
 }
 
+void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block) {}
+
+void ActRoot::MergerDetector::Reconfigure() {}
+
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
 {
     if(auto casted {dynamic_cast<TPCData*>(vdata)}; casted)

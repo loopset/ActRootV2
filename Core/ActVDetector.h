@@ -62,7 +62,7 @@ namespace ActRoot
         std::shared_ptr<CalibrationManager> GetCalMan() const { return fCalMan; }
 
         // Print configuration
-        virtual void Print() const;
+        virtual void Print() const = 0;
         // Print reports
         virtual void PrintReports() const = 0;
     };

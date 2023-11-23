@@ -5,7 +5,6 @@
 #include "ActModularData.h"
 #include "ActSilData.h"
 #include "ActTPCData.h"
-#include "ActTPCPhysics.h"
 
 #include <algorithm>
 #include <iostream>
@@ -233,12 +232,6 @@ void ActRoot::InputWrapper::SetBranchAddress(int run)
         if(!fModularData)
             fModularData = new ModularData;
         tree->SetBranchAddress("ModularData", &fModularData);
-    }
-    if(tree->FindBranch("TPCPhysics"))
-    {
-        if(!fTPCPhysics)
-            fTPCPhysics = new TPCPhysics;
-        tree->SetBranchAddress("TPCPhysics", &fTPCPhysics);
     }
     if(tree->FindBranch("MergerData"))
     {

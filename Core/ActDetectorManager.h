@@ -10,10 +10,10 @@ performed on its data
 #include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActVData.h"
+#include "ActVDetector.h"
 
 #include "TTree.h"
 // #include "BS_thread_pool.hpp"
-#include "ActVDetector.h"
 
 #include <memory>
 #include <string>
@@ -40,39 +40,38 @@ namespace ActRoot
         std::shared_ptr<CalibrationManager> fCalMan {}; //!< CalibrationManager is now included in DetectorManager to
                                                         //!< avoid singleton
         std::shared_ptr<MergerDetector> fMerger {};     //!< Merge detector in final step (does not inheritate from
-                                                    //!< VDetector so far)
-
+                                                        //!< VDetector so far)
+        bool fIsRawOk {false};                          //!< Check that SetRawToData has been called
     public:
         DetectorManager();
         DetectorManager(const std::string& file);
         ~DetectorManager() {};
 
-        // Getters and deleters of detectors
+        // Getter of CalibrationManager
         std::shared_ptr<CalibrationManager> GetCalMan() { return fCalMan; }
-        std::shared_ptr<ActRoot::VDetector> GetDetector(DetectorType type);
-        std::shared_ptr<ActRoot::MergerDetector> GetMerger() { return fMerger; };
-        void DeleteDelector(DetectorType type);
-        int GetNumberOfDetectors() const { return fDetectors.size(); }
 
         // Read configurations
         void ReadConfiguration(const std::string& file);
         void Reconfigure();
         void ReadCalibrations(const std::string& file);
 
+        // Set detectors to treat when building Raw -> Data
+        void SetRawToDataDetectors(std::vector<DetectorType> which);
+        void DeleteDetector(DetectorType type);
+
         // Init INPUT data
-        void InitializeDataInputRaw(std::shared_ptr<TTree> input, int run);
-        void InitializeDataInput(std::shared_ptr<TTree> input);
-        void InitializeMergerInput(std::shared_ptr<TTree> input);
+        void InitInputRaw(std::shared_ptr<TTree> input);
+        void InitInputMerger(std::shared_ptr<TTree> input);
 
         // Init OUTPUT data
-        void InitializeDataOutput(std::shared_ptr<TTree> output);
-        void InitializePhysicsOutput(std::shared_ptr<TTree> output);
-        void InitializeMergerOutput(std::shared_ptr<TTree> output);
+        void InitOutputData(std::shared_ptr<TTree> output);
+        void InitOutputMerger(std::shared_ptr<TTree> output);
 
         // Builder of EVENTs
         void BuildEventData();
-        void BuildEventPhysics();
         void BuildEventMerger(int run, int entry);
+
+        void Print() const;
 
         void PrintReports() const;
 

@@ -5,6 +5,7 @@
 #include "ActInputParser.h"
 #include "ActLine.h"
 #include "ActTPCDetector.h"
+#include "ActVoxel.h"
 
 #include "TEnv.h"
 #include "TRandom.h"
@@ -17,6 +18,7 @@
 #include <set>
 #include <string>
 #include <tuple>
+#include <utility>
 #include <vector>
 
 ActCluster::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : fTPC(tpc), fMinPoints(minPoints)
@@ -88,7 +90,7 @@ void ActCluster::ClIMB::MaskVoxelsInIndex(int index)
 {
     fIndexes[index] = -1;
 }
-template<typename T>
+template <typename T>
 bool ActCluster::ClIMB::IsInCage(T x, T y, T z)
 {
     bool condX {0 <= x && x < fTPC->GetNPADSX()};
@@ -142,19 +144,22 @@ void ActCluster::ClIMB::InitIndexes()
     std::iota(fIndexes.begin(), fIndexes.end(), 0);
 }
 
-std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels)
+ActCluster::ClIMB::RetType ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool returnNoise)
 {
     fVoxels = voxels; // copy in internal variable to avoid modifications
     // Init Indexes structure
     InitIndexes();
     // Fill matrix
     FillMatrix();
-    // Prepare return value
-    std::vector<ActCluster::Cluster> ret;
+    // Prepare return values:
+    // Clusters (c)
+    std::vector<ActCluster::Cluster> cret;
+    // Noise (n)
+    std::vector<ActRoot::Voxel> nret;
     // Getter of seed based on fIndex being masked (=-1)
-    auto lambda {[](const int& i){return i == -1;}};
+    auto lambda {[](const int& i) { return i == -1; }};
     auto it {std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda)};
-    while(it != fIndexes.end())//(fVoxels.size() > 0)
+    while(it != fIndexes.end()) //(fVoxels.size() > 0)
     {
         // 1->Set seed of cluster as first non-masked element of fIndexes
         auto seed {*it};
@@ -162,7 +167,7 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
         MaskVoxelsInMatrix(seed);
         MaskVoxelsInIndex(seed);
         // 2-> Create current cluster
-        ActCluster::Cluster currentCluster {static_cast<int>(ret.size())};
+        ActCluster::Cluster currentCluster {static_cast<int>(cret.size())};
         currentCluster.AddVoxel(std::move(fVoxels[seed]));
         // 3-> Initialize generation 0
         std::vector<int> gen0 {seed};
@@ -187,11 +192,19 @@ std::vector<ActCluster::Cluster> ActCluster::ClIMB::Run(const std::vector<ActRoo
         {
             // Of course, fit it before pushing
             currentCluster.ReFit();
-            ret.push_back(std::move(currentCluster));
+            cret.push_back(std::move(currentCluster));
         }
-        //Prepare iterator for next iteration
+        else
+        {
+            if(returnNoise)
+            {
+                for(auto& voxel : currentCluster.GetRefToVoxels())
+                    nret.push_back(std::move(voxel));
+            }
+        }
+        // Prepare iterator for next iteration
         it = std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda);
     }
     fVoxels.clear();
-    return std::move(ret);
+    return std::make_pair(std::move(cret), std::move(nret));
 }

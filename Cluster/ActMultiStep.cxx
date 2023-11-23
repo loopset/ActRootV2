@@ -457,7 +457,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
             // 4-> Run cluster algorithm again (if asked... should delete this flag)
             std::vector<ActCluster::Cluster> newClusters;
             if(fFitNotBeam)
-                newClusters = fClimb->Run(notBeam);
+                auto [newClusters, _] = fClimb->Run(notBeam);
             // Move to vector
             std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
             if(fIsVerbose)
@@ -524,7 +524,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
             //     it++;
             // }
             // 5-> Re cluster
-            auto newClusters {fClimb->Run(breakable)};
+            auto [newClusters, _] {fClimb->Run(breakable)};
             // Set not to merge these new ones
             for(auto& ncl : newClusters)
                 ncl.SetToMerge(false);
