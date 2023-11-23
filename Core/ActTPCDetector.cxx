@@ -5,12 +5,9 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
-#include "ActLine.h"
-#include "ActMultiStep.h"
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
-#include "ActTPCPhysics.h"
 
 #include "TTree.h"
 
@@ -86,12 +83,6 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
         fClimb->SetTPCParameters(&fPars);
         fClimb->ReadConfigurationFile();
         fClimb->Print();
-        // ClIMB also requires multistep algorithm
-        fMultiStep = std::make_shared<ActCluster::MultiStep>();
-        fMultiStep->ReadConfigurationFile();
-        fMultiStep->SetClimb(fClimb);
-        fMultiStep->SetTPCParameters(&fPars);
-        fMultiStep->Print();
     }
     else if(method == "None")
         return;
@@ -108,13 +99,17 @@ void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
     fCalMan->ReadPadAlign(config->GetString("PadAlign"));
 }
 
-void ActRoot::TPCDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
+void ActRoot::TPCDetector::InitInputRaw(std::shared_ptr<TTree> tree)
 {
     // delete if already exists
     if(fMEvent)
         delete fMEvent;
     fMEvent = new MEventReduced;
     tree->SetBranchAddress("data", &fMEvent);
+    // Init voxels
+    if(fVoxels)
+        delete fVoxels;
+    fVoxels = new std::vector<ActRoot::Voxel>;
     // Init pad matrix!
     fPadMatrix = {};
 }
@@ -127,24 +122,9 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("TPCData", &fData);
 }
 
-void ActRoot::TPCDetector::InitInputData(std::shared_ptr<TTree> tree)
-{
-    if(fData)
-        delete fData;
-    fData = new TPCData;
-    tree->SetBranchAddress("TPCData", &fData);
-}
+void ActRoot::TPCDetector::InitInputMerger(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::TPCDetector::InitOutputPhysics(std::shared_ptr<TTree> tree)
-{
-    if(fPhysics)
-        delete fPhysics;
-    fPhysics = new TPCPhysics;
-    if(tree)
-    {
-        tree->Branch("TPCPhysics", &fPhysics);
-    }
-}
+void ActRoot::TPCDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::TPCDetector::ClearEventData()
 {
@@ -152,12 +132,11 @@ void ActRoot::TPCDetector::ClearEventData()
     // if opted, clean pad matrix
     if(fCleanSaturatedVoxels)
         fPadMatrix.clear();
+    if(fVoxels)
+        fVoxels->clear();
 }
 
-void ActRoot::TPCDetector::ClearEventPhysics()
-{
-    fPhysics->Clear();
-}
+void ActRoot::TPCDetector::ClearEventMerger() {}
 
 void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
 {
@@ -171,8 +150,6 @@ void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
 
 void ActRoot::TPCDetector::BuildEventData()
 {
-    int hitID {};
-    int hitIDin {};
     for(auto& coas : fMEvent->CoboAsad)
     {
         // locate channel!
@@ -186,8 +163,7 @@ void ActRoot::TPCDetector::BuildEventData()
         // Read hits
         if((co != 31) && (co != 16))
         {
-            ReadHits(coas, where, hitIDin);
-            hitID++;
+            ReadHits(coas, where);
         }
     }
     // Clean duplicated voxels
@@ -196,9 +172,12 @@ void ActRoot::TPCDetector::BuildEventData()
     // Clean pad matrix
     if(fCleanSaturatedVoxels)
         CleanPadMatrix();
+
+    // And now build clusters!
+    fData->fClusters = fClimb->Run(*fVoxels);
 }
 
-void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hitID)
+void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
 {
     int padx {};
     int pady {};
@@ -236,16 +215,14 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where, int& hi
         else
         {
             Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
-            fData->fVoxels.push_back(hit);
+            fVoxels->push_back(hit);
             // push to pad matrix if enabled
             if(fCleanSaturatedVoxels)
             {
-                fPadMatrix[{padx, pady}].first.push_back(fData->fVoxels.size() - 1);
+                fPadMatrix[{padx, pady}].first.push_back(fVoxels->size() - 1);
                 fPadMatrix[{padx, pady}].second += qcal;
             }
         }
-        // Increase hit id
-        hitID++;
     }
 }
 
@@ -259,7 +236,7 @@ void ActRoot::TPCDetector::CleanPadMatrix()
            totalQ >= fMinQtoDelete) // threshold in time buckets and in Qtotal to delete pad data
         {
             for(auto it = vals.rbegin(); it != vals.rend(); it++)
-                fData->fVoxels.erase(fData->fVoxels.begin() + *it);
+                fVoxels->erase(fVoxels->begin() + *it);
         }
     }
 }
@@ -287,56 +264,31 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
     std::unordered_set<Voxel, decltype(hash), decltype(equal)> set(
         10, hash, equal); // 10 = initial bucket count? I think it is not important
     // Add from vector to it
-    for(const auto& voxel : fData->fVoxels)
+    for(const auto& voxel : *fVoxels)
         set.insert(voxel);
     // Back to vector!
     // auto initSize {(int)fData->fVoxels.size()};
     // auto setSize {(int)set.size()};
     // if(initSize != setSize)
     //     std::cout << "Cleaned some voxels! diff : " << (initSize - setSize) << '\n';
-    fData->fVoxels.assign(set.begin(), set.end());
+    fVoxels->assign(set.begin(), set.end());
 }
 
-void ActRoot::TPCDetector::BuildEventPhysics()
-{
-    // Build based on pointer existence
-    if(fRansac)
-    {
-        fClusterClock.Start(false);
-        fPhysics->fClusters = fRansac->Run(fData->fVoxels);
-        fClusterClock.Stop();
-    }
-    else if(fClimb)
-    {
-        fClusterClock.Start(false);
-        fPhysics->fClusters = fClimb->Run(fData->fVoxels);
-        fClusterClock.Stop();
-        // Apply MultiStep algorithm
-        fMultiStep->SetClusters(&(fPhysics->fClusters));
-        fMultiStep->SetRPs(&(fPhysics->fRPs));
-        fMultiStep->Run();
-    }
-    else
-    {
-        fPhysics->fClusters = {};
-    }
-}
+void ActRoot::TPCDetector::BuildEventMerger() {}
+
+void ActRoot::TPCDetector::Print() const {}
 
 void ActRoot::TPCDetector::PrintReports() const
 {
     std::cout << BOLDGREEN << "---- ClusterMethod.Run() timer ----" << '\n';
     fClusterClock.Print();
     std::cout << RESET << '\n';
-
-    if(fMultiStep)
-        fMultiStep->PrintClocks();
 }
 
 void ActRoot::TPCDetector::Reconfigure()
 {
-    if(fMultiStep)
-    {
-        fMultiStep->ReadConfigurationFile();
-        fMultiStep->Print();
-    }
+    if(fRansac)
+        fRansac->ReadConfigurationFile();
+    if(fClimb)
+        fClimb->ReadConfigurationFile();
 }

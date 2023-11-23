@@ -10,7 +10,6 @@
 #include "ActSilSpecs.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
-#include "ActTPCPhysics.h"
 #include "ActVData.h"
 
 #include "TH1.h"
@@ -73,26 +72,25 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
 {
-    if(auto casted {dynamic_cast<TPCPhysics*>(vdata)}; casted)
-        fTPCPhyiscs = casted;
+    if(auto casted {dynamic_cast<TPCData*>(vdata)}; casted)
+        fTPCData = casted;
     if(auto casted {dynamic_cast<SilData*>(vdata)}; casted)
         fSilData = casted;
     if(auto casted {dynamic_cast<ModularData*>(vdata)}; casted)
         fModularData = casted;
 }
 
+void ActRoot::MergerDetector::InitInputRaw(std::shared_ptr<TTree> tree) {}
+
+void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree) {}
+
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
 {
-    // Disable branch of TPCData::fVoxels... 
-    // SetBranchStatus does not work with TPCData.fClusters...
-    // You need to specify the _member_name !!!
-    tree->SetBranchStatus("fVoxels*", false);
-    
     // TPC physics
-    if(fTPCPhyiscs)
-        delete fTPCPhyiscs;
-    fTPCPhyiscs = new TPCPhysics;
-    tree->SetBranchAddress("TPCPhysics", &fTPCPhyiscs);
+    if(fTPCData)
+        delete fTPCData;
+    fTPCData = new TPCData;
+    tree->SetBranchAddress("TPCPhysics", &fTPCData);
 
     // Silicon data
     if(fSilData)
@@ -123,7 +121,9 @@ void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
     // fSilSpecs->Print();
 }
 
-void ActRoot::MergerDetector::MergeEvent()
+void ActRoot::MergerDetector::BuildEventData() {}
+
+void ActRoot::MergerDetector::BuildEventMerger()
 {
     // 1-> Reset iterators
     Reset();
@@ -131,7 +131,7 @@ void ActRoot::MergerDetector::MergeEvent()
     {
         fMergerData->Clear();
         return;
-    } 
+    }
     // 2-> Identify light and heavy
     LightOrHeavy();
     // 3-> Compute SP and BP
@@ -189,7 +189,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     {
         int bl {};
         int notBL {};
-        for(auto it = fTPCPhyiscs->fClusters.begin(); it != fTPCPhyiscs->fClusters.end(); it++)
+        for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
         {
             if(it->GetIsBeamLike())
             {
@@ -206,7 +206,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     }
     else
     {
-        hasMult = IsInVector((int)fTPCPhyiscs->fClusters.size(), fNotBMults);
+        hasMult = IsInVector((int)fTPCData->fClusters.size(), fNotBMults);
     }
     return isInGat && hasBL && hasMult;
 }
@@ -241,17 +241,17 @@ bool ActRoot::MergerDetector::GateSilMult()
 bool ActRoot::MergerDetector::GateOthers()
 {
     bool condRPX {false};
-    if(fTPCPhyiscs->fRPs.size() > 0)
-        condRPX = fTPCPhyiscs->fRPs.front().X() > fGateRPX;
+    if(fTPCData->fRPs.size() > 0)
+        condRPX = fTPCData->fRPs.front().X() > fGateRPX;
     return condRPX;
 }
 
 void ActRoot::MergerDetector::Reset()
 {
     // Reset iterators before moving on to work with them
-    fBeamIt = fTPCPhyiscs->fClusters.end();
-    fLightIt = fTPCPhyiscs->fClusters.end();
-    fHeavyIt = fTPCPhyiscs->fClusters.end();
+    fBeamIt = fTPCData->fClusters.end();
+    fLightIt = fTPCData->fClusters.end();
+    fHeavyIt = fTPCData->fClusters.end();
     // Reset other variables
     fMergerData->fRun = fCurrentRun;
     fMergerData->fEntry = fCurrentEntry;
@@ -266,7 +266,7 @@ double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVecto
 void ActRoot::MergerDetector::LightOrHeavy()
 {
     // Firstly, set sign of X direction of BL to be always positive
-    fMergerData->fRP = fTPCPhyiscs->fRPs.front();
+    fMergerData->fRP = fTPCData->fRPs.front();
     auto& refLine {fBeamIt->GetRefToLine()};
     const auto& oldDir {refLine.GetDirection()};
     refLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});
@@ -274,9 +274,9 @@ void ActRoot::MergerDetector::LightOrHeavy()
     // .first = angle; .second = index; larger angles at begin
     auto lambda {[](const std::pair<double, int>& a, const std::pair<double, int>& b) { return a.first > b.first; }};
     std::set<std::pair<double, int>, decltype(lambda)> set(lambda);
-    for(int i = 0, size = fTPCPhyiscs->fClusters.size(); i < size; i++)
+    for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
-        auto it {fTPCPhyiscs->fClusters.begin() + i};
+        auto it {fTPCData->fClusters.begin() + i};
         if(it == fBeamIt)
             continue;
         // Get angle
@@ -286,9 +286,9 @@ void ActRoot::MergerDetector::LightOrHeavy()
     // for(const auto& pair : set)
     //     std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
     // Set iterators
-    fLightIt = fTPCPhyiscs->fClusters.begin() + set.begin()->second;
+    fLightIt = fTPCData->fClusters.begin() + set.begin()->second;
     if(set.size() > 1)
-        fHeavyIt = fTPCPhyiscs->fClusters.begin() + std::next(set.begin())->second;
+        fHeavyIt = fTPCData->fClusters.begin() + std::next(set.begin())->second;
 }
 
 void ActRoot::MergerDetector::ComputeSiliconPoint()
@@ -318,7 +318,7 @@ void ActRoot::MergerDetector::CorrectZOffset()
     // 3-> Por all iterators
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
     {
-        if(it == fTPCPhyiscs->fClusters.end())
+        if(it == fTPCData->fClusters.end())
             continue;
         auto p {it->GetLine().GetPoint()};
         MoveZ(p);
@@ -367,7 +367,7 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
     // Scale Line in Clusters
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
     {
-        if(it != fTPCPhyiscs->fClusters.end())
+        if(it != fTPCData->fClusters.end())
             it->GetRefToLine().Scale(xy, fDriftFactor);
     }
 
@@ -440,7 +440,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
                     ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
                     auto dist {(proj - ref).R()};
-                    h.Fill(dist, q / 27); 
+                    h.Fill(dist, q / 27);
                 }
             }
         }
@@ -448,7 +448,9 @@ void ActRoot::MergerDetector::ComputeQProfile()
     fMergerData->fQProf = h;
 }
 
-void ActRoot::MergerDetector::ClearOutputMerger()
+void ActRoot::MergerDetector::ClearEventData() {}
+
+void ActRoot::MergerDetector::ClearEventMerger()
 {
     fMergerData->Clear();
 }
@@ -477,3 +479,5 @@ void ActRoot::MergerDetector::Print() const
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }
+
+void ActRoot::MergerDetector::PrintReports() const {}

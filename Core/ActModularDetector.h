@@ -2,6 +2,7 @@
 #define ActModularDetector_h
 
 #include "ActModularData.h"
+#include "ActTPCLegacyData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
 
@@ -34,6 +35,8 @@ namespace ActRoot
     private:
         // Parameters
         ModularParameters fPars; //!< Basic detector configurations
+        // Pointer to MEventReduced
+        MEventReduced* fMEvent {};
         // Data
         ModularData* fData {}; //!< Pointer to Data
 
@@ -45,25 +48,35 @@ namespace ActRoot
         ModularParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
-        void Reconfigure() override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
-        void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
-        void InitInputData(std::shared_ptr<TTree> tree) override;
+        void Reconfigure() override;
+
+        // Init inputs
+        void InitInputRaw(std::shared_ptr<TTree> tree) override;
+        void InitInputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Init outputs
         void InitOutputData(std::shared_ptr<TTree> tree) override;
-        void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
+        void InitOutputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Builders
         void BuildEventData() override;
-        void BuildEventPhysics() override;
+        void BuildEventMerger() override;
+
+        // Cleaners
         void ClearEventData() override;
-        void ClearEventPhysics() override;
+        void ClearEventMerger() override;
 
-        // Getters
+        // Getters of data
         ModularData* GetEventData() const override { return fData; }
-        ModularData* GetEventPhysics() const override { return fData; }
+        VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
 
-        // Setters
+        // Setters of data
         void SetEventData(VData* vdata) override;
 
-        // Print any reports from analysis
+        // Printer of configuration
+        void Print() const override;
+        // Printer of parameters
         void PrintReports() const override;
     };
 } // namespace ActRoot

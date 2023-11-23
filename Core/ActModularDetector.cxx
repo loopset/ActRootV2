@@ -2,6 +2,7 @@
 
 #include "ActInputParser.h"
 #include "ActModularData.h"
+#include "ActTPCLegacyData.h"
 
 #include "TString.h"
 
@@ -66,9 +67,12 @@ void ActRoot::ModularDetector::ReadCalibrations(std::shared_ptr<InputBlock> conf
     ; // Do not calibrate Modular Leaves so far
 }
 
-void ActRoot::ModularDetector::InitInputRawData(std::shared_ptr<TTree> tree, int run)
+void ActRoot::ModularDetector::InitInputRaw(std::shared_ptr<TTree> tree)
 {
-    ;
+    if(fMEvent)
+        delete fMEvent;
+    fMEvent = new MEventReduced;
+    tree->SetBranchAddress("data", &fMEvent);
 }
 
 void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -79,15 +83,9 @@ void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("ModularData", &fData);
 }
 
-void ActRoot::ModularDetector::InitInputData(std::shared_ptr<TTree> tree)
-{
-    if(fData)
-        delete fData;
-    fData = new ModularData;
-    tree->SetBranchAddress("ModularData", &fData);
-}
+void ActRoot::ModularDetector::InitInputMerger(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::ModularDetector::InitOutputPhysics(std::shared_ptr<TTree> tree) {}
+void ActRoot::ModularDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::ModularDetector::SetEventData(VData* vdata)
 {
@@ -121,14 +119,16 @@ void ActRoot::ModularDetector::BuildEventData()
     }
 }
 
-void ActRoot::ModularDetector::BuildEventPhysics() {}
+void ActRoot::ModularDetector::BuildEventMerger() {}
 
 void ActRoot::ModularDetector::ClearEventData()
 {
     fData->Clear();
 }
 
-void ActRoot::ModularDetector::ClearEventPhysics() {}
+void ActRoot::ModularDetector::ClearEventMerger() {}
+
+void ActRoot::ModularDetector::Print() const {}
 
 void ActRoot::ModularDetector::PrintReports() const {}
 

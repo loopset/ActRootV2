@@ -5,7 +5,6 @@
 #include "ActInputParser.h"
 #include "ActInterval.h"
 #include "ActLine.h"
-#include "ActTPCData.h"
 #include "ActTPCDetector.h"
 
 #include "TEnv.h"

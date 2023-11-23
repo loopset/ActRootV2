@@ -3,11 +3,9 @@
 
 #include "ActClIMB.h"
 #include "ActInputData.h"
-#include "ActMultiStep.h"
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
-#include "ActTPCPhysics.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
 
@@ -58,7 +56,10 @@ namespace ActRoot
     private:
         // Parameters of detector
         TPCParameters fPars;
-        // Data
+        // Auxiliars to read data
+        MEventReduced* fMEvent {};
+        std::vector<ActRoot::Voxel>* fVoxels {};
+        // Data itself
         TPCData* fData {};
         // Preanalysis when reading raw data
         bool fCleanSaturatedMEvent {false};
@@ -67,16 +68,12 @@ namespace ActRoot
         double fMinQtoDelete {2000};
         std::map<std::pair<int, int>, std::pair<std::vector<unsigned int>, double>> fPadMatrix;
         bool fCleanDuplicatedVoxels {false};
-        // Physics data
-        TPCPhysics* fPhysics {};
         // Timer for cluster (only cluster) step
         TStopwatch fClusterClock;
         // Have a commom ransac
         std::shared_ptr<ActCluster::RANSAC> fRansac {};
         // Have a common ClIMB
         std::shared_ptr<ActCluster::ClIMB> fClimb {};
-        // Have common filters
-        std::shared_ptr<ActCluster::MultiStep> fMultiStep {};
 
     public:
         TPCDetector() = default;
@@ -84,36 +81,42 @@ namespace ActRoot
 
         // Getters
         const TPCParameters& GetTPCPars() const { return fPars; }
-        TPCParameters* GetParametersPointer() {return &fPars;}
+        TPCParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         void Reconfigure() override;
-        // void AddParameterToCalibrationManager() override;
-        void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
-        void InitInputData(std::shared_ptr<TTree> tree) override;
+
+        // Init inputs
+        void InitInputRaw(std::shared_ptr<TTree> tree) override;
+        void InitInputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Init outputs
         void InitOutputData(std::shared_ptr<TTree> tree) override;
-        void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
+        void InitOutputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Builders
         void BuildEventData() override;
-        void BuildEventPhysics() override;
+        void BuildEventMerger() override;
+
+        // Cleaners
         void ClearEventData() override;
-        void ClearEventPhysics() override;
+        void ClearEventMerger() override;
 
-        // Base class getters
+        // Getters of data
         TPCData* GetEventData() const override { return fData; }
-        TPCPhysics* GetEventPhysics() const override { return fPhysics; }
+        VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
 
-        // And setters
+        // Setters of data
         void SetEventData(VData* vdata) override;
 
-        // Printer of parameters
+        // Printer of configuration
+        void Print() const override;
+        // Printer of reports
         void PrintReports() const override;
 
-        ////////////////////////////////
-        // ActTPCData* GetDataPointer() { return fData; }
-
     private:
-        void ReadHits(ReducedData& coas, const int& where, int& hitID);
+        void ReadHits(ReducedData& coas, const int& where);
         void CleanPadMatrix();
         void InitClusterMethod(const std::string& method);
         void EnsureUniquenessOfVoxels();

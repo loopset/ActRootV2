@@ -1,7 +1,7 @@
 #ifndef ActLine_h
 #define ActLine_h
 
-#include "ActTPCData.h"
+#include "ActVoxel.h"
 
 #include "TPolyLine.h"
 #include "TString.h"

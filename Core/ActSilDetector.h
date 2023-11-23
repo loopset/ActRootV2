@@ -45,6 +45,8 @@ namespace ActRoot
     private:
         // Parameters
         SilParameters fPars; //!< Basic detector configurations
+        // Pointer to MEvent
+        MEventReduced* fMEvent {};
         // Data
         SilData* fData {}; //!< Pointer to SilData
 
@@ -56,25 +58,35 @@ namespace ActRoot
         SilParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
-        void Reconfigure() override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
-        // void AddParameterToCalibrationManager() override;
-        void InitInputRawData(std::shared_ptr<TTree> tree, int run) override;
-        void InitInputData(std::shared_ptr<TTree> tree) override;
+        void Reconfigure() override;
+
+        // Init inputs
+        void InitInputRaw(std::shared_ptr<TTree> tree) override;
+        void InitInputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Init outputs
         void InitOutputData(std::shared_ptr<TTree> tree) override;
-        void InitOutputPhysics(std::shared_ptr<TTree> tree) override;
+        void InitOutputMerger(std::shared_ptr<TTree> tree) override;
+
+        // Builders
         void BuildEventData() override;
-        void BuildEventPhysics() override;
+        void BuildEventMerger() override;
+
+        // Cleaners
         void ClearEventData() override;
-        void ClearEventPhysics() override;
+        void ClearEventMerger() override;
 
-        // Getters
+        // Getters of data
         SilData* GetEventData() const override { return fData; }
-        SilData* GetEventPhysics() const override { return fData; }
+        VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
 
-        // Setters
+        // Setters of data
         void SetEventData(VData* vdata) override;
 
+        // Printer of configuration
+        void Print() const override;
+        // Printer of reports
         void PrintReports() const override;
     };
 } // namespace ActRoot

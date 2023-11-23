@@ -6,8 +6,9 @@
 #include "ActModularData.h"
 #include "ActSilData.h"
 #include "ActSilSpecs.h"
-#include "ActTPCPhysics.h"
+#include "ActTPCData.h"
 #include "ActVData.h"
+#include "ActVDetector.h"
 
 #include "TTree.h"
 
@@ -27,23 +28,25 @@ namespace ActRoot
     class SilParameters;
     class ModularParameters;
 
-    class MergerDetector
+    class MergerDetector : public VDetector
     {
     public:
         using XYZPoint = ROOT::Math::XYZPointF;
         using XYZVector = ROOT::Math::XYZVectorF;
 
     private:
+        // TPC
         TPCParameters* fTPCPars {};
-        TPCPhysics* fTPCPhyiscs {};
-
+        TPCData* fTPCData {};
+        // Silicons
         SilParameters* fSilPars {};
         SilData* fSilData {};
         std::shared_ptr<ActPhysics::SilSpecs> fSilSpecs {};
-
+        // Modular detector
         ModularParameters* fModularPars {};
         ModularData* fModularData {};
 
+        // Merger data
         MergerData* fMergerData {};
 
         // Parameters of algorithm
@@ -67,18 +70,15 @@ namespace ActRoot
         bool fEnableQProfile {};
 
         // Store iterators to beam, light and heavy
-        decltype(TPCPhysics::fClusters)::iterator fBeamIt;
-        decltype(TPCPhysics::fClusters)::iterator fLightIt;
-        decltype(TPCPhysics::fClusters)::iterator fHeavyIt;
+        decltype(TPCData::fClusters)::iterator fBeamIt;
+        decltype(TPCData::fClusters)::iterator fLightIt;
+        decltype(TPCData::fClusters)::iterator fHeavyIt;
 
     public:
         // Setters of pointer to Parameters in DetMan
         void SetTPCParameters(TPCParameters* tpcPars) { fTPCPars = tpcPars; }
         void SetSilParameters(SilParameters* silPars) { fSilPars = silPars; }
         void SetModularParameters(ModularParameters* modPars) { fModularPars = modPars; }
-        void SetEventData(VData* vdata);
-        // Getters
-        MergerData* GetMergerData() const { return fMergerData; }
 
         // Setter of entry and run number to be written to current MergerData
         void SetCurrentRunEntry(int run, int entry)
@@ -86,23 +86,37 @@ namespace ActRoot
             fCurrentRun = run;
             fCurrentEntry = entry;
         }
-        // Read configurations
-        void ReadConfiguration(std::shared_ptr<InputBlock> block);
+        void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
+        void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
+        void Reconfigure() override;
 
-        // Init INPUT data
-        void InitInputMerger(std::shared_ptr<TTree> tree);
+        // Init inputs
+        void InitInputRaw(std::shared_ptr<TTree> tree) override;
+        void InitInputMerger(std::shared_ptr<TTree> tree) override;
 
-        // Init OUTPUT data
-        void InitOutputMerger(std::shared_ptr<TTree> tree);
+        // Init outputs
+        void InitOutputData(std::shared_ptr<TTree> tree) override;
+        void InitOutputMerger(std::shared_ptr<TTree> tree) override;
 
-        // Do merge of all detector data
-        void MergeEvent();
+        // Builders
+        void BuildEventData() override;
+        void BuildEventMerger() override;
 
-        // Mandatory clear
-        void ClearOutputMerger();
+        // Cleaners
+        void ClearEventData() override;
+        void ClearEventMerger() override;
 
-        // Print settings
-        void Print() const;
+        // Getters of data
+        VData* GetEventData() const override { return nullptr; }
+        VData* GetEventMerger() const override { return fMergerData; } // managed by MergerDetector
+
+        // Setters of data
+        void SetEventData(VData* vdata) override;
+
+        // Printer of parameters
+        void Print() const override;
+        // Printer of reports
+        void PrintReports() const override;
 
     private:
         void ReadSilSpecs(const std::string& file);

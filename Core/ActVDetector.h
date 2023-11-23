@@ -18,7 +18,6 @@ namespace ActRoot
     class VDetector
     {
     protected:
-        MEventReduced* fMEvent {};                      //!< Legacy dependency to MEvent... Could be changed in future
         std::shared_ptr<CalibrationManager> fCalMan {}; //!< Pointer to CalibrationManager to avoid working with
                                                         //!< singleton
 
@@ -34,36 +33,36 @@ namespace ActRoot
 
         // Interface to CalibrationManager
         virtual void ReadCalibrations(std::shared_ptr<InputBlock> config) = 0;
-        // Initialize data input and output
-        // With TTrees
-        virtual void InitInputRawData(std::shared_ptr<TTree> tree, int run) = 0;
-        virtual void InitInputData(std::shared_ptr<TTree> tree) = 0;
-        virtual void InitOutputData(std::shared_ptr<TTree> tree) = 0;
-        virtual void InitOutputPhysics(std::shared_ptr<TTree> tree) = 0;
 
-        // Build events
+        // Initialize data INPUTS
+        virtual void InitInputRaw(std::shared_ptr<TTree> tree) = 0;
+        virtual void InitInputMerger(std::shared_ptr<TTree> tree) = 0;
+
+        // Initialize data OUTPUTS
+        virtual void InitOutputData(std::shared_ptr<TTree> tree) = 0;
+        virtual void InitOutputMerger(std::shared_ptr<TTree> tree) = 0;
+
+        // Build
         virtual void BuildEventData() = 0;
-        virtual void BuildEventPhysics() = 0;
+        virtual void BuildEventMerger() = 0;
 
         // Clear data
         virtual void ClearEventData() = 0;
-        virtual void ClearEventPhysics() = 0;
+        virtual void ClearEventMerger() = 0;
 
-        // Getters
+        // Getters of data structures
         virtual VData* GetEventData() const { return nullptr; }
-        virtual VData* GetEventPhysics() const { return nullptr; }
+        virtual VData* GetEventMerger() const { return nullptr; }
 
         // Getters
         virtual void SetEventData(VData* vdata) = 0;
-
-        // Set and Get MEvent pointer
-        void SetMEvent(MEventReduced* mevt) { fMEvent = mevt; }
-        MEventReduced* GetMEvent() const { return fMEvent; }
 
         // Set and Get CalibrationManager pointer
         void SetCalMan(std::shared_ptr<CalibrationManager> calman) { fCalMan = calman; }
         std::shared_ptr<CalibrationManager> GetCalMan() const { return fCalMan; }
 
+        // Print configuration
+        virtual void Print() const;
         // Print reports
         virtual void PrintReports() const = 0;
     };

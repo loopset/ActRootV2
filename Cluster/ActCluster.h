@@ -2,7 +2,7 @@
 #define ActCluster_h
 
 #include "ActLine.h"
-#include "ActTPCData.h"
+#include "ActVoxel.h"
 
 #include "Math/Point3D.h"
 

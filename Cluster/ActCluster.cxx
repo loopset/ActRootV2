@@ -1,7 +1,7 @@
 #include "ActCluster.h"
 
 #include "ActColors.h"
-#include "ActTPCData.h"
+#include "ActVoxel.h"
 
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"

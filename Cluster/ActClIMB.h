@@ -2,7 +2,7 @@
 #define ActClIMB_h
 
 #include "ActCluster.h"
-#include "ActTPCData.h"
+#include "ActVoxel.h"
 
 #include <string>
 #include <tuple>
