@@ -69,10 +69,10 @@ void ActRoot::ModularDetector::ReadCalibrations(std::shared_ptr<InputBlock> conf
 
 void ActRoot::ModularDetector::InitInputRaw(std::shared_ptr<TTree> tree)
 {
-    if(fMEvent)
-        delete fMEvent;
-    fMEvent = new MEventReduced;
-    tree->SetBranchAddress("data", &fMEvent);
+    // if(fMEvent)
+    //     delete fMEvent;
+    // fMEvent = new MEventReduced;
+    // tree->SetBranchAddress("data", &fMEvent);
 }
 
 void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -117,6 +117,7 @@ void ActRoot::ModularDetector::BuildEventData()
             }
         }
     }
+    std::cout<<"Modular size : "<<fData->fLeaves.size()<<'\n';
 }
 
 void ActRoot::ModularDetector::BuildEventMerger() {}

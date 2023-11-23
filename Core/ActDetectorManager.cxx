@@ -158,11 +158,6 @@ void ActRoot::DetectorManager::InitOutputMerger(std::shared_ptr<TTree> output)
 
 void ActRoot::DetectorManager::BuildEventData()
 {
-    for(auto& det : fDetectors)
-    {
-        det.second->ClearEventData();
-        det.second->BuildEventData();
-    }
 }
 
 void ActRoot::DetectorManager::Print() const 

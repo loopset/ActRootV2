@@ -88,6 +88,10 @@ namespace ActRoot
         void Print() const override;
         // Printer of reports
         void PrintReports() const override;
+
+        // Share MEvent
+        void SetMEvent(MEventReduced* mevent) override { fMEvent = mevent; }
+        MEventReduced* GetMEvent() override { return fMEvent; }
     };
 } // namespace ActRoot
 

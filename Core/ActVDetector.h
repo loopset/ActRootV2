@@ -65,6 +65,10 @@ namespace ActRoot
         virtual void Print() const = 0;
         // Print reports
         virtual void PrintReports() const = 0;
+
+        // To share MEvent between detectors
+        virtual void SetMEvent(MEventReduced* mevent) {};
+        virtual MEventReduced* GetMEvent() { return nullptr; }
     };
 } // namespace ActRoot
 

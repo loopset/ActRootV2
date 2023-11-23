@@ -115,6 +115,10 @@ namespace ActRoot
         // Printer of reports
         void PrintReports() const override;
 
+        // Share MEvent
+        void SetMEvent(MEventReduced* mevent) override { fMEvent = mevent; }
+        MEventReduced* GetMEvent() override { return fMEvent; }
+
     private:
         void ReadHits(ReducedData& coas, const int& where);
         void CleanPadMatrix();

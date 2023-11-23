@@ -145,6 +145,7 @@ void ActRoot::SilDetector::BuildEventData()
             }
         }
     }
+    std::cout << "fSilE.size() : " << fData->fSiE.size() << '\n';
 }
 
 void ActRoot::SilDetector::BuildEventMerger() {}
