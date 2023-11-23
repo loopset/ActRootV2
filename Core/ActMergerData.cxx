@@ -1,12 +1,15 @@
 #include "ActMergerData.h"
 
 #include "ActColors.h"
+#include "TGraph.h"
+#include "TH1.h"
 
+#include <algorithm>
 #include <iostream>
 
 void ActRoot::MergerData::Clear()
 {
-    *this = {};
+    *this = MergerData {};
 }
 
 void ActRoot::MergerData::Print() const

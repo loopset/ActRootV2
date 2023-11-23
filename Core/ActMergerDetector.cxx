@@ -66,6 +66,9 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Enable QProfile
     if(block->CheckTokenExists("EnableQProfile"))
         fEnableQProfile = block->GetBool("EnableQProfile");
+
+    // Disable TH1::AddDirectory
+    TH1::AddDirectory(false);
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -128,8 +131,7 @@ void ActRoot::MergerDetector::MergeEvent()
     {
         fMergerData->Clear();
         return;
-    }
-    //
+    } 
     // 2-> Identify light and heavy
     LightOrHeavy();
     // 3-> Compute SP and BP
@@ -316,6 +318,8 @@ void ActRoot::MergerDetector::CorrectZOffset()
     // 3-> Por all iterators
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
     {
+        if(it == fTPCPhyiscs->fClusters.end())
+            continue;
         auto p {it->GetLine().GetPoint()};
         MoveZ(p);
         it->GetRefToLine().SetPoint(p);
@@ -362,7 +366,10 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
 
     // Scale Line in Clusters
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
-        it->GetRefToLine().Scale(xy, fDriftFactor);
+    {
+        if(it != fTPCPhyiscs->fClusters.end())
+            it->GetRefToLine().Scale(xy, fDriftFactor);
+    }
 
     // And recompute track length
     fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
@@ -408,9 +415,8 @@ void ActRoot::MergerDetector::ComputeQave()
 void ActRoot::MergerDetector::ComputeQProfile()
 {
     // 0-> Init histogram
-    TH1::AddDirectory(false);
-    fMergerData->fQProfile = TH1F("hQProfile", "QProfile", 100, -5, 150);
-    fMergerData->fQProfile.SetTitle("QProfile;dist [mm];Q [au]");
+    TH1F h {"hQProfile", "QProfile", 100, -5, 150};
+    h.SetTitle("QProfile;dist [mm];Q [au]");
     // Voxels should be already ordered
     // 1-> Ref point is vector.begin() projection on line
     auto ref {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
@@ -434,15 +440,12 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
                     ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
                     auto dist {(proj - ref).R()};
-                    if(std::isfinite(dist) && std::isfinite(q))
-                        fMergerData->fQProfile.Fill(dist, q / 27);
-                    // we have a weird segmentation fault (only in MT mode?!) when not checking for NaN is dist or q
-                    // the log yields some warning from the TH1::Sumw2 func... something wrong with q?
-                    // must be checked in the future
+                    h.Fill(dist, q / 27); 
                 }
             }
         }
     }
+    fMergerData->fQProf = h;
 }
 
 void ActRoot::MergerDetector::ClearOutputMerger()

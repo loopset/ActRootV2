@@ -204,7 +204,7 @@ void ActRoot::HistogramPainter::Draw()
     if(fWrap->GetMergerData())
     {
         fCanvs[2]->cd(3);
-        fWrap->GetMergerData()->fQProfile.Draw("hist");
+        fWrap->GetMergerData()->fQProf.Draw("hist");
     }
     fCanvs[2]->Update();
 }

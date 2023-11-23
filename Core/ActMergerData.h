@@ -3,6 +3,7 @@
 
 #include "ActVData.h"
 
+#include "TH1.h"
 #include "TH1F.h"
 
 #include "Math/Point3D.h"
@@ -11,6 +12,7 @@
 #include "Math/Vector3Dfwd.h"
 
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace ActRoot
@@ -22,7 +24,7 @@ namespace ActRoot
         using XYZVector = ROOT::Math::XYZVectorF;
 
     public:
-        TH1F fQProfile {}; 
+        TH1F fQProf {};
         XYZPoint fRP {-1, -1, -1};
         XYZPoint fSP {-1, -1, -1};
         XYZPoint fBP {-1, -1, -1};
@@ -38,6 +40,7 @@ namespace ActRoot
 
         void Clear() override;
         void Print() const override;
+
     };
 } // namespace ActRoot
 
