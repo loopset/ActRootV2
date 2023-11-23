@@ -221,7 +221,7 @@ var searchData=
   ['fprogress_491',['fProgress',['../classActRoot_1_1MTExecutor.html#adc7d26dbfe96d4b7ead882509e5f51ec',1,'ActRoot::MTExecutor']]],
   ['fprotonps_492',['fprotonPS',['../classActSim_1_1KinematicGenerator.html#adfb86e7eef1053edfdfa41bc658cf5ed',1,'ActSim::KinematicGenerator']]],
   ['fqave_493',['fQave',['../classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03',1,'ActRoot::MergerData']]],
-  ['fqprofile_494',['fQProfile',['../classActRoot_1_1MergerData.html#aa982a8a9c94466cc633670193c6c115e',1,'ActRoot::MergerData']]],
+  ['fqprof_494',['fQProf',['../classActRoot_1_1MergerData.html#a4a2c3d720c4de5c5c932f091dd2b414f',1,'ActRoot::MergerData']]],
   ['fqvalue_495',['fQvalue',['../classActPhysics_1_1Kinematics.html#a2159f1ab22ee69d47a1439441fc18613',1,'ActPhysics::Kinematics']]],
   ['frand_496',['fRand',['../classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6',1,'ActSim::Runner']]],
   ['fransac_497',['fRansac',['../classActRoot_1_1TPCDetector.html#a09aec05a553ff01429d14cc35a91f2d9',1,'ActRoot::TPCDetector']]],
