@@ -303,9 +303,13 @@ void ActRoot::HistogramPainter::Reset()
 TCanvas* ActRoot::HistogramPainter::SetCanvas(int i, const std::string& title, double w, double h)
 {
     fCanvs[i] = new TCanvas(TString::Format("cHP%d", i), title.c_str(), w, h);
-    // Different settings
-    // fCanvs[i]->ToggleToolBar();
-    // fCanvs[i]->ToggleEventStatus();
+    // Settings for widgets
+    if(fCanvs[i]->GetShowToolBar())
+        fCanvs[i]->ToggleToolBar();
+    if(fCanvs[i]->GetShowEditor())
+        fCanvs[i]->ToggleEditor();
+    if(!fCanvs[i]->GetShowEventStatus())
+        fCanvs[i]->ToggleEventStatus();
     return fCanvs[i];
 }
 
