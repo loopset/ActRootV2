@@ -4,6 +4,7 @@
 #include "ActCalibrationManager.h"
 #include "ActTPCLegacyData.h"
 #include "ActVData.h"
+#include "ActVParameters.h"
 
 #include "TTree.h"
 
@@ -54,8 +55,11 @@ namespace ActRoot
         virtual VData* GetEventData() const { return nullptr; }
         virtual VData* GetEventMerger() const { return nullptr; }
 
-        // Getters
+        // Getters of data
         virtual void SetEventData(VData* vdata) = 0;
+
+        // Getters of parameters
+        virtual VParameters* GetParameters() = 0;
 
         // Set and Get CalibrationManager pointer
         void SetCalMan(std::shared_ptr<CalibrationManager> calman) { fCalMan = calman; }

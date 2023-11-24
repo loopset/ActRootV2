@@ -38,7 +38,7 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
 {
     // automatically get project path from gEnv
     std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/filter.climb";
+    envfile += "/configs/multistep.conf";
     std::string realfile {};
     if(!gSystem->AccessPathName(envfile.c_str()))
         realfile = envfile;

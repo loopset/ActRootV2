@@ -8,6 +8,7 @@
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
+#include "ActVoxel.h"
 
 #include "TTree.h"
 
@@ -22,12 +23,14 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <tuple>
 #include <unordered_set>
+#include <utility>
 #include <vector>
 
 ActRoot::TPCParameters::TPCParameters(const std::string& type)
 {
-    std::cout << "Initializing detector type: " << type << '\n';
+    // std::cout << "Initializing detector type: " << type << '\n';
     if(type == "Actar")
     {
         fNPADSX = 128;
@@ -42,6 +45,16 @@ ActRoot::TPCParameters::TPCParameters(const std::string& type)
     }
     else
         throw std::runtime_error("No TPCParameters config available for passed " + type);
+}
+
+void ActRoot::TPCParameters::Print() const
+{
+    std::cout << BOLDCYAN << "==== TPC parameters ====" << '\n';
+    std::cout << "-> NPADSX : " << fNPADSX << '\n';
+    std::cout << "-> NPADSY : " << fNPADSY << '\n';
+    std::cout << "-> NPADSZ : " << fNPADSZ << '\n';
+    std::cout << "-> REBINZ :" << fREBINZ << '\n';
+    std::cout << "====================" << '\n';
 }
 
 void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
@@ -75,14 +88,12 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
     {
         fRansac = std::make_shared<ActCluster::RANSAC>();
         fRansac->ReadConfigurationFile();
-        fRansac->Print();
     }
     else if(method == "Climb")
     {
         fClimb = std::make_shared<ActCluster::ClIMB>();
         fClimb->SetTPCParameters(&fPars);
         fClimb->ReadConfigurationFile();
-        fClimb->Print();
     }
     else if(method == "None")
         return;
@@ -174,8 +185,10 @@ void ActRoot::TPCDetector::BuildEventData()
         CleanPadMatrix();
 
     // And now build clusters!
-    const auto& [cluster, noise] = fClimb->Run(*fVoxels);
-    fData->fClusters = std::move(cluster);
+    if(fRansac)
+        fData->fClusters = fRansac->Run(*fVoxels);
+    if(fClimb)
+        std::tie(fData->fClusters, fData->fRaw) = fClimb->Run(*fVoxels, true); // enable returning of noise
 }
 
 void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
@@ -277,7 +290,14 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
 
 void ActRoot::TPCDetector::BuildEventMerger() {}
 
-void ActRoot::TPCDetector::Print() const {}
+void ActRoot::TPCDetector::Print() const 
+{
+    // Only print algorithm parameters
+    if(fRansac)
+        fRansac->Print();
+    if(fClimb)
+        fClimb->Print();
+}
 
 void ActRoot::TPCDetector::PrintReports() const
 {

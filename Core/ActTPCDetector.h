@@ -8,6 +8,7 @@
 #include "ActTPCLegacyData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+#include "ActVParameters.h"
 
 #include "TStopwatch.h"
 #include "TTree.h"
@@ -21,7 +22,7 @@ namespace ActRoot
 {
     class InputBlock; // forward declaration
 
-    class TPCParameters
+    class TPCParameters : public VParameters
     {
     private:
         double fPadSide {2}; // mm
@@ -49,9 +50,11 @@ namespace ActRoot
         int GetNBASAD() const { return fNB_ASAD; }
         int GetNBAGET() const { return fNB_AGET; }
         int GetNBCHANNEL() const { return fNB_CHANNEL; }
+
+        void Print() const override;
     };
 
-    class TPCDetector : public ActRoot::VDetector
+    class TPCDetector : public VDetector
     {
     private:
         // Parameters of detector
@@ -78,10 +81,6 @@ namespace ActRoot
     public:
         TPCDetector() = default;
         virtual ~TPCDetector() = default;
-
-        // Getters
-        const TPCParameters& GetTPCPars() const { return fPars; }
-        TPCParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
@@ -110,6 +109,9 @@ namespace ActRoot
         // Setters of data
         void SetEventData(VData* vdata) override;
 
+        // Getters
+        TPCParameters* GetParameters() override { return &fPars; }
+
         // Printer of configuration
         void Print() const override;
         // Printer of reports
@@ -118,6 +120,9 @@ namespace ActRoot
         // Share MEvent
         void SetMEvent(MEventReduced* mevent) override { fMEvent = mevent; }
         MEventReduced* GetMEvent() override { return fMEvent; }
+
+        // Others
+        std::shared_ptr<ActCluster::ClIMB> GetClIMB() const { return fClimb; }
 
     private:
         void ReadHits(ReducedData& coas, const int& where);

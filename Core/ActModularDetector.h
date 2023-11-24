@@ -5,6 +5,7 @@
 #include "ActTPCLegacyData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+#include "ActVParameters.h"
 
 #include "TTree.h"
 
@@ -17,7 +18,7 @@
 namespace ActRoot
 {
     //! A class holding ModularLeaf experimental setups: VXI equivalences
-    class ModularParameters
+    class ModularParameters : public VParameters
     {
     private:
         std::map<int, std::string> fVXI;
@@ -26,7 +27,7 @@ namespace ActRoot
         std::string GetName(int vxi); //!< Get name of ModularLeaf according to Action file
         void ReadActions(const std::vector<std::string>& names,
                          const std::string& file); //!< Read Action file
-        void Print() const;
+        void Print() const override;
     };
 
     //!< Detector of type ModularLeaf
@@ -43,9 +44,6 @@ namespace ActRoot
     public:
         ModularDetector() = default;
         virtual ~ModularDetector() = default;
-
-        // Pointer to parameters
-        ModularParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
@@ -73,6 +71,9 @@ namespace ActRoot
 
         // Setters of data
         void SetEventData(VData* vdata) override;
+
+        // Getter of parameters
+        ModularParameters* GetParameters() override { return &fPars; }
 
         // Printer of configuration
         void Print() const override;

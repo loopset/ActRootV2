@@ -1,6 +1,7 @@
 #include "ActMergerData.h"
 
 #include "ActColors.h"
+
 #include "TGraph.h"
 #include "TH1.h"
 
@@ -9,7 +10,12 @@
 
 void ActRoot::MergerData::Clear()
 {
+    // Reset but still keep run and entry number
+    auto run {fRun};
+    auto entry {fEntry};
     *this = MergerData {};
+    fRun = run;
+    fEntry = entry;
 }
 
 void ActRoot::MergerData::Print() const

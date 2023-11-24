@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iterator>
 #include <map>
+#include <memory>
 #include <stdexcept>
 #include <utility>
 
@@ -167,6 +168,16 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
 
 ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input) : fInput(input), fIt(ActRoot::InputIterator(input)) {}
 
+void ActRoot::InputWrapper::GetEntry(int run, int entry)
+{
+    fInput->GetEntry(run, entry);
+    if(fTPCData)
+    {
+        fTPCClone.reset();
+        fTPCClone = std::make_unique<TPCData>(*fTPCData);
+    }
+}
+
 bool ActRoot::InputWrapper::GoNext()
 {
     auto [runBef, _] = fIt.GetCurrentRunEntry();
@@ -178,7 +189,7 @@ bool ActRoot::InputWrapper::GoNext()
     {
         SetBranchAddress(run);
     }
-    fInput->GetEntry(run, entry);
+    GetEntry(run, entry);
     return ok;
 }
 
@@ -193,7 +204,7 @@ bool ActRoot::InputWrapper::GoPrevious()
     {
         SetBranchAddress(run);
     }
-    fInput->GetEntry(run, entry);
+    GetEntry(run, entry);
     return ok;
 }
 
@@ -207,7 +218,7 @@ bool ActRoot::InputWrapper::GoTo(int run, int entry)
     {
         SetBranchAddress(run);
     }
-    fInput->GetEntry(run, entry);
+    GetEntry(run, entry);
     return ok;
 }
 

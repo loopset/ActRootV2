@@ -5,6 +5,7 @@
 #include "ActTPCLegacyData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+#include "ActVParameters.h"
 
 #include "TTree.h"
 
@@ -21,7 +22,7 @@ namespace ActRoot
       For now, just keeps sizes of silicons
       using strings as identifiers and VXI equivalences
     */
-    class SilParameters
+    class SilParameters : public VParameters
     {
     private:
         std::unordered_map<std::string, int> fSizes; //!< Sizes of silicons based on string, for [0, max]
@@ -33,7 +34,7 @@ namespace ActRoot
         // Getters
         std::vector<std::string> GetKeys() const;
         int GetSizeOf(const std::string& key) { return fSizes[key]; }
-        void Print() const; //!< Dump info stored
+        void Print() const override; //!< Dump info stored
         std::pair<std::string, int> GetSilIndex(int vxi);
         void ReadActions(const std::vector<std::string>& layers, const std::vector<std::string>& names,
                          const std::string& file);
@@ -53,9 +54,6 @@ namespace ActRoot
     public:
         SilDetector() = default;
         virtual ~SilDetector() = default;
-
-        // Parameter getters
-        SilParameters* GetParametersPointer() { return &fPars; }
 
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
@@ -83,6 +81,9 @@ namespace ActRoot
 
         // Setters of data
         void SetEventData(VData* vdata) override;
+
+        // Getters of parameters
+        SilParameters* GetParameters() override { return &fPars; }
 
         // Printer of configuration
         void Print() const override;

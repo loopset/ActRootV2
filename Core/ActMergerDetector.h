@@ -1,14 +1,17 @@
 #ifndef ActMergerDetector_h
 #define ActMergerDetector_h
 
+#include "ActClIMB.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
+#include "ActMultiStep.h"
 #include "ActSilData.h"
 #include "ActSilSpecs.h"
 #include "ActTPCData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+#include "ActVParameters.h"
 
 #include "TTree.h"
 
@@ -49,6 +52,9 @@ namespace ActRoot
         // Merger data
         MergerData* fMergerData {};
 
+        // MultiStep algorithm
+        std::shared_ptr<ActCluster::MultiStep> fMultiStep {};
+
         // Parameters of algorithm
         int fCurrentRun {};
         int fCurrentEntry {};
@@ -75,10 +81,24 @@ namespace ActRoot
         decltype(TPCData::fClusters)::iterator fHeavyIt;
 
     public:
-        // Setters of pointer to Parameters in DetMan
-        void SetTPCParameters(TPCParameters* tpcPars) { fTPCPars = tpcPars; }
+        MergerDetector(); //!< Default constructor that initializes MultiStep member
+
+        // Setters of pointer to Parameters from Detector Manager
+        void SetTPCParameters(TPCParameters* tpcPars)
+        {
+            fTPCPars = tpcPars;
+            if(fMultiStep)
+                fMultiStep->SetTPCParameters(fTPCPars);
+        }
         void SetSilParameters(SilParameters* silPars) { fSilPars = silPars; }
         void SetModularParameters(ModularParameters* modPars) { fModularPars = modPars; }
+
+        // Set pointer to ClIMB to be used by MultiStep
+        void SetClIMB(std::shared_ptr<ActCluster::ClIMB> climb)
+        {
+            if(fMultiStep)
+                fMultiStep->SetClimb(climb);
+        }
 
         // Setter of entry and run number to be written to current MergerData
         void SetCurrentRunEntry(int run, int entry)
@@ -113,6 +133,9 @@ namespace ActRoot
         // Setters of data
         void SetEventData(VData* vdata) override;
 
+        // Getters of parameters
+        VParameters* GetParameters() override { return nullptr; }
+
         // Printer of parameters
         void Print() const override;
         // Printer of reports
@@ -120,6 +143,9 @@ namespace ActRoot
 
     private:
         void ReadSilSpecs(const std::string& file);
+        void DoMultiStep();
+        void DoMerge();
+        // Inner functions of Merger detector
         bool IsDoable();
         void ConvertToPhysicalUnits();
         bool GateGATCONFandTrackMult();

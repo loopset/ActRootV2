@@ -36,7 +36,7 @@ ActRoot::DetectorManager::DetectorManager(const std::string& file) : DetectorMan
     ReadConfiguration(file);
 }
 
-void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
+void ActRoot::DetectorManager::ReadConfiguration(const std::string& file, bool print)
 {
     // Preliminary!
     ActRoot::InputParser parser {file};
@@ -55,17 +55,22 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file)
             throw std::runtime_error("Detector " + det + " not found in Manager database");
         // Read config file
         fDetectors[fDetDatabase[det]]->ReadConfiguration(parser.GetBlock(det));
+        if(print)
+            fDetectors[fDetDatabase[det]]->Print();
         // Set CalibrationManager pointer
         fDetectors[fDetDatabase[det]]->SetCalMan(fCalMan);
     }
     // Init Merger detector separately
-    InitMerger(parser.GetBlock("Merger"));
+    InitMerger(print);
 }
 
 void ActRoot::DetectorManager::Reconfigure()
 {
     for(auto& [_, det] : fDetectors)
+    {
         det->Reconfigure();
+        det->Print();
+    }
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
@@ -79,12 +84,17 @@ void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)
     }
 }
 
-void ActRoot::DetectorManager::InitMerger(std::shared_ptr<InputBlock> block)
+void ActRoot::DetectorManager::InitMerger(bool print)
 {
     fMerger = std::make_shared<MergerDetector>();
     SendParametersToMerger();
-    fMerger->ReadConfiguration(block);
-    fMerger->Print();
+    // Send also ClIMB
+    if(auto tpc {std::dynamic_pointer_cast<TPCDetector>(fDetectors[DetectorType::EActar])}; tpc)
+        fMerger->SetClIMB(tpc->GetClIMB());
+    fMerger->ReadConfiguration(nullptr); // Merger is a special detector
+    // with its config separated in hardcoded conf.merger
+    if(print)
+        fMerger->Print();
 }
 
 void ActRoot::DetectorManager::SendParametersToMerger()
@@ -93,19 +103,19 @@ void ActRoot::DetectorManager::SendParametersToMerger()
     if(fDetectors.count(DetectorType::EActar))
     {
         auto p {std::dynamic_pointer_cast<TPCDetector>(fDetectors[DetectorType::EActar])};
-        fMerger->SetTPCParameters(p->GetParametersPointer());
+        fMerger->SetTPCParameters(p->GetParameters());
     }
     // Silicons
     if(fDetectors.count(DetectorType::ESilicons))
     {
         auto p {std::dynamic_pointer_cast<SilDetector>(fDetectors[DetectorType::ESilicons])};
-        fMerger->SetSilParameters(p->GetParametersPointer());
+        fMerger->SetSilParameters(p->GetParameters());
     }
     // Modular
     if(fDetectors.count(DetectorType::EModular))
     {
         auto p {std::dynamic_pointer_cast<ModularDetector>(fDetectors[DetectorType::EModular])};
-        fMerger->SetModularParameters(p->GetParametersPointer());
+        fMerger->SetModularParameters(p->GetParameters());
     }
 }
 
@@ -118,32 +128,29 @@ void ActRoot::DetectorManager::DeleteDetector(DetectorType type)
         std::cout << "Could not delete detector" << '\n';
 }
 
-void ActRoot::DetectorManager::SetRawToDataDetectors(std::vector<DetectorType> which)
-{
-    for(auto it = fDetectors.begin(); it != fDetectors.end();)
-    {
-        bool isInList {std::find(which.begin(), which.end(), it->first) != which.end()};
-        if(!isInList)
-            it = fDetectors.erase(it);
-        else
-            it++;
-    }
-    fIsRawOk = true;
-}
-
 void ActRoot::DetectorManager::InitInputRaw(std::shared_ptr<TTree> input)
 {
     if(!fIsRawOk)
         throw std::runtime_error("DetectorManager::InitInputRaw -> When in Raw to Data mode, you must specify which "
-                                 "detectors via SetRawToDataDetectors");
-    for(auto& det : fDetectors)
-        det.second->InitInputRaw(input);
+                                 "mode: either Cluster (TPC) or Data (Sil and others)");
+    if(fIsCluster)
+        fDetectors[DetectorType::EActar]->InitInputRaw(input);
+    if(fIsData)
+    {
+        fDetectors[DetectorType::ESilicons]->InitInputRaw(input);
+        fDetectors[DetectorType::EModular]->InitInputRaw(input);
+    }
 }
 
-void ActRoot::DetectorManager::InitOutputData(std::shared_ptr<TTree> input)
+void ActRoot::DetectorManager::InitOutputData(std::shared_ptr<TTree> output)
 {
-    for(auto& det : fDetectors)
-        det.second->InitOutputData(input);
+    if(fIsCluster)
+        fDetectors[DetectorType::EActar]->InitOutputData(output);
+    if(fIsData)
+    {
+        fDetectors[DetectorType::ESilicons]->InitOutputData(output);
+        fDetectors[DetectorType::EModular]->InitOutputData(output);
+    }
 }
 
 void ActRoot::DetectorManager::InitInputMerger(std::shared_ptr<TTree> input)
@@ -158,9 +165,24 @@ void ActRoot::DetectorManager::InitOutputMerger(std::shared_ptr<TTree> output)
 
 void ActRoot::DetectorManager::BuildEventData()
 {
+    if(fIsCluster)
+    {
+        fDetectors[DetectorType::EActar]->ClearEventData();
+        fDetectors[DetectorType::EActar]->BuildEventData();
+    }
+    if(fIsData)
+    {
+        fDetectors[DetectorType::ESilicons]->ClearEventData();
+        fDetectors[DetectorType::EModular]->ClearEventData();
+        // Build silicons
+        fDetectors[DetectorType::ESilicons]->BuildEventData();
+        // Send MEvent* to Modular (only one ref per TTree branch)
+        fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::ESilicons]->GetMEvent());
+        fDetectors[DetectorType::EModular]->BuildEventData();
+    }
 }
 
-void ActRoot::DetectorManager::Print() const 
+void ActRoot::DetectorManager::Print() const
 {
     for(const auto& [_, det] : fDetectors)
         det->Print();

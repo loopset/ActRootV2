@@ -37,7 +37,7 @@ void ActCluster::ClIMB::ReadConfigurationFile(const std::string& infile)
 {
     // automatically get project path from gEnv
     std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/cluster.climb";
+    envfile += "/configs/climb.conf";
     std::string realfile {};
     if(!gSystem->AccessPathName(envfile.c_str()))
         realfile = envfile;

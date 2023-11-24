@@ -117,7 +117,6 @@ void ActRoot::ModularDetector::BuildEventData()
             }
         }
     }
-    std::cout<<"Modular size : "<<fData->fLeaves.size()<<'\n';
 }
 
 void ActRoot::ModularDetector::BuildEventMerger() {}

@@ -5,6 +5,7 @@
 #include "ActMergerData.h"
 #include "ActModularData.h"
 #include "ActModularDetector.h"
+#include "ActMultiStep.h"
 #include "ActSilData.h"
 #include "ActSilDetector.h"
 #include "ActSilSpecs.h"
@@ -12,9 +13,11 @@
 #include "ActTPCDetector.h"
 #include "ActVData.h"
 
+#include "TEnv.h"
 #include "TH1.h"
 #include "TMath.h"
 #include "TMathBase.h"
+#include "TSystem.h"
 #include "TTree.h"
 
 #include "Math/RotationZYX.h"
@@ -29,12 +32,30 @@
 #include <memory>
 #include <numeric>
 #include <set>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
 
+ActRoot::MergerDetector::MergerDetector()
+{
+    fMultiStep = std::make_shared<ActCluster::MultiStep>();
+}
+
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
+    ////////////////// MergerDetector /////////////////////////
+    // automatically get project path from gEnv
+    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
+    envfile += "/configs/merger.conf";
+    if(gSystem->AccessPathName(envfile.c_str()))
+    {
+        throw std::runtime_error(
+            "MergerDetector::ReadConfiguration: could not locate conf.merger in ActRoot's configs path!");
+    }
+    // Parse!
+    ActRoot::InputParser parser {envfile};
+    block = parser.GetBlock("Merger");
     // Read (mandatory) SilSpecs config file
     if(block->CheckTokenExists("SilSpecsFile"))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
@@ -68,11 +89,17 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
 
     // Disable TH1::AddDirectory
     TH1::AddDirectory(false);
+
+    //////////////// MultiStep algorithm ///////////////////////////
+    fMultiStep->ReadConfigurationFile();
 }
 
 void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block) {}
 
-void ActRoot::MergerDetector::Reconfigure() {}
+void ActRoot::MergerDetector::Reconfigure()
+{
+    ReadConfiguration(nullptr);
+}
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
 {
@@ -90,11 +117,12 @@ void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
 {
+    tree->SetBranchStatus("fRaw", false);
     // TPC physics
     if(fTPCData)
         delete fTPCData;
     fTPCData = new TPCData;
-    tree->SetBranchAddress("TPCPhysics", &fTPCData);
+    tree->SetBranchAddress("TPCData", &fTPCData);
 
     // Silicon data
     if(fSilData)
@@ -127,7 +155,15 @@ void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
 
 void ActRoot::MergerDetector::BuildEventData() {}
 
-void ActRoot::MergerDetector::BuildEventMerger()
+void ActRoot::MergerDetector::DoMultiStep()
+{
+    // Send data to MultiStep
+    fMultiStep->SetClusters(&fTPCData->fClusters);
+    fMultiStep->SetRPs(&fTPCData->fRPs);
+    fMultiStep->Run();
+}
+
+void ActRoot::MergerDetector::DoMerge()
 {
     // 1-> Reset iterators
     Reset();
@@ -163,6 +199,14 @@ void ActRoot::MergerDetector::BuildEventMerger()
     ComputeQave();
     if(fEnableQProfile)
         ComputeQProfile();
+}
+
+void ActRoot::MergerDetector::BuildEventMerger()
+{
+    // MultiStep
+    DoMultiStep();
+    // Merge
+    DoMerge();
 }
 
 bool ActRoot::MergerDetector::IsDoable()
@@ -461,6 +505,8 @@ void ActRoot::MergerDetector::ClearEventMerger()
 
 void ActRoot::MergerDetector::Print() const
 {
+    fMultiStep->Print();
+
     std::cout << BOLDYELLOW << ":::: Merger detector ::::" << '\n';
     std::cout << "-> GATCONF map   : " << '\n';
     for(const auto& [key, vals] : fGatMap)

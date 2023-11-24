@@ -1,9 +1,11 @@
 #ifndef ActInputIterator_h
 #define ActInputIterator_h
 
+#include "ActTPCData.h"
 #include "ActVData.h"
 
 #include <map>
+#include <memory>
 #include <utility>
 #include <vector>
 namespace ActRoot
@@ -39,7 +41,6 @@ namespace ActRoot
     };
 
     // more forward declarations
-    class TPCData;
     class SilData;
     class ModularData;
     class MergerData;
@@ -50,6 +51,7 @@ namespace ActRoot
         InputIterator fIt;
         // Data
         TPCData* fTPCData {};
+        std::shared_ptr<TPCData> fTPCClone {};
         SilData* fSilData {};
         ModularData* fModularData {};
         // Merger data
@@ -63,9 +65,11 @@ namespace ActRoot
         bool GoNext();
         bool GoPrevious();
         bool GoTo(int run, int entry);
+        void GetEntry(int run, int entry);
 
         // Get current data
         TPCData* GetTPCData() const { return fTPCData; }
+        std::shared_ptr<TPCData> GetTPCDataClone() const { return fTPCClone; };
         SilData* GetSilData() const { return fSilData; }
         ModularData* GetModularData() const { return fModularData; }
         MergerData* GetMergerData() const { return fMergerData; }

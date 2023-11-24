@@ -20,11 +20,13 @@
 // virtual data structure
 #pragma link C++ class ActRoot::VData + ;
 
+// pure virtual parameters structure
+#pragma link C++ class ActRoot::VParameters + ;
+
 // tpc
 #pragma link C++ class ActRoot::TPCDetector + ;
 #pragma link C++ class ActRoot::Voxel + ;
 #pragma link C++ class ActRoot::TPCData + ;
-#pragma link C++ class ActRoot::TPCPhysics + ;
 
 #pragma link C++ class ActRoot::DetectorManager;
 #pragma link C++ class ActRoot::InputData;
