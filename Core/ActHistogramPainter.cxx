@@ -304,7 +304,7 @@ TCanvas* ActRoot::HistogramPainter::SetCanvas(int i, const std::string& title, d
 {
     fCanvs[i] = new TCanvas(TString::Format("cHP%d", i), title.c_str(), w, h);
     // Different settings
-    fCanvs[i]->ToggleToolBar();
+    // fCanvs[i]->ToggleToolBar();
     // fCanvs[i]->ToggleEventStatus();
     return fCanvs[i];
 }
