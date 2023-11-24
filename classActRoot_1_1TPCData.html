@@ -67,6 +67,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classActRoot_1_1TPCData-members.html">List of all members</a>  </div>
@@ -75,13 +76,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Holder of physics info from an ACTAR TPC event.  
+ <a href="classActRoot_1_1TPCData.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ActTPCData_8h_source.html">ActTPCData.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ActRoot::TPCData:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1TPCData__inherit__graph.png" border="0" usemap="#aActRoot_1_1TPCData_inherit__map" alt="Inheritance graph"/></div>
 <map name="aActRoot_1_1TPCData_inherit__map" id="aActRoot_1_1TPCData_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,143,107"/>
+<area shape="rect" title="Holder of physics info from an ACTAR TPC event." alt="" coords="5,80,143,107"/>
 <area shape="rect" href="classActRoot_1_1VData.html" title=" " alt="" coords="13,5,135,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -90,15 +94,18 @@ Collaboration diagram for ActRoot::TPCData:</div>
 <div class="dyncontent">
 <div class="center"><img src="classActRoot_1_1TPCData__coll__graph.png" border="0" usemap="#aActRoot_1_1TPCData_coll__map" alt="Collaboration graph"/></div>
 <map name="aActRoot_1_1TPCData_coll__map" id="aActRoot_1_1TPCData_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,143,107"/>
+<area shape="rect" title="Holder of physics info from an ACTAR TPC event." alt="" coords="5,80,143,107"/>
 <area shape="rect" href="classActRoot_1_1VData.html" title=" " alt="" coords="13,5,135,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa92cc828826e0637c3fb9691b8cead2b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#aa92cc828826e0637c3fb9691b8cead2b">XYZPoint</a> = ROOT::Math::XYZPointF</td></tr>
+<tr class="separator:aa92cc828826e0637c3fb9691b8cead2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9088b0654ef90894f600d2f4b1c07476"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#a9088b0654ef90894f600d2f4b1c07476">TPCData</a> ()=default</td></tr>
-<tr class="separator:a9088b0654ef90894f600d2f4b1c07476"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8029f651021f0b934b7299c7f49df32a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#a8029f651021f0b934b7299c7f49df32a">Clear</a> () override</td></tr>
 <tr class="separator:a8029f651021f0b934b7299c7f49df32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a8d250dc83d72c2197f35a89325865b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#a6a8d250dc83d72c2197f35a89325865b">Print</a> () const override</td></tr>
@@ -106,31 +113,26 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab0a8abaf78237ad057998acee9cb5a17"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">Voxel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a></td></tr>
-<tr class="separator:ab0a8abaf78237ad057998acee9cb5a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a303febaad6a6b00073646cca067f1ff0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">fClusters</a> {}</td></tr>
+<tr class="separator:a303febaad6a6b00073646cca067f1ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae163f75fb1f76c18a8b480500ffd81c6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">Voxel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#ae163f75fb1f76c18a8b480500ffd81c6">fRaw</a> {}</td></tr>
+<tr class="separator:ae163f75fb1f76c18a8b480500ffd81c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5886e049a670de028d945b79edd3571"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActRoot_1_1TPCData.html#aa92cc828826e0637c3fb9691b8cead2b">XYZPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a> {}</td></tr>
+<tr class="separator:ac5886e049a670de028d945b79edd3571"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9088b0654ef90894f600d2f4b1c07476"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9088b0654ef90894f600d2f4b1c07476">&#9670;&nbsp;</a></span>TPCData()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Holder of physics info from an ACTAR TPC event. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aa92cc828826e0637c3fb9691b8cead2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92cc828826e0637c3fb9691b8cead2b">&#9670;&nbsp;</a></span>XYZPoint</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ActRoot::TPCData::TPCData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">using <a class="el" href="classActRoot_1_1TPCData.html#aa92cc828826e0637c3fb9691b8cead2b">ActRoot::TPCData::XYZPoint</a> =  ROOT::Math::XYZPointF</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -160,8 +162,14 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{ <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.clear(); }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCData_html_ab0a8abaf78237ad057998acee9cb5a17"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData::fVoxels</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fVoxels</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:63</div></div>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">fClusters</a>.clear();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classActRoot_1_1TPCData.html#ae163f75fb1f76c18a8b480500ffd81c6">fRaw</a>.clear();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.clear();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_a303febaad6a6b00073646cca067f1ff0"><div class="ttname"><a href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">ActRoot::TPCData::fClusters</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt; fClusters</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_ac5886e049a670de028d945b79edd3571"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">ActRoot::TPCData::fRPs</a></div><div class="ttdeci">std::vector&lt; XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCData_html_ae163f75fb1f76c18a8b480500ffd81c6"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ae163f75fb1f76c18a8b480500ffd81c6">ActRoot::TPCData::fRaw</a></div><div class="ttdeci">std::vector&lt; Voxel &gt; fRaw</div><div class="ttdef"><b>Definition:</b> ActTPCData.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -189,24 +197,64 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;==== TPCData ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Voxels size = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : <a class="code" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">fVoxels</a>)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        voxel.Print();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;==== TPCData ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;N of clusters = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">fClusters</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; cluster : <a class="code" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">fClusters</a>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        cluster.Print();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        cluster.GetLine().Print();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Noise or Raw voxels size = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCData.html#ae163f75fb1f76c18a8b480500ffd81c6">fRaw</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Reaction Points :&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">int</span> i {-1};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; rp : <a class="code" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        i++;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : &quot;</span> &lt;&lt; rp &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;======================&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab0a8abaf78237ad057998acee9cb5a17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0a8abaf78237ad057998acee9cb5a17">&#9670;&nbsp;</a></span>fVoxels</h2>
+<a id="a303febaad6a6b00073646cca067f1ff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a303febaad6a6b00073646cca067f1ff0">&#9670;&nbsp;</a></span>fClusters</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classActRoot_1_1Voxel.html">Voxel</a>&gt; ActRoot::TPCData::fVoxels</td>
+          <td class="memname">std::vector&lt;<a class="el" href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a>&gt; ActRoot::TPCData::fClusters {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae163f75fb1f76c18a8b480500ffd81c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae163f75fb1f76c18a8b480500ffd81c6">&#9670;&nbsp;</a></span>fRaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classActRoot_1_1Voxel.html">Voxel</a>&gt; ActRoot::TPCData::fRaw {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5886e049a670de028d945b79edd3571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5886e049a670de028d945b79edd3571">&#9670;&nbsp;</a></span>fRPs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classActRoot_1_1TPCData.html#aa92cc828826e0637c3fb9691b8cead2b">XYZPoint</a>&gt; ActRoot::TPCData::fRPs {}</td>
         </tr>
       </table>
 </div><div class="memdoc">

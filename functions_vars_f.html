@@ -78,7 +78,7 @@ $(function() {
 : <a class="el" href="classActSim_1_1Geometry.html#a70cb1403cb0ba15b8bc3ec800f77c586">ActSim::Geometry</a>
 </li>
 <li>fBeamIt
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a53af0f2c4f1defb9532d413cada7b438">ActRoot::MergerDetector</a>
+: <a class="el" href="classActRoot_1_1MergerDetector.html#aeee71a5c10541248db2176cd17815f92">ActRoot::MergerDetector</a>
 </li>
 <li>fBeamLikeParallelF
 : <a class="el" href="classActCluster_1_1MultiStep.html#a7c4127ff8178fd4f7647d453efed02aa">ActCluster::MultiStep</a>
@@ -183,7 +183,7 @@ $(function() {
 </li>
 <li>fClusters
 : <a class="el" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep</a>
-, <a class="el" href="classActRoot_1_1TPCPhysics.html#ae912f48fae8835b293b86fcfccfd970c">ActRoot::TPCPhysics</a>
+, <a class="el" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">ActRoot::TPCData</a>
 </li>
 <li>fCurrentEntry
 : <a class="el" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">ActRoot::InputIterator</a>
@@ -359,7 +359,7 @@ $(function() {
 : <a class="el" href="structActSim_1_1SilAssembly.html#afd62802d876f57fdb9302eb50b5d1563">ActSim::SilAssembly</a>
 </li>
 <li>fHeavyIt
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a6e091cbc118eaeeefbaf4ebdd8066d4b">ActRoot::MergerDetector</a>
+: <a class="el" href="classActRoot_1_1MergerDetector.html#a3b26f921097b47b7daceaebce82dff61">ActRoot::MergerDetector</a>
 </li>
 <li>fHeavyPart
 : <a class="el" href="classActSim_1_1KinematicGenerator.html#a60ced12b790ad20049e1e6252c56cec1">ActSim::KinematicGenerator</a>
@@ -405,6 +405,14 @@ $(function() {
 <li>fIsBeamLike
 : <a class="el" href="classActCluster_1_1Cluster.html#a9707dab269ccb02f101555b2c20374fe">ActCluster::Cluster</a>
 </li>
+<li>fIsCluster
+: <a class="el" href="classActRoot_1_1DetectorManager.html#a77befaa64e71dd85181a1693914ac2a1">ActRoot::DetectorManager</a>
+, <a class="el" href="classActRoot_1_1MTExecutor.html#aa180f31e7d49aba41b70bf829d638dd1">ActRoot::MTExecutor</a>
+</li>
+<li>fIsData
+: <a class="el" href="classActRoot_1_1DetectorManager.html#a847f5806ef29625813a50548cb409a2e">ActRoot::DetectorManager</a>
+, <a class="el" href="classActRoot_1_1MTExecutor.html#a19f2dfcb6993bfe772b5427974609835">ActRoot::MTExecutor</a>
+</li>
 <li>fIsEnabled
 : <a class="el" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">ActCluster::MultiStep</a>
 </li>
@@ -414,11 +422,15 @@ $(function() {
 <li>fIsMirrored
 : <a class="el" href="structActSim_1_1SilAssembly.html#a38ce88e61da4d0f95514de63d11d66a4">ActSim::SilAssembly</a>
 </li>
+<li>fIsRawOk
+: <a class="el" href="classActRoot_1_1DetectorManager.html#a824a361fab4ba404f263c675d0a0b959">ActRoot::DetectorManager</a>
+</li>
 <li>fIsSaturated
 : <a class="el" href="classActRoot_1_1Voxel.html#ad9d8714d3fda570e7933876d702d0a9e">ActRoot::Voxel</a>
 </li>
 <li>fIsVerbose
 : <a class="el" href="classActCluster_1_1MultiStep.html#a5d2f5ae15892e331b7f91bda428c74a3">ActCluster::MultiStep</a>
+, <a class="el" href="classActRoot_1_1EventPainter.html#a197fdf81c5d3997c92a321b0cf8ca7c2">ActRoot::EventPainter</a>
 </li>
 <li>fIt
 : <a class="el" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">ActRoot::InputWrapper</a>
@@ -457,7 +469,7 @@ $(function() {
 : <a class="el" href="structActSim_1_1SilUnit.html#a27f2f3e0b361f0ed85705ade0971f2ec">ActSim::SilUnit</a>
 </li>
 <li>fLightIt
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a30f746bb743249f7d77c6a6ba832ab8d">ActRoot::MergerDetector</a>
+: <a class="el" href="classActRoot_1_1MergerDetector.html#ab0c08a9c9b8615e297e52930dac363e8">ActRoot::MergerDetector</a>
 </li>
 <li>fLine
 : <a class="el" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">ActCluster::Cluster</a>
@@ -530,7 +542,9 @@ $(function() {
 , <a class="el" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">ActRoot::MergerDetector</a>
 </li>
 <li>fMEvent
-: <a class="el" href="classActRoot_1_1VDetector.html#afc475c3fe37b340d5e78bba54fde2748">ActRoot::VDetector</a>
+: <a class="el" href="classActRoot_1_1ModularDetector.html#ac4c82385b9348c24f04f35f2351429f7">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a35af322ab4df2ffc818b1c5063f76eb7">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a626d833c8e6ac89eaf3a12cb0494ee37">ActRoot::TPCDetector</a>
 </li>
 <li>fMinPoints
 : <a class="el" href="classActCluster_1_1ClIMB.html#a47829f9b53fbbcbe5a2f333c34b397b0">ActCluster::ClIMB</a>
@@ -553,7 +567,7 @@ $(function() {
 : <a class="el" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector</a>
 </li>
 <li>fMultiStep
-: <a class="el" href="classActRoot_1_1TPCDetector.html#a9a9700f1f23e467d30937a7d5ba17b82">ActRoot::TPCDetector</a>
+: <a class="el" href="classActRoot_1_1MergerDetector.html#afa83c76b71bcb63c926f8774c434d4d4">ActRoot::MergerDetector</a>
 </li>
 <li>fName
 : <a class="el" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle</a>
@@ -674,9 +688,6 @@ $(function() {
 <li>fPhiLight
 : <a class="el" href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">ActRoot::MergerData</a>
 </li>
-<li>fPhysics
-: <a class="el" href="classActRoot_1_1TPCDetector.html#a213d43894ec6b09ccee9a5e1d9d4cb08">ActRoot::TPCDetector</a>
-</li>
 <li>fPileUpXPercent
 : <a class="el" href="classActCluster_1_1MultiStep.html#ac3414106583c60df322933c01cc10c24">ActCluster::MultiStep</a>
 </li>
@@ -721,6 +732,9 @@ $(function() {
 <li>fRansac
 : <a class="el" href="classActRoot_1_1TPCDetector.html#a09aec05a553ff01429d14cc35a91f2d9">ActRoot::TPCDetector</a>
 </li>
+<li>fRaw
+: <a class="el" href="classActRoot_1_1TPCData.html#ae163f75fb1f76c18a8b480500ffd81c6">ActRoot::TPCData</a>
+</li>
 <li>fREBINZ
 : <a class="el" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">ActRoot::TPCParameters</a>
 </li>
@@ -744,7 +758,7 @@ $(function() {
 </li>
 <li>fRPs
 : <a class="el" href="classActCluster_1_1MultiStep.html#a89f82f5000feb068254d19df6f04d0f1">ActCluster::MultiStep</a>
-, <a class="el" href="classActRoot_1_1TPCPhysics.html#af5fb71da761bb70de03649e9ca5c4c9e">ActRoot::TPCPhysics</a>
+, <a class="el" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">ActRoot::TPCData</a>
 </li>
 <li>fRun
 : <a class="el" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">ActRoot::MergerData</a>
@@ -772,7 +786,7 @@ $(function() {
 : <a class="el" href="classActPhysics_1_1Line.html#abe3e74bb626f4eaa74d4ffe10725bff3">ActPhysics::Line</a>
 </li>
 <li>fSil
-: <a class="el" href="classActRoot_1_1HistogramPainter.html#ac5ad93049572a385de71297646e5d707">ActRoot::HistogramPainter</a>
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ae6ab5a3adbeb2ee6f4ccaa0cd69a780c">ActRoot::HistogramPainter</a>
 </li>
 <li>fSilData
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">ActRoot::InputWrapper</a>
@@ -899,22 +913,20 @@ $(function() {
 <li>fTPC
 : <a class="el" href="classActCluster_1_1ClIMB.html#a7384bf1eb5304e4fecdbfd56d4fcc348">ActCluster::ClIMB</a>
 , <a class="el" href="classActCluster_1_1MultiStep.html#ac27def1f5a338b45d0f8541149dbc967">ActCluster::MultiStep</a>
-, <a class="el" href="classActRoot_1_1HistogramPainter.html#acdc8588f4a09ab13fd9e7c18b040e277">ActRoot::HistogramPainter</a>
+, <a class="el" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">ActRoot::HistogramPainter</a>
+</li>
+<li>fTPCClone
+: <a class="el" href="classActRoot_1_1InputWrapper.html#a855e24db28bac79dcd67879cb558607c">ActRoot::InputWrapper</a>
 </li>
 <li>fTPCData
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">ActRoot::InputWrapper</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a9af16a31218a72ebab41bcc3141356f7">ActRoot::MergerDetector</a>
 </li>
 <li>ftpcout
 : <a class="el" href="classActRoot_1_1MTExecutor.html#a128d9cc53d311d72b68f0cde533ee57e">ActRoot::MTExecutor</a>
 </li>
 <li>fTPCPars
 : <a class="el" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector</a>
-</li>
-<li>fTPCPhyiscs
-: <a class="el" href="classActRoot_1_1MergerDetector.html#ab90662293a35043551429cef4a79a04f">ActRoot::MergerDetector</a>
-</li>
-<li>fTPCPhysics
-: <a class="el" href="classActRoot_1_1InputWrapper.html#a10f8014895d3b1aeaff00699b3404b78">ActRoot::InputWrapper</a>
 </li>
 <li>fTrackChi2Threshold
 : <a class="el" href="classActCluster_1_1MultiStep.html#afb260f2660aaedd555ff6d8aa191a7fd">ActCluster::MultiStep</a>
@@ -955,7 +967,7 @@ $(function() {
 <li>fVoxels
 : <a class="el" href="classActCluster_1_1ClIMB.html#a6ae1984e2325ea4c87a72bcc567cce3d">ActCluster::ClIMB</a>
 , <a class="el" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">ActCluster::Cluster</a>
-, <a class="el" href="classActRoot_1_1TPCData.html#ab0a8abaf78237ad057998acee9cb5a17">ActRoot::TPCData</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#af756ce1c43b9dcff3f20064fb49ad29e">ActRoot::TPCDetector</a>
 </li>
 <li>fVXI
 : <a class="el" href="classActRoot_1_1ModularParameters.html#ae157ecb802fb424bfbc6581b45f1ba61">ActRoot::ModularParameters</a>
