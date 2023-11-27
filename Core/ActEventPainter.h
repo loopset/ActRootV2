@@ -54,7 +54,7 @@ namespace ActRoot
         EventPainter(const TGWindow* window, unsigned int width, unsigned int height);
         virtual ~EventPainter();
 
-        void SetDataAndDetector(const std::string& infile, const std::string& detfile);
+        void SetDetectorAndData(const std::string& detfile, const std::string& infile, bool outputAlso = false);
         void SetIsVerbose() { fIsVerbose = true; }
 
         virtual void CloseWindow();

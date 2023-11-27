@@ -227,10 +227,10 @@ ActRoot::EventPainter::~EventPainter()
     Cleanup();
 }
 
-void ActRoot::EventPainter::SetDataAndDetector(const std::string& infile, const std::string& detfile)
+void ActRoot::EventPainter::SetDetectorAndData(const std::string& detfile, const std::string& infile, bool outputAlso)
 {
     // Init input
-    auto* input {new InputData(infile)};
+    auto* input {new InputData(infile, outputAlso)};
     fWrap = std::move(InputWrapper {input});
     // Init detector
     fDetMan = new DetectorManager(detfile);
