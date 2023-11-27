@@ -114,8 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a678f4bb1b350c4ec1d4c9b53f650b28d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a318049f0ca135b1359122dbb720f0570"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a318049f0ca135b1359122dbb720f0570">~EventPainter</a> ()</td></tr>
 <tr class="separator:a318049f0ca135b1359122dbb720f0570"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bfc0dd2bf4241689583c3d93c289f91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a7bfc0dd2bf4241689583c3d93c289f91">SetDataAndDetector</a> (const std::string &amp;infile, const std::string &amp;detfile)</td></tr>
-<tr class="separator:a7bfc0dd2bf4241689583c3d93c289f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac71461fe26d1873930149f8130a004af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#ac71461fe26d1873930149f8130a004af">SetDetectorAndData</a> (const std::string &amp;detfile, const std::string &amp;infile, bool outputAlso=false)</td></tr>
+<tr class="separator:ac71461fe26d1873930149f8130a004af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c6039c744355fff2b4d24059841ec5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a3c6039c744355fff2b4d24059841ec5f">SetIsVerbose</a> ()</td></tr>
 <tr class="separator:a3c6039c744355fff2b4d24059841ec5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f4b91089dc26b15b251aa60953d0df9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1EventPainter.html#a7f4b91089dc26b15b251aa60953d0df9">CloseWindow</a> ()</td></tr>
@@ -351,7 +351,7 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1EventPainter_html_a1fefa81acb691311b2753f3c60661745"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">ActRoot::EventPainter::fRunButton</a></div><div class="ttdeci">TGNumberEntry * fRunButton</div><div class="ttdef"><b>Definition:</b> ActEventPainter.h:42</div></div>
 <div class="ttc" id="aclassActRoot_1_1EventPainter_html_a5ec0fa88c9da5ea8657978ca7f0c89ed"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#a5ec0fa88c9da5ea8657978ca7f0c89ed">ActRoot::EventPainter::fEntryButton</a></div><div class="ttdeci">TGNumberEntry * fEntryButton</div><div class="ttdef"><b>Definition:</b> ActEventPainter.h:43</div></div>
 <div class="ttc" id="aclassActRoot_1_1EventPainter_html_ad08b322bcc245888388c6703fa80f332"><div class="ttname"><a href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">ActRoot::EventPainter::fWrap</a></div><div class="ttdeci">InputWrapper fWrap</div><div class="ttdef"><b>Definition:</b> ActEventPainter.h:47</div></div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a1003fa2f8dbc8ef62fd2192bdae830ff"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a1003fa2f8dbc8ef62fd2192bdae830ff">ActRoot::HistogramPainter::Draw</a></div><div class="ttdeci">void Draw()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:245</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a1003fa2f8dbc8ef62fd2192bdae830ff"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a1003fa2f8dbc8ef62fd2192bdae830ff">ActRoot::HistogramPainter::Draw</a></div><div class="ttdeci">void Draw()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:249</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a90156d76a3e92fc0a7aafe71e20816ff"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a90156d76a3e92fc0a7aafe71e20816ff">ActRoot::InputWrapper::GetCurrentStatus</a></div><div class="ttdeci">std::pair&lt; int, int &gt; GetCurrentStatus() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:76</div></div>
 </div><!-- fragment -->
 </div>
@@ -394,7 +394,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1ca22808dc326846097061091be559ab">fHistPainter</a>.<a class="code" href="classActRoot_1_1HistogramPainter.html#a2380c9b49e7923da13f23e9657746484">Fill</a>();</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a2380c9b49e7923da13f23e9657746484"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a2380c9b49e7923da13f23e9657746484">ActRoot::HistogramPainter::Fill</a></div><div class="ttdeci">void Fill()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:230</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a2380c9b49e7923da13f23e9657746484"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a2380c9b49e7923da13f23e9657746484">ActRoot::HistogramPainter::Fill</a></div><div class="ttdeci">void Fill()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:234</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -523,7 +523,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Reset histograms</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a1ca22808dc326846097061091be559ab">fHistPainter</a>.<a class="code" href="classActRoot_1_1HistogramPainter.html#a42fe2b0ba7bea3fb985bff4ee0e71490">Reset</a>();</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a42fe2b0ba7bea3fb985bff4ee0e71490"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a42fe2b0ba7bea3fb985bff4ee0e71490">ActRoot::HistogramPainter::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:275</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a42fe2b0ba7bea3fb985bff4ee0e71490"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a42fe2b0ba7bea3fb985bff4ee0e71490">ActRoot::HistogramPainter::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:279</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -782,23 +782,29 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a7bfc0dd2bf4241689583c3d93c289f91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bfc0dd2bf4241689583c3d93c289f91">&#9670;&nbsp;</a></span>SetDataAndDetector()</h2>
+<a id="ac71461fe26d1873930149f8130a004af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac71461fe26d1873930149f8130a004af">&#9670;&nbsp;</a></span>SetDetectorAndData()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ActRoot::EventPainter::SetDataAndDetector </td>
+          <td class="memname">void ActRoot::EventPainter::SetDetectorAndData </td>
           <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>detfile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>infile</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>detfile</em>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>outputAlso</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -809,7 +815,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;{</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">// Init input</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">auto</span>* input {<span class="keyword">new</span> InputData(infile)};</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">auto</span>* input {<span class="keyword">new</span> InputData(infile, outputAlso)};</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#ad08b322bcc245888388c6703fa80f332">fWrap</a> = std::move(InputWrapper {input});</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment">// Init detector</span></div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="classActRoot_1_1EventPainter.html#a0900acfec1bc3bbe9577dcbb95040503">fDetMan</a> = <span class="keyword">new</span> DetectorManager(detfile);</div>
