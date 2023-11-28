@@ -66,11 +66,13 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file, bool p
 
 void ActRoot::DetectorManager::Reconfigure()
 {
-    for(auto& [_, det] : fDetectors)
-    {
-        det->Reconfigure();
-        det->Print();
-    }
+    // for(auto& [_, det] : fDetectors)
+    // {
+    //     det->Reconfigure();
+    //     det->Print();
+    // }
+    if(fMerger)
+        fMerger->Reconfigure();
 }
 
 void ActRoot::DetectorManager::ReadCalibrations(const std::string& file)

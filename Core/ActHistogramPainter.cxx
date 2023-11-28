@@ -175,9 +175,9 @@ void ActRoot::HistogramPainter::FillClusterHistos()
 {
     if(!fWrap->GetTPCData())
         return;
-    if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
-        if(fWrap->GetMergerData()->fSilLayers.size() == 0)
-            return;
+    // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
+    //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
+    //         return;
     
     for(const auto& cluster : fWrap->GetTPCData()->fClusters)
     {
@@ -333,9 +333,9 @@ void ActRoot::HistogramPainter::DrawPolyLines()
 {
     if(!fWrap->GetTPCData())
         return;
-    if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
-        if(fWrap->GetMergerData()->fSilLayers.size() == 0)
-            return;
+    // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
+    //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
+    //         return;
 
     for(const auto& cluster : fWrap->GetTPCData()->fClusters)
     {

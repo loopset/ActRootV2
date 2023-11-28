@@ -222,6 +222,12 @@ bool ActRoot::InputWrapper::GoTo(int run, int entry)
     return ok;
 }
 
+void ActRoot::InputWrapper::ReGet()
+{
+    auto [run, entry] {fIt.GetCurrentRunEntry()};
+    GetEntry(run, entry);
+}
+
 void ActRoot::InputWrapper::SetBranchAddress(int run)
 {
     auto tree {fInput->GetTree(run)};

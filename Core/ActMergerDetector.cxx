@@ -57,6 +57,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     ActRoot::InputParser parser {envfile};
     block = parser.GetBlock("Merger");
     // Read (mandatory) SilSpecs config file
+    if(block->CheckTokenExists("IsEnabled"))
+        fIsEnabled = block->GetBool("IsEnabled");
     if(block->CheckTokenExists("SilSpecsFile"))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
     // Map GATCONFS to SilLayers, using gat command
@@ -99,6 +101,10 @@ void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block
 void ActRoot::MergerDetector::Reconfigure()
 {
     ReadConfiguration(nullptr);
+    if(fIsVerbose)
+        fMultiStep->SetIsVerbose();
+    fMultiStep->Print();
+    Print();
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -165,6 +171,9 @@ void ActRoot::MergerDetector::DoMultiStep()
 
 void ActRoot::MergerDetector::DoMerge()
 {
+    // Check if is enabled
+    if(!fIsEnabled)
+        return;
     // 1-> Reset iterators
     Reset();
     if(!IsDoable())
@@ -447,16 +456,34 @@ void ActRoot::MergerDetector::ComputeQave()
 {
     std::sort(fLightIt->GetRefToVoxels().begin(), fLightIt->GetRefToVoxels().end());
     // Get min
-    auto min {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
-    auto max {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().back().GetPosition())};
+    auto front {fLightIt->GetVoxels().front().GetPosition()};
+    auto back {fLightIt->GetVoxels().back().GetPosition()};
+    // Scale them
+    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor);
+    ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor);
+    // Get projections
+    auto min {fLightIt->GetLine().ProjectionPointOnLine(front)};
+    auto max {fLightIt->GetLine().ProjectionPointOnLine(back)};
     // Convert them to physical points
-    ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
-    ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
+    // ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
+    // ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
     // Dist in mm
     auto dist {(max - min).R()};
+    // auto dist {(fMergerData->fRP - fMergerData->fBP).R()};
+    // std::cout << "=========================" << '\n';
+    // std::cout << "front : " << front << '\n';
+    // std::cout << "back  : " << back << '\n';
+    // std::cout << "min : " << min << '\n';
+    // std::cout << "max : " << max << '\n';
+    // std::cout << "dist (max - min) : " << (max - min).R() << '\n';
+    // std::cout << "RP : " << fMergerData->fRP << '\n';
+    // std::cout << "BP : " << fMergerData->fBP << '\n';
+    // std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
     // Sum to obtain total Q
     auto qTotal {std::accumulate(fLightIt->GetVoxels().begin(), fLightIt->GetVoxels().end(), 0.f,
                                  [](float sum, const Voxel& v) { return sum + v.GetCharge(); })};
+    // std::cout << "Qtotal : " << qTotal << '\n';
+    // std::cout << "Qtotal / dist : " << qTotal / dist << '\n';
     fMergerData->fQave = qTotal / dist;
 }
 
@@ -508,24 +535,28 @@ void ActRoot::MergerDetector::Print() const
     fMultiStep->Print();
 
     std::cout << BOLDYELLOW << ":::: Merger detector ::::" << '\n';
-    std::cout << "-> GATCONF map   : " << '\n';
-    for(const auto& [key, vals] : fGatMap)
+    std::cout << "-> IsEnabled     ? " << std::boolalpha << fIsEnabled << '\n';
+    if(fIsEnabled)
     {
-        std::cout << "   " << key << " = ";
-        for(const auto& s : vals)
-            std::cout << s << ", ";
+        std::cout << "-> GATCONF map   : " << '\n';
+        for(const auto& [key, vals] : fGatMap)
+        {
+            std::cout << "   " << key << " = ";
+            for(const auto& s : vals)
+                std::cout << s << ", ";
+            std::cout << '\n';
+        }
+        std::cout << "-> ForceBeamLike ? " << std::boolalpha << fForceBeamLike << '\n';
+        std::cout << "-> NotBeamMults  : ";
+        for(const auto& m : fNotBMults)
+            std::cout << m << ", ";
         std::cout << '\n';
+        std::cout << "-> GateRPX       : " << fGateRPX << '\n';
+        std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
+        std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
+        std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
+        std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
     }
-    std::cout << "-> ForceBeamLike ? " << std::boolalpha << fForceBeamLike << '\n';
-    std::cout << "-> NotBeamMults  : ";
-    for(const auto& m : fNotBMults)
-        std::cout << m << ", ";
-    std::cout << '\n';
-    std::cout << "-> GateRPX       : " << fGateRPX << '\n';
-    std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
-    std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
-    std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
-    std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }

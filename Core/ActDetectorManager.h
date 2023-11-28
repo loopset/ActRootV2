@@ -47,6 +47,8 @@ namespace ActRoot
         bool fIsRawOk {};                               //!< Check that SetRawToData has been called
         bool fIsCluster {};                             //!< Convert Raw to Data only for TPC
         bool fIsData {};                                //!< Convert Raw to Data only for Sil and others
+        bool fIsVerbose {};
+
     public:
         DetectorManager();
         DetectorManager(const std::string& file);
@@ -59,6 +61,13 @@ namespace ActRoot
         void ReadConfiguration(const std::string& file, bool print = true);
         void Reconfigure();
         void ReadCalibrations(const std::string& file);
+
+        // Set is verbose mode
+        void SetIsVerbose()
+        {
+            fIsVerbose = true;
+            fMerger->SetIsVerbose();
+        }
 
         // Set detectors to treat when building Raw -> Data
         void SetIsCluster()

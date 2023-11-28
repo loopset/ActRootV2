@@ -55,7 +55,12 @@ namespace ActRoot
         virtual ~EventPainter();
 
         void SetDetectorAndData(const std::string& detfile, const std::string& infile, bool outputAlso = false);
-        void SetIsVerbose() { fIsVerbose = true; }
+        void SetIsVerbose()
+        {
+            fIsVerbose = true;
+            if(fDetMan)
+                fDetMan->SetIsVerbose();
+        }
 
         virtual void CloseWindow();
         void DoExit();

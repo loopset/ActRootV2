@@ -111,6 +111,7 @@ void ActRoot::EventPainter::DoReconfAndExecute()
     if(fDetMan)
     {
         fDetMan->Reconfigure();
+        fWrap.ReGet();
         Execute();
     }
 }
@@ -259,6 +260,7 @@ void ActRoot::EventPainter::DoVerbosePhysics()
     // Print results
     fWrap.GetTPCData()->Print();
     merger->GetEventMerger()->Print();
+    fWrap.SetMergerData(dynamic_cast<MergerData*>(merger->GetEventMerger()));
     //
     // // Set data
     // auto tpcPhys {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};

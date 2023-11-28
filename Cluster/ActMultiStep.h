@@ -3,6 +3,7 @@
 
 #include "ActClIMB.h"
 #include "ActCluster.h"
+
 #include "TStopwatch.h"
 
 #include "Math/Point3Dfwd.h"
@@ -112,6 +113,9 @@ namespace ActCluster
 
         // Print time reports
         void PrintClocks() const;
+
+        // Set verbosity
+        void SetIsVerbose() { fIsVerbose = true; }
 
         // Main method
         void Run();

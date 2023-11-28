@@ -66,6 +66,7 @@ namespace ActRoot
         bool GoPrevious();
         bool GoTo(int run, int entry);
         void GetEntry(int run, int entry);
+        void ReGet();
 
         // Get current data
         TPCData* GetTPCData() const { return fTPCData; }

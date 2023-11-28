@@ -6,6 +6,7 @@
 #include "ActInterval.h"
 #include "ActLine.h"
 #include "ActTPCDetector.h"
+#include "ActVoxel.h"
 
 #include "TEnv.h"
 #include "TMath.h"
@@ -456,8 +457,9 @@ void ActCluster::MultiStep::BreakBeamClusters()
             }
             // 4-> Run cluster algorithm again (if asked... should delete this flag)
             std::vector<ActCluster::Cluster> newClusters;
+            std::vector<ActRoot::Voxel> noise;
             if(fFitNotBeam)
-                auto [newClusters, _] = fClimb->Run(notBeam);
+                std::tie(newClusters, noise) = fClimb->Run(notBeam);
             // Move to vector
             std::move(newClusters.begin(), newClusters.end(), std::back_inserter(toAppend));
             if(fIsVerbose)
@@ -524,7 +526,9 @@ void ActCluster::MultiStep::BreakTrackClusters()
             //     it++;
             // }
             // 5-> Re cluster
-            auto [newClusters, _] {fClimb->Run(breakable)};
+            std::vector<ActCluster::Cluster> newClusters;
+            std::vector<ActRoot::Voxel> noise;
+            std::tie(newClusters, noise) = fClimb->Run(breakable);
             // Set not to merge these new ones
             for(auto& ncl : newClusters)
                 ncl.SetToMerge(false);

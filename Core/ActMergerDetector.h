@@ -55,9 +55,14 @@ namespace ActRoot
         // MultiStep algorithm
         std::shared_ptr<ActCluster::MultiStep> fMultiStep {};
 
+        // Is verbose?
+        bool fIsVerbose {};
+
         // Parameters of algorithm
         int fCurrentRun {};
         int fCurrentEntry {};
+        // Is enabled?
+        bool fIsEnabled {};
         // GATCONF cuts
         std::map<int, std::vector<std::string>> fGatMap {};
         // Event multiplicity and beam-likeness
@@ -98,6 +103,13 @@ namespace ActRoot
         {
             if(fMultiStep)
                 fMultiStep->SetClimb(climb);
+        }
+
+        // Enable verbose mode
+        void SetIsVerbose()
+        {
+            fIsVerbose = true;
+            fMultiStep->SetIsVerbose();
         }
 
         // Setter of entry and run number to be written to current MergerData
