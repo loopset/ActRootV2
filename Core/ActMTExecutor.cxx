@@ -185,3 +185,37 @@ void ActRoot::MTExecutor::BuildEventMerger()
     std::cout << std::endl;
     timer.Print();
 }
+
+void ActRoot::MTExecutor::BuildEventCorr()
+{
+    auto build = [this](const int thread)
+    {
+        for(const auto& run : fRunsPerThread[thread])
+        {
+            fDetMans[thread].InitInputCorr(fInput->GetTree(run));
+            fDetMans[thread].InitOutputCorr(fOutput->GetTree(run));
+            auto nentries {fInput->GetNEntries(run)};
+            StepProgress(thread, nentries);
+            for(int entry = 0; entry < nentries; entry++)
+            {
+                fInput->GetEntry(run, entry);
+                fDetMans[thread].BuildEventCorr();
+                fOutput->Fill(run);
+                PrintProgress(thread, run, entry + 1, nentries);
+            }
+            fOutput->Close(run);
+            fInput->Close(run);
+        }
+    };
+    TStopwatch timer {};
+    timer.Start();
+    for(int thread = 0; thread < fDetMans.size(); thread++)
+    {
+        if(!IsThreadEmpty(thread))
+            ftp.push_task(build, thread);
+    }
+    ftp.wait_for_tasks();
+    timer.Stop();
+    std::cout << std::endl;
+    timer.Print();
+}

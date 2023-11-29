@@ -58,6 +58,7 @@ namespace ActRoot
         }
         void BuildEventData();
         void BuildEventMerger();
+        void BuildEventCorr();
 
     private:
         void ComputeRunsPerThread();
