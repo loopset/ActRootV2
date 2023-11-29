@@ -1,5 +1,6 @@
 #include "ActInputData.h"
 
+#include "ActColors.h"
 #include "ActInputParser.h"
 
 #include "TFile.h"
@@ -42,11 +43,20 @@ void ActRoot::InputData::ReadConfiguration(const std::string& file, bool outputA
     std::vector<std::string> keys {"TreeName", "FilePath",  "FileBegin",    "FileList",
                                    "FileEnd",  "HasFriend", "ManualEntries"};
     // Set input data
-    auto tree {block->GetString("TreeName")};
-    fTreeName = tree;
-    auto path {block->GetString("FilePath")};
-    auto name {block->GetString("FileBegin")};
-    fRuns = block->GetIntVector("FileList");
+    if(block->CheckTokenExists("TreeName"))
+        fTreeName = block->GetString("TreeName");
+    std::string path {};
+    if(block->CheckTokenExists("FilePath"))
+        path = block->GetString("FilePath");
+    std::string begin {};
+    if(block->CheckTokenExists("FileBegin"))
+        begin = block->GetString("FileBegin");
+    // If run list was set manually, ignore the one in file
+    if(fRuns.empty())
+    {
+        if(block->CheckTokenExists("FileList"))
+            fRuns = block->GetIntVector("FileList");
+    }
     std::string end {};
     if(block->CheckTokenExists("FileEnd", true))
         end = block->GetString("FileEnd");
@@ -67,7 +77,7 @@ void ActRoot::InputData::ReadConfiguration(const std::string& file, bool outputA
     // Add files!
     for(const auto& run : fRuns)
     {
-        auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), name.c_str(), run, end.c_str())};
+        auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), begin.c_str(), run, end.c_str())};
         AddFile(run, fullname.Data());
     }
     // Add FriendData object if desired
@@ -89,16 +99,20 @@ void ActRoot::InputData::GetEntry(int run, int entry)
 void ActRoot::InputData::AddFriend(std::shared_ptr<InputBlock> fb)
 {
     // Process keys in the same way as InputData
-    auto tree {fb->GetString("TreeName")};
-    fFriendName = tree;
-    auto path {fb->GetString("FilePath")};
-    auto name {fb->GetString("FileBegin")};
+    if(fb->CheckTokenExists("TreeName"))
+        fFriendName = fb->GetString("TreeName");
+    std::string path {};
+    if(fb->CheckTokenExists("FilePath"))
+        path = fb->GetString("FilePath");
+    std::string begin {};
+    if(fb->CheckTokenExists("FileBegin"))
+        begin = fb->GetString("FileBegin");
     std::string end {};
     if(fb->CheckTokenExists("FileEnd", true))
         end = fb->GetString("FileEnd");
     for(const auto& run : fRuns)
     {
-        auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), name.c_str(), run, end.c_str())};
+        auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), begin.c_str(), run, end.c_str())};
         fTrees[run]->AddFriend(fFriendName.c_str(), fullname.Data());
         std::cout << "Adding Friend TTree " << fFriendName << " in " << fullname << '\n';
     }
@@ -127,4 +141,30 @@ void ActRoot::InputData::Close(int run)
 {
     fTrees[run].reset();
     fFiles[run].reset();
+}
+
+void ActRoot::InputData::SetRunListFrom(const std::string& listfile)
+{
+    // If fRuns is already populated, raise a warning
+    if(fRuns.size() > 0)
+    {
+        std::cout << BOLDRED
+                  << "InputData::SetRunListFrom: fRuns is already populated, so this will not take any effect" << '\n';
+        return;
+    }
+    InputParser parser {listfile};
+    auto block {parser.GetBlock("InputData")};
+    if(block->CheckTokenExists("FileList"))
+        fRuns = block->GetIntVector("FileList");
+    if(block->CheckTokenExists("ExcludeList", true))
+    {
+        auto ex {block->GetIntVector("ExcludeList")};
+        // Delete them from fRuns
+        for(const auto& e : ex)
+        {
+            auto it {std::find(fRuns.begin(), fRuns.end(), e)};
+            if(it != fRuns.end())
+                fRuns.erase(it);
+        }
+    }
 }

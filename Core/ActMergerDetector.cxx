@@ -494,9 +494,10 @@ void ActRoot::MergerDetector::ComputeQProfile()
     h.SetTitle("QProfile;dist [mm];Q [au]");
     // Voxels should be already ordered
     // 1-> Ref point is vector.begin() projection on line
-    auto ref {fLightIt->GetLine().ProjectionPointOnLine(fLightIt->GetVoxels().front().GetPosition())};
-    // Convert to physical units
-    ScalePoint(ref, fTPCPars->GetPadSide(), fDriftFactor);
+    auto front {fLightIt->GetVoxels().front().GetPosition()};
+    // Convert it to physical units
+    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor);
+    auto ref {fLightIt->GetLine().ProjectionPointOnLine(front)};
     // Use 3 divisions in voxel to obtain a better profile
     float div {1.f / 3};
     for(const auto& v : fLightIt->GetVoxels())
@@ -511,9 +512,11 @@ void ActRoot::MergerDetector::ComputeQProfile()
                 for(int iz = -1; iz < 2; iz++)
                 {
                     XYZPoint bin {pos.X() + ix * div, pos.Y() + iy * div, pos.Z() + iz * div};
+                    // Convert to physical units
+                    ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor);
                     // Project it on line
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
-                    ScalePoint(proj, fTPCPars->GetPadSide(), fDriftFactor);
+                    // Fill histograms
                     auto dist {(proj - ref).R()};
                     h.Fill(dist, q / 27);
                 }

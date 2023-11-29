@@ -38,6 +38,7 @@ namespace ActRoot
         // Setters
         void SetTreeName(const std::string& treeName) { fTreeName = treeName; };
         void SetFriendName(const std::string& friendName) { fFriendName = friendName; }
+        void SetRunListFrom(const std::string& listfile);
 
         // Getters
         std::map<int, std::shared_ptr<TTree>> GetTrees() const { return fTrees; }

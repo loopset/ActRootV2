@@ -1,6 +1,7 @@
 #include "ActDetectorManager.h"
 
 #include "ActCalibrationManager.h"
+#include "ActCorrDetector.h"
 #include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
@@ -62,6 +63,8 @@ void ActRoot::DetectorManager::ReadConfiguration(const std::string& file, bool p
     }
     // Init Merger detector separately
     InitMerger(print);
+    // Init Corr detector
+    InitCorr(print);
 }
 
 void ActRoot::DetectorManager::Reconfigure()
@@ -121,6 +124,14 @@ void ActRoot::DetectorManager::SendParametersToMerger()
     }
 }
 
+void ActRoot::DetectorManager::InitCorr(bool print)
+{
+    fCorr = std::make_shared<CorrDetector>();
+    fCorr->ReadConfiguration();
+    if(print)
+        fCorr->Print();
+}
+
 void ActRoot::DetectorManager::DeleteDetector(DetectorType type)
 {
     auto it {fDetectors.find(type)};
@@ -165,6 +176,16 @@ void ActRoot::DetectorManager::InitOutputMerger(std::shared_ptr<TTree> output)
     fMerger->InitOutputMerger(output);
 }
 
+void ActRoot::DetectorManager::InitInputCorr(std::shared_ptr<TTree> input)
+{
+    fCorr->InitInputCorr(input);
+}
+
+void ActRoot::DetectorManager::InitOutputCorr(std::shared_ptr<TTree> output)
+{
+    fCorr->InitOutputCorr(output);
+}
+
 void ActRoot::DetectorManager::BuildEventData()
 {
     if(fIsCluster)
@@ -188,12 +209,18 @@ void ActRoot::DetectorManager::Print() const
 {
     for(const auto& [_, det] : fDetectors)
         det->Print();
+    if(fMerger)
+        fMerger->Print();
+    if(fCorr)
+        fCorr->Print();
 }
 
 void ActRoot::DetectorManager::PrintReports() const
 {
     for(const auto& [_, det] : fDetectors)
         det->PrintReports();
+    if(fMerger)
+        fMerger->PrintReports();
 }
 
 void ActRoot::DetectorManager::SetEventData(DetectorType det, VData* vdata)
@@ -211,4 +238,9 @@ void ActRoot::DetectorManager::BuildEventMerger(int run, int entry)
     fMerger->ClearEventMerger();
     fMerger->SetCurrentRunEntry(run, entry);
     fMerger->BuildEventMerger();
+}
+
+void ActRoot::DetectorManager::BuildEventCorr()
+{
+    fCorr->BuildEventCorr();
 }

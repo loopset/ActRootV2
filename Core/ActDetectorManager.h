@@ -7,6 +7,7 @@ performed on its data
 */
 
 #include "ActCalibrationManager.h"
+#include "ActCorrDetector.h"
 #include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
@@ -44,6 +45,7 @@ namespace ActRoot
                                                         //!< avoid singleton
         std::shared_ptr<MergerDetector> fMerger {};     //!< Merge detector in final step (does not inheritate from
                                                         //!< VDetector so far)
+        std::shared_ptr<CorrDetector> fCorr {};         //!< A simple detector to correct Qave and Zoffset
         bool fIsRawOk {};                               //!< Check that SetRawToData has been called
         bool fIsCluster {};                             //!< Convert Raw to Data only for TPC
         bool fIsData {};                                //!< Convert Raw to Data only for Sil and others
@@ -101,14 +103,17 @@ namespace ActRoot
         // Init INPUT data
         void InitInputRaw(std::shared_ptr<TTree> input);
         void InitInputMerger(std::shared_ptr<TTree> input);
+        void InitInputCorr(std::shared_ptr<TTree> input);
 
         // Init OUTPUT data
         void InitOutputData(std::shared_ptr<TTree> output);
         void InitOutputMerger(std::shared_ptr<TTree> output);
+        void InitOutputCorr(std::shared_ptr<TTree> output);
 
         // Builder of EVENTs
         void BuildEventData();
         void BuildEventMerger(int run, int entry);
+        void BuildEventCorr();
 
         void Print() const;
 
@@ -118,10 +123,12 @@ namespace ActRoot
 
         // Others
         std::shared_ptr<MergerDetector> GetMerger() const { return fMerger; }
+        std::shared_ptr<CorrDetector> GetCorr() const { return fCorr; }
 
     private:
         void InitMerger(bool print);
         void SendParametersToMerger();
+        void InitCorr(bool print);
     };
 } // namespace ActRoot
 #endif
