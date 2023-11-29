@@ -109,6 +109,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa393baf4a655b278cd0054968b3548d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9e96cee3bfa5fb30ca5d0893c9b40dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MTExecutor.html#aa9e96cee3bfa5fb30ca5d0893c9b40dd">BuildEventMerger</a> ()</td></tr>
 <tr class="separator:aa9e96cee3bfa5fb30ca5d0893c9b40dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16625eada7ce3f0b9f31476b03eeffe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MTExecutor.html#a16625eada7ce3f0b9f31476b03eeffe0">BuildEventCorr</a> ()</td></tr>
+<tr class="separator:a16625eada7ce3f0b9f31476b03eeffe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -180,6 +182,69 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a16625eada7ce3f0b9f31476b03eeffe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16625eada7ce3f0b9f31476b03eeffe0">&#9670;&nbsp;</a></span>BuildEventCorr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::MTExecutor::BuildEventCorr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">auto</span> build = [<span class="keyword">this</span>](<span class="keyword">const</span> <span class="keywordtype">int</span> thread)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : <a class="code" href="classActRoot_1_1MTExecutor.html#a56c1764b726c8176b5f42b09cc82bcde">fRunsPerThread</a>[thread])</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#a18fe4dfa9a207674fd7db18362f9593b">fDetMans</a>[thread].InitInputCorr(<a class="code" href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">GetTree</a>(run));</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#a18fe4dfa9a207674fd7db18362f9593b">fDetMans</a>[thread].InitOutputCorr(<a class="code" href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">fOutput</a>-&gt;<a class="code" href="classActRoot_1_1OutputData.html#af7c0d16d0c49359d7a7d2a818fafa05f">GetTree</a>(run));</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keyword">auto</span> nentries {<a class="code" href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#af15abe9b19269234cda2031b4fa277f4">GetNEntries</a>(run)};</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#ae84d217793f342cfcbace5429625ce3a">StepProgress</a>(thread, nentries);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> entry = 0; entry &lt; nentries; entry++)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <a class="code" href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">GetEntry</a>(run, entry);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <a class="code" href="classActRoot_1_1MTExecutor.html#a18fe4dfa9a207674fd7db18362f9593b">fDetMans</a>[thread].BuildEventCorr();</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <a class="code" href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">fOutput</a>-&gt;<a class="code" href="classActRoot_1_1OutputData.html#a137be534be947d5fc3fa574d5d714b0d">Fill</a>(run);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <a class="code" href="classActRoot_1_1MTExecutor.html#a1b8d842f3f8e4b8e63978d381200576a">PrintProgress</a>(thread, run, entry + 1, nentries);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">fOutput</a>-&gt;<a class="code" href="classActRoot_1_1OutputData.html#a6341a7650426949be2dcd8b04b4f933b">Close</a>(run);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#a80ab5b41327518cc55e9f355c75068fb">Close</a>(run);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    };</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    TStopwatch timer {};</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    timer.Start();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> thread = 0; thread &lt; <a class="code" href="classActRoot_1_1MTExecutor.html#a18fe4dfa9a207674fd7db18362f9593b">fDetMans</a>.size(); thread++)</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3">IsThreadEmpty</a>(thread))</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html#a32a1b1609c55de4acbbaf1bb21575504">ftp</a>.<a class="code" href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">push_task</a>(build, thread);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="classActRoot_1_1MTExecutor.html#a32a1b1609c55de4acbbaf1bb21575504">ftp</a>.<a class="code" href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">wait_for_tasks</a>();</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    timer.Stop();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    timer.Print();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a22f0c49a46c48754dade35e0a90552cf"><div class="ttname"><a href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">ActRoot::InputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a80ab5b41327518cc55e9f355c75068fb"><div class="ttname"><a href="classActRoot_1_1InputData.html#a80ab5b41327518cc55e9f355c75068fb">ActRoot::InputData::Close</a></div><div class="ttdeci">void Close(int run)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:140</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_aa199309492180ff6f71621f6ef235e20"><div class="ttname"><a href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">ActRoot::InputData::GetEntry</a></div><div class="ttdeci">void GetEntry(int run, int entry)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:94</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_af15abe9b19269234cda2031b4fa277f4"><div class="ttname"><a href="classActRoot_1_1InputData.html#af15abe9b19269234cda2031b4fa277f4">ActRoot::InputData::GetNEntries</a></div><div class="ttdeci">int GetNEntries(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:48</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a1b8d842f3f8e4b8e63978d381200576a"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a1b8d842f3f8e4b8e63978d381200576a">ActRoot::MTExecutor::PrintProgress</a></div><div class="ttdeci">void PrintProgress(int thread, int run, double current, double total)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:97</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a25c2fd311b141d6fca3d7f8c2df058c3"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3">ActRoot::MTExecutor::IsThreadEmpty</a></div><div class="ttdeci">bool IsThreadEmpty(int t)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:86</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a87d9d27de5213ae5d7eb6a1c2ac90f21"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">ActRoot::MTExecutor::fOutput</a></div><div class="ttdeci">OutputData * fOutput</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.h:33</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ae026671118c21333991e427b2d0ef7ef"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">ActRoot::MTExecutor::fInput</a></div><div class="ttdeci">InputData * fInput</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.h:31</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ae84d217793f342cfcbace5429625ce3a"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ae84d217793f342cfcbace5429625ce3a">ActRoot::MTExecutor::StepProgress</a></div><div class="ttdeci">void StepProgress(int thread, double total)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:91</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a137be534be947d5fc3fa574d5d714b0d"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a137be534be947d5fc3fa574d5d714b0d">ActRoot::OutputData::Fill</a></div><div class="ttdeci">void Fill(int run)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:69</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6341a7650426949be2dcd8b04b4f933b"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6341a7650426949be2dcd8b04b4f933b">ActRoot::OutputData::Close</a></div><div class="ttdeci">void Close(int run)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:74</div></div>
+<div class="ttc" id="aclassActRoot_1_1OutputData_html_af7c0d16d0c49359d7a7d2a818fafa05f"><div class="ttname"><a href="classActRoot_1_1OutputData.html#af7c0d16d0c49359d7a7d2a818fafa05f">ActRoot::OutputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:37</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a016a2a6a7a9c844c94c606aaf517b21c"><div class="ttname"><a href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">BS::thread_pool::push_task</a></div><div class="ttdeci">void push_task(F &amp;&amp;task, A &amp;&amp;... args)</div><div class="ttdoc">Push a function with zero or more arguments, but no return value, into the task queue....</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:437</div></div>
+<div class="ttc" id="aclassBS_1_1thread__pool_html_a1e16153b1a14b5b4d8191168ccf6e4b8"><div class="ttname"><a href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">BS::thread_pool::wait_for_tasks</a></div><div class="ttdeci">void wait_for_tasks()</div><div class="ttdoc">Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:520</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="aa393baf4a655b278cd0054968b3548d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa393baf4a655b278cd0054968b3548d8">&#9670;&nbsp;</a></span>BuildEventData()</h2>
 
@@ -230,20 +295,6 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    timer.Print();</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a22f0c49a46c48754dade35e0a90552cf"><div class="ttname"><a href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">ActRoot::InputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:45</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a80ab5b41327518cc55e9f355c75068fb"><div class="ttname"><a href="classActRoot_1_1InputData.html#a80ab5b41327518cc55e9f355c75068fb">ActRoot::InputData::Close</a></div><div class="ttdeci">void Close(int run)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:140</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_aa199309492180ff6f71621f6ef235e20"><div class="ttname"><a href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">ActRoot::InputData::GetEntry</a></div><div class="ttdeci">void GetEntry(int run, int entry)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:94</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_af15abe9b19269234cda2031b4fa277f4"><div class="ttname"><a href="classActRoot_1_1InputData.html#af15abe9b19269234cda2031b4fa277f4">ActRoot::InputData::GetNEntries</a></div><div class="ttdeci">int GetNEntries(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:48</div></div>
-<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a1b8d842f3f8e4b8e63978d381200576a"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a1b8d842f3f8e4b8e63978d381200576a">ActRoot::MTExecutor::PrintProgress</a></div><div class="ttdeci">void PrintProgress(int thread, int run, double current, double total)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:97</div></div>
-<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a25c2fd311b141d6fca3d7f8c2df058c3"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3">ActRoot::MTExecutor::IsThreadEmpty</a></div><div class="ttdeci">bool IsThreadEmpty(int t)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:86</div></div>
-<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a87d9d27de5213ae5d7eb6a1c2ac90f21"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">ActRoot::MTExecutor::fOutput</a></div><div class="ttdeci">OutputData * fOutput</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.h:33</div></div>
-<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ae026671118c21333991e427b2d0ef7ef"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ae026671118c21333991e427b2d0ef7ef">ActRoot::MTExecutor::fInput</a></div><div class="ttdeci">InputData * fInput</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.h:31</div></div>
-<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ae84d217793f342cfcbace5429625ce3a"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ae84d217793f342cfcbace5429625ce3a">ActRoot::MTExecutor::StepProgress</a></div><div class="ttdeci">void StepProgress(int thread, double total)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:91</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a137be534be947d5fc3fa574d5d714b0d"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a137be534be947d5fc3fa574d5d714b0d">ActRoot::OutputData::Fill</a></div><div class="ttdeci">void Fill(int run)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:69</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_a6341a7650426949be2dcd8b04b4f933b"><div class="ttname"><a href="classActRoot_1_1OutputData.html#a6341a7650426949be2dcd8b04b4f933b">ActRoot::OutputData::Close</a></div><div class="ttdeci">void Close(int run)</div><div class="ttdef"><b>Definition:</b> ActOutputData.cxx:74</div></div>
-<div class="ttc" id="aclassActRoot_1_1OutputData_html_af7c0d16d0c49359d7a7d2a818fafa05f"><div class="ttname"><a href="classActRoot_1_1OutputData.html#af7c0d16d0c49359d7a7d2a818fafa05f">ActRoot::OutputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActOutputData.h:37</div></div>
-<div class="ttc" id="aclassBS_1_1thread__pool_html_a016a2a6a7a9c844c94c606aaf517b21c"><div class="ttname"><a href="classBS_1_1thread__pool.html#a016a2a6a7a9c844c94c606aaf517b21c">BS::thread_pool::push_task</a></div><div class="ttdeci">void push_task(F &amp;&amp;task, A &amp;&amp;... args)</div><div class="ttdoc">Push a function with zero or more arguments, but no return value, into the task queue....</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:437</div></div>
-<div class="ttc" id="aclassBS_1_1thread__pool_html_a1e16153b1a14b5b4d8191168ccf6e4b8"><div class="ttname"><a href="classBS_1_1thread__pool.html#a1e16153b1a14b5b4d8191168ccf6e4b8">BS::thread_pool::wait_for_tasks</a></div><div class="ttdeci">void wait_for_tasks()</div><div class="ttdoc">Wait for tasks to be completed. Normally, this function waits for all tasks, both those that are curr...</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:520</div></div>
 </div><!-- fragment -->
 </div>
 </div>

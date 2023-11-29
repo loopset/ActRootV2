@@ -231,7 +231,7 @@ var searchData=
   ['frps_2201',['fRPs',['../classActCluster_1_1MultiStep.html#a89f82f5000feb068254d19df6f04d0f1',1,'ActCluster::MultiStep::fRPs()'],['../classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571',1,'ActRoot::TPCData::fRPs()']]],
   ['frun_2202',['fRun',['../classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870',1,'ActRoot::MergerData']]],
   ['frunbutton_2203',['fRunButton',['../classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745',1,'ActRoot::EventPainter']]],
-  ['fruns_2204',['fRuns',['../classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6',1,'ActRoot::InputData::fRuns()'],['../classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654',1,'ActRoot::OutputData::fRuns()']]],
+  ['fruns_2204',['fRuns',['../classActRoot_1_1InputData.html#aed608cf97c325955bffa7678839d74f6',1,'ActRoot::InputData::fRuns()'],['../classActRoot_1_1JoinData.html#aa9e7250f6ff7e23648c70cc63655fa2c',1,'ActRoot::JoinData::fRuns()'],['../classActRoot_1_1OutputData.html#a00ce8a6c8f41c90b8c5f167512f73654',1,'ActRoot::OutputData::fRuns()']]],
   ['frunsperthread_2205',['fRunsPerThread',['../classActRoot_1_1MTExecutor.html#a56c1764b726c8176b5f42b09cc82bcde',1,'ActRoot::MTExecutor']]],
   ['fshowhiststats_2206',['fShowHistStats',['../classActRoot_1_1HistogramPainter.html#aafb069d628e4ee2cca763400cd0af4aa',1,'ActRoot::HistogramPainter']]],
   ['fside_2207',['fSide',['../classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4',1,'ActPhysics::SilLayer']]],

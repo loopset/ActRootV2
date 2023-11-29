@@ -70,7 +70,7 @@ var searchData=
   ['setrecoilscmkinematicsthrough3_1046',['SetRecoilsCMKinematicsThrough3',['../classActPhysics_1_1Kinematics.html#a94b13b1e54d3a47025c2c162860dbeda',1,'ActPhysics::Kinematics']]],
   ['setrecoilscmkinematicsthrough4_1047',['SetRecoilsCMKinematicsThrough4',['../classActPhysics_1_1Kinematics.html#a106dc8a08767053ca1f056bad1e81c6e',1,'ActPhysics::Kinematics']]],
   ['setrps_1048',['SetRPs',['../classActCluster_1_1MultiStep.html#a1593a98403d95f7a2a994c83ff8e8627',1,'ActCluster::MultiStep']]],
-  ['setrunlistfrom_1049',['SetRunListFrom',['../classActRoot_1_1InputData.html#ac18a5b9adee8442a6c9a4bd007c24a1e',1,'ActRoot::InputData']]],
+  ['setrunlistfrom_1049',['SetRunListFrom',['../classActRoot_1_1InputData.html#ac18a5b9adee8442a6c9a4bd007c24a1e',1,'ActRoot::InputData::SetRunListFrom()'],['../classActRoot_1_1JoinData.html#ac6561dfe1978e0dbfaddc8788a041ce4',1,'ActRoot::JoinData::SetRunListFrom()']]],
   ['setsametreesasinput_1050',['SetSameTreesAsInput',['../classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb',1,'ActRoot::OutputData']]],
   ['setsigmas_1051',['SetSigmas',['../classActPhysics_1_1Line.html#a8ec9ec6460f56f14c75b2b71f8f2c61c',1,'ActPhysics::Line']]],
   ['setsildata_1052',['SetSilData',['../classActRoot_1_1InputWrapper.html#a26156ccf1d984d016d566bab4695714a',1,'ActRoot::InputWrapper']]],
