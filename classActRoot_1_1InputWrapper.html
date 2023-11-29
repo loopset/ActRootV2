@@ -109,6 +109,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3788e897dffe27310a55931d61753276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95d5b6dd6e13be54c4a49a1076c039fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#a95d5b6dd6e13be54c4a49a1076c039fc">GetEntry</a> (int run, int entry)</td></tr>
 <tr class="separator:a95d5b6dd6e13be54c4a49a1076c039fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d3c6b80a2c77743978ce00c795581a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#af0d3c6b80a2c77743978ce00c795581a">ReGet</a> ()</td></tr>
+<tr class="separator:af0d3c6b80a2c77743978ce00c795581a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af69539eef644d86606bd6257b2601af8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#af69539eef644d86606bd6257b2601af8">GetTPCData</a> () const</td></tr>
 <tr class="separator:af69539eef644d86606bd6257b2601af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab729a2092976195eab182d69d9e5b05b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActRoot_1_1TPCData.html">TPCData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html#ab729a2092976195eab182d69d9e5b05b">GetTPCDataClone</a> () const</td></tr>
@@ -252,7 +254,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a>.<a class="code" href="classActRoot_1_1InputIterator.html#a58d6c4c1a5fecc267eb8c7733ba889ac">GetCurrentRunEntry</a>(); }</div>
+<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a>.<a class="code" href="classActRoot_1_1InputIterator.html#a58d6c4c1a5fecc267eb8c7733ba889ac">GetCurrentRunEntry</a>(); }</div>
 <div class="ttc" id="aclassActRoot_1_1InputIterator_html_a58d6c4c1a5fecc267eb8c7733ba889ac"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#a58d6c4c1a5fecc267eb8c7733ba889ac">ActRoot::InputIterator::GetCurrentRunEntry</a></div><div class="ttdeci">std::pair&lt; int, int &gt; GetCurrentRunEntry() const</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:34</div></div>
 </div><!-- fragment -->
 </div>
@@ -290,7 +292,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <a class="code" href="classActRoot_1_1InputWrapper.html#a855e24db28bac79dcd67879cb558607c">fTPCClone</a> = std::make_unique&lt;TPCData&gt;(*<a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>);</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_aa199309492180ff6f71621f6ef235e20"><div class="ttname"><a href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">ActRoot::InputData::GetEntry</a></div><div class="ttdeci">void GetEntry(int run, int entry)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:84</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_aa199309492180ff6f71621f6ef235e20"><div class="ttname"><a href="classActRoot_1_1InputData.html#aa199309492180ff6f71621f6ef235e20">ActRoot::InputData::GetEntry</a></div><div class="ttdeci">void GetEntry(int run, int entry)</div><div class="ttdef"><b>Definition:</b> ActInputData.cxx:94</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a4e3f7a5a7dd01d7b6a1d58841d379bc6"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">ActRoot::InputWrapper::fTPCData</a></div><div class="ttdeci">TPCData * fTPCData</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:53</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a855e24db28bac79dcd67879cb558607c"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a855e24db28bac79dcd67879cb558607c">ActRoot::InputWrapper::fTPCClone</a></div><div class="ttdeci">std::shared_ptr&lt; TPCData &gt; fTPCClone</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:54</div></div>
 </div><!-- fragment -->
@@ -318,7 +320,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">fInput</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">fInput</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -344,7 +346,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -370,7 +372,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>; }</div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_aea8a50c3cac4623854f553bbd936fd9b"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">ActRoot::InputWrapper::fMergerData</a></div><div class="ttdeci">MergerData * fMergerData</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:58</div></div>
 </div><!-- fragment -->
 </div>
@@ -397,7 +399,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>; }</div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_aeedaba0c0ec9344064d505037fd9e924"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">ActRoot::InputWrapper::fModularData</a></div><div class="ttdeci">ModularData * fModularData</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:56</div></div>
 </div><!-- fragment -->
 </div>
@@ -424,7 +426,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>; }</div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a29dc8f04050365793e5d69f7a34284cb"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">ActRoot::InputWrapper::fSilData</a></div><div class="ttdeci">SilData * fSilData</div><div class="ttdef"><b>Definition:</b> ActInputIterator.h:55</div></div>
 </div><!-- fragment -->
 </div>
@@ -451,7 +453,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -477,7 +479,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a855e24db28bac79dcd67879cb558607c">fTPCClone</a>; };</div>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1InputWrapper.html#a855e24db28bac79dcd67879cb558607c">fTPCClone</a>; };</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -509,7 +511,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">return</span> ok;</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1InputIterator_html_ab4bc333d9b1820946ef43bfc907dd40c"><div class="ttname"><a href="classActRoot_1_1InputIterator.html#ab4bc333d9b1820946ef43bfc907dd40c">ActRoot::InputIterator::Next</a></div><div class="ttdeci">bool Next()</div><div class="ttdef"><b>Definition:</b> ActInputIterator.cxx:108</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a3260baa48c56aa2f75e4ba717cd37ec7"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a3260baa48c56aa2f75e4ba717cd37ec7">ActRoot::InputWrapper::SetBranchAddress</a></div><div class="ttdeci">void SetBranchAddress(int run)</div><div class="ttdef"><b>Definition:</b> ActInputIterator.cxx:225</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a3260baa48c56aa2f75e4ba717cd37ec7"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a3260baa48c56aa2f75e4ba717cd37ec7">ActRoot::InputWrapper::SetBranchAddress</a></div><div class="ttdeci">void SetBranchAddress(int run)</div><div class="ttdef"><b>Definition:</b> ActInputIterator.cxx:231</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputWrapper_html_a95d5b6dd6e13be54c4a49a1076c039fc"><div class="ttname"><a href="classActRoot_1_1InputWrapper.html#a95d5b6dd6e13be54c4a49a1076c039fc">ActRoot::InputWrapper::GetEntry</a></div><div class="ttdeci">void GetEntry(int run, int entry)</div><div class="ttdef"><b>Definition:</b> ActInputIterator.cxx:171</div></div>
 </div><!-- fragment -->
 </div>
@@ -586,6 +588,27 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="af0d3c6b80a2c77743978ce00c795581a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d3c6b80a2c77743978ce00c795581a">&#9670;&nbsp;</a></span>ReGet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::InputWrapper::ReGet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">auto</span> [run, entry] {<a class="code" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">fIt</a>.<a class="code" href="classActRoot_1_1InputIterator.html#a58d6c4c1a5fecc267eb8c7733ba889ac">GetCurrentRunEntry</a>()};</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="classActRoot_1_1InputWrapper.html#a95d5b6dd6e13be54c4a49a1076c039fc">GetEntry</a>(run, entry);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a3260baa48c56aa2f75e4ba717cd37ec7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3260baa48c56aa2f75e4ba717cd37ec7">&#9670;&nbsp;</a></span>SetBranchAddress()</h2>
 
@@ -609,35 +632,35 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">auto</span> tree {<a class="code" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">GetTree</a>(run)};</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="comment">// Set branch addresses if branches exists</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;TPCData&quot;</span>))</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>)</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a> = <span class="keyword">new</span> TPCData;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;TPCData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>);</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    }</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;SilData&quot;</span>))</div>
+<div class="fragment"><div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;{</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">auto</span> tree {<a class="code" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">fInput</a>-&gt;<a class="code" href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">GetTree</a>(run)};</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="comment">// Set branch addresses if branches exists</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;TPCData&quot;</span>))</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    {</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>)</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a> = <span class="keyword">new</span> SilData;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a> = <span class="keyword">new</span> TPCData;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;TPCData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a>);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;ModularData&quot;</span>))</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;SilData&quot;</span>))</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>)</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a> = <span class="keyword">new</span> ModularData;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>)</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a> = <span class="keyword">new</span> SilData;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;SilData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a>);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;MergerData&quot;</span>))</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;ModularData&quot;</span>))</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>)</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a> = <span class="keyword">new</span> MergerData;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;MergerData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>)</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a> = <span class="keyword">new</span> ModularData;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;ModularData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a>);</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1InputData_html_a22f0c49a46c48754dade35e0a90552cf"><div class="ttname"><a href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">ActRoot::InputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:44</div></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span>(tree-&gt;FindBranch(<span class="stringliteral">&quot;MergerData&quot;</span>))</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>)</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a> = <span class="keyword">new</span> MergerData;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        tree-&gt;SetBranchAddress(<span class="stringliteral">&quot;MergerData&quot;</span>, &amp;<a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a>);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    }</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1InputData_html_a22f0c49a46c48754dade35e0a90552cf"><div class="ttname"><a href="classActRoot_1_1InputData.html#a22f0c49a46c48754dade35e0a90552cf">ActRoot::InputData::GetTree</a></div><div class="ttdeci">std::shared_ptr&lt; TTree &gt; GetTree(int run) const</div><div class="ttdef"><b>Definition:</b> ActInputData.h:45</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -664,7 +687,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a> = data; }</div>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#aea8a50c3cac4623854f553bbd936fd9b">fMergerData</a> = data; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -691,7 +714,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a> = data; }</div>
+<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#aeedaba0c0ec9344064d505037fd9e924">fModularData</a> = data; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -718,7 +741,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a> = data; }</div>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#a29dc8f04050365793e5d69f7a34284cb">fSilData</a> = data; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -745,7 +768,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a> = data; }</div>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{ <a class="code" href="classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6">fTPCData</a> = data; }</div>
 </div><!-- fragment -->
 </div>
 </div>

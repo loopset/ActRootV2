@@ -185,6 +185,9 @@ $(function() {
 : <a class="el" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">ActCluster::MultiStep</a>
 , <a class="el" href="classActRoot_1_1TPCData.html#a303febaad6a6b00073646cca067f1ff0">ActRoot::TPCData</a>
 </li>
+<li>fCorr
+: <a class="el" href="classActRoot_1_1DetectorManager.html#a7957354938d935e7bca93f86f81eaf91">ActRoot::DetectorManager</a>
+</li>
 <li>fCurrentEntry
 : <a class="el" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">ActRoot::InputIterator</a>
 , <a class="el" href="classActRoot_1_1MergerDetector.html#a25e69fd2cf989561aeeb4a8d418ed8fc">ActRoot::MergerDetector</a>
@@ -367,6 +370,9 @@ $(function() {
 <li>fHeight
 : <a class="el" href="classActPhysics_1_1SilUnit.html#a06adceeb31d7a557d712951fecff6362">ActPhysics::SilUnit</a>
 </li>
+<li>fHistos
+: <a class="el" href="classActPhysics_1_1PIDCorrector.html#ac1fcd76428a9f4ddbb3e95d8af551950">ActPhysics::PIDCorrector</a>
+</li>
 <li>fHistPainter
 : <a class="el" href="classActRoot_1_1EventPainter.html#a1ca22808dc326846097061091be559ab">ActRoot::EventPainter</a>
 </li>
@@ -375,6 +381,9 @@ $(function() {
 </li>
 <li>fHistTpc
 : <a class="el" href="classActRoot_1_1HistogramPainter.html#ac3c3166cb570fff41a552c3a643e3217">ActRoot::HistogramPainter</a>
+</li>
+<li>fIn
+: <a class="el" href="classActRoot_1_1CorrDetector.html#abd1304500b245146fbe55d6ef1f6d540">ActRoot::CorrDetector</a>
 </li>
 <li>fIndex
 : <a class="el" href="structActSim_1_1SilAssembly.html#ae9c03a04bbbcefcdcecc9e60a8a020e7">ActSim::SilAssembly</a>
@@ -415,6 +424,7 @@ $(function() {
 </li>
 <li>fIsEnabled
 : <a class="el" href="classActCluster_1_1MultiStep.html#ace233f950a62e8712a9bc1464bfbe3ae">ActCluster::MultiStep</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">ActRoot::MergerDetector</a>
 </li>
 <li>fIsManual
 : <a class="el" href="classActRoot_1_1InputIterator.html#a9765b68a504acc6b01f4ef0f9a5df787">ActRoot::InputIterator</a>
@@ -430,7 +440,9 @@ $(function() {
 </li>
 <li>fIsVerbose
 : <a class="el" href="classActCluster_1_1MultiStep.html#a5d2f5ae15892e331b7f91bda428c74a3">ActCluster::MultiStep</a>
+, <a class="el" href="classActRoot_1_1DetectorManager.html#a7683a6ab7958638a0836f08a4c7d196e">ActRoot::DetectorManager</a>
 , <a class="el" href="classActRoot_1_1EventPainter.html#a197fdf81c5d3997c92a321b0cf8ca7c2">ActRoot::EventPainter</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a3e31afc36c98f088d3a1ae91052aeb71">ActRoot::MergerDetector</a>
 </li>
 <li>fIt
 : <a class="el" href="classActRoot_1_1InputWrapper.html#ad46143f96a0256f5f26a5c17caf16dc8">ActRoot::InputWrapper</a>
@@ -571,6 +583,8 @@ $(function() {
 </li>
 <li>fName
 : <a class="el" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle</a>
+, <a class="el" href="classActPhysics_1_1PIDCorrection.html#a3f774b564a93dd70aa38b04523453918">ActPhysics::PIDCorrection</a>
+, <a class="el" href="classActPhysics_1_1PIDCorrector.html#a4734ddf1e7a267110b89a69b6db59a61">ActPhysics::PIDCorrector</a>
 </li>
 <li>fNavigator
 : <a class="el" href="classActSim_1_1Geometry.html#a03645db26158951414ed5f6717954e6c">ActSim::Geometry</a>
@@ -615,7 +629,11 @@ $(function() {
 : <a class="el" href="classActCluster_1_1RANSAC.html#aa710c001a5d98f30d684ab48ac6096da">ActCluster::RANSAC</a>
 </li>
 <li>fOffset
-: <a class="el" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">ActSim::SilAssembly</a>
+: <a class="el" href="classActPhysics_1_1PIDCorrection.html#a65921e126a357ef3ebc4fcd5f523f668">ActPhysics::PIDCorrection</a>
+, <a class="el" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">ActSim::SilAssembly</a>
+</li>
+<li>fOut
+: <a class="el" href="classActRoot_1_1CorrDetector.html#a7e250522a1c473e9917b7b9ec3b69d8c">ActRoot::CorrDetector</a>
 </li>
 <li>fOutput
 : <a class="el" href="classActRoot_1_1MTExecutor.html#a87d9d27de5213ae5d7eb6a1c2ac90f21">ActRoot::MTExecutor</a>
@@ -688,6 +706,9 @@ $(function() {
 <li>fPhiLight
 : <a class="el" href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">ActRoot::MergerData</a>
 </li>
+<li>fPIDCorr
+: <a class="el" href="classActRoot_1_1CorrDetector.html#a0085f5b97c0be5122071bbb573f12262">ActRoot::CorrDetector</a>
+</li>
 <li>fPileUpXPercent
 : <a class="el" href="classActCluster_1_1MultiStep.html#ac3414106583c60df322933c01cc10c24">ActCluster::MultiStep</a>
 </li>
@@ -710,6 +731,9 @@ $(function() {
 </li>
 <li>fPosition
 : <a class="el" href="classActRoot_1_1Voxel.html#a22d10623362a9feefced5db98cc6e222">ActRoot::Voxel</a>
+</li>
+<li>fProfs
+: <a class="el" href="classActPhysics_1_1PIDCorrector.html#a3e2ab6dbee85e75212e569c8b6d20b9d">ActPhysics::PIDCorrector</a>
 </li>
 <li>fProgress
 : <a class="el" href="classActRoot_1_1MTExecutor.html#adc7d26dbfe96d4b7ead882509e5f51ec">ActRoot::MTExecutor</a>
@@ -825,6 +849,9 @@ $(function() {
 </li>
 <li>fSizes
 : <a class="el" href="classActRoot_1_1SilParameters.html#ae11dd4139dc5d1c90f6d8d4a1c24781d">ActRoot::SilParameters</a>
+</li>
+<li>fSlope
+: <a class="el" href="classActPhysics_1_1PIDCorrection.html#a780d0e1eeac90276b8b7b1d3e5a07591">ActPhysics::PIDCorrection</a>
 </li>
 <li>fSP
 : <a class="el" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData</a>
@@ -1008,7 +1035,8 @@ $(function() {
 : <a class="el" href="classActCluster_1_1MultiStep.html#a92c6d61cb00a8da297de032c4538ec00">ActCluster::MultiStep</a>
 </li>
 <li>fZOffset
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a471ebf1cf840ae98b10d7752d0387383">ActRoot::MergerDetector</a>
+: <a class="el" href="classActRoot_1_1CorrDetector.html#ab391ca694d65595a8d635ae7615a2483">ActRoot::CorrDetector</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a471ebf1cf840ae98b10d7752d0387383">ActRoot::MergerDetector</a>
 </li>
 <li>fZRange
 : <a class="el" href="classActCluster_1_1Cluster.html#ac107e0b9ee5312abf7e7acb613ae7f88">ActCluster::Cluster</a>
