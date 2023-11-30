@@ -38,7 +38,7 @@ var searchData=
   ['computerecoilkinematics_192',['ComputeRecoilKinematics',['../classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5',1,'ActPhysics::Kinematics']]],
   ['computerpin3d_193',['ComputeRPIn3D',['../classActCluster_1_1MultiStep.html#a314c757cd8e413c1dbb1fe6b84060fc4',1,'ActCluster::MultiStep']]],
   ['computerunsperthread_194',['ComputeRunsPerThread',['../classActRoot_1_1MTExecutor.html#aba9092c4becb647fb47599da3dd78ae6',1,'ActRoot::MTExecutor']]],
-  ['computesiliconpoint_195',['ComputeSiliconPoint',['../classActRoot_1_1MergerDetector.html#a1511468bff7afc1bed38e89a16c1eb32',1,'ActRoot::MergerDetector']]],
+  ['computesiliconpoint_195',['ComputeSiliconPoint',['../classActRoot_1_1MergerDetector.html#a49ab093f87ff7f6fea51eeffd75dcf07',1,'ActRoot::MergerDetector']]],
   ['computetheoreticalt3_196',['ComputeTheoreticalT3',['../classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e',1,'ActPhysics::Kinematics']]],
   ['computetheoreticaltheta4_197',['ComputeTheoreticalTheta4',['../classActPhysics_1_1Kinematics.html#a85eb7a2a990a172234ee3112af15236b',1,'ActPhysics::Kinematics']]],
   ['computexsatenergy_198',['ComputeXSAtEnergy',['../classActSim_1_1TheoCrossSection.html#aef582bf656a3f0c9d29c4b533fc359e9',1,'ActSim::TheoCrossSection']]],
