@@ -41,6 +41,7 @@ namespace ActRoot
         // TPC
         TPCParameters* fTPCPars {};
         TPCData* fTPCData {};
+        TPCData* fTPCClone {};
         // Silicons
         SilParameters* fSilPars {};
         SilData* fSilData {};
@@ -118,6 +119,16 @@ namespace ActRoot
             fCurrentRun = run;
             fCurrentEntry = entry;
         }
+
+        // Enable clone structure for plotting in EventPainter
+        void EnableTPCDataClone()
+        {
+            if(fTPCClone)
+                delete fTPCClone;
+            fTPCClone = new TPCData;
+        }
+        TPCData* GetTPCDataClone() const { return fTPCClone; }
+
         void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
         void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
         void Reconfigure() override;
@@ -165,7 +176,7 @@ namespace ActRoot
         bool GateOthers();
         void LightOrHeavy();
         void ComputeBoundaryPoint();
-        void ComputeSiliconPoint();
+        bool ComputeSiliconPoint();
         void CorrectZOffset();
         bool MatchSPtoRealPlacement();
         void ComputeAngles();
@@ -176,7 +187,7 @@ namespace ActRoot
         void MoveZ(XYZPoint& p);
         double GetTheta3D(const XYZVector& beam, const XYZVector& other);
         XYZVector RotateTrack(XYZVector beam, XYZVector track);
-        void ScalePoint(XYZPoint& point, float xy, float z);
+        void ScalePoint(XYZPoint& point, float xy, float z, bool addOffset = false);
         template <typename T>
         inline bool IsInVector(T val, const std::vector<T>& vec)
         {

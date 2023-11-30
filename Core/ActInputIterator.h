@@ -52,6 +52,7 @@ namespace ActRoot
         // Data
         TPCData* fTPCData {};
         std::shared_ptr<TPCData> fTPCClone {};
+        TPCData* fTPCClone2 {};
         SilData* fSilData {};
         ModularData* fModularData {};
         // Merger data
@@ -71,6 +72,9 @@ namespace ActRoot
         // Get current data
         TPCData* GetTPCData() const { return fTPCData; }
         std::shared_ptr<TPCData> GetTPCDataClone() const { return fTPCClone; };
+        void SetTPCDataClone2(TPCData* clone2) { fTPCClone2 = clone2; }
+        TPCData* GetTPCDataClone2() const { return fTPCClone2; }
+        void ResetTPCDataClone2() { fTPCClone2 = nullptr; }
         SilData* GetSilData() const { return fSilData; }
         ModularData* GetModularData() const { return fModularData; }
         MergerData* GetMergerData() const { return fMergerData; }

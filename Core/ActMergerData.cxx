@@ -26,5 +26,9 @@ void ActRoot::MergerData::Print() const
     std::cout << "-> Silicons : " << '\n';
     for(int i = 0; i < fSilLayers.size(); i++)
         std::cout << "   layer : " << fSilLayers[i] << " idx : " << fSilNs[i] << " E : " << fSilEs[i] << " MeV" << '\n';
+    std::cout << "-> Theta : " << fThetaLight << '\n';
+    std::cout << "-> Phi   : " << fPhiLight << '\n';
+    std::cout << "-> Qave  : " << fQave << '\n';
+    std::cout << "-> TL    : " << fTrackLength << '\n';
     std::cout << "::::::::::::::::::::" << RESET << '\n';
 }

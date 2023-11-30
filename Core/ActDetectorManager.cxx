@@ -74,6 +74,8 @@ void ActRoot::DetectorManager::Reconfigure()
     //     det->Reconfigure();
     //     det->Print();
     // }
+    if(auto tpc {GetTPCDetector()}; tpc)
+        tpc->Reconfigure();
     if(fMerger)
         fMerger->Reconfigure();
 }

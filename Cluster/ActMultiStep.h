@@ -82,6 +82,7 @@ namespace ActCluster
         double fBeamLikeParallelF;
         bool fEnableRPDelete;
         double fRPDistThresh;
+        double fRPDistCluster;
         double fRPDistValidate;
         bool fEnableFineRP;
         double fRPMaskXY;

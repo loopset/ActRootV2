@@ -104,6 +104,20 @@ void ActRoot::EventPainter::DoGoTo()
     Execute();
 }
 
+void ActRoot::EventPainter::DoReconfAndCluster()
+{
+    DoReset();
+    if(fDetMan)
+    {
+        fDetMan->Reconfigure();
+        fWrap.ReGet();
+        auto tpc {fDetMan->GetTPCDetector()};
+        tpc->SetEventData(fWrap.GetTPCData());
+        tpc->Recluster();
+        Execute();
+    }
+}
+
 void ActRoot::EventPainter::DoReconfAndExecute()
 {
     DoReset();
@@ -125,12 +139,12 @@ void ActRoot::EventPainter::InitButtons()
     TGTextButton* exit = new TGTextButton(fButtonsFrame, "&Exit ");
     exit->Connect("Pressed()", "ActRoot::EventPainter", this, "DoExit()");
     fButtonsFrame->AddFrame(exit, lb);
-    // 2->Draw
-    //  TGTextButton* draw = new TGTextButton(fButtonsFrame, "&Draw ");
-    //  draw->Connect("Pressed()", "ActRoot::EventPainter", this, "DoDraw()");
-    //  fButtonsFrame->AddFrame(draw, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
+    // 2-> recluster
+    TGTextButton* reclu = new TGTextButton(fButtonsFrame, "&ReCluster ");
+    reclu->Connect("Pressed()", "ActRoot::EventPainter", this, "DoReconfAndCluster()");
+    fButtonsFrame->AddFrame(reclu, lb);
     // 3->Reset
-    TGTextButton* reset = new TGTextButton(fButtonsFrame, "&Redo ");
+    TGTextButton* reset = new TGTextButton(fButtonsFrame, "&ReMerge ");
     reset->Connect("Pressed()", "ActRoot::EventPainter", this, "DoReconfAndExecute()");
     fButtonsFrame->AddFrame(reset, lb);
     // 4->Previous
@@ -254,8 +268,13 @@ void ActRoot::EventPainter::DoVerbosePhysics()
     // Do not store data; but toy pointer needed
     fDetMan->InitOutputMerger(nullptr);
 
+    // Enable cloning
+    merger->EnableTPCDataClone();
     // Build event
     fDetMan->BuildEventMerger(-1, -1);
+
+    // Point to clone
+    fWrap.SetTPCDataClone2(merger->GetTPCDataClone());
 
     // Print results
     fWrap.GetTPCData()->Print();

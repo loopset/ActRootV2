@@ -8,6 +8,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 void ActPhysics::SilUnit::Print() const
 {
@@ -73,6 +74,7 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
     {
         auto aux {block->GetDoubleVector("Normal")};
         fNormal = {(float)aux[0], (float)aux[1], (float)aux[2]};
+        fNormal = fNormal.Unit(); // store as normal!
     }
     // 3-> Thresholds
     if(block->CheckTokenExists("CommomThresh", true))
@@ -112,26 +114,33 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
         else if(str == "back")
             fSide = SilSide::EBack;
         else
-            throw std::runtime_error("Side spec : " + str + " could not be interpreted in terms of left, right, front or back!");
+            throw std::runtime_error("Side spec : " + str +
+                                     " could not be interpreted in terms of left, right, front or back!");
     }
 }
 
-ActPhysics::SilLayer::XYZPoint
+std::pair<ActPhysics::SilLayer::XYZPoint, bool>
 ActPhysics::SilLayer::GetSiliconPointOfTrack(const XYZPoint& otherPoint, const XYZVector& otherVec) const
 {
-    return otherPoint + (((fPoint - otherPoint).Dot(fNormal)) / otherVec.Dot(fNormal)) * otherVec;
+    auto unitVec {otherVec.Unit()};
+    auto d {((fPoint - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
+    bool isOk {(d > 0) ? true : false};
+    return std::make_pair(otherPoint + unitVec * d, isOk);
 }
 
-ActPhysics::SilLayer::XYZPoint
-ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const XYZPoint& otherPoint, const XYZVector& otherVec) const
+ActPhysics::SilLayer::XYZPoint ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC,
+                                                                             const XYZPoint& otherPoint,
+                                                                             const XYZVector& otherVec) const
 {
     // Just move point to ACTAR's flanges
     XYZPoint newPoint {};
     if(fSide == SilSide::EBack || fSide == SilSide::EFront)
-        newPoint = {(float)fTPC->GetNPADSX(), 0, 0};   
+        newPoint = {(float)fTPC->GetNPADSX(), 0, 0};
     else
         newPoint = {0, (float)fTPC->GetNPADSY(), 0};
-    return otherPoint + (((newPoint - otherPoint).Dot(fNormal)) / otherVec.Dot(fNormal)) * otherVec;
+    auto unitVec {otherVec.Unit()};
+    auto d {((newPoint - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
+    return otherPoint + unitVec * d;
 }
 
 
@@ -148,7 +157,7 @@ bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const XYZPoint& sp, bool 
         plane = sp.Y();
     else
         plane = sp.X();
-    bool condXY { xyMin <= plane && plane <= xyMax};
+    bool condXY {xyMin <= plane && plane <= xyMax};
     bool condZ {true};
     if(useZ)
         condZ = zMin <= sp.Z() && sp.Z() <= zMax;

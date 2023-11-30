@@ -178,8 +178,12 @@ void ActRoot::HistogramPainter::FillClusterHistos()
     // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
     //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
     //         return;
-    
-    for(const auto& cluster : fWrap->GetTPCData()->fClusters)
+    TPCData* data {};
+    if(fWrap->GetTPCDataClone2())
+        data = fWrap->GetTPCDataClone2();
+    else
+        data = fWrap->GetTPCData();
+    for(const auto& cluster : data->fClusters)
     {
         for(const auto& voxel : cluster.GetVoxels())
         {
@@ -336,8 +340,14 @@ void ActRoot::HistogramPainter::DrawPolyLines()
     // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
     //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
     //         return;
+    TPCData* data {};
+    if(fWrap->GetTPCDataClone2())
+        data = fWrap->GetTPCDataClone2();
+    else
+        data = fWrap->GetTPCData();
 
-    for(const auto& cluster : fWrap->GetTPCData()->fClusters)
+
+    for(const auto& cluster : data->fClusters)
     {
         // Pad
         fPolyTpc[4].push_back(
@@ -366,11 +376,17 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
 {
     if(!fWrap->GetTPCData())
         return;
+    TPCData* data {};
+    if(fWrap->GetTPCDataClone2())
+        data = fWrap->GetTPCDataClone2();
+    else
+        data = fWrap->GetTPCData();
+
     // Reset and init
     fMarkerTpc[4] = std::make_shared<TPolyMarker>();
     fMarkerTpc[5] = std::make_shared<TPolyMarker>();
     fMarkerTpc[6] = std::make_shared<TPolyMarker>();
-    for(const auto& rp : fWrap->GetTPCData()->fRPs)
+    for(const auto& rp : data->fRPs)
     {
         // Pad
         fMarkerTpc[4]->SetNextPoint(rp.X(), rp.Y());

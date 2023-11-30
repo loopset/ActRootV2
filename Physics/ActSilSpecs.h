@@ -72,7 +72,7 @@ namespace ActPhysics
         const XYZVector& GetNormal() const { return fNormal; }
 
         // Other functions of interest
-        XYZPoint GetSiliconPointOfTrack(const XYZPoint& point, const XYZVector& vector) const;
+        std::pair<XYZPoint, bool> GetSiliconPointOfTrack(const XYZPoint& point, const XYZVector& vector) const;
         XYZPoint
         GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const XYZPoint& point, const XYZVector& vector) const;
         bool MatchesRealPlacement(int i, const XYZPoint& sp, bool useZ = true) const;

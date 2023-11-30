@@ -126,6 +126,8 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fEnableRPDelete = mb->GetBool("EnableRPDelete");
     if(mb->CheckTokenExists("RPDistThresh"))
         fRPDistThresh = mb->GetDouble("RPDistThresh");
+    if(mb->CheckTokenExists("RPDistCluster"))
+        fRPDistCluster = mb->GetDouble("RPDistCluster");
     if(mb->CheckTokenExists("RPDistValidate"))
         fRPDistValidate = mb->GetDouble("RPDistValidate");
     //// Enable finer determination of RP
@@ -604,7 +606,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                         std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
                         std::cout << "dist < distThresh ? : " << dist << " < " << distThresh << '\n';
                         std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
-                        std::cout << "newChi2 < oldChi2 ? : " << newChi2 << " < " << oldChi2 << RESET << '\n';
+                        std::cout << "newChi2 < oldChi2 ? : " << newChi2 << " < " << oldChi2 << '\n';
                         std::cout << "Merging cluster in : " << in->GetClusterID()
                                   << " with size : " << in->GetSizeOfVoxels() << '\n';
                         std::cout << " with cluster out : " << out->GetClusterID()
@@ -752,7 +754,7 @@ std::vector<ActCluster::MultiStep::RPCluster> ActCluster::MultiStep::ClusterAndS
     {
         auto last {std::adjacent_find(it, rps.end(),
                                       [&](const RPValue& l, const RPValue& r)
-                                      { return (l.first - r.first).R() > fRPDistValidate; })};
+                                      { return (l.first - r.first).R() > fRPDistCluster; })};
         if(last == rps.end())
         {
             clusters.emplace_back(it, last);
@@ -790,6 +792,41 @@ std::vector<ActCluster::MultiStep::RPCluster> ActCluster::MultiStep::ClusterAndS
         mean /= cluster.size();
         ret.push_back({mean, set});
     }
+    // Validate once again using distance
+    auto distvalid = [this](const RPCluster& cluster)
+    {
+        int count {};
+        for(const auto& idx : cluster.second)
+        {
+            auto it {fClusters->begin() + idx};
+            if(it->GetIsBeamLike())
+                continue;
+            // Sort voxels
+            std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
+            // Min and max
+            auto min {it->GetVoxels().front().GetPosition()};
+            auto max {it->GetRefToVoxels().back().GetPosition()};
+            for(const auto& p : {min, max})
+            {
+                auto dist {(p - cluster.first).R()};
+                // std::cout << " p    : " << p << '\n';
+                // std::cout << " rp   : " << cluster.first << '\n';
+                // std::cout << " dist : " << dist << '\n';
+                // std::cout << "---------------" << '\n';
+                if(dist < fRPDistValidate)
+                    count++;
+            }
+        }
+        return count;
+    };
+    // Call to sort
+    std::sort(ret.begin(), ret.end(),
+              [this, &distvalid](const RPCluster& l, const RPCluster& r)
+              {
+                  auto lc {distvalid(l)};
+                  auto rc {distvalid(r)};
+                  return lc > rc;
+              });
     return ret;
 }
 
@@ -841,6 +878,12 @@ void ActCluster::MultiStep::FindPreliminaryRP()
         }
     }
     // Debug new RPs
+    // std::cout << "RPs before processing" << '\n';
+    // for(const auto& rp : rps)
+    // {
+    //     std::cout << "RP : " << rp.first << " at i,j : " << rp.second.first << ", " << rp.second.second << '\n';
+    // }
+    // std::cout << "---------------------------" << '\n';
     auto proc {ClusterAndSortRPs(rps)};
     // for(const auto& [rp, set] : proc)
     // {
@@ -850,7 +893,8 @@ void ActCluster::MultiStep::FindPreliminaryRP()
     fRPs->clear();
     if(proc.size() > 0)
     {
-        // Set RP as the one with the biggest number of points
+        // Set RP as the one with the biggest number
+        // of cluster within distance
         fRPs->push_back(proc.front().first);
         // Marks its tracks to be kept
         toKeep = proc.front().second;
@@ -1176,6 +1220,7 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> BeamLikeParall   : " << fBeamLikeParallelF << '\n';
             std::cout << "-> EnableRPDelete   ? " << std::boolalpha << fEnableRPDelete << '\n';
             std::cout << "-> RPDistThresh     : " << fRPDistThresh << '\n';
+            std::cout << "-> RPDistCluster    : " << fRPDistCluster << '\n';
             std::cout << "-> RPDistValidate   : " << fRPDistValidate << '\n';
             std::cout << "-> EnableFineRP     ? " << std::boolalpha << fEnableFineRP << '\n';
             std::cout << "-> RPMaskXY         : " << fRPMaskXY << '\n';

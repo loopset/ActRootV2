@@ -191,6 +191,21 @@ void ActRoot::TPCDetector::BuildEventData()
         std::tie(fData->fClusters, fData->fRaw) = fClimb->Run(*fVoxels, true); // enable returning of noise
 }
 
+void ActRoot::TPCDetector::Recluster()
+{
+    if(!fData)
+        throw std::runtime_error("TPCDetector::Recluster() :  cannot recluster without TPCData set!");
+    if(fClimb)
+    {
+        std::vector<Voxel> voxels;
+        voxels = fData->fRaw;
+        for(const auto& cluster : fData->fClusters)
+            for(const auto& voxel : cluster.GetVoxels())
+                voxels.push_back(voxel);
+        std::tie(fData->fClusters, fData->fRaw) = fClimb->Run(voxels, true);
+    }
+}
+
 void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
 {
     int padx {};
@@ -290,7 +305,7 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
 
 void ActRoot::TPCDetector::BuildEventMerger() {}
 
-void ActRoot::TPCDetector::Print() const 
+void ActRoot::TPCDetector::Print() const
 {
     // Only print algorithm parameters
     if(fRansac)
@@ -312,4 +327,5 @@ void ActRoot::TPCDetector::Reconfigure()
         fRansac->ReadConfigurationFile();
     if(fClimb)
         fClimb->ReadConfigurationFile();
+    Print();
 }

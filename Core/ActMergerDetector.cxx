@@ -34,6 +34,7 @@
 #include <set>
 #include <stdexcept>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -184,8 +185,15 @@ void ActRoot::MergerDetector::DoMerge()
     // 2-> Identify light and heavy
     LightOrHeavy();
     // 3-> Compute SP and BP
+    if(!ComputeSiliconPoint())
+    {
+        // this checks whether the SP is fine or not
+        // probably bc the propagation does not occur in
+        // the same sense of motion as defined by Line::fDirection
+        fMergerData->Clear();
+        return;
+    }
     ComputeBoundaryPoint();
-    ComputeSiliconPoint();
     // 4-> Scale points to physical dimensions
     // if conversion is disabled, no further steps can be done!
     if(!fEnableConversion)
@@ -214,6 +222,9 @@ void ActRoot::MergerDetector::BuildEventMerger()
 {
     // MultiStep
     DoMultiStep();
+    // Clone before next step if required
+    if(fTPCClone)
+        *fTPCClone = *fTPCData;
     // Merge
     DoMerge();
 }
@@ -348,16 +359,18 @@ void ActRoot::MergerDetector::LightOrHeavy()
         fHeavyIt = fTPCData->fClusters.begin() + std::next(set.begin())->second;
 }
 
-void ActRoot::MergerDetector::ComputeSiliconPoint()
+bool ActRoot::MergerDetector::ComputeSiliconPoint()
 {
-    fMergerData->fSP =
-        fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-            .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection().Unit());
-    // Redefine signs just in case
+    // Align cluster according to RP
     fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
-    // fMergerData->Print();
+    // Compute SP
+    bool isOk {};
+    std::tie(fMergerData->fSP, isOk) =
+        fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+            .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection());
     // And compute track length
     fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+    return isOk;
 }
 
 void ActRoot::MergerDetector::MoveZ(XYZPoint& p)
@@ -406,8 +419,10 @@ ActRoot::MergerDetector::XYZVector ActRoot::MergerDetector::RotateTrack(XYZVecto
     return rot(track).Unit();
 }
 
-void ActRoot::MergerDetector::ScalePoint(XYZPoint& point, float xy, float z)
+void ActRoot::MergerDetector::ScalePoint(XYZPoint& point, float xy, float z, bool addOffset)
 {
+    if(addOffset) // when converting a bin point to physical units which wasnt already corrected
+        point += XYZVector {0.5, 0.5, 0.5};
     point.SetX(point.X() * xy);
     point.SetY(point.Y() * xy);
     point.SetZ(point.Z() * z);
@@ -459,8 +474,8 @@ void ActRoot::MergerDetector::ComputeQave()
     auto front {fLightIt->GetVoxels().front().GetPosition()};
     auto back {fLightIt->GetVoxels().back().GetPosition()};
     // Scale them
-    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor);
-    ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor);
+    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
+    ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
     // Get projections
     auto min {fLightIt->GetLine().ProjectionPointOnLine(front)};
     auto max {fLightIt->GetLine().ProjectionPointOnLine(back)};
@@ -470,15 +485,15 @@ void ActRoot::MergerDetector::ComputeQave()
     // Dist in mm
     auto dist {(max - min).R()};
     // auto dist {(fMergerData->fRP - fMergerData->fBP).R()};
-    // std::cout << "=========================" << '\n';
-    // std::cout << "front : " << front << '\n';
-    // std::cout << "back  : " << back << '\n';
-    // std::cout << "min : " << min << '\n';
-    // std::cout << "max : " << max << '\n';
-    // std::cout << "dist (max - min) : " << (max - min).R() << '\n';
-    // std::cout << "RP : " << fMergerData->fRP << '\n';
-    // std::cout << "BP : " << fMergerData->fBP << '\n';
-    // std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
+    std::cout << "=========================" << '\n';
+    std::cout << "front : " << front << '\n';
+    std::cout << "back  : " << back << '\n';
+    std::cout << "min : " << min << '\n';
+    std::cout << "max : " << max << '\n';
+    std::cout << "dist (max - min) : " << (max - min).R() << '\n';
+    std::cout << "RP : " << fMergerData->fRP << '\n';
+    std::cout << "BP : " << fMergerData->fBP << '\n';
+    std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
     // Sum to obtain total Q
     auto qTotal {std::accumulate(fLightIt->GetVoxels().begin(), fLightIt->GetVoxels().end(), 0.f,
                                  [](float sum, const Voxel& v) { return sum + v.GetCharge(); })};
@@ -496,7 +511,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
     // 1-> Ref point is vector.begin() projection on line
     auto front {fLightIt->GetVoxels().front().GetPosition()};
     // Convert it to physical units
-    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor);
+    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
     auto ref {fLightIt->GetLine().ProjectionPointOnLine(front)};
     // Use 3 divisions in voxel to obtain a better profile
     float div {1.f / 3};
@@ -513,7 +528,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
                 {
                     XYZPoint bin {pos.X() + ix * div, pos.Y() + iy * div, pos.Z() + iz * div};
                     // Convert to physical units
-                    ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor);
+                    ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
                     // Project it on line
                     auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
                     // Fill histograms

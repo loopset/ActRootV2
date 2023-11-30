@@ -124,6 +124,9 @@ namespace ActRoot
         // Others
         std::shared_ptr<ActCluster::ClIMB> GetClIMB() const { return fClimb; }
 
+        // Recluster, a debugging class for visual mode
+        void Recluster();
+
     private:
         void ReadHits(ReducedData& coas, const int& where);
         void CleanPadMatrix();
