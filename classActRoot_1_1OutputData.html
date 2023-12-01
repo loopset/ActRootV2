@@ -533,9 +533,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Store metadata as TMacro class, which has all the functionality required</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    TMacro mcr {file.c_str(), description.c_str()};</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// mcr.ReadFile(file.c_str()); // not necessary since this constructor already reads the filter</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// But we need to reset name</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">auto</span> idx {file.find_last_of(<span class="stringliteral">&quot;/&quot;</span>)};</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    mcr.SetTitle(file.substr(idx + 1).c_str());</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// But we need to reset name (NOT with the new name convention)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// auto idx {file.find_last_of(&quot;/&quot;)};</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// mcr.SetTitle(file.substr(idx + 1).c_str());</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Write</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [_, file] : <a class="code" href="classActRoot_1_1OutputData.html#a4f167ee9292cf7b894b5f0f2d196d196">fFiles</a>)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        file-&gt;WriteObject(&amp;mcr, mcr.GetName());</div>
