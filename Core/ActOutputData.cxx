@@ -88,9 +88,9 @@ void ActRoot::OutputData::WriteMetadata(const std::string& file, const std::stri
     // Store metadata as TMacro class, which has all the functionality required
     TMacro mcr {file.c_str(), description.c_str()};
     // mcr.ReadFile(file.c_str()); // not necessary since this constructor already reads the filter
-    // But we need to reset name
-    auto idx {file.find_last_of("/")};
-    mcr.SetTitle(file.substr(idx + 1).c_str());
+    // But we need to reset name (NOT with the new name convention)
+    // auto idx {file.find_last_of("/")};
+    // mcr.SetTitle(file.substr(idx + 1).c_str());
     // Write
     for(auto& [_, file] : fFiles)
         file->WriteObject(&mcr, mcr.GetName());

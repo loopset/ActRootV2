@@ -139,6 +139,10 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fRPMaskZ = mb->GetDouble("RPMaskZ");
     if(mb->CheckTokenExists("RPPivotDist"))
         fRPPivotDist = mb->GetDouble("RPPivotDist");
+    if(mb->CheckTokenExists("EnableRPDefaultBeam"))
+        fEnableRPDefaultBeam = mb->GetBool("EnableRPDefaultBeam");
+    if(mb->CheckTokenExists("RPDefaultMinX"))
+        fRPDefaultMinX = mb->GetDouble("RPDefaultMinX");
     // Clean bad fits
     if(mb->CheckTokenExists("EnableCleanBadFits"))
         fEnableCleanBadFits = mb->GetBool("EnableCleanBadFits");
@@ -481,7 +485,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
         // 1-> Check whether cluster needs breaking
-        bool isBadFit {it->GetLine().GetChi2() > fChi2Threshold};
+        bool isBadFit {it->GetLine().GetChi2() > fTrackChi2Threshold};
         if(!isBadFit)
         {
             it++;
@@ -683,6 +687,9 @@ ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZ
     // 1-> Normalize all directions
     vA = vA.Unit();
     vB = vB.Unit();
+    // If lines are parallel, skip computation
+    if(vA.Dot(vB) == 1)
+        return {pA, pB, -1};
     // 2-> Get cross product and normalize it
     auto vC {vB.Cross(vA)};
     vC = vC.Unit();
@@ -852,6 +859,8 @@ void ActCluster::MultiStep::FindPreliminaryRP()
             // Run function
             auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
                                                in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+            if(dist < 0) // just in case lines were parallel
+                continue;
             // Build RP as mean of A and B
             XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
 
@@ -1079,16 +1088,20 @@ void ActCluster::MultiStep::PerformFinerFits()
         // auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // Get iterator to last element to be kept
-        auto itDelete {std::remove_if(refVoxels.begin(), refVoxels.end(),
-                                      [&](const ActRoot::Voxel& voxel)
-                                      {
-                                          const auto& pos {voxel.GetPosition()};
-                                          auto point {pos + XYZVector {0.5, 0.5, 0.5}};
-                                          auto proj {line.ProjectionPointOnLine(point)};
-                                          bool isInCapInit {(proj - projInit).R() <= fRPPivotDist};
-                                          bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist};
-                                          return isInCapInit || isInCapEnd;
-                                      })};
+        auto itDelete {
+            std::remove_if(refVoxels.begin(), refVoxels.end(),
+                           [&](const ActRoot::Voxel& voxel)
+                           {
+                               const auto& pos {voxel.GetPosition()};
+                               auto point {pos + XYZVector {0.5, 0.5, 0.5}};
+                               auto proj {line.ProjectionPointOnLine(point)};
+                               // delete all points over projInit/end
+                               // bc due to ordering and angle, some voxel could have a proj larger than the one
+                               // of the last/first voxel
+                               bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
+                               bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
+                               return isInCapInit || isInCapEnd;
+                           })};
         auto afterSize {std::distance(refVoxels.begin(), itDelete)};
         // Refit if enough voxels remain
         if(afterSize > fClimb->GetMinPoints())
@@ -1129,6 +1142,15 @@ void ActCluster::MultiStep::FindPreciseRP()
         // Find a BL cluster
         if(out->GetIsBeamLike())
         {
+            // After applying fine RP, beam-like clusters with low Npads along X
+            // are likely to have a bad fit -> default to default beam {1, 0 , 0} direction
+            if(fEnableRPDefaultBeam)
+            {
+                auto [xmin, xmax] {out->GetXRange()};
+                bool isShort {(xmax - xmin) <= fRPDefaultMinX};
+                if(isShort)
+                    out->GetRefToLine().SetDirection({1, 0, 0});
+            }
             for(auto in = fClusters->begin(); in != fClusters->end(); in++)
             {
                 if(in == out)
@@ -1138,6 +1160,8 @@ void ActCluster::MultiStep::FindPreciseRP()
                 // Compute RPs
                 auto [a, b, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
                                                  in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+                if(dist < 0) // just in case lines were parallel
+                    continue;
                 XYZPoint rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};
                 // Check that all points are valid
                 bool checkA {IsRPValid(a)};
@@ -1226,6 +1250,8 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> RPMaskXY         : " << fRPMaskXY << '\n';
             std::cout << "-> RPMaskZ          : " << fRPMaskZ << '\n';
             std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
+            std::cout << "-> EnableDefaultBL  : " << std::boolalpha << fEnableRPDefaultBeam << '\n';
+            std::cout << "-> RPDefaultMinX    : " << fRPDefaultMinX << '\n';
         }
     }
     std::cout << "=======================" << RESET << '\n';

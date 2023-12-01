@@ -485,15 +485,15 @@ void ActRoot::MergerDetector::ComputeQave()
     // Dist in mm
     auto dist {(max - min).R()};
     // auto dist {(fMergerData->fRP - fMergerData->fBP).R()};
-    std::cout << "=========================" << '\n';
-    std::cout << "front : " << front << '\n';
-    std::cout << "back  : " << back << '\n';
-    std::cout << "min : " << min << '\n';
-    std::cout << "max : " << max << '\n';
-    std::cout << "dist (max - min) : " << (max - min).R() << '\n';
-    std::cout << "RP : " << fMergerData->fRP << '\n';
-    std::cout << "BP : " << fMergerData->fBP << '\n';
-    std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
+    // std::cout << "=========================" << '\n';
+    // std::cout << "front : " << front << '\n';
+    // std::cout << "back  : " << back << '\n';
+    // std::cout << "min : " << min << '\n';
+    // std::cout << "max : " << max << '\n';
+    // std::cout << "dist (max - min) : " << (max - min).R() << '\n';
+    // std::cout << "RP : " << fMergerData->fRP << '\n';
+    // std::cout << "BP : " << fMergerData->fBP << '\n';
+    // std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
     // Sum to obtain total Q
     auto qTotal {std::accumulate(fLightIt->GetVoxels().begin(), fLightIt->GetVoxels().end(), 0.f,
                                  [](float sum, const Voxel& v) { return sum + v.GetCharge(); })};

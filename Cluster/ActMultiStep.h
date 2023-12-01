@@ -88,6 +88,8 @@ namespace ActCluster
         double fRPMaskXY;
         double fRPMaskZ;
         double fRPPivotDist;
+        bool fEnableRPDefaultBeam;
+        double fRPDefaultMinX;
         // 7-> Clean bad fits at the very begining of the algorithm
         bool fEnableCleanBadFits;
         // Vector of TStopwatch to asses performance of algorithm
