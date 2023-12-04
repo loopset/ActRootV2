@@ -11,7 +11,7 @@ var searchData=
   ['checkkeyisstored_165',['CheckKeyIsStored',['../classActPhysics_1_1SRIM.html#aacebcdb7be09a0485ba047f91063afdd',1,'ActPhysics::SRIM']]],
   ['checkqvalue_166',['CheckQValue',['../classActPhysics_1_1Kinematics.html#aa78e097175f854772e167c149182cb32',1,'ActPhysics::Kinematics']]],
   ['checktokenexists_167',['CheckTokenExists',['../classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07',1,'ActRoot::InputBlock']]],
-  ['chi2dfrom3d_168',['Chi2Dfrom3D',['../classActPhysics_1_1Line.html#a4a1704ee930b6bdbcfed0a2cbbc54f78',1,'ActPhysics::Line']]],
+  ['chi2dfrom3d_168',['Chi2Dfrom3D',['../classActPhysics_1_1Line.html#a6b599aeb2730b99abf5d5c6d59c2b33e',1,'ActPhysics::Line']]],
   ['classdef_169',['ClassDef',['../classActRoot_1_1EventPainter.html#aa7332988f14a0ccf4dde3e421e7c880b',1,'ActRoot::EventPainter::ClassDef()'],['../classMEventReduced.html#a979fcc4c6971ebc9504cd7132987c735',1,'MEventReduced::ClassDef()'],['../classReducedData.html#aed837bcb1aea76437635fdf1377add1a',1,'ReducedData::ClassDef()']]],
   ['cleanbadfits_170',['CleanBadFits',['../classActCluster_1_1MultiStep.html#a7d682720cc3288201ad0725e3c720454',1,'ActCluster::MultiStep']]],
   ['cleandeltas_171',['CleanDeltas',['../classActCluster_1_1MultiStep.html#ab8a1baeb3fbd9e6fe21ae708a0268749',1,'ActCluster::MultiStep']]],

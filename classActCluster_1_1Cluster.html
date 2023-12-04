@@ -132,6 +132,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8c05f3afa4582c755721a96e70992fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4594f2170f024dc8204e04f8603e7d7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#a4594f2170f024dc8204e04f8603e7d7e">SetVoxels</a> (const std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;voxels)</td></tr>
 <tr class="separator:a4594f2170f024dc8204e04f8603e7d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae0ff9c16fd9796a79f27c60b8ff9a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#adae0ff9c16fd9796a79f27c60b8ff9a6">SetVoxels</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&amp;voxels)</td></tr>
+<tr class="separator:adae0ff9c16fd9796a79f27c60b8ff9a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbab73e36f9a8499be831633e3249da3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#adbab73e36f9a8499be831633e3249da3">SetClusterID</a> (int id)</td></tr>
 <tr class="separator:adbab73e36f9a8499be831633e3249da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a336e2b5afe15199741b1accdf9a3a28f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActCluster_1_1Cluster.html#a336e2b5afe15199741b1accdf9a3a28f">SetBeamLike</a> (bool isBeam)</td></tr>
@@ -920,7 +922,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#a89b40230d12867ffb52e7542d27b1f25">fXYMap</a>; };</div>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#a89b40230d12867ffb52e7542d27b1f25">fXYMap</a>; };</div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_a89b40230d12867ffb52e7542d27b1f25"><div class="ttname"><a href="classActCluster_1_1Cluster.html#a89b40230d12867ffb52e7542d27b1f25">ActCluster::Cluster::fXYMap</a></div><div class="ttdeci">std::map&lt; int, std::set&lt; int &gt; &gt; fXYMap</div><div class="ttdef"><b>Definition:</b> ActCluster.h:33</div></div>
 </div><!-- fragment -->
 </div>
@@ -947,7 +949,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#afd4c3257c4dd70588c2a9192b7b88f93">fXZMap</a>; };</div>
+<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActCluster_1_1Cluster.html#afd4c3257c4dd70588c2a9192b7b88f93">fXZMap</a>; };</div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html_afd4c3257c4dd70588c2a9192b7b88f93"><div class="ttname"><a href="classActCluster_1_1Cluster.html#afd4c3257c4dd70588c2a9192b7b88f93">ActCluster::Cluster::fXZMap</a></div><div class="ttdeci">std::map&lt; int, std::set&lt; int &gt; &gt; fXZMap</div><div class="ttdef"><b>Definition:</b> ActCluster.h:34</div></div>
 </div><!-- fragment -->
 </div>
@@ -1075,9 +1077,9 @@ Private Attributes</h2></td></tr>
 
 <p>Compute grav point given percent of current XRange. </p>
 <div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>.<a class="code" href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">FitVoxels</a>(<a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="classActCluster_1_1Cluster.html#a327b83df7b63ecf43545735092fcee97">fLine</a>.<a class="code" href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">FitVoxels</a>(<a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a>);</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a275d0a3f2233991694375c993f6e3de4"><div class="ttname"><a href="classActPhysics_1_1Line.html#a275d0a3f2233991694375c993f6e3de4">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, double qThreshold=-1, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:74</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a97fdcea6a145a1ce4435ee99dc89b4b9"><div class="ttname"><a href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:75</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1104,7 +1106,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9707dab269ccb02f101555b2c20374fe">fIsBeamLike</a> = isBeam; }</div>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9707dab269ccb02f101555b2c20374fe">fIsBeamLike</a> = isBeam; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1131,7 +1133,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">fClusterID</a> = id; }</div>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#acbb5e1d1d1fa9ce3c454cb9a272f5cc6">fClusterID</a> = id; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1158,7 +1160,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a0bce3fe3707445656b6a637c29266931">fHasValidRP</a> = hasValidRP; }</div>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a0bce3fe3707445656b6a637c29266931">fHasValidRP</a> = hasValidRP; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1212,7 +1214,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9cdf75be04d62c0d13781f531f84ec8e">fToDelete</a> = toDelete; }</div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9cdf75be04d62c0d13781f531f84ec8e">fToDelete</a> = toDelete; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1239,12 +1241,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9ae9b4a1dc538ec3fa228a793b3dc709">fToMerge</a> = toMerge; }</div>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a9ae9b4a1dc538ec3fa228a793b3dc709">fToMerge</a> = toMerge; }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a4594f2170f024dc8204e04f8603e7d7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4594f2170f024dc8204e04f8603e7d7e">&#9670;&nbsp;</a></span>SetVoxels()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4594f2170f024dc8204e04f8603e7d7e">&#9670;&nbsp;</a></span>SetVoxels() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1267,6 +1269,33 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a> = voxels; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adae0ff9c16fd9796a79f27c60b8ff9a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adae0ff9c16fd9796a79f27c60b8ff9a6">&#9670;&nbsp;</a></span>SetVoxels() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActCluster::Cluster::SetVoxels </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>voxels</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{ <a class="code" href="classActCluster_1_1Cluster.html#a201eb6263e2feae29f1d0ba38376c101">fVoxels</a> = std::move(voxels); }</div>
 </div><!-- fragment -->
 </div>
 </div>
