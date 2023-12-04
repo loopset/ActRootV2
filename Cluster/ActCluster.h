@@ -58,6 +58,7 @@ namespace ActCluster
 
         void SetLine(const ActPhysics::Line& line) { fLine = line; }
         void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
+        void SetVoxels(std::vector<ActRoot::Voxel>&& voxels) { fVoxels = std::move(voxels); }
         void SetClusterID(int id) { fClusterID = id; }
         void SetBeamLike(bool isBeam) { fIsBeamLike = isBeam; }
         void SetToMerge(bool toMerge) { fToMerge = toMerge; }

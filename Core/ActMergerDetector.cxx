@@ -13,10 +13,13 @@
 #include "ActTPCDetector.h"
 #include "ActVData.h"
 
+#include "RtypesCore.h"
+
 #include "TEnv.h"
 #include "TH1.h"
 #include "TMath.h"
 #include "TMathBase.h"
+#include "TStopwatch.h"
 #include "TSystem.h"
 #include "TTree.h"
 
@@ -93,8 +96,27 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Disable TH1::AddDirectory
     TH1::AddDirectory(false);
 
+    // Init clocks
+    InitClocks();
+
     //////////////// MultiStep algorithm ///////////////////////////
     fMultiStep->ReadConfigurationFile();
+}
+
+void ActRoot::MergerDetector::InitClocks()
+{
+    // Init labels
+    fClockLabels.resize(7);
+    fClockLabels[0] = "IsDoable";
+    fClockLabels[1] = "LightOrHeavy";
+    fClockLabels[2] = "SP computation";
+    fClockLabels[3] = "ConvertToPhysicalUnits";
+    fClockLabels[4] = "MatchSPtoRealPlacement";
+    fClockLabels[5] = "Angles computation";
+    fClockLabels[6] = "Qave and Qprofile";
+
+    for(const auto& _ : fClockLabels)
+        fClocks.push_back(TStopwatch {});
 }
 
 void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block) {}
@@ -175,17 +197,27 @@ void ActRoot::MergerDetector::DoMerge()
     // Check if is enabled
     if(!fIsEnabled)
         return;
-    // 1-> Reset iterators
+    // 1-> Reset iterators and check is doable
     Reset();
-    if(!IsDoable())
+    fClocks[0].Start(false);
+    auto isDoable {IsDoable()};
+    fClocks[0].Stop();
+    if(!isDoable)
     {
         fMergerData->Clear();
         return;
     }
+
     // 2-> Identify light and heavy
+    fClocks[1].Start(false);
     LightOrHeavy();
+    fClocks[1].Stop();
+
     // 3-> Compute SP and BP
-    if(!ComputeSiliconPoint())
+    fClocks[2].Start(false);
+    auto isSPOk {ComputeSiliconPoint()};
+    fClocks[2].Stop();
+    if(!isSPOk)
     {
         // this checks whether the SP is fine or not
         // probably bc the propagation does not occur in
@@ -193,29 +225,42 @@ void ActRoot::MergerDetector::DoMerge()
         fMergerData->Clear();
         return;
     }
+
     ComputeBoundaryPoint();
+
     // 4-> Scale points to physical dimensions
     // if conversion is disabled, no further steps can be done!
     if(!fEnableConversion)
         return;
+    fClocks[3].Start(false);
     ConvertToPhysicalUnits();
+    fClocks[3].Stop();
+
     // 5-> Match or not to silicon real placement
     if(fEnableMatch)
     {
         if(fMatchUseZ)
             CorrectZOffset();
-        if(!MatchSPtoRealPlacement())
+        fClocks[4].Start(false);
+        auto isMatch {MatchSPtoRealPlacement()};
+        fClocks[4].Stop();
+        if(!isMatch)
         {
             fMergerData->Clear();
             return;
         }
     }
+
     // 6-> Get angles
+    fClocks[5].Start(false);
     ComputeAngles();
+    fClocks[5].Stop();
     // 7-> Qave and charge profile computations
+    fClocks[6].Start(false);
     ComputeQave();
     if(fEnableQProfile)
         ComputeQProfile();
+    fClocks[6].Stop();
 }
 
 void ActRoot::MergerDetector::BuildEventMerger()
@@ -250,7 +295,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         isInGat = true;
     else
         isInGat = false;
-    // 2-> Has BL cluster and not BL mult
+    // 2-> Has BL cluster and not BL multiplicity
     bool hasBL {true};
     bool hasMult {false};
     if(fForceBeamLike)
@@ -276,7 +321,9 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     {
         hasMult = IsInVector((int)fTPCData->fClusters.size(), fNotBMults);
     }
-    return isInGat && hasBL && hasMult;
+    // 3-> Has RP (either preliminary or fine)
+    bool hasRP {fTPCData->fRPs.size() > 0};
+    return isInGat && hasBL && hasMult && hasRP;
 }
 
 bool ActRoot::MergerDetector::GateSilMult()
@@ -347,6 +394,8 @@ void ActRoot::MergerDetector::LightOrHeavy()
         auto it {fTPCData->fClusters.begin() + i};
         if(it == fBeamIt)
             continue;
+        // Orient track following RP and gravity point
+        it->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
         // Get angle
         auto theta {GetTheta3D(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
         set.insert({TMath::Abs(theta), i});
@@ -579,4 +628,16 @@ void ActRoot::MergerDetector::Print() const
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
 }
 
-void ActRoot::MergerDetector::PrintReports() const {}
+void ActRoot::MergerDetector::PrintReports() const
+{
+    if(fMultiStep)
+        fMultiStep->PrintClocks();
+
+    std::cout << BOLDCYAN << "==== MergerDetector time report ====" << '\n';
+    for(int i = 0; i < fClockLabels.size(); i++)
+    {
+        std::cout << "Timer : " << fClockLabels[i] << '\n';
+        fClocks[i].Print();
+    }
+    std::cout << RESET << '\n';
+}

@@ -13,6 +13,7 @@
 #include "ActVDetector.h"
 #include "ActVParameters.h"
 
+#include "TStopwatch.h"
 #include "TTree.h"
 
 #include "Math/Point3Dfwd.h"
@@ -85,6 +86,10 @@ namespace ActRoot
         decltype(TPCData::fClusters)::iterator fBeamIt;
         decltype(TPCData::fClusters)::iterator fLightIt;
         decltype(TPCData::fClusters)::iterator fHeavyIt;
+
+        // Time counting
+        std::vector<TStopwatch> fClocks {};
+        std::vector<std::string> fClockLabels {};
 
     public:
         MergerDetector(); //!< Default constructor that initializes MultiStep member
@@ -165,6 +170,7 @@ namespace ActRoot
         void PrintReports() const override;
 
     private:
+        void InitClocks();
         void ReadSilSpecs(const std::string& file);
         void DoMultiStep();
         void DoMerge();

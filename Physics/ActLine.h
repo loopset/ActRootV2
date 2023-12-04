@@ -50,9 +50,7 @@ namespace ActPhysics
         void AlignUsingPoint(const XYZPoint& rp, bool isRecoil = true);
         double DistanceLineToPoint(const XYZPoint& point) const;
         XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
-        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, double qThreshold = -1,
-                       bool correctOffset = true);
-        void FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset = true);
+        void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, bool correctOffset = true);
         std::shared_ptr<TPolyLine>
         GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512, int rebinZ = 4) const;
 
@@ -60,11 +58,10 @@ namespace ActPhysics
         void Print() const;
 
     private:
-        void FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
-                                   bool correctOffset);
+        void DoFit(const std::vector<ActRoot::Voxel>& points, bool qWeighted, bool correctOffset);
         void Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
                          const std::string& degenerated = "z");
-        void Chi2Dfrom3D(const std::vector<XYZPoint>& points, bool correctOffset);
+        void Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset);
         inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
         std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ, int rebinZ) const;
     };

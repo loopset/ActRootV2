@@ -80,6 +80,7 @@ namespace ActCluster
         bool fEnableRPRoutine;
         double fBeamLikeXMinThresh;
         double fBeamLikeParallelF;
+        double fBeamLikeMinVoxels;
         bool fEnableRPDelete;
         double fRPDistThresh;
         double fRPDistCluster;

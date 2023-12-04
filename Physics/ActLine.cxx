@@ -1,6 +1,7 @@
 #include "ActLine.h"
 
 #include "ActColors.h"
+#include "ActVoxel.h"
 
 #include "TEnv.h"
 #include "TMath.h"
@@ -71,36 +72,12 @@ ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoin
     return fPoint + vInLine;
 }
 
-void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, double qThreshold,
-                                 bool correctOffset)
+void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset)
 {
-    std::vector<XYZPoint> cloud;
-    std::vector<double> charge;
-    for(const auto& voxel : voxels)
-    {
-        if(qWeighted)
-        {
-            if(qThreshold != -1 && !(voxel.GetCharge() > qThreshold))
-                continue;
-            charge.push_back(voxel.GetCharge());
-            cloud.push_back(voxel.GetPosition());
-        }
-        else
-            cloud.push_back(voxel.GetPosition());
-    }
-    if(qWeighted)
-        FitCloudWithThreshold(cloud, charge, correctOffset);
-    else
-        FitCloudWithThreshold(cloud, {}, correctOffset);
+    DoFit(voxels, qWeighted, correctOffset);
 }
 
-void ActPhysics::Line::FitCloud(const std::vector<XYZPoint>& cloud, bool correctOffset)
-{
-    FitCloudWithThreshold(cloud, {}, correctOffset);
-}
-
-void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points, const std::vector<double>& charge,
-                                             bool correctOffset)
+void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset)
 {
     //------3D Line Regression
     //----- adapted from: http://fr.scribd.com/doc/31477970/Regressions-et-trajectoires-3D
@@ -139,12 +116,10 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     double rho {};
     double phi {};
 
-    bool doChargeWeight = (points.size() == charge.size());
-
-    for(int i = 0, maxsize = points.size(); i < maxsize; ++i)
+    for(const auto& voxel : voxels)
     {
-        const auto hitQ = doChargeWeight ? charge[i] : 1.;
-        auto pos = points[i];
+        const auto hitQ = (qWeighted ? voxel.GetCharge() : 1.);
+        auto pos = voxel.GetPosition();
         if(correctOffset)
             pos += XYZVector {0.5, 0.5, 0.5};
         Q += hitQ;
@@ -193,7 +168,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
             return;
         }
         // and recompute Chi2 after fitting
-        Chi2Dfrom3D(points, correctOffset);
+        Chi2Dfrom3D(voxels, correctOffset);
         return;
     }
     // Doable 3D fit
@@ -243,7 +218,7 @@ void ActPhysics::Line::FitCloudWithThreshold(const std::vector<XYZPoint>& points
     Xh = ((1. + b * b) * Xm - a * b * Ym + a * Zm) / (1. + a * a + b * b);
     Yh = ((1. + a * a) * Ym - a * b * Xm + b * Zm) / (1. + a * a + b * b);
     Zh = ((a * a + b * b) * Zm + a * Xm + b * Ym) / (1. + a * a + b * b);
-    
+
     XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
     SetDirection(fPoint, Ph);
     fChi2 = std::fabs(dm2); // do not divide by charge!
@@ -267,7 +242,7 @@ void ActPhysics::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj,
     Mi *= w;
     //////////////
     double denom {w * Sii - std::pow(Mi, 2)};
-    if(std::isnan(1. / denom))// NaN!! vertical line
+    if(std::isnan(1. / denom)) // NaN!! vertical line
     {
         fDirection = {std::nanf("bad fit"), std::nanf("bad fit"), std::nanf("bad fit")};
         return;
@@ -282,21 +257,21 @@ void ActPhysics::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj,
         fDirection = {1, (float)-m, 0};
 }
 
-void ActPhysics::Line::Chi2Dfrom3D(const std::vector<XYZPoint>& points, bool correctOffset)
+void ActPhysics::Line::Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset)
 {
     // Check fit is good
     if(std::isnan(fDirection.Z()))
         return;
     // We use the built-in function
     double dm2 {};
-    for(int i = 0, size = points.size(); i < size; i++)
+    for(const auto& voxel : voxels)
     {
-        auto pos {points[i]};
+        auto pos {voxel.GetPosition()};
         if(correctOffset)
             pos += XYZVector {0.5, 0.5, 0.5};
         dm2 += std::pow(DistanceLineToPoint(pos), 2);
     }
-    dm2 /= points.size();
+    dm2 /= voxels.size();
     fChi2 = std::sqrt(dm2);
 }
 
