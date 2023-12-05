@@ -107,6 +107,8 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fMergeMinParallelFactor = mb->GetDouble("MergeMinParallelFactor");
     if(mb->CheckTokenExists("MergeChi2CoverageF"))
         fMergeChi2CoverageFactor = mb->GetDouble("MergeChi2CoverageF");
+    if(mb->CheckTokenExists("MergeDistThresh"))
+        fMergeDistThreshold = mb->GetDouble("MergeDistThresh");
     // Clean delta electrons and remaining non-apt cluster
     if(mb->CheckTokenExists("EnableCleanDeltas"))
         fEnableCleanDeltas = mb->GetBool("EnableCleanDeltas");
@@ -203,8 +205,10 @@ void ActCluster::MultiStep::Run()
         fClocks[2].Stop();
         if(fEnableBreakMultiTracks)
         {
+            // doesnt make sense to run BreakTracks
+            // without attempting first to BreakBeam
             fClocks[3].Start(false);
-            BreakTrackClusters(); // this method is dependent on the previous!
+            BreakTrackClusters();
             fClocks[3].Stop();
         }
     }
@@ -239,7 +243,6 @@ void ActCluster::MultiStep::Run()
         CleanDeltas();
         fClocks[5].Stop();
     }
-    // Preliminary: find reaction point and tag unreacted beam clusters
     if(fEnableRPRoutine)
     {
         fClocks[6].Start(false);
@@ -470,6 +473,9 @@ void ActCluster::MultiStep::BreakBeamClusters()
             std::vector<ActRoot::Voxel> noise;
             if(fFitNotBeam)
                 std::tie(newClusters, noise) = fClimb->Run(notBeam);
+            // Set flag accordingly
+            for(auto& cl : newClusters)
+                cl.SetIsBreakBeam(true);
             // Move to vector
             toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),
                             std::make_move_iterator(newClusters.end()));
@@ -499,55 +505,81 @@ void ActCluster::MultiStep::BreakTrackClusters()
         }
         else
         {
-            // 2-> Get gravity point to break based on previous BreakBeamClusters
-            XYZPoint gravity {};
-            for(auto in = fClusters->begin(); in != fClusters->end(); in++)
-                if(in->GetIsBeamLike())
-                    gravity = in->GetGravityPointInXRange(fLengthXToBreak);
-            // 3-> Identify voxels to move
+            // Get ref to voxels
             auto& refVoxels {it->GetRefToVoxels()};
-            auto initSize {refVoxels.size()};
-            auto toMove {std::partition(refVoxels.begin(), refVoxels.end(),
-                                        [&](const ActRoot::Voxel& voxel)
-                                        {
-                                            auto pos {voxel.GetPosition()};
-                                            pos += XYZVector {0.5, 0.5, 0.5};
-                                            return ManualIsInBeam(pos, gravity, fBeamWindowScaling);
-                                        })};
-            if(fIsVerbose)
+            // Identify GP and window scale
+            XYZPoint gravity {};
+            double scale {};
+            if(it->GetIsBreakBeam()) // comes after running BreakBeam
             {
-                std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----" << '\n';
-                std::cout << "New gravity : " << gravity << '\n';
-                std::cout << "Init size : " << initSize << '\n';
-                std::cout << "After size : " << std::distance(refVoxels.begin(), toMove) << '\n';
-                std::cout << "-------------------------" << RESET << '\n';
+                for(auto in = fClusters->begin(); in != fClusters->end(); in++)
+                    if(in->GetIsBeamLike())
+                        gravity = in->GetGravityPointInXRange(fLengthXToBreak);
+                scale = fBeamWindowScaling;
             }
-            // 4-> Move
-            std::vector<ActRoot::Voxel> breakable {};
-            breakable.insert(breakable.end(), std::make_move_iterator(toMove),
-                             std::make_move_iterator(refVoxels.end()));
-            refVoxels.erase(toMove, refVoxels.end());
-            // 5-> Reprocess or delete if minimum number of points criterium is not met
-            it = fClusters->erase(it); // force erase always of remaining voxels!
-            // if(refVoxels.size() <= fClimb->GetMinPoints())
-            // {
-            //     it = fClusters->erase(it);
-            // }
-            // else
-            // {
-            //     it->ReFit();
-            //     it->ReFillSets();
-            //     it++;
-            // }
-            // 5-> Re cluster
-            std::vector<ActCluster::Cluster> newClusters;
-            std::vector<ActRoot::Voxel> noise;
-            std::tie(newClusters, noise) = fClimb->Run(breakable);
-            // Set not to merge these new ones
-            for(auto& ncl : newClusters)
-                ncl.SetToMerge(false);
-            toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),
-                            std::make_move_iterator(newClusters.end()));
+            else // not broken from beam
+            {
+                gravity = it->GetLine().GetPoint(); // use fit's gravity point
+                scale = 1;
+            }
+            // Partition to move to newVoxels
+            auto toCluster {std::partition(refVoxels.begin(), refVoxels.end(),
+                                           [&](const ActRoot::Voxel& voxel)
+                                           {
+                                               auto pos {voxel.GetPosition()};
+                                               pos += XYZVector {0.5, 0.5, 0.5};
+                                               return ManualIsInBeam(pos, gravity, scale);
+                                           })};
+            auto inBeamSize {std::distance(refVoxels.begin(), toCluster)};
+            if(inBeamSize > 0)
+            {
+                std::vector<ActRoot::Voxel> newVoxels;
+                newVoxels.insert(newVoxels.end(), std::make_move_iterator(toCluster),
+                                 std::make_move_iterator(refVoxels.end()));
+                refVoxels.erase(toCluster, refVoxels.end());
+
+                // Reprocess
+                std::vector<ActCluster::Cluster> newClusters;
+                std::vector<ActRoot::Voxel> noise;
+                std::tie(newClusters, noise) = fClimb->Run(newVoxels);
+                // Set not to merge these new ones
+                // for(auto& ncl : newClusters)
+                //     ncl.SetToMerge(false);
+                toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),
+                                std::make_move_iterator(newClusters.end()));
+
+                // Delete current cluster
+                it = fClusters->erase(it);
+                // Verbose info
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----"
+                              << '\n';
+                    std::cout << "Gravity point     : " << gravity << '\n';
+                    std::cout << "IsFromBreakBeam   ? " << std::boolalpha << it->GetIsBreakBeam() << '\n';
+                    std::cout << "inBeamSize        : " << inBeamSize << '\n';
+                    std::cout << "N of new clusters : " << newClusters.size() << '\n';
+                    std::cout << "-------------------------" << RESET << '\n';
+                }
+            }
+            else
+            {
+                // Do not do anything; chi2 >> and will be deleted in CleanDeltas
+                // just in case, set flat not to merge
+                it->SetToMerge(false);
+                it++;
+                // Verbose info
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDCYAN << "---- BreakTrack verbose for ID : " << it->GetClusterID() << " ----"
+                              << '\n';
+                    std::cout << "Gravity point     : " << gravity << '\n';
+                    std::cout << "IsFromBreakBeam   ? " << std::boolalpha << it->GetIsBreakBeam() << '\n';
+                    std::cout << "Skipping event bc there no voxels inside BeamRegion!" << '\n';
+                    std::cout << "-------------------------" << RESET << '\n';
+                }
+                continue;
+            }
         }
     }
     // Write to vector of clusters
@@ -557,17 +589,25 @@ void ActCluster::MultiStep::BreakTrackClusters()
 
 void ActCluster::MultiStep::MergeSimilarTracks()
 {
+    // Sort clusters by increasing voxel size
+    std::sort(fClusters->begin(), fClusters->end(),
+              [](const Cluster& l, const Cluster& r) { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
+
+    // Set of indexes to delete
     std::set<int, std::greater<int>> toDelete {};
+    // Run!
     for(size_t i = 0, isize = fClusters->size(); i < isize; i++)
     {
-        for(size_t j = i + 1, jsize = fClusters->size(); j < jsize; j++)
+        // Get clusters as iterators
+        auto out {fClusters->begin() + i};
+        for(size_t j = 0, jsize = fClusters->size(); j < jsize; j++)
         {
             bool isIinSet {toDelete.find(i) != toDelete.end()};
             bool isJinSet {toDelete.find(j) != toDelete.end()};
             if(i == j || isIinSet || isJinSet) // exclude comparison of same cluster and other already to be deleted
                 continue;
-            // Get clusters as iterators
-            auto out {fClusters->begin() + i};
+
+            // Get inner iterator
             auto in {fClusters->begin() + j};
 
             // If any of them is set not to merge, do not do that :)
@@ -579,13 +619,16 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             auto distIn {out->GetLine().DistanceLineToPoint(gravIn)};
             auto gravOut {out->GetLine().GetPoint()};
             auto distOut {in->GetLine().DistanceLineToPoint(gravOut)};
-            auto dist {std::min(distIn, distOut)};
+            auto dist {std::max(distIn, distOut)};
             // Get threshold distance to merge
-            auto threshIn {in->GetLine().GetChi2()};
-            auto threshOut {out->GetLine().GetChi2()};
-            auto distThresh {std::max(threshIn, threshOut)};
-            bool isBelowThresh {dist < std::sqrt(distThresh)};
+            bool isBelowThresh {dist <= fMergeDistThreshold};
+            // auto threshIn {in->GetLine().GetChi2()};
+            // auto threshOut {out->GetLine().GetChi2()};
+            // auto distThresh {std::max(threshIn, threshOut)};
+            // bool isBelowThresh {dist < std::sqrt(distThresh)};
             // std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
+            // std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
+            // std::cout << "gravOut" << gravOut << " gravIn : " << gravIn << '\n';
             // std::cout << "dist : " << dist << '\n';
             // std::cout << "distThresh: " << distThresh << '\n';
             // std::cout << "------------------" << '\n';
@@ -597,7 +640,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
             // std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
 
             // 3-> Check if fits improves
-            if(isBelowThresh || areParallel)
+            if(isBelowThresh && areParallel)
             {
                 ActPhysics::Line aux {};
                 auto outVoxels {out->GetVoxels()};
@@ -614,20 +657,30 @@ void ActCluster::MultiStep::MergeSimilarTracks()
                 bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
                 // std::cout << "old chi2 : " << oldChi2 << '\n';
                 // std::cout << "new chi2 :  " << newChi2 << '\n';
+
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
+                    std::cout << "for <i,j> : <" << i << ", " << j << ">" << '\n';
+                    std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
+                    std::cout << "dist < distThresh ? : " << dist << " < " << fMergeDistThreshold << '\n';
+                    std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
+                    std::cout << "newChi2 < f * oldChi2 ? : " << newChi2 << " < " << fMergeChi2CoverageFactor * oldChi2
+                              << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                }
+
                 // Then, move and erase in iterator!
                 if(improvesFit)
                 {
                     if(fIsVerbose)
                     {
-                        std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
-                        std::cout << "dist < distThresh ? : " << dist << " < " << distThresh << '\n';
-                        std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
-                        std::cout << "newChi2 < oldChi2 ? : " << newChi2 << " < " << oldChi2 << '\n';
-                        std::cout << "Merging cluster in : " << in->GetClusterID()
+                        std::cout << BOLDYELLOW << "------------------------------" << '\n';
+                        std::cout << "-> merging cluster : " << in->GetClusterID()
                                   << " with size : " << in->GetSizeOfVoxels() << '\n';
                         std::cout << " with cluster out : " << out->GetClusterID()
                                   << " and size : " << out->GetSizeOfVoxels() << '\n';
-                        std::cout << "-----------------------" << RESET << '\n';
+                        std::cout << "------------------------------" << RESET << '\n';
                     }
                     auto& refVoxels {out->GetRefToVoxels()};
                     refVoxels.insert(refVoxels.end(), std::make_move_iterator(inVoxels.begin()),
@@ -869,6 +922,10 @@ void ActCluster::MultiStep::FindPreliminaryRP()
             // Get clusters as iterators
             auto in {fClusters->begin() + j};
 
+            // If both are BL, continue
+            if(out->GetIsBeamLike() && in->GetIsBeamLike())
+                continue;
+
             // Run function
             auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
                                                in->GetLine().GetPoint(), in->GetLine().GetDirection())};
@@ -1021,6 +1078,7 @@ void ActCluster::MultiStep::PerformFinerFits()
             newCluster.SetVoxels(std::move(newVoxels));
             newCluster.ReFit();
             newCluster.ReFillSets();
+            newCluster.SetIsSplitRP(true);
             toAppend.push_back(std::move(newCluster));
 
             if(fIsVerbose)
@@ -1172,7 +1230,77 @@ void ActCluster::MultiStep::PerformFinerFits()
             }
         }
     }
+
+    // // 7-> Merge clusters which got split due to fineRP
+    // for(auto in = fClusters->begin(); in != fClusters->end(); in++)
+    // {
+    //     if(in->GetIsSplitRP())
+    //     {
+    //         for(auto other = fClusters->begin(); other != fClusters->end(); other++)
+    //         {
+    //             if(in == other || other->GetIsBeamLike())
+    //                 continue;
+    //             ClustersOverlap(other, in);
+    //         }
+    //         break;
+    //     }
+    // }
+    // 7 -> Delete split heavy if there are more than 1 recoil track
+    bool hasBL {};
+    bool hasSplitHeavy {};
+    ItType itSplitHeavy {};
+    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    {
+        if(it->GetIsBeamLike())
+            hasBL = true;
+        if(it->GetIsSplitRP())
+        {
+            hasSplitHeavy = true;
+            itSplitHeavy = it;
+        }
+    }
+    if(hasSplitHeavy && hasBL)
+    {
+        int count {(int)fClusters->size()};
+        if(std::abs(count - 2) != 1)
+            fClusters->erase(itSplitHeavy);
+    }
 }
+
+bool ActCluster::MultiStep::ClustersOverlap(ItType out, ItType in)
+{
+    // Interval xout {out->GetXRange()};
+    // std::cout << "Xout : " << xout << '\n';
+    // Interval xin {in->GetXRange()};
+    // std::cout << "Xin : " << xin << '\n';
+    // bool condX {xout.Overlaps(xin)};
+    //
+    // Interval yout {out->GetYRange()};
+    // Interval yin {in->GetYRange()};
+    // bool condY {yout.Overlaps(yin)};
+    //
+    // Interval zout {out->GetZRange()};
+    // Interval zin {in->GetZRange()};
+    // bool condZ {zout.Overlaps(zin)};
+    //
+    // return condX && (condY && condZ);
+    // Sort voxels
+    auto& outVoxels {out->GetRefToVoxels()};
+    std::sort(outVoxels.begin(), outVoxels.end());
+    auto& inVoxels {in->GetRefToVoxels()};
+    std::sort(inVoxels.begin(), inVoxels.end());
+    // Compare in.back() with out.front()
+    auto back {inVoxels.back().GetPosition()};
+    auto front {outVoxels.front().GetPosition()};
+
+    auto dist {(front - back).R()};
+    std::cout << "Back : " << back << '\n';
+    std::cout << "Front : " << front << '\n';
+    std::cout << "dist : " << dist << '\n';
+    std::cout << "----------------" << '\n';
+    return false;
+}
+
 
 void ActCluster::MultiStep::FindPreciseRP()
 {
@@ -1263,6 +1391,7 @@ void ActCluster::MultiStep::Print() const
         {
             std::cout << "-> MergeMinParallel : " << fMergeMinParallelFactor << '\n';
             std::cout << "-> MergeChi2CoverF  : " << fMergeChi2CoverageFactor << '\n';
+            std::cout << "-> MergeDistThresh  : " << fMergeDistThreshold << '\n';
             std::cout << "-----------------------" << '\n';
         }
         if(fEnableCleanPileUp)

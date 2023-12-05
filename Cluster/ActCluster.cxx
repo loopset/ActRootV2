@@ -36,7 +36,7 @@ void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
     UpdateRange(pos.X(), fXRange);
     UpdateRange(pos.Y(), fYRange);
     UpdateRange(pos.Z(), fZRange);
-    // 
+    //
     // fXYMap[(int)pos.X()].insert((int)pos.Y());
     // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
@@ -176,9 +176,10 @@ void ActCluster::Cluster::Print() const
     std::cout << "-> X range     : [" << xmin << " , " << xmax << "]" << '\n';
     std::cout << "-> Y range     : [" << ymin << " , " << ymax << "]" << '\n';
     std::cout << "-> Z range     : [" << zmin << " , " << zmax << "]" << '\n';
-    std::cout << "-> IsBeamLike? : " << std::boolalpha << fIsBeamLike << '\n';
-    std::cout << "-> IsToMerge?  : " << std::boolalpha << fToMerge << '\n';
-    std::cout << "-> HasValidRP? : " << std::boolalpha << fHasValidRP << '\n';
-    std::cout << "-> IsToDelete? : " << std::boolalpha << fToDelete << '\n';
+    std::cout << "-> IsBeamLike  ? " << std::boolalpha << fIsBeamLike << '\n';
+    std::cout << "-> IsToMerge   ? " << std::boolalpha << fToMerge << '\n';
+    std::cout << "-> BreakBeam   ? " << std::boolalpha << fIsBreak << '\n';
+    std::cout << "-> SplitRP     ? " << std::boolalpha << fIsSplit << '\n';
+    std::cout << "-> IsToDelete  ? " << std::boolalpha << fToDelete << '\n';
     std::cout << "...................." << RESET << '\n';
 }

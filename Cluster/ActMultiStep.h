@@ -72,6 +72,7 @@ namespace ActCluster
         bool fEnableMerge;
         double fMergeMinParallelFactor;
         double fMergeChi2CoverageFactor;
+        double fMergeDistThreshold;
         // 5-> Clean remaining clusters
         bool fEnableCleanDeltas;
         double fDeltaChi2Threshold;
@@ -171,6 +172,8 @@ namespace ActCluster
         double GetThetaAngle(const XYZVector& beam, const XYZVector& recoil);
         // Cluster preliminary reaction points
         std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
+        // Check whether two clusters overlap
+        bool ClustersOverlap(ItType out, ItType in);
     };
 } // namespace ActCluster
 

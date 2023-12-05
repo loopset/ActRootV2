@@ -36,7 +36,8 @@ namespace ActCluster
         bool fIsBeamLike {false};
         bool fToMerge {true};
         bool fToDelete {false};
-        bool fHasValidRP {false};
+        bool fIsBreak {false};
+        bool fIsSplit {false};
 
     public:
         Cluster() = default;
@@ -54,7 +55,8 @@ namespace ActCluster
         bool GetIsBeamLike() const { return fIsBeamLike; }
         bool GetToMerge() const { return fToMerge; }
         bool GetToDelete() const { return fToDelete; }
-        bool GetHasValidRP() const { return fHasValidRP; }
+        bool GetIsBreakBeam() const { return fIsBreak; }
+        bool GetIsSplitRP() const { return fIsSplit; }
 
         void SetLine(const ActPhysics::Line& line) { fLine = line; }
         void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
@@ -63,11 +65,13 @@ namespace ActCluster
         void SetBeamLike(bool isBeam) { fIsBeamLike = isBeam; }
         void SetToMerge(bool toMerge) { fToMerge = toMerge; }
         void SetToDelete(bool toDelete) { fToDelete = toDelete; }
-        void SetHasValidRP(bool hasValidRP) { fHasValidRP = hasValidRP; }
+        void SetIsBreakBeam(bool hasValidRP) { fIsBreak = hasValidRP; }
+        void SetIsSplitRP(bool split) { fIsSplit = split; }
 
         // Adders of voxels
         void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back
         void AddVoxel(ActRoot::Voxel&& voxel);      //! By moving in push_back
+
 
         // Get extents
         std::pair<float, float> GetXRange() const;

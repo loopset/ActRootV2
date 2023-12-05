@@ -2,6 +2,7 @@
 #define ActInterval_h
 
 #include "TMath.h"
+
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
@@ -25,6 +26,7 @@ namespace ActCluster
     public:
         Interval() = default;
         Interval(const T& start, const T& stop) : fStart(start), fStop(stop) {}
+        Interval(const std::pair<T, T>& pair) : fStart(pair.first), fStop(pair.second) {}
 
         // Basic overloads of operators
         friend bool operator==(const Interval& one, const Interval& other)
@@ -102,8 +104,8 @@ namespace ActCluster
             std::set<T> set;
             // Apply transformation function for Z values
             if(scaling != 1)
-                std::transform(values.begin(), values.end(), std::inserter(set, set.begin()), 
-                               [&](const auto& e){return e / scaling;});
+                std::transform(values.begin(), values.end(), std::inserter(set, set.begin()),
+                               [&](const auto& e) { return e / scaling; });
             else
                 set = values;
             T start {*set.begin()};
@@ -263,14 +265,14 @@ namespace ActCluster
             if(fMap.begin() != fMap.end())
                 return fMap.begin()->second.front();
             else
-             return {};
+                return {};
         }
         Interval<T> GetBack()
         {
             if(fMap.rbegin() != fMap.rend())
                 return fMap.rbegin()->second.front();
             else
-             return {};
+                return {};
         }
     };
 
