@@ -2046,30 +2046,29 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;    <span class="comment">//     }</span></div>
 <div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;    <span class="comment">// }</span></div>
 <div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    <span class="comment">// 7 -&gt; Delete split heavy if there are more than 1 recoil track</span></div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;    <span class="keywordtype">bool</span> hasBL {};</div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;    <span class="keywordtype">bool</span> hasSplitHeavy {};</div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;    <a class="code" href="classActCluster_1_1MultiStep.html#a7ab012a7422e5c5351fc720576dc0190">ItType</a> itSplitHeavy {};</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;begin(); it != <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;end(); it++)</div>
-<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;    {</div>
-<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;        <span class="keywordflow">if</span>(it-&gt;GetIsBeamLike())</div>
-<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;            hasBL = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;        <span class="keywordflow">if</span>(it-&gt;GetIsSplitRP())</div>
-<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;        {</div>
-<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;            hasSplitHeavy = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;            itSplitHeavy = it;</div>
-<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;        }</div>
-<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;    }</div>
-<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;    <span class="keywordflow">if</span>(hasSplitHeavy &amp;&amp; hasBL)</div>
-<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;    {</div>
-<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;        <span class="keywordtype">int</span> count {(int)<a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;size()};</div>
-<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;        <span class="keywordflow">if</span>(std::abs(count - 2) != 1)</div>
-<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;            <a class="code" href="classActCluster_1_1MultiStep.html#a141ededfb7a02c5e09bddfa943299fbf">fClusters</a>-&gt;erase(itSplitHeavy);</div>
-<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;    }</div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;    <span class="comment">// bool hasBL {};</span></div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;    <span class="comment">// bool hasSplitHeavy {};</span></div>
+<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;    <span class="comment">// ItType itSplitHeavy {};</span></div>
+<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    <span class="comment">// for(auto it = fClusters-&gt;begin(); it != fClusters-&gt;end(); it++)</span></div>
+<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;    <span class="comment">// {</span></div>
+<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;    <span class="comment">//     if(it-&gt;GetIsBeamLike())</span></div>
+<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;    <span class="comment">//         hasBL = true;</span></div>
+<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;    <span class="comment">//     if(it-&gt;GetIsSplitRP())</span></div>
+<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;    <span class="comment">//     {</span></div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    <span class="comment">//         hasSplitHeavy = true;</span></div>
+<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;    <span class="comment">//         itSplitHeavy = it;</span></div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;    <span class="comment">//     }</span></div>
+<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;    <span class="comment">// }</span></div>
+<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;    <span class="comment">// if(hasSplitHeavy &amp;&amp; hasBL)</span></div>
+<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;    <span class="comment">// {</span></div>
+<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;    <span class="comment">//     int count {(int)fClusters-&gt;size()};</span></div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;    <span class="comment">//     if(std::abs(count - 2) != 1)</span></div>
+<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;    <span class="comment">//         fClusters-&gt;erase(itSplitHeavy);</span></div>
+<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;    <span class="comment">// }</span></div>
 <div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
 <div class="ttc" id="aclassActCluster_1_1Cluster_html"><div class="ttname"><a href="classActCluster_1_1Cluster.html">ActCluster::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:19</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a10837d4a2b1f83d093c9c8671b2178d4"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a10837d4a2b1f83d093c9c8671b2178d4">ActCluster::MultiStep::fBeamLikeMinVoxels</a></div><div class="ttdeci">double fBeamLikeMinVoxels</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:84</div></div>
-<div class="ttc" id="aclassActCluster_1_1MultiStep_html_a7ab012a7422e5c5351fc720576dc0190"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a7ab012a7422e5c5351fc720576dc0190">ActCluster::MultiStep::ItType</a></div><div class="ttdeci">std::vector&lt; ActCluster::Cluster &gt;::iterator ItType</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:31</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a84ff7afb787f233552ce9979a558cd11"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a84ff7afb787f233552ce9979a558cd11">ActCluster::MultiStep::fEnableRPDefaultBeam</a></div><div class="ttdeci">bool fEnableRPDefaultBeam</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:93</div></div>
 <div class="ttc" id="aclassActCluster_1_1MultiStep_html_a978bd973a74d63ff814940444411bae1"><div class="ttname"><a href="classActCluster_1_1MultiStep.html#a978bd973a74d63ff814940444411bae1">ActCluster::MultiStep::fRPDefaultMinX</a></div><div class="ttdeci">double fRPDefaultMinX</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:94</div></div>
 </div><!-- fragment -->
