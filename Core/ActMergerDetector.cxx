@@ -400,8 +400,13 @@ void ActRoot::MergerDetector::LightOrHeavy()
         auto theta {GetTheta3D(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
         set.insert({TMath::Abs(theta), i});
     }
-    // for(const auto& pair : set)
-    //     std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
+    if(fIsVerbose)
+    {
+        std::cout << BOLDCYAN << "---- Merger LightOrHeavy ----" << '\n';
+        for(const auto& pair : set)
+            std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
+        std::cout << "------------------------------" << RESET << '\n';
+    }
     // Set iterators
     fLightIt = fTPCData->fClusters.begin() + set.begin()->second;
     if(set.size() > 1)

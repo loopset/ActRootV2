@@ -21,4 +21,5 @@
 #pragma link C++ class ActPhysics::PIDCorrection + ;
 #pragma link C++ class ActPhysics::PIDCorrector;
 
+#pragma link C++ class ActPhysics::SilMatrix + ;
 #endif

@@ -1246,25 +1246,25 @@ void ActCluster::MultiStep::PerformFinerFits()
     //     }
     // }
     // 7 -> Delete split heavy if there are more than 1 recoil track
-    bool hasBL {};
-    bool hasSplitHeavy {};
-    ItType itSplitHeavy {};
-    for(auto it = fClusters->begin(); it != fClusters->end(); it++)
-    {
-        if(it->GetIsBeamLike())
-            hasBL = true;
-        if(it->GetIsSplitRP())
-        {
-            hasSplitHeavy = true;
-            itSplitHeavy = it;
-        }
-    }
-    if(hasSplitHeavy && hasBL)
-    {
-        int count {(int)fClusters->size()};
-        if(std::abs(count - 2) != 1)
-            fClusters->erase(itSplitHeavy);
-    }
+    // bool hasBL {};
+    // bool hasSplitHeavy {};
+    // ItType itSplitHeavy {};
+    // for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+    // {
+    //     if(it->GetIsBeamLike())
+    //         hasBL = true;
+    //     if(it->GetIsSplitRP())
+    //     {
+    //         hasSplitHeavy = true;
+    //         itSplitHeavy = it;
+    //     }
+    // }
+    // if(hasSplitHeavy && hasBL)
+    // {
+    //     int count {(int)fClusters->size()};
+    //     if(std::abs(count - 2) != 1)
+    //         fClusters->erase(itSplitHeavy);
+    // }
 }
 
 bool ActCluster::MultiStep::ClustersOverlap(ItType out, ItType in)
