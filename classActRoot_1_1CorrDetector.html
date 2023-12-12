@@ -169,7 +169,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// 3-&gt; Boundary point</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classActRoot_1_1CorrDetector.html#a486ec8622fa625335769742ddc79c5db">MoveZ</a>(<a class="code" href="classActRoot_1_1CorrDetector.html#a7e250522a1c473e9917b7b9ec3b69d8c">fOut</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#afd124952798b59cef4597fe2b53f42e6">fBP</a>);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html_a705eb052473c1e73e6ea63c8c99c6c53"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html#a705eb052473c1e73e6ea63c8c99c6c53">ActPhysics::PIDCorrection::Apply</a></div><div class="ttdeci">double Apply(double q, double spz)</div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.cxx:34</div></div>
+<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html_a705eb052473c1e73e6ea63c8c99c6c53"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html#a705eb052473c1e73e6ea63c8c99c6c53">ActPhysics::PIDCorrection::Apply</a></div><div class="ttdeci">double Apply(double q, double spz)</div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.cxx:35</div></div>
 <div class="ttc" id="aclassActRoot_1_1CorrDetector_html_a0085f5b97c0be5122071bbb573f12262"><div class="ttname"><a href="classActRoot_1_1CorrDetector.html#a0085f5b97c0be5122071bbb573f12262">ActRoot::CorrDetector::fPIDCorr</a></div><div class="ttdeci">ActPhysics::PIDCorrection * fPIDCorr</div><div class="ttdef"><b>Definition:</b> ActCorrDetector.h:25</div></div>
 <div class="ttc" id="aclassActRoot_1_1CorrDetector_html_a486ec8622fa625335769742ddc79c5db"><div class="ttname"><a href="classActRoot_1_1CorrDetector.html#a486ec8622fa625335769742ddc79c5db">ActRoot::CorrDetector::MoveZ</a></div><div class="ttdeci">void MoveZ(XYZPoint &amp;p)</div><div class="ttdef"><b>Definition:</b> ActCorrDetector.cxx:59</div></div>
 <div class="ttc" id="aclassActRoot_1_1CorrDetector_html_a7e250522a1c473e9917b7b9ec3b69d8c"><div class="ttname"><a href="classActRoot_1_1CorrDetector.html#a7e250522a1c473e9917b7b9ec3b69d8c">ActRoot::CorrDetector::fOut</a></div><div class="ttdeci">MergerData * fOut</div><div class="ttdef"><b>Definition:</b> ActCorrDetector.h:22</div></div>
@@ -282,7 +282,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
-<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html_af05fd891cf389eb768a4af2ed7b85bec"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html#af05fd891cf389eb768a4af2ed7b85bec">ActPhysics::PIDCorrection::GetName</a></div><div class="ttdeci">std::string GetName() const</div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.h:24</div></div>
+<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html_af05fd891cf389eb768a4af2ed7b85bec"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html#af05fd891cf389eb768a4af2ed7b85bec">ActPhysics::PIDCorrection::GetName</a></div><div class="ttdeci">std::string GetName() const</div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -349,7 +349,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;CorrDetector::ReadPIDFile: no PIDCorrection found in file &quot;</span> + file);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classActRoot_1_1CorrDetector.html#a0085f5b97c0be5122071bbb573f12262">fPIDCorr</a> = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a>*<span class="keyword">&gt;</span>(o);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a></div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.h:14</div></div>
+<div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a></div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.h:15</div></div>
 </div><!-- fragment -->
 </div>
 </div>
