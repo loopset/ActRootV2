@@ -1,5 +1,7 @@
 #include "ActSilMatrix.h"
 
+#include "ActColors.h"
+
 #include "TCutG.h"
 #include "TFile.h"
 #include "TLatex.h"
@@ -7,6 +9,8 @@
 #include "TMultiGraph.h"
 #include "TString.h"
 
+#include <iomanip>
+#include <iostream>
 #include <memory>
 #include <optional>
 #include <stdexcept>
@@ -106,4 +110,20 @@ void ActPhysics::SilMatrix::Read(const std::string& file)
     if(!copy)
         throw std::runtime_error("SilMatrix::Read(): could not find silMatrix in file " + file);
     *this = *copy;
+}
+
+void ActPhysics::SilMatrix::Print() const
+{
+    std::cout << BOLDGREEN << ":::: SilMatrix ::::" << '\n';
+    std::cout << "-> Name : " << fName << '\n';
+    std::cout << std::fixed << std::setprecision(2);
+    for(const auto& [i, g] : fMatrix)
+    {
+        auto width {g->GetPointX(3) - g->GetPointX(0)};
+        auto height {g->GetPointY(1) - g->GetPointY(0)};
+        std::cout << "-> Idx : " << i << '\n';
+        std::cout << "···· Width  : " << width << '\n';
+        std::cout << "···· Height : " << height << '\n';
+    }
+    std::cout << "::::::::::::::::::::::::::::::" << RESET << '\n';
 }

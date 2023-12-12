@@ -26,11 +26,16 @@ namespace ActPhysics
         bool IsInside(int idx, double x, double y);
         std::optional<int> IsInside(double x, double y);
 
-        void SetSyle(bool enableLabel = true, Style_t ls = kSolid, Width_t lw = 2, Style_t fs = 3344);
+        void SetSyle(bool enableLabel = true, Style_t ls = kSolid, Width_t lw = 2, Style_t fs = 0);
+        void SetName(const std::string& name) { fName = name; }
+        std::string GetName() const { return fName; }
+
         void Draw(bool same = false, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]") const;
 
         void Read(const std::string& file);
         void Write(const std::string& file);
+
+        void Print() const;
 
     private:
         void InitGraph(int idx);

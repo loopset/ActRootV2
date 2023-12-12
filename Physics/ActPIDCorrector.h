@@ -4,6 +4,7 @@
 #include "TH2.h"
 #include "TProfile.h"
 
+#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -32,6 +33,7 @@ namespace ActPhysics
         std::unordered_map<std::string, TH2*> fHistos {};
         std::unordered_map<std::string, TProfile*> fProfs {};
         std::string fName {};
+        std::mutex fMutex {};
 
     public:
         PIDCorrector(const std::string& name, const std::vector<std::string> keys, TH2* hModel);

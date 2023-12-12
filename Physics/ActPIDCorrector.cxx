@@ -12,6 +12,7 @@
 #include <cmath>
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -62,6 +63,7 @@ ActPhysics::PIDCorrector::PIDCorrector(const std::string& name, const std::vecto
 void ActPhysics::PIDCorrector::FillHisto(const std::string& key, double z, double q, double silE, double minE,
                                          double maxE)
 {
+    std::scoped_lock<std::mutex> lock {fMutex};
     if(fHistos.count(key))
     {
         if(minE <= silE && silE <= maxE)
