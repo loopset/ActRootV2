@@ -21,48 +21,67 @@ namespace ActPhysics
     class SRIM
     {
     private:
-        bool fDebug; //!< To print debug info (passed in constructor)
+        bool fDebug;                    //!< To print debug info (passed in constructor)
         std::vector<std::string> fKeys; //!< Store known tables
-        //Energy->Range
+        // Energy->Range
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesDirect;
         std::map<std::string, std::unique_ptr<TF1>> fInterpolationsDirect;
-        //Range->Energy
+        // Range->Energy
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesInverse;
         std::map<std::string, std::unique_ptr<TF1>> fInterpolationsInverse;
-        //Energy->Stopping powers (nuclear + electronic)
+        // Energy->Stopping powers (nuclear + electronic)
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesStoppings;
         std::map<std::string, std::unique_ptr<TF1>> fStoppings;
-        //Range->Longitudinal straggling
+        // Range->Longitudinal straggling
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesLongStrag;
         std::map<std::string, std::unique_ptr<TF1>> fLongStrag;
-        //Range->Lateral straggling
+        // Range->Lateral straggling
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesLatStrag;
         std::map<std::string, std::unique_ptr<TF1>> fLatStrag;
-    
+
 
     public:
-        SRIM(bool debug = false) : fDebug(debug)
-        {
-        }
+        SRIM(bool debug = false) : fDebug(debug) {}
 
         void ReadInterpolations(std::string key, std::string fileName);
-    
-        double EvalDirect(std::string key, double energy) { CheckFunctionArgument(energy); return fInterpolationsDirect[key]->Eval(energy); }
-        double EvalInverse(std::string key, double range) { CheckFunctionArgument(range); return fInterpolationsInverse[key]->Eval(range);}
 
-        //Evaluate the other columns
-        double EvalStoppingPower(std::string key, double energy){ CheckFunctionArgument(energy); return fStoppings[key]->Eval(energy); }
-        double EvalLongStraggling(std::string key, double range){ CheckFunctionArgument(range); return fLongStrag[key]->Eval(range); }
-        double EvalLatStraggling(std::string key, double range){ CheckFunctionArgument(range); return fLatStrag[key]->Eval(range); }
+        double EvalDirect(std::string key, double energy)
+        {
+            CheckFunctionArgument(energy);
+            return fInterpolationsDirect[key]->Eval(energy);
+        }
+        double EvalInverse(std::string key, double range)
+        {
+            CheckFunctionArgument(range);
+            return fInterpolationsInverse[key]->Eval(range);
+        }
+
+        // Evaluate the other columns
+        double EvalStoppingPower(std::string key, double energy)
+        {
+            CheckFunctionArgument(energy);
+            return fStoppings[key]->Eval(energy);
+        }
+        double EvalLongStraggling(std::string key, double range)
+        {
+            CheckFunctionArgument(range);
+            return fLongStrag[key]->Eval(range);
+        }
+        double EvalLatStraggling(std::string key, double range)
+        {
+            CheckFunctionArgument(range);
+            return fLatStrag[key]->Eval(range);
+        }
 
         void Draw(std::string what, std::vector<std::string> keys = {});
 
-        double ComputeEnergyLoss(double Tini, std::string material, double thickness, double angleInRad, int steps = 10);
+        double
+        ComputeEnergyLoss(double Tini, std::string material, double thickness, double angleInRad, int steps = 10);
 
         void CheckKeyIsStored(const std::string& key);
 
         void CheckFunctionArgument(double val);
     };
-};
+}; // namespace ActPhysics
 
 #endif

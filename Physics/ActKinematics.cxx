@@ -76,12 +76,57 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
     Init();
 }
 
+ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2, const std::string& p3, double T1,
+                                   double Eex)
+    : fp1(p1),
+      fp2(p2),
+      fp3(p3),
+      fT1Lab(T1),
+      fEex(Eex)
+{
+    // Automatically compute Particle 4
+    auto zIn {fp1.GetZ() + fp2.GetZ()};
+    auto aIn {fp1.GetA() + fp2.GetA()};
+    fp4 = Particle {zIn - fp3.GetZ(), aIn - fp3.GetA()};
+
+    // Set masses
+    fm1 = fp1.GetMass();
+    fm2 = fp2.GetMass();
+    fm3 = fp3.GetMass();
+    fm4 = fp4.GetMass();
+
+    // Init class
+    Init();
+}
+
+ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const Particle& p3, double T1, double Eex)
+    : fp1(p1),
+      fp2(p2),
+      fp3(p3),
+      fT1Lab(T1),
+      fEex(Eex)
+{
+    // Automatically compute Particle 4
+    auto zIn {fp1.GetZ() + fp2.GetZ()};
+    auto aIn {fp1.GetA() + fp2.GetA()};
+    fp4 = Particle {zIn - fp3.GetZ(), aIn - fp3.GetA()};
+
+    // Set masses
+    fm1 = fp1.GetMass();
+    fm2 = fp2.GetMass();
+    fm3 = fp3.GetMass();
+    fm4 = fp4.GetMass();
+
+    // Init class
+    Init();
+}
+
 void ActPhysics::Kinematics::Init()
 {
     ComputeQValue();
     if(fT1Lab == -1)
     {
-        std::cout << MAGENTA << "Using Kinematics with no beam energy set!" << RESET << '\n';
+        // std::cout << MAGENTA << "Using Kinematics with no beam energy set!" << RESET << '\n';
         return;
     }
     CheckQValue();
@@ -206,13 +251,21 @@ void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double 
 void ActPhysics::Kinematics::Print() const
 {
     std::cout << std::fixed << std::setprecision(2);
-    std::cout << "> Beam with energy: " << fT1Lab << " MeV\n";
-    std::cout << "----> transforms at CM with gamma: " << fGamma << " and beta: " << fBeta << '\n';
-    std::cout << "----> transforms at CM with E_{CM}: " << fEcm << '\n';
+    std::cout << BOLDYELLOW << "---- Kinematics ----" << '\n';
+    for(auto p : {&fp1, &fp2, &fp3, &fp4})
+    {
+        std::cout << "->Particle specs : " << '\n';
+        p->Print();
+    }
+    std::cout<<"······························"<<'\n';
+    std::cout << "-> Beam energy : " << fT1Lab << " MeV\n";
+    std::cout << "--> transforms at CM with gamma: " << fGamma << " and beta: " << fBeta << '\n';
+    std::cout << "--> transforms at CM with E_{CM}: " << fEcm << '\n';
     std::cout << "--> Recoil 3 with energy: " << fT3Lab << " at theta: " << fTheta3Lab * TMath::RadToDeg()
               << " degrees and phi: " << fPhi3Lab * TMath::RadToDeg() << " degrees" << '\n';
     std::cout << "--> Recoil 4 with energy: " << fT4Lab << " at theta: " << fTheta4Lab * TMath::RadToDeg()
               << " degrees and phi: " << fPhi3Lab * TMath::RadToDeg() << " degrees" << '\n';
+    std::cout << "------------------------------" << RESET << '\n';
 }
 
 double ActPhysics::Kinematics::GetPhiFromVector(FourVector vect)
