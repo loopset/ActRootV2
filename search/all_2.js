@@ -50,8 +50,9 @@ var searchData=
   ['convertevtomev_208',['converteVToMeV',['../classActSim_1_1TheoCrossSection.html#a9a13db6a8d08916492558608b13d1032',1,'ActSim::TheoCrossSection']]],
   ['converttophysicalunits_209',['ConvertToPhysicalUnits',['../classActRoot_1_1MergerDetector.html#a780ae5c85a6633da21de87c03b9c2525',1,'ActRoot::MergerDetector']]],
   ['corrdetector_210',['CorrDetector',['../classActRoot_1_1CorrDetector.html',1,'ActRoot']]],
-  ['correctzoffset_211',['CorrectZOffset',['../classActRoot_1_1MergerDetector.html#ad6251631a0777c2917266666760c500c',1,'ActRoot::MergerDetector']]],
-  ['create_5fthreads_212',['create_threads',['../classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8',1,'BS::thread_pool']]],
-  ['cutsmanager_213',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]],
-  ['cyan_214',['CYAN',['../ActColors_8h.html#ad243f93c16bc4c1d3e0a13b84421d760',1,'ActColors.h']]]
+  ['correctangle_211',['CorrectAngle',['../classActRoot_1_1CorrDetector.html#aea50789a2d7da9b909100708506cc866',1,'ActRoot::CorrDetector']]],
+  ['correctzoffset_212',['CorrectZOffset',['../classActRoot_1_1MergerDetector.html#ad6251631a0777c2917266666760c500c',1,'ActRoot::MergerDetector']]],
+  ['create_5fthreads_213',['create_threads',['../classBS_1_1thread__pool.html#a4b6564dcbe7b01efb736377917b489b8',1,'BS::thread_pool']]],
+  ['cutsmanager_214',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]],
+  ['cyan_215',['CYAN',['../ActColors_8h.html#ad243f93c16bc4c1d3e0a13b84421d760',1,'ActColors.h']]]
 ];
