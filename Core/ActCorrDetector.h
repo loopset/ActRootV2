@@ -24,6 +24,7 @@ namespace ActRoot
         // Parameters of detector
         ActPhysics::PIDCorrection* fPIDCorr {};
         double fZOffset {};
+        bool fEnableThetaCorr {};
 
     public:
         void ReadConfiguration();
@@ -38,6 +39,7 @@ namespace ActRoot
     private:
         void ReadPIDFile(const std::string& file);
         void MoveZ(XYZPoint& p);
+        void CorrectAngle();
     };
 } // namespace ActRoot
 

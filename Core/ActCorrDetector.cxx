@@ -10,6 +10,8 @@
 #include "TSystem.h"
 #include "TTree.h"
 
+#include <cmath>
+#include <ios>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -29,6 +31,8 @@ void ActRoot::CorrDetector::ReadConfiguration()
         ReadPIDFile(b->GetString("PIDFile"));
     if(b->CheckTokenExists("ZOffset"))
         fZOffset = b->GetDouble("ZOffset");
+    if(b->CheckTokenExists("EnableThetaCorr"))
+        fEnableThetaCorr = b->GetBool("EnableThetaCorr");
 }
 
 void ActRoot::CorrDetector::ReadPIDFile(const std::string& file)
@@ -61,6 +65,19 @@ void ActRoot::CorrDetector::MoveZ(XYZPoint& point)
     point.SetZ(point.Z() + fZOffset);
 }
 
+void ActRoot::CorrDetector::CorrectAngle()
+{
+    // So far, it is hardcoded in this code until we
+    // recompute it
+    float theta {};
+    // First correction
+    theta = fOut->fThetaLight + (-2.14353 + 0.0114464 * fOut->fRP.X()) - 8.52223E-5 * std::pow(fOut->fRP.X(), 2);
+    // Second correction
+    theta = theta + (-1.58175 + 0.0889058 * theta);
+    // Set
+    fOut->fThetaLight = theta;
+}
+
 void ActRoot::CorrDetector::BuildEventCorr()
 {
     // Copy data pointed by pointers
@@ -74,13 +91,17 @@ void ActRoot::CorrDetector::BuildEventCorr()
     MoveZ(fOut->fSP);
     // 3-> Boundary point
     MoveZ(fOut->fBP);
+    // Correct theta if asked
+    if(fEnableThetaCorr)
+        CorrectAngle();
 }
 
 void ActRoot::CorrDetector::Print() const
 {
     std::cout << BOLDCYAN << "++++ Corr detector ++++" << '\n';
     if(fPIDCorr)
-        std::cout << "-> PIDCorr  : " << fPIDCorr->GetName() << '\n';
-    std::cout << "-> ZOffset  : " << fZOffset << " mm" << '\n';
+        std::cout << "-> PIDCorr   : " << fPIDCorr->GetName() << '\n';
+    std::cout << "-> ZOffset   : " << fZOffset << " mm" << '\n';
+    std::cout << "-> ThetaCorr ? " << std::boolalpha << fEnableThetaCorr << '\n';
     std::cout << "+++++++++++++++++++++++++++" << RESET << '\n';
 }
