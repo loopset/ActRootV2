@@ -30,6 +30,7 @@ namespace ActRoot
         std::vector<float> fSilEs {};
         std::vector<float> fSilNs {};
         float fTrackLength {-1};
+        float fThetaBeam {-1};
         float fThetaLight {-1};
         float fThetaDebug {-1};
         float fPhiLight {-1};
@@ -39,7 +40,6 @@ namespace ActRoot
 
         void Clear() override;
         void Print() const override;
-
     };
 } // namespace ActRoot
 
