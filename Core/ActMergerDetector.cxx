@@ -506,11 +506,15 @@ void ActRoot::MergerDetector::ComputeAngles()
     // Using the simpler 3D version
     auto theta {TMath::ACos(fBeamIt->GetLine().GetDirection().Unit().Dot(fLightIt->GetLine().GetDirection().Unit()))};
     theta *= TMath::RadToDeg();
+    // Debug: angle computed assuming beam exactly along X axis
+    auto debug {TMath::ACos(XYZVector {1, 0, 0}.Dot(fLightIt->GetLine().GetDirection().Unit()))};
+    debug *= TMath::RadToDeg();
     // For phi, we use {0, 0, 1} as reference
     auto phi {TMath::ACos(XYZVector {0, 0, 1}.Dot(fLightIt->GetLine().GetDirection().Unit()))};
     phi *= TMath::RadToDeg();
     // Write to MergerData
     fMergerData->fThetaLight = theta;
+    fMergerData->fThetaDebug = debug;
     fMergerData->fPhiLight = phi;
 }
 

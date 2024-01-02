@@ -21,10 +21,9 @@
 #include "Math/Vector3D.h"
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
-#include <complex>
 #include <cstddef>
+#include <cstdlib>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -148,6 +147,10 @@ void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
         fEnableRPDefaultBeam = mb->GetBool("EnableRPDefaultBeam");
     if(mb->CheckTokenExists("RPDefaultMinX"))
         fRPDefaultMinX = mb->GetDouble("RPDefaultMinX");
+    if(mb->CheckTokenExists("EnableCylinder"))
+        fEnableCylinder = mb->GetBool("EnableCylinder");
+    if(mb->CheckTokenExists("CylinderRadius"))
+        fCylinderRadius = mb->GetDouble("CylinderRadius");
     // Clean bad fits
     if(mb->CheckTokenExists("EnableCleanBadFits"))
         fEnableCleanBadFits = mb->GetBool("EnableCleanBadFits");
@@ -1231,6 +1234,41 @@ void ActCluster::MultiStep::PerformFinerFits()
         }
     }
 
+    // 7 -> Mask tracks following cylinder shape
+    if(fEnableCylinder)
+    {
+        for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+        {
+            auto& refVoxels {it->GetRefToVoxels()};
+            auto itDel {std::remove_if(refVoxels.begin(), refVoxels.end(),
+                                       [&](const ActRoot::Voxel& voxel)
+                                       {
+                                           auto pos {voxel.GetPosition()};
+                                           pos += XYZVector {0.5, 0.5, 0.5};
+                                           auto dist {it->GetLine().DistanceLineToPoint(pos)};
+                                           // auto proj {it->GetLine().ProjectionPointOnLine(pos)};
+                                           // auto distX {std::abs(proj.X() - pos.X())};
+                                           // auto distY {std::abs(proj.Y() - pos.Y())};
+                                           // auto distZ {std::abs(proj.Z() - pos.Z())};
+                                           // std::cout << "Proj : " << proj << '\n';
+                                           // std::cout << "Pos  : " << pos << '\n';
+                                           // std::cout << "dX : " << distX << " dY : " << distY << " dZ : " << distZ
+                                           //           << '\n';
+                                           // std::cout << "Overall dist : " << dist << '\n';
+                                           // std::cout << "--------------------" << '\n';
+                                           return dist > fCylinderRadius;
+                                       })};
+            // if enough voxels remain
+            auto remain {std::distance(refVoxels.begin(), itDel)};
+            if(remain > fClimb->GetMinPoints())
+            {
+                refVoxels.erase(itDel, refVoxels.end());
+                it->ReFit();
+                it->ReFillSets();
+            }
+        }
+    }
+
     // // 7-> Merge clusters which got split due to fineRP
     // for(auto in = fClusters->begin(); in != fClusters->end(); in++)
     // {
@@ -1428,6 +1466,8 @@ void ActCluster::MultiStep::Print() const
             std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
             std::cout << "-> EnableDefaultBL  : " << std::boolalpha << fEnableRPDefaultBeam << '\n';
             std::cout << "-> RPDefaultMinX    : " << fRPDefaultMinX << '\n';
+            std::cout << "-> EnableCylinder   : " << std::boolalpha << fEnableCylinder << '\n';
+            std::cout << "-> CylinderRadius   : " << fCylinderRadius << '\n';
         }
     }
     std::cout << "=======================" << RESET << '\n';

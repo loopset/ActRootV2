@@ -4,7 +4,6 @@
 #include "ActVData.h"
 
 #include "TH1.h"
-#include "TH1F.h"
 
 #include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
@@ -12,7 +11,6 @@
 #include "Math/Vector3Dfwd.h"
 
 #include <string>
-#include <utility>
 #include <vector>
 
 namespace ActRoot
@@ -33,6 +31,7 @@ namespace ActRoot
         std::vector<float> fSilNs {};
         float fTrackLength {-1};
         float fThetaLight {-1};
+        float fThetaDebug {-1};
         float fPhiLight {-1};
         float fQave {-1};
         int fEntry {-1};

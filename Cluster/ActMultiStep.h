@@ -8,9 +8,6 @@
 
 #include "Math/Point3Dfwd.h"
 
-#include <algorithm>
-#include <iostream>
-#include <map>
 #include <memory>
 #include <set>
 #include <string>
@@ -92,6 +89,8 @@ namespace ActCluster
         double fRPPivotDist;
         bool fEnableRPDefaultBeam;
         double fRPDefaultMinX;
+        bool fEnableCylinder;
+        double fCylinderRadius;
         // 7-> Clean bad fits at the very begining of the algorithm
         bool fEnableCleanBadFits;
         // Vector of TStopwatch to asses performance of algorithm
