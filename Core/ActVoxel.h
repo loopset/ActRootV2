@@ -1,10 +1,11 @@
 #ifndef ActVoxel_h
 #define ActVoxel_h
 
+#include "Math/GenVector/Cartesian3D.h"
+#include "Math/GenVector/CoordinateSystemTags.h"
+#include "Math/GenVector/PositionVector3D.h"
 #include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
-
-#include <vector>
 
 namespace ActRoot
 {
@@ -21,7 +22,17 @@ namespace ActRoot
     public:
         Voxel() = default;
         Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
+        // Overload equality operators
+        friend bool operator==(const Voxel& v1, const Voxel& v2)
+        {
+            auto p1 {v1.GetPositionAs<int>()};
+            auto p2 {v2.GetPositionAs<int>()};
+            return p1 == p2;
+        }
+        friend bool operator!=(const Voxel& v1, const Voxel& v2) { return !(operator==(v1, v2)); }
         // Overload comparison operators
+        // We dont do a cast to int here since it will be time-consuming
+        // floats are guaranteed to be eq. safe
         friend bool operator<(const Voxel& v1, const Voxel& v2)
         {
             const auto& p1 {v1.GetPosition()};
@@ -43,6 +54,12 @@ namespace ActRoot
         void SetIsSaturated(bool sat) { fIsSaturated = sat; }
         // Getters
         const XYZPoint& GetPosition() const { return fPosition; }
+        template <typename T>
+        ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<T>, ROOT::Math::DefaultCoordinateSystemTag>
+        GetPositionAs() const
+        {
+            return {static_cast<T>(fPosition.X()), static_cast<T>(fPosition.Y()), static_cast<T>(fPosition.Z())};
+        }
         float GetCharge() const { return fCharge; }
         // int GetID() const { return fID; }
         bool GetIsSaturated() const { return fIsSaturated; }

@@ -1,6 +1,7 @@
 #include "ActLine.h"
 
 #include "ActColors.h"
+#include "ActUtils.h"
 #include "ActVoxel.h"
 
 #include "TEnv.h"
@@ -9,11 +10,11 @@
 #include "TPolyLine.h"
 
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
 #include <vector>
 
 ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)
@@ -151,16 +152,17 @@ void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWe
     Syz -= (Ym * Zm);
 
     // Write basic values altough fit might not be doable
-    fPoint = {(float)Xm, (float)Ym, (float)Zm};
-    fSigmas = {(float)std::sqrt(std::abs(Sxx)), (float)std::sqrt(std::abs(Syy)), (float)std::sqrt(std::abs(Szz))};
+    fPoint = {static_cast<float>(Xm), static_cast<float>(Ym), static_cast<float>(Zm)};
+    fSigmas = {static_cast<float>(std::sqrt(std::abs(Sxx))), static_cast<float>(std::sqrt(std::abs(Syy))),
+               static_cast<float>(std::sqrt(std::abs(Szz)))};
     // Undoable 3D fit -> fallbacking to 2D
-    if(Sxx == 0 || Syy == 0 || Szz == 0)
+    if(ActRoot::IsEqZero(Sxx) || ActRoot::IsEqZero(Syy) || ActRoot::IsEqZero(Szz))
     {
-        if(Sxx == 0 && Syy != 0 && Szz != 0)
+        if(ActRoot::IsEqZero(Sxx) && !ActRoot::IsEqZero(Syy) && !ActRoot::IsEqZero(Szz))
             Fit2Dfrom3D(Ym, Zm, Syy, Szz, Syz, Q, "x");
-        else if(Syy == 0 && Sxx != 0 && Szz != 0)
+        else if(ActRoot::IsEqZero(Syy) && !ActRoot::IsEqZero(Sxx) && !ActRoot::IsEqZero(Szz))
             Fit2Dfrom3D(Xm, Zm, Sxx, Szz, Sxz, Q, "y");
-        else if(Szz == 0 && Sxx != 0 && Syy != 0)
+        else if(ActRoot::IsEqZero(Szz) && !ActRoot::IsEqZero(Sxx) && !ActRoot::IsEqZero(Syy))
             Fit2Dfrom3D(Xm, Ym, Sxx, Syy, Sxy, Q, "z");
         else // handle case with more than one Sii == 0 -> return bad fit
         {

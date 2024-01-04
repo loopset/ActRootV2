@@ -9,8 +9,10 @@
 #pragma link C++ nestedclass;
 #pragma link C++ nestedtypedef;
 
-// legacy data structures
+// add link for namespace
+#pragma link C++ namespace ActRoot;
 
+// legacy data structures
 #pragma link C++ class ReducedData + ;
 #pragma link C++ class MEventReduced + ;
 
@@ -68,4 +70,8 @@
 
 // MTExecutor
 #pragma link C++ class ActRoot::MTExecutor;
+
+// utils function
+#pragma link C++ function ActRoot::IsEqZero;
+
 #endif

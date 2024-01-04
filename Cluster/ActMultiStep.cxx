@@ -6,6 +6,7 @@
 #include "ActInterval.h"
 #include "ActLine.h"
 #include "ActTPCDetector.h"
+#include "ActUtils.h"
 #include "ActVoxel.h"
 
 #include "TEnv.h"
@@ -760,7 +761,7 @@ ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZ
     auto vC {vB.Cross(vA)};
     vC = vC.Unit();
     // If lines are parallel, skip them
-    if(vC.R() == 0)
+    if(ActRoot::IsEqZero(vC.R()))
         return {pA, pB, -1};
     // 3-> Matrices to solve system of equations in Math StackExchange
     TMatrixD left {3, 3}; // 3x3 matrix with double precision
@@ -1130,22 +1131,22 @@ void ActCluster::MultiStep::PerformFinerFits()
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
         auto& refVoxels {it->GetRefToVoxels()};
-        auto toRemove {std::remove_if(refVoxels.begin(), refVoxels.end(),
-                                      [&](const ActRoot::Voxel& voxel)
-                                      {
-                                          auto pos {voxel.GetPosition()};
-                                          pos += XYZVector {0.5, 0.5, 0.5};
-                                          bool condX {std::abs(pos.X() - rp.X()) <= fRPMaskXY};
-                                          bool condY {std::abs(pos.Y() - rp.Y()) <= fRPMaskXY};
-                                          bool condZ {std::abs(pos.Z() - rp.Z()) <= fRPMaskZ};
-                                          return condX && condY && condZ;
-                                      })};
+        auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += XYZVector {0.5, 0.5, 0.5};
+                                        bool condX {std::abs(pos.X() - rp.X()) <= fRPMaskXY};
+                                        bool condY {std::abs(pos.Y() - rp.Y()) <= fRPMaskXY};
+                                        bool condZ {std::abs(pos.Z() - rp.Z()) <= fRPMaskZ};
+                                        return !(condX && condY && condZ);
+                                    })};
         // Compare sizes
-        auto remainSize {std::distance(refVoxels.begin(), toRemove)};
+        auto remainSize {std::distance(refVoxels.begin(), toKeep)};
         // Indeed delete region and refit
         if(remainSize > fClimb->GetMinPoints())
         {
-            refVoxels.erase(toRemove, refVoxels.end());
+            refVoxels.erase(toKeep, refVoxels.end());
             it->ReFit();
             it->ReFillSets();
             if(fIsVerbose)
@@ -1157,24 +1158,66 @@ void ActCluster::MultiStep::PerformFinerFits()
         }
     }
 
-    // 5-> Mask region at begining and end of tracks
+    // 5-> Clean voxels outside cylinder
+    if(fEnableCylinder)
+    {
+        for(auto it = fClusters->begin(); it != fClusters->end(); it++)
+        {
+            auto& refVoxels {it->GetRefToVoxels()};
+            auto oldSize {refVoxels.size()};
+            auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                        [&](const ActRoot::Voxel& voxel)
+                                        {
+                                            auto pos {voxel.GetPosition()};
+                                            pos += XYZVector {0.5, 0.5, 0.5};
+                                            auto dist {it->GetLine().DistanceLineToPoint(pos)};
+                                            // auto proj {it->GetLine().ProjectionPointOnLine(pos)};
+                                            // auto distX {std::abs(proj.X() - pos.X())};
+                                            // auto distY {std::abs(proj.Y() - pos.Y())};
+                                            // auto distZ {std::abs(proj.Z() - pos.Z())};
+                                            // std::cout << "Proj : " << proj << '\n';
+                                            // std::cout << "Pos  : " << pos << '\n';
+                                            // std::cout << "dX : " << distX << " dY : " << distY << " dZ : " << distZ
+                                            //           << '\n';
+                                            // std::cout << "Overall dist : " << dist << '\n';
+                                            // std::cout << "--------------------" << '\n';
+                                            return dist <= fCylinderRadius;
+                                        })};
+            // if enough voxels remain
+            auto remain {std::distance(refVoxels.begin(), itKeep)};
+            if(remain > fClimb->GetMinPoints())
+            {
+                refVoxels.erase(itKeep, refVoxels.end());
+                it->ReFit();
+                it->ReFillSets();
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
+                    std::cout << "What: cleaning cylinder" << '\n';
+                    std::cout << "(Old - New) sizes : " << (oldSize - remain) << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                }
+            }
+        }
+    }
+
+
+    // 6-> Mask region at begining and end of tracks
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
         // Declare variables
         const auto& line {it->GetLine()};
         const auto& gp {line.GetPoint()};
         auto& refVoxels {it->GetRefToVoxels()};
+        auto oldSize {refVoxels.size()};
+        // Sort them
+        std::sort(refVoxels.begin(), refVoxels.end());
         // Set same sign as rp
         it->GetRefToLine().AlignUsingPoint(rp);
-        // Sort them according to relative position to RP
-        if(gp.X() < rp.X())
-            std::sort(refVoxels.begin(), refVoxels.end(), std::greater<ActRoot::Voxel>());
-        else
-            std::sort(refVoxels.begin(), refVoxels.end());
         // Get init point
-        const auto& init {refVoxels.front()};
+        auto init {refVoxels.front()};
         // Get end point
-        const auto& end {refVoxels.back()};
+        auto end {refVoxels.back()};
         //// PROJECTIONS ON LINE, relative to GP of line (correct by +0.5 offset)
         auto projInit {line.ProjectionPointOnLine(init.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
         auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
@@ -1182,25 +1225,34 @@ void ActCluster::MultiStep::PerformFinerFits()
         // auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // Get iterator to last element to be kept
-        auto itDelete {
-            std::remove_if(refVoxels.begin(), refVoxels.end(),
-                           [&](const ActRoot::Voxel& voxel)
-                           {
-                               auto pos {voxel.GetPosition()};
-                               pos += XYZVector {0.5, 0.5, 0.5};
-                               auto proj {line.ProjectionPointOnLine(pos)};
-                               // delete all points over projInit/end
-                               // bc due to ordering and angle, some voxel could have a proj larger than the one
-                               // of the last/first voxel
-                               bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
-                               bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
-                               return isInCapInit || isInCapEnd;
-                           })};
-        auto newSize {std::distance(refVoxels.begin(), itDelete)};
+        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += XYZVector {0.5, 0.5, 0.5};
+                                        auto proj {line.ProjectionPointOnLine(pos)};
+                                        // // delete all points over projInit/end
+                                        // // bc due to ordering and angle, some voxel could have a proj larger than
+                                        // the one
+                                        // // of the last/first voxel
+                                        bool isInCapInit {(proj - projInit).R() <= fRPPivotDist}; // || (proj.X() <
+                                        // projInit.X())};
+                                        bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist}; //
+                                        // || (proj.X() > projEnd.X())};
+                                        // if(it->GetIsBeamLike())
+                                        // {
+                                        //     std::cout << "Proj : " << proj << '\n';
+                                        //     std::cout << "isInCapInit : " << std::boolalpha << isInCapInit << '\n';
+                                        //     std::cout << "isInCapEnd : " << std::boolalpha << isInCapEnd << '\n';
+                                        //     std::cout << "--------------------" << '\n';
+                                        // }
+                                        return !(isInCapInit || isInCapEnd);
+                                    })};
+        auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if enough voxels remain
         if(newSize > fClimb->GetMinPoints())
         {
-            refVoxels.erase(itDelete, refVoxels.end());
+            refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
             it->ReFillSets();
         }
@@ -1208,18 +1260,18 @@ void ActCluster::MultiStep::PerformFinerFits()
         if(fIsVerbose)
         {
             std::cout << BOLDMAGENTA << "--- FindPreciseRP verbose for ID : " << it->GetClusterID() << " ----" << '\n';
-            std::cout << "Init : " << refVoxels.front().GetPosition() << '\n';
+            std::cout << "Init : " << init.GetPosition() << '\n';
             std::cout << "Proj Init : " << projInit << '\n';
-            std::cout << "End : " << refVoxels.back().GetPosition() << '\n';
+            std::cout << "End : " << end.GetPosition() << '\n';
             std::cout << "Proj End : " << projEnd << '\n';
-            std::cout << "Distance : " << (projEnd - projInit).R() << '\n';
+            std::cout << "(Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
             std::cout << "Gravity point : " << it->GetLine().GetPoint() << '\n';
             std::cout << "------------------------------" << RESET << '\n';
             // it->GetLine().Print();
         }
     }
 
-    // 6-> Set default fit for BLs
+    // 7-> Set default fit for BLs
     if(fEnableRPDefaultBeam)
     {
         for(auto it = fClusters->begin(); it != fClusters->end(); it++)
@@ -1229,42 +1281,18 @@ void ActCluster::MultiStep::PerformFinerFits()
                 auto [xmin, xmax] {it->GetXRange()};
                 bool isShort {(xmax - xmin) <= fRPDefaultMinX};
                 if(isShort)
+                {
                     it->GetRefToLine().SetDirection({1, 0, 0});
-            }
-        }
-    }
-
-    // 7 -> Mask tracks following cylinder shape
-    if(fEnableCylinder)
-    {
-        for(auto it = fClusters->begin(); it != fClusters->end(); it++)
-        {
-            auto& refVoxels {it->GetRefToVoxels()};
-            auto itDel {std::remove_if(refVoxels.begin(), refVoxels.end(),
-                                       [&](const ActRoot::Voxel& voxel)
-                                       {
-                                           auto pos {voxel.GetPosition()};
-                                           pos += XYZVector {0.5, 0.5, 0.5};
-                                           auto dist {it->GetLine().DistanceLineToPoint(pos)};
-                                           // auto proj {it->GetLine().ProjectionPointOnLine(pos)};
-                                           // auto distX {std::abs(proj.X() - pos.X())};
-                                           // auto distY {std::abs(proj.Y() - pos.Y())};
-                                           // auto distZ {std::abs(proj.Z() - pos.Z())};
-                                           // std::cout << "Proj : " << proj << '\n';
-                                           // std::cout << "Pos  : " << pos << '\n';
-                                           // std::cout << "dX : " << distX << " dY : " << distY << " dZ : " << distZ
-                                           //           << '\n';
-                                           // std::cout << "Overall dist : " << dist << '\n';
-                                           // std::cout << "--------------------" << '\n';
-                                           return dist > fCylinderRadius;
-                                       })};
-            // if enough voxels remain
-            auto remain {std::distance(refVoxels.begin(), itDel)};
-            if(remain > fClimb->GetMinPoints())
-            {
-                refVoxels.erase(itDel, refVoxels.end());
-                it->ReFit();
-                it->ReFillSets();
+                    // std::cout << "Before dir : " << it->GetLine().GetDirection().Unit() << '\n';
+                    // it->GetRefToLine().FitVoxels(it->GetVoxels(), false);
+                    // std::cout << "After disabling charge : " << it->GetLine().GetDirection().Unit() << '\n';
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
+                        std::cout << "What: short beam : setting (1, 0, 0) direction" << '\n';
+                        std::cout << "------------------------------" << RESET << '\n';
+                    }
+                }
             }
         }
     }
