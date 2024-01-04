@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['block_5fsize_2008',['block_size',['../classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427',1,'BS::blocks']]],
-  ['boosttransformation_2009',['BoostTransformation',['../classActPhysics_1_1Kinematics.html#a1f56e21fc0fa579781e3fcd1cd79c936',1,'ActPhysics::Kinematics']]]
+  ['block_5fsize_2019',['block_size',['../classBS_1_1blocks.html#a00be565e32c27f12daabcad3372e4427',1,'BS::blocks']]],
+  ['boosttransformation_2020',['BoostTransformation',['../classActPhysics_1_1Kinematics.html#a1f56e21fc0fa579781e3fcd1cd79c936',1,'ActPhysics::Kinematics']]]
 ];
