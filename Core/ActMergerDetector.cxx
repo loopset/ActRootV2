@@ -377,6 +377,17 @@ double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVecto
     auto dot {beam.Unit().Dot(other.Unit())};
     return TMath::ACos(dot) * TMath::RadToDeg();
 }
+double ActRoot::MergerDetector::GetPhi3D(const XYZVector& beam, const XYZVector& other)
+{
+    // TODO: Check validity of phi calculation
+
+    // auto ub {beam.Unit()};            // unitary beam
+    auto trackUnitary {other.Unit()};
+    // XYZVector yz {0, ub.Y(), ub.Z()}; // beam dir in YZ plane
+    // auto dot {other.Unit().Dot(yz) / yz.R()};
+    // return TMath::ACos(dot) * TMath::RadToDeg();
+    return TMath::ATan2(trackUnitary.Y(), trackUnitary.Z()) * TMath::RadToDeg();
+}
 
 void ActRoot::MergerDetector::LightOrHeavy()
 {
@@ -503,23 +514,18 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
 
 void ActRoot::MergerDetector::ComputeAngles()
 {
-    // Using the simpler 3D version
-    auto theta {TMath::ACos(fBeamIt->GetLine().GetDirection().Unit().Dot(fLightIt->GetLine().GetDirection().Unit()))};
-    theta *= TMath::RadToDeg();
+    // Theta Light
+    fMergerData->fThetaLight = GetTheta3D(fBeamIt->GetLine().GetDirection(), fLightIt->GetLine().GetDirection());
+    fMergerData->fThetaLegacy = fMergerData->fThetaLight;
     // Debug: angle computed assuming beam exactly along X axis
-    auto debug {TMath::ACos(XYZVector {1, 0, 0}.Dot(fLightIt->GetLine().GetDirection().Unit()))};
-    debug *= TMath::RadToDeg();
-    // For phi, we use {0, 0, 1} as reference
-    auto phi {TMath::ACos(XYZVector {0, 0, 1}.Dot(fLightIt->GetLine().GetDirection().Unit()))};
-    phi *= TMath::RadToDeg();
-    // Beam angle
-    auto beam {TMath::ACos(XYZVector {1, 0, 0}.Dot(fBeamIt->GetLine().GetDirection().Unit()))};
-    beam *= TMath::RadToDeg();
-    // Write to MergerData
-    fMergerData->fThetaLight = theta;
-    fMergerData->fThetaDebug = debug;
-    fMergerData->fPhiLight = phi;
-    fMergerData->fThetaBeam = beam;
+    fMergerData->fThetaDebug = GetTheta3D({1, 0, 0}, fLightIt->GetLine().GetDirection());
+    // Phi Light
+    fMergerData->fPhiLight = GetPhi3D(fBeamIt->GetLine().GetDirection(), fLightIt->GetLine().GetDirection());
+    // Theta Beam
+    fMergerData->fThetaBeam = GetTheta3D({1, 0, 0}, fBeamIt->GetLine().GetDirection());
+    // Theta Heavy
+    if(fBeamIt != fTPCData->fClusters.end())
+        fMergerData->fThetaHeavy = GetTheta3D(fBeamIt->GetLine().GetDirection(), fHeavyIt->GetLine().GetDirection());
 }
 
 void ActRoot::MergerDetector::ComputeBoundaryPoint()

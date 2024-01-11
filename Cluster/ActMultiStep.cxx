@@ -1225,29 +1225,29 @@ void ActCluster::MultiStep::PerformFinerFits()
         // auto pivotInit {projInit + fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // auto pivotEnd {projEnd - fRPPivotDist * it->GetLine().GetDirection().Unit()};
         // Get iterator to last element to be kept
-        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
-                                    [&](const ActRoot::Voxel& voxel)
-                                    {
-                                        auto pos {voxel.GetPosition()};
-                                        pos += XYZVector {0.5, 0.5, 0.5};
-                                        auto proj {line.ProjectionPointOnLine(pos)};
-                                        // // delete all points over projInit/end
-                                        // // bc due to ordering and angle, some voxel could have a proj larger than
-                                        // the one
-                                        // // of the last/first voxel
-                                        bool isInCapInit {(proj - projInit).R() <= fRPPivotDist}; // || (proj.X() <
-                                        // projInit.X())};
-                                        bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist}; //
-                                        // || (proj.X() > projEnd.X())};
-                                        // if(it->GetIsBeamLike())
-                                        // {
-                                        //     std::cout << "Proj : " << proj << '\n';
-                                        //     std::cout << "isInCapInit : " << std::boolalpha << isInCapInit << '\n';
-                                        //     std::cout << "isInCapEnd : " << std::boolalpha << isInCapEnd << '\n';
-                                        //     std::cout << "--------------------" << '\n';
-                                        // }
-                                        return !(isInCapInit || isInCapEnd);
-                                    })};
+        auto itKeep {
+            std::partition(refVoxels.begin(), refVoxels.end(),
+                           [&](const ActRoot::Voxel& voxel)
+                           {
+                               auto pos {voxel.GetPosition()};
+                               pos += XYZVector {0.5, 0.5, 0.5};
+                               auto proj {line.ProjectionPointOnLine(pos)};
+                               // delete all points over projInit/end
+                               // bc due to ordering and angle, some voxel could have a proj larger than
+                               // the one of the last/first voxel
+                               // TODO: check a better way to mask outling voxels (proj.X() < projInit.X() could)
+                               // be troublesome depending on track angle
+                               bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
+                               bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
+                               // if(it->GetIsBeamLike())
+                               // {
+                               //     std::cout << "Proj : " << proj << '\n';
+                               //     std::cout << "isInCapInit : " << std::boolalpha << isInCapInit << '\n';
+                               //     std::cout << "isInCapEnd : " << std::boolalpha << isInCapEnd << '\n';
+                               //     std::cout << "--------------------" << '\n';
+                               // }
+                               return !(isInCapInit || isInCapEnd);
+                           })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if enough voxels remain
         if(newSize > fClimb->GetMinPoints())

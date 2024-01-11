@@ -192,6 +192,7 @@ namespace ActRoot
         //// Even inner functions
         void MoveZ(XYZPoint& p);
         double GetTheta3D(const XYZVector& beam, const XYZVector& other);
+        double GetPhi3D(const XYZVector& beam, const XYZVector& other);
         XYZVector RotateTrack(XYZVector beam, XYZVector track);
         void ScalePoint(XYZPoint& point, float xy, float z, bool addOffset = false);
         template <typename T>

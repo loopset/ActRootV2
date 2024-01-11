@@ -33,6 +33,8 @@ namespace ActRoot
         float fThetaBeam {-1};
         float fThetaLight {-1};
         float fThetaDebug {-1};
+        float fThetaLegacy {-1}; // this is just fThetaLight but will not be corrected in CorrDetector
+        float fThetaHeavy {-1};
         float fPhiLight {-1};
         float fQave {-1};
         int fEntry {-1};
