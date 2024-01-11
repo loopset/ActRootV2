@@ -2026,29 +2026,29 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;        <span class="comment">// auto pivotInit {projInit + fRPPivotDist * it-&gt;GetLine().GetDirection().Unit()};</span></div>
 <div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;        <span class="comment">// auto pivotEnd {projEnd - fRPPivotDist * it-&gt;GetLine().GetDirection().Unit()};</span></div>
 <div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;        <span class="comment">// Get iterator to last element to be kept</span></div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        <span class="keyword">auto</span> itKeep {std::partition(refVoxels.begin(), refVoxels.end(),</div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;                                    [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;                                    {</div>
-<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;                                        auto pos {voxel.GetPosition()};</div>
-<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;                                        pos += <a class="code" href="classActCluster_1_1MultiStep.html#a564e87640c0b4d4ecd7b76b98d982f07">XYZVector</a> {0.5, 0.5, 0.5};</div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;                                        <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;                                        <span class="comment">// // delete all points over projInit/end</span></div>
-<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;                                        <span class="comment">// // bc due to ordering and angle, some voxel could have a proj larger than</span></div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;                                        <span class="comment">// the one</span></div>
-<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;                                        <span class="comment">// // of the last/first voxel</span></div>
-<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;                                        <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= fRPPivotDist}; <span class="comment">// || (proj.X() &lt;</span></div>
-<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;                                        <span class="comment">// projInit.X())};</span></div>
-<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;                                        <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= fRPPivotDist}; <span class="comment">//</span></div>
-<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;                                        <span class="comment">// || (proj.X() &gt; projEnd.X())};</span></div>
-<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;                                        <span class="comment">// if(it-&gt;GetIsBeamLike())</span></div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;                                        <span class="comment">// {</span></div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;Proj : &quot; &lt;&lt; proj &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapInit : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapInit &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapEnd : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapEnd &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;--------------------&quot; &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;                                        <span class="comment">// }</span></div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;                                        <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;                                    })};</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        <span class="keyword">auto</span> itKeep {</div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;            std::partition(refVoxels.begin(), refVoxels.end(),</div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;                           [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;                           {</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;                               auto pos {voxel.GetPosition()};</div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;                               pos += <a class="code" href="classActCluster_1_1MultiStep.html#a564e87640c0b4d4ecd7b76b98d982f07">XYZVector</a> {0.5, 0.5, 0.5};</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;                               <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;                               <span class="comment">// delete all points over projInit/end</span></div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;                               <span class="comment">// bc due to ordering and angle, some voxel could have a proj larger than</span></div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;                               <span class="comment">// the one of the last/first voxel</span></div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;                               <span class="comment">// TODO: check a better way to mask outling voxels (proj.X() &lt; projInit.X() could)</span></div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;                               <span class="comment">// be troublesome depending on track angle</span></div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;                               <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= fRPPivotDist || (proj.X() &lt; projInit.X())};</div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;                               <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= fRPPivotDist || (proj.X() &gt; projEnd.X())};</div>
+<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;                               <span class="comment">// if(it-&gt;GetIsBeamLike())</span></div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;                               <span class="comment">// {</span></div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;                               <span class="comment">//     std::cout &lt;&lt; &quot;Proj : &quot; &lt;&lt; proj &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;                               <span class="comment">//     std::cout &lt;&lt; &quot;isInCapInit : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapInit &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;                               <span class="comment">//     std::cout &lt;&lt; &quot;isInCapEnd : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapEnd &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;                               <span class="comment">//     std::cout &lt;&lt; &quot;--------------------&quot; &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;                               <span class="comment">// }</span></div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;                               <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;                           })};</div>
 <div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;        <span class="keyword">auto</span> newSize {std::distance(refVoxels.begin(), itKeep)};</div>
 <div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;        <span class="comment">// Refit if enough voxels remain</span></div>
 <div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;        <span class="keywordflow">if</span>(newSize &gt; <a class="code" href="classActCluster_1_1MultiStep.html#a060e7fc8411d67971e5b3ae8f3b7fae4">fClimb</a>-&gt;GetMinPoints())</div>
