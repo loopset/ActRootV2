@@ -7,6 +7,7 @@
 
 #include <map>
 #include <optional>
+#include <set>
 #include <string>
 #include <utility>
 
@@ -29,6 +30,7 @@ namespace ActPhysics
         void SetSyle(bool enableLabel = true, Style_t ls = kSolid, Width_t lw = 2, Style_t fs = 0);
         void SetName(const std::string& name) { fName = name; }
         std::string GetName() const { return fName; }
+        std::set<int> GetSilIndexes() const;
 
         void Draw(bool same = false, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]") const;
 

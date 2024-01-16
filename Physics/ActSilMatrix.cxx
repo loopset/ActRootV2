@@ -13,8 +13,10 @@
 #include <iostream>
 #include <memory>
 #include <optional>
+#include <set>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 void ActPhysics::SilMatrix::AddSil(int idx, const std::pair<double, double>& x, const std::pair<double, double>& y)
 {
@@ -57,6 +59,14 @@ std::optional<int> ActPhysics::SilMatrix::IsInside(double x, double y)
         if(g->IsInside(x, y))
             return i;
     return {};
+}
+
+std::set<int> ActPhysics::SilMatrix::GetSilIndexes() const
+{
+    std::set<int> ret;
+    for(auto& [s, _] : fMatrix)
+        ret.insert(s);
+    return std::move(ret);
 }
 
 void ActPhysics::SilMatrix::SetSyle(bool enableLabel, Style_t ls, Width_t lw, Style_t fs)
