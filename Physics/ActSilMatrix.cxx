@@ -6,6 +6,7 @@
 #include "TFile.h"
 #include "TLatex.h"
 #include "TList.h"
+#include "TMath.h"
 #include "TMultiGraph.h"
 #include "TString.h"
 
@@ -17,6 +18,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 void ActPhysics::SilMatrix::AddSil(int idx, const std::pair<double, double>& x, const std::pair<double, double>& y)
 {
@@ -90,6 +92,33 @@ void ActPhysics::SilMatrix::SetSyle(bool enableLabel, Style_t ls, Width_t lw, St
     }
 }
 
+void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
+{
+    // Get centres of given indexes
+    std::vector<double> centres;
+    for(auto& idx : idxs)
+    {
+        if(!fMatrix.count(idx))
+            throw std::runtime_error("SilMatrix::MoveZTo(): idx " + std::to_string(idx) + " not listed in fMatrix");
+        auto* g {fMatrix[idx]};
+        double xy {};
+        double z {};
+        g->Center(xy, z);
+        centres.push_back(z);
+    }
+    // Get mean
+    auto zmean {TMath::Mean(centres.begin(), centres.end())};
+    // Compute difference
+    auto diff {ztarget - zmean};
+    // And move
+    for(auto& [_, g] : fMatrix)
+    {
+        for(int p = 0, size = g->GetN(); p < size; p++)
+        {
+            g->SetPointY(p, g->GetPointY(p) + diff);
+        }
+    }
+}
 
 void ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel) const
 {

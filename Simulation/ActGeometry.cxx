@@ -95,8 +95,8 @@ ActSim::Geometry::Geometry()
     TGeoManager::LockDefaultUnits(false);
     TGeoManager::SetDefaultUnits(TGeoManager::kRootUnits);
     TGeoManager::LockDefaultUnits(true);
+    TGeoManager::SetVerboseLevel(0);
     fManager = new TGeoManager("manager", "A simple ACTAR geometry");
-    gGeoManager->SetVerboseLevel(0);
 
     // naive material since we dont compute physics here
     fNoneMaterial = new TGeoMaterial("none", 0.0, 0.0, 0.0);

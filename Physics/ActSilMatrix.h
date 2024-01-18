@@ -33,6 +33,7 @@ namespace ActPhysics
         std::set<int> GetSilIndexes() const;
 
         void Draw(bool same = false, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]") const;
+        void MoveZTo(double ztarget, const std::set<int>& idxs);
 
         void Read(const std::string& file);
         void Write(const std::string& file);
