@@ -73,6 +73,12 @@ ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoin
     return fPoint + vInLine;
 }
 
+ActPhysics::Line::XYZPoint ActPhysics::Line::MoveToX(float x) const
+{
+    auto t {(x - fPoint.X()) / fDirection.X()};
+    return {x, fPoint.Y() + fDirection.Y() * t, fPoint.Z() + fDirection.Z() * t};
+}
+
 void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset)
 {
     DoFit(voxels, qWeighted, correctOffset);

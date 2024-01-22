@@ -4,7 +4,6 @@
 #include "TF1.h"
 #include "TSpline.h"
 
-#include <cstring>
 #include <map>
 #include <memory>
 #include <string>
@@ -15,7 +14,7 @@ namespace ActPhysics
     //! A class to interface with SRIM files
     /*!
       Allows to perform all type of computations with a SRIM table
-      You cab even **draw** the file with the corresponding function!
+      You can even **draw** the file with the corresponding function!
       Warning: internally uses automatic pointers
     */
     class SRIM
@@ -45,40 +44,19 @@ namespace ActPhysics
 
         void ReadInterpolations(std::string key, std::string fileName);
 
-        double EvalDirect(std::string key, double energy)
-        {
-            CheckFunctionArgument(energy);
-            return fInterpolationsDirect[key]->Eval(energy);
-        }
-        double EvalInverse(std::string key, double range)
-        {
-            CheckFunctionArgument(range);
-            return fInterpolationsInverse[key]->Eval(range);
-        }
+        double EvalDirect(std::string key, double energy) { return fInterpolationsDirect[key]->Eval(energy); }
+        double EvalInverse(std::string key, double range) { return fInterpolationsInverse[key]->Eval(range); }
 
-        // Evaluate the other columns
-        double EvalStoppingPower(std::string key, double energy)
-        {
-            CheckFunctionArgument(energy);
-            return fStoppings[key]->Eval(energy);
-        }
-        double EvalLongStraggling(std::string key, double range)
-        {
-            CheckFunctionArgument(range);
-            return fLongStrag[key]->Eval(range);
-        }
-        double EvalLatStraggling(std::string key, double range)
-        {
-            CheckFunctionArgument(range);
-            return fLatStrag[key]->Eval(range);
-        }
+        // Evaluate the other columns of the SRIM table
+        double EvalStoppingPower(std::string key, double energy) { return fStoppings[key]->Eval(energy); }
+        double EvalLongStraggling(std::string key, double range) { return fLongStrag[key]->Eval(range); }
+        double EvalLatStraggling(std::string key, double range) { return fLatStrag[key]->Eval(range); }
 
         void Draw(std::string what, std::vector<std::string> keys = {});
 
-        double
-        ComputeEnergyLoss(double Tini, std::string material, double thickness, double angleInRad, int steps = 10);
+        double Slow(const std::string& material, double Tini, double thickness, double angleInRad = 0, int steps = 100);
 
-        void CheckKeyIsStored(const std::string& key);
+        bool CheckKeyIsStored(const std::string& key);
 
         void CheckFunctionArgument(double val);
     };

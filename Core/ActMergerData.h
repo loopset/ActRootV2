@@ -23,6 +23,7 @@ namespace ActRoot
 
     public:
         TH1F fQProf {};
+        XYZPoint fWP {-1, -1, -1}; // window point aka entrance point
         XYZPoint fRP {-1, -1, -1};
         XYZPoint fSP {-1, -1, -1};
         XYZPoint fBP {-1, -1, -1};
@@ -31,6 +32,8 @@ namespace ActRoot
         std::vector<float> fSilNs {};
         float fTrackLength {-1};
         float fThetaBeam {-1};
+        float fThetaBeamZ {-1}; // emittance angle along Z
+        float fPhiBeamY {-1};   // emittance angle along Y
         float fThetaLight {-1};
         float fThetaDebug {-1};
         float fThetaLegacy {-1}; // this is just fThetaLight but will not be corrected in CorrDetector

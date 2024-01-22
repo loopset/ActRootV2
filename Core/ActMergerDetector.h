@@ -181,7 +181,7 @@ namespace ActRoot
         bool GateSilMult();
         bool GateOthers();
         void LightOrHeavy();
-        void ComputeBoundaryPoint();
+        void ComputeOtherPoints();
         bool ComputeSiliconPoint();
         void CorrectZOffset();
         bool MatchSPtoRealPlacement();

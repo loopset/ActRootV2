@@ -50,6 +50,7 @@ namespace ActPhysics
         void AlignUsingPoint(const XYZPoint& rp, bool isRecoil = true);
         double DistanceLineToPoint(const XYZPoint& point) const;
         XYZPoint ProjectionPointOnLine(const XYZPoint& point) const;
+        XYZPoint MoveToX(float x) const;
         void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, bool correctOffset = true);
         std::shared_ptr<TPolyLine>
         GetPolyLine(TString proj = "xy", int maxX = 128, int maxY = 128, int maxZ = 512, int rebinZ = 4) const;

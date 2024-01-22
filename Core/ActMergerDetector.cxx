@@ -225,9 +225,7 @@ void ActRoot::MergerDetector::DoMerge()
         fMergerData->Clear();
         return;
     }
-
-    ComputeBoundaryPoint();
-
+    ComputeOtherPoints();
     // 4-> Scale points to physical dimensions
     // if conversion is disabled, no further steps can be done!
     if(!fEnableConversion)
@@ -377,6 +375,7 @@ double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVecto
     auto dot {beam.Unit().Dot(other.Unit())};
     return TMath::ACos(dot) * TMath::RadToDeg();
 }
+
 double ActRoot::MergerDetector::GetPhi3D(const XYZVector& beam, const XYZVector& other)
 {
     // TODO: Check validity of phi calculation
@@ -497,6 +496,7 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
 {
     // Convert points
     auto xy {fTPCPars->GetPadSide()};
+    ScalePoint(fMergerData->fWP, xy, fDriftFactor);
     ScalePoint(fMergerData->fRP, xy, fDriftFactor);
     ScalePoint(fMergerData->fBP, xy, fDriftFactor);
     ScalePoint(fMergerData->fSP, xy, fDriftFactor);
@@ -521,18 +521,24 @@ void ActRoot::MergerDetector::ComputeAngles()
     fMergerData->fThetaDebug = GetTheta3D({1, 0, 0}, fLightIt->GetLine().GetDirection());
     // Phi Light
     fMergerData->fPhiLight = GetPhi3D(fBeamIt->GetLine().GetDirection(), fLightIt->GetLine().GetDirection());
-    // Theta Beam
-    fMergerData->fThetaBeam = GetTheta3D({1, 0, 0}, fBeamIt->GetLine().GetDirection());
+    // Beam angles
+    auto beamDir {fBeamIt->GetLine().GetDirection().Unit()};
+    fMergerData->fThetaBeam = GetTheta3D({1, 0, 0}, beamDir);
+    fMergerData->fThetaBeamZ = TMath::ATan(beamDir.Z() / beamDir.X()) * TMath::RadToDeg();
+    fMergerData->fPhiBeamY = TMath::ATan(beamDir.Y() / beamDir.X()) * TMath::RadToDeg();
     // Theta Heavy
     if(fBeamIt != fTPCData->fClusters.end())
         fMergerData->fThetaHeavy = GetTheta3D(fBeamIt->GetLine().GetDirection(), fHeavyIt->GetLine().GetDirection());
 }
 
-void ActRoot::MergerDetector::ComputeBoundaryPoint()
+void ActRoot::MergerDetector::ComputeOtherPoints()
 {
+    // Boundary point: light track at ACTAR's flanges
     fMergerData->fBP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
                            .GetBoundaryPointOfTrack(fTPCPars, fLightIt->GetLine().GetPoint(),
                                                     fLightIt->GetLine().GetDirection().Unit());
+    // Window point: beam entrance point at X = 0 from fit parameters
+    fMergerData->fWP = fBeamIt->GetLine().MoveToX(0);
 }
 
 void ActRoot::MergerDetector::ComputeQave()

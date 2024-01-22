@@ -41,7 +41,7 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
                                                      vE.size(), "b2, e2", 0., 0.);
     fInterpolationsDirect[key] = std::make_unique<TF1>(
         ("func_direct_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesDirect[key]->Eval(x[0]); },
-        vE.front(), vE.back(), 1); // between [0,1000] MeV
+        vE.front(), vE.back(), 1);
     fInterpolationsDirect[key]->SetTitle(";Energy [MeV];Range [mm]");
 
     fSplinesInverse[key] = std::make_unique<TSpline3>(("spinverse" + key).c_str(),
@@ -50,7 +50,7 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
                                                       vR.size(), "b2, e2", 0., 0.);
     fInterpolationsInverse[key] = std::make_unique<TF1>(
         ("func_inverse_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesInverse[key]->Eval(x[0]); },
-        vR.front(), vR.back(), 1); // between [0, Rmax] m
+        vR.front(), vR.back(), 1);
     fInterpolationsInverse[key]->SetTitle(";Range [mm];Energy [MeV]");
 
     ///////////////////////  ENERGY ---> STOPPING POWER
@@ -60,7 +60,7 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
                                                         vE.size(), "b2, e2", 0., 0.);
     fStoppings[key] = std::make_unique<TF1>(
         ("stopping_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesStoppings[key]->Eval(x[0]); },
-        0., 1000., 1); // between [0,1000] MeV
+        0., 1000., 1);
     fStoppings[key]->SetTitle(";Energy [MeV];#frac{dE}{dx} [MeV/mm]");
 
     ////////////////// RANGE ---> LONGITUDINAL STRAGGLING
@@ -70,7 +70,7 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
                                                         vR.size(), "b2, e2", 0., 0.);
     fLongStrag[key] = std::make_unique<TF1>(
         ("LongStragg_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesLongStrag[key]->Eval(x[0]); },
-        vR.front(), vR.back(), 1); // between [0,1000] MeV
+        vR.front(), vR.back(), 1);
     fLongStrag[key]->SetTitle(";Energy [MeV];Longitudianl straggling [mm]");
 
     ////////////////// RANGE ---> LATERAL STRAGGLING
@@ -80,7 +80,7 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
                                                        vR.size(), "b2, e2", 0., 0.);
     fLatStrag[key] = std::make_unique<TF1>(
         ("LatStragg_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesLatStrag[key]->Eval(x[0]); },
-        vR.front(), vR.back(), 1); // between [0,1000] MeV
+        vR.front(), vR.back(), 1);
     fLatStrag[key]->SetTitle(";Energy [mm];Lateral stragging [mm]");
 
     // and finally store keys
@@ -131,7 +131,7 @@ void ActPhysics::SRIM::Draw(std::string what, std::vector<std::string> keys)
     legend.reset();
 }
 
-double ActPhysics::SRIM::ComputeEnergyLoss(double Tini, std::string material, double thickness, double angle, int steps)
+double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double thickness, double angle, int steps)
 {
     double realThick {thickness / TMath::Abs(TMath::Cos(angle))};
     double dX {realThick / steps};
@@ -159,10 +159,9 @@ double ActPhysics::SRIM::ComputeEnergyLoss(double Tini, std::string material, do
     return energyLoss;
 }
 
-void ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
+bool ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
 {
-    if(!(std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end()))
-        throw std::runtime_error(("Error!: " + key + " couldn't be found in SRIM instance"));
+    return std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end();
 }
 
 void ActPhysics::SRIM::CheckFunctionArgument(double val)
