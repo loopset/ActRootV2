@@ -98,10 +98,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5603bcf22ba5872782e2e4b7461e5f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a563b1380c8524a4196fa4b382137f588"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#a563b1380c8524a4196fa4b382137f588">Draw</a> (std::string what, std::vector&lt; std::string &gt; keys={})</td></tr>
 <tr class="separator:a563b1380c8524a4196fa4b382137f588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7109f1f91f1604fd74d525b3a173779c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#a7109f1f91f1604fd74d525b3a173779c">ComputeEnergyLoss</a> (double Tini, std::string material, double thickness, double angleInRad, int steps=10)</td></tr>
-<tr class="separator:a7109f1f91f1604fd74d525b3a173779c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacebcdb7be09a0485ba047f91063afdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#aacebcdb7be09a0485ba047f91063afdd">CheckKeyIsStored</a> (const std::string &amp;key)</td></tr>
-<tr class="separator:aacebcdb7be09a0485ba047f91063afdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a1400f3e3d33d25ed06154afcb0690"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#af8a1400f3e3d33d25ed06154afcb0690">Slow</a> (const std::string &amp;material, double Tini, double thickness, double angleInRad=0, int steps=100)</td></tr>
+<tr class="separator:af8a1400f3e3d33d25ed06154afcb0690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d40a5421defd80d80c2a508c7ac150"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#ad7d40a5421defd80d80c2a508c7ac150">CheckKeyIsStored</a> (const std::string &amp;key)</td></tr>
+<tr class="separator:ad7d40a5421defd80d80c2a508c7ac150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7df1335e666cb5398646b09aab8c86d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a> (double val)</td></tr>
 <tr class="separator:ae7df1335e666cb5398646b09aab8c86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -136,7 +136,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class to interface with <a class="el" href="classActPhysics_1_1SRIM.html" title="A class to interface with SRIM files.">SRIM</a> files. </p>
-<p>Allows to perform all type of computations with a <a class="el" href="classActPhysics_1_1SRIM.html" title="A class to interface with SRIM files.">SRIM</a> table You cab even <b>draw</b> the file with the corresponding function! Warning: internally uses automatic pointers </p>
+<p>Allows to perform all type of computations with a <a class="el" href="classActPhysics_1_1SRIM.html" title="A class to interface with SRIM files.">SRIM</a> table You can even <b>draw</b> the file with the corresponding function! Warning: internally uses automatic pointers </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3176394e13d8f899b40349e06d2e9364"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3176394e13d8f899b40349e06d2e9364">&#9670;&nbsp;</a></span>SRIM()</h2>
@@ -161,8 +161,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;: <a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a>(debug) {}</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ab5f07de25f3769d79a87599c23f94db6"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">ActPhysics::SRIM::fDebug</a></div><div class="ttdeci">bool fDebug</div><div class="ttdoc">To print debug info (passed in constructor)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:24</div></div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;: <a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a>(debug) {}</div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ab5f07de25f3769d79a87599c23f94db6"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">ActPhysics::SRIM::fDebug</a></div><div class="ttdeci">bool fDebug</div><div class="ttdoc">To print debug info (passed in constructor)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:23</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -182,21 +182,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;{</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a> &amp;&amp; val &lt; 0.)</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Warning: Negative value passed to Eval function&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;{</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a> &amp;&amp; val &lt; 0.)</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Warning: Negative value passed to Eval function&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aacebcdb7be09a0485ba047f91063afdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacebcdb7be09a0485ba047f91063afdd">&#9670;&nbsp;</a></span>CheckKeyIsStored()</h2>
+<a id="ad7d40a5421defd80d80c2a508c7ac150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7d40a5421defd80d80c2a508c7ac150">&#9670;&nbsp;</a></span>CheckKeyIsStored()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ActPhysics::SRIM::CheckKeyIsStored </td>
+          <td class="memname">bool ActPhysics::SRIM::CheckKeyIsStored </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
@@ -205,83 +205,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;{</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span>(!(std::find(<a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.begin(), <a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.end(), key) != <a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.end()))</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error((<span class="stringliteral">&quot;Error!: &quot;</span> + key + <span class="stringliteral">&quot; couldn&#39;t be found in SRIM instance&quot;</span>));</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_abb4da02f546705e940cc9e1f0451ed16"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">ActPhysics::SRIM::fKeys</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fKeys</div><div class="ttdoc">Store known tables.</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:25</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a7109f1f91f1604fd74d525b3a173779c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7109f1f91f1604fd74d525b3a173779c">&#9670;&nbsp;</a></span>ComputeEnergyLoss()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double ActPhysics::SRIM::ComputeEnergyLoss </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>Tini</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>material</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>thickness</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>angleInRad</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>steps</em> = <code>10</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">double</span> realThick {thickness / TMath::Abs(TMath::Cos(angle))};</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">double</span> dX {realThick / steps};</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">double</span> remainT {Tini};</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">double</span> energyLoss {};</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">double</span> stopping {};</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; steps; i++)</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        stopping = <a class="code" href="classActPhysics_1_1SRIM.html#a909ec849454175ea1bb52bbd7a23c9b6">EvalStoppingPower</a>(material, remainT) * dX;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span>(std::isnan(stopping))</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a>)</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;Kinetic energy under minimum given by SRIM!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="comment">// we can consider the particle to be stopped</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        remainT -= stopping;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        energyLoss = Tini - remainT;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">if</span>(remainT &lt;= 0.0)</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            energyLoss = Tini; <span class="comment">// has lost all energy</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> energyLoss;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a909ec849454175ea1bb52bbd7a23c9b6"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a909ec849454175ea1bb52bbd7a23c9b6">ActPhysics::SRIM::EvalStoppingPower</a></div><div class="ttdeci">double EvalStoppingPower(std::string key, double energy)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:60</div></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">return</span> std::find(<a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.begin(), <a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.end(), key) != <a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.end();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_abb4da02f546705e940cc9e1f0451ed16"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">ActPhysics::SRIM::fKeys</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fKeys</div><div class="ttdoc">Store known tables.</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -352,11 +278,11 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    canvas-&gt;Close();</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    legend.reset();</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a15a60bfb699c1b74ca91710edf32aba1"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">ActPhysics::SRIM::fInterpolationsInverse</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fInterpolationsInverse</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:31</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a30d8377bba47c0e5fd872ac29984f5ec"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">ActPhysics::SRIM::fStoppings</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fStoppings</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:34</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a68b1038238c130bbe0639e0a558393f1"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">ActPhysics::SRIM::fLatStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fLatStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:40</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ac3836c5bbc8d0740c99190a2b0625231"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">ActPhysics::SRIM::fInterpolationsDirect</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fInterpolationsDirect</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:28</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_af9087214061136729b6f524d5c4dcea3"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">ActPhysics::SRIM::fLongStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fLongStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:37</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a15a60bfb699c1b74ca91710edf32aba1"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">ActPhysics::SRIM::fInterpolationsInverse</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fInterpolationsInverse</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:30</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a30d8377bba47c0e5fd872ac29984f5ec"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">ActPhysics::SRIM::fStoppings</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fStoppings</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:33</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a68b1038238c130bbe0639e0a558393f1"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">ActPhysics::SRIM::fLatStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fLatStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:39</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ac3836c5bbc8d0740c99190a2b0625231"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">ActPhysics::SRIM::fInterpolationsDirect</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fInterpolationsDirect</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:27</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_af9087214061136729b6f524d5c4dcea3"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">ActPhysics::SRIM::fLongStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TF1 &gt; &gt; fLongStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -393,11 +319,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a>(energy);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">fInterpolationsDirect</a>[key]-&gt;Eval(energy);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ae7df1335e666cb5398646b09aab8c86d"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">ActPhysics::SRIM::CheckFunctionArgument</a></div><div class="ttdeci">void CheckFunctionArgument(double val)</div><div class="ttdef"><b>Definition:</b> ActSRIM.cxx:168</div></div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">fInterpolationsDirect</a>[key]-&gt;Eval(energy); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -434,10 +356,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a>(range);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">fInterpolationsInverse</a>[key]-&gt;Eval(range);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">fInterpolationsInverse</a>[key]-&gt;Eval(range); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -474,10 +393,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a>(range);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">fLatStrag</a>[key]-&gt;Eval(range);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">fLatStrag</a>[key]-&gt;Eval(range); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -514,10 +430,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a>(range);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">fLongStrag</a>[key]-&gt;Eval(range);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">fLongStrag</a>[key]-&gt;Eval(range); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -554,10 +467,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="classActPhysics_1_1SRIM.html#ae7df1335e666cb5398646b09aab8c86d">CheckFunctionArgument</a>(energy);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">fStoppings</a>[key]-&gt;Eval(energy);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">fStoppings</a>[key]-&gt;Eval(energy); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -608,7 +518,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                                     vE.size(), <span class="stringliteral">&quot;b2, e2&quot;</span>, 0., 0.);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">fInterpolationsDirect</a>[key] = std::make_unique&lt;TF1&gt;(</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        (<span class="stringliteral">&quot;func_direct_&quot;</span> + key).c_str(), [key, <span class="keyword">this</span>](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#acf3e7bfaeea44c2a7dd8c168755487ff">fSplinesDirect</a>[key]-&gt;Eval(x[0]); },</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        vE.front(), vE.back(), 1); <span class="comment">// between [0,1000] MeV</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        vE.front(), vE.back(), 1);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#ac3836c5bbc8d0740c99190a2b0625231">fInterpolationsDirect</a>[key]-&gt;SetTitle(<span class="stringliteral">&quot;;Energy [MeV];Range [mm]&quot;</span>);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a5a2aadd0d90d819bf0a407021a37a8fe">fSplinesInverse</a>[key] = std::make_unique&lt;TSpline3&gt;((<span class="stringliteral">&quot;spinverse&quot;</span> + key).c_str(),</div>
@@ -617,7 +527,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                      vR.size(), <span class="stringliteral">&quot;b2, e2&quot;</span>, 0., 0.);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">fInterpolationsInverse</a>[key] = std::make_unique&lt;TF1&gt;(</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        (<span class="stringliteral">&quot;func_inverse_&quot;</span> + key).c_str(), [key, <span class="keyword">this</span>](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a5a2aadd0d90d819bf0a407021a37a8fe">fSplinesInverse</a>[key]-&gt;Eval(x[0]); },</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        vR.front(), vR.back(), 1); <span class="comment">// between [0, Rmax] m</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        vR.front(), vR.back(), 1);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a15a60bfb699c1b74ca91710edf32aba1">fInterpolationsInverse</a>[key]-&gt;SetTitle(<span class="stringliteral">&quot;;Range [mm];Energy [MeV]&quot;</span>);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#ae1c13272f4c2ba04ee1794f73a50931b">fSplinesStoppings</a>[key] = std::make_unique&lt;TSpline3&gt;((<span class="stringliteral">&quot;spstopping_&quot;</span> + key).c_str(),</div>
@@ -626,7 +536,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                                        vE.size(), <span class="stringliteral">&quot;b2, e2&quot;</span>, 0., 0.);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">fStoppings</a>[key] = std::make_unique&lt;TF1&gt;(</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        (<span class="stringliteral">&quot;stopping_&quot;</span> + key).c_str(), [key, <span class="keyword">this</span>](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#ae1c13272f4c2ba04ee1794f73a50931b">fSplinesStoppings</a>[key]-&gt;Eval(x[0]); },</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        0., 1000., 1); <span class="comment">// between [0,1000] MeV</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        0., 1000., 1);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a30d8377bba47c0e5fd872ac29984f5ec">fStoppings</a>[key]-&gt;SetTitle(<span class="stringliteral">&quot;;Energy [MeV];#frac{dE}{dx} [MeV/mm]&quot;</span>);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#ae338e79fc5e7174c339f562a538717a2">fSplinesLongStrag</a>[key] = std::make_unique&lt;TSpline3&gt;((<span class="stringliteral">&quot;spLongStragg_&quot;</span> + key).c_str(),</div>
@@ -635,7 +545,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                                        vR.size(), <span class="stringliteral">&quot;b2, e2&quot;</span>, 0., 0.);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">fLongStrag</a>[key] = std::make_unique&lt;TF1&gt;(</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        (<span class="stringliteral">&quot;LongStragg_&quot;</span> + key).c_str(), [key, <span class="keyword">this</span>](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#ae338e79fc5e7174c339f562a538717a2">fSplinesLongStrag</a>[key]-&gt;Eval(x[0]); },</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        vR.front(), vR.back(), 1); <span class="comment">// between [0,1000] MeV</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        vR.front(), vR.back(), 1);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#af9087214061136729b6f524d5c4dcea3">fLongStrag</a>[key]-&gt;SetTitle(<span class="stringliteral">&quot;;Energy [MeV];Longitudianl straggling [mm]&quot;</span>);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a657884077dfdd31b9ee9f84387399d8c">fSplinesLatStrag</a>[key] = std::make_unique&lt;TSpline3&gt;((<span class="stringliteral">&quot;spLatStragg_&quot;</span> + key).c_str(),</div>
@@ -644,17 +554,90 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                                       vR.size(), <span class="stringliteral">&quot;b2, e2&quot;</span>, 0., 0.);</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">fLatStrag</a>[key] = std::make_unique&lt;TF1&gt;(</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        (<span class="stringliteral">&quot;LatStragg_&quot;</span> + key).c_str(), [key, <span class="keyword">this</span>](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SRIM.html#a657884077dfdd31b9ee9f84387399d8c">fSplinesLatStrag</a>[key]-&gt;Eval(x[0]); },</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        vR.front(), vR.back(), 1); <span class="comment">// between [0,1000] MeV</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        vR.front(), vR.back(), 1);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#a68b1038238c130bbe0639e0a558393f1">fLatStrag</a>[key]-&gt;SetTitle(<span class="stringliteral">&quot;;Energy [mm];Lateral stragging [mm]&quot;</span>);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// and finally store keys</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classActPhysics_1_1SRIM.html#abb4da02f546705e940cc9e1f0451ed16">fKeys</a>.push_back(key);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a5a2aadd0d90d819bf0a407021a37a8fe"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a5a2aadd0d90d819bf0a407021a37a8fe">ActPhysics::SRIM::fSplinesInverse</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesInverse</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:30</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a657884077dfdd31b9ee9f84387399d8c"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a657884077dfdd31b9ee9f84387399d8c">ActPhysics::SRIM::fSplinesLatStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesLatStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:39</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_acf3e7bfaeea44c2a7dd8c168755487ff"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#acf3e7bfaeea44c2a7dd8c168755487ff">ActPhysics::SRIM::fSplinesDirect</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesDirect</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:27</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ae1c13272f4c2ba04ee1794f73a50931b"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ae1c13272f4c2ba04ee1794f73a50931b">ActPhysics::SRIM::fSplinesStoppings</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesStoppings</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:33</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ae338e79fc5e7174c339f562a538717a2"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ae338e79fc5e7174c339f562a538717a2">ActPhysics::SRIM::fSplinesLongStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesLongStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:36</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a5a2aadd0d90d819bf0a407021a37a8fe"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a5a2aadd0d90d819bf0a407021a37a8fe">ActPhysics::SRIM::fSplinesInverse</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesInverse</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:29</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a657884077dfdd31b9ee9f84387399d8c"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a657884077dfdd31b9ee9f84387399d8c">ActPhysics::SRIM::fSplinesLatStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesLatStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:38</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_acf3e7bfaeea44c2a7dd8c168755487ff"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#acf3e7bfaeea44c2a7dd8c168755487ff">ActPhysics::SRIM::fSplinesDirect</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesDirect</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:26</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ae1c13272f4c2ba04ee1794f73a50931b"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ae1c13272f4c2ba04ee1794f73a50931b">ActPhysics::SRIM::fSplinesStoppings</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesStoppings</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:32</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_ae338e79fc5e7174c339f562a538717a2"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#ae338e79fc5e7174c339f562a538717a2">ActPhysics::SRIM::fSplinesLongStrag</a></div><div class="ttdeci">std::map&lt; std::string, std::unique_ptr&lt; TSpline3 &gt; &gt; fSplinesLongStrag</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:35</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af8a1400f3e3d33d25ed06154afcb0690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8a1400f3e3d33d25ed06154afcb0690">&#9670;&nbsp;</a></span>Slow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::SRIM::Slow </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>material</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Tini</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>thickness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angleInRad</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>steps</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">double</span> realThick {thickness / TMath::Abs(TMath::Cos(angle))};</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">double</span> dX {realThick / steps};</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">double</span> remainT {Tini};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">double</span> energyLoss {};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">double</span> stopping {};</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; steps; i++)</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        stopping = <a class="code" href="classActPhysics_1_1SRIM.html#a909ec849454175ea1bb52bbd7a23c9b6">EvalStoppingPower</a>(material, remainT) * dX;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span>(std::isnan(stopping))</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classActPhysics_1_1SRIM.html#ab5f07de25f3769d79a87599c23f94db6">fDebug</a>)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;Kinetic energy under minimum given by SRIM!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="comment">// we can consider the particle to be stopped</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        remainT -= stopping;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        energyLoss = Tini - remainT;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">if</span>(remainT &lt;= 0.0)</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            energyLoss = Tini; <span class="comment">// has lost all energy</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> energyLoss;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1SRIM_html_a909ec849454175ea1bb52bbd7a23c9b6"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a909ec849454175ea1bb52bbd7a23c9b6">ActPhysics::SRIM::EvalStoppingPower</a></div><div class="ttdeci">double EvalStoppingPower(std::string key, double energy)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:51</div></div>
 </div><!-- fragment -->
 </div>
 </div>
