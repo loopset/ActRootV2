@@ -73,6 +73,7 @@ std::set<int> ActPhysics::SilMatrix::GetSilIndexes() const
 
 void ActPhysics::SilMatrix::SetSyle(bool enableLabel, Style_t ls, Width_t lw, Style_t fs)
 {
+    fIsStyleSet = true; // style was manually set by user
     for(auto& [i, g] : fMatrix)
     {
         if(enableLabel)
@@ -120,10 +121,14 @@ void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
     }
 }
 
-void ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel) const
+void ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel)
 {
     auto mg {new TMultiGraph()};
     mg->SetTitle(TString::Format("Sil matrix %s;%s;%s", fName.c_str(), xlabel.c_str(), ylabel.c_str()));
+
+    // If style was not set by user, set default
+    if(!fIsStyleSet)
+        SetSyle();
 
     // Add to multigraph
     for(auto& [i, g] : fMatrix)

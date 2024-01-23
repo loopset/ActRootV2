@@ -18,6 +18,7 @@ namespace ActPhysics
     private:
         std::string fName {};
         std::map<int, TCutG*> fMatrix;
+        bool fIsStyleSet {};
 
     public:
         SilMatrix() = default;
@@ -32,7 +33,7 @@ namespace ActPhysics
         std::string GetName() const { return fName; }
         std::set<int> GetSilIndexes() const;
 
-        void Draw(bool same = false, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]") const;
+        void Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
         void MoveZTo(double ztarget, const std::set<int>& idxs);
 
         void Read(const std::string& file);
