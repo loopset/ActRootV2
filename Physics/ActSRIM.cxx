@@ -4,18 +4,174 @@
 #include "TF1.h"
 #include "TLegend.h"
 #include "TMath.h"
-#include "TMathBase.h"
 #include "TSpline.h"
+#include "TVirtualPad.h"
 
 #include <algorithm>
-#include <cmath>
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+ActPhysics::SRIM::SRIM(const std::string& key, const std::string& file)
+{
+    ReadTable(key, file);
+}
+
+bool ActPhysics::SRIM::IsBreakLine(const std::string& line)
+{
+    int count {};
+    int pos {};
+    while((pos = line.find("-", pos)) != std::string::npos || (pos = line.find("=", pos)) != std::string::npos)
+    {
+        pos++;
+        count++;
+    }
+    // Delimiter lines are recognized by having a large amount of
+    // - or = symbols
+    return (count > 6);
+}
+double ActPhysics::SRIM::ConvertToDouble(std::string& str, const std::string& unit)
+{
+    // Replace commas with points
+    std::replace(str.begin(), str.end(), ',', '.');
+    // Convert to double
+    double ret {};
+    try
+    {
+        ret = std::stod(str);
+    }
+    catch(std::exception& e)
+    {
+        throw std::runtime_error("SRIM::ConvertToDouble(): could not convert " + str + " to double!");
+    }
+    // And now assign units
+    // Default should be MeV and mm
+    // Energy
+    if(unit == "eV")
+        ret *= 1e-6;
+    else if(unit == "keV")
+        ret *= 1e-3;
+    else if(unit == "MeV")
+        ret *= 1;
+    else if(unit == "GeV")
+        ret *= 1e3;
+    // Length
+    else if(unit == "A")
+        ret *= 1e-7;
+    else if(unit == "um")
+        ret *= 1e-3;
+    else if(unit == "mm")
+        ret *= 1;
+    else if(unit == "cm")
+        ret *= 1e1;
+    else if(unit == "m")
+        ret *= 1e3;
+    else if(unit == "km")
+        ret *= 1e6;
+    // None for stopping power (should be obtained correctly in SRIM executable)
+    else if(unit == "None")
+        ret *= 1;
+    else
+        throw std::runtime_error("SRIM::ConvertToDouble(): unit " + unit + " not recognized!");
+    return ret;
+}
+
+ActPhysics::SRIM::PtrSpline
+ActPhysics::SRIM::GetSpline(std::vector<double>& x, std::vector<double>& y, const std::string& name)
+{
+    return std::make_unique<TSpline3>(name.c_str(), &(x[0]), &(y[0]), x.size(), "b2,e2", 0., 0.);
+}
+
+void ActPhysics::SRIM::ReadTable(const std::string& key, const std::string& file)
+{
+    std::ifstream streamer(file);
+    if(!streamer)
+        throw std::runtime_error("SRIM::ReadInterpolations(): could not open file " + file);
+
+    // Init vectors
+    std::vector<double> vE, vStop, vR, vLongStrag, vLatStrag;
+    // Read lines
+    std::string line {};
+    bool read {};
+    while(std::getline(streamer, line))
+    {
+        if(IsBreakLine(line))
+            continue;
+        // Find beginning of columns
+        if(line.find("Straggling") != std::string::npos)
+        {
+            read = true;
+            continue;
+        }
+        // Find end
+        if(line.find("Multiply") != std::string::npos)
+            break;
+        // Read!
+        if(read)
+        {
+            std::string e, ue, electro, nucl, r, ur, ls, uls, as, uas;
+            std::istringstream lineStreamer {line};
+            while(lineStreamer >> e >> ue >> electro >> nucl >> r >> ur >> ls >> uls >> as >> uas)
+            {
+                // Energy
+                vE.push_back(ConvertToDouble(e, ue));
+                // Stopping power
+                vStop.push_back(ConvertToDouble(nucl, "None") + ConvertToDouble(electro, "None"));
+                // Range
+                vR.push_back(ConvertToDouble(r, ur));
+                // Longitudinal straggling
+                vLongStrag.push_back(ConvertToDouble(ls, uls));
+                // Lateral straggling
+                vLatStrag.push_back(ConvertToDouble(as, uas));
+            }
+        }
+    }
+    streamer.close();
+
+    // Init splines and funcs
+    // 1-> Energy -> Range
+    fSplinesDirect[key] = GetSpline(vE, vR, "speEtoR");
+    fInterpolationsDirect[key] = std::make_unique<TF1>(
+        ("fEtoR" + key).c_str(), [key, this](double* x, double* p) { return fSplinesDirect[key]->Eval(x[0]); },
+        vE.front(), vE.back(), 1);
+    fInterpolationsDirect[key]->SetTitle(";Energy [MeV];Range [mm]");
+    // 2-> Range -> Energy
+    fSplinesInverse[key] = GetSpline(vR, vE, "speRtoE");
+    fInterpolationsInverse[key] = std::make_unique<TF1>(
+        ("fRtoE" + key).c_str(), [key, this](double* x, double* p) { return fSplinesInverse[key]->Eval(x[0]); },
+        vR.front(), vR.back(), 1);
+    fInterpolationsInverse[key]->SetTitle(";Range [mm];Energy [MeV]");
+
+    // 3-> E to Stopping
+    fSplinesStoppings[key] = GetSpline(vE, vStop, "speEtodE");
+    fStoppings[key] = std::make_unique<TF1>(
+        ("fEtodE" + key).c_str(), [key, this](double* x, double* p) { return fSplinesStoppings[key]->Eval(x[0]); },
+        vE.front(), vE.back(), 1);
+    fStoppings[key]->SetTitle(";Energy [MeV];#frac{dE}{dx} [MeV/mm]");
+
+    // 4-> R to LS
+    fSplinesLongStrag[key] = GetSpline(vR, vLongStrag, "speRtoLongS");
+    fLongStrag[key] = std::make_unique<TF1>(
+        ("fRtoLongS" + key).c_str(), [key, this](double* x, double* p) { return fSplinesLongStrag[key]->Eval(x[0]); },
+        vR.front(), vR.back(), 1);
+    fLongStrag[key]->SetTitle(";Range [mm];Longitudinal straggling [mm]");
+
+    // 5-> R to LatS
+    fSplinesLatStrag[key] = GetSpline(vR, vLatStrag, "speRtoLatS");
+    fLatStrag[key] = std::make_unique<TF1>(
+        ("fRtoLatS" + key).c_str(), [key, this](double* x, double* p) { return fSplinesLatStrag[key]->Eval(x[0]); },
+        vR.front(), vR.back(), 1);
+    fLatStrag[key]->SetTitle(";Range [mm];Lateral stragging [mm]");
+
+    // and finally store keys
+    fKeys.push_back(key);
+}
 
 void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
 {
@@ -81,13 +237,13 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
     fLatStrag[key] = std::make_unique<TF1>(
         ("LatStragg_" + key).c_str(), [key, this](double* x, double* p) { return fSplinesLatStrag[key]->Eval(x[0]); },
         vR.front(), vR.back(), 1);
-    fLatStrag[key]->SetTitle(";Energy [mm];Lateral stragging [mm]");
+    fLatStrag[key]->SetTitle(";Energy [mm];Lateral stragging []");
 
     // and finally store keys
     fKeys.push_back(key);
 }
 
-void ActPhysics::SRIM::Draw(std::string what, std::vector<std::string> keys)
+void ActPhysics::SRIM::Draw(const std::string& what, const std::vector<std::string>& keys)
 {
     std::vector<std::string> keysToDraw {keys};
     if(keys.empty())
@@ -131,41 +287,31 @@ void ActPhysics::SRIM::Draw(std::string what, std::vector<std::string> keys)
     legend.reset();
 }
 
-double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double thickness, double angle, int steps)
+double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double thickness, double angleInRad)
 {
-    double realThick {thickness / TMath::Abs(TMath::Cos(angle))};
-    double dX {realThick / steps};
-    double remainT {Tini};
-    double energyLoss {};
-    double stopping {};
-    for(int i = 0; i < steps; i++)
-    {
-        stopping = EvalStoppingPower(material, remainT) * dX;
-        if(std::isnan(stopping))
-        {
-            if(fDebug)
-                std::cout << "Kinetic energy under minimum given by SRIM!" << '\n';
-            // we can consider the particle to be stopped
-        }
-        remainT -= stopping;
-        energyLoss = Tini - remainT;
-        if(remainT <= 0.0)
-        {
-            energyLoss = Tini; // has lost all energy
-            break;
-        }
-    }
+    // Init range
+    auto RIni {EvalDirect(material, Tini)};
+    // Compute distance
+    auto dist {thickness / TMath::Cos(angleInRad)};
+    // New range
+    auto RAfter {RIni - dist};
+    return EvalInverse(material, RAfter);
+}
 
-    return energyLoss;
+
+double
+ActPhysics::SRIM::EvalInitialEnergy(const std::string& material, double Tafter, double thickness, double angleInRad)
+{
+    // After range
+    auto RAfter {EvalDirect(material, Tafter)};
+    // Distance
+    auto dist {thickness / TMath::Cos(angleInRad)};
+    // New range
+    auto RIni {RAfter + dist};
+    return EvalInverse(material, RIni);
 }
 
 bool ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
 {
     return std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end();
-}
-
-void ActPhysics::SRIM::CheckFunctionArgument(double val)
-{
-    if(fDebug && val < 0.)
-        std::cout << "Warning: Negative value passed to Eval function" << '\n';
 }

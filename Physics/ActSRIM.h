@@ -19,8 +19,11 @@ namespace ActPhysics
     */
     class SRIM
     {
+    public:
+        using PtrSpline = std::unique_ptr<TSpline3>;
+        using PtrFunc = std::unique_ptr<TF1>;
+
     private:
-        bool fDebug;                    //!< To print debug info (passed in constructor)
         std::vector<std::string> fKeys; //!< Store known tables
         // Energy->Range
         std::map<std::string, std::unique_ptr<TSpline3>> fSplinesDirect;
@@ -40,25 +43,34 @@ namespace ActPhysics
 
 
     public:
-        SRIM(bool debug = false) : fDebug(debug) {}
+        SRIM() = default;
+        SRIM(const std::string& material, const std::string& file);
 
-        void ReadInterpolations(std::string key, std::string fileName);
+        void ReadTable(const std::string& key, const std::string& file);
 
-        double EvalDirect(std::string key, double energy) { return fInterpolationsDirect[key]->Eval(energy); }
-        double EvalInverse(std::string key, double range) { return fInterpolationsInverse[key]->Eval(range); }
+        [[deprecated("Favour use of new SRIM::ReadTable(...) which does not require manual edition of SRIM file")]] void
+        ReadInterpolations(std::string key, std::string fileName);
+
+        double EvalDirect(const std::string& key, double energy) { return fInterpolationsDirect[key]->Eval(energy); }
+        double EvalInverse(const std::string& key, double range) { return fInterpolationsInverse[key]->Eval(range); }
 
         // Evaluate the other columns of the SRIM table
-        double EvalStoppingPower(std::string key, double energy) { return fStoppings[key]->Eval(energy); }
-        double EvalLongStraggling(std::string key, double range) { return fLongStrag[key]->Eval(range); }
-        double EvalLatStraggling(std::string key, double range) { return fLatStrag[key]->Eval(range); }
+        double EvalStoppingPower(const std::string& key, double energy) { return fStoppings[key]->Eval(energy); }
+        double EvalLongStraggling(const std::string& key, double range) { return fLongStrag[key]->Eval(range); }
+        double EvalLatStraggling(const std::string& key, double range) { return fLatStrag[key]->Eval(range); }
 
-        void Draw(std::string what, std::vector<std::string> keys = {});
+        void Draw(const std::string& what, const std::vector<std::string>& keys = {});
 
-        double Slow(const std::string& material, double Tini, double thickness, double angleInRad = 0, int steps = 100);
+        double Slow(const std::string& material, double Tini, double thickness, double angleInRad = 0);
+
+        double EvalInitialEnergy(const std::string& material, double Tafter, double thickness, double angleInRad = 0);
 
         bool CheckKeyIsStored(const std::string& key);
 
-        void CheckFunctionArgument(double val);
+    private:
+        bool IsBreakLine(const std::string& line);
+        double ConvertToDouble(std::string& str, const std::string& unit);
+        PtrSpline GetSpline(std::vector<double>& x, std::vector<double>& y, const std::string& name);
     };
 }; // namespace ActPhysics
 
