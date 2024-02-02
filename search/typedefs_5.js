@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['rangetype_2435',['RangeType',['../classActCluster_1_1Cluster.html#aa2d733279dec18e10354344216244282',1,'ActCluster::Cluster']]],
-  ['rettype_2436',['RetType',['../classActCluster_1_1ClIMB.html#acfefcf045b37b95d4692a7c4537e38ab',1,'ActCluster::ClIMB']]],
-  ['rpcluster_2437',['RPCluster',['../classActCluster_1_1MultiStep.html#a029fd529c8a04f1684df5026e236a6db',1,'ActCluster::MultiStep']]],
-  ['rpvalue_2438',['RPValue',['../classActCluster_1_1MultiStep.html#a47fc804270e99c012dec7077551eddc9',1,'ActCluster::MultiStep']]]
+  ['ptrfunc_2443',['PtrFunc',['../classActPhysics_1_1SRIM.html#ac500c3b5c3fd636b3b97118a5dbc3e3c',1,'ActPhysics::SRIM']]],
+  ['ptrspline_2444',['PtrSpline',['../classActPhysics_1_1SRIM.html#aa56eb855530b560ad1d7c9c1877b110d',1,'ActPhysics::SRIM']]]
 ];
