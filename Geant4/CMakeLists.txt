@@ -1,9 +1,9 @@
 # lib name
-set(LIB_NAME Geant4)
-set(FULL_NAME Act${LIB_NAME})
-## set files to compile
-file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cc)
-file(GLOB headers ${CMAKE_CURRENT_SOURCE_DIR}/*.hh)
+set(FULL_NAME ActGeant4)
+
+# set files to compile
+file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
+file(GLOB headers ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.hh)
 
 # LinkDef and dict generation
 # set(LINKDEF_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/${FULL_NAME}LinkDef.hh)

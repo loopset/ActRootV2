@@ -12,27 +12,29 @@ set(CMAKE_INSTALL_MESSAGE LAZY) # print only updates of installed files
 
 # read Geant4 options
 option(BUILD_GEANT4 "Build ActGeant4 library" OFF)#disabled by default
-##ROOT
-find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS MathCore Physics GenVector)
+#ROOT
+# Gui component is of paramount importance to Event viewers
+find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS Gui MathCore Physics GenVector)
 if(BUILD_GEANT4)
   find_package(Geant4 CONFIG REQUIRED ui_all vis_all)
 endif()
-include(${ROOT_USE_FILE})##automatically loads ROOT_INCLUDE_DIRS and ROOT_LIBRARY_DIR (BUT NOT LIBRARIES, they must be added manually in target_link_libs)
+#automatically loads ROOT_INCLUDE_DIRS and ROOT_LIBRARY_DIR (BUT NOT LIBRARIES, they must be added manually in target_link_libs)
+include(${ROOT_USE_FILE})
 include(Scripts.cmake)
 
 # set install dir
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
 # include all the includes!
-include_directories(Core/)
-include_directories(Physics/)
-include_directories(Simulation/)
-include_directories(Cluster/)
+include_directories(Core/inc)
+include_directories(Physics/inc)
+include_directories(Simulation/inc)
+include_directories(Cluster/inc)
 if(BUILD_GEANT4)
-  include_directories(Geant4/)
+  include_directories(Geant4/inc)
 endif()
 
-##add subdirs
+#add subdirs CMakeLists.txt
 add_subdirectory(Core)
 add_subdirectory(Physics)
 add_subdirectory(Simulation)
