@@ -117,6 +117,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MTExecutor.html">MTExecutor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class to perform multiple tasks in MT mode (experimental!)  <a href="classActRoot_1_1MTExecutor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Options.html">Options</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1OutputData.html">OutputData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilData.html">SilData</a></td></tr>
@@ -158,6 +160,17 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">EMerger</a>
  }</td></tr>
 <tr class="separator:af4fc5584270a087d7c0483fe83951ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e55379eb4b32006ebd666053febf93"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93">ModeType</a> { <br />
+&#160;&#160;<a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ae27e8d50bc005fc6c474bdeb6581d1c3">ECluster</a>
+, <a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a380fa3938dd6d346f996ba762346dcd7">EData</a>
+, <a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10">EFilter</a>
+, <a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a3e80ccae48fde6e2f22188846239d6aa">EMerger</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2">ECorrect</a>
+, <a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e">ENone</a>
+<br />
+ }</td></tr>
+<tr class="separator:a73e55379eb4b32006ebd666053febf93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -230,16 +243,59 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7"></a>EModular&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa"></a>EMerger&#160;</td><td class="fielddoc"></td></tr>
 </table>
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">EActar</a>,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ESilicons</a>,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">EModular</a>,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">EMerger</a></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">EActar</a>,</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ESilicons</a>,</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">EModular</a>,</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">EMerger</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;};</div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">ActRoot::DetectorType::EMerger</a></div><div class="ttdeci">@ EMerger</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">ActRoot::DetectorType::EActar</a></div><div class="ttdeci">@ EActar</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">ActRoot::DetectorType::EModular</a></div><div class="ttdeci">@ EModular</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ActRoot::DetectorType::ESilicons</a></div><div class="ttdeci">@ ESilicons</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a73e55379eb4b32006ebd666053febf93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e55379eb4b32006ebd666053febf93">&#9670;&nbsp;</a></span>ModeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93">ActRoot::ModeType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93ae27e8d50bc005fc6c474bdeb6581d1c3"></a>ECluster&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93a380fa3938dd6d346f996ba762346dcd7"></a>EData&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10"></a>EFilter&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93a3e80ccae48fde6e2f22188846239d6aa"></a>EMerger&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2"></a>ECorrect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e"></a>ENone&#160;</td><td class="fielddoc"></td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ae27e8d50bc005fc6c474bdeb6581d1c3">ECluster</a>,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a380fa3938dd6d346f996ba762346dcd7">EData</a>,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10">EFilter</a>,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">EMerger</a>,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2">ECorrect</a>,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e">ENone</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a380fa3938dd6d346f996ba762346dcd7"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a380fa3938dd6d346f996ba762346dcd7">ActRoot::ModeType::EData</a></div><div class="ttdeci">@ EData</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10">ActRoot::ModeType::EFilter</a></div><div class="ttdeci">@ EFilter</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e">ActRoot::ModeType::ENone</a></div><div class="ttdeci">@ ENone</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2">ActRoot::ModeType::ECorrect</a></div><div class="ttdeci">@ ECorrect</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93ae27e8d50bc005fc6c474bdeb6581d1c3"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ae27e8d50bc005fc6c474bdeb6581d1c3">ActRoot::ModeType::ECluster</a></div><div class="ttdeci">@ ECluster</div></div>
 </div><!-- fragment -->
 </div>
 </div>
