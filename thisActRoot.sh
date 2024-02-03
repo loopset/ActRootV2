@@ -4,6 +4,9 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # And now export
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:"${SCRIPT_DIR}/install/lib/"
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:"${SCRIPT_DIR}/install/lib"
 export ROOT_INCLUDE_PATH=${ROOT_INCLUDE_PATH}:"${SCRIPT_DIR}/install/include"
+if [ -d ${SCRIPT_DIR}/install/bin ]; then
+    export PATH=${PATH}:"${SCRIPT_DIR}/install/bin"
+fi
 export ACTROOT=${SCRIPT_DIR}

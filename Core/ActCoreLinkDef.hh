@@ -25,6 +25,13 @@
 // pure virtual parameters structure
 #pragma link C++ class ActRoot::VParameters + ;
 
+// options manager
+#pragma link C++ class ActRoot::Options;
+
+// type definitions
+#pragma link C++ enum ActRoot::DetectorType + ;
+#pragma link C++ enum ActRoot::ModeType + ;
+
 // tpc
 #pragma link C++ class ActRoot::TPCDetector + ;
 #pragma link C++ class ActRoot::Voxel + ;
@@ -34,7 +41,6 @@
 #pragma link C++ class ActRoot::InputData;
 #pragma link C++ class ActRoot::OutputData;
 #pragma link C++ class ActRoot::JoinData;
-#pragma link C++ enum class ActRoot::DetectorType + ;
 #pragma link C++ class ActRoot::InputBlock;
 #pragma link C++ class ActRoot::InputParser;
 

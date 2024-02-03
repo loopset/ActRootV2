@@ -11,7 +11,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_INSTALL_MESSAGE LAZY) # print only updates of installed files
 
 # read Geant4 options
-option(BUILD_GEANT4 "Build ActGeant4 library" OFF)#disabled by default
+option(BUILD_GEANT4 "Build ActGeant4 library" OFF) #disabled by default
 #ROOT
 # Gui component is of paramount importance to Event viewers
 find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS Gui MathCore Physics GenVector)
@@ -27,6 +27,7 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
 # include all the includes!
 include_directories(Core/inc)
+include_directories(Utility/inc)
 include_directories(Physics/inc)
 include_directories(Simulation/inc)
 include_directories(Cluster/inc)
@@ -36,6 +37,7 @@ endif()
 
 #add subdirs CMakeLists.txt
 add_subdirectory(Core)
+add_subdirectory(Utility)
 add_subdirectory(Physics)
 add_subdirectory(Simulation)
 add_subdirectory(Cluster)
