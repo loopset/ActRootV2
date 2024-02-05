@@ -84,7 +84,7 @@ void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
         fCalMan->ReadCalibration(file);
 }
 
-void ActRoot::SilDetector::InitInputRaw(std::shared_ptr<TTree> tree)
+void ActRoot::SilDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
     if(fMEvent)
         delete fMEvent;
@@ -100,9 +100,9 @@ void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("SilData", &fData);
 }
 
-void ActRoot::SilDetector::InitInputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::SilDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::SilDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::SilDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::SilDetector::SetEventData(VData* vdata)
 {
@@ -114,7 +114,7 @@ void ActRoot::SilDetector::SetEventData(VData* vdata)
         std::cout << "Could not dynamic_cast to SilData!" << '\n';
 }
 
-void ActRoot::SilDetector::BuildEventData()
+void ActRoot::SilDetector::BuildEventData(int run, int entry)
 {
     for(auto& coas : fMEvent->CoboAsad)
     {
@@ -147,14 +147,14 @@ void ActRoot::SilDetector::BuildEventData()
     }
 }
 
-void ActRoot::SilDetector::BuildEventMerger() {}
+void ActRoot::SilDetector::BuildEventFilter() {}
 
 void ActRoot::SilDetector::ClearEventData()
 {
     fData->Clear();
 }
 
-void ActRoot::SilDetector::ClearEventMerger() {}
+void ActRoot::SilDetector::ClearEventFilter() {}
 
 void ActRoot::SilDetector::Print() const {}
 

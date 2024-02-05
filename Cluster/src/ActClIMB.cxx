@@ -3,25 +3,20 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
-#include "ActLine.h"
+#include "ActOptions.h"
 #include "ActTPCDetector.h"
+#include "ActVCluster.h"
 #include "ActVoxel.h"
 
-#include "TEnv.h"
-#include "TRandom.h"
-#include "TSystem.h"
-
 #include <algorithm>
-#include <functional>
 #include <iostream>
 #include <numeric>
-#include <set>
 #include <string>
 #include <tuple>
 #include <utility>
 #include <vector>
 
-ActCluster::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : fTPC(tpc), fMinPoints(minPoints)
+ActCluster::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : VCluster(minPoints), fTPC(tpc)
 {
     InitMatrix();
 }
@@ -33,23 +28,19 @@ void ActCluster::ClIMB::Print() const
     std::cout << "............................." << RESET << '\n';
 }
 
-void ActCluster::ClIMB::ReadConfigurationFile(const std::string& infile)
+void ActCluster::ClIMB::PrintReports() const
 {
-    // automatically get project path from gEnv
-    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/climb.conf";
-    std::string realfile {};
-    if(!gSystem->AccessPathName(envfile.c_str()))
-        realfile = envfile;
-    else if(infile.length() > 0)
-        realfile = infile;
-    else
-    {
-        std::cout << BOLDMAGENTA << ".ransac config file not found -> Using built-in configuration" << '\n';
-        return;
-    }
+    std::cout << BOLDYELLOW << ".... ClIMB time report ...." << '\n';
+    fClock.Print();
+    std::cout << ".............................." << RESET << '\n';
+}
+
+void ActCluster::ClIMB::ReadConfiguration()
+{
+    std::string conf {ActRoot::Options::GetInstance()->GetConfigDir()};
+    conf += "climb.conf";
     // Parse!
-    ActRoot::InputParser parser {realfile};
+    ActRoot::InputParser parser {conf};
     auto cb {parser.GetBlock("Climb")};
     if(cb->CheckTokenExists("MinPoints"))
         fMinPoints = cb->GetInt("MinPoints");
@@ -144,8 +135,11 @@ void ActCluster::ClIMB::InitIndexes()
     std::iota(fIndexes.begin(), fIndexes.end(), 0);
 }
 
-ActCluster::ClIMB::RetType ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool returnNoise)
+ActCluster::VCluster::ClusterRet ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
 {
+    // Inner timer
+    fClock.Start(false);
+
     fVoxels = voxels; // copy in internal variable to avoid modifications
     // Init Indexes structure
     InitIndexes();
@@ -196,7 +190,7 @@ ActCluster::ClIMB::RetType ActCluster::ClIMB::Run(const std::vector<ActRoot::Vox
         }
         else
         {
-            if(returnNoise)
+            if(addNoise)
             {
                 for(auto& voxel : currentCluster.GetRefToVoxels())
                     nret.push_back(std::move(voxel));
@@ -206,5 +200,6 @@ ActCluster::ClIMB::RetType ActCluster::ClIMB::Run(const std::vector<ActRoot::Vox
         it = std::find_if_not(fIndexes.begin(), fIndexes.end(), lambda);
     }
     fVoxels.clear();
+    fClock.Stop();
     return std::make_pair(std::move(cret), std::move(nret));
 }

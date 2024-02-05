@@ -5,7 +5,9 @@
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
+#include "ActSilDetector.h"
 #include "ActTPCData.h"
+#include "ActTPCDetector.h"
 
 #include "Rtypes.h"
 
@@ -54,8 +56,8 @@ void ActRoot::HistogramPainter::ReadConfigurationFile(const std::string& file)
 
 void ActRoot::HistogramPainter::SendParameters(ActRoot::DetectorManager* detman)
 {
-    fTPC = detman->GetTPCDetector()->GetParameters();
-    fSil = detman->GetSilDetector()->GetParameters();
+    fTPC = detman->GetDetectorAs<TPCDetector>()->GetParameters();
+    fSil = detman->GetDetectorAs<SilDetector>()->GetParameters();
 }
 
 void ActRoot::HistogramPainter::Init()

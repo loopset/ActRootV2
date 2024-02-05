@@ -6,8 +6,6 @@ A class holding all the detector info and the main interface to the operations
 performed on its data
 */
 #include "ActCalibrationManager.h"
-#include "ActCorrDetector.h"
-#include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
 #include "ActSilDetector.h"
@@ -20,9 +18,10 @@ performed on its data
 // #include "BS_thread_pool.hpp"
 
 #include <memory>
+#include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
-#include <vector>
 
 namespace ActRoot
 {
@@ -31,82 +30,62 @@ namespace ActRoot
 class DetectorManager
 {
 private:
-    std::unordered_map<DetectorType, std::shared_ptr<VDetector>> fDetectors; //!< Pointer to detectors
-    std::unordered_map<std::string, DetectorType> fDetDatabase;              //!< Equivalence .detector file [Header] to
+    static std::unordered_map<std::string, DetectorType> fDetDatabase;       //!< Equivalence .detector file [Header] to
                                                                              //!< VDetector pointer
+    std::unordered_map<DetectorType, std::shared_ptr<VDetector>> fDetectors; //!< Pointer to detectors
     std::shared_ptr<CalibrationManager> fCalMan {}; //!< CalibrationManager is now included in DetectorManager to
                                                     //!< avoid singleton
-    std::shared_ptr<MergerDetector> fMerger {};     //!< Merge detector in final step (does not inheritate from
-                                                    //!< VDetector so far)
-    std::shared_ptr<CorrDetector> fCorr {};         //!< A simple detector to correct Qave and Zoffset
-    bool fIsRawOk {};                               //!< Check that SetRawToData has been called
-    bool fIsCluster {};                             //!< Convert Raw to Data only for TPC
-    bool fIsData {};                                //!< Convert Raw to Data only for Sil and others
     bool fIsVerbose {};
+    ModeType fMode {ModeType::ENone};
 
 public:
-    DetectorManager();
-    DetectorManager(const std::string& file);
+    DetectorManager() = default;
+    DetectorManager(ModeType mode);
     ~DetectorManager() {};
+
+    // Setter of mode
+    void SetMode(ModeType mode) { fMode = mode; }
+    // Get mode
+    ModeType GetMode() const { return fMode; }
+
+    // Getters of equivalences between DetectorMode and string
+    static std::string GetDetectorTypeStr(DetectorType type);
 
     // Getter of CalibrationManager
     std::shared_ptr<CalibrationManager> GetCalMan() { return fCalMan; }
 
     // Read configurations
-    void ReadConfiguration(const std::string& file, bool print = true);
+    void ReadDetectorFile(const std::string& file, bool print = true);
+    void ReadCalibrationsFile(const std::string& file);
     void Reconfigure();
-    void ReadCalibrations(const std::string& file);
 
-    // Set is verbose mode
-    void SetIsVerbose()
-    {
-        fIsVerbose = true;
-        fMerger->SetIsVerbose();
-    }
+    // Set input and output data
+    void InitInput(std::shared_ptr<TTree> input);
+    void InitOutput(std::shared_ptr<TTree> output);
 
-    // Set detectors to treat when building Raw -> Data
-    void SetIsCluster()
-    {
-        fIsCluster = true;
-        fIsData = false;
-        fIsRawOk = true;
-    }
-    void SetIsData()
-    {
-        fIsData = true;
-        fIsCluster = false;
-        fIsRawOk = true;
-    }
+    // Build functions
+    void BuildEvent();
+
     // Get detector class
     std::shared_ptr<VDetector> GetDetector(DetectorType type) { return fDetectors[type]; }
-    std::shared_ptr<TPCDetector> GetTPCDetector()
+    template <typename T>
+    std::shared_ptr<T> GetDetectorAs()
     {
-        return std::dynamic_pointer_cast<TPCDetector>(fDetectors[DetectorType::EActar]);
+        if(std::is_same<T, TPCDetector>::value)
+            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EActar]);
+        else if(std::is_same<T, SilDetector>::value)
+            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::ESilicons]);
+        else if(std::is_same<T, ModularDetector>::value)
+            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EModular]);
+        else if(std::is_same<T, MergerDetector>::value)
+            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EMerger]);
+        else
+            throw std::runtime_error("DetectorManager::GetDetectorAs(): could not cast to passed type");
     }
-    std::shared_ptr<SilDetector> GetSilDetector()
-    {
-        return std::dynamic_pointer_cast<SilDetector>(fDetectors[DetectorType::ESilicons]);
-    }
-    std::shared_ptr<ModularDetector> GetModularDetector()
-    {
-        return std::dynamic_pointer_cast<ModularDetector>(fDetectors[DetectorType::EModular]);
-    }
+
+    void SetIsVerbose() { fIsVerbose = true; }
+
     void DeleteDetector(DetectorType type);
-
-    // Init INPUT data
-    void InitInputRaw(std::shared_ptr<TTree> input);
-    void InitInputMerger(std::shared_ptr<TTree> input);
-    void InitInputCorr(std::shared_ptr<TTree> input);
-
-    // Init OUTPUT data
-    void InitOutputData(std::shared_ptr<TTree> output);
-    void InitOutputMerger(std::shared_ptr<TTree> output);
-    void InitOutputCorr(std::shared_ptr<TTree> output);
-
-    // Builder of EVENTs
-    void BuildEventData();
-    void BuildEventMerger(int run, int entry);
-    void BuildEventCorr();
 
     void Print() const;
 
@@ -114,11 +93,9 @@ public:
 
     void SetEventData(DetectorType det, VData* vdata);
 
-    // Others
-    std::shared_ptr<MergerDetector> GetMerger() const { return fMerger; }
-    std::shared_ptr<CorrDetector> GetCorr() const { return fCorr; }
-
 private:
+    void InitDetectors();
+    void InitCalibrationManager();
     void InitMerger(bool print);
     void SendParametersToMerger();
     void InitCorr(bool print);

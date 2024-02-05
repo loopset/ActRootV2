@@ -6,17 +6,27 @@
 #include "TSystem.h"
 
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <string>
 
 std::unordered_map<ActRoot::ModeType, std::string> ActRoot::Options::fModeTable = {
     {ModeType::ENone, "None"},     {ModeType::ECluster, "Cluster"}, {ModeType::EData, "Data"},
-    {ModeType::EFilter, "Filter"}, {ModeType::EMerger, "Merger"},   {ModeType::ECorrect, "Correct"}};
+    {ModeType::EFilter, "Filter"}, {ModeType::EMerge, "Merger"},    {ModeType::ECorrect, "Correct"}};
+
+std::shared_ptr<ActRoot::Options> ActRoot::Options::fInstance = nullptr;
 
 ActRoot::Options::Options(int argc, char** argv)
 {
     GetProjectDir();
     Parse(argc, argv);
+}
+
+std::shared_ptr<ActRoot::Options> ActRoot::Options::GetInstance(int argc, char** argv)
+{
+    if(!fInstance)
+        fInstance = std::shared_ptr<Options>(new Options(argc, argv));
+    return fInstance;
 }
 
 ActRoot::ModeType ActRoot::Options::ConvertToMode(const std::string& mode)
@@ -44,7 +54,7 @@ void ActRoot::Options::Parse(int argc, char** argv)
             fDetFile = argv[++i];
         else if(arg == "-c" && argc >= i + 1)
             fCalFile = argv[++i];
-        else if(arg == "-in" && argc >= i + 1)
+        else if((arg == "-in" || arg == "-r") && argc >= i + 1)
             fInFile = argv[++i];
         else if(arg == "-out" && argc >= i + 1)
             fOutFile = argv[++i];
@@ -77,8 +87,8 @@ void ActRoot::Options::Print() const
         std::cout << "-> Threads      : multi" << '\n';
     else
         std::cout << "-> Threads      : single" << '\n';
-    std::cout << "-> Input        :      " << fInFile << '\n';
-    std::cout << "-> Output       :     " << fOutFile << '\n';
+    std::cout << "-> Input        : " << fInFile << '\n';
+    std::cout << "-> Output       : " << fOutFile << '\n';
     std::cout << "--------------------" << RESET << '\n';
 }
 
@@ -87,5 +97,5 @@ std::string ActRoot::Options::GetProjectDir() const
     std::string pwd {gSystem->pwd()};
     if(gSystem->AccessPathName((pwd + "/configs").c_str()))
         throw std::runtime_error("ActRoot::Options::GetProjectDir() : " + pwd + " does not contain a configs/ dir");
-    return pwd + "/configs";
+    return pwd;
 }

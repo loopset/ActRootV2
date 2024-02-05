@@ -5,18 +5,18 @@
 #include "ActInputParser.h"
 #include "ActInterval.h"
 #include "ActLine.h"
+#include "ActOptions.h"
+#include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActUtils.h"
 #include "ActVoxel.h"
 
-#include "TEnv.h"
 #include "TMath.h"
 #include "TMathBase.h"
 #include "TMatrixD.h"
 #include "TMatrixDfwd.h"
 #include "TMatrixF.h"
 #include "TStopwatch.h"
-#include "TSystem.h"
 
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
@@ -36,24 +36,19 @@
 #include <utility>
 #include <vector>
 
-void ActCluster::MultiStep::ReadConfigurationFile(const std::string& infile)
+void ActCluster::MultiStep::SetTPCData(ActRoot::TPCData* data)
 {
-    // automatically get project path from gEnv
-    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/multistep.conf";
-    std::string realfile {};
-    if(!gSystem->AccessPathName(envfile.c_str()))
-        realfile = envfile;
-    else if(infile.length() > 0)
-        realfile = infile;
-    else
-    {
-        std::cout << BOLDMAGENTA << "filter.climb config file not found -> Using built-in configuration" << '\n';
-        return;
-    }
+    fData = data;
+    fClusters = &(data->fClusters);
+    fRPs = &(data->fRPs);
+}
 
+void ActCluster::MultiStep::ReadConfiguration()
+{
+    auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
+    conf += "/multistep.conf";
     // Parse!
-    ActRoot::InputParser parser {realfile};
+    ActRoot::InputParser parser {conf};
     auto mb {parser.GetBlock("MultiStep")};
     // General parameters
     if(mb->CheckTokenExists("IsEnabled"))
@@ -266,7 +261,7 @@ void ActCluster::MultiStep::Run()
     ResetIndex();
 }
 
-void ActCluster::MultiStep::PrintClocks() const
+void ActCluster::MultiStep::PrintReports() const
 {
     std::cout << BOLDYELLOW << "==== MultiStep time report ====" << '\n';
     for(int i = 0; i < fCLabels.size(); i++)
@@ -456,7 +451,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
                 std::cout << "Not beam       = " << notBeam.size() << RESET << '\n';
             }
             // Check if satisfies minimum voxel requirement to be clusterized again
-            if(refToVoxels.size() <= fClimb->GetMinPoints())
+            if(refToVoxels.size() <= fAlgo->GetMinPoints())
             {
                 // Delete remaining beam-like cluster
                 it = fClusters->erase(it);
@@ -476,7 +471,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
             std::vector<ActCluster::Cluster> newClusters;
             std::vector<ActRoot::Voxel> noise;
             if(fFitNotBeam)
-                std::tie(newClusters, noise) = fClimb->Run(notBeam);
+                std::tie(newClusters, noise) = fAlgo->Run(notBeam);
             // Set flag accordingly
             for(auto& cl : newClusters)
                 cl.SetIsBreakBeam(true);
@@ -545,7 +540,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
                 // Reprocess
                 std::vector<ActCluster::Cluster> newClusters;
                 std::vector<ActRoot::Voxel> noise;
-                std::tie(newClusters, noise) = fClimb->Run(newVoxels);
+                std::tie(newClusters, noise) = fAlgo->Run(newVoxels);
                 // Set not to merge these new ones
                 // for(auto& ncl : newClusters)
                 //     ncl.SetToMerge(false);
@@ -1120,7 +1115,7 @@ void ActCluster::MultiStep::PerformFinerFits()
         }
         else
         {
-            if(it->GetSizeOfVoxels() <= fClimb->GetMinPoints())
+            if(it->GetSizeOfVoxels() <= fAlgo->GetMinPoints())
                 it = fClusters->erase(it);
             else
                 it++;
@@ -1144,7 +1139,7 @@ void ActCluster::MultiStep::PerformFinerFits()
         // Compare sizes
         auto remainSize {std::distance(refVoxels.begin(), toKeep)};
         // Indeed delete region and refit
-        if(remainSize > fClimb->GetMinPoints())
+        if(remainSize > fAlgo->GetMinPoints())
         {
             refVoxels.erase(toKeep, refVoxels.end());
             it->ReFit();
@@ -1185,7 +1180,7 @@ void ActCluster::MultiStep::PerformFinerFits()
                                         })};
             // if enough voxels remain
             auto remain {std::distance(refVoxels.begin(), itKeep)};
-            if(remain > fClimb->GetMinPoints())
+            if(remain > fAlgo->GetMinPoints())
             {
                 refVoxels.erase(itKeep, refVoxels.end());
                 it->ReFit();
@@ -1250,7 +1245,7 @@ void ActCluster::MultiStep::PerformFinerFits()
                            })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if enough voxels remain
-        if(newSize > fClimb->GetMinPoints())
+        if(newSize > fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();

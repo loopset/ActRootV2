@@ -17,83 +17,83 @@
 
 namespace ActRoot
 {
-    //! A class holding basic silicon parameters
-    /*!
-      For now, just keeps sizes of silicons
-      using strings as identifiers and VXI equivalences
-    */
-    class SilParameters : public VParameters
-    {
-    private:
-        std::unordered_map<std::string, int> fSizes; //!< Sizes of silicons based on string, for [0, max]
-        std::map<int, std::pair<std::string, int>> fVXI;
+//! A class holding basic silicon parameters
+/*!
+  For now, just keeps sizes of silicons
+  using strings as identifiers and VXI equivalences
+*/
+class SilParameters : public VParameters
+{
+private:
+    std::unordered_map<std::string, int> fSizes; //!< Sizes of silicons based on string, for [0, max]
+    std::map<int, std::pair<std::string, int>> fVXI;
 
-    public:
-        // Setters
-        void SetLayer(const std::string& key, int size) { fSizes[key] = size; }
-        // Getters
-        std::vector<std::string> GetKeys() const;
-        int GetSizeOf(const std::string& key) { return fSizes[key]; }
-        void Print() const override; //!< Dump info stored
-        std::pair<std::string, int> GetSilIndex(int vxi);
-        void ReadActions(const std::vector<std::string>& layers, const std::vector<std::string>& names,
-                         const std::string& file);
-    };
+public:
+    // Setters
+    void SetLayer(const std::string& key, int size) { fSizes[key] = size; }
+    // Getters
+    std::vector<std::string> GetKeys() const;
+    int GetSizeOf(const std::string& key) { return fSizes[key]; }
+    void Print() const override; //!< Dump info stored
+    std::pair<std::string, int> GetSilIndex(int vxi);
+    void
+    ReadActions(const std::vector<std::string>& layers, const std::vector<std::string>& names, const std::string& file);
+};
 
-    //! Silicon detector class
-    class SilDetector : public VDetector
-    {
-    private:
-        // Parameters
-        SilParameters fPars; //!< Basic detector configurations
-        // Pointer to MEvent
-        MEventReduced* fMEvent {};
-        // Data
-        SilData* fData {}; //!< Pointer to SilData
+//! Silicon detector class
+class SilDetector : public VDetector
+{
+private:
+    // Parameters
+    SilParameters fPars; //!< Basic detector configurations
+    // Pointer to MEvent
+    MEventReduced* fMEvent {};
+    // Data
+    SilData* fData {}; //!< Pointer to SilData
 
-    public:
-        SilDetector() = default;
-        virtual ~SilDetector() = default;
+public:
+    SilDetector() = default;
+    virtual ~SilDetector() = default;
 
-        void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
-        void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
-        void Reconfigure() override;
+    void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
+    void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
+    void Reconfigure() override;
 
-        // Init inputs
-        void InitInputRaw(std::shared_ptr<TTree> tree) override;
-        void InitInputMerger(std::shared_ptr<TTree> tree) override;
+    // Init inputs
+    void InitInputData(std::shared_ptr<TTree> tree) override;
+    void InitInputFilter(std::shared_ptr<TTree> tree) override;
 
-        // Init outputs
-        void InitOutputData(std::shared_ptr<TTree> tree) override;
-        void InitOutputMerger(std::shared_ptr<TTree> tree) override;
+    // Init outputs
+    void InitOutputData(std::shared_ptr<TTree> tree) override;
+    void InitOutputFilter(std::shared_ptr<TTree> tree) override;
 
-        // Builders
-        void BuildEventData() override;
-        void BuildEventMerger() override;
+    // Builders
+    void BuildEventData(int run = -1, int entry = -1) override;
+    void BuildEventFilter() override;
 
-        // Cleaners
-        void ClearEventData() override;
-        void ClearEventMerger() override;
+    // Cleaners
+    void ClearEventData() override;
+    void ClearEventFilter() override;
 
-        // Getters of data
-        SilData* GetEventData() const override { return fData; }
-        VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
+    // Getters of data
+    SilData* GetEventData() const override { return fData; }
+    VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
 
-        // Setters of data
-        void SetEventData(VData* vdata) override;
+    // Setters of data
+    void SetEventData(VData* vdata) override;
 
-        // Getters of parameters
-        SilParameters* GetParameters() override { return &fPars; }
+    // Getters of parameters
+    SilParameters* GetParameters() override { return &fPars; }
 
-        // Printer of configuration
-        void Print() const override;
-        // Printer of reports
-        void PrintReports() const override;
+    // Printer of configuration
+    void Print() const override;
+    // Printer of reports
+    void PrintReports() const override;
 
-        // Share MEvent
-        void SetMEvent(MEventReduced* mevent) override { fMEvent = mevent; }
-        MEventReduced* GetMEvent() override { return fMEvent; }
-    };
+    // Share MEvent
+    void SetMEvent(MEventReduced* mevent) override { fMEvent = mevent; }
+    MEventReduced* GetMEvent() override { return fMEvent; }
+};
 } // namespace ActRoot
 
 #endif

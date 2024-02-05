@@ -1,12 +1,16 @@
 #include "ActEventPainter.h"
 
+#include "ActColors.h"
 #include "ActDetectorManager.h"
 #include "ActHistogramPainter.h"
 #include "ActInputData.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
+#include "ActMergerDetector.h"
 #include "ActTPCData.h"
+#include "ActTPCDetector.h"
+#include "ActTypes.h"
 
 #include "TApplication.h"
 #include "TCanvas.h"
@@ -111,7 +115,7 @@ void ActRoot::EventPainter::DoReconfAndCluster()
     {
         fDetMan->Reconfigure();
         fWrap.ReGet();
-        auto tpc {fDetMan->GetTPCDetector()};
+        auto tpc {fDetMan->GetDetectorAs<TPCDetector>()};
         tpc->SetEventData(fWrap.GetTPCData());
         tpc->Recluster();
         Execute();
@@ -248,7 +252,7 @@ void ActRoot::EventPainter::SetDetectorAndData(const std::string& detfile, const
     auto* input {new InputData(infile, outputAlso)};
     fWrap = std::move(InputWrapper {input});
     // Init detector
-    fDetMan = new DetectorManager(detfile);
+    fDetMan = new DetectorManager(ModeType::EMerge);
     // Init histogram painter
     fHistPainter.SendParameters(fDetMan);
     fHistPainter.SendInputWrapper(&fWrap);
@@ -257,29 +261,30 @@ void ActRoot::EventPainter::SetDetectorAndData(const std::string& detfile, const
 
 void ActRoot::EventPainter::DoVerbosePhysics()
 {
-    // Send data to Merger
-    auto merger {fDetMan->GetMerger()};
-    // 1-> Actar
-    merger->SetEventData(fWrap.GetTPCData());
-    // 2-> Sil
-    merger->SetEventData(fWrap.GetSilData());
-    // 3-> Modular
-    merger->SetEventData(fWrap.GetModularData());
-    // Do not store data; but toy pointer needed
-    fDetMan->InitOutputMerger(nullptr);
-
-    // Enable cloning
-    merger->EnableTPCDataClone();
-    // Build event
-    fDetMan->BuildEventMerger(-1, -1);
-
-    // Point to clone
-    fWrap.SetTPCDataClone2(merger->GetTPCDataClone());
-
-    // Print results
-    fWrap.GetTPCData()->Print();
-    merger->GetEventMerger()->Print();
-    fWrap.SetMergerData(dynamic_cast<MergerData*>(merger->GetEventMerger()));
+    std::cout << BOLDRED << "EventPainter::DoVerbosePhysics(): not implemented yet" << RESET << '\n';
+    // // Send data to Merger
+    // auto merger {fDetMan->GetDetectorAs<MergerDetector>()};
+    // // 1-> Actar
+    // merger->SetEventData(fWrap.GetTPCData());
+    // // 2-> Sil
+    // merger->SetEventData(fWrap.GetSilData());
+    // // 3-> Modular
+    // merger->SetEventData(fWrap.GetModularData());
+    // // Do not store data; but toy pointer needed
+    // fDetMan->InitOutput(nullptr);
+    //
+    // // Enable cloning
+    // merger->EnableTPCDataClone();
+    // // Build event
+    // fDetMan->BuildEventMerger(-1, -1);
+    //
+    // // Point to clone
+    // fWrap.SetTPCDataClone2(merger->GetTPCDataClone());
+    //
+    // // Print results
+    // fWrap.GetTPCData()->Print();
+    // merger->GetEventMerger()->Print();
+    // fWrap.SetMergerData(dynamic_cast<MergerData*>(merger->GetEventMerger()));
     //
     // // Set data
     // auto tpcPhys {fDetMan->GetDetector(DetectorType::EActar)->GetEventPhysics()};

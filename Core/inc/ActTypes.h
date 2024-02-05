@@ -7,7 +7,9 @@ enum class DetectorType
     EActar,
     ESilicons,
     EModular,
-    EMerger
+    EMerger,
+    ECorrections,
+    ENone
 };
 
 enum class ModeType
@@ -15,7 +17,7 @@ enum class ModeType
     ECluster,
     EData,
     EFilter,
-    EMerger,
+    EMerge,
     ECorrect,
     ENone
 };

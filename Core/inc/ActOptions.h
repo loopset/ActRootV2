@@ -3,6 +3,7 @@
 
 #include "ActTypes.h"
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -11,6 +12,8 @@ namespace ActRoot
 class Options
 {
 private:
+    static std::shared_ptr<Options> fInstance;
+
     // mode conversion
     static std::unordered_map<ModeType, std::string> fModeTable;
     bool fIsMT {};
@@ -21,9 +24,16 @@ private:
     std::string fOutFile {};
     ModeType fMode {ModeType::ENone};
 
-public:
+    // make constructors and copy/move operators private
     Options() = default;
     Options(int argc, char** argv);
+
+public:
+    Options(const Options&) = delete;
+    void operator=(const Options&) = delete;
+
+    // Main method to get instance
+    static std::shared_ptr<Options> GetInstance(int argc = 0, char** = nullptr);
 
     // Getters
     ModeType GetMode() const { return fMode; }
@@ -31,11 +41,13 @@ public:
     static std::string GetModeStr(ModeType mode) { return fModeTable[mode]; }
     ModeType ConvertToMode(const std::string& mode);
     bool GetIsMT() const { return fIsMT; }
-    std::string GetDetFile() const { return fDetFile; }
-    std::string GetCalFile() const { return fCalFile; }
-    std::string GetInputFile() const { return fInFile; }
-    std::string GetOutputFile() const { return fOutFile; }
+    std::string GetDetFile() const { return GetConfigDir() + fDetFile; }
+    std::string GetCalFile() const { return GetConfigDir() + fCalFile; }
+    std::string GetInputFile() const { return GetConfigDir() + fInFile; }
+    std::string GetOutputFile() const { return GetConfigDir() + fOutFile; }
     std::string GetProjectDir() const;
+    std::string GetConfigDir() const { return GetProjectDir() + "/configs/"; }
+    std::string GetRunFile() const { return GetConfigDir() + fInFile; }
 
     // Setters
     void SetMode(ModeType mode) { fMode = mode; }

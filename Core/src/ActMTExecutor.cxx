@@ -4,6 +4,7 @@
 #include "ActColors.h"
 #include "ActDetectorManager.h"
 #include "ActInputData.h"
+#include "ActOptions.h"
 #include "ActOutputData.h"
 
 #include "TROOT.h"
@@ -47,13 +48,15 @@ void ActRoot::MTExecutor::SetDetectorConfig(const std::string& detfile, const st
     {
         if(IsThreadEmpty(d)) // skip empty threads
             continue;
-        fDetMans[d] = DetectorManager {};
-        fDetMans[d].ReadConfiguration(detfile, (d == 0) ? true : false);
-        fDetMans[d].ReadCalibrations(calfile);
-        if(fIsCluster)
-            fDetMans[d].SetIsCluster();
-        if(fIsData)
-            fDetMans[d].SetIsData();
+        fDetMans[d] = DetectorManager {ActRoot::Options::GetInstance()->GetMode()};
+        fDetMans[d].ReadDetectorFile(detfile, (d == 0) ? true : false);
+        fDetMans[d].ReadCalibrationsFile(calfile);
+        // fDetMans[d].ReadConfiguration(detfile, (d == 0) ? true : false);
+        // fDetMans[d].ReadCalibrations(calfile);
+        // if(fIsCluster)
+        //     fDetMans[d].SetIsCluster();
+        // if(fIsData)
+        //     fDetMans[d].SetIsData();
     }
 }
 
@@ -109,7 +112,7 @@ void ActRoot::MTExecutor::PrintProgress(int thread, int run, double current, dou
     }
 }
 
-void ActRoot::MTExecutor::BuildEventData()
+void ActRoot::MTExecutor::BuildEvent()
 {
     // Build lambda per worker
     auto build = [this](const int thread)
@@ -117,15 +120,15 @@ void ActRoot::MTExecutor::BuildEventData()
         // ftpcout.println("Running thread ",thread);
         for(const auto& run : fRunsPerThread[thread])
         {
-            fDetMans[thread].InitInputRaw(fInput->GetTree(run));
-            fDetMans[thread].InitOutputData(fOutput->GetTree(run));
+            fDetMans[thread].InitInput(fInput->GetTree(run));
+            fDetMans[thread].InitOutput(fOutput->GetTree(run));
             auto nentries {fInput->GetNEntries(run)};
             StepProgress(thread, nentries);
             // Run for each entry!
             for(int entry = 0; entry < nentries; entry++)
             {
                 fInput->GetEntry(run, entry);
-                fDetMans[thread].BuildEventData();
+                fDetMans[thread].BuildEvent();
                 fOutput->Fill(run);
                 PrintProgress(thread, run, entry + 1, nentries);
             }
@@ -134,79 +137,6 @@ void ActRoot::MTExecutor::BuildEventData()
         }
     };
     // And push to ThreadPool!
-    TStopwatch timer {};
-    timer.Start();
-    for(int thread = 0; thread < fDetMans.size(); thread++)
-    {
-        if(!IsThreadEmpty(thread))
-            ftp.push_task(build, thread);
-    }
-    ftp.wait_for_tasks();
-    timer.Stop();
-    std::cout << std::endl;
-    timer.Print();
-}
-
-void ActRoot::MTExecutor::BuildEventMerger()
-{
-    // Build lambda per worker
-    auto build = [this](const int thread)
-    {
-        // ftpcout.println("Running thread ",thread);
-        for(const auto& run : fRunsPerThread[thread])
-        {
-            // ftpcout.println("->Run ", run);
-            fDetMans[thread].InitInputMerger(fInput->GetTree(run));
-            fDetMans[thread].InitOutputMerger(fOutput->GetTree(run));
-            auto nentries {fInput->GetNEntries(run)};
-            StepProgress(thread, nentries);
-            // Run for each entry!
-            for(int entry = 0; entry < nentries; entry++)
-            {
-                fInput->GetEntry(run, entry);
-                fDetMans[thread].BuildEventMerger(run, entry);
-                fOutput->Fill(run);
-                PrintProgress(thread, run, entry + 1, nentries);
-            }
-            fOutput->Close(run);
-            fInput->Close(run);
-        }
-    };
-    // And push to ThreadPool!
-    TStopwatch timer {};
-    timer.Start();
-    for(int thread = 0; thread < fDetMans.size(); thread++)
-    {
-        if(!IsThreadEmpty(thread))
-            ftp.push_task(build, thread);
-    }
-    ftp.wait_for_tasks();
-    timer.Stop();
-    std::cout << std::endl;
-    timer.Print();
-}
-
-void ActRoot::MTExecutor::BuildEventCorr()
-{
-    auto build = [this](const int thread)
-    {
-        for(const auto& run : fRunsPerThread[thread])
-        {
-            fDetMans[thread].InitInputCorr(fInput->GetTree(run));
-            fDetMans[thread].InitOutputCorr(fOutput->GetTree(run));
-            auto nentries {fInput->GetNEntries(run)};
-            StepProgress(thread, nentries);
-            for(int entry = 0; entry < nentries; entry++)
-            {
-                fInput->GetEntry(run, entry);
-                fDetMans[thread].BuildEventCorr();
-                fOutput->Fill(run);
-                PrintProgress(thread, run, entry + 1, nentries);
-            }
-            fOutput->Close(run);
-            fInput->Close(run);
-        }
-    };
     TStopwatch timer {};
     timer.Start();
     for(int thread = 0; thread < fDetMans.size(); thread++)

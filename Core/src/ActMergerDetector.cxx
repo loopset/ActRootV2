@@ -6,6 +6,7 @@
 #include "ActModularData.h"
 #include "ActModularDetector.h"
 #include "ActMultiStep.h"
+#include "ActOptions.h"
 #include "ActSilData.h"
 #include "ActSilDetector.h"
 #include "ActSilSpecs.h"
@@ -41,25 +42,11 @@
 #include <utility>
 #include <vector>
 
-ActRoot::MergerDetector::MergerDetector()
-{
-    fMultiStep = std::make_shared<ActCluster::MultiStep>();
-}
+ActRoot::MergerDetector::MergerDetector() {}
 
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
     ////////////////// MergerDetector /////////////////////////
-    // automatically get project path from gEnv
-    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/merger.conf";
-    if(gSystem->AccessPathName(envfile.c_str()))
-    {
-        throw std::runtime_error(
-            "MergerDetector::ReadConfiguration: could not locate conf.merger in ActRoot's configs path!");
-    }
-    // Parse!
-    ActRoot::InputParser parser {envfile};
-    block = parser.GetBlock("Merger");
     // Read (mandatory) SilSpecs config file
     if(block->CheckTokenExists("IsEnabled"))
         fIsEnabled = block->GetBool("IsEnabled");
@@ -100,7 +87,6 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     InitClocks();
 
     //////////////// MultiStep algorithm ///////////////////////////
-    fMultiStep->ReadConfigurationFile();
 }
 
 void ActRoot::MergerDetector::InitClocks()
@@ -124,10 +110,20 @@ void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block
 void ActRoot::MergerDetector::Reconfigure()
 {
     ReadConfiguration(nullptr);
-    if(fIsVerbose)
-        fMultiStep->SetIsVerbose();
-    fMultiStep->Print();
     Print();
+}
+
+void ActRoot::MergerDetector::SetParameters(ActRoot::VParameters* pars)
+{
+    if(auto casted {dynamic_cast<TPCParameters*>(pars)}; casted)
+        fTPCPars = casted;
+    else if(auto casted {dynamic_cast<SilParameters*>(pars)}; casted)
+        fSilPars = casted;
+    else if(auto casted {dynamic_cast<ModularParameters*>(pars)}; casted)
+        fModularPars = casted;
+    else
+        throw std::invalid_argument(
+            "MergerDetector::SetParameters(): could not find a proper cast for the passed pointer");
 }
 
 void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
@@ -140,11 +136,11 @@ void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
         fModularData = casted;
 }
 
-void ActRoot::MergerDetector::InitInputRaw(std::shared_ptr<TTree> tree) {}
+void ActRoot::MergerDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree) {}
+void ActRoot::MergerDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
+void ActRoot::MergerDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
     tree->SetBranchStatus("fRaw", false);
     // TPC physics
@@ -166,7 +162,7 @@ void ActRoot::MergerDetector::InitInputMerger(std::shared_ptr<TTree> tree)
     tree->SetBranchAddress("ModularData", &fModularData);
 }
 
-void ActRoot::MergerDetector::InitOutputMerger(std::shared_ptr<TTree> tree)
+void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree)
 {
     if(fMergerData)
         delete fMergerData;
@@ -182,23 +178,14 @@ void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
     // fSilSpecs->Print();
 }
 
-void ActRoot::MergerDetector::BuildEventData() {}
+void ActRoot::MergerDetector::BuildEventFilter() {}
 
-void ActRoot::MergerDetector::DoMultiStep()
-{
-    // Send data to MultiStep
-    fMultiStep->SetClusters(&fTPCData->fClusters);
-    fMultiStep->SetRPs(&fTPCData->fRPs);
-    fMultiStep->Run();
-}
 
 void ActRoot::MergerDetector::DoMerge()
 {
     // Check if is enabled
     if(!fIsEnabled)
         return;
-    // 1-> Reset iterators and check is doable
-    Reset();
     fClocks[0].Start(false);
     auto isDoable {IsDoable()};
     fClocks[0].Stop();
@@ -261,13 +248,13 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[6].Stop();
 }
 
-void ActRoot::MergerDetector::BuildEventMerger()
+void ActRoot::MergerDetector::BuildEventData(int run, int entry)
 {
-    // MultiStep
-    DoMultiStep();
     // Clone before next step if required
     if(fTPCClone)
         *fTPCClone = *fTPCData;
+    // Reset clears iterators of MergerData and sets [run, entry]
+    Reset(run, entry);
     // Merge
     DoMerge();
 }
@@ -359,15 +346,15 @@ bool ActRoot::MergerDetector::GateOthers()
     return condRPX;
 }
 
-void ActRoot::MergerDetector::Reset()
+void ActRoot::MergerDetector::Reset(const int& run, const int& entry)
 {
     // Reset iterators before moving on to work with them
     fBeamIt = fTPCData->fClusters.end();
     fLightIt = fTPCData->fClusters.end();
     fHeavyIt = fTPCData->fClusters.end();
     // Reset other variables
-    fMergerData->fRun = fCurrentRun;
-    fMergerData->fEntry = fCurrentEntry;
+    fMergerData->fRun = run;
+    fMergerData->fEntry = entry;
 }
 
 double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVector& other)
@@ -615,16 +602,15 @@ void ActRoot::MergerDetector::ComputeQProfile()
     fMergerData->fQProf = h;
 }
 
-void ActRoot::MergerDetector::ClearEventData() {}
+void ActRoot::MergerDetector::ClearEventFilter() {}
 
-void ActRoot::MergerDetector::ClearEventMerger()
+void ActRoot::MergerDetector::ClearEventData()
 {
     fMergerData->Clear();
 }
 
 void ActRoot::MergerDetector::Print() const
 {
-    fMultiStep->Print();
 
     std::cout << BOLDYELLOW << ":::: Merger detector ::::" << '\n';
     std::cout << "-> IsEnabled     ? " << std::boolalpha << fIsEnabled << '\n';
@@ -655,9 +641,6 @@ void ActRoot::MergerDetector::Print() const
 
 void ActRoot::MergerDetector::PrintReports() const
 {
-    if(fMultiStep)
-        fMultiStep->PrintClocks();
-
     std::cout << BOLDCYAN << "==== MergerDetector time report ====" << '\n';
     for(int i = 0; i < fClockLabels.size(); i++)
     {

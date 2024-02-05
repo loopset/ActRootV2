@@ -5,20 +5,21 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
+#include "ActMultiStep.h"
+#include "ActOptions.h"
 #include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
+#include "ActTypes.h"
 #include "ActVoxel.h"
 
+#include "TString.h"
 #include "TTree.h"
 
 #include "Math/Point3D.h"
 
-#include <algorithm>
-#include <cmath>
 #include <cstddef>
 #include <exception>
-#include <functional>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -77,28 +78,61 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     }
     if(config->CheckTokenExists("CleanDuplicatedVoxels", true))
         fCleanDuplicatedVoxels = config->GetBool("CleanDuplicatedVoxels");
-    // TPCData -> TPCPhysics analysis options
-    if(config->CheckTokenExists("ClusterMethod"))
-        InitClusterMethod(config->GetString("ClusterMethod"));
+    // Cluster method
+    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECluster)
+        if(config->CheckTokenExists("ClusterMethod"))
+            InitClusterMethod(config->GetString("ClusterMethod"));
+    // Filter method
+    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::EFilter)
+    {
+        if(config->CheckTokenExists("FilterMethod"))
+        {
+            // We need access to Cluster method in Filter method (to get fNPoints)
+            InitClusterMethod(config->GetString("ClusterMethod"));
+            InitFilterMethod(config->GetString("FilterMethod"));
+        }
+    }
 }
 
 void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
 {
-    if(method == "Ransac")
+    TString m {method};
+    m.ToLower();
+    if(m == "ransac")
     {
-        fRansac = std::make_shared<ActCluster::RANSAC>();
-        fRansac->ReadConfigurationFile();
+        auto r {std::make_shared<ActCluster::RANSAC>()};
+        r->ReadConfiguration();
+        fCluster = r;
     }
-    else if(method == "Climb")
+    else if(m == "climb")
     {
-        fClimb = std::make_shared<ActCluster::ClIMB>();
-        fClimb->SetTPCParameters(&fPars);
-        fClimb->ReadConfigurationFile();
+        auto c {std::make_shared<ActCluster::ClIMB>()};
+        c->SetTPCParameters(&fPars);
+        c->ReadConfiguration();
+        fCluster = c;
     }
-    else if(method == "None")
+    else if(m == "none")
         return;
     else
         throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac, Climb and None");
+}
+
+void ActRoot::TPCDetector::InitFilterMethod(const std::string& method)
+{
+    TString m {method};
+    m.ToLower();
+    if(m == "multistep")
+    {
+        auto m {std::make_shared<ActCluster::MultiStep>()};
+        m->SetTPCParameters(&fPars);
+        m->SetClusterPtr(fCluster);
+        m->ReadConfiguration();
+        fFilter = m;
+    }
+    else if(m == "none")
+        return;
+    else
+        throw std::runtime_error("TPCDetector::InitFilterMethod: no listed method from Multistep or None");
 }
 
 void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
@@ -110,7 +144,7 @@ void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
     fCalMan->ReadPadAlign(config->GetString("PadAlign"));
 }
 
-void ActRoot::TPCDetector::InitInputRaw(std::shared_ptr<TTree> tree)
+void ActRoot::TPCDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
     // delete if already exists
     if(fMEvent)
@@ -133,9 +167,20 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("TPCData", &fData);
 }
 
-void ActRoot::TPCDetector::InitInputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::TPCDetector::InitInputFilter(std::shared_ptr<TTree> tree)
+{
+    if(fData)
+        delete fData;
+    fData = new TPCData;
+    tree->SetBranchAddress("TPCData", &fData);
+}
 
-void ActRoot::TPCDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::TPCDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
+{
+    // Directly from input data, because filter
+    // modifies the content on the flight
+    tree->Branch("TPCData", &fData);
+}
 
 void ActRoot::TPCDetector::ClearEventData()
 {
@@ -147,7 +192,10 @@ void ActRoot::TPCDetector::ClearEventData()
         fVoxels->clear();
 }
 
-void ActRoot::TPCDetector::ClearEventMerger() {}
+void ActRoot::TPCDetector::ClearEventFilter()
+{
+    // Not needed because we are reading directly from ttree
+}
 
 void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
 {
@@ -159,7 +207,7 @@ void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
         std::cout << "Error: Could not dynamic_cast to TPCData" << '\n';
 }
 
-void ActRoot::TPCDetector::BuildEventData()
+void ActRoot::TPCDetector::BuildEventData(int run, int entry)
 {
     for(auto& coas : fMEvent->CoboAsad)
     {
@@ -185,24 +233,21 @@ void ActRoot::TPCDetector::BuildEventData()
         CleanPadMatrix();
 
     // And now build clusters!
-    if(fRansac)
-        fData->fClusters = fRansac->Run(*fVoxels);
-    if(fClimb)
-        std::tie(fData->fClusters, fData->fRaw) = fClimb->Run(*fVoxels, true); // enable returning of noise
+    std::tie(fData->fClusters, fData->fRaw) = fCluster->Run(*fVoxels, true); // enable returning of noise
 }
 
 void ActRoot::TPCDetector::Recluster()
 {
     if(!fData)
         throw std::runtime_error("TPCDetector::Recluster() :  cannot recluster without TPCData set!");
-    if(fClimb)
+    if(fCluster)
     {
         std::vector<Voxel> voxels;
         voxels = fData->fRaw;
         for(const auto& cluster : fData->fClusters)
             for(const auto& voxel : cluster.GetVoxels())
                 voxels.push_back(voxel);
-        std::tie(fData->fClusters, fData->fRaw) = fClimb->Run(voxels, true);
+        std::tie(fData->fClusters, fData->fRaw) = fCluster->Run(voxels, true);
     }
 }
 
@@ -303,29 +348,31 @@ void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
     fVoxels->assign(set.begin(), set.end());
 }
 
-void ActRoot::TPCDetector::BuildEventMerger() {}
+void ActRoot::TPCDetector::BuildEventFilter()
+{
+    fFilter->SetTPCData(fData);
+    fFilter->Run();
+}
 
 void ActRoot::TPCDetector::Print() const
 {
-    // Only print algorithm parameters
-    if(fRansac)
-        fRansac->Print();
-    if(fClimb)
-        fClimb->Print();
+    if(fCluster)
+        fCluster->Print();
+    if(fFilter)
+        fFilter->Print();
 }
 
 void ActRoot::TPCDetector::PrintReports() const
 {
-    std::cout << BOLDGREEN << "---- ClusterMethod.Run() timer ----" << '\n';
-    fClusterClock.Print();
-    std::cout << RESET << '\n';
+    if(fCluster)
+        fCluster->PrintReports();
+    if(fFilter)
+        fFilter->PrintReports();
 }
 
 void ActRoot::TPCDetector::Reconfigure()
 {
-    if(fRansac)
-        fRansac->ReadConfigurationFile();
-    if(fClimb)
-        fClimb->ReadConfigurationFile();
+    if(fCluster)
+        fCluster->ReadConfiguration();
     Print();
 }

@@ -67,7 +67,7 @@ void ActRoot::ModularDetector::ReadCalibrations(std::shared_ptr<InputBlock> conf
     ; // Do not calibrate Modular Leaves so far
 }
 
-void ActRoot::ModularDetector::InitInputRaw(std::shared_ptr<TTree> tree)
+void ActRoot::ModularDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
     // if(fMEvent)
     //     delete fMEvent;
@@ -83,9 +83,9 @@ void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
     tree->Branch("ModularData", &fData);
 }
 
-void ActRoot::ModularDetector::InitInputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::ModularDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::ModularDetector::InitOutputMerger(std::shared_ptr<TTree> tree) {}
+void ActRoot::ModularDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::ModularDetector::SetEventData(VData* vdata)
 {
@@ -98,7 +98,7 @@ void ActRoot::ModularDetector::SetEventData(VData* vdata)
 }
 
 
-void ActRoot::ModularDetector::BuildEventData()
+void ActRoot::ModularDetector::BuildEventData(int run, int entry)
 {
     for(auto& coas : fMEvent->CoboAsad)
     {
@@ -119,14 +119,14 @@ void ActRoot::ModularDetector::BuildEventData()
     }
 }
 
-void ActRoot::ModularDetector::BuildEventMerger() {}
+void ActRoot::ModularDetector::BuildEventFilter() {}
 
 void ActRoot::ModularDetector::ClearEventData()
 {
     fData->Clear();
 }
 
-void ActRoot::ModularDetector::ClearEventMerger() {}
+void ActRoot::ModularDetector::ClearEventFilter() {}
 
 void ActRoot::ModularDetector::Print() const {}
 
