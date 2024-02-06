@@ -23,6 +23,7 @@ private:
     std::string fInFile {};
     std::string fOutFile {};
     ModeType fMode {ModeType::ENone};
+    bool fIsVerbose {};
 
     // make constructors and copy/move operators private
     Options() = default;
@@ -40,7 +41,6 @@ public:
     std::string GetModeStr() const { return fModeTable[fMode]; }
     static std::string GetModeStr(ModeType mode) { return fModeTable[mode]; }
     ModeType ConvertToMode(const std::string& mode);
-    bool GetIsMT() const { return fIsMT; }
     std::string GetDetFile() const { return GetConfigDir() + fDetFile; }
     std::string GetCalFile() const { return GetConfigDir() + fCalFile; }
     std::string GetInputFile() const { return GetConfigDir() + fInFile; }
@@ -48,14 +48,17 @@ public:
     std::string GetProjectDir() const;
     std::string GetConfigDir() const { return GetProjectDir() + "/configs/"; }
     std::string GetRunFile() const { return GetConfigDir() + fInFile; }
+    bool GetIsMT() const { return fIsMT; }
+    bool GetIsVerbose() const { return fIsVerbose; }
 
     // Setters
     void SetMode(ModeType mode) { fMode = mode; }
-    void SetIsMT(bool mt) { fIsMT = mt; }
     void SetDetFile(const std::string& file) { fDetFile = file; }
     void SetCalFile(const std::string& file) { fCalFile = file; }
     void SetInputFile(const std::string& file) { fInFile = file; }
     void SetOutputFile(const std::string& file) { fOutFile = file; }
+    void SetIsMT(bool mt) { fIsMT = mt; }
+    void SetIsVerbose() { fIsVerbose = !fIsVerbose; }
 
     // Others
     void Help() const;

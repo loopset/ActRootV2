@@ -65,12 +65,16 @@ public:
     void ClearEventData() override;
     void ClearEventFilter() override;
 
-    // Getters of data
-    ModularData* GetEventData() const override { return fData; }
-    VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
+    // Setters and getters of data
+    void SetInputData(VData* data) override {}
+    ModularData* GetInputData() const override { return nullptr; }
+    void SetOutputData(VData* data) override { fData = data->CastAs<ModularData>(); }
+    ModularData* GetOutputData() const override { return fData; }
 
-    // Setters of data
-    void SetEventData(VData* vdata) override;
+    void SetInputFilter(VData* data) override { fData = data->CastAs<ModularData>(); }
+    ModularData* GetInputFilter() const override { return fData; }
+    void SetOutputFilter(VData* data) override { fData = data->CastAs<ModularData>(); }
+    ModularData* GetOutputFilter() const override { return fData; }
 
     // Getter of parameters
     ModularParameters* GetParameters() override { return &fPars; }

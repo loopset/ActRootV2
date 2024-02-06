@@ -5,6 +5,7 @@
 
 #include "TSystem.h"
 
+#include <ios>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -12,7 +13,8 @@
 
 std::unordered_map<ActRoot::ModeType, std::string> ActRoot::Options::fModeTable = {
     {ModeType::ENone, "None"},     {ModeType::ECluster, "Cluster"}, {ModeType::EData, "Data"},
-    {ModeType::EFilter, "Filter"}, {ModeType::EMerge, "Merger"},    {ModeType::ECorrect, "Correct"}};
+    {ModeType::EFilter, "Filter"}, {ModeType::EMerge, "Merger"},    {ModeType::ECorrect, "Correct"},
+    {ModeType::EVisual, "Visual"}};
 
 std::shared_ptr<ActRoot::Options> ActRoot::Options::fInstance = nullptr;
 
@@ -58,6 +60,8 @@ void ActRoot::Options::Parse(int argc, char** argv)
             fInFile = argv[++i];
         else if(arg == "-out" && argc >= i + 1)
             fOutFile = argv[++i];
+        else if(arg == "-v")
+            fIsVerbose = true;
         else
             throw std::invalid_argument("Options::Parse(): invalid argument : " + arg);
     }
@@ -80,6 +84,7 @@ void ActRoot::Options::Print() const
 {
     std::cout << BOLDCYAN << "---- ActRoot::Options ----" << '\n';
     std::cout << "Loaded options are : " << '\n';
+    std::cout << "-> Verbose      : " << std::boolalpha << fIsVerbose << '\n';
     std::cout << "-> Mode         : " << GetModeStr() << '\n';
     std::cout << "-> Detector     : " << fDetFile << '\n';
     std::cout << "-> Calibrations : " << fCalFile << '\n';

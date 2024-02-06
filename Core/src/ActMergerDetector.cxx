@@ -1,6 +1,7 @@
 #include "ActMergerDetector.h"
 
 #include "ActColors.h"
+#include "ActDetectorManager.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
@@ -12,6 +13,7 @@
 #include "ActSilSpecs.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
+#include "ActTypes.h"
 #include "ActVData.h"
 
 #include "RtypesCore.h"
@@ -42,7 +44,10 @@
 #include <utility>
 #include <vector>
 
-ActRoot::MergerDetector::MergerDetector() {}
+ActRoot::MergerDetector::MergerDetector()
+{
+    fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
+}
 
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
@@ -109,8 +114,10 @@ void ActRoot::MergerDetector::ReadCalibrations(std::shared_ptr<InputBlock> block
 
 void ActRoot::MergerDetector::Reconfigure()
 {
-    ReadConfiguration(nullptr);
-    Print();
+    // Workaround: Reconfigure is intended to reset inner algorithms of detector,
+    // but Merger is itself its detector, so parse again the input file
+    InputParser parser {ActRoot::Options::GetInstance()->GetDetFile()};
+    ReadConfiguration(parser.GetBlock(DetectorManager::GetDetectorTypeStr(DetectorType::EMerger)));
 }
 
 void ActRoot::MergerDetector::SetParameters(ActRoot::VParameters* pars)
@@ -124,16 +131,6 @@ void ActRoot::MergerDetector::SetParameters(ActRoot::VParameters* pars)
     else
         throw std::invalid_argument(
             "MergerDetector::SetParameters(): could not find a proper cast for the passed pointer");
-}
-
-void ActRoot::MergerDetector::SetEventData(ActRoot::VData* vdata)
-{
-    if(auto casted {dynamic_cast<TPCData*>(vdata)}; casted)
-        fTPCData = casted;
-    if(auto casted {dynamic_cast<SilData*>(vdata)}; casted)
-        fSilData = casted;
-    if(auto casted {dynamic_cast<ModularData*>(vdata)}; casted)
-        fModularData = casted;
 }
 
 void ActRoot::MergerDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}

@@ -105,12 +105,17 @@ public:
     void ClearEventData() override;
     void ClearEventFilter() override;
 
-    // Getters of data
-    TPCData* GetEventData() const override { return fData; }
-    VData* GetEventMerger() const override { return nullptr; } // managed by MergerDetector
+    // Setters and getters of data
+    void SetInputData(VData* data) override {}
+    TPCData* GetInputData() const override { return nullptr; }
+    void SetOutputData(VData* data) override { fData = data->CastAs<TPCData>(); }
+    TPCData* GetOutputData() const override { return fData; }
 
-    // Setters of data
-    void SetEventData(VData* vdata) override;
+    void SetInputFilter(VData* data) override { fData = data->CastAs<TPCData>(); }
+    TPCData* GetInputFilter() const override { return fData; }
+    void SetOutputFilter(VData* data) override { fData = data->CastAs<TPCData>(); }
+    TPCData* GetOutputFilter() const override { return fData; }
+
 
     // Getters
     TPCParameters* GetParameters() override { return &fPars; }

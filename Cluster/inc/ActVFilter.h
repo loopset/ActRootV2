@@ -13,6 +13,7 @@ class VFilter
 protected:
     ActRoot::TPCData* fData {};
     std::shared_ptr<ActCluster::VCluster> fAlgo {};
+    bool fIsVerbose {};
 
 public:
     VFilter() = default;
@@ -22,6 +23,9 @@ public:
     ActRoot::TPCData* GetTPCData() const { return fData; }
 
     virtual void SetClusterPtr(std::shared_ptr<ActCluster::VCluster> ptr) { fAlgo = ptr; }
+
+    void SetIsVerbose() { fIsVerbose = !fIsVerbose; }
+    bool GetIsVerbose() const { return fIsVerbose; }
 
     virtual void ReadConfiguration() = 0;
     virtual void Run() = 0;

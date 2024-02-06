@@ -96,11 +96,9 @@ private:
     // Vector of TStopwatch to asses performance of algorithm
     std::vector<TStopwatch> fClocks;
     std::vector<std::string> fCLabels;
-    // Bool to set verbose mode
-    bool fIsVerbose;
 
 public:
-    MultiStep() = default;
+    MultiStep();
     ~MultiStep() override = default;
 
     // Print method

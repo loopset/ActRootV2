@@ -19,6 +19,7 @@ enum class ModeType
     EFilter,
     EMerge,
     ECorrect,
+    EVisual, // for visual verbose in actplot
     ENone
 };
 

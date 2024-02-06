@@ -3,15 +3,13 @@
 
 #include "ActDetectorManager.h"
 #include "ActInputIterator.h"
-#include "ActMergerData.h"
 #include "ActSilDetector.h"
 #include "ActTPCDetector.h"
-#include "ActVData.h"
 
 #include "TCanvas.h"
 #include "TH2.h"
-#include "TH2F.h"
 #include "TPolyLine.h"
+#include "TPolyMarker.h"
 #include "TTree.h"
 
 #include <map>
@@ -23,63 +21,78 @@
 
 namespace ActRoot
 {
-    //!< A class to plot physics info in histograms
-    class HistogramPainter
+//!< A class to plot physics info in histograms
+class HistogramPainter
+{
+public:
+    using Histo2DMap = std::map<int, std::shared_ptr<TH2F>>;
+    using Histo1DMap = std::map<int, std::shared_ptr<TH1F>>;
+    using LineMap = std::map<int, std::vector<std::shared_ptr<TPolyLine>>>;
+    using MarkerMap = std::map<int, std::shared_ptr<TPolyMarker>>;
+
+private:
+    // Canvases, from EventPainter
+    std::vector<TCanvas*>* fCanvas;
+
+    // Pointer to Wrapper
+    InputWrapper* fWrap {};
+
+    // Histograms
+    std::map<int, Histo2DMap> fHist2D;
+    std::map<int, Histo1DMap> fHist1D;
+    std::map<int, LineMap> fLines;
+    std::map<int, MarkerMap> fMarkers;
+    std::map<int, std::shared_ptr<TH2F>> fHistTpc;
+    std::map<int, std::shared_ptr<TH2F>> fHistSil;
+    std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
+    std::map<int, std::shared_ptr<TPolyMarker>> fMarkerTpc;
+
+    // Parameters of detectors
+    TPCParameters* fTPC {};
+    SilParameters* fSil {};
+
+    // Silicon map
+    std::unordered_map<std::string, std::vector<std::pair<int, int>>> fSilMap;
+
+    // Store settings read in config file
+    bool fShowHistStats {false};
+
+public:
+    HistogramPainter();
+
+    // Initialization of histogram structure
+    void Init();
+
+    // Configuration file of class
+    void ReadConfiguration();
+
+    // Pass parameters from DetMan to this class
+    void SendParameters(DetectorManager* detman);
+
+    // Send wrapper pointer
+    void SendInputWrapper(InputWrapper* wrap) { fWrap = wrap; }
+
+    // TCanvas
+    void SendCanvas(std::vector<TCanvas*>* canv)
     {
-    private:
-        // Canvases
-        std::map<int, TCanvas*> fCanvs;
-        // Histograms
-        std::map<int, std::shared_ptr<TH2F>> fHistTpc;
-        std::map<int, std::shared_ptr<TH2F>> fHistSil;
-        std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
-        std::map<int, std::shared_ptr<TPolyMarker>> fMarkerTpc;
-        // Parameters of detectors
-        TPCParameters* fTPC {};
-        SilParameters* fSil {};
-        // Silicon map
-        std::unordered_map<std::string, std::vector<std::pair<int, int>>> fSilMap;
+        fCanvas = canv;
+        Init();
+    }
 
-        // Pointer to Wrapper
-        InputWrapper* fWrap {};
+    // Main functions
+    void Fill();
+    void Draw();
+    void Reset();
 
-        // Store settings read in config file
-        bool fShowHistStats {false};
-
-    public:
-        HistogramPainter() = default;
-
-        // Initialization of histogram structure
-        void Init();
-
-        // Configuration file of class
-        void ReadConfigurationFile(const std::string& file = "");
-
-        // Pass parameters from DetMan to this class
-        void SendParameters(DetectorManager* detman);
-
-        // Send wrapper pointer
-        void SendInputWrapper(InputWrapper* wrap) { fWrap = wrap; }
-
-        // TCanvas
-        void SetCanvas(int i, TCanvas* canv) { fCanvs[i] = canv; }
-        TCanvas* SetCanvas(int i, const std::string& title, double w, double h);
-        TCanvas* GetCanvas(int i) const { return fCanvs.at(i); }
-
-        // Main functions
-        void Fill();
-        void Draw();
-        void Reset();
-
-    private:
-        void SetPalette(const std::string& name, bool reverse = false);
-        void FillVoxelsHisto();
-        void FillSilHisto(int pad, const std::string& layer);
-        void FillClusterHistos();
-        void DrawPolyLines();
-        void DrawPolyMarkers();
-        void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
-    };
+private:
+    void SetPalette(const std::string& name, bool reverse = false);
+    void FillVoxelsHisto();
+    void FillSilHisto(int pad, const std::string& layer);
+    void FillClusterHistos();
+    void DrawPolyLines();
+    void DrawPolyMarkers();
+    void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
+};
 } // namespace ActRoot
 
 #endif

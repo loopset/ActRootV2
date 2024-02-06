@@ -51,12 +51,16 @@ public:
     virtual void ClearEventData() = 0;
     virtual void ClearEventFilter() = 0;
 
-    // Getters of data structures
-    virtual VData* GetEventData() const { return nullptr; }
-    virtual VData* GetEventMerger() const { return nullptr; }
+    // Setters and getters of data structures
+    virtual void SetInputData(VData* data) = 0;
+    virtual VData* GetInputData() const = 0;
+    virtual void SetOutputData(VData* data) = 0;
+    virtual VData* GetOutputData() const = 0;
 
-    // Getters of data
-    virtual void SetEventData(VData* vdata) = 0;
+    virtual void SetInputFilter(VData* data) = 0;
+    virtual VData* GetInputFilter() const = 0;
+    virtual void SetOutputFilter(VData* data) = 0;
+    virtual VData* GetOutputFilter() const = 0;
 
     // Getters of parameters
     virtual VParameters* GetParameters() = 0;

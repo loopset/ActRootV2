@@ -9,6 +9,7 @@
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActUtils.h"
+#include "ActVFilter.h"
 #include "ActVoxel.h"
 
 #include "TMath.h"
@@ -36,6 +37,12 @@
 #include <utility>
 #include <vector>
 
+ActCluster::MultiStep::MultiStep()
+{
+    fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
+    std::cout << "fIsVerbose : " << fIsVerbose << '\n';
+}
+
 void ActCluster::MultiStep::SetTPCData(ActRoot::TPCData* data)
 {
     fData = data;
@@ -53,8 +60,6 @@ void ActCluster::MultiStep::ReadConfiguration()
     // General parameters
     if(mb->CheckTokenExists("IsEnabled"))
         fIsEnabled = mb->GetBool("IsEnabled");
-    if(mb->CheckTokenExists("IsVerbose"))
-        fIsVerbose = mb->GetBool("IsVerbose");
     // Parameters of break multibeam
     if(mb->CheckTokenExists("EnableBreakMultiBeam"))
         fEnableBreakMultiBeam = mb->GetBool("EnableBreakMultiBeam");

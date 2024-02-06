@@ -87,17 +87,6 @@ void ActRoot::ModularDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::ModularDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::ModularDetector::SetEventData(VData* vdata)
-{
-    fData = nullptr;
-    auto casted {dynamic_cast<ActRoot::ModularData*>(vdata)};
-    if(casted)
-        fData = casted;
-    else
-        std::cout << "Could not dynamic_cast to ModularData!" << '\n';
-}
-
-
 void ActRoot::ModularDetector::BuildEventData(int run, int entry)
 {
     for(auto& coas : fMEvent->CoboAsad)

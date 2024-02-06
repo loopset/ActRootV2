@@ -1,12 +1,14 @@
 #include "ActDetectorManager.h"
 
 #include "ActCalibrationManager.h"
+#include "ActInputIterator.h"
 #include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
 #include "ActSilDetector.h"
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
+#include "ActVData.h"
 
 #include "TTree.h"
 
@@ -28,7 +30,7 @@ std::string ActRoot::DetectorManager::GetDetectorTypeStr(ActRoot::DetectorType t
     for(const auto& [key, val] : fDetDatabase)
         if(val == type)
             return key;
-    return "None";
+    return "";
 }
 
 ActRoot::DetectorManager::DetectorManager(ActRoot::ModeType mode) : fMode(mode)
@@ -52,7 +54,7 @@ void ActRoot::DetectorManager::InitDetectors()
         // Thus far only TPCDetector has a filter implemented
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
     }
-    else if(fMode == ModeType::EMerge)
+    else if(fMode == ModeType::EMerge || fMode == ModeType::EVisual)
     {
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
         fDetectors[DetectorType::ESilicons] = std::make_shared<ActRoot::SilDetector>();
@@ -85,7 +87,7 @@ void ActRoot::DetectorManager::ReadDetectorFile(const std::string& file, bool pr
             det->Print();
     }
     // Workaround for Merger: needs access to all the other parameters
-    if(fMode == ModeType::EMerge)
+    if(fMode == ModeType::EMerge || fMode == ModeType::EVisual)
     {
         auto merger {std::dynamic_pointer_cast<ActRoot::MergerDetector>(fDetectors[DetectorType::EMerger])};
         for(auto& [key, det] : fDetectors)
@@ -111,11 +113,6 @@ void ActRoot::DetectorManager::ReadCalibrationsFile(const std::string& file)
 
 void ActRoot::DetectorManager::Reconfigure()
 {
-    // for(auto& [_, det] : fDetectors)
-    // {
-    //     det->Reconfigure();
-    //     det->Print();
-    // }
     for(auto& [key, det] : fDetectors)
     {
         det->Reconfigure();
@@ -186,6 +183,11 @@ void ActRoot::DetectorManager::BuildEvent()
         fDetectors[DetectorType::EMerger]->ClearEventData();
         fDetectors[DetectorType::EMerger]->BuildEventData();
     }
+    else if(fMode == ModeType::EVisual)
+    {
+        throw std::runtime_error(
+            "DetectorManager::BuildEvent(): EVisual mode not supported: Clone2 is explicited in EventPainter");
+    }
     else if(fMode == ModeType::ECorrect)
         ; // fDetectors[]
     else
@@ -204,11 +206,18 @@ void ActRoot::DetectorManager::PrintReports() const
         det->PrintReports();
 }
 
-void ActRoot::DetectorManager::SetEventData(DetectorType det, VData* vdata)
+void ActRoot::DetectorManager::SendWrapperData(ActRoot::InputWrapper* wrap)
 {
-    if(fDetectors.count(det))
-        fDetectors[det]->SetEventData(vdata);
-    else
-        throw std::runtime_error("DetectorManager::SetEventData(): detector" + GetDetectorTypeStr(det) +
-                                 " not found in fDetectors");
+    // 1-> TPC
+    GetDetectorAs<TPCDetector>()->SetInputFilter(wrap->GetTPCData());
+    // 2-> Sil
+    GetDetectorAs<SilDetector>()->SetInputFilter(wrap->GetSilData());
+    // 3-> Modular
+    GetDetectorAs<ModularDetector>()->SetInputFilter(wrap->GetModularData());
+    // 4-> Merger
+    auto merger {GetDetectorAs<MergerDetector>()};
+    merger->SetInputData(wrap->GetTPCData());
+    merger->SetInputData(wrap->GetSilData());
+    merger->SetInputData(wrap->GetModularData());
+    merger->SetOutputData(wrap->GetMergerData());
 }

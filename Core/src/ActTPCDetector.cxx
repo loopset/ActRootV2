@@ -78,20 +78,16 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     }
     if(config->CheckTokenExists("CleanDuplicatedVoxels", true))
         fCleanDuplicatedVoxels = config->GetBool("CleanDuplicatedVoxels");
+    // Init of algorithms based on mode
+    auto mode {ActRoot::Options::GetInstance()->GetMode()};
     // Cluster method
-    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECluster)
+    if(mode == ModeType::ECluster || mode == ModeType::EFilter || mode == ModeType::EVisual)
         if(config->CheckTokenExists("ClusterMethod"))
             InitClusterMethod(config->GetString("ClusterMethod"));
     // Filter method
-    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::EFilter)
-    {
+    if(mode == ModeType::EFilter || mode == ModeType::EVisual)
         if(config->CheckTokenExists("FilterMethod"))
-        {
-            // We need access to Cluster method in Filter method (to get fNPoints)
-            InitClusterMethod(config->GetString("ClusterMethod"));
             InitFilterMethod(config->GetString("FilterMethod"));
-        }
-    }
 }
 
 void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
@@ -195,16 +191,6 @@ void ActRoot::TPCDetector::ClearEventData()
 void ActRoot::TPCDetector::ClearEventFilter()
 {
     // Not needed because we are reading directly from ttree
-}
-
-void ActRoot::TPCDetector::SetEventData(ActRoot::VData* vdata)
-{
-    fData = nullptr;
-    auto casted {dynamic_cast<ActRoot::TPCData*>(vdata)};
-    if(casted)
-        fData = casted;
-    else
-        std::cout << "Error: Could not dynamic_cast to TPCData" << '\n';
 }
 
 void ActRoot::TPCDetector::BuildEventData(int run, int entry)
@@ -374,5 +360,6 @@ void ActRoot::TPCDetector::Reconfigure()
 {
     if(fCluster)
         fCluster->ReadConfiguration();
-    Print();
+    if(fFilter)
+        fFilter->ReadConfiguration();
 }

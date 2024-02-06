@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -126,12 +127,26 @@ public:
     void ClearEventData() override;
     void ClearEventFilter() override;
 
-    // Getters of data
-    VData* GetEventData() const override { return nullptr; }
-    VData* GetEventMerger() const override { return fMergerData; } // managed by MergerDetector
+    // Setters and getters of data
+    inline void SetInputData(VData* data) override
+    {
+        if(auto casted {data->CastAs<TPCData>()}; casted)
+            fTPCData = casted;
+        else if(auto casted {data->CastAs<SilData>()}; casted)
+            fSilData = casted;
+        else if(auto casted {data->CastAs<ModularData>()}; casted)
+            fModularData = casted;
+        else
+            throw std::invalid_argument("MergerDetector::SetInputData(): could not cast to any input data type!");
+    }
+    VData* GetInputData() const override { return nullptr; }
+    void SetOutputData(VData* data) override { fMergerData = data->CastAs<MergerData>(); }
+    MergerData* GetOutputData() const override { return fMergerData; }
 
-    // Setters of data
-    void SetEventData(VData* vdata) override;
+    void SetInputFilter(VData* data) override {}
+    VData* GetInputFilter() const override { return nullptr; }
+    void SetOutputFilter(VData* data) override {}
+    VData* GetOutputFilter() const override { return nullptr; }
 
     // Getters of parameters
     VParameters* GetParameters() override { return nullptr; }

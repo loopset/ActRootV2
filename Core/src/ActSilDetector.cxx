@@ -104,16 +104,6 @@ void ActRoot::SilDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
 
 void ActRoot::SilDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
 
-void ActRoot::SilDetector::SetEventData(VData* vdata)
-{
-    fData = nullptr;
-    auto casted {dynamic_cast<ActRoot::SilData*>(vdata)};
-    if(casted)
-        fData = casted;
-    else
-        std::cout << "Could not dynamic_cast to SilData!" << '\n';
-}
-
 void ActRoot::SilDetector::BuildEventData(int run, int entry)
 {
     for(auto& coas : fMEvent->CoboAsad)

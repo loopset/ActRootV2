@@ -12,6 +12,7 @@
 #include <map>
 #include <memory>
 #include <stdexcept>
+#include <string>
 #include <utility>
 
 ActRoot::InputIterator::InputIterator(const InputData* input)
@@ -164,18 +165,52 @@ bool ActRoot::InputIterator::GoTo(int run, int entry)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ActRoot::InputIterator::Print() const
+{
+    std::cout << "···· InputIterator ····" << '\n';
+    std::cout << " -> Run : " << fCurrentRun << '\n';
+    std::cout << " -> Entry : " << fCurrentEntry << '\n';
+    std::cout << "······························" << '\n';
+}
 
-ActRoot::InputWrapper::InputWrapper(ActRoot::InputData* input) : fInput(input), fIt(ActRoot::InputIterator(input)) {}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+ActRoot::InputWrapper::InputWrapper(const std::string& file, bool addOut)
+{
+    fInput = new InputData {file, addOut};
+    fIt = InputIterator {fInput};
+
+    // Init pointers
+    fTPCData = new TPCData;
+    fTPCClone = new TPCData;
+    fTPCClone2 = new TPCData;
+    fSilData = new SilData;
+    fModularData = new ModularData;
+    fMergerData = new MergerData;
+}
+
+ActRoot::InputWrapper::~InputWrapper()
+{
+    if(fTPCData)
+        delete fTPCData;
+    if(fTPCClone)
+        delete fTPCClone;
+    if(fTPCClone2)
+        delete fTPCClone2;
+    if(fSilData)
+        delete fSilData;
+    if(fModularData)
+        delete fModularData;
+    if(fMergerData)
+        delete fMergerData;
+    if(fInput)
+        delete fInput;
+}
 
 void ActRoot::InputWrapper::GetEntry(int run, int entry)
 {
     fInput->GetEntry(run, entry);
-    if(fTPCData)
-    {
-        fTPCClone.reset();
-        fTPCClone = std::make_unique<TPCData>(*fTPCData);
-    }
+    if(fTPCData && fTPCClone)
+        *fTPCClone = *fTPCData;
 }
 
 bool ActRoot::InputWrapper::GoNext()
@@ -233,27 +268,11 @@ void ActRoot::InputWrapper::SetBranchAddress(int run)
     auto tree {fInput->GetTree(run)};
     // Set branch addresses if branches exists
     if(tree->FindBranch("TPCData"))
-    {
-        if(!fTPCData)
-            fTPCData = new TPCData;
         tree->SetBranchAddress("TPCData", &fTPCData);
-    }
     if(tree->FindBranch("SilData"))
-    {
-        if(!fSilData)
-            fSilData = new SilData;
         tree->SetBranchAddress("SilData", &fSilData);
-    }
     if(tree->FindBranch("ModularData"))
-    {
-        if(!fModularData)
-            fModularData = new ModularData;
         tree->SetBranchAddress("ModularData", &fModularData);
-    }
     if(tree->FindBranch("MergerData"))
-    {
-        if(!fMergerData)
-            fMergerData = new MergerData;
         tree->SetBranchAddress("MergerData", &fMergerData);
-    }
 }

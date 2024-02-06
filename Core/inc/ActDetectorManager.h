@@ -6,6 +6,7 @@ A class holding all the detector info and the main interface to the operations
 performed on its data
 */
 #include "ActCalibrationManager.h"
+#include "ActInputIterator.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
 #include "ActSilDetector.h"
@@ -66,21 +67,27 @@ public:
     // Build functions
     void BuildEvent();
 
-    // Get detector class
+    // Get detectors class
     std::shared_ptr<VDetector> GetDetector(DetectorType type) { return fDetectors[type]; }
     template <typename T>
-    std::shared_ptr<T> GetDetectorAs()
+    inline std::shared_ptr<T> GetDetectorAs()
     {
+        DetectorType type {DetectorType::ENone};
         if(std::is_same<T, TPCDetector>::value)
-            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EActar]);
+            type = DetectorType::EActar;
         else if(std::is_same<T, SilDetector>::value)
-            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::ESilicons]);
+            type = DetectorType::ESilicons;
         else if(std::is_same<T, ModularDetector>::value)
-            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EModular]);
+            type = DetectorType::EModular;
         else if(std::is_same<T, MergerDetector>::value)
-            return std::dynamic_pointer_cast<T>(fDetectors[DetectorType::EMerger]);
+            type = DetectorType::EMerger;
         else
             throw std::runtime_error("DetectorManager::GetDetectorAs(): could not cast to passed type");
+        if(fDetectors.count(type))
+            return std::dynamic_pointer_cast<T>(fDetectors[type]);
+        else
+            throw std::runtime_error("DetectorManager::GetDetectorAs<>(): could not find " + GetDetectorTypeStr(type) +
+                                     " in fDetectors");
     }
 
     void SetIsVerbose() { fIsVerbose = true; }
@@ -91,7 +98,7 @@ public:
 
     void PrintReports() const;
 
-    void SetEventData(DetectorType det, VData* vdata);
+    void SendWrapperData(InputWrapper* wrap);
 
 private:
     void InitDetectors();

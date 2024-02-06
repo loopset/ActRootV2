@@ -4,7 +4,7 @@
 #include "ActDetectorManager.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
-#include "ActMergerData.h"
+#include "ActOptions.h"
 #include "ActSilDetector.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
@@ -29,22 +29,17 @@
 #include <unordered_map>
 #include <vector>
 
-void ActRoot::HistogramPainter::ReadConfigurationFile(const std::string& file)
+ActRoot::HistogramPainter::HistogramPainter()
 {
-    std::string envfile {gEnv->GetValue("ActRoot.ProjectHomeDir", "")};
-    envfile += "/configs/hist.painter";
-    std::string realfile {};
-    if(!gSystem->AccessPathName(envfile.c_str())) // bizarre bool return for this function
-        realfile = envfile;
-    else if(file.length() > 0)
-        realfile = file;
-    else
-    {
-        std::cout << "Using default configuration for HistogramPainter" << '\n';
-        return;
-    }
+    ReadConfiguration();
+}
+
+void ActRoot::HistogramPainter::ReadConfiguration()
+{
+    auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
+    conf += "hist.painter";
     // Init parser
-    ActRoot::InputParser parser {realfile};
+    ActRoot::InputParser parser {conf};
     auto hb {parser.GetBlock("HistogramPainter")};
     if(hb->CheckTokenExists("Palette", true) && hb->CheckTokenExists("Reverse", true))
         SetPalette(hb->GetString("Palette"), hb->GetBool("Reverse"));
@@ -62,38 +57,34 @@ void ActRoot::HistogramPainter::SendParameters(ActRoot::DetectorManager* detman)
 
 void ActRoot::HistogramPainter::Init()
 {
-    // Check TCanvas are initialized
-    if(!fCanvs[1])
-        std::cout << BOLDMAGENTA << "HistogramPainter canvas 1 not initialized!" << RESET << '\n';
-    if(!fCanvs[2])
-        std::cout << BOLDMAGENTA << "HistogramPainter canvas 2 not initialized!" << RESET << '\n';
+    // Check TCanvas
+    if(fCanvas->size() < 2)
+        throw std::runtime_error("HistogramPainter::Init(): fCanvas has not correct size for E796");
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // TPC
-    fCanvs[1]->Divide(3, 2);
+    fCanvas->at(0)->Divide(3, 2);
     // Pad
-    fHistTpc[1] = std::make_shared<TH2F>("hPad", "Pad;X [pad];Y [pad]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
-                                         fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
+    fHist2D[0][1] = std::make_shared<TH2F>("hPad", "Pad;X [pad];Y [pad]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
+                                           fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
     // Side
-    fHistTpc[2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
-                                         fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+    fHist2D[0][2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
+                                           fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
     // Front
-    fHistTpc[3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0, fTPC->GetNPADSY(),
-                                         fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+    fHist2D[0][3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0, fTPC->GetNPADSY(),
+                                           fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
     ////////////////////////
     // Clusters!
     // Pad
-    fHistTpc[4] = std::make_shared<TH2F>("hPadC", "Clusters in pad;X [pad];Y [pad]", fTPC->GetNPADSX(), 0,
-                                         fTPC->GetNPADSX(), fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
+    fHist2D[0][4] = std::make_shared<TH2F>("hPadC", "Clusters in pad;X [pad];Y [pad]", fTPC->GetNPADSX(), 0,
+                                           fTPC->GetNPADSX(), fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
     // Side
-    fHistTpc[5] =
+    fHist2D[0][5] =
         std::make_shared<TH2F>("hSideC", "Clusters in side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
                                fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
     // Front
-    fHistTpc[6] =
+    fHist2D[0][6] =
         std::make_shared<TH2F>("hFrontC", "Clusters in front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0, fTPC->GetNPADSY(),
                                fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
-    for(auto& [_, h] : fHistTpc)
-        h->SetStats(fShowHistStats);
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Silicons
     fSilMap = {
@@ -123,22 +114,26 @@ void ActRoot::HistogramPainter::Init()
           {2, 1},
           {3, 1}}},
     };
-    fCanvs[2]->Divide(3, 2);
+    fCanvas->at(1)->Divide(3, 2);
     // Left
-    fHistSil[1] = std::make_shared<TH2F>("hL0", "L0;Col;Row", 3, 0.5, 3.5, 3, 0.5, 3.5);
+    fHist2D[1][1] = std::make_shared<TH2F>("hL0", "L0;Col;Row", 3, 0.5, 3.5, 3, 0.5, 3.5);
     // Front L0
-    fHistSil[5] = std::make_shared<TH2F>("hF0", "F0;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
+    fHist2D[1][5] = std::make_shared<TH2F>("hF0", "F0;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
     // Front L1
-    fHistSil[6] = std::make_shared<TH2F>("hF1", "F1;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
-    for(auto& [_, h] : fHistSil)
+    fHist2D[1][6] = std::make_shared<TH2F>("hF1", "F1;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
+    for(auto& [_, h] : fHist2D[1])
     {
-        h->SetStats(fShowHistStats);
         // Style for TEXT option
         h->SetMarkerColor(kRed);
         h->SetMarkerSize(1.8);
     }
     // For number of decimals
     gStyle->SetPaintTextFormat(".2f MeV");
+
+    // Set stats options
+    for(auto& [c, map] : fHist2D)
+        for(auto& [p, h] : map)
+            h->SetStats(fShowHistStats);
 }
 
 void ActRoot::HistogramPainter::FillVoxelsHisto()
@@ -152,11 +147,11 @@ void ActRoot::HistogramPainter::FillVoxelsHisto()
     {
         const auto& pos {voxel.GetPosition()};
         // Pad
-        fHistTpc[1]->Fill(pos.X(), pos.Y(), voxel.GetCharge());
+        fHist2D[0][1]->Fill(pos.X(), pos.Y(), voxel.GetCharge());
         // Side
-        fHistTpc[2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
+        fHist2D[0][2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
         // Front
-        fHistTpc[3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
+        fHist2D[0][3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
     }
     // Fill with voxels of clusters
     for(const auto& cluster : clone->fClusters)
@@ -165,11 +160,11 @@ void ActRoot::HistogramPainter::FillVoxelsHisto()
         {
             const auto& pos {voxel.GetPosition()};
             // Pad
-            fHistTpc[1]->Fill(pos.X(), pos.Y(), voxel.GetCharge());
+            fHist2D[0][1]->Fill(pos.X(), pos.Y(), voxel.GetCharge());
             // Side
-            fHistTpc[2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
+            fHist2D[0][2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
             // Front
-            fHistTpc[3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
+            fHist2D[0][3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
         }
     }
 }
@@ -177,29 +172,22 @@ void ActRoot::HistogramPainter::FillClusterHistos()
 {
     if(!fWrap->GetTPCData())
         return;
-    // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
-    //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
-    //         return;
-    TPCData* data {};
-    if(fWrap->GetTPCDataClone2())
-        data = fWrap->GetTPCDataClone2();
-    else
-        data = fWrap->GetTPCData();
+    auto* data {fWrap->GetTPCData()};
     for(const auto& cluster : data->fClusters)
     {
         for(const auto& voxel : cluster.GetVoxels())
         {
             const auto& pos {voxel.GetPosition()};
             // Pad
-            AttachBinToCluster(fHistTpc[4], pos.X(), pos.Y(), cluster.GetClusterID());
+            AttachBinToCluster(fHist2D[0][4], pos.X(), pos.Y(), cluster.GetClusterID());
             // Side
-            AttachBinToCluster(fHistTpc[5], pos.X(), pos.Z() * fTPC->GetREBINZ(), cluster.GetClusterID());
+            AttachBinToCluster(fHist2D[0][5], pos.X(), pos.Z() * fTPC->GetREBINZ(), cluster.GetClusterID());
             // Front
-            AttachBinToCluster(fHistTpc[6], pos.Y(), pos.Z() * fTPC->GetREBINZ(), cluster.GetClusterID());
+            AttachBinToCluster(fHist2D[0][6], pos.Y(), pos.Z() * fTPC->GetREBINZ(), cluster.GetClusterID());
         }
     }
     // Set basic parameters to a better visualization of TPaletteAxis
-    int nclusters {static_cast<int>(fWrap->GetTPCData()->fClusters.size())};
+    int nclusters {static_cast<int>(data->fClusters.size())};
     int min {};
     int max {};
     int ndiv {};
@@ -218,9 +206,9 @@ void ActRoot::HistogramPainter::FillClusterHistos()
     std::vector<int> clusterPads {4, 5, 6};
     for(const auto& pad : clusterPads)
     {
-        fHistTpc[pad]->SetMinimum(min);
-        fHistTpc[pad]->SetMaximum(max);
-        fHistTpc[pad]->GetZaxis()->SetNdivisions(ndiv); // = nlabels
+        fHist2D[0][pad]->SetMinimum(min);
+        fHist2D[0][pad]->SetMaximum(max);
+        fHist2D[0][pad]->GetZaxis()->SetNdivisions(ndiv); // = nlabels
     }
 }
 
@@ -233,7 +221,7 @@ void ActRoot::HistogramPainter::FillSilHisto(int pad, const std::string& layer)
     for(int hit = 0, sizeE = E.size(); hit < sizeE; hit++)
     {
         auto bins {fSilMap[layer][N[hit]]};
-        fHistSil[pad]->Fill(bins.first, bins.second, E[hit]);
+        fHist2D[1][pad]->Fill(bins.first, bins.second, E[hit]);
     }
 }
 
@@ -251,78 +239,49 @@ void ActRoot::HistogramPainter::Fill()
     // 3-> Front 1
     FillSilHisto(6, "f1");
 }
-
+//
 void ActRoot::HistogramPainter::Draw()
 {
-    // TPC
-    for(auto& [pad, h] : fHistTpc)
+    for(auto& [c, map] : fHist2D)
     {
-        fCanvs[1]->cd(pad);
-        h->Draw("colz");
+        for(auto& [p, h] : map)
+        {
+            fCanvas->at(c)->cd(p);
+            if(c == 0)
+                h->Draw("colz");
+            else if(c == 1)
+                h->Draw("col text");
+            else
+                h->Draw("scat");
+        }
     }
     DrawPolyLines();
     DrawPolyMarkers();
-    fCanvs[1]->Update();
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    // Sil
-    for(auto& [pad, h] : fHistSil)
-    {
-        fCanvs[2]->cd(pad);
-        h->Draw("col text");
-    }
-    // Draw also pad
-    fCanvs[2]->cd(4);
-    fHistTpc[1]->Draw("colz");
-    // Draw also QProfile
-    if(fWrap->GetMergerData())
-    {
-        fCanvs[2]->cd(3);
-        fWrap->GetMergerData()->fQProf.Draw("hist");
-    }
-    fCanvs[2]->Update();
+
+    // Update all after drawing poly things
+    for(auto& c : *fCanvas)
+        c->Update();
 }
 
 void ActRoot::HistogramPainter::Reset()
 {
-    // TPC canvas
-    for(auto& [pad, h] : fHistTpc)
+    fLines.clear();
+    fMarkers.clear();
+    for(auto& [c, map] : fHist2D)
     {
-        h->Reset();
-        h->GetXaxis()->UnZoom();
-        h->GetYaxis()->UnZoom();
-        fCanvs[1]->cd(pad)->Modified();
+        for(auto& [p, h] : map)
+        {
+            h->Reset();
+            h->GetXaxis()->UnZoom();
+            h->GetYaxis()->UnZoom();
+            fCanvas->at(c)->cd(p)->Modified();
+        }
     }
-    // Clear also polylines
-    fPolyTpc.clear();
-    fMarkerTpc.clear();
-    fCanvs[1]->Update();
-    //////////////////////////////////////////////////////////////////////////////////////////////
-    // Sil canvas
-    for(auto& [pad, h] : fHistSil)
-    {
-        h->Reset();
-        h->GetXaxis()->UnZoom();
-        h->GetYaxis()->UnZoom();
-        fCanvs[2]->cd(pad)->Modified();
-    }
-    fCanvs[2]->cd(4)->Modified();
-    fCanvs[2]->cd(3)->Modified();
-    fCanvs[2]->Update();
-}
 
-TCanvas* ActRoot::HistogramPainter::SetCanvas(int i, const std::string& title, double w, double h)
-{
-    fCanvs[i] = new TCanvas(TString::Format("cHP%d", i), title.c_str(), w, h);
-    // Settings for widgets
-    if(fCanvs[i]->GetShowToolBar())
-        fCanvs[i]->ToggleToolBar();
-    if(fCanvs[i]->GetShowEditor())
-        fCanvs[i]->ToggleEditor();
-    if(!fCanvs[i]->GetShowEventStatus())
-        fCanvs[i]->ToggleEventStatus();
-    return fCanvs[i];
+    // Update all canvas
+    for(auto& c : *fCanvas)
+        c->Update();
 }
-
 
 void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID)
 {
@@ -334,42 +293,37 @@ void ActRoot::HistogramPainter::AttachBinToCluster(std::shared_ptr<TH2F> h, doub
     h->SetBinContent(xbin, ybin, clusterID + 1);
 }
 
-
 void ActRoot::HistogramPainter::DrawPolyLines()
 {
     if(!fWrap->GetTPCData())
         return;
-    // if(fWrap->GetMergerData()) // exclude events in VisualMerger without hits in silicons
-    //     if(fWrap->GetMergerData()->fSilLayers.size() == 0)
-    //         return;
-    TPCData* data {};
-    if(fWrap->GetTPCDataClone2())
-        data = fWrap->GetTPCDataClone2();
-    else
-        data = fWrap->GetTPCData();
 
+    auto data {fWrap->GetTPCDataClone2()};
 
     for(const auto& cluster : data->fClusters)
     {
         // Pad
-        fPolyTpc[4].push_back(
+        fLines[0][4].push_back(
             cluster.GetLine().GetPolyLine("xy", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
         // Side
-        fPolyTpc[5].push_back(
+        fLines[0][5].push_back(
             cluster.GetLine().GetPolyLine("xz", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
         // Front
-        fPolyTpc[6].push_back(
+        fLines[0][6].push_back(
             cluster.GetLine().GetPolyLine("yz", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
     }
     // Set line parameters
-    for(auto& [pad, proj] : fPolyTpc)
+    for(auto& [c, map] : fLines)
     {
-        for(auto& poly : proj)
+        for(auto& [pad, proj] : map)
         {
-            poly->SetLineWidth(2);
-            // Draw
-            fCanvs[1]->cd(pad);
-            poly->Draw("same");
+            for(auto& poly : proj)
+            {
+                poly->SetLineWidth(2);
+                // Draw
+                fCanvas->at(c)->cd(pad);
+                poly->Draw("same");
+            }
         }
     }
 }
@@ -378,35 +332,35 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
 {
     if(!fWrap->GetTPCData())
         return;
-    TPCData* data {};
-    if(fWrap->GetTPCDataClone2())
-        data = fWrap->GetTPCDataClone2();
-    else
-        data = fWrap->GetTPCData();
 
-    // Reset and init
-    fMarkerTpc[4] = std::make_shared<TPolyMarker>();
-    fMarkerTpc[5] = std::make_shared<TPolyMarker>();
-    fMarkerTpc[6] = std::make_shared<TPolyMarker>();
+    auto data {fWrap->GetTPCDataClone2()};
+
+    // Init
+    fMarkers[0][4] = std::make_shared<TPolyMarker>();
+    fMarkers[0][5] = std::make_shared<TPolyMarker>();
+    fMarkers[0][6] = std::make_shared<TPolyMarker>();
     for(const auto& rp : data->fRPs)
     {
         // Pad
-        fMarkerTpc[4]->SetNextPoint(rp.X(), rp.Y());
+        fMarkers[0][4]->SetNextPoint(rp.X(), rp.Y());
         // Side
-        fMarkerTpc[5]->SetNextPoint(rp.X(), rp.Z() * fTPC->GetREBINZ());
+        fMarkers[0][5]->SetNextPoint(rp.X(), rp.Z() * fTPC->GetREBINZ());
         // Front
-        fMarkerTpc[6]->SetNextPoint(rp.Y(), rp.Z() * fTPC->GetREBINZ());
+        fMarkers[0][6]->SetNextPoint(rp.Y(), rp.Z() * fTPC->GetREBINZ());
     }
-    // Set marker and draw
-    for(auto& [pad, proj] : fMarkerTpc)
+    // Set marker style and draw
+    for(auto& [c, map] : fMarkers)
     {
-        proj->SetMarkerStyle(58);
-        proj->SetMarkerSize(2);
-        proj->SetMarkerColor(kRed);
+        for(auto& [pad, proj] : map)
+        {
+            proj->SetMarkerStyle(58);
+            proj->SetMarkerSize(2);
+            proj->SetMarkerColor(kRed);
 
-        // Draw
-        fCanvs[1]->cd(pad);
-        proj->Draw("same");
+            // Draw
+            fCanvas->at(c)->cd(pad);
+            proj->Draw("same");
+        }
     }
 }
 
