@@ -14,13 +14,13 @@ enum class DetectorType
 
 enum class ModeType
 {
-    ECluster,
-    EData,
-    EFilter,
-    EMerge,
-    ECorrect,
-    EVisual, // for visual verbose in actplot
-    ENone
+    EReadTPC,    // !< Convert from Raw to TPCData
+    EReadSilMod, // !< Convert from Raw to Sil and Modular data
+    EFilter,     // !< Exec filter before Merger
+    EMerge,      // !< Merge detectors and build physical event
+    ECorrect,    // !< Exec filter after merger
+    EGui,     // !< For GUI in actplot
+    ENone        // !< Default value
 };
 
 } // namespace ActRoot

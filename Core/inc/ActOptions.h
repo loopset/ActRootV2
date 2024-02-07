@@ -3,6 +3,8 @@
 
 #include "ActTypes.h"
 
+#include "TString.h"
+
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -12,16 +14,18 @@ namespace ActRoot
 class Options
 {
 private:
+    // Singleton model
     static std::shared_ptr<Options> fInstance;
 
-    // mode conversion
+    // Mode to string conversion
     static std::unordered_map<ModeType, std::string> fModeTable;
-    bool fIsMT {};
+
+    // ActRoot options (with default values)
+    bool fIsMT {true};
     std::string fProjDir {};
-    std::string fDetFile {};
-    std::string fCalFile {};
-    std::string fInFile {};
-    std::string fOutFile {};
+    std::string fDetFile {"detector.conf"};
+    std::string fCalFile {"calibration.conf"};
+    std::string fDataFile {"data.conf"};
     ModeType fMode {ModeType::ENone};
     bool fIsVerbose {};
 
@@ -43,11 +47,9 @@ public:
     ModeType ConvertToMode(const std::string& mode);
     std::string GetDetFile() const { return GetConfigDir() + fDetFile; }
     std::string GetCalFile() const { return GetConfigDir() + fCalFile; }
-    std::string GetInputFile() const { return GetConfigDir() + fInFile; }
-    std::string GetOutputFile() const { return GetConfigDir() + fOutFile; }
+    std::string GetDataFile() const { return GetConfigDir() + fDataFile; }
     std::string GetProjectDir() const;
     std::string GetConfigDir() const { return GetProjectDir() + "/configs/"; }
-    std::string GetRunFile() const { return GetConfigDir() + fInFile; }
     bool GetIsMT() const { return fIsMT; }
     bool GetIsVerbose() const { return fIsVerbose; }
 
@@ -55,10 +57,9 @@ public:
     void SetMode(ModeType mode) { fMode = mode; }
     void SetDetFile(const std::string& file) { fDetFile = file; }
     void SetCalFile(const std::string& file) { fCalFile = file; }
-    void SetInputFile(const std::string& file) { fInFile = file; }
-    void SetOutputFile(const std::string& file) { fOutFile = file; }
+    void SetDataFile(const std::string& file) { fDataFile = file; }
     void SetIsMT(bool mt) { fIsMT = mt; }
-    void SetIsVerbose() { fIsVerbose = !fIsVerbose; }
+    void SetIsVerbose(bool verb = true) { fIsVerbose = verb; }
 
     // Others
     void Help() const;
@@ -66,6 +67,8 @@ public:
 
 private:
     void Parse(int argc, char** argv);
+    void CheckConfigDirectory();
+    ModeType ReadFlagToMode(TString flag);
 };
 } // namespace ActRoot
 

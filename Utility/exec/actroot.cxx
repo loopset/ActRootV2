@@ -1,8 +1,10 @@
+#include "ActDataManager.h"
 #include "ActDetectorManager.h"
 #include "ActInputData.h"
 #include "ActMTExecutor.h"
 #include "ActOptions.h"
 #include "ActOutputData.h"
+#include "ActTypes.h"
 
 #include <exception>
 #include <iostream>
@@ -13,11 +15,19 @@ int main(int argc, char* argv[])
     {
         auto opts {ActRoot::Options::GetInstance(argc, argv)};
         opts->Print();
+        if(opts->GetMode() == ActRoot::ModeType::ENone)
+            return 0;
+        if(opts->GetMode() == ActRoot::ModeType::EGui)
+        {
+            std::cout << "actroot cannot run in Gui mode! Use actplot executable for that" << '\n';
+            return 0;
+        }
 
-        // Init input data
-        ActRoot::InputData input {opts->GetRunFile()};
-        ActRoot::OutputData output {input};
-        output.ReadConfiguration(opts->GetRunFile());
+        // Manage data
+        ActRoot::DataManager datman {opts->GetMode()};
+        datman.ReadDataFile(opts->GetDataFile());
+        ActRoot::InputData input {datman.GetInput()};
+        ActRoot::OutputData output {datman.GetOuput()};
 
         if(opts->GetIsMT())
         {
@@ -34,12 +44,13 @@ int main(int argc, char* argv[])
 
             TStopwatch timer {};
             timer.Start();
-            for(const auto& run : input.GetTreeList())
+            for(const auto& run : input.GetRunList())
             {
                 std::cout << "Building event data for run " << run << '\n';
                 detman.InitInput(input.GetTree(run));
                 detman.InitOutput(output.GetTree(run));
-                for(int entry = 0; entry < input.GetTree(run)->GetEntries(); entry++)
+                int nentries {input.GetNEntries(run)};
+                for(int entry = 0; entry < nentries; entry++)
                 {
                     std::cout << "\r" << entry << std::flush;
                     input.GetEntry(run, entry);
@@ -48,7 +59,7 @@ int main(int argc, char* argv[])
                 }
                 output.Close(run);
                 input.Close(run);
-                std::cout << '\n' << "->Processed events = " << output.GetTree(run)->GetEntries() << '\n';
+                std::cout << '\n' << "->Processed events = " << nentries << '\n';
             }
             detman.PrintReports();
             timer.Stop();

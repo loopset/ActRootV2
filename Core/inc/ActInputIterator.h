@@ -1,13 +1,11 @@
 #ifndef ActInputIterator_h
 #define ActInputIterator_h
 
-#include "ActTPCData.h"
-#include "ActVData.h"
-
 #include <map>
-#include <memory>
+#include <string>
 #include <utility>
 #include <vector>
+
 namespace ActRoot
 {
 // forward declaration
@@ -42,6 +40,7 @@ private:
 };
 
 // more forward declarations
+class TPCData;
 class SilData;
 class ModularData;
 class MergerData;
@@ -61,7 +60,7 @@ private:
 
 public:
     InputWrapper() = default;
-    InputWrapper(const std::string& file, bool addOut = true);
+    InputWrapper(InputData* input);
     ~InputWrapper();
 
     bool GoNext();
@@ -84,7 +83,7 @@ public:
     // Setters of data
     void SetTPCData(TPCData* data) { fTPCData = data; }
     void SetTPCDataClone(TPCData* data) { fTPCClone = data; }
-    void CopyToClone2(TPCData* data) { *fTPCClone2 = *data; }
+    void CopyToClone2(TPCData* data);
     void SetSilData(SilData* data) { fSilData = data; }
     void SetModularData(ModularData* data) { fModularData = data; }
     void SetMergerData(MergerData* data) { fMergerData = data; }

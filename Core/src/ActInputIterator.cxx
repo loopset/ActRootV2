@@ -14,6 +14,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 ActRoot::InputIterator::InputIterator(const InputData* input)
 {
@@ -174,9 +175,9 @@ void ActRoot::InputIterator::Print() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-ActRoot::InputWrapper::InputWrapper(const std::string& file, bool addOut)
+ActRoot::InputWrapper::InputWrapper(InputData* input)
 {
-    fInput = new InputData {file, addOut};
+    fInput = input;
     fIt = InputIterator {fInput};
 
     // Init pointers
@@ -202,8 +203,6 @@ ActRoot::InputWrapper::~InputWrapper()
         delete fModularData;
     if(fMergerData)
         delete fMergerData;
-    if(fInput)
-        delete fInput;
 }
 
 void ActRoot::InputWrapper::GetEntry(int run, int entry)
@@ -275,4 +274,9 @@ void ActRoot::InputWrapper::SetBranchAddress(int run)
         tree->SetBranchAddress("ModularData", &fModularData);
     if(tree->FindBranch("MergerData"))
         tree->SetBranchAddress("MergerData", &fMergerData);
+}
+
+void ActRoot::InputWrapper::CopyToClone2(ActRoot::TPCData* data)
+{
+    *fTPCClone2 = *data;
 }

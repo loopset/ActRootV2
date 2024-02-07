@@ -41,9 +41,9 @@ ActRoot::DetectorManager::DetectorManager(ActRoot::ModeType mode) : fMode(mode)
 
 void ActRoot::DetectorManager::InitDetectors()
 {
-    if(fMode == ModeType::ECluster)
+    if(fMode == ModeType::EReadTPC)
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
-    else if(fMode == ModeType::EData)
+    else if(fMode == ModeType::EReadSilMod)
     {
         // Silicon
         fDetectors[DetectorType::ESilicons] = std::make_shared<ActRoot::SilDetector>();
@@ -54,7 +54,7 @@ void ActRoot::DetectorManager::InitDetectors()
         // Thus far only TPCDetector has a filter implemented
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
     }
-    else if(fMode == ModeType::EMerge || fMode == ModeType::EVisual)
+    else if(fMode == ModeType::EMerge || fMode == ModeType::EGui)
     {
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
         fDetectors[DetectorType::ESilicons] = std::make_shared<ActRoot::SilDetector>();
@@ -87,7 +87,7 @@ void ActRoot::DetectorManager::ReadDetectorFile(const std::string& file, bool pr
             det->Print();
     }
     // Workaround for Merger: needs access to all the other parameters
-    if(fMode == ModeType::EMerge || fMode == ModeType::EVisual)
+    if(fMode == ModeType::EMerge || fMode == ModeType::EGui)
     {
         auto merger {std::dynamic_pointer_cast<ActRoot::MergerDetector>(fDetectors[DetectorType::EMerger])};
         for(auto& [key, det] : fDetectors)
@@ -131,7 +131,7 @@ void ActRoot::DetectorManager::DeleteDetector(DetectorType type)
 
 void ActRoot::DetectorManager::InitInput(std::shared_ptr<TTree> input)
 {
-    if(fMode == ModeType::ECluster || fMode == ModeType::EData)
+    if(fMode == ModeType::EReadTPC || fMode == ModeType::EReadSilMod)
         for(auto& [key, det] : fDetectors)
             det->InitInputData(input);
     else if(fMode == ModeType::EFilter)
@@ -144,13 +144,13 @@ void ActRoot::DetectorManager::InitInput(std::shared_ptr<TTree> input)
     else
         ;
     // Workaround for EData mode
-    if(fMode == ModeType::EData)
+    if(fMode == ModeType::EReadSilMod)
         fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::ESilicons]->GetMEvent());
 }
 
 void ActRoot::DetectorManager::InitOutput(std::shared_ptr<TTree> output)
 {
-    if(fMode == ModeType::ECluster || fMode == ModeType::EData)
+    if(fMode == ModeType::EReadTPC || fMode == ModeType::EReadSilMod)
         for(auto& [key, det] : fDetectors)
             det->InitOutputData(output);
     else if(fMode == ModeType::EFilter)
@@ -166,7 +166,7 @@ void ActRoot::DetectorManager::InitOutput(std::shared_ptr<TTree> output)
 
 void ActRoot::DetectorManager::BuildEvent()
 {
-    if(fMode == ModeType::ECluster || fMode == ModeType::EData)
+    if(fMode == ModeType::EReadTPC || fMode == ModeType::EReadSilMod)
         for(auto& [key, det] : fDetectors)
         {
             det->ClearEventData();
@@ -183,7 +183,7 @@ void ActRoot::DetectorManager::BuildEvent()
         fDetectors[DetectorType::EMerger]->ClearEventData();
         fDetectors[DetectorType::EMerger]->BuildEventData();
     }
-    else if(fMode == ModeType::EVisual)
+    else if(fMode == ModeType::EGui)
     {
         throw std::runtime_error(
             "DetectorManager::BuildEvent(): EVisual mode not supported: Clone2 is explicited in EventPainter");

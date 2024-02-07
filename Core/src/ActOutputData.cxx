@@ -1,5 +1,6 @@
 #include "ActOutputData.h"
 
+#include "ActColors.h"
 #include "ActInputData.h"
 #include "ActInputParser.h"
 
@@ -12,58 +13,49 @@
 
 #include <iostream>
 #include <memory>
+#include <set>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
-ActRoot::OutputData::OutputData(const InputData& input)
+void ActRoot::OutputData::ParseBlock(ActRoot::BlockPtr block)
 {
-    SetSameTreesAsInput(input);
+    // Each block should consist of:
+    // 1-> TTree name
+    // 2-> Path to folder (abs or relative)
+    // 3-> File name BEGIN
+    // 4-> File name END (optional)
+    // The input will read a file: /path/to/folder/BEGIN{%.4d of run}END.root
+
+    // 1
+    fTreeName = block->GetString("TreeName");
+    // 2
+    auto path {block->GetString("Path")};
+    // Expand it with ROOT
+    fPath = gSystem->ExpandPathName(path.c_str());
+    // 3
+    fBegin = block->GetString("Begin");
+    // 4
+    if(block->CheckTokenExists("End", true))
+        fEnd = block->GetString("End");
 }
 
-ActRoot::OutputData::OutputData(const std::string& file)
+void ActRoot::OutputData::Init(const std::set<int>& runs)
 {
-    ReadConfiguration(file);
-}
+    fRuns = runs;
+    // Assert AddOutput was called before
+    if(fTreeName.length() < 1)
+        throw std::runtime_error("OutputData::Init(): called without inner parameters set");
 
-void ActRoot::OutputData::InitFile(int run, const std::string& file)
-{
-    if(fTreeName.empty())
-        throw std::runtime_error("No TreeName given to ActRoot::OutputData!");
-
-    std::cout << "Initializing TTree " << fTreeName << " for run " << run << " in file " << '\n';
-    std::cout << "  " << file << '\n';
-    fFiles[run] = std::make_shared<TFile>(file.c_str(), "recreate");
-    fTrees[run] = std::make_shared<TTree>(fTreeName.c_str(), "ActRoot event data");
-}
-
-void ActRoot::OutputData::ReadConfiguration(const std::string& file)
-{
-    if(fRuns.empty())
-        throw std::runtime_error("Run list is empty. Pass InputData object to get same output data as input!");
-
-    ActRoot::InputParser parser {file};
-    auto block {parser.GetBlock("OutputData")};
-    // Keys available in file
-    std::vector<std::string> keys {"TreeName", "FilePath", "FileBegin", "FileEnd"};
-    // Set output
-    SetTreeName(block->GetString("TreeName"));
-    auto path {block->GetString("FilePath")};
-    auto begin {block->GetString("FileBegin")};
-    std::string end {};
-    if(block->CheckTokenExists("FileEnd", true))
-        end = block->GetString("FileEnd");
-
-    for(const auto& run : fRuns)
+    for(const auto& run : runs)
     {
-        auto fullname {TString::Format("%s%s%04d%s.root", path.c_str(), begin.c_str(), run, end.c_str())};
-        InitFile(run, fullname.Data());
+        std::string filename {fPath + fBegin + TString::Format("%04d", run) + fEnd + ".root"};
+        // Print
+        std::cout << BOLDCYAN << "OutputData: saving " << fTreeName << " tree in file" << '\n';
+        std::cout << "  " << filename << RESET << '\n';
+        // Init
+        fFiles[run] = std::make_shared<TFile>(filename.c_str(), "recreate"); // RECREATE for output
+        fTrees[run] = std::make_shared<TTree>(fTreeName.c_str(), "An ACTAR TPC tree created with ActRoot");
     }
-}
-
-void ActRoot::OutputData::SetSameTreesAsInput(const InputData& input)
-{
-    fRuns = input.GetTreeList();
 }
 
 void ActRoot::OutputData::Fill(int run)
@@ -79,6 +71,7 @@ void ActRoot::OutputData::Close(int run)
     // fFiles[run]->ls();
     fFiles[run]->Write();
     fFiles[run]->Close();
+    fTrees[run].reset();
     fFiles[run].reset();
 }
 

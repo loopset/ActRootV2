@@ -86,7 +86,7 @@ bool ActRoot::InputBlock::CheckTokenExists(const std::string& token, bool soft)
 {
     bool exists {static_cast<bool>(fValues.count(token))};
     if(!exists && !soft)
-        throw std::runtime_error("Token " + token + " does not exit in InputBlock");
+        throw std::runtime_error("InputBlock::CheckTokenExists(): Token " + token + " does not exit in InputBlock");
     return exists;
 }
 
@@ -94,7 +94,7 @@ bool ActRoot::InputBlock::IsVector(const std::string& token)
 {
     auto size {fValues[token].size()};
     if(size == 0)
-        throw std::runtime_error("Token " + token + " has empty data");
+        throw std::runtime_error("InputBlock::IsVector(): Token " + token + " has empty data");
     else if(size == 1)
         return false;
     else
@@ -147,7 +147,7 @@ bool ActRoot::InputBlock::StringToBool(const std::string& val)
     aux.ToLower();
     std::string lower {aux};
     if(lower != "true" && lower != "false")
-        throw std::runtime_error("Could not convert to bool value " + val);
+        throw std::runtime_error("InputBlock::StringToBool(): Could not convert to bool value " + val);
     std::istringstream(lower) >> std::boolalpha >> ret;
     return ret;
 }
@@ -202,7 +202,8 @@ std::vector<int> ActRoot::InputBlock::GetIntVector(const std::string& token)
             }
             catch(std::out_of_range& e)
             {
-                throw std::out_of_range("... expansion requires next (begin, END] element to be present");
+                throw std::out_of_range(
+                    "InputBlock::GetIntVector(): ... expansion requires next [BEGIN, END] elements to be present");
             }
             auto expansion {ExpandInt(ret.back(), end)};
             // Insert
@@ -245,7 +246,7 @@ void ActRoot::InputParser::ReadFile(const std::string& filename)
     // Open file
     std::ifstream file {filename};
     if(!file)
-        throw std::runtime_error("ActRoot::InputParser: error! " + filename + " could not be opened");
+        throw std::runtime_error("InputParser::ReadFile(): " + filename + " could not be opened");
     std::string rawLine {};
     bool inHeader {false};
     while(std::getline(file, rawLine))
@@ -322,7 +323,7 @@ ActRoot::BlockPtr ActRoot::InputParser::GetBlock(const std::string& token) const
     for(auto& block : fBlocks)
         if(block->GetBlockName() == token)
             return block;
-    throw std::runtime_error("No token " + token + " was found in file!");
+    throw std::runtime_error("InputParser::GetBlock(): No token " + token + " was found in file!");
 }
 
 std::vector<std::string> ActRoot::InputParser::GetBlockHeaders() const

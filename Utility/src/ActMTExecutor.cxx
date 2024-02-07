@@ -62,7 +62,7 @@ void ActRoot::MTExecutor::SetDetectorConfig(const std::string& detfile, const st
 
 void ActRoot::MTExecutor::ComputeRunsPerThread()
 {
-    auto runs {fInput->GetTreeList()};
+    auto runs {fInput->GetRunList()};
     auto nthreads {static_cast<int>(ftp.get_thread_count())};
     int idx {};
     for(const auto& run : runs)

@@ -1,3 +1,4 @@
+#include "ActDataManager.h"
 #include "ActDetectorManager.h"
 #include "ActEventPainter.h"
 #include "ActHistogramPainter.h"
@@ -13,17 +14,18 @@
 int main(int argc, char* argv[])
 {
     auto opts {ActRoot::Options::GetInstance(argc, argv)};
-    opts->SetMode(ActRoot::ModeType::EVisual);
-    opts->SetDetFile("e796.detector");
-    opts->SetInputFile("filter.runs");
-    ActRoot::Options::GetInstance()->Print();
+    opts->SetMode(ActRoot::ModeType::EGui);
+    opts->Print();
 
     TRint app {"actplot", &argc, argv, nullptr, 0, true};
 
     try
     {
-        // Init input wrapper
-        ActRoot::InputWrapper in {opts->GetInputFile(), false};
+        // Init data manager
+        ActRoot::DataManager datman {opts->GetMode()};
+        datman.ReadDataFile(opts->GetDataFile());
+        auto input {datman.GetInput()};
+        ActRoot::InputWrapper in {&input};
 
         // Detector manager
         ActRoot::DetectorManager detman {ActRoot::Options::GetInstance()->GetMode()};

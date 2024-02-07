@@ -81,11 +81,11 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     // Init of algorithms based on mode
     auto mode {ActRoot::Options::GetInstance()->GetMode()};
     // Cluster method
-    if(mode == ModeType::ECluster || mode == ModeType::EFilter || mode == ModeType::EVisual)
+    if(mode == ModeType::EReadTPC || mode == ModeType::EFilter || mode == ModeType::EGui)
         if(config->CheckTokenExists("ClusterMethod"))
             InitClusterMethod(config->GetString("ClusterMethod"));
     // Filter method
-    if(mode == ModeType::EFilter || mode == ModeType::EVisual)
+    if(mode == ModeType::EFilter || mode == ModeType::EGui)
         if(config->CheckTokenExists("FilterMethod"))
             InitFilterMethod(config->GetString("FilterMethod"));
 }

@@ -24,7 +24,7 @@ public:
 
     virtual void SetClusterPtr(std::shared_ptr<ActCluster::VCluster> ptr) { fAlgo = ptr; }
 
-    void SetIsVerbose() { fIsVerbose = !fIsVerbose; }
+    void SetIsVerbose(bool verb = true) { fIsVerbose = verb; }
     bool GetIsVerbose() const { return fIsVerbose; }
 
     virtual void ReadConfiguration() = 0;
