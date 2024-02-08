@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['updategeometry_2165',['UpdateGeometry',['../classActDriftDetector.html#afbdf1400fd9965b4aa045cb8b17e3b32',1,'ActDriftDetector']]],
-  ['updaterange_2166',['UpdateRange',['../classActRoot_1_1Cluster.html#a25065226877de2c432829bb658b9add3',1,'ActRoot::Cluster']]],
-  ['usersteppingaction_2167',['UserSteppingAction',['../classActSteppingAction.html#a5e4252fe24cb2a6059e0e0e16d01140b',1,'ActSteppingAction']]]
+  ['valid_2160',['valid',['../classBS_1_1multi__future.html#a39a5321e6be74bf09cb03514bf7cd42b',1,'BS::multi_future']]],
+  ['vcluster_2161',['VCluster',['../classActAlgorithm_1_1VCluster.html#ad6c0730b6348053c81432567d90712e9',1,'ActAlgorithm::VCluster::VCluster()=default'],['../classActAlgorithm_1_1VCluster.html#af91b488c55ba990896a4d7d89d5e9afa',1,'ActAlgorithm::VCluster::VCluster(int minPoints)']]],
+  ['vdetector_2162',['VDetector',['../classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37',1,'ActRoot::VDetector']]],
+  ['vfilter_2163',['VFilter',['../classActAlgorithm_1_1VFilter.html#a41e5915ec5daa3dc74a2bfe0bc8d1f05',1,'ActAlgorithm::VFilter']]],
+  ['voxel_2164',['Voxel',['../classActRoot_1_1Voxel.html#a8d13a75dd95a1e43a933c4a43636fa75',1,'ActRoot::Voxel::Voxel()=default'],['../classActRoot_1_1Voxel.html#a5b70e3884d47f6060913b4e8e3d3f461',1,'ActRoot::Voxel::Voxel(const XYZPoint &amp;pos, float charge, bool hasSaturation=false)']]]
 ];
