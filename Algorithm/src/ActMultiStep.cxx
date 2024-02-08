@@ -36,19 +36,19 @@
 #include <utility>
 #include <vector>
 
-ActCluster::MultiStep::MultiStep()
+ActAlgorithm::MultiStep::MultiStep()
 {
     fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
 }
 
-void ActCluster::MultiStep::SetTPCData(ActRoot::TPCData* data)
+void ActAlgorithm::MultiStep::SetTPCData(ActRoot::TPCData* data)
 {
     fData = data;
     fClusters = &(data->fClusters);
     fRPs = &(data->fRPs);
 }
 
-void ActCluster::MultiStep::ReadConfiguration()
+void ActAlgorithm::MultiStep::ReadConfiguration()
 {
     auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
     conf += "/multistep.conf";
@@ -158,7 +158,7 @@ void ActCluster::MultiStep::ReadConfiguration()
     InitClocks();
 }
 
-void ActCluster::MultiStep::InitClocks()
+void ActAlgorithm::MultiStep::InitClocks()
 {
     // Declare labels to each clock
     fCLabels = std::vector<std::string>(9);
@@ -176,7 +176,7 @@ void ActCluster::MultiStep::InitClocks()
         fClocks.push_back(TStopwatch());
 }
 
-void ActCluster::MultiStep::ResetIndex()
+void ActAlgorithm::MultiStep::ResetIndex()
 {
     int idx {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++, idx++)
@@ -185,7 +185,7 @@ void ActCluster::MultiStep::ResetIndex()
     }
 }
 
-void ActCluster::MultiStep::PrintStep() const
+void ActAlgorithm::MultiStep::PrintStep() const
 {
     for(const auto& cluster : *fClusters)
     {
@@ -194,7 +194,7 @@ void ActCluster::MultiStep::PrintStep() const
     }
 }
 
-void ActCluster::MultiStep::Run()
+void ActAlgorithm::MultiStep::Run()
 {
     // General disable of algorithm
     if(!fIsEnabled)
@@ -264,7 +264,7 @@ void ActCluster::MultiStep::Run()
     ResetIndex();
 }
 
-void ActCluster::MultiStep::PrintReports() const
+void ActAlgorithm::MultiStep::PrintReports() const
 {
     std::cout << BOLDYELLOW << "==== MultiStep time report ====" << '\n';
     for(int i = 0; i < fCLabels.size(); i++)
@@ -275,7 +275,7 @@ void ActCluster::MultiStep::PrintReports() const
     std::cout << RESET << '\n';
 }
 
-void ActCluster::MultiStep::CleanBadFits()
+void ActAlgorithm::MultiStep::CleanBadFits()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -287,7 +287,7 @@ void ActCluster::MultiStep::CleanBadFits()
     }
 }
 
-void ActCluster::MultiStep::CleanZs()
+void ActAlgorithm::MultiStep::CleanZs()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -305,7 +305,7 @@ void ActCluster::MultiStep::CleanZs()
     }
 }
 
-void ActCluster::MultiStep::CleanDeltas()
+void ActAlgorithm::MultiStep::CleanDeltas()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -329,7 +329,7 @@ void ActCluster::MultiStep::CleanDeltas()
     }
 }
 
-void ActCluster::MultiStep::CleanPileup()
+void ActAlgorithm::MultiStep::CleanPileup()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -356,7 +356,7 @@ void ActCluster::MultiStep::CleanPileup()
     }
 }
 
-std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiStep::DetermineBreakPoint(ItType it)
+std::tuple<ActAlgorithm::MultiStep::XYZPoint, double, double> ActAlgorithm::MultiStep::DetermineBreakPoint(ItType it)
 {
     const auto& xyMap {it->GetXYMap()};
     const auto& xzMap {it->GetXZMap()};
@@ -389,7 +389,7 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
     return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ};
 }
 
-void ActCluster::MultiStep::BreakBeamClusters()
+void ActAlgorithm::MultiStep::BreakBeamClusters()
 {
     std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end();)
@@ -493,7 +493,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
                       std::make_move_iterator(toAppend.end()));
 }
 
-void ActCluster::MultiStep::BreakTrackClusters()
+void ActAlgorithm::MultiStep::BreakTrackClusters()
 {
     std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end();)
@@ -589,7 +589,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
                       std::make_move_iterator(toAppend.end()));
 }
 
-void ActCluster::MultiStep::MergeSimilarTracks()
+void ActAlgorithm::MultiStep::MergeSimilarTracks()
 {
     // Sort clusters by increasing voxel size
     std::sort(fClusters->begin(), fClusters->end(),
@@ -702,7 +702,7 @@ void ActCluster::MultiStep::MergeSimilarTracks()
         fClusters->erase(fClusters->begin() + idx);
 }
 
-bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
+bool ActAlgorithm::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
 {
     bool condY {(gravity.Y() - scale * fBeamWindowY) < pos.Y() && pos.Y() < (gravity.Y() + scale * fBeamWindowY)};
     bool condZ {(gravity.Z() - scale * fBeamWindowZ) < pos.Z() && pos.Z() < (gravity.Z() + scale * fBeamWindowZ)};
@@ -710,7 +710,7 @@ bool ActCluster::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& 
 }
 
 template <typename T>
-bool ActCluster::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T widthY, T widthZ,
+bool ActAlgorithm::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T widthY, T widthZ,
                                          T offset)
 {
     bool condX {pos.X() < xBreak + offset};
@@ -719,7 +719,7 @@ bool ActCluster::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gr
     return condX && condY && condZ;
 }
 
-void ActCluster::MultiStep::DetermineBeamLikes()
+void ActAlgorithm::MultiStep::DetermineBeamLikes()
 {
     int nBeam {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
@@ -749,8 +749,8 @@ void ActCluster::MultiStep::DetermineBeamLikes()
     }
 }
 
-std::tuple<ActCluster::MultiStep::XYZPoint, ActCluster::MultiStep::XYZPoint, double>
-ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB)
+std::tuple<ActAlgorithm::MultiStep::XYZPoint, ActAlgorithm::MultiStep::XYZPoint, double>
+ActAlgorithm::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB)
 {
     // Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866
     // 1-> Normalize all directions
@@ -786,7 +786,7 @@ ActCluster::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZ
     return {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};
 }
 
-bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
+bool ActAlgorithm::MultiStep::IsRPValid(const XYZPoint& rp)
 {
     // This function has to consider the 0.5 offset
     bool isInX {0.5 <= rp.X() && rp.X() <= fTPC->GetNPADSX() + 0.5};
@@ -795,13 +795,13 @@ bool ActCluster::MultiStep::IsRPValid(const XYZPoint& rp)
     return isInX && isInY && isInZ;
 }
 
-double ActCluster::MultiStep::GetThetaAngle(const XYZVector& beam, const XYZVector& recoil)
+double ActAlgorithm::MultiStep::GetThetaAngle(const XYZVector& beam, const XYZVector& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();
 }
 
-std::vector<ActCluster::MultiStep::RPCluster> ActCluster::MultiStep::ClusterAndSortRPs(std::vector<RPValue>& rps)
+std::vector<ActAlgorithm::MultiStep::RPCluster> ActAlgorithm::MultiStep::ClusterAndSortRPs(std::vector<RPValue>& rps)
 {
     std::vector<RPCluster> ret;
     if(rps.empty())
@@ -906,7 +906,7 @@ std::vector<ActCluster::MultiStep::RPCluster> ActCluster::MultiStep::ClusterAndS
     return ret;
 }
 
-void ActCluster::MultiStep::FindPreliminaryRP()
+void ActAlgorithm::MultiStep::FindPreliminaryRP()
 {
     // Case in which there is only one track: automatically mark to delete
     if(fClusters->size() == 1)
@@ -1038,7 +1038,7 @@ void ActCluster::MultiStep::FindPreliminaryRP()
     // fRPs->push_back(rp);
 }
 
-void ActCluster::MultiStep::DeleteInvalidClusters()
+void ActAlgorithm::MultiStep::DeleteInvalidClusters()
 {
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
@@ -1049,7 +1049,7 @@ void ActCluster::MultiStep::DeleteInvalidClusters()
     }
 }
 
-void ActCluster::MultiStep::PerformFinerFits()
+void ActAlgorithm::MultiStep::PerformFinerFits()
 {
     // Must be executed after cleaning of invalid clusters
     // 1-> Get the unique RP (for legacy reasons it is still kept as a vector)
@@ -1332,7 +1332,7 @@ void ActCluster::MultiStep::PerformFinerFits()
     // }
 }
 
-bool ActCluster::MultiStep::ClustersOverlap(ItType out, ItType in)
+bool ActAlgorithm::MultiStep::ClustersOverlap(ItType out, ItType in)
 {
     // Interval xout {out->GetXRange()};
     // std::cout << "Xout : " << xout << '\n';
@@ -1367,7 +1367,7 @@ bool ActCluster::MultiStep::ClustersOverlap(ItType out, ItType in)
 }
 
 
-void ActCluster::MultiStep::FindPreciseRP()
+void ActAlgorithm::MultiStep::FindPreciseRP()
 {
     if(fRPs->size() == 0)
         return;
@@ -1427,7 +1427,7 @@ void ActCluster::MultiStep::FindPreciseRP()
         ; // keep preliminary RP just in case this finer method fails
 }
 
-void ActCluster::MultiStep::Print() const
+void ActAlgorithm::MultiStep::Print() const
 {
     std::cout << BOLDCYAN << "==== MultiStep settings ====" << '\n';
     std::cout << "-> IsEnabled        : " << std::boolalpha << fIsEnabled << '\n';

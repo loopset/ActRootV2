@@ -1,6 +1,7 @@
 #include "ActMergerDetector.h"
 
 #include "ActColors.h"
+#include "ActCorrector.h"
 #include "ActDetectorManager.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
@@ -14,16 +15,11 @@
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
-#include "ActVData.h"
 
-#include "RtypesCore.h"
-
-#include "TEnv.h"
 #include "TH1.h"
 #include "TMath.h"
 #include "TMathBase.h"
 #include "TStopwatch.h"
-#include "TSystem.h"
 #include "TTree.h"
 
 #include "Math/RotationZYX.h"
@@ -84,6 +80,9 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Enable QProfile
     if(block->CheckTokenExists("EnableQProfile"))
         fEnableQProfile = block->GetBool("EnableQProfile");
+    // Build or not filter method
+    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
+        InitCorrector();
 
     // Disable TH1::AddDirectory
     TH1::AddDirectory(false);
@@ -92,6 +91,12 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     InitClocks();
 
     //////////////// MultiStep algorithm ///////////////////////////
+}
+
+void ActRoot::MergerDetector::InitCorrector()
+{
+    fFilter = std::make_shared<ActAlgorithm::Corrector>();
+    fFilter->ReadConfiguration();
 }
 
 void ActRoot::MergerDetector::InitClocks()
@@ -133,9 +138,18 @@ void ActRoot::MergerDetector::SetParameters(ActRoot::VParameters* pars)
             "MergerDetector::SetParameters(): could not find a proper cast for the passed pointer");
 }
 
-void ActRoot::MergerDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
+void ActRoot::MergerDetector::InitInputFilter(std::shared_ptr<TTree> tree)
+{
+    if(fMergerData)
+        delete fMergerData;
+    fMergerData = new MergerData;
+    tree->SetBranchAddress("MergerData", &fMergerData);
+}
 
-void ActRoot::MergerDetector::InitOutputFilter(std::shared_ptr<TTree> tree) {}
+void ActRoot::MergerDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
+{
+    tree->Branch("MergerData", &fMergerData);
+}
 
 void ActRoot::MergerDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
@@ -175,7 +189,14 @@ void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
     // fSilSpecs->Print();
 }
 
-void ActRoot::MergerDetector::BuildEventFilter() {}
+void ActRoot::MergerDetector::BuildEventFilter()
+{
+    if(fFilter)
+    {
+        fFilter->SetMergerData(fMergerData);
+        fFilter->Run();
+    }
+}
 
 
 void ActRoot::MergerDetector::DoMerge()
@@ -599,7 +620,10 @@ void ActRoot::MergerDetector::ComputeQProfile()
     fMergerData->fQProf = h;
 }
 
-void ActRoot::MergerDetector::ClearEventFilter() {}
+void ActRoot::MergerDetector::ClearEventFilter()
+{
+    // Not needed because we are reading directly from ttree
+}
 
 void ActRoot::MergerDetector::ClearEventData()
 {
@@ -634,6 +658,9 @@ void ActRoot::MergerDetector::Print() const
     }
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
+
+    if(fFilter)
+        fFilter->Print();
 }
 
 void ActRoot::MergerDetector::PrintReports() const

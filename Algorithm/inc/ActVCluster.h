@@ -7,7 +7,7 @@
 #include <utility>
 #include <vector>
 
-namespace ActCluster
+namespace ActAlgorithm
 {
 class VCluster
 {

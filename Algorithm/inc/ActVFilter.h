@@ -7,14 +7,14 @@
 
 #include <memory>
 
-namespace ActCluster
+namespace ActAlgorithm
 {
 class VFilter
 {
 protected:
     ActRoot::TPCData* fData {};
     ActRoot::MergerData* fMergerData {};
-    std::shared_ptr<ActCluster::VCluster> fAlgo {};
+    std::shared_ptr<ActAlgorithm::VCluster> fAlgo {};
     bool fIsVerbose {};
 
 public:
@@ -27,7 +27,7 @@ public:
     virtual void SetMergerData(ActRoot::MergerData* data) { fMergerData = data; }
     ActRoot::MergerData* GetMergerData() const { return fMergerData; }
 
-    virtual void SetClusterPtr(std::shared_ptr<ActCluster::VCluster> ptr) { fAlgo = ptr; }
+    virtual void SetClusterPtr(std::shared_ptr<ActAlgorithm::VCluster> ptr) { fAlgo = ptr; }
 
     void SetIsVerbose(bool verb = true) { fIsVerbose = verb; }
     bool GetIsVerbose() const { return fIsVerbose; }

@@ -13,7 +13,6 @@
 
 #include "TCanvas.h"
 #include "TColor.h"
-#include "TEnv.h"
 #include "TH2.h"
 #include "TPolyMarker.h"
 #include "TString.h"
@@ -21,7 +20,6 @@
 #include "TSystem.h"
 #include "TTree.h"
 
-#include <cmath>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -37,7 +35,7 @@ ActRoot::HistogramPainter::HistogramPainter()
 void ActRoot::HistogramPainter::ReadConfiguration()
 {
     auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
-    conf += "hist.painter";
+    conf += "painter.conf";
     // Init parser
     ActRoot::InputParser parser {conf};
     auto hb {parser.GetBlock("HistogramPainter")};

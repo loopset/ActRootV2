@@ -1,9 +1,6 @@
 #ifndef ActTPCDetector_h
 #define ActTPCDetector_h
 
-#include "ActClIMB.h"
-#include "ActInputData.h"
-#include "ActRANSAC.h"
 #include "ActTPCData.h"
 #include "ActTPCLegacyData.h"
 #include "ActVCluster.h"
@@ -77,9 +74,9 @@ private:
     TStopwatch fClusterClock;
 
     // Cluster method
-    std::shared_ptr<ActCluster::VCluster> fCluster {};
+    std::shared_ptr<ActAlgorithm::VCluster> fCluster {};
     // Filter method
-    std::shared_ptr<ActCluster::VFilter> fFilter {};
+    std::shared_ptr<ActAlgorithm::VFilter> fFilter {};
 
 public:
     TPCDetector() = default;
@@ -130,7 +127,7 @@ public:
     MEventReduced* GetMEvent() override { return fMEvent; }
 
     // Others
-    std::shared_ptr<ActCluster::VCluster> GetCluster() const { return fCluster; }
+    std::shared_ptr<ActAlgorithm::VCluster> GetCluster() const { return fCluster; }
 
     template <typename T>
     std::shared_ptr<T> GetClusterAs() const
@@ -138,7 +135,6 @@ public:
         return std::dynamic_pointer_cast<T>(fCluster);
     }
 
-    // Recluster, a debugging class for visual mode
     void Recluster();
 
 private:

@@ -16,7 +16,7 @@ namespace ActRoot
 class TPCParameters;
 }
 
-namespace ActCluster
+namespace ActAlgorithm
 {
 //! Implementation of a continuity-based cluster algorithm by J. Lois-Fuentes
 class ClIMB : public VCluster
@@ -61,6 +61,6 @@ private:
     template <typename T>
     bool IsInCage(T x, T y, T z);
 };
-} // namespace ActCluster
+} // namespace ActAlgorithm
 
 #endif

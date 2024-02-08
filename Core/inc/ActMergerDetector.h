@@ -23,6 +23,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace ActRoot
@@ -53,6 +54,9 @@ private:
 
     // Merger data
     MergerData* fMergerData {};
+
+    // Filter = corrector
+    std::shared_ptr<ActAlgorithm::VFilter> fFilter {};
 
     // Is verbose?
     bool fIsVerbose {};
@@ -140,6 +144,16 @@ public:
             throw std::invalid_argument("MergerDetector::SetInputData(): could not cast to any input data type!");
     }
     VData* GetInputData() const override { return nullptr; }
+    template <typename T>
+    T* GetInputData() const
+    {
+        if constexpr(std::is_same_v<T, TPCData>)
+            return dynamic_cast<T*>(fTPCData);
+        else if constexpr(std::is_same_v<T, SilData>)
+            return dynamic_cast<T*>(fSilData);
+        else if constexpr(std::is_same_v<T, ModularData>)
+            return dynamic_cast<T*>(fModularData);
+    }
     void SetOutputData(VData* data) override { fMergerData = data->CastAs<MergerData>(); }
     MergerData* GetOutputData() const override { return fMergerData; }
 
@@ -157,9 +171,9 @@ public:
     void PrintReports() const override;
 
 private:
+    void InitCorrector();
     void InitClocks();
     void ReadSilSpecs(const std::string& file);
-    void DoMultiStep();
     void DoMerge();
     // Inner functions of Merger detector
     bool IsDoable();

@@ -32,7 +32,7 @@ public:
 
     void AddOuput(BlockPtr block) { ParseBlock(block); }
 
-    void Init(const std::set<int>& runs);
+    void Init(const std::set<int>& runs, bool print = true);
 
     void Fill(int run);
     // Write TTree and close TFile

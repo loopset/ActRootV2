@@ -39,7 +39,7 @@ void ActRoot::OutputData::ParseBlock(ActRoot::BlockPtr block)
         fEnd = block->GetString("End");
 }
 
-void ActRoot::OutputData::Init(const std::set<int>& runs)
+void ActRoot::OutputData::Init(const std::set<int>& runs, bool print)
 {
     fRuns = runs;
     // Assert AddOutput was called before
@@ -50,8 +50,11 @@ void ActRoot::OutputData::Init(const std::set<int>& runs)
     {
         std::string filename {fPath + fBegin + TString::Format("%04d", run) + fEnd + ".root"};
         // Print
-        std::cout << BOLDCYAN << "OutputData: saving " << fTreeName << " tree in file" << '\n';
-        std::cout << "  " << filename << RESET << '\n';
+        if(print)
+        {
+            std::cout << BOLDCYAN << "OutputData: saving " << fTreeName << " tree in file" << '\n';
+            std::cout << "  " << filename << RESET << '\n';
+        }
         // Init
         fFiles[run] = std::make_shared<TFile>(filename.c_str(), "recreate"); // RECREATE for output
         fTrees[run] = std::make_shared<TTree>(fTreeName.c_str(), "An ACTAR TPC tree created with ActRoot");
@@ -68,9 +71,8 @@ void ActRoot::OutputData::Close(int run)
     // Write to file assigned to tree in run
     // option kWriteDelete erases previous cycle metadata
     // keeping only the highest
-    // fFiles[run]->ls();
     fFiles[run]->Write();
-    fFiles[run]->Close();
+    // Close is implicitily called at reset
     fTrees[run].reset();
     fFiles[run].reset();
 }

@@ -26,18 +26,20 @@ int main(int argc, char* argv[])
         // Manage data
         ActRoot::DataManager datman {opts->GetMode()};
         datman.ReadDataFile(opts->GetDataFile());
-        ActRoot::InputData input {datman.GetInput()};
-        ActRoot::OutputData output {datman.GetOuput()};
 
         if(opts->GetIsMT())
         {
             ActRoot::MTExecutor mt;
-            mt.SetInputAndOutput(&input, &output);
+            mt.SetDataManager(&datman);
             mt.SetDetectorConfig(opts->GetDetFile(), opts->GetCalFile());
             mt.BuildEvent();
         }
         else // ST mode
         {
+            // Init input and output
+            auto input {datman.GetInput()};
+            auto output {datman.GetOuput()};
+
             ActRoot::DetectorManager detman {opts->GetMode()};
             detman.ReadDetectorFile(opts->GetDetFile());
             detman.ReadCalibrationsFile(opts->GetCalFile());
@@ -54,7 +56,7 @@ int main(int argc, char* argv[])
                 {
                     std::cout << "\r" << entry << std::flush;
                     input.GetEntry(run, entry);
-                    detman.BuildEvent();
+                    detman.BuildEvent(run, entry);
                     output.Fill(run);
                 }
                 output.Close(run);

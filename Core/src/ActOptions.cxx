@@ -13,9 +13,9 @@
 #include <string>
 
 std::unordered_map<ActRoot::ModeType, std::string> ActRoot::Options::fModeTable = {
-    {ModeType::ENone, "None"},     {ModeType::EReadTPC, "ReadTPC"}, {ModeType::EReadSilMod, "ReadSilMod"},
-    {ModeType::EFilter, "Filter"}, {ModeType::EMerge, "Merger"},    {ModeType::ECorrect, "Correct"},
-    {ModeType::EGui, "Visual"}};
+    {ModeType::ENone, "None"},       {ModeType::EReadTPC, "ReadTPC"}, {ModeType::EReadSilMod, "ReadSilMod"},
+    {ModeType::EFilter, "Filter"},   {ModeType::EMerge, "Merger"},    {ModeType::EFilterMerge, "Filter&Merge"},
+    {ModeType::ECorrect, "Correct"}, {ModeType::EGui, "Visual"}};
 
 std::shared_ptr<ActRoot::Options> ActRoot::Options::fInstance = nullptr;
 
@@ -84,6 +84,9 @@ void ActRoot::Options::Parse(int argc, char** argv)
         // Merge mode
         else if(arg == "-m")
             fMode = ModeType::EMerge;
+        // Both modes
+        else if(arg == "-fm" || arg == "-mf")
+            fMode = ModeType::EFilterMerge;
         // Correct mode
         else if(arg == "-c")
             fMode = ModeType::ECorrect;

@@ -18,14 +18,14 @@
 #include <string>
 #include <vector>
 
-ActCluster::RANSAC::RANSAC(int iterations, int minPoints, double distThres)
+ActAlgorithm::RANSAC::RANSAC(int iterations, int minPoints, double distThres)
     : VCluster(minPoints),
       fIterations(iterations),
       fDistThreshold(distThres)
 {
 }
 
-void ActCluster::RANSAC::ReadConfiguration()
+void ActAlgorithm::RANSAC::ReadConfiguration()
 {
     auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
     conf += "ransac.conf";
@@ -42,7 +42,7 @@ void ActCluster::RANSAC::ReadConfiguration()
         fUseLmeds = rb->GetBool("UseLmeds");
 }
 
-int ActCluster::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line)
+int ActAlgorithm::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line)
 {
     int ninliers {};
     std::vector<double> verrors;
@@ -69,7 +69,7 @@ int ActCluster::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, A
 }
 
 std::vector<ActRoot::Voxel>
-ActCluster::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActPhysics::Line& line)
+ActAlgorithm::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActPhysics::Line& line)
 {
     std::vector<ActRoot::Voxel> ret {};
     // clear cloud according to line: delete from it voxel belonging to this line
@@ -108,7 +108,7 @@ ActCluster::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActP
     return ret;
 }
 
-ActPhysics::Line ActCluster::RANSAC::SampleLine(const std::vector<ActRoot::Voxel>& voxels)
+ActPhysics::Line ActAlgorithm::RANSAC::SampleLine(const std::vector<ActRoot::Voxel>& voxels)
 {
     // Sample two points uniformly
     std::vector<int> idxs;
@@ -126,7 +126,7 @@ ActPhysics::Line ActCluster::RANSAC::SampleLine(const std::vector<ActRoot::Voxel
     return ActPhysics::Line(picked[0].GetPosition(), picked[1].GetPosition());
 }
 
-ActCluster::VCluster::ClusterRet ActCluster::RANSAC::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
+ActAlgorithm::VCluster::ClusterRet ActAlgorithm::RANSAC::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
 {
     // inner timing tool
     fClock.Start(false);
@@ -170,7 +170,7 @@ ActCluster::VCluster::ClusterRet ActCluster::RANSAC::Run(const std::vector<ActRo
     return {clusters, {}};
 }
 
-void ActCluster::RANSAC::Print() const
+void ActAlgorithm::RANSAC::Print() const
 {
     std::cout << BOLDGREEN << "==== RANSAC configuration ====" << '\n';
     std::cout << "-> DistThreshold: " << fDistThreshold << '\n';
@@ -180,7 +180,7 @@ void ActCluster::RANSAC::Print() const
     std::cout << "===========================" << RESET << '\n';
 }
 
-void ActCluster::RANSAC::PrintReports() const
+void ActAlgorithm::RANSAC::PrintReports() const
 {
     std::cout << BOLDYELLOW << "==== RANSAC time report ====" << '\n';
     fClock.Print();

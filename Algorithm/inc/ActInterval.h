@@ -14,7 +14,7 @@
 #include <utility>
 #include <vector>
 
-namespace ActCluster
+namespace ActAlgorithm
 {
     template <typename T>
     class Interval

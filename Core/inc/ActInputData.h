@@ -40,7 +40,7 @@ public:
 
     void AddManualEntries(const std::string& file);
 
-    void Init(const std::set<int>& runs);
+    void Init(const std::set<int>& runs, bool print = true);
 
     // Getters
     std::map<int, std::shared_ptr<TTree>> GetTrees() const { return fTrees; }

@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace ActCluster
+namespace ActAlgorithm
 {
 class Corrector : public VFilter
 {

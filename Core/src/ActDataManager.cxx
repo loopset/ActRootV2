@@ -35,20 +35,20 @@ void ActRoot::DataManager::ParseManagerBlock(ActRoot::BlockPtr block)
     // 3-> Manual entries file to InputData
     //
     // 1
-    auto runs {block->GetIntVector("RunList")};
+    auto runs {block->GetIntVector("Runs")};
     fRuns.insert(runs.begin(), runs.end());
     // 2
-    if(block->CheckTokenExists("ExcludeList", true))
+    if(block->CheckTokenExists("Exclude", true))
     {
-        auto exclude {block->GetIntVector("ExcludeList")};
+        auto exclude {block->GetIntVector("Exclude")};
         std::set<int> excludeSet {exclude.begin(), exclude.end()};
         for(const int& run : excludeSet)
             if(auto it {fRuns.find(run)}; it != fRuns.end())
                 fRuns.erase(it);
     }
     // 3
-    if(block->CheckTokenExists("ManualEntries", true))
-        fManual = block->GetString("ManualEntries");
+    if(block->CheckTokenExists("Manual", true))
+        fManual = block->GetString("Manual");
 }
 
 ActRoot::BlockPtr ActRoot::DataManager::CheckAndGet(const std::string& name)
@@ -59,9 +59,8 @@ ActRoot::BlockPtr ActRoot::DataManager::CheckAndGet(const std::string& name)
         throw std::runtime_error("DataManager::CheckAndGet(): could not locate " + name + " block");
 }
 
-ActRoot::InputData ActRoot::DataManager::GetInput(ActRoot::ModeType mode)
+void ActRoot::DataManager::SetInputData(InputData& in, ModeType mode)
 {
-    InputData in;
     if(mode == ModeType::EReadTPC)
         in.AddInput(CheckAndGet("Raw"));
     else if(mode == ModeType::EReadSilMod)
@@ -73,33 +72,83 @@ ActRoot::InputData ActRoot::DataManager::GetInput(ActRoot::ModeType mode)
         in.AddInput(CheckAndGet("Filter"));
         in.AddInput(CheckAndGet("Data"));
     }
+    else if(mode == ModeType::EFilterMerge)
+    {
+        in.AddInput(CheckAndGet("Cluster"));
+        in.AddInput(CheckAndGet("Data"));
+    }
     else if(mode == ModeType::EGui)
     {
         in.AddInput(CheckAndGet("Cluster"));
         in.AddInput(CheckAndGet("Data"));
     }
+    else if(mode == ModeType::ECorrect)
+        in.AddInput(CheckAndGet("Merger"));
     else
-        throw std::invalid_argument("DataManager::GetInput(): mode not implemented yet");
-    in.Init(fRuns);
-    in.AddManualEntries(fManual);
-    return std::move(in);
+        throw std::invalid_argument("DataManager::SetInputData(): mode not implemented yet");
 }
 
-ActRoot::OutputData ActRoot::DataManager::GetOuput(ActRoot::ModeType mode)
+void ActRoot::DataManager::SetOutputData(OutputData& out, ModeType mode)
 {
-    OutputData out;
     if(mode == ModeType::EReadTPC)
         out.AddOuput(CheckAndGet("Cluster"));
     else if(mode == ModeType::EReadSilMod)
         out.AddOuput(CheckAndGet("Data"));
     else if(mode == ModeType::EFilter)
         out.AddOuput(CheckAndGet("Filter"));
-    else if(mode == ModeType::EMerge)
+    else if(mode == ModeType::EMerge || mode == ModeType::EFilterMerge)
         out.AddOuput(CheckAndGet("Merger"));
     else if(mode == ModeType::EGui)
         ;
+    else if(mode == ModeType::ECorrect)
+        out.AddOuput(CheckAndGet("Corrector"));
     else
         throw std::invalid_argument("DataManager::GetOutput(): mode not implemented yet");
+}
+
+ActRoot::InputData ActRoot::DataManager::GetInput(ActRoot::ModeType mode)
+{
+    InputData in;
+    SetInputData(in, mode);
+    in.Init(fRuns);
+    in.AddManualEntries(fManual);
+    return std::move(in);
+}
+
+ActRoot::InputData ActRoot::DataManager::GetInputForThread(const std::set<int>& runs)
+{
+    InputData in;
+    SetInputData(in, fMode);
+    in.Init(runs, false);
+    return std::move(in);
+}
+
+ActRoot::OutputData ActRoot::DataManager::GetOutputForThread(const std::set<int>& runs)
+{
+    OutputData out;
+    SetOutputData(out, fMode);
+    out.Init(runs, false);
+    return std::move(out);
+}
+
+ActRoot::OutputData ActRoot::DataManager::GetOuput(ActRoot::ModeType mode)
+{
+    OutputData out;
+    SetOutputData(out, mode);
     out.Init(fRuns);
     return std::move(out);
+}
+
+ActRoot::InputData ActRoot::DataManager::GetOutputAsInput(ActRoot::ModeType mode)
+{
+    InputData in;
+    if(mode == ModeType::EMerge)
+        in.AddInput(CheckAndGet("Merger"));
+    else if(mode == ModeType::ECorrect)
+        in.AddInput(CheckAndGet("Corrector"));
+    else
+        throw std::runtime_error("DataManager::GetOutputAsInput(): no conversion out -> in for that mode");
+    in.Init(fRuns);
+    in.AddManualEntries(fManual);
+    return std::move(in);
 }

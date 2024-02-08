@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -55,7 +54,7 @@ void ActRoot::InputData::CheckTreeExists(std::shared_ptr<TTree> tree, int i)
         throw std::runtime_error("InputData: tree " + fTreeNames[i] + " could not be opened");
 }
 
-void ActRoot::InputData::Init(const std::set<int>& runs)
+void ActRoot::InputData::Init(const std::set<int>& runs, bool print)
 {
     fRuns = runs;
     // Assert that we have at least 1 input
@@ -68,8 +67,11 @@ void ActRoot::InputData::Init(const std::set<int>& runs)
             std::string filename {fPaths[in] + fBegins[in] + TString::Format("%04d", run) + fEnds[in] + ".root"};
             CheckFileExists(filename);
             // Print!
-            std::cout << BOLDYELLOW << "InputData: reading " << fTreeNames[in] << " tree in file " << '\n';
-            std::cout << "  " << filename << RESET << '\n';
+            if(print)
+            {
+                std::cout << BOLDYELLOW << "InputData: reading " << fTreeNames[in] << " tree in file " << '\n';
+                std::cout << "  " << filename << RESET << '\n';
+            }
             // Init
             if(in == 0) // Init pointers, this is set as the main input!
             {
@@ -114,6 +116,7 @@ void ActRoot::InputData::AddManualEntries(const std::string& file)
 }
 void ActRoot::InputData::Close(int run)
 {
+    // Reset with use_count = 1 calls destructor, which for TFile calls Close()
     fTrees[run].reset();
     fFiles[run].reset();
 }

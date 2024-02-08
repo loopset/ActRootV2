@@ -5,10 +5,11 @@
 #include "ActInputParser.h"
 #include "ActMergerDetector.h"
 #include "ActModularDetector.h"
+#include "ActOptions.h"
 #include "ActSilDetector.h"
+#include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
-#include "ActVData.h"
 
 #include "TTree.h"
 
@@ -21,8 +22,8 @@
 #include <vector>
 
 std::unordered_map<std::string, ActRoot::DetectorType> ActRoot::DetectorManager::fDetDatabase = {
-    {"Actar", DetectorType::EActar},   {"Silicons", DetectorType::ESilicons},       {"Modular", DetectorType::EModular},
-    {"Merger", DetectorType::EMerger}, {"Corrections", DetectorType::ECorrections}, {"None", DetectorType::ENone},
+    {"Actar", DetectorType::EActar},   {"Silicons", DetectorType::ESilicons}, {"Modular", DetectorType::EModular},
+    {"Merger", DetectorType::EMerger}, {"None", DetectorType::ENone},
 };
 
 std::string ActRoot::DetectorManager::GetDetectorTypeStr(ActRoot::DetectorType type)
@@ -47,14 +48,15 @@ void ActRoot::DetectorManager::InitDetectors()
     {
         // Silicon
         fDetectors[DetectorType::ESilicons] = std::make_shared<ActRoot::SilDetector>();
+        // Modular
         fDetectors[DetectorType::EModular] = std::make_shared<ActRoot::ModularDetector>();
     }
     else if(fMode == ModeType::EFilter)
     {
-        // Thus far only TPCDetector has a filter implemented
+        // Filter mode refers to filter at first stage: TPC -> Merger
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
     }
-    else if(fMode == ModeType::EMerge || fMode == ModeType::EGui)
+    else if(fMode == ModeType::EMerge || fMode == ModeType::EFilterMerge || fMode == ModeType::EGui)
     {
         fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
         fDetectors[DetectorType::ESilicons] = std::make_shared<ActRoot::SilDetector>();
@@ -63,7 +65,8 @@ void ActRoot::DetectorManager::InitDetectors()
     }
     else if(fMode == ModeType::ECorrect)
     {
-        // fDetectors[DetectorType::ECorrections] = std::make_shared<ActRoot::CorrDetector>();
+        // Correct is a filter at second stage: Merger -> Merger
+        fDetectors[DetectorType::EMerger] = std::make_shared<ActRoot::MergerDetector>();
     }
     else
         throw std::runtime_error("DetectorManager::InitDetectors() : fMode is None, enter other mode!");
@@ -87,7 +90,8 @@ void ActRoot::DetectorManager::ReadDetectorFile(const std::string& file, bool pr
             det->Print();
     }
     // Workaround for Merger: needs access to all the other parameters
-    if(fMode == ModeType::EMerge || fMode == ModeType::EGui)
+    // but not for its filter (ModeType::ECorrect)
+    if(fMode == ModeType::EMerge || fMode == ModeType::EFilterMerge || fMode == ModeType::EGui)
     {
         auto merger {std::dynamic_pointer_cast<ActRoot::MergerDetector>(fDetectors[DetectorType::EMerger])};
         for(auto& [key, det] : fDetectors)
@@ -126,7 +130,7 @@ void ActRoot::DetectorManager::DeleteDetector(DetectorType type)
     if(it != fDetectors.end())
         fDetectors.erase(it);
     else
-        std::cout << "Could not delete detector" << '\n';
+        std::cout << "DetectorManager::DeleteDetector(): could not delete detector " + GetDetectorTypeStr(type) << '\n';
 }
 
 void ActRoot::DetectorManager::InitInput(std::shared_ptr<TTree> input)
@@ -139,10 +143,19 @@ void ActRoot::DetectorManager::InitInput(std::shared_ptr<TTree> input)
             det->InitInputFilter(input);
     else if(fMode == ModeType::EMerge)
         fDetectors[DetectorType::EMerger]->InitInputData(input);
+    else if(fMode == ModeType::EFilterMerge)
+    {
+        // Merger holds all the pointers to data created with new
+        fDetectors[DetectorType::EMerger]->InitInputData(input);
+        // And for filter in TPC we set them from it
+        fDetectors[DetectorType::EActar]->SetInputFilter(GetDetectorAs<MergerDetector>()->GetInputData<TPCData>());
+    }
     else if(fMode == ModeType::ECorrect)
-        ;
+        for(auto& [key, det] : fDetectors)
+            det->InitInputFilter(input);
     else
-        ;
+        throw std::runtime_error("DetectorManager::InitInput(): no known assigment for mode " +
+                                 ActRoot::Options::GetModeStr(fMode));
     // Workaround for EData mode
     if(fMode == ModeType::EReadSilMod)
         fDetectors[DetectorType::EModular]->SetMEvent(fDetectors[DetectorType::ESilicons]->GetMEvent());
@@ -156,15 +169,17 @@ void ActRoot::DetectorManager::InitOutput(std::shared_ptr<TTree> output)
     else if(fMode == ModeType::EFilter)
         for(auto& [key, det] : fDetectors)
             det->InitOutputFilter(output);
-    else if(fMode == ModeType::EMerge)
+    else if(fMode == ModeType::EMerge || fMode == ModeType::EFilterMerge)
         fDetectors[DetectorType::EMerger]->InitOutputData(output);
     else if(fMode == ModeType::ECorrect)
-        ;
+        for(auto& [key, det] : fDetectors)
+            det->InitOutputFilter(output);
     else
-        ;
+        throw std::runtime_error("DetectorManager::InitOutput(): no known assigment for mode " +
+                                 ActRoot::Options::GetModeStr(fMode));
 }
 
-void ActRoot::DetectorManager::BuildEvent()
+void ActRoot::DetectorManager::BuildEvent(const int& run, const int& entry)
 {
     if(fMode == ModeType::EReadTPC || fMode == ModeType::EReadSilMod)
         for(auto& [key, det] : fDetectors)
@@ -172,7 +187,7 @@ void ActRoot::DetectorManager::BuildEvent()
             det->ClearEventData();
             det->BuildEventData();
         }
-    if(fMode == ModeType::EFilter)
+    else if(fMode == ModeType::EFilter)
         for(auto& [key, det] : fDetectors)
         {
             det->ClearEventFilter();
@@ -181,17 +196,32 @@ void ActRoot::DetectorManager::BuildEvent()
     else if(fMode == ModeType::EMerge)
     {
         fDetectors[DetectorType::EMerger]->ClearEventData();
-        fDetectors[DetectorType::EMerger]->BuildEventData();
+        fDetectors[DetectorType::EMerger]->BuildEventData(run, entry);
+    }
+    else if(fMode == ModeType::EFilterMerge)
+    {
+        fDetectors[DetectorType::EActar]->ClearEventFilter();
+        fDetectors[DetectorType::EActar]->BuildEventFilter();
+
+        fDetectors[DetectorType::EMerger]->ClearEventData();
+        fDetectors[DetectorType::EMerger]->BuildEventData(run, entry);
     }
     else if(fMode == ModeType::EGui)
     {
         throw std::runtime_error(
-            "DetectorManager::BuildEvent(): EVisual mode not supported: Clone2 is explicited in EventPainter");
+            "DetectorManager::BuildEvent(): EGui mode not supported: Clone2 is explicited in EventPainter");
     }
     else if(fMode == ModeType::ECorrect)
-        ; // fDetectors[]
+    {
+        for(auto& [key, det] : fDetectors) // fDetectors only contains MergerDetector
+        {
+            det->ClearEventFilter();
+            det->BuildEventFilter();
+        }
+    }
     else
-        ;
+        throw std::runtime_error("DetectorManager::BuildEvent(): no known assigment for mode " +
+                                 ActRoot::Options::GetModeStr(fMode));
 }
 
 void ActRoot::DetectorManager::Print() const

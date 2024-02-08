@@ -8,7 +8,6 @@ enum class DetectorType
     ESilicons,
     EModular,
     EMerger,
-    ECorrections,
     ENone
 };
 
@@ -18,6 +17,7 @@ enum class ModeType
     EReadSilMod, // !< Convert from Raw to Sil and Modular data
     EFilter,     // !< Exec filter before Merger
     EMerge,      // !< Merge detectors and build physical event
+    EFilterMerge,// !< Both operations at the same time
     ECorrect,    // !< Exec filter after merger
     EGui,     // !< For GUI in actplot
     ENone        // !< Default value

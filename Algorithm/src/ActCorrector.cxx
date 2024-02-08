@@ -10,7 +10,7 @@
 #include <memory>
 #include <string>
 
-void ActCluster::Corrector::ReadConfiguration()
+void ActAlgorithm::Corrector::ReadConfiguration()
 {
     auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
     conf += "corrector.conf";
@@ -22,37 +22,37 @@ void ActCluster::Corrector::ReadConfiguration()
     if(b->CheckTokenExists("ZOffset", true))
         fZOffset = b->GetDouble("ZOffset");
     if(b->CheckTokenExists("EnableAngle"))
-        fEnableAngle = b->GetDouble("EnableAngle");
+        fEnableAngle = b->GetBool("EnableAngle");
 }
 
-void ActCluster::Corrector::ReadPIDCorrector(const std::string& file)
+void ActAlgorithm::Corrector::ReadPIDCorrector(const std::string& file)
 {
     auto f {std::make_unique<TFile>(file.c_str())};
-    auto o {std::shared_ptr<ActPhysics::PIDCorrection>(f->Get<ActPhysics::PIDCorrection>("PIDCorrection"))};
-    if(!o)
+    fPID = std::shared_ptr<ActPhysics::PIDCorrection>(f->Get<ActPhysics::PIDCorrection>("PIDCorrection"));
+    if(!fPID)
         throw std::runtime_error("Corrector::ReadPIDCorrector: no PIDCorrection found in file " + file);
 }
 
-void ActCluster::Corrector::Run()
+void ActAlgorithm::Corrector::Run()
 {
     DoPID();
     DoZOffset();
     DoAngle();
 }
 
-void ActCluster::Corrector::DoPID()
+void ActAlgorithm::Corrector::DoPID()
 {
     if(fPID)
         fMergerData->fQave = fPID->Apply(fMergerData->fQave, fMergerData->fRP.X());
 }
 
-void ActCluster::Corrector::DoZOffset()
+void ActAlgorithm::Corrector::DoZOffset()
 {
     for(auto& p : {&fMergerData->fWP, &fMergerData->fRP, &fMergerData->fBP, &fMergerData->fSP})
         p->SetZ(p->Z() + fZOffset);
 }
 
-void ActCluster::Corrector::DoAngle()
+void ActAlgorithm::Corrector::DoAngle()
 {
     // So far, it is hardcoded in this code until we
     // recompute it
@@ -66,7 +66,7 @@ void ActCluster::Corrector::DoAngle()
     fMergerData->fThetaLight = theta;
 }
 
-void ActCluster::Corrector::Print() const
+void ActAlgorithm::Corrector::Print() const
 {
     std::cout << BOLDCYAN << "++++ Corrector filter ++++" << '\n';
     if(fPID)

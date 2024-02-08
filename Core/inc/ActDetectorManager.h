@@ -12,7 +12,6 @@ performed on its data
 #include "ActSilDetector.h"
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
-#include "ActVData.h"
 #include "ActVDetector.h"
 
 #include "TTree.h"
@@ -65,7 +64,7 @@ public:
     void InitOutput(std::shared_ptr<TTree> output);
 
     // Build functions
-    void BuildEvent();
+    void BuildEvent(const int& run, const int& entry);
 
     // Get detectors class
     std::shared_ptr<VDetector> GetDetector(DetectorType type) { return fDetectors[type]; }
@@ -73,13 +72,13 @@ public:
     inline std::shared_ptr<T> GetDetectorAs()
     {
         DetectorType type {DetectorType::ENone};
-        if(std::is_same<T, TPCDetector>::value)
+        if constexpr(std::is_same_v<T, TPCDetector>)
             type = DetectorType::EActar;
-        else if(std::is_same<T, SilDetector>::value)
+        else if constexpr(std::is_same_v<T, SilDetector>)
             type = DetectorType::ESilicons;
-        else if(std::is_same<T, ModularDetector>::value)
+        else if constexpr(std::is_same_v<T, ModularDetector>)
             type = DetectorType::EModular;
-        else if(std::is_same<T, MergerDetector>::value)
+        else if constexpr(std::is_same_v<T, MergerDetector>)
             type = DetectorType::EMerger;
         else
             throw std::runtime_error("DetectorManager::GetDetectorAs(): could not cast to passed type");

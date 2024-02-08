@@ -13,7 +13,7 @@
 #include <vector>
 
 //! A namespace with all clustering utilities
-namespace ActCluster
+namespace ActAlgorithm
 {
 class RANSAC : public VCluster
 {

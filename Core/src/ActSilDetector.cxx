@@ -1,6 +1,5 @@
 #include "ActSilDetector.h"
 
-#include "ActCalibrationManager.h"
 #include "ActInputParser.h"
 #include "ActSilData.h"
 #include "ActTPCLegacyData.h"

@@ -1,17 +1,13 @@
 #ifndef ActMTExecutor_h
 #define ActMTExecutor_h
 
+#include "ActDataManager.h"
 #include "ActDetectorManager.h"
-#include "ActInputData.h"
-#include "ActOutputData.h"
-
-#include "TROOT.h"
-#include "TStopwatch.h"
 
 #include "BS_thread_pool.h"
+#include "BS_thread_pool_utils.h"
 
-#include <iomanip>
-#include <iostream>
+#include <set>
 #include <string>
 #include <thread>
 #include <utility>
@@ -27,35 +23,20 @@ private:
     BS::synced_stream ftpcout;
     // Thread pool
     BS::thread_pool ftp;
-    // Input data
-    InputData* fInput;
-    // Output data
-    OutputData* fOutput;
+    // Pointer to DataManager
+    DataManager* fDatMan {};
     // Vector of DetMan for workers
     std::vector<DetectorManager> fDetMans;
     // List of runs per worker
-    std::vector<std::vector<int>> fRunsPerThread;
+    std::vector<std::set<int>> fRunsPerThread;
     // For print progress, miscellanea
     std::vector<std::pair<double, double>> fProgress;
     double fPercentPrint {10};
-    // For Raw->Data two modes
-    bool fIsCluster {};
-    bool fIsData {};
 
 public:
     MTExecutor(int nthreads = std::thread::hardware_concurrency());
-    void SetInputAndOutput(InputData* in, OutputData* out);
+    void SetDataManager(DataManager* datman);
     void SetDetectorConfig(const std::string& detfile, const std::string& calfile);
-    void SetIsCluster()
-    {
-        fIsCluster = true;
-        fIsData = false;
-    }
-    void SetIsData()
-    {
-        fIsCluster = false;
-        fIsData = true;
-    }
     void BuildEvent();
 
 private:

@@ -31,9 +31,14 @@ public:
     // Main methods
     InputData GetInput() { return GetInput(fMode); }
     InputData GetInput(ModeType mode);
+    InputData GetInputForThread(const std::set<int>& runs);
 
     OutputData GetOuput() { return GetOuput(fMode); };
     OutputData GetOuput(ModeType mode);
+    OutputData GetOutputForThread(const std::set<int>& runs);
+
+    InputData GetOutputAsInput() { return GetOutputAsInput(fMode); };
+    InputData GetOutputAsInput(ModeType mode);
 
     // Getters
     const std::set<int>& GetRunList() const { return fRuns; }
@@ -43,6 +48,8 @@ public:
 private:
     void ParseManagerBlock(BlockPtr block);
     BlockPtr CheckAndGet(const std::string& name);
+    void SetInputData(InputData& in, ModeType mode);
+    void SetOutputData(OutputData& out, ModeType mode);
 };
 } // namespace ActRoot
 

@@ -22,7 +22,8 @@ namespace ActRoot
 {
 class TPCParameters;
 }
-namespace ActCluster
+
+namespace ActAlgorithm
 {
 class MultiStep : public VFilter
 {

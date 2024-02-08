@@ -16,26 +16,26 @@
 #include <utility>
 #include <vector>
 
-ActCluster::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : VCluster(minPoints), fTPC(tpc)
+ActAlgorithm::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : VCluster(minPoints), fTPC(tpc)
 {
     InitMatrix();
 }
 
-void ActCluster::ClIMB::Print() const
+void ActAlgorithm::ClIMB::Print() const
 {
     std::cout << BOLDMAGENTA << ".... ClIMB configuration ...." << '\n';
     std::cout << "-> MinPoints : " << fMinPoints << '\n';
     std::cout << "............................." << RESET << '\n';
 }
 
-void ActCluster::ClIMB::PrintReports() const
+void ActAlgorithm::ClIMB::PrintReports() const
 {
     std::cout << BOLDYELLOW << ".... ClIMB time report ...." << '\n';
     fClock.Print();
     std::cout << ".............................." << RESET << '\n';
 }
 
-void ActCluster::ClIMB::ReadConfiguration()
+void ActAlgorithm::ClIMB::ReadConfiguration()
 {
     std::string conf {ActRoot::Options::GetInstance()->GetConfigDir()};
     conf += "climb.conf";
@@ -46,14 +46,14 @@ void ActCluster::ClIMB::ReadConfiguration()
         fMinPoints = cb->GetInt("MinPoints");
 }
 
-void ActCluster::ClIMB::InitMatrix()
+void ActAlgorithm::ClIMB::InitMatrix()
 {
     fMatrix = std::vector<std::vector<std::vector<int>>>(
         fTPC->GetNPADSX(),
         std::vector<std::vector<int>>(fTPC->GetNPADSY(), std::vector<int>(fTPC->GetNPADSZ() / fTPC->GetREBINZ(), -1)));
 }
 
-void ActCluster::ClIMB::FillMatrix()
+void ActAlgorithm::ClIMB::FillMatrix()
 {
     for(int i = 0, size = fVoxels.size(); i < size; i++)
     {
@@ -62,7 +62,7 @@ void ActCluster::ClIMB::FillMatrix()
     }
 }
 
-std::tuple<int, int, int> ActCluster::ClIMB::GetCoordinates(int index)
+std::tuple<int, int, int> ActAlgorithm::ClIMB::GetCoordinates(int index)
 {
     const auto& pos {fVoxels[index].GetPosition()};
     auto x {(int)pos.X()};
@@ -71,18 +71,18 @@ std::tuple<int, int, int> ActCluster::ClIMB::GetCoordinates(int index)
     return {x, y, z};
 }
 
-void ActCluster::ClIMB::MaskVoxelsInMatrix(int index)
+void ActAlgorithm::ClIMB::MaskVoxelsInMatrix(int index)
 {
     auto [x, y, z] {GetCoordinates(index)};
     fMatrix[x][y][z] = -1;
 }
 
-void ActCluster::ClIMB::MaskVoxelsInIndex(int index)
+void ActAlgorithm::ClIMB::MaskVoxelsInIndex(int index)
 {
     fIndexes[index] = -1;
 }
 template <typename T>
-bool ActCluster::ClIMB::IsInCage(T x, T y, T z)
+bool ActAlgorithm::ClIMB::IsInCage(T x, T y, T z)
 {
     bool condX {0 <= x && x < fTPC->GetNPADSX()};
     bool condY {0 <= y && y < fTPC->GetNPADSY()};
@@ -90,7 +90,7 @@ bool ActCluster::ClIMB::IsInCage(T x, T y, T z)
     return condX && condY && condZ;
 }
 
-std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen0)
+std::vector<int> ActAlgorithm::ClIMB::ScanNeighborhood(const std::vector<int>& gen0)
 {
     std::vector<int> gen1;
     for(const auto& ivoxel : gen0)
@@ -123,7 +123,7 @@ std::vector<int> ActCluster::ClIMB::ScanNeighborhood(const std::vector<int>& gen
     return std::move(gen1);
 }
 
-void ActCluster::ClIMB::InitIndexes()
+void ActAlgorithm::ClIMB::InitIndexes()
 {
     // Clear
     fIndexes.clear();
@@ -135,7 +135,7 @@ void ActCluster::ClIMB::InitIndexes()
     std::iota(fIndexes.begin(), fIndexes.end(), 0);
 }
 
-ActCluster::VCluster::ClusterRet ActCluster::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
+ActAlgorithm::VCluster::ClusterRet ActAlgorithm::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
 {
     // Inner timer
     fClock.Start(false);

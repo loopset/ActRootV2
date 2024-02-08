@@ -8,19 +8,18 @@
 #pragma link C++ nestedtypedef;
 
 // Cluster algorithms
-#pragma link C++ class ActCluster::VCluster;
-#pragma link C++ class ActCluster::RANSAC;
-#pragma link C++ class ActCluster::ClIMB;
+#pragma link C++ class ActAlgorithm::VCluster;
+#pragma link C++ class ActAlgorithm::RANSAC;
+#pragma link C++ class ActAlgorithm::ClIMB;
 
-#pragma link C++ class ActCluster::Interval < int> + ;
-#pragma link C++ class ActCluster::Interval < float> + ;
-#pragma link C++ class ActCluster::IntervalMap < int> + ;
-#pragma link C++ class ActCluster::IntervalMap < float> + ;
+#pragma link C++ class ActAlgorithm::Interval < int> + ;
+#pragma link C++ class ActAlgorithm::Interval < float> + ;
+#pragma link C++ class ActAlgorithm::IntervalMap < int> + ;
+#pragma link C++ class ActAlgorithm::IntervalMap < float> + ;
 
 // Filter algorithms
-
-#pragma link C++ class ActCluster::VFilter;
-#pragma link C++ class ActCluster::MultiStep;
-#pragma link C++ class ActCluster::Corrector;
+#pragma link C++ class ActAlgorithm::VFilter;
+#pragma link C++ class ActAlgorithm::MultiStep;
+#pragma link C++ class ActAlgorithm::Corrector;
 
 #endif
