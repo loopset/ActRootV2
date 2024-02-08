@@ -189,26 +189,26 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// std::cout &lt;&lt; &quot;Initializing detector type: &quot; &lt;&lt; type &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span>(type == <span class="stringliteral">&quot;Actar&quot;</span>)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> = 128;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> = 128;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> = 512;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <span class="stringliteral">&quot;protoActar&quot;</span>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> = 64;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> = 32;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> = 512;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No TPCParameters config available for passed &quot;</span> + type);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a13eb69175918f2858c749c6309ac51a7"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">ActRoot::TPCParameters::fNPADSZ</a></div><div class="ttdeci">int fNPADSZ</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:31</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a885d22c2c1c64eb1c67bb51fc38722e3"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">ActRoot::TPCParameters::fNPADSX</a></div><div class="ttdeci">int fNPADSX</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:29</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ae712feca7f3b7f54b312fde033e5414c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">ActRoot::TPCParameters::fNPADSY</a></div><div class="ttdeci">int fNPADSY</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:30</div></div>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// std::cout &lt;&lt; &quot;Initializing detector type: &quot; &lt;&lt; type &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(type == <span class="stringliteral">&quot;Actar&quot;</span>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> = 128;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> = 128;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> = 512;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(type == <span class="stringliteral">&quot;protoActar&quot;</span>)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> = 64;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> = 32;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> = 512;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No TPCParameters config available for passed &quot;</span> + type);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a13eb69175918f2858c749c6309ac51a7"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">ActRoot::TPCParameters::fNPADSZ</a></div><div class="ttdeci">int fNPADSZ</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:30</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a885d22c2c1c64eb1c67bb51fc38722e3"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">ActRoot::TPCParameters::fNPADSX</a></div><div class="ttdeci">int fNPADSX</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:28</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ae712feca7f3b7f54b312fde033e5414c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">ActRoot::TPCParameters::fNPADSY</a></div><div class="ttdeci">int fNPADSY</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:29</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -235,8 +235,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a3b92fbd4254b906d62b6c29d712af9ab">fNB_AGET</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a3b92fbd4254b906d62b6c29d712af9ab"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a3b92fbd4254b906d62b6c29d712af9ab">ActRoot::TPCParameters::fNB_AGET</a></div><div class="ttdeci">int fNB_AGET</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:35</div></div>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a3b92fbd4254b906d62b6c29d712af9ab">fNB_AGET</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a3b92fbd4254b906d62b6c29d712af9ab"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a3b92fbd4254b906d62b6c29d712af9ab">ActRoot::TPCParameters::fNB_AGET</a></div><div class="ttdeci">int fNB_AGET</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:34</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -262,8 +262,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ac17caec59aeb56dc3165cdad8a1b4c7b">fNB_ASAD</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ac17caec59aeb56dc3165cdad8a1b4c7b"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ac17caec59aeb56dc3165cdad8a1b4c7b">ActRoot::TPCParameters::fNB_ASAD</a></div><div class="ttdeci">int fNB_ASAD</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:34</div></div>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ac17caec59aeb56dc3165cdad8a1b4c7b">fNB_ASAD</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ac17caec59aeb56dc3165cdad8a1b4c7b"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ac17caec59aeb56dc3165cdad8a1b4c7b">ActRoot::TPCParameters::fNB_ASAD</a></div><div class="ttdeci">int fNB_ASAD</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:33</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -289,8 +289,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a763154932e1ddd66a9419e6574852d20">fNB_CHANNEL</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a763154932e1ddd66a9419e6574852d20"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a763154932e1ddd66a9419e6574852d20">ActRoot::TPCParameters::fNB_CHANNEL</a></div><div class="ttdeci">int fNB_CHANNEL</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:36</div></div>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a763154932e1ddd66a9419e6574852d20">fNB_CHANNEL</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a763154932e1ddd66a9419e6574852d20"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a763154932e1ddd66a9419e6574852d20">ActRoot::TPCParameters::fNB_CHANNEL</a></div><div class="ttdeci">int fNB_CHANNEL</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:35</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -316,8 +316,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ae925d00d49dee4fdd6b20a666a3f4ab7">fNB_COBO</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ae925d00d49dee4fdd6b20a666a3f4ab7"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ae925d00d49dee4fdd6b20a666a3f4ab7">ActRoot::TPCParameters::fNB_COBO</a></div><div class="ttdeci">int fNB_COBO</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:33</div></div>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ae925d00d49dee4fdd6b20a666a3f4ab7">fNB_COBO</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ae925d00d49dee4fdd6b20a666a3f4ab7"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ae925d00d49dee4fdd6b20a666a3f4ab7">ActRoot::TPCParameters::fNB_COBO</a></div><div class="ttdeci">int fNB_COBO</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:32</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -343,7 +343,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -369,7 +369,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -395,7 +395,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -421,8 +421,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a4c887bb83360780d29c107703de495f6">fPadSide</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a4c887bb83360780d29c107703de495f6"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a4c887bb83360780d29c107703de495f6">ActRoot::TPCParameters::fPadSide</a></div><div class="ttdeci">double fPadSide</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:28</div></div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#a4c887bb83360780d29c107703de495f6">fPadSide</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a4c887bb83360780d29c107703de495f6"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a4c887bb83360780d29c107703de495f6">ActRoot::TPCParameters::fPadSide</a></div><div class="ttdeci">double fPadSide</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -448,8 +448,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a>; }</div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab5e368690985d2baed6c671a4a9fe930"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">ActRoot::TPCParameters::fREBINZ</a></div><div class="ttdeci">int fREBINZ</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:32</div></div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a>; }</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab5e368690985d2baed6c671a4a9fe930"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">ActRoot::TPCParameters::fREBINZ</a></div><div class="ttdeci">int fREBINZ</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:31</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -477,14 +477,14 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VParameters.html#ab4c43dea944f579bf7ad70bf30e20d4f">ActRoot::VParameters</a>.</p>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== TPC parameters ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSX : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSY : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSZ : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; REBINZ :&quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;====================&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== TPC parameters ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSX : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#a885d22c2c1c64eb1c67bb51fc38722e3">fNPADSX</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSY : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#ae712feca7f3b7f54b312fde033e5414c">fNPADSY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NPADSZ : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">fNPADSZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; REBINZ :&quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;====================&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
 </div><!-- fragment -->
 </div>
@@ -512,7 +512,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{ <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a> = rebin; }</div>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{ <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a> = rebin; }</div>
 </div><!-- fragment -->
 </div>
 </div>

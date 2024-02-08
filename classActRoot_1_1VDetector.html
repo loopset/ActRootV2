@@ -104,28 +104,38 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a12cdd93b549b551df67f5e96e8df0f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89e7b7acb7e13c41e18fab69de4b5db8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a89e7b7acb7e13c41e18fab69de4b5db8">ReadCalibrations</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1InputBlock.html">InputBlock</a> &gt; config)=0</td></tr>
 <tr class="separator:a89e7b7acb7e13c41e18fab69de4b5db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcc41c53e503865062f72aaedc71952a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afcc41c53e503865062f72aaedc71952a">InitInputRaw</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
-<tr class="separator:afcc41c53e503865062f72aaedc71952a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a021547008561058271db5e173a82ab65"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a021547008561058271db5e173a82ab65">InitInputMerger</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
-<tr class="separator:a021547008561058271db5e173a82ab65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a084d80d65b55cd7fe00b289b80f6af65"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a084d80d65b55cd7fe00b289b80f6af65">InitInputData</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
+<tr class="separator:a084d80d65b55cd7fe00b289b80f6af65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ae3e9b399a27f6ba9682d0d3cb1a60"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a21ae3e9b399a27f6ba9682d0d3cb1a60">InitInputFilter</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
+<tr class="separator:a21ae3e9b399a27f6ba9682d0d3cb1a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39d539f2ddc28bfd318b0d19ca2de3f0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a39d539f2ddc28bfd318b0d19ca2de3f0">InitOutputData</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
 <tr class="separator:a39d539f2ddc28bfd318b0d19ca2de3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e3cbac658470366c274774f597f6a5c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a5e3cbac658470366c274774f597f6a5c">InitOutputMerger</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
-<tr class="separator:a5e3cbac658470366c274774f597f6a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ddfd1d788241eda54cad200ce0e8bbc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a2ddfd1d788241eda54cad200ce0e8bbc">BuildEventData</a> ()=0</td></tr>
-<tr class="separator:a2ddfd1d788241eda54cad200ce0e8bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad128c89bbb5b2f2078d6946d7a0e6a2e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ad128c89bbb5b2f2078d6946d7a0e6a2e">BuildEventMerger</a> ()=0</td></tr>
-<tr class="separator:ad128c89bbb5b2f2078d6946d7a0e6a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd542dbbf49f2283619a2f1671017d61"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#abd542dbbf49f2283619a2f1671017d61">InitOutputFilter</a> (std::shared_ptr&lt; TTree &gt; tree)=0</td></tr>
+<tr class="separator:abd542dbbf49f2283619a2f1671017d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb2c3cca90a913451ba629cad3e2e0fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#adb2c3cca90a913451ba629cad3e2e0fb">BuildEventData</a> (int run=-1, int entry=-1)=0</td></tr>
+<tr class="separator:adb2c3cca90a913451ba629cad3e2e0fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc13d04bd79b6c957bce79cdcea169cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#acc13d04bd79b6c957bce79cdcea169cc">BuildEventFilter</a> ()=0</td></tr>
+<tr class="separator:acc13d04bd79b6c957bce79cdcea169cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ClearEventData</a> ()=0</td></tr>
 <tr class="separator:a8d046f65ecc6dfb5de44f5e94624e0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23a701f00f844541c8003d10166c5e2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ae23a701f00f844541c8003d10166c5e2">ClearEventMerger</a> ()=0</td></tr>
-<tr class="separator:ae23a701f00f844541c8003d10166c5e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf4dc04432342163d92085611d1c51c6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#adf4dc04432342163d92085611d1c51c6">GetEventData</a> () const</td></tr>
-<tr class="separator:adf4dc04432342163d92085611d1c51c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a913baeb426349984f7e03bcd2ec05b52"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a913baeb426349984f7e03bcd2ec05b52">GetEventMerger</a> () const</td></tr>
-<tr class="separator:a913baeb426349984f7e03bcd2ec05b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af60b110730fb8f76a4fa2a948194fbba"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#af60b110730fb8f76a4fa2a948194fbba">SetEventData</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *vdata)=0</td></tr>
-<tr class="separator:af60b110730fb8f76a4fa2a948194fbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078e944629ce0692c574b09cef12674c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a078e944629ce0692c574b09cef12674c">ClearEventFilter</a> ()=0</td></tr>
+<tr class="separator:a078e944629ce0692c574b09cef12674c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5755cb0373f39d667a574cf0f9521cad"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a5755cb0373f39d667a574cf0f9521cad">SetInputData</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *data)=0</td></tr>
+<tr class="separator:a5755cb0373f39d667a574cf0f9521cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54bd76959dc4dcbfa09d8138d0456c47"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a54bd76959dc4dcbfa09d8138d0456c47">GetInputData</a> () const =0</td></tr>
+<tr class="separator:a54bd76959dc4dcbfa09d8138d0456c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac027c4447d136fcc07c6987fde307e41"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ac027c4447d136fcc07c6987fde307e41">SetOutputData</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *data)=0</td></tr>
+<tr class="separator:ac027c4447d136fcc07c6987fde307e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ceb82ad2c6168b1e29e8598c673b73"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ae8ceb82ad2c6168b1e29e8598c673b73">GetOutputData</a> () const =0</td></tr>
+<tr class="separator:ae8ceb82ad2c6168b1e29e8598c673b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963bd1c84fd9266ee2c307c248db7bf6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a963bd1c84fd9266ee2c307c248db7bf6">SetInputFilter</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *data)=0</td></tr>
+<tr class="separator:a963bd1c84fd9266ee2c307c248db7bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a93da5ef78355e1c0f5ff7095672dc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a08a93da5ef78355e1c0f5ff7095672dc">GetInputFilter</a> () const =0</td></tr>
+<tr class="separator:a08a93da5ef78355e1c0f5ff7095672dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929ad7f53f7b736ccb447b7503ffba5d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a929ad7f53f7b736ccb447b7503ffba5d">SetOutputFilter</a> (<a class="el" href="classActRoot_1_1VData.html">VData</a> *data)=0</td></tr>
+<tr class="separator:a929ad7f53f7b736ccb447b7503ffba5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae33bbadbef5516a648cfd008ca2803a6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#ae33bbadbef5516a648cfd008ca2803a6">GetOutputFilter</a> () const =0</td></tr>
+<tr class="separator:ae33bbadbef5516a648cfd008ca2803a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1568b8b1230e12d782c2b9d0422fd35a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classActRoot_1_1VParameters.html">VParameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a1568b8b1230e12d782c2b9d0422fd35a">GetParameters</a> ()=0</td></tr>
 <tr class="separator:a1568b8b1230e12d782c2b9d0422fd35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd8f55b5ebaa3f562bcc74f66cd2b38b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#afd8f55b5ebaa3f562bcc74f66cd2b38b">SetCalMan</a> (std::shared_ptr&lt; <a class="el" href="classActRoot_1_1CalibrationManager.html">CalibrationManager</a> &gt; calman)</td></tr>
@@ -200,8 +210,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2ddfd1d788241eda54cad200ce0e8bbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ddfd1d788241eda54cad200ce0e8bbc">&#9670;&nbsp;</a></span>BuildEventData()</h2>
+<a id="adb2c3cca90a913451ba629cad3e2e0fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb2c3cca90a913451ba629cad3e2e0fb">&#9670;&nbsp;</a></span>BuildEventData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,8 +222,19 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void ActRoot::VDetector::BuildEventData </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>run</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>entry</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -223,12 +244,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#aec95898572ad71774124ef185a51ad74">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#abe4e9551b4e76cbd056abfb7240225fe">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#ab4ff9e9fbc28d16a265cf7cab74e7eb5">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a2dc40b856b4c5f45dcdfe4f7f23b2d7b">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ac6db41e966c88d329a1189750ea6476e">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a0daff1b2330c63a1ec6fc27373935b7f">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#aadbed0d14f971ec635cd59a015968424">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a68ed25860fd0da9b4f210ee3b48b7a6a">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
-<a id="ad128c89bbb5b2f2078d6946d7a0e6a2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad128c89bbb5b2f2078d6946d7a0e6a2e">&#9670;&nbsp;</a></span>BuildEventMerger()</h2>
+<a id="acc13d04bd79b6c957bce79cdcea169cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc13d04bd79b6c957bce79cdcea169cc">&#9670;&nbsp;</a></span>BuildEventFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +258,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::BuildEventMerger </td>
+          <td class="memname">virtual void ActRoot::VDetector::BuildEventFilter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -250,7 +271,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ae1f24c210e085c6e179b175511eb67c8">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a0a4b25ee783be0bcde71b7ed773ad59a">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a45bed27693e5dc1a1d40a07d50938fa7">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a59f331fa5bedb434887aad66ef754497">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ab680d4508316cf31c97e0c479156feb1">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a7287d01edfba089cdef883b931c9c511">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a1ebd71a12482d3ba1d8c5f657c39e6a6">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a3c70040987d0cb0033d3ebae0a303c88">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
@@ -281,8 +302,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae23a701f00f844541c8003d10166c5e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae23a701f00f844541c8003d10166c5e2">&#9670;&nbsp;</a></span>ClearEventMerger()</h2>
+<a id="a078e944629ce0692c574b09cef12674c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a078e944629ce0692c574b09cef12674c">&#9670;&nbsp;</a></span>ClearEventFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -291,7 +312,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::ClearEventMerger </td>
+          <td class="memname">virtual void ActRoot::VDetector::ClearEventFilter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -304,7 +325,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a7417708457dc1fc3ce1f858108f097bc">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#ae34a9acddf558a3f0e90fe36aaad5cdf">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a43bfebab22f6de8fa97edf1a84d1084c">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a10e52d080b87ac0059f1dad4ecd108c8">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a51a87abf6210729521b45136ae9e3c92">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a39b596e1dc577987c3aeb57c6a7793fe">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a335671f5e64351b1d8d48e36a3a11f79">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a8513eae8b1b58b76ee82ba91f2c478d7">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
@@ -330,13 +351,13 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>; }</div>
 <div class="ttc" id="aclassActRoot_1_1VDetector_html_a4d8fea032d928ce494d6a116f9df0517"><div class="ttname"><a href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">ActRoot::VDetector::fCalMan</a></div><div class="ttdeci">std::shared_ptr&lt; CalibrationManager &gt; fCalMan</div><div class="ttdef"><b>Definition:</b> ActVDetector.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="adf4dc04432342163d92085611d1c51c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf4dc04432342163d92085611d1c51c6">&#9670;&nbsp;</a></span>GetEventData()</h2>
+<a id="a54bd76959dc4dcbfa09d8138d0456c47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54bd76959dc4dcbfa09d8138d0456c47">&#9670;&nbsp;</a></span>GetInputData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,7 +366,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetEventData </td>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetInputData </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -353,18 +374,17 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ac3e760e39651c1462f738522ef6adc7a">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a9f12e31c2611f0c17c3bbf469d843e8a">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#abcc1cb2ac6f1b4d42df893ca9596d8c6">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a8a292c3b57b97eb060cc9c978aec7d3b">ActRoot::MergerDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; }</div>
-</div><!-- fragment -->
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#aae2c979db86365db03a13002b17e6d61">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a780312f8fd96202afc521fd1dc53259a">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a98b93b1d87b388ce41a5b6c78a03a390">ActRoot::ModularDetector</a>, <a class="el" href="classActRoot_1_1MergerDetector.html#a0c5ba566a01c1b5352314ccfce325b2c">ActRoot::MergerDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a80b886bfc8704248275abbea6c7446bf">ActRoot::MergerDetector</a>.</p>
+
 </div>
 </div>
-<a id="a913baeb426349984f7e03bcd2ec05b52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a913baeb426349984f7e03bcd2ec05b52">&#9670;&nbsp;</a></span>GetEventMerger()</h2>
+<a id="a08a93da5ef78355e1c0f5ff7095672dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a93da5ef78355e1c0f5ff7095672dc">&#9670;&nbsp;</a></span>GetInputFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -373,7 +393,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetEventMerger </td>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetInputFilter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -381,14 +401,13 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ac5e1d8e507e24e9c96b5e18fae3853f5">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a3214087ce594c3826cef2d771d57b01e">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a083628267e71aec8dcfaa9df5c900258">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#ac60a652dd8d308546ae883a37d1145b9">ActRoot::MergerDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; }</div>
-</div><!-- fragment -->
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a8017c28e785e8dadb898316ddc03111f">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a74f3f8ae3db488fb694625d629436860">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a3285281eeebc6b8efbdb078ec252021b">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a239efab0ebd8e9576fa768f521a6ce65">ActRoot::MergerDetector</a>.</p>
+
 </div>
 </div>
 <a id="a928e3ba7aeea26ca9eedc879e0a45322"></a>
@@ -415,8 +434,62 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#af4ce760ab1baea5a75072c9ef056a113">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#ab3c002083100dfbbd49cb9969aa075fb">ActRoot::SilDetector</a>, and <a class="el" href="classActRoot_1_1ModularDetector.html#a5071eb7d44b79b3ccd7da911fe2d995e">ActRoot::ModularDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; }</div>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ae8ceb82ad2c6168b1e29e8598c673b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ceb82ad2c6168b1e29e8598c673b73">&#9670;&nbsp;</a></span>GetOutputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetOutputData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ac46826cc58631edf1309726e87acbbbe">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a8643f145b685a5d839f2a91b7a2d707f">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a68e0e22ba389ae44909e401820372875">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#ada5b54ac671430a9bf3f10bfca346a24">ActRoot::MergerDetector</a>.</p>
+
+</div>
+</div>
+<a id="ae33bbadbef5516a648cfd008ca2803a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae33bbadbef5516a648cfd008ca2803a6">&#9670;&nbsp;</a></span>GetOutputFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classActRoot_1_1VData.html">VData</a>* ActRoot::VDetector::GetOutputFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a0aef417a4a7a72f8288059f2336da7de">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a29fe7302bfd6d4d8b8c7ea440f13349f">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a10d03bef78661c9c6e863779feca0826">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a1ccc202756f009bc9ad29885f7060d1b">ActRoot::MergerDetector</a>.</p>
+
 </div>
 </div>
 <a id="a1568b8b1230e12d782c2b9d0422fd35a"></a>
@@ -446,8 +519,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a021547008561058271db5e173a82ab65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a021547008561058271db5e173a82ab65">&#9670;&nbsp;</a></span>InitInputMerger()</h2>
+<a id="a084d80d65b55cd7fe00b289b80f6af65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a084d80d65b55cd7fe00b289b80f6af65">&#9670;&nbsp;</a></span>InitInputData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -456,7 +529,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::InitInputMerger </td>
+          <td class="memname">virtual void ActRoot::VDetector::InitInputData </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
@@ -470,12 +543,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a79708cfa0df4c09589ef5c0daa212603">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#acce3243d8e090f58be6ab756dfd1a4a6">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a40d27394c0fef14b9e8262315d438525">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#af8bbc1b4784b7ad86499c6c25727d00f">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ad005d1add137eae033d9ce54a3c26608">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#aa162c5d87f2869620a153fe8001883ea">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a3188d865aeab6d0af33fb5a07c3abe4d">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#afdb07f486ae164de9bb96ae13e98b2cd">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
-<a id="afcc41c53e503865062f72aaedc71952a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcc41c53e503865062f72aaedc71952a">&#9670;&nbsp;</a></span>InitInputRaw()</h2>
+<a id="a21ae3e9b399a27f6ba9682d0d3cb1a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ae3e9b399a27f6ba9682d0d3cb1a60">&#9670;&nbsp;</a></span>InitInputFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -484,7 +557,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::InitInputRaw </td>
+          <td class="memname">virtual void ActRoot::VDetector::InitInputFilter </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
@@ -498,7 +571,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a73795526b451611413d0838818e8547f">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#aac8db9798d2d3d2144650652f67751fc">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#ad2a736ed786d45030ac5b437efd1956f">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#afc8e5b13cf49040d6173e54a2bd20a1d">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a361e2ca320022ed98d4f879b00a962f1">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a37f2418e8ab4742cd50491ada3cd088c">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#ac38eab2522b4c2929d8d7c4c26e43c59">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a44c6d015e494095a1fdc883e8eb6d9f1">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
@@ -530,8 +603,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5e3cbac658470366c274774f597f6a5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e3cbac658470366c274774f597f6a5c">&#9670;&nbsp;</a></span>InitOutputMerger()</h2>
+<a id="abd542dbbf49f2283619a2f1671017d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd542dbbf49f2283619a2f1671017d61">&#9670;&nbsp;</a></span>InitOutputFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -540,7 +613,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::InitOutputMerger </td>
+          <td class="memname">virtual void ActRoot::VDetector::InitOutputFilter </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; TTree &gt;&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
@@ -554,7 +627,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a2239f21faa0177d2a97ce91a96430735">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a05ce19c6a8a58079ac6c8e1012be1238">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#afb326b7524d37b14f6467502a83ae0c1">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a55ea4e13f6abaf5acb3186a7d6816f93">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#ab7d3251e421d162640745f39908b403b">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a28ee341d813630811b31650391327560">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a7a2403d2a17e8072de1bc68c48fb09f6">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a31253ce2611bd01f2f2af14933dd499c">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
@@ -718,12 +791,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{ <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> = calman; }</div>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{ <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a> = calman; }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="af60b110730fb8f76a4fa2a948194fbba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af60b110730fb8f76a4fa2a948194fbba">&#9670;&nbsp;</a></span>SetEventData()</h2>
+<a id="a5755cb0373f39d667a574cf0f9521cad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5755cb0373f39d667a574cf0f9521cad">&#9670;&nbsp;</a></span>SetInputData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -732,10 +805,10 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ActRoot::VDetector::SetEventData </td>
+          <td class="memname">virtual void ActRoot::VDetector::SetInputData </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td>
-          <td class="paramname"><em>vdata</em></td><td>)</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -746,7 +819,35 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a163e4d49d1010c20791f3c597fb276c8">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#acfd7088e72f75c57df148adbe4762dba">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#ad98adc0753509c4b29852a84bc4c0e52">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a478f195db1ebae1a8091d9c9d22dfca9">ActRoot::MergerDetector</a>.</p>
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a6554d9a896af7cc5f401516f5faa2ee9">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a5d00e3be8bb81881bc7bb59df3e5d456">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a1640b7fffe9c38c3fe055d185e6f8197">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a6872e25e4df531ed794f630ce29134c6">ActRoot::MergerDetector</a>.</p>
+
+</div>
+</div>
+<a id="a963bd1c84fd9266ee2c307c248db7bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a963bd1c84fd9266ee2c307c248db7bf6">&#9670;&nbsp;</a></span>SetInputFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::SetInputFilter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a4aaa233dcb95500923668f3c69b3adf5">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a959ec68f0538b18f94755a03e0fd4b4b">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#ad411a48cd1b60928cecb9a71d6cc75cf">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a9f960dafa5b1247af345152de06416ba">ActRoot::MergerDetector</a>.</p>
 
 </div>
 </div>
@@ -775,8 +876,64 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reimplemented in <a class="el" href="classActRoot_1_1TPCDetector.html#abbe53b1c96b5393d8717a1e848dfa455">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a590f89b1fe3d9bdaa69949805ceecc9c">ActRoot::SilDetector</a>, and <a class="el" href="classActRoot_1_1ModularDetector.html#a6a39b15bd7dfb244cc0ab7ba5f8d7575">ActRoot::ModularDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{};</div>
+<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{};</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ac027c4447d136fcc07c6987fde307e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac027c4447d136fcc07c6987fde307e41">&#9670;&nbsp;</a></span>SetOutputData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::SetOutputData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#af7d2dff2f8b455039541f4b2f5723660">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#a3fee00d5914cc20190829f417f3d4fe4">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a0d776ecb9f1327b39c05a9b254589265">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#a636d53b603fdbf6ebfae0db2142a1640">ActRoot::MergerDetector</a>.</p>
+
+</div>
+</div>
+<a id="a929ad7f53f7b736ccb447b7503ffba5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a929ad7f53f7b736ccb447b7503ffba5d">&#9670;&nbsp;</a></span>SetOutputFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VDetector::SetOutputFilter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1VData.html">VData</a> *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classActRoot_1_1TPCDetector.html#a01c5b50e7bc0d02f460556fcef932e19">ActRoot::TPCDetector</a>, <a class="el" href="classActRoot_1_1SilDetector.html#af55693a97a9335bc4993d431c442c4a1">ActRoot::SilDetector</a>, <a class="el" href="classActRoot_1_1ModularDetector.html#a3bd9e306d1069bda7c10a864bf463b8e">ActRoot::ModularDetector</a>, and <a class="el" href="classActRoot_1_1MergerDetector.html#aa2bf76192cc62e27bb1097a7ae83368f">ActRoot::MergerDetector</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

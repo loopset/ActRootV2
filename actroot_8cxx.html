@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ActRoot: Utility/actroot.cxx File Reference</title>
+<title>ActRoot: Utility/exec/actroot.cxx File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_45512b4d464edf1241bf27d9b61f7c89.html">Utility</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_45512b4d464edf1241bf27d9b61f7c89.html">Utility</a></li><li class="navelem"><a class="el" href="dir_479b53a5770cbe2748aeec4183cf55a4.html">exec</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,21 +72,70 @@ $(function() {
 <div class="title">actroot.cxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="ActOptions_8h_source.html">ActOptions.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="ActDataManager_8h_source.html">ActDataManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActDetectorManager_8h_source.html">ActDetectorManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActInputData_8h_source.html">ActInputData.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActMTExecutor_8h_source.html">ActMTExecutor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActOptions_8h_source.html">ActOptions.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActOutputData_8h_source.html">ActOutputData.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActTypes_8h_source.html">ActTypes.h</a>&quot;</code><br />
 <code>#include &lt;exception&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for actroot.cxx:</div>
 <div class="dyncontent">
-<div class="center"><img src="actroot_8cxx__incl.png" border="0" usemap="#aUtility_2actroot_8cxx" alt=""/></div>
-<map name="aUtility_2actroot_8cxx" id="aUtility_2actroot_8cxx">
-<area shape="rect" title=" " alt="" coords="202,5,341,32"/>
-<area shape="rect" href="ActOptions_8h.html" title=" " alt="" coords="99,80,204,107"/>
-<area shape="rect" title=" " alt="" coords="228,80,315,107"/>
-<area shape="rect" title=" " alt="" coords="339,80,419,107"/>
-<area shape="rect" href="ActTypes_8h.html" title=" " alt="" coords="5,155,97,181"/>
-<area shape="rect" title=" " alt="" coords="122,155,181,181"/>
-<area shape="rect" title=" " alt="" coords="205,155,329,181"/>
+<div class="center"><img src="actroot_8cxx__incl.png" border="0" usemap="#aUtility_2exec_2actroot_8cxx" alt=""/></div>
+<map name="aUtility_2exec_2actroot_8cxx" id="aUtility_2exec_2actroot_8cxx">
+<area shape="rect" title=" " alt="" coords="461,5,634,32"/>
+<area shape="rect" href="ActDataManager_8h.html" title=" " alt="" coords="952,304,1095,331"/>
+<area shape="rect" href="ActInputData_8h.html" title=" " alt="" coords="767,379,886,405"/>
+<area shape="rect" title=" " alt="" coords="1465,528,1545,555"/>
+<area shape="rect" href="ActOutputData_8h.html" title=" " alt="" coords="1373,379,1504,405"/>
+<area shape="rect" href="ActTypes_8h.html" title=" " alt="" coords="316,379,408,405"/>
+<area shape="rect" href="ActDetectorManager_8h.html" title=" " alt="" coords="3120,155,3287,181"/>
+<area shape="rect" href="ActMTExecutor_8h.html" title=" " alt="" coords="5188,80,5318,107"/>
+<area shape="rect" title=" " alt="" coords="5772,528,5859,555"/>
+<area shape="rect" href="ActOptions_8h.html" title=" " alt="" coords="202,304,307,331"/>
+<area shape="rect" href="ActInputParser_8h.html" title=" " alt="" coords="1266,453,1392,480"/>
+<area shape="rect" title=" " alt="" coords="2620,603,2678,629"/>
+<area shape="rect" title=" " alt="" coords="1591,603,1715,629"/>
+<area shape="rect" title=" " alt="" coords="1569,453,1612,480"/>
+<area shape="rect" title=" " alt="" coords="1737,528,1788,555"/>
+<area shape="rect" title=" " alt="" coords="3169,528,3246,555"/>
+<area shape="rect" title=" " alt="" coords="3831,603,3894,629"/>
+<area shape="rect" title=" " alt="" coords="559,453,638,480"/>
+<area shape="rect" title=" " alt="" coords="966,453,1031,480"/>
+<area shape="rect" title=" " alt="" coords="353,453,433,480"/>
+<area shape="rect" title=" " alt="" coords="4037,528,4106,555"/>
+<area shape="rect" title=" " alt="" coords="662,453,738,480"/>
+<area shape="rect" title=" " alt="" coords="1926,528,2012,555"/>
+<area shape="rect" title=" " alt="" coords="1570,528,1662,555"/>
+<area shape="rect" href="ActCalibrationManager_8h.html" title=" " alt="" coords="4728,528,4911,555"/>
+<area shape="rect" href="ActInputIterator_8h.html" title=" " alt="" coords="1107,453,1242,480"/>
+<area shape="rect" href="ActMergerDetector_8h.html" title=" " alt="" coords="2630,229,2786,256"/>
+<area shape="rect" href="ActTPCDetector_8h.html" title=" " alt="" coords="3267,379,3402,405"/>
+<area shape="rect" href="ActVDetector_8h.html" title=" " alt="" coords="4372,453,4491,480"/>
+<area shape="rect" href="ActModularDetector_8h.html" title=" " alt="" coords="4510,379,4673,405"/>
+<area shape="rect" href="ActSilDetector_8h.html" title=" " alt="" coords="4195,379,4322,405"/>
+<area shape="rect" title=" " alt="" coords="5398,603,5462,629"/>
+<area shape="rect" title=" " alt="" coords="4904,603,4964,629"/>
+<area shape="rect" href="ActMergerData_8h.html" title=" " alt="" coords="2294,379,2426,405"/>
+<area shape="rect" href="ActVData_8h.html" title=" " alt="" coords="3628,528,3723,555"/>
+<area shape="rect" title=" " alt="" coords="2119,453,2264,480"/>
+<area shape="rect" title=" " alt="" coords="1839,453,1992,480"/>
+<area shape="rect" href="ActModularData_8h.html" title=" " alt="" coords="3524,453,3662,480"/>
+<area shape="rect" href="ActMultiStep_8h.html" title=" " alt="" coords="2450,379,2568,405"/>
+<area shape="rect" href="ActTPCData_8h.html" title=" " alt="" coords="2932,453,3043,480"/>
+<area shape="rect" title=" " alt="" coords="2695,453,2806,480"/>
+<area shape="rect" href="ActSilData_8h.html" title=" " alt="" coords="3788,453,3891,480"/>
+<area shape="rect" href="ActSilSpecs_8h.html" title=" " alt="" coords="1949,304,2058,331"/>
+<area shape="rect" href="ActVParameters_8h.html" title=" " alt="" coords="4464,528,4602,555"/>
+<area shape="rect" title=" " alt="" coords="2082,304,2168,331"/>
+<area shape="rect" href="ActTPCLegacyData_8h.html" title=" " alt="" coords="4282,528,4440,555"/>
+<area shape="rect" title=" " alt="" coords="4921,453,4988,480"/>
+<area shape="rect" href="BS__thread__pool_8h.html" title=" " alt="" coords="5511,453,5646,480"/>
+<area shape="rect" title=" " alt="" coords="5618,528,5682,555"/>
+<area shape="rect" href="BS__thread__pool__utils_8h.html" title=" " alt="" coords="5316,453,5486,480"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -121,22 +170,82 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="classActRoot_1_1Options.html">ActRoot::Options</a> opts {argc, argv};</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        opts.<a class="code" href="classActRoot_1_1Options.html#ac61678a308872081f11d45780136005f">Print</a>();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        opts.GetProjectDir();</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception&amp; e)</div>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        std::cout &lt;&lt; e.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1Options_html"><div class="ttname"><a href="classActRoot_1_1Options.html">ActRoot::Options</a></div><div class="ttdef"><b>Definition:</b> ActOptions.h:12</div></div>
-<div class="ttc" id="aclassActRoot_1_1Options_html_ac61678a308872081f11d45780136005f"><div class="ttname"><a href="classActRoot_1_1Options.html#ac61678a308872081f11d45780136005f">ActRoot::Options::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition:</b> ActOptions.cxx:69</div></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">auto</span> opts {<a class="code" href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a>(argc, argv)};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        opts-&gt;Print();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span>(opts-&gt;GetMode() == <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e">ActRoot::ModeType::ENone</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span>(opts-&gt;GetMode() == <a class="code" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff">ActRoot::ModeType::EGui</a>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;actroot cannot run in Gui mode! Use actplot executable for that&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="comment">// Manage data</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classActRoot_1_1DataManager.html">ActRoot::DataManager</a> datman {opts-&gt;GetMode()};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        datman.<a class="code" href="classActRoot_1_1DataManager.html#a4bbe72c1ad74b0898a21edf4039e3293">ReadDataFile</a>(opts-&gt;GetDataFile());</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span>(opts-&gt;GetIsMT())</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classActRoot_1_1MTExecutor.html">ActRoot::MTExecutor</a> mt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            mt.<a class="code" href="classActRoot_1_1MTExecutor.html#a1d4cfc9cb61390e2f2bda40ffd65482a">SetDataManager</a>(&amp;datman);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            mt.<a class="code" href="classActRoot_1_1MTExecutor.html#ad6c759cff37f01a15705d905cf0e7f25">SetDetectorConfig</a>(opts-&gt;GetDetFile(), opts-&gt;GetCalFile());</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            mt.<a class="code" href="classActRoot_1_1MTExecutor.html#ae0b6aade8c0e04449029df4abc5145e2">BuildEvent</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">else</span> <span class="comment">// ST mode</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="comment">// Init input and output</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keyword">auto</span> input {datman.GetInput()};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keyword">auto</span> output {datman.GetOuput()};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classActRoot_1_1DetectorManager.html">ActRoot::DetectorManager</a> detman {opts-&gt;<a class="code" href="classActRoot_1_1DetectorManager.html#a9e1c6fc7e8f1c4a269f6891d933de257">GetMode</a>()};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            detman.ReadDetectorFile(opts-&gt;GetDetFile());</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            detman.ReadCalibrationsFile(opts-&gt;GetCalFile());</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            TStopwatch timer {};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            timer.Start();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; run : input.GetRunList())</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;Building event data for run &quot;</span> &lt;&lt; run &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                detman.InitInput(input.GetTree(run));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                detman.InitOutput(output.GetTree(run));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">int</span> nentries {input.GetNEntries(run)};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> entry = 0; entry &lt; nentries; entry++)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;\r&quot;</span> &lt;&lt; entry &lt;&lt; std::flush;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    input.GetEntry(run, entry);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    detman.BuildEvent(run, entry);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    output.Fill(run);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                output.Close(run);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                input.Close(run);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span> &lt;&lt; <span class="stringliteral">&quot;-&gt;Processed events = &quot;</span> &lt;&lt; nentries &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            detman.PrintReports();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            timer.Stop();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            timer.Print();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception&amp; e)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::cout &lt;&lt; e.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1DataManager_html"><div class="ttname"><a href="classActRoot_1_1DataManager.html">ActRoot::DataManager</a></div><div class="ttdef"><b>Definition:</b> ActDataManager.h:16</div></div>
+<div class="ttc" id="aclassActRoot_1_1DataManager_html_a4bbe72c1ad74b0898a21edf4039e3293"><div class="ttname"><a href="classActRoot_1_1DataManager.html#a4bbe72c1ad74b0898a21edf4039e3293">ActRoot::DataManager::ReadDataFile</a></div><div class="ttdeci">void ReadDataFile(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActDataManager.cxx:17</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html">ActRoot::DetectorManager</a></div><div class="ttdoc">Main class interfacing all analysis detectors, with calibrations and main methods.</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:31</div></div>
+<div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a9e1c6fc7e8f1c4a269f6891d933de257"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a9e1c6fc7e8f1c4a269f6891d933de257">ActRoot::DetectorManager::GetMode</a></div><div class="ttdeci">ModeType GetMode() const</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:49</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html">ActRoot::MTExecutor</a></div><div class="ttdoc">A class to perform multiple tasks in MT mode (experimental!)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.h:20</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_a1d4cfc9cb61390e2f2bda40ffd65482a"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#a1d4cfc9cb61390e2f2bda40ffd65482a">ActRoot::MTExecutor::SetDataManager</a></div><div class="ttdeci">void SetDataManager(DataManager *datman)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:30</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ad6c759cff37f01a15705d905cf0e7f25"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ad6c759cff37f01a15705d905cf0e7f25">ActRoot::MTExecutor::SetDetectorConfig</a></div><div class="ttdeci">void SetDetectorConfig(const std::string &amp;detfile, const std::string &amp;calfile)</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1MTExecutor_html_ae0b6aade8c0e04449029df4abc5145e2"><div class="ttname"><a href="classActRoot_1_1MTExecutor.html#ae0b6aade8c0e04449029df4abc5145e2">ActRoot::MTExecutor::BuildEvent</a></div><div class="ttdeci">void BuildEvent()</div><div class="ttdef"><b>Definition:</b> ActMTExecutor.cxx:106</div></div>
+<div class="ttc" id="aclassActRoot_1_1Options_html_a7bd54eeb620ca48afccde8edcadb6bb6"><div class="ttname"><a href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Options &gt; GetInstance(int argc=0, char **=nullptr)</div><div class="ttdef"><b>Definition:</b> ActOptions.cxx:29</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff">ActRoot::ModeType::EGui</a></div><div class="ttdeci">@ EGui</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a9902d58435e8208bf6fd67278632145e">ActRoot::ModeType::ENone</a></div><div class="ttdeci">@ ENone</div></div>
 </div><!-- fragment -->
 </div>
 </div>

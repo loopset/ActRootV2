@@ -75,21 +75,27 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A helper class to measure execution time for benchmarking purposes.  
+<p>A utility class to measure execution time for benchmarking purposes.  
  <a href="classBS_1_1timer.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="BS__thread__pool_8h_source.html">BS_thread_pool.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="BS__thread__pool__utils_8h_source.html">BS_thread_pool_utils.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:acdb0c03a6cd3b373e2bc3ede64a9b8e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#acdb0c03a6cd3b373e2bc3ede64a9b8e2">timer</a> ()=default</td></tr>
+<tr class="memdesc:acdb0c03a6cd3b373e2bc3ede64a9b8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new timer and immediately start measuring time.  <a href="classBS_1_1timer.html#acdb0c03a6cd3b373e2bc3ede64a9b8e2">More...</a><br /></td></tr>
+<tr class="separator:acdb0c03a6cd3b373e2bc3ede64a9b8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1f5174463b91c37c9d331a8bf7fb74b"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds::rep&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b">current_ms</a> () const</td></tr>
+<tr class="memdesc:ae1f5174463b91c37c9d331a8bf7fb74b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of milliseconds that have elapsed since the object was constructed or since <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> was last called, but keep the timer ticking.  <a href="classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b">More...</a><br /></td></tr>
+<tr class="separator:ae1f5174463b91c37c9d331a8bf7fb74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad442341cacfb7970960a8e2090d66c10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">start</a> ()</td></tr>
-<tr class="memdesc:ad442341cacfb7970960a8e2090d66c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start (or restart) measuring time.  <a href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">More...</a><br /></td></tr>
+<tr class="memdesc:ad442341cacfb7970960a8e2090d66c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is created, so this is only necessary if we want to restart the clock later.  <a href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">More...</a><br /></td></tr>
 <tr class="separator:ad442341cacfb7970960a8e2090d66c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef4f43b7877eceaaaa1a34a5b58db903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">stop</a> ()</td></tr>
-<tr class="memdesc:aef4f43b7877eceaaaa1a34a5b58db903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>.  <a href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">More...</a><br /></td></tr>
+<tr class="memdesc:aef4f43b7877eceaaaa1a34a5b58db903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measuring time and store the elapsed time since the object was constructed or since <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> was last called.  <a href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903">More...</a><br /></td></tr>
 <tr class="separator:aef4f43b7877eceaaaa1a34a5b58db903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69eabae9b119282e3cb1f8a13fa02159"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds::rep&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">ms</a> () const</td></tr>
-<tr class="memdesc:a69eabae9b119282e3cb1f8a13fa02159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of milliseconds that have elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>.  <a href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">More...</a><br /></td></tr>
+<tr class="memdesc:a69eabae9b119282e3cb1f8a13fa02159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of milliseconds stored when <code><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since the object was constructed or since start() was ...">stop()</a></code> was last called.  <a href="classBS_1_1timer.html#a69eabae9b119282e3cb1f8a13fa02159">More...</a><br /></td></tr>
 <tr class="separator:a69eabae9b119282e3cb1f8a13fa02159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -98,12 +104,72 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:aa85a015b91bc8858ac38ed884a79eadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time point when measuring started.  <a href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">More...</a><br /></td></tr>
 <tr class="separator:aa85a015b91bc8858ac38ed884a79eadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a87317c155500b00d12a6123e6efbb4"><td class="memItemLeft" align="right" valign="top">std::chrono::duration&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a> = std::chrono::duration&lt;double&gt;::zero()</td></tr>
-<tr class="memdesc:a9a87317c155500b00d12a6123e6efbb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The duration that has elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>.  <a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">More...</a><br /></td></tr>
+<tr class="memdesc:a9a87317c155500b00d12a6123e6efbb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The duration that has elapsed between <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> and <code><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since the object was constructed or since start() was ...">stop()</a></code>.  <a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">More...</a><br /></td></tr>
 <tr class="separator:a9a87317c155500b00d12a6123e6efbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A helper class to measure execution time for benchmarking purposes. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p>A utility class to measure execution time for benchmarking purposes. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="acdb0c03a6cd3b373e2bc3ede64a9b8e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb0c03a6cd3b373e2bc3ede64a9b8e2">&#9670;&nbsp;</a></span>timer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BS::timer::timer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a new timer and immediately start measuring time. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae1f5174463b91c37c9d331a8bf7fb74b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1f5174463b91c37c9d331a8bf7fb74b">&#9670;&nbsp;</a></span>current_ms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::milliseconds::rep BS::timer::current_ms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of milliseconds that have elapsed since the object was constructed or since <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> was last called, but keep the timer ticking. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of milliseconds. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> (std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(std::chrono::steady_clock::now() - <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a>)).count();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1timer_html_aa85a015b91bc8858ac38ed884a79eadf"><div class="ttname"><a href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">BS::timer::start_time</a></div><div class="ttdeci">std::chrono::time_point&lt; std::chrono::steady_clock &gt; start_time</div><div class="ttdoc">The time point when measuring started.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool_utils.h:196</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a69eabae9b119282e3cb1f8a13fa02159"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a69eabae9b119282e3cb1f8a13fa02159">&#9670;&nbsp;</a></span>ms()</h2>
 
@@ -127,12 +193,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the number of milliseconds that have elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>. </p>
+<p>Get the number of milliseconds stored when <code><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since the object was constructed or since start() was ...">stop()</a></code> was last called. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of milliseconds. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    {</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;        <span class="keywordflow">return</span> (std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(<a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a>)).count();</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    }</div>
-<div class="ttc" id="aclassBS_1_1timer_html_a9a87317c155500b00d12a6123e6efbb4"><div class="ttname"><a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">BS::timer::elapsed_time</a></div><div class="ttdeci">std::chrono::duration&lt; double &gt; elapsed_time</div><div class="ttdoc">The duration that has elapsed between start() and stop().</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:813</div></div>
+<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">return</span> (std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(<a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a>)).count();</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="ttc" id="aclassBS_1_1timer_html_a9a87317c155500b00d12a6123e6efbb4"><div class="ttname"><a href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">BS::timer::elapsed_time</a></div><div class="ttdeci">std::chrono::duration&lt; double &gt; elapsed_time</div><div class="ttdoc">The duration that has elapsed between start() and stop().</div><div class="ttdef"><b>Definition:</b> BS_thread_pool_utils.h:201</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -159,11 +225,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Start (or restart) measuring time. </p>
-<div class="fragment"><div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    {</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;        <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    }</div>
-<div class="ttc" id="aclassBS_1_1timer_html_aa85a015b91bc8858ac38ed884a79eadf"><div class="ttname"><a href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">BS::timer::start_time</a></div><div class="ttdeci">std::chrono::time_point&lt; std::chrono::steady_clock &gt; start_time</div><div class="ttdoc">The time point when measuring started.</div><div class="ttdef"><b>Definition:</b> BS_thread_pool.h:808</div></div>
+<p>Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is created, so this is only necessary if we want to restart the clock later. </p>
+<div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -190,10 +255,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Stop measuring time and store the elapsed time since <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a>. </p>
-<div class="fragment"><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;    {</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        <a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a> = std::chrono::steady_clock::now() - <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a>;</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;    }</div>
+<p>Stop measuring time and store the elapsed time since the object was constructed or since <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> was last called. </p>
+<div class="fragment"><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <a class="code" href="classBS_1_1timer.html#a9a87317c155500b00d12a6123e6efbb4">elapsed_time</a> = std::chrono::steady_clock::now() - <a class="code" href="classBS_1_1timer.html#aa85a015b91bc8858ac38ed884a79eadf">start_time</a>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,7 +283,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The duration that has elapsed between <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time.">start()</a> and <a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since start().">stop()</a>. </p>
+<p>The duration that has elapsed between <code><a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10" title="Start (or restart) measuring time. Note that the timer starts ticking as soon as the object is create...">start()</a></code> and <code><a class="el" href="classBS_1_1timer.html#aef4f43b7877eceaaaa1a34a5b58db903" title="Stop measuring time and store the elapsed time since the object was constructed or since start() was ...">stop()</a></code>. </p>
 
 </div>
 </div>
@@ -247,7 +312,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Core/inc/<a class="el" href="BS__thread__pool_8h_source.html">BS_thread_pool.h</a></li>
+<li>Utility/inc/<a class="el" href="BS__thread__pool__utils_8h_source.html">BS_thread_pool_utils.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

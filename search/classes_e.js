@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ransac_1298',['RANSAC',['../classActCluster_1_1RANSAC.html',1,'ActCluster']]],
-  ['reduceddata_1299',['ReducedData',['../classReducedData.html',1,'']]],
-  ['runner_1300',['Runner',['../classActSim_1_1Runner.html',1,'ActSim']]]
+  ['ransac_1369',['RANSAC',['../classActAlgorithm_1_1RANSAC.html',1,'ActAlgorithm']]],
+  ['reduceddata_1370',['ReducedData',['../classReducedData.html',1,'']]],
+  ['runner_1371',['Runner',['../classActSim_1_1Runner.html',1,'ActSim']]]
 ];

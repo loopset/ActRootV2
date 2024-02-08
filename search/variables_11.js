@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['waiting_2500',['waiting',['../classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40',1,'BS::thread_pool']]],
-  ['workers_5frunning_2501',['workers_running',['../classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9',1,'BS::thread_pool']]]
+  ['vxscattering_2625',['vXScattering',['../classActSim_1_1TheoCrossSection.html#ad382b3e5b1681936a859c5b3f4e8d566',1,'ActSim::TheoCrossSection']]],
+  ['vyscattering_2626',['vYScattering',['../classActSim_1_1TheoCrossSection.html#ae6d118bdf17a7ef8592387b5358d74dc',1,'ActSim::TheoCrossSection']]]
 ];

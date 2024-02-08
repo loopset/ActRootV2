@@ -75,19 +75,26 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceActRoot.html">ActRoot</a></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html">    6</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classActRoot_1_1VData.html">VData</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">    9</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">Clear</a>() = 0;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">   10</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">Print</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    };</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classActRoot_1_1VData.html">VData</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">    9</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">Clear</a>() = 0;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">   10</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">Print</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classActRoot_1_1VData.html#a6f3f1902f8c1921320f9cf23ae1c1cf1">   13</a></span>&#160;    <span class="keyword">inline</span> T* <a class="code" href="classActRoot_1_1VData.html#a6f3f1902f8c1921320f9cf23ae1c1cf1">CastAs</a>()</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">// namespace ActRoot</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassActRoot_1_1VData_html"><div class="ttname"><a href="classActRoot_1_1VData.html">ActRoot::VData</a></div><div class="ttdef"><b>Definition:</b> ActVData.h:7</div></div>
 <div class="ttc" id="aclassActRoot_1_1VData_html_a6e6de266b00ca7c3ec235502fcbe8462"><div class="ttname"><a href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData::Print</a></div><div class="ttdeci">virtual void Print() const =0</div></div>
+<div class="ttc" id="aclassActRoot_1_1VData_html_a6f3f1902f8c1921320f9cf23ae1c1cf1"><div class="ttname"><a href="classActRoot_1_1VData.html#a6f3f1902f8c1921320f9cf23ae1c1cf1">ActRoot::VData::CastAs</a></div><div class="ttdeci">T * CastAs()</div><div class="ttdef"><b>Definition:</b> ActVData.h:13</div></div>
 <div class="ttc" id="aclassActRoot_1_1VData_html_abe0659fcff76514d19d7db26e3bff12f"><div class="ttname"><a href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">ActRoot::VData::Clear</a></div><div class="ttdeci">virtual void Clear()=0</div></div>
-<div class="ttc" id="anamespaceActRoot_html"><div class="ttname"><a href="namespaceActRoot.html">ActRoot</a></div><div class="ttdef"><b>Definition:</b> ActClIMB.h:14</div></div>
+<div class="ttc" id="anamespaceActRoot_html"><div class="ttname"><a href="namespaceActRoot.html">ActRoot</a></div><div class="ttdef"><b>Definition:</b> ActClIMB.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

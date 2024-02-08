@@ -66,7 +66,7 @@ $(function() {
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>SampleLine()
-: <a class="el" href="classActCluster_1_1RANSAC.html#a7e9c03a16147800505bcd7610f4f4c63">ActCluster::RANSAC</a>
+: <a class="el" href="classActAlgorithm_1_1RANSAC.html#acfcd5ed9b719bd4ece97a7a54873c7fc">ActAlgorithm::RANSAC</a>
 </li>
 <li>SampleVertex()
 : <a class="el" href="classActSim_1_1Runner.html#a16810fcfcbd65455bdc951521312349d">ActSim::Runner</a>
@@ -81,16 +81,29 @@ $(function() {
 : <a class="el" href="classActRoot_1_1MergerDetector.html#a94a7f6139467885b95ac5345483bc57c">ActRoot::MergerDetector</a>
 </li>
 <li>ScanNeighborhood()
-: <a class="el" href="classActCluster_1_1ClIMB.html#a209f8ca654a76236ea7b6199efb462b2">ActCluster::ClIMB</a>
+: <a class="el" href="classActAlgorithm_1_1ClIMB.html#aabc9fc7c1d7bd2bbbed42e96c45e80b5">ActAlgorithm::ClIMB</a>
+</li>
+<li>SendCanvas()
+: <a class="el" href="classActRoot_1_1HistogramPainter.html#ae32b7cbf9f9589400b2121f1064844eb">ActRoot::HistogramPainter</a>
+</li>
+<li>SendDetectorManager()
+: <a class="el" href="classActRoot_1_1EventPainter.html#a1cf6920a5850754922843a23f07951c4">ActRoot::EventPainter</a>
+</li>
+<li>SendHistogramServer()
+: <a class="el" href="classActRoot_1_1EventPainter.html#a4a3d3a9421ac179f0e37534b690d7928">ActRoot::EventPainter</a>
 </li>
 <li>SendInputWrapper()
-: <a class="el" href="classActRoot_1_1HistogramPainter.html#a1c5943be56a1581593ebe6b85d3e179c">ActRoot::HistogramPainter</a>
+: <a class="el" href="classActRoot_1_1EventPainter.html#aca302b9e1b1f09d856f63122dc9bbc3a">ActRoot::EventPainter</a>
+, <a class="el" href="classActRoot_1_1HistogramPainter.html#a1c5943be56a1581593ebe6b85d3e179c">ActRoot::HistogramPainter</a>
 </li>
 <li>SendParameters()
 : <a class="el" href="classActRoot_1_1HistogramPainter.html#a6a71b8a115078c96f57f310e53e6da26">ActRoot::HistogramPainter</a>
 </li>
 <li>SendParametersToMerger()
 : <a class="el" href="classActRoot_1_1DetectorManager.html#aef04367820e31bc8ece25e174e3457a4">ActRoot::DetectorManager</a>
+</li>
+<li>SendWrapperData()
+: <a class="el" href="classActRoot_1_1DetectorManager.html#ae393265ec9bd51d6e883ce9112522390">ActRoot::DetectorManager</a>
 </li>
 <li>SetAssemblyPlacements()
 : <a class="el" href="structActSim_1_1SilAssembly.html#ac0801b3499d0d93a560ea4fdc13d6e93">ActSim::SilAssembly</a>
@@ -103,7 +116,7 @@ $(function() {
 , <a class="el" href="classActSim_1_1KinematicGenerator.html#a6c804787db0c2ffdaa0c1236e2500501">ActSim::KinematicGenerator</a>
 </li>
 <li>SetBeamLike()
-: <a class="el" href="classActCluster_1_1Cluster.html#a336e2b5afe15199741b1accdf9a3a28f">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#ab5a171022e2f7812848641e202dde9f6">ActRoot::Cluster</a>
 </li>
 <li>SetBranchAddress()
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a3260baa48c56aa2f75e4ba717cd37ec7">ActRoot::InputWrapper</a>
@@ -114,35 +127,26 @@ $(function() {
 <li>SetCalMan()
 : <a class="el" href="classActRoot_1_1VDetector.html#afd8f55b5ebaa3f562bcc74f66cd2b38b">ActRoot::VDetector</a>
 </li>
-<li>SetCanvas()
-: <a class="el" href="classActRoot_1_1HistogramPainter.html#a381791560c44e3c1fd09ad2121fdba1b">ActRoot::HistogramPainter</a>
-</li>
 <li>SetCharge()
 : <a class="el" href="classActRoot_1_1Voxel.html#adf2347046a3a00245f6debc8840708b7">ActRoot::Voxel</a>
 </li>
 <li>SetChi2()
 : <a class="el" href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">ActPhysics::Line</a>
 </li>
-<li>SetClimb()
-: <a class="el" href="classActCluster_1_1MultiStep.html#a09f425c43fee42ebd3a5c6aa980088fd">ActCluster::MultiStep</a>
-</li>
-<li>SetClIMB()
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a73400044ed0921421f81b33cfa93bf6b">ActRoot::MergerDetector</a>
-</li>
 <li>SetClusterID()
-: <a class="el" href="classActCluster_1_1Cluster.html#adbab73e36f9a8499be831633e3249da3">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#aa4fee7a61d16ed56654139a8d24eccd3">ActRoot::Cluster</a>
 </li>
-<li>SetClusters()
-: <a class="el" href="classActCluster_1_1MultiStep.html#acad3c4185126eafddadd8fdded81dde0">ActCluster::MultiStep</a>
+<li>SetClusterPtr()
+: <a class="el" href="classActAlgorithm_1_1VFilter.html#abab79252d9e336708535713e17e3ba27">ActAlgorithm::VFilter</a>
 </li>
-<li>SetCurrentRunEntry()
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a339b24b2798faf41b1e6acf18b2527aa">ActRoot::MergerDetector</a>
+<li>SetDataFile()
+: <a class="el" href="classActRoot_1_1Options.html#a17606e7c7236e51f2641cccc4c61b639">ActRoot::Options</a>
+</li>
+<li>SetDataManager()
+: <a class="el" href="classActRoot_1_1MTExecutor.html#a1d4cfc9cb61390e2f2bda40ffd65482a">ActRoot::MTExecutor</a>
 </li>
 <li>SetDefaultGas()
 : <a class="el" href="classActDriftDetector.html#a732b4556171f0cafcba2b47c536cda2e">ActDriftDetector</a>
-</li>
-<li>SetDetectorAndData()
-: <a class="el" href="classActRoot_1_1EventPainter.html#ac71461fe26d1873930149f8130a004af">ActRoot::EventPainter</a>
 </li>
 <li>SetDetectorConfig()
 : <a class="el" href="classActRoot_1_1MTExecutor.html#ad6c759cff37f01a15705d905cf0e7f25">ActRoot::MTExecutor</a>
@@ -154,7 +158,7 @@ $(function() {
 : <a class="el" href="classActPhysics_1_1Line.html#a3c9c0df60777bd1cced4ae63620f9dc8">ActPhysics::Line</a>
 </li>
 <li>SetDistThreshold()
-: <a class="el" href="classActCluster_1_1RANSAC.html#a5c353ad34dc1c07b765224d197ddad95">ActCluster::RANSAC</a>
+: <a class="el" href="classActAlgorithm_1_1RANSAC.html#aa9143db06764c3fe562078550c897abe">ActAlgorithm::RANSAC</a>
 </li>
 <li>SetDrift()
 : <a class="el" href="classActSim_1_1Geometry.html#ae3bd97f78400953b6db4bed0de7a44fc">ActSim::Geometry</a>
@@ -177,42 +181,32 @@ $(function() {
 <li>SetDriftSizeZ()
 : <a class="el" href="classActDriftDetector.html#a6e7ad29c6e89423b57e4c7c6cedfacec">ActDriftDetector</a>
 </li>
-<li>SetEventData()
-: <a class="el" href="classActRoot_1_1DetectorManager.html#aca84cce43b360789343b6187e5ca117b">ActRoot::DetectorManager</a>
-, <a class="el" href="classActRoot_1_1MergerDetector.html#a478f195db1ebae1a8091d9c9d22dfca9">ActRoot::MergerDetector</a>
-, <a class="el" href="classActRoot_1_1ModularDetector.html#ad98adc0753509c4b29852a84bc4c0e52">ActRoot::ModularDetector</a>
-, <a class="el" href="classActRoot_1_1SilDetector.html#acfd7088e72f75c57df148adbe4762dba">ActRoot::SilDetector</a>
-, <a class="el" href="classActRoot_1_1TPCDetector.html#a163e4d49d1010c20791f3c597fb276c8">ActRoot::TPCDetector</a>
-, <a class="el" href="classActRoot_1_1VDetector.html#af60b110730fb8f76a4fa2a948194fbba">ActRoot::VDetector</a>
-</li>
 <li>SetEx()
 : <a class="el" href="classActPhysics_1_1Kinematics.html#a0d7b50845a2c3fb5d8b5bd057b6e6c2e">ActPhysics::Kinematics</a>
 </li>
 <li>SetExcitationEnergy()
 : <a class="el" href="classActSim_1_1KinematicGenerator.html#a8a8cf6365707e63448b02a8519df0a19">ActSim::KinematicGenerator</a>
 </li>
-<li>SetFriendName()
-: <a class="el" href="classActRoot_1_1InputData.html#a7c36ec6c9b32aaaeaadf4bd200fd9e2d">ActRoot::InputData</a>
-</li>
 <li>SetGasMaterial()
 : <a class="el" href="classActDriftDetector.html#a7ef117111253df86455c0917b0898d56">ActDriftDetector</a>
 </li>
-<li>SetInputAndOutput()
-: <a class="el" href="classActRoot_1_1MTExecutor.html#a7c65041a7b890679d6604bfec9d3d039">ActRoot::MTExecutor</a>
+<li>SetInputData()
+: <a class="el" href="classActRoot_1_1DataManager.html#a18adedf6be887222119df1f3a21e0b99">ActRoot::DataManager</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a6872e25e4df531ed794f630ce29134c6">ActRoot::MergerDetector</a>
+, <a class="el" href="classActRoot_1_1ModularDetector.html#a1640b7fffe9c38c3fe055d185e6f8197">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a5d00e3be8bb81881bc7bb59df3e5d456">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a6554d9a896af7cc5f401516f5faa2ee9">ActRoot::TPCDetector</a>
+, <a class="el" href="classActRoot_1_1VDetector.html#a5755cb0373f39d667a574cf0f9521cad">ActRoot::VDetector</a>
 </li>
-<li>SetInputFile()
-: <a class="el" href="classActRoot_1_1Options.html#a26b1b49ee81c1cd00d31b722a590ed1d">ActRoot::Options</a>
+<li>SetInputFilter()
+: <a class="el" href="classActRoot_1_1MergerDetector.html#a9f960dafa5b1247af345152de06416ba">ActRoot::MergerDetector</a>
+, <a class="el" href="classActRoot_1_1ModularDetector.html#ad411a48cd1b60928cecb9a71d6cc75cf">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a959ec68f0538b18f94755a03e0fd4b4b">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a4aaa233dcb95500923668f3c69b3adf5">ActRoot::TPCDetector</a>
+, <a class="el" href="classActRoot_1_1VDetector.html#a963bd1c84fd9266ee2c307c248db7bf6">ActRoot::VDetector</a>
 </li>
 <li>SetIsBreakBeam()
-: <a class="el" href="classActCluster_1_1Cluster.html#a8351b4f6918e69072b34eb60814b15e8">ActCluster::Cluster</a>
-</li>
-<li>SetIsCluster()
-: <a class="el" href="classActRoot_1_1DetectorManager.html#a8a61409db7979f10357cf9cd3a4cd820">ActRoot::DetectorManager</a>
-, <a class="el" href="classActRoot_1_1MTExecutor.html#af0ff25916f7bcabe9712e93a742bbf06">ActRoot::MTExecutor</a>
-</li>
-<li>SetIsData()
-: <a class="el" href="classActRoot_1_1DetectorManager.html#a18078a65f13e6c3abc53f87e2796752f">ActRoot::DetectorManager</a>
-, <a class="el" href="classActRoot_1_1MTExecutor.html#affc6c62768e7a2cdd9b625ab33924d24">ActRoot::MTExecutor</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#a4db47c6fc2b4d4af5c0862896ceece0f">ActRoot::Cluster</a>
 </li>
 <li>SetIsMT()
 : <a class="el" href="classActRoot_1_1Options.html#aec86b74e290b05872b98e3ac1b7384cd">ActRoot::Options</a>
@@ -221,28 +215,29 @@ $(function() {
 : <a class="el" href="classActRoot_1_1Voxel.html#a560690fd2a9ec8ccc0c114950a6ae885">ActRoot::Voxel</a>
 </li>
 <li>SetIsSplitRP()
-: <a class="el" href="classActCluster_1_1Cluster.html#ad2b1f23e47679541894bf37f9d9e77cc">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#a513c9a9df42f20ce7c0fe7ac65445cb8">ActRoot::Cluster</a>
 </li>
 <li>SetIsVerbose()
-: <a class="el" href="classActCluster_1_1MultiStep.html#ab80be657cfe51bd654742887cae6accd">ActCluster::MultiStep</a>
+: <a class="el" href="classActAlgorithm_1_1VFilter.html#ae1cd0ba3cce758657cb094e37bf7e7cc">ActAlgorithm::VFilter</a>
 , <a class="el" href="classActRoot_1_1DetectorManager.html#ab4101625560ac6a7875970fb3a73df96">ActRoot::DetectorManager</a>
-, <a class="el" href="classActRoot_1_1EventPainter.html#a3c6039c744355fff2b4d24059841ec5f">ActRoot::EventPainter</a>
 , <a class="el" href="classActRoot_1_1MergerDetector.html#a962dc78e6f5cdd551fb0689b1dcfe3f6">ActRoot::MergerDetector</a>
+, <a class="el" href="classActRoot_1_1Options.html#a82477b6e547e099e5b4501345c21845e">ActRoot::Options</a>
 </li>
 <li>SetIterations()
-: <a class="el" href="classActCluster_1_1RANSAC.html#a15499b3606d9d5c4e10132e4dc78c186">ActCluster::RANSAC</a>
+: <a class="el" href="classActAlgorithm_1_1RANSAC.html#af704cebd45314f302824e0ca1ba206ab">ActAlgorithm::RANSAC</a>
 </li>
 <li>SetLayer()
 : <a class="el" href="classActRoot_1_1SilParameters.html#a0bc7f646c5e13e582e6b240a75746649">ActRoot::SilParameters</a>
 </li>
 <li>SetLine()
-: <a class="el" href="classActCluster_1_1Cluster.html#a8c05f3afa4582c755721a96e70992fd4">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#ae6998ab216b49b19c22d3322f3bf1c53">ActRoot::Cluster</a>
 </li>
 <li>SetLineAttributes()
 : <a class="el" href="classActRoot_1_1CutsManager.html#af51c4b00e76249cc253ccaa9a553d241">ActRoot::CutsManager&lt; T &gt;</a>
 </li>
 <li>SetMergerData()
-: <a class="el" href="classActRoot_1_1InputWrapper.html#ae950f3a2c6e2928d0164136a04782e19">ActRoot::InputWrapper</a>
+: <a class="el" href="classActAlgorithm_1_1VFilter.html#a9500d6918456f40a11e35fb46243a778">ActAlgorithm::VFilter</a>
+, <a class="el" href="classActRoot_1_1InputWrapper.html#ae950f3a2c6e2928d0164136a04782e19">ActRoot::InputWrapper</a>
 </li>
 <li>SetMEvent()
 : <a class="el" href="classActRoot_1_1ModularDetector.html#a6a39b15bd7dfb244cc0ab7ba5f8d7575">ActRoot::ModularDetector</a>
@@ -250,15 +245,15 @@ $(function() {
 , <a class="el" href="classActRoot_1_1TPCDetector.html#abbe53b1c96b5393d8717a1e848dfa455">ActRoot::TPCDetector</a>
 , <a class="el" href="classActRoot_1_1VDetector.html#aa6a33382728685cb538188b610808851">ActRoot::VDetector</a>
 </li>
-<li>SetMinPoints()
-: <a class="el" href="classActCluster_1_1ClIMB.html#a409a2617bbb754cda8baebb42f5f88f8">ActCluster::ClIMB</a>
-, <a class="el" href="classActCluster_1_1RANSAC.html#af3d701ce929dcee383db2b17c38f7be9">ActCluster::RANSAC</a>
+<li>SetMinPoint()
+: <a class="el" href="classActAlgorithm_1_1VCluster.html#a02ad18efd86142ff713679af0859ab1f">ActAlgorithm::VCluster</a>
 </li>
 <li>SetMirror()
 : <a class="el" href="structActSim_1_1SilAssembly.html#a98bf57421c9c269057f8c4e70adf37aa">ActSim::SilAssembly</a>
 </li>
 <li>SetMode()
-: <a class="el" href="classActRoot_1_1Options.html#a5edcd5743349ddaeae1985f9a55d8de2">ActRoot::Options</a>
+: <a class="el" href="classActRoot_1_1DetectorManager.html#afa5317f75b1ab477950c45291edb2ce5">ActRoot::DetectorManager</a>
+, <a class="el" href="classActRoot_1_1Options.html#a5edcd5743349ddaeae1985f9a55d8de2">ActRoot::Options</a>
 </li>
 <li>SetModularData()
 : <a class="el" href="classActRoot_1_1InputWrapper.html#a056ba3eaf82d789be2a2e61a361abff0">ActRoot::InputWrapper</a>
@@ -281,11 +276,26 @@ $(function() {
 <li>SetOffsets()
 : <a class="el" href="structActSim_1_1SilAssembly.html#a654330da7c72e1e51dc76ea93384ed71">ActSim::SilAssembly</a>
 </li>
-<li>SetOutputFile()
-: <a class="el" href="classActRoot_1_1Options.html#acf7714187910977e7e00a7657ffea56c">ActRoot::Options</a>
+<li>SetOutputData()
+: <a class="el" href="classActRoot_1_1DataManager.html#ab9a342b927ddc4142d6fdb4196943f0e">ActRoot::DataManager</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a636d53b603fdbf6ebfae0db2142a1640">ActRoot::MergerDetector</a>
+, <a class="el" href="classActRoot_1_1ModularDetector.html#a0d776ecb9f1327b39c05a9b254589265">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a3fee00d5914cc20190829f417f3d4fe4">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#af7d2dff2f8b455039541f4b2f5723660">ActRoot::TPCDetector</a>
+, <a class="el" href="classActRoot_1_1VDetector.html#ac027c4447d136fcc07c6987fde307e41">ActRoot::VDetector</a>
+</li>
+<li>SetOutputFilter()
+: <a class="el" href="classActRoot_1_1MergerDetector.html#aa2bf76192cc62e27bb1097a7ae83368f">ActRoot::MergerDetector</a>
+, <a class="el" href="classActRoot_1_1ModularDetector.html#a3bd9e306d1069bda7c10a864bf463b8e">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#af55693a97a9335bc4993d431c442c4a1">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a01c5b50e7bc0d02f460556fcef932e19">ActRoot::TPCDetector</a>
+, <a class="el" href="classActRoot_1_1VDetector.html#a929ad7f53f7b736ccb447b7503ffba5d">ActRoot::VDetector</a>
 </li>
 <li>SetPalette()
 : <a class="el" href="classActRoot_1_1HistogramPainter.html#a3f7b88f2a45fef889a0ae2165e338aaa">ActRoot::HistogramPainter</a>
+</li>
+<li>SetParameters()
+: <a class="el" href="classActRoot_1_1MergerDetector.html#abd47c70bf4e4889c43c82fd01b74b7d8">ActRoot::MergerDetector</a>
 </li>
 <li>SetPoint()
 : <a class="el" href="classActPhysics_1_1Line.html#ae5446141c94fb78d4b59beee90f75fed">ActPhysics::Line</a>
@@ -308,15 +318,8 @@ $(function() {
 <li>SetRecoilsCMKinematicsThrough4()
 : <a class="el" href="classActPhysics_1_1Kinematics.html#a106dc8a08767053ca1f056bad1e81c6e">ActPhysics::Kinematics</a>
 </li>
-<li>SetRPs()
-: <a class="el" href="classActCluster_1_1MultiStep.html#a1593a98403d95f7a2a994c83ff8e8627">ActCluster::MultiStep</a>
-</li>
 <li>SetRunListFrom()
-: <a class="el" href="classActRoot_1_1InputData.html#ac18a5b9adee8442a6c9a4bd007c24a1e">ActRoot::InputData</a>
-, <a class="el" href="classActRoot_1_1JoinData.html#ac6561dfe1978e0dbfaddc8788a041ce4">ActRoot::JoinData</a>
-</li>
-<li>SetSameTreesAsInput()
-: <a class="el" href="classActRoot_1_1OutputData.html#a538e7c324ee8abd9861d2e994af62abb">ActRoot::OutputData</a>
+: <a class="el" href="classActRoot_1_1JoinData.html#ac6561dfe1978e0dbfaddc8788a041ce4">ActRoot::JoinData</a>
 </li>
 <li>SetSigmas()
 : <a class="el" href="classActPhysics_1_1Line.html#a8ec9ec6460f56f14c75b2b71f8f2c61c">ActPhysics::Line</a>
@@ -331,28 +334,29 @@ $(function() {
 : <a class="el" href="classActPhysics_1_1SilMatrix.html#abca8c5ec44bfbaef0fdc3a545ee6b529">ActPhysics::SilMatrix</a>
 </li>
 <li>SetToDelete()
-: <a class="el" href="classActCluster_1_1Cluster.html#a4f371164aeb5322edad6aeb21973f5f2">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#a00422e8a2b2bbba627f211304adcaf33">ActRoot::Cluster</a>
 </li>
 <li>SetToMerge()
-: <a class="el" href="classActCluster_1_1Cluster.html#aa0ffe3fa910fa0eb27e571a0281469ed">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#a92693da0503a04fde41d460830cae1aa">ActRoot::Cluster</a>
 </li>
 <li>SetTPCData()
-: <a class="el" href="classActRoot_1_1InputWrapper.html#ad46f1cb30951100b926a833c7438f978">ActRoot::InputWrapper</a>
+: <a class="el" href="classActAlgorithm_1_1MultiStep.html#a726de545e96b5bf323da025ba302e3cc">ActAlgorithm::MultiStep</a>
+, <a class="el" href="classActAlgorithm_1_1VFilter.html#af22548fddb496ca0671839830e9c5bea">ActAlgorithm::VFilter</a>
+, <a class="el" href="classActRoot_1_1InputWrapper.html#ad46f1cb30951100b926a833c7438f978">ActRoot::InputWrapper</a>
 </li>
-<li>SetTPCDataClone2()
-: <a class="el" href="classActRoot_1_1InputWrapper.html#a5f82c2dfb193545c5f8b0be6125b6ccd">ActRoot::InputWrapper</a>
+<li>SetTPCDataClone()
+: <a class="el" href="classActRoot_1_1InputWrapper.html#ad145cbaef0d6804b6f47ec1bd14323e2">ActRoot::InputWrapper</a>
 </li>
 <li>SetTPCParameters()
-: <a class="el" href="classActCluster_1_1ClIMB.html#a81917f0116e5397828def95cba3b0e59">ActCluster::ClIMB</a>
-, <a class="el" href="classActCluster_1_1MultiStep.html#a8a19cf911d0c5135e37f83603ced7142">ActCluster::MultiStep</a>
+: <a class="el" href="classActAlgorithm_1_1ClIMB.html#a188aacbe8446434c6ced436e13eb0a35">ActAlgorithm::ClIMB</a>
+, <a class="el" href="classActAlgorithm_1_1MultiStep.html#a1931828cf681d1401e8a66494f7655f4">ActAlgorithm::MultiStep</a>
 , <a class="el" href="classActRoot_1_1MergerDetector.html#a870bb40d0f1c54df06e70029afc5c60f">ActRoot::MergerDetector</a>
 </li>
-<li>SetTreeName()
-: <a class="el" href="classActRoot_1_1InputData.html#a67fb01fd53401719cd03fbba0e6261b1">ActRoot::InputData</a>
-, <a class="el" href="classActRoot_1_1OutputData.html#ac3578b268132cd45bed5240d7c092ace">ActRoot::OutputData</a>
-</li>
 <li>SetVoxels()
-: <a class="el" href="classActCluster_1_1Cluster.html#a4594f2170f024dc8204e04f8603e7d7e">ActCluster::Cluster</a>
+: <a class="el" href="classActRoot_1_1Cluster.html#a0efa6961e0e4e69e20a13f3fb798ca84">ActRoot::Cluster</a>
+</li>
+<li>signaller()
+: <a class="el" href="classBS_1_1signaller.html#a26dac33f2a1f8e0d552a61f281d189e0">BS::signaller</a>
 </li>
 <li>SilAssembly()
 : <a class="el" href="structActSim_1_1SilAssembly.html#ada77484b21b47a3daefe2d3c7b3afe6d">ActSim::SilAssembly</a>
@@ -370,11 +374,8 @@ $(function() {
 : <a class="el" href="classActPhysics_1_1SilMatrix.html#a55bddae4ff4adaf31a34a5671e6b18ce">ActPhysics::SilMatrix</a>
 </li>
 <li>SilUnit()
-: <a class="el" href="classActPhysics_1_1SilUnit.html#a76a4b604d37a35d12cb74a2c50728655">ActPhysics::SilUnit</a>
-, <a class="el" href="structActSim_1_1SilUnit.html#a52c59c3050f07c3e634d061faeff48eb">ActSim::SilUnit</a>
-</li>
-<li>size()
-: <a class="el" href="classBS_1_1multi__future.html#abf3325699649c91f9dd88f5a252e742e">BS::multi_future&lt; T &gt;</a>
+: <a class="el" href="classActPhysics_1_1SilUnit.html#aa2f589f86b04c5c176c301320f1c47b2">ActPhysics::SilUnit</a>
+, <a class="el" href="structActSim_1_1SilUnit.html#a0a84d96295237d5a4cd5d4a39ecbbf34">ActSim::SilUnit</a>
 </li>
 <li>Slow()
 : <a class="el" href="classActPhysics_1_1SRIM.html#a836b0e58f2fa1e332f6f377b638739c0">ActPhysics::SRIM</a>
@@ -383,7 +384,7 @@ $(function() {
 : <a class="el" href="classActPhysics_1_1SRIM.html#a1b1cf1f7dc625361521825167abdfe15">ActPhysics::SRIM</a>
 </li>
 <li>start()
-: <a class="el" href="classBS_1_1blocks.html#a7d659984a82cf57e54773d9a88d863ae">BS::blocks&lt; T1, T2, T &gt;</a>
+: <a class="el" href="classBS_1_1thread__pool_1_1blocks.html#a07a5edaab8af66bd1b2bc4a8b4cb134f">BS::thread_pool::blocks&lt; T &gt;</a>
 , <a class="el" href="classBS_1_1timer.html#ad442341cacfb7970960a8e2090d66c10">BS::timer</a>
 </li>
 <li>StepProgress()
@@ -404,11 +405,20 @@ $(function() {
 <li>StripWhitespaces()
 : <a class="el" href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">ActPhysics::Particle</a>
 </li>
-<li>submit()
-: <a class="el" href="classBS_1_1thread__pool.html#a87b9d62da8901302453f0a65bd6b99cd">BS::thread_pool</a>
+<li>submit_blocks()
+: <a class="el" href="classBS_1_1thread__pool.html#aff6d00a8f6ca2ab75a14845aa0d7bdd5">BS::thread_pool</a>
+</li>
+<li>submit_loop()
+: <a class="el" href="classBS_1_1thread__pool.html#adbfa70de1b2e0bae92986002f6f3d161">BS::thread_pool</a>
+</li>
+<li>submit_sequence()
+: <a class="el" href="classBS_1_1thread__pool.html#a4378d957c3e5418e829c164affed2bfb">BS::thread_pool</a>
+</li>
+<li>submit_task()
+: <a class="el" href="classBS_1_1thread__pool.html#a735a1cb20b4c0fa2b3fef18da2594d03">BS::thread_pool</a>
 </li>
 <li>synced_stream()
-: <a class="el" href="classBS_1_1synced__stream.html#aa66339189e666fb9aec5759401dc6dfc">BS::synced_stream</a>
+: <a class="el" href="classBS_1_1synced__stream.html#ae454279a2a55451fb63238f7d0ca24b5">BS::synced_stream</a>
 </li>
 </ul>
 </div><!-- contents -->

@@ -72,24 +72,24 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="ActMergerDetector_8h_source.html">ActMergerDetector.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActColors_8h_source.html">ActColors.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActCorrector_8h_source.html">ActCorrector.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActDetectorManager_8h_source.html">ActDetectorManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActInputParser_8h_source.html">ActInputParser.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActMergerData_8h_source.html">ActMergerData.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActModularData_8h_source.html">ActModularData.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActModularDetector_8h_source.html">ActModularDetector.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActMultiStep_8h_source.html">ActMultiStep.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActOptions_8h_source.html">ActOptions.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActSilData_8h_source.html">ActSilData.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActSilDetector_8h_source.html">ActSilDetector.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActSilSpecs_8h_source.html">ActSilSpecs.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActTPCData_8h_source.html">ActTPCData.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ActTPCDetector_8h_source.html">ActTPCDetector.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ActVData_8h_source.html">ActVData.h</a>&quot;</code><br />
-<code>#include &quot;RtypesCore.h&quot;</code><br />
-<code>#include &quot;TEnv.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="ActTypes_8h_source.html">ActTypes.h</a>&quot;</code><br />
 <code>#include &quot;TH1.h&quot;</code><br />
 <code>#include &quot;TMath.h&quot;</code><br />
 <code>#include &quot;TMathBase.h&quot;</code><br />
 <code>#include &quot;TStopwatch.h&quot;</code><br />
-<code>#include &quot;TSystem.h&quot;</code><br />
 <code>#include &quot;TTree.h&quot;</code><br />
 <code>#include &quot;Math/RotationZYX.h&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
@@ -112,56 +112,56 @@ Include dependency graph for ActMergerDetector.cxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="ActMergerDetector_8cxx__incl.png" border="0" usemap="#aCore_2src_2ActMergerDetector_8cxx" alt=""/></div>
 <map name="aCore_2src_2ActMergerDetector_8cxx" id="aCore_2src_2ActMergerDetector_8cxx">
-<area shape="rect" title=" " alt="" coords="2869,5,3097,32"/>
-<area shape="rect" href="ActMergerDetector_8h.html" title=" " alt="" coords="1795,80,1951,107"/>
-<area shape="rect" title=" " alt="" coords="1817,379,1876,405"/>
-<area shape="rect" title=" " alt="" coords="1126,379,1181,405"/>
-<area shape="rect" title=" " alt="" coords="1391,379,1451,405"/>
-<area shape="rect" title=" " alt="" coords="2085,453,2147,480"/>
-<area shape="rect" href="ActInputParser_8h.html" title=" " alt="" coords="921,229,1047,256"/>
-<area shape="rect" title=" " alt="" coords="296,304,376,331"/>
-<area shape="rect" title=" " alt="" coords="2395,379,2472,405"/>
-<area shape="rect" title=" " alt="" coords="401,304,487,331"/>
-<area shape="rect" href="ActMergerData_8h.html" title=" " alt="" coords="586,155,718,181"/>
-<area shape="rect" href="ActVData_8h.html" title=" " alt="" coords="2774,379,2869,405"/>
-<area shape="rect" title=" " alt="" coords="377,229,437,256"/>
-<area shape="rect" href="ActModularData_8h.html" title=" " alt="" coords="3617,304,3756,331"/>
-<area shape="rect" href="ActMultiStep_8h.html" title=" " alt="" coords="1364,229,1481,256"/>
-<area shape="rect" title=" " alt="" coords="1593,304,1703,331"/>
-<area shape="rect" title=" " alt="" coords="1525,304,1568,331"/>
-<area shape="rect" href="ActSilData_8h.html" title=" " alt="" coords="2699,304,2802,331"/>
-<area shape="rect" href="ActSilSpecs_8h.html" title=" " alt="" coords="1175,155,1284,181"/>
-<area shape="rect" href="ActTPCDetector_8h.html" title=" " alt="" coords="2002,229,2137,256"/>
-<area shape="rect" href="ActTPCData_8h.html" title=" " alt="" coords="2158,304,2269,331"/>
-<area shape="rect" title=" " alt="" coords="3632,379,3701,405"/>
-<area shape="rect" title=" " alt="" coords="2657,155,2743,181"/>
-<area shape="rect" href="ActColors_8h.html" title=" " alt="" coords="3172,80,3268,107"/>
-<area shape="rect" href="ActModularDetector_8h.html" title=" " alt="" coords="3004,229,3167,256"/>
-<area shape="rect" href="ActSilDetector_8h.html" title=" " alt="" coords="2853,229,2979,256"/>
-<area shape="rect" title=" " alt="" coords="3393,80,3503,107"/>
-<area shape="rect" title=" " alt="" coords="3527,80,3593,107"/>
-<area shape="rect" title=" " alt="" coords="3617,80,3692,107"/>
-<area shape="rect" title=" " alt="" coords="3716,80,3823,107"/>
-<area shape="rect" title=" " alt="" coords="3847,80,3937,107"/>
-<area shape="rect" title=" " alt="" coords="3961,80,4113,107"/>
-<area shape="rect" title=" " alt="" coords="4138,80,4201,107"/>
-<area shape="rect" title=" " alt="" coords="4225,80,4290,107"/>
-<area shape="rect" title=" " alt="" coords="4314,80,4401,107"/>
-<area shape="rect" title=" " alt="" coords="4425,80,4466,107"/>
-<area shape="rect" title=" " alt="" coords="4490,80,4561,107"/>
-<area shape="rect" title=" " alt="" coords="4585,80,4660,107"/>
-<area shape="rect" href="ActClIMB_8h.html" title=" " alt="" coords="1307,304,1400,331"/>
-<area shape="rect" title=" " alt="" coords="1829,304,1880,331"/>
-<area shape="rect" title=" " alt="" coords="985,304,1130,331"/>
-<area shape="rect" title=" " alt="" coords="1071,229,1225,256"/>
-<area shape="rect" href="ActVDetector_8h.html" title=" " alt="" coords="2826,304,2945,331"/>
-<area shape="rect" href="ActVParameters_8h.html" title=" " alt="" coords="2611,379,2749,405"/>
-<area shape="rect" title=" " alt="" coords="2893,379,3017,405"/>
-<area shape="rect" title=" " alt="" coords="715,304,807,331"/>
-<area shape="rect" title=" " alt="" coords="464,379,587,405"/>
-<area shape="rect" title=" " alt="" coords="715,229,845,256"/>
-<area shape="rect" href="ActTPCLegacyData_8h.html" title=" " alt="" coords="3041,379,3199,405"/>
-<area shape="rect" title=" " alt="" coords="3527,304,3593,331"/>
+<area shape="rect" title=" " alt="" coords="2742,5,2970,32"/>
+<area shape="rect" href="ActMergerDetector_8h.html" title=" " alt="" coords="2035,155,2191,181"/>
+<area shape="rect" href="ActInputParser_8h.html" title=" " alt="" coords="1842,304,1969,331"/>
+<area shape="rect" title=" " alt="" coords="1763,379,1843,405"/>
+<area shape="rect" title=" " alt="" coords="2156,453,2233,480"/>
+<area shape="rect" title=" " alt="" coords="3043,528,3101,555"/>
+<area shape="rect" title=" " alt="" coords="1390,528,1453,555"/>
+<area shape="rect" title=" " alt="" coords="2070,379,2157,405"/>
+<area shape="rect" href="ActMergerData_8h.html" title=" " alt="" coords="1015,453,1147,480"/>
+<area shape="rect" title=" " alt="" coords="85,528,145,555"/>
+<area shape="rect" href="ActModularData_8h.html" title=" " alt="" coords="2845,453,2984,480"/>
+<area shape="rect" href="ActMultiStep_8h.html" title=" " alt="" coords="575,304,692,331"/>
+<area shape="rect" href="ActTPCData_8h.html" title=" " alt="" coords="1171,453,1282,480"/>
+<area shape="rect" title=" " alt="" coords="798,379,909,405"/>
+<area shape="rect" title=" " alt="" coords="195,379,237,405"/>
+<area shape="rect" title=" " alt="" coords="363,379,418,405"/>
+<area shape="rect" title=" " alt="" coords="3926,528,3986,555"/>
+<area shape="rect" href="ActSilData_8h.html" title=" " alt="" coords="2627,379,2730,405"/>
+<area shape="rect" href="ActSilSpecs_8h.html" title=" " alt="" coords="1224,229,1333,256"/>
+<area shape="rect" href="ActTPCDetector_8h.html" title=" " alt="" coords="1354,304,1489,331"/>
+<area shape="rect" title=" " alt="" coords="3373,453,3443,480"/>
+<area shape="rect" title=" " alt="" coords="1115,229,1200,256"/>
+<area shape="rect" href="ActColors_8h.html" title=" " alt="" coords="3164,80,3260,107"/>
+<area shape="rect" href="ActCorrector_8h.html" title=" " alt="" coords="4171,304,4285,331"/>
+<area shape="rect" href="ActDetectorManager_8h.html" title=" " alt="" coords="3285,80,3451,107"/>
+<area shape="rect" href="ActModularDetector_8h.html" title=" " alt="" coords="2973,304,3136,331"/>
+<area shape="rect" href="ActSilDetector_8h.html" title=" " alt="" coords="3710,304,3837,331"/>
+<area shape="rect" href="ActTypes_8h.html" title=" " alt="" coords="2934,155,3026,181"/>
+<area shape="rect" href="ActOptions_8h.html" title=" " alt="" coords="2803,80,2909,107"/>
+<area shape="rect" title=" " alt="" coords="4089,80,4164,107"/>
+<area shape="rect" title=" " alt="" coords="4188,80,4295,107"/>
+<area shape="rect" title=" " alt="" coords="4319,80,4471,107"/>
+<area shape="rect" title=" " alt="" coords="4495,80,4558,107"/>
+<area shape="rect" title=" " alt="" coords="4582,80,4647,107"/>
+<area shape="rect" title=" " alt="" coords="4671,80,4758,107"/>
+<area shape="rect" title=" " alt="" coords="4782,80,4823,107"/>
+<area shape="rect" title=" " alt="" coords="4847,80,4918,107"/>
+<area shape="rect" title=" " alt="" coords="4943,80,5017,107"/>
+<area shape="rect" title=" " alt="" coords="2349,379,2400,405"/>
+<area shape="rect" title=" " alt="" coords="2233,379,2325,405"/>
+<area shape="rect" href="ActVData_8h.html" title=" " alt="" coords="2558,528,2653,555"/>
+<area shape="rect" title=" " alt="" coords="278,528,423,555"/>
+<area shape="rect" title=" " alt="" coords="901,528,1054,555"/>
+<area shape="rect" href="ActVDetector_8h.html" title=" " alt="" coords="3211,379,3330,405"/>
+<area shape="rect" href="ActVParameters_8h.html" title=" " alt="" coords="3109,453,3248,480"/>
+<area shape="rect" title=" " alt="" coords="4094,528,4218,555"/>
+<area shape="rect" href="ActVFilter_8h.html" title=" " alt="" coords="1187,379,1283,405"/>
+<area shape="rect" href="ActCalibrationManager_8h.html" title=" " alt="" coords="3822,453,4005,480"/>
+<area shape="rect" href="ActPIDCorrector_8h.html" title=" " alt="" coords="4131,453,4267,480"/>
+<area shape="rect" href="ActInputIterator_8h.html" title=" " alt="" coords="3551,304,3686,331"/>
 </map>
 </div>
 </div></div><!-- contents -->
