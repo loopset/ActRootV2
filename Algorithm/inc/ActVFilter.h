@@ -1,6 +1,7 @@
 #ifndef ActVFilter_h
 #define ActVFilter_h
 
+#include "ActMergerData.h"
 #include "ActTPCData.h"
 #include "ActVCluster.h"
 
@@ -12,6 +13,7 @@ class VFilter
 {
 protected:
     ActRoot::TPCData* fData {};
+    ActRoot::MergerData* fMergerData {};
     std::shared_ptr<ActCluster::VCluster> fAlgo {};
     bool fIsVerbose {};
 
@@ -21,6 +23,9 @@ public:
 
     virtual void SetTPCData(ActRoot::TPCData* data) { fData = data; }
     ActRoot::TPCData* GetTPCData() const { return fData; }
+
+    virtual void SetMergerData(ActRoot::MergerData* data) { fMergerData = data; }
+    ActRoot::MergerData* GetMergerData() const { return fMergerData; }
 
     virtual void SetClusterPtr(std::shared_ptr<ActCluster::VCluster> ptr) { fAlgo = ptr; }
 

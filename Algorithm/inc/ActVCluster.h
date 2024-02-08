@@ -6,12 +6,13 @@
 
 #include <utility>
 #include <vector>
+
 namespace ActCluster
 {
 class VCluster
 {
 public:
-    using ClusterRet = std::pair<std::vector<ActCluster::Cluster>, std::vector<ActRoot::Voxel>>;
+    using ClusterRet = std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Voxel>>;
 
 protected:
     int fMinPoints {};

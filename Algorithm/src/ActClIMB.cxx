@@ -147,7 +147,7 @@ ActCluster::VCluster::ClusterRet ActCluster::ClIMB::Run(const std::vector<ActRoo
     FillMatrix();
     // Prepare return values:
     // Clusters (c)
-    std::vector<ActCluster::Cluster> cret;
+    std::vector<ActRoot::Cluster> cret;
     // Noise (n)
     std::vector<ActRoot::Voxel> nret;
     // Getter of seed based on fIndex being masked (=-1)
@@ -161,7 +161,7 @@ ActCluster::VCluster::ClusterRet ActCluster::ClIMB::Run(const std::vector<ActRoo
         MaskVoxelsInMatrix(seed);
         MaskVoxelsInIndex(seed);
         // 2-> Create current cluster
-        ActCluster::Cluster currentCluster {static_cast<int>(cret.size())};
+        ActRoot::Cluster currentCluster {static_cast<int>(cret.size())};
         currentCluster.AddVoxel(std::move(fVoxels[seed]));
         // 3-> Initialize generation 0
         std::vector<int> gen0 {seed};

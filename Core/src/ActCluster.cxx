@@ -6,13 +6,12 @@
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
 
-#include <algorithm>
 #include <ios>
 #include <iostream>
 
-ActCluster::Cluster::Cluster(int id) : fClusterID(id) {}
+ActRoot::Cluster::Cluster(int id) : fClusterID(id) {}
 
-ActCluster::Cluster::Cluster(int id, const ActPhysics::Line& line, const std::vector<ActRoot::Voxel>& voxels)
+ActRoot::Cluster::Cluster(int id, const ActPhysics::Line& line, const std::vector<ActRoot::Voxel>& voxels)
     : fClusterID(id),
       fLine(line),
       fVoxels(voxels)
@@ -20,7 +19,7 @@ ActCluster::Cluster::Cluster(int id, const ActPhysics::Line& line, const std::ve
     FillSets(); // not sure yet... X and Y extents can only be computed at fill time for ClIMB
 }
 
-void ActCluster::Cluster::UpdateRange(float val, RangeType& range)
+void ActRoot::Cluster::UpdateRange(float val, RangeType& range)
 {
     // Min
     if(val < range.first)
@@ -30,7 +29,7 @@ void ActCluster::Cluster::UpdateRange(float val, RangeType& range)
         range.second = val;
 }
 
-void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
+void ActRoot::Cluster::FillSets(const ActRoot::Voxel& voxel)
 {
     const auto& pos {voxel.GetPosition()};
     UpdateRange(pos.X(), fXRange);
@@ -41,7 +40,7 @@ void ActCluster::Cluster::FillSets(const ActRoot::Voxel& voxel)
     // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
 
-void ActCluster::Cluster::FillSets()
+void ActRoot::Cluster::FillSets()
 {
     fXRange = {1111, -1};
     fYRange = {1111, -1};
@@ -61,20 +60,20 @@ void ActCluster::Cluster::FillSets()
     }
 }
 
-void ActCluster::Cluster::AddVoxel(const ActRoot::Voxel& voxel)
+void ActRoot::Cluster::AddVoxel(const ActRoot::Voxel& voxel)
 {
     fVoxels.push_back(voxel);
     FillSets(fVoxels.back());
 }
 
-void ActCluster::Cluster::AddVoxel(ActRoot::Voxel&& voxel)
+void ActRoot::Cluster::AddVoxel(ActRoot::Voxel&& voxel)
 {
     fVoxels.push_back(std::move(voxel));
     FillSets(fVoxels.back());
 }
 
-ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInRegion(double xmin, double xmax, double ymin,
-                                                                           double ymax, double zmin, double zmax)
+ActRoot::Cluster::XYZPoint
+ActRoot::Cluster::GetGravityPointInRegion(double xmin, double xmax, double ymin, double ymax, double zmin, double zmax)
 {
     float xsum {};
     float ysum {};
@@ -106,7 +105,7 @@ ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInRegion(doubl
     return XYZPoint(xsum, ysum, zsum);
 }
 
-ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInXRange(double length)
+ActRoot::Cluster::XYZPoint ActRoot::Cluster::GetGravityPointInXRange(double length)
 {
     auto [xmin, xmax] = GetXRange();
     float xbreak {static_cast<float>(xmin + length)};
@@ -132,17 +131,17 @@ ActCluster::Cluster::XYZPoint ActCluster::Cluster::GetGravityPointInXRange(doubl
     return XYZPoint(xsum, ysum, zsum);
 }
 
-void ActCluster::Cluster::ReFit()
+void ActRoot::Cluster::ReFit()
 {
     fLine.FitVoxels(fVoxels);
 }
 
-void ActCluster::Cluster::ReFillSets()
+void ActRoot::Cluster::ReFillSets()
 {
     FillSets();
 }
 
-std::pair<float, float> ActCluster::Cluster::GetXRange() const
+std::pair<float, float> ActRoot::Cluster::GetXRange() const
 {
     if(fXRange.second != -1)
         return fXRange;
@@ -150,7 +149,7 @@ std::pair<float, float> ActCluster::Cluster::GetXRange() const
         return {0, 0};
 }
 
-std::pair<float, float> ActCluster::Cluster::GetYRange() const
+std::pair<float, float> ActRoot::Cluster::GetYRange() const
 {
     if(fYRange.second != -1)
         return fYRange;
@@ -158,7 +157,7 @@ std::pair<float, float> ActCluster::Cluster::GetYRange() const
         return {0, 0};
 }
 
-std::pair<float, float> ActCluster::Cluster::GetZRange() const
+std::pair<float, float> ActRoot::Cluster::GetZRange() const
 {
     if(fZRange.second != -1)
         return fZRange;
@@ -166,7 +165,7 @@ std::pair<float, float> ActCluster::Cluster::GetZRange() const
         return {0, 0};
 }
 
-void ActCluster::Cluster::Print() const
+void ActRoot::Cluster::Print() const
 {
     auto [xmin, xmax] = GetXRange();
     auto [ymin, ymax] = GetYRange();

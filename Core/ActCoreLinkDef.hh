@@ -42,6 +42,7 @@
 
 // data for detectors
 #pragma link C++ class ActRoot::Voxel + ;
+#pragma link C++ class ActRoot::Cluster + ;
 #pragma link C++ class ActRoot::TPCData + ;
 #pragma link C++ class ActRoot::SilData + ;
 #pragma link C++ class ActRoot::ModularData + ;

@@ -27,7 +27,7 @@ namespace ActCluster
 class MultiStep : public VFilter
 {
 public:
-    using ItType = std::vector<ActCluster::Cluster>::iterator;
+    using ItType = std::vector<ActRoot::Cluster>::iterator;
     using XYZPoint = ROOT::Math::XYZPointF;
     using XYZVector = ROOT::Math::XYZVectorF;
     using RPValue = std::pair<XYZPoint, std::pair<int, int>>;
@@ -37,7 +37,7 @@ private:
     // Pointer to TPC Parameters
     ActRoot::TPCParameters* fTPC {};
     // Pointer to vector to analyze
-    std::vector<ActCluster::Cluster>* fClusters {};
+    std::vector<ActRoot::Cluster>* fClusters {};
     // Pointer to RP vector
     std::vector<XYZPoint>* fRPs {};
     // Settings of the different parts
@@ -107,7 +107,7 @@ public:
     // Setters and getters
     void SetTPCParameters(ActRoot::TPCParameters* pars) { fTPC = pars; }
     void SetTPCData(ActRoot::TPCData* data) override;
-    std::vector<ActCluster::Cluster>* GetClusters() const { return fClusters; }
+    std::vector<ActRoot::Cluster>* GetClusters() const { return fClusters; }
     std::vector<XYZPoint>* GetRPs() const { return fRPs; }
 
     // Read config file
@@ -115,9 +115,6 @@ public:
 
     // Print time reports
     void PrintReports() const override;
-
-    // Set verbosity
-    void SetIsVerbose() { fIsVerbose = true; }
 
     // Main method
     void Run() override;

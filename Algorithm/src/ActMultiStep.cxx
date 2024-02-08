@@ -9,7 +9,6 @@
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActUtils.h"
-#include "ActVFilter.h"
 #include "ActVoxel.h"
 
 #include "TMath.h"
@@ -40,7 +39,6 @@
 ActCluster::MultiStep::MultiStep()
 {
     fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
-    std::cout << "fIsVerbose : " << fIsVerbose << '\n';
 }
 
 void ActCluster::MultiStep::SetTPCData(ActRoot::TPCData* data)
@@ -393,7 +391,7 @@ std::tuple<ActCluster::MultiStep::XYZPoint, double, double> ActCluster::MultiSte
 
 void ActCluster::MultiStep::BreakBeamClusters()
 {
-    std::vector<ActCluster::Cluster> toAppend {};
+    std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
         // 1-> Check whether we meet conditions to execute this
@@ -473,7 +471,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
                 it++;
             }
             // 4-> Run cluster algorithm again (if asked... should delete this flag)
-            std::vector<ActCluster::Cluster> newClusters;
+            std::vector<ActRoot::Cluster> newClusters;
             std::vector<ActRoot::Voxel> noise;
             if(fFitNotBeam)
                 std::tie(newClusters, noise) = fAlgo->Run(notBeam);
@@ -497,7 +495,7 @@ void ActCluster::MultiStep::BreakBeamClusters()
 
 void ActCluster::MultiStep::BreakTrackClusters()
 {
-    std::vector<ActCluster::Cluster> toAppend {};
+    std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end();)
     {
         // 1-> Check whether cluster needs breaking
@@ -543,7 +541,7 @@ void ActCluster::MultiStep::BreakTrackClusters()
                 refVoxels.erase(toCluster, refVoxels.end());
 
                 // Reprocess
-                std::vector<ActCluster::Cluster> newClusters;
+                std::vector<ActRoot::Cluster> newClusters;
                 std::vector<ActRoot::Voxel> noise;
                 std::tie(newClusters, noise) = fAlgo->Run(newVoxels);
                 // Set not to merge these new ones
@@ -595,7 +593,8 @@ void ActCluster::MultiStep::MergeSimilarTracks()
 {
     // Sort clusters by increasing voxel size
     std::sort(fClusters->begin(), fClusters->end(),
-              [](const Cluster& l, const Cluster& r) { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
+              [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
+              { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
 
     // Set of indexes to delete
     std::set<int, std::greater<int>> toDelete {};
@@ -1059,7 +1058,7 @@ void ActCluster::MultiStep::PerformFinerFits()
     const auto& rp {fRPs->front()};
 
     // 2-> Break BL starting on RP
-    std::vector<ActCluster::Cluster> toAppend {};
+    std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     {
         if(it->GetIsBeamLike())
@@ -1078,7 +1077,7 @@ void ActCluster::MultiStep::PerformFinerFits()
                              std::make_move_iterator(refVoxels.end()));
             refVoxels.erase(rpBreak, refVoxels.end());
             // Add to cluster
-            ActCluster::Cluster newCluster {(int)fClusters->size()};
+            ActRoot::Cluster newCluster {(int)fClusters->size()};
             newCluster.SetVoxels(std::move(newVoxels));
             newCluster.ReFit();
             newCluster.ReFillSets();

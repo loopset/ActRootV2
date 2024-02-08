@@ -130,7 +130,7 @@ ActCluster::VCluster::ClusterRet ActCluster::RANSAC::Run(const std::vector<ActRo
 {
     // inner timing tool
     fClock.Start(false);
-    std::vector<ActCluster::Cluster> clusters;
+    std::vector<ActRoot::Cluster> clusters;
     if(voxels.size() < fMinPoints)
     {
         return {};
@@ -163,7 +163,7 @@ ActCluster::VCluster::ClusterRet ActCluster::RANSAC::Run(const std::vector<ActRo
             // Fit it
             copy.FitVoxels(inlierVoxels);
             // And push back to vector of clustering results!
-            clusters.push_back(ActCluster::Cluster(clusters.size(), copy, inlierVoxels));
+            clusters.push_back(ActRoot::Cluster(clusters.size(), copy, inlierVoxels));
         }
     }
     fClock.Stop();

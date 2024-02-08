@@ -10,20 +10,20 @@
 #include <vector>
 namespace ActRoot
 {
-    //! Holder of physics info from an ACTAR TPC event
-    class TPCData : public VData
-    {
-    public:
-        using XYZPoint = ROOT::Math::XYZPointF;
+//! Holder of physics info from an ACTAR TPC event
+class TPCData : public VData
+{
+public:
+    using XYZPoint = ROOT::Math::XYZPointF;
 
-        std::vector<ActCluster::Cluster> fClusters {};
-        std::vector<Voxel> fRaw {};
-        std::vector<XYZPoint> fRPs {};
+    std::vector<Cluster> fClusters {};
+    std::vector<Voxel> fRaw {};
+    std::vector<XYZPoint> fRPs {};
 
-    public:
-        void Clear() override;
-        void Print() const override;
-    };
+public:
+    void Clear() override;
+    void Print() const override;
+};
 } // namespace ActRoot
 
 #endif
