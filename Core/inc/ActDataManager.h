@@ -6,6 +6,9 @@
 #include "ActOutputData.h"
 #include "ActTypes.h"
 
+#include "TChain.h"
+
+#include <memory>
 #include <set>
 #include <string>
 #include <unordered_map>
@@ -24,7 +27,7 @@ private:
 public:
     DataManager() = default;
     DataManager(ModeType mode) : fMode(mode) {}
-    DataManager(const std::string& file);
+    DataManager(const std::string& file, ModeType mode = ModeType::ECorrect);
 
     void ReadDataFile(const std::string& file);
 
@@ -37,8 +40,8 @@ public:
     OutputData GetOuput(ModeType mode);
     OutputData GetOutputForThread(const std::set<int>& runs);
 
-    InputData GetOutputAsInput() { return GetOutputAsInput(fMode); };
-    InputData GetOutputAsInput(ModeType mode);
+    std::shared_ptr<TChain> GetJoinedData() { return GetJoinedData(fMode); };
+    std::shared_ptr<TChain> GetJoinedData(ModeType mode);
 
     // Getters
     const std::set<int>& GetRunList() const { return fRuns; }

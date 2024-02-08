@@ -35,8 +35,10 @@ public:
     void Init(const std::set<int>& runs, bool print = true);
 
     void Fill(int run);
+
     // Write TTree and close TFile
     void Close(int run);
+
     // Function to write analysis parameters next to TTree
     void WriteMetadata(const std::string& file, const std::string& description = "");
 

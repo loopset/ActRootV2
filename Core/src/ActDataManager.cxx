@@ -5,11 +5,14 @@
 #include "ActOutputData.h"
 #include "ActTypes.h"
 
+#include "TChain.h"
+
+#include <memory>
 #include <stdexcept>
 #include <string>
 #include <utility>
 
-ActRoot::DataManager::DataManager(const std::string& file)
+ActRoot::DataManager::DataManager(const std::string& file, ModeType mode) : fMode(mode)
 {
     ReadDataFile(file);
 }
@@ -139,7 +142,7 @@ ActRoot::OutputData ActRoot::DataManager::GetOuput(ActRoot::ModeType mode)
     return std::move(out);
 }
 
-ActRoot::InputData ActRoot::DataManager::GetOutputAsInput(ActRoot::ModeType mode)
+std::shared_ptr<TChain> ActRoot::DataManager::GetJoinedData(ActRoot::ModeType mode)
 {
     InputData in;
     if(mode == ModeType::EMerge)
@@ -148,7 +151,6 @@ ActRoot::InputData ActRoot::DataManager::GetOutputAsInput(ActRoot::ModeType mode
         in.AddInput(CheckAndGet("Corrector"));
     else
         throw std::runtime_error("DataManager::GetOutputAsInput(): no conversion out -> in for that mode");
-    in.Init(fRuns);
-    in.AddManualEntries(fManual);
-    return std::move(in);
+    in.InitChain(fRuns);
+    return std::move(in.GetChain());
 }

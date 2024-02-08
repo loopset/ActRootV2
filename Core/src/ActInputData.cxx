@@ -3,6 +3,7 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 
+#include "TChain.h"
 #include "TFile.h"
 #include "TString.h"
 #include "TSystem.h"
@@ -84,6 +85,34 @@ void ActRoot::InputData::Init(const std::set<int>& runs, bool print)
         }
     }
 }
+
+void ActRoot::InputData::InitChain(const std::set<int>& runs)
+{
+    fRuns = runs;
+    // Assert that we have at least 1 input
+    if(fTreeNames.size() < 1)
+        throw std::runtime_error("InputData::InitChain(): size of internal vectors < 1 -> No inputs to read!");
+    for(int in = 0; in < fTreeNames.size(); in++)
+    {
+        fChain = std::make_shared<TChain>(fTreeNames[in].c_str());
+        for(const auto& run : runs)
+        {
+            std::string filename {fPaths[in] + fBegins[in] + TString::Format("%04d", run) + fEnds[in] + ".root"};
+            CheckFileExists(filename);
+            // Print! (disabled for chain)
+            // std::cout << BOLDYELLOW << "InputData: reading " << fTreeNames[in] << " to chain in file " << '\n';
+            // std::cout << "  " << filename << RESET << '\n';
+            // Init
+            if(in == 0)
+            {
+                fChain->Add(filename.c_str());
+            }
+            else // add as friend!
+                fChain->AddFriend(fTreeNames[in].c_str(), filename.c_str());
+        }
+    }
+}
+
 void ActRoot::InputData::GetEntry(int run, int entry)
 {
     fTrees[run]->GetEntry(entry);

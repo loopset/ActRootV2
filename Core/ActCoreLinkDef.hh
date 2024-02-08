@@ -52,7 +52,6 @@
 #pragma link C++ class ActRoot::DataManager;
 #pragma link C++ class ActRoot::InputData;
 #pragma link C++ class ActRoot::OutputData;
-#pragma link C++ class ActRoot::JoinData;
 
 // virtual parameters
 #pragma link C++ class ActRoot::VParameters + ;

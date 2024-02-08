@@ -26,6 +26,7 @@ private:
     std::vector<std::string> fEnds {};
     std::map<int, std::shared_ptr<TFile>> fFiles {};
     std::map<int, std::shared_ptr<TTree>> fTrees {};
+    std::shared_ptr<TChain> fChain {};
     std::map<int, std::vector<int>> fManualEntries {};
     // Local copy of runs from DataManager
     std::set<int> fRuns {};
@@ -42,6 +43,8 @@ public:
 
     void Init(const std::set<int>& runs, bool print = true);
 
+    void InitChain(const std::set<int>& runs);
+
     // Getters
     std::map<int, std::shared_ptr<TTree>> GetTrees() const { return fTrees; }
     std::shared_ptr<TTree> GetTree(int run) const { return fTrees.at(run); }
@@ -49,6 +52,7 @@ public:
     int GetNEntries(int run) const { return fTrees.at(run)->GetEntries(); }
     const std::map<int, std::vector<int>>& GetManualEntries() const { return fManualEntries; }
     const std::set<int>& GetRunList() const { return fRuns; }
+    const std::shared_ptr<TChain> GetChain() const { return fChain; }
 
     // Close files once processed
     void Close(int run);
