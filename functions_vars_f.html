@@ -177,11 +177,11 @@ $(function() {
 <li>fCleanDuplicatedVoxels
 : <a class="el" href="classActRoot_1_1TPCDetector.html#a8a4ae46de3607ece22b66ff36cb93b8b">ActRoot::TPCDetector</a>
 </li>
+<li>fCleanPadMatrix
+: <a class="el" href="classActRoot_1_1TPCDetector.html#ad4736940f5bcb54c0fc3c5d5abcfaa1b">ActRoot::TPCDetector</a>
+</li>
 <li>fCleanSaturatedMEvent
 : <a class="el" href="classActRoot_1_1TPCDetector.html#ae303506be7fad42785e27c091d92325d">ActRoot::TPCDetector</a>
-</li>
-<li>fCleanSaturatedVoxels
-: <a class="el" href="classActRoot_1_1TPCDetector.html#a2844d3049d0f8a08f7f862a450603219">ActRoot::TPCDetector</a>
 </li>
 <li>fClock
 : <a class="el" href="classActAlgorithm_1_1ClIMB.html#a9d74ca8d4386c639466a6486a552c1ae">ActAlgorithm::ClIMB</a>
@@ -231,11 +231,27 @@ $(function() {
 <li>fDatMan
 : <a class="el" href="classActRoot_1_1MTExecutor.html#a8993508f8dcb49fe9d21670ec3e62af1">ActRoot::MTExecutor</a>
 </li>
+<li>fDelData
+: <a class="el" href="classActRoot_1_1ModularDetector.html#a65278a2562156353909e4d50315c1b12">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a11d85513bca123faa206f3e286847cdf">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a6e7588405f07aa3c378fb0e5c95a8e09">ActRoot::TPCDetector</a>
+</li>
+<li>fDelMerger
+: <a class="el" href="classActRoot_1_1MergerDetector.html#a03a5163dcb1c881b2c682ecbcd7a2c08">ActRoot::MergerDetector</a>
+</li>
+<li>fDelMEvent
+: <a class="el" href="classActRoot_1_1ModularDetector.html#a1f3746cccf53dad7f4f0da32dec18ba4">ActRoot::ModularDetector</a>
+, <a class="el" href="classActRoot_1_1SilDetector.html#a29e0e5374945a3f7a4d97ff7bac0468f">ActRoot::SilDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#a1fa5bbdac618f60dc22ba486fd621945">ActRoot::TPCDetector</a>
+</li>
 <li>fDeltaChi2Threshold
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#aaed0e15b057744d72c56f7876805a975">ActAlgorithm::MultiStep</a>
 </li>
 <li>fDeltaMaxVoxels
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a459c03dbbd9583eba55e651cebad356b">ActAlgorithm::MultiStep</a>
+</li>
+<li>fDelTPCSilMod
+: <a class="el" href="classActRoot_1_1MergerDetector.html#a171cdf229bafff3a9078c88616ed0d4b">ActRoot::MergerDetector</a>
 </li>
 <li>fDetConstruction
 : <a class="el" href="classActActionInitialization.html#a49d7b84ccc59dfcc270cfc981b3ea4ae">ActActionInitialization</a>
@@ -394,6 +410,9 @@ $(function() {
 </li>
 <li>fgeo
 : <a class="el" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">ActSim::Runner</a>
+</li>
+<li>fGlobalIndex
+: <a class="el" href="classActRoot_1_1TPCDetector.html#ab5763b24ce84b5c58d5a9625819e8ac3">ActRoot::TPCDetector</a>
 </li>
 <li>fHasXOffset
 : <a class="el" href="structActSim_1_1SilAssembly.html#aa85e96089d736a49448612608a8f5802">ActSim::SilAssembly</a>
@@ -734,7 +753,7 @@ $(function() {
 : <a class="el" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">ActRoot::CalibrationManager</a>
 </li>
 <li>fPadMatrix
-: <a class="el" href="classActRoot_1_1TPCDetector.html#aa7f546d146b237449b01e4b745e7d977">ActRoot::TPCDetector</a>
+: <a class="el" href="classActRoot_1_1TPCDetector.html#a769ab0415c7f72d3a12fda715162ec77">ActRoot::TPCDetector</a>
 </li>
 <li>fPadPlanePV
 : <a class="el" href="classActDetectorConstruction.html#a33682537879d7d768a3b936bab7afcbc">ActDetectorConstruction</a>
@@ -1040,7 +1059,6 @@ $(function() {
 </li>
 <li>fTPCClone
 : <a class="el" href="classActRoot_1_1InputWrapper.html#adf402479ae38b27e555cf6d67debc99b">ActRoot::InputWrapper</a>
-, <a class="el" href="classActRoot_1_1MergerDetector.html#a32ed88c88165e0931e89f5d652812650">ActRoot::MergerDetector</a>
 </li>
 <li>fTPCClone2
 : <a class="el" href="classActRoot_1_1InputWrapper.html#aa53a81b2a9908cb022db7a687f4a235e">ActRoot::InputWrapper</a>
@@ -1096,7 +1114,7 @@ $(function() {
 <li>fVoxels
 : <a class="el" href="classActAlgorithm_1_1ClIMB.html#af9bd5f3e04f467d54cbf0bf99b4dea12">ActAlgorithm::ClIMB</a>
 , <a class="el" href="classActRoot_1_1Cluster.html#aaf1260fbd3cadec7b4b90c372903ffbd">ActRoot::Cluster</a>
-, <a class="el" href="classActRoot_1_1TPCDetector.html#af756ce1c43b9dcff3f20064fb49ad29e">ActRoot::TPCDetector</a>
+, <a class="el" href="classActRoot_1_1TPCDetector.html#ac059e66367ad5d83e04bf974bd62a869">ActRoot::TPCDetector</a>
 </li>
 <li>fVXI
 : <a class="el" href="classActRoot_1_1ModularParameters.html#ae157ecb802fb424bfbc6581b45f1ba61">ActRoot::ModularParameters</a>
