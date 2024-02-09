@@ -43,7 +43,6 @@ private:
     // TPC
     TPCParameters* fTPCPars {};
     TPCData* fTPCData {};
-    TPCData* fTPCClone {};
     // Silicons
     SilParameters* fSilPars {};
     SilData* fSilData {};
@@ -54,6 +53,10 @@ private:
 
     // Merger data
     MergerData* fMergerData {};
+
+    // Flags to delete news in destructor
+    bool fDelTPCSilMod {};
+    bool fDelMerger {};
 
     // Filter = corrector
     std::shared_ptr<ActAlgorithm::VFilter> fFilter {};
@@ -91,7 +94,8 @@ private:
     std::vector<std::string> fClockLabels {};
 
 public:
-    MergerDetector(); //!< Default constructor that initializes MultiStep member
+    MergerDetector(); //!< Default constructor that sets verbose mode according to ActRoot::Options
+    ~MergerDetector() override;
 
     // Setters of pointer to Parameters from Detector Manager
     void SetParameters(VParameters* pars);
@@ -101,15 +105,6 @@ public:
 
     // Enable verbose mode
     void SetIsVerbose() { fIsVerbose = true; }
-
-    // Enable clone structure for plotting in EventPainter
-    void EnableTPCDataClone()
-    {
-        if(fTPCClone)
-            delete fTPCClone;
-        fTPCClone = new TPCData;
-    }
-    TPCData* GetTPCDataClone() const { return fTPCClone; }
 
     void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
     void ReadCalibrations(std::shared_ptr<InputBlock> config) override;

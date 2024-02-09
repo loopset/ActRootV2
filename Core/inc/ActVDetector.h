@@ -9,7 +9,6 @@
 #include "TTree.h"
 
 #include <memory>
-#include <string>
 
 // Abstract class representing a detector
 namespace ActRoot

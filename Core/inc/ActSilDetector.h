@@ -51,9 +51,13 @@ private:
     // Data
     SilData* fData {}; //!< Pointer to SilData
 
+    // Set flags to delete new in destructor
+    bool fDelMEvent {};
+    bool fDelData {};
+
 public:
     SilDetector() = default;
-    virtual ~SilDetector() = default;
+    ~SilDetector() override;
 
     void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
     void ReadCalibrations(std::shared_ptr<InputBlock> config) override;

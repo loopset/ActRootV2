@@ -49,8 +49,7 @@ void ActAlgorithm::ClIMB::ReadConfiguration()
 void ActAlgorithm::ClIMB::InitMatrix()
 {
     fMatrix = std::vector<std::vector<std::vector<int>>>(
-        fTPC->GetNPADSX(),
-        std::vector<std::vector<int>>(fTPC->GetNPADSY(), std::vector<int>(fTPC->GetNPADSZ() / fTPC->GetREBINZ(), -1)));
+        fTPC->GetNPADSX(), std::vector<std::vector<int>>(fTPC->GetNPADSY(), std::vector<int>(fTPC->GetNPADSZ(), -1)));
 }
 
 void ActAlgorithm::ClIMB::FillMatrix()
@@ -86,7 +85,7 @@ bool ActAlgorithm::ClIMB::IsInCage(T x, T y, T z)
 {
     bool condX {0 <= x && x < fTPC->GetNPADSX()};
     bool condY {0 <= y && y < fTPC->GetNPADSY()};
-    bool condZ {0 <= z && z < (fTPC->GetNPADSZ() / fTPC->GetREBINZ())};
+    bool condZ {0 <= z && z < fTPC->GetNPADSZ()};
     return condX && condY && condZ;
 }
 

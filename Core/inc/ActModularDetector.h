@@ -9,7 +9,6 @@
 
 #include "TTree.h"
 
-#include <cstring>
 #include <map>
 #include <memory>
 #include <string>
@@ -40,10 +39,13 @@ private:
     MEventReduced* fMEvent {};
     // Data
     ModularData* fData {}; //!< Pointer to Data
+    // Flag to delete new on destructor
+    bool fDelMEvent {};
+    bool fDelData {};
 
 public:
     ModularDetector() = default;
-    virtual ~ModularDetector() = default;
+    ~ModularDetector() override;
 
     void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
     void ReadCalibrations(std::shared_ptr<InputBlock> config) override;

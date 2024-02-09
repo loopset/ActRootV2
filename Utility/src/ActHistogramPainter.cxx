@@ -66,23 +66,21 @@ void ActRoot::HistogramPainter::Init()
                                            fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
     // Side
     fHist2D[0][2] = std::make_shared<TH2F>("hSide", "Side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
-                                           fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+                                           fTPC->GetNPADSZ(), 0, fTPC->GetNPADSZUNREBIN());
     // Front
     fHist2D[0][3] = std::make_shared<TH2F>("hFront", "Front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0, fTPC->GetNPADSY(),
-                                           fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+                                           fTPC->GetNPADSZ(), 0, fTPC->GetNPADSZUNREBIN());
     ////////////////////////
     // Clusters!
     // Pad
     fHist2D[0][4] = std::make_shared<TH2F>("hPadC", "Clusters in pad;X [pad];Y [pad]", fTPC->GetNPADSX(), 0,
                                            fTPC->GetNPADSX(), fTPC->GetNPADSY(), 0, fTPC->GetNPADSY());
     // Side
-    fHist2D[0][5] =
-        std::make_shared<TH2F>("hSideC", "Clusters in side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0, fTPC->GetNPADSX(),
-                               fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+    fHist2D[0][5] = std::make_shared<TH2F>("hSideC", "Clusters in side;X [pad];Z [tb]", fTPC->GetNPADSX(), 0,
+                                           fTPC->GetNPADSX(), fTPC->GetNPADSZ(), 0, fTPC->GetNPADSZUNREBIN());
     // Front
-    fHist2D[0][6] =
-        std::make_shared<TH2F>("hFrontC", "Clusters in front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0, fTPC->GetNPADSY(),
-                               fTPC->GetNPADSZ() / fTPC->GetREBINZ(), 0, fTPC->GetNPADSZ());
+    fHist2D[0][6] = std::make_shared<TH2F>("hFrontC", "Clusters in front;Y [pad];Z [tb]", fTPC->GetNPADSY(), 0,
+                                           fTPC->GetNPADSY(), fTPC->GetNPADSZ(), 0, fTPC->GetNPADSZUNREBIN());
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Silicons
     fSilMap = {
@@ -301,14 +299,14 @@ void ActRoot::HistogramPainter::DrawPolyLines()
     for(const auto& cluster : data->fClusters)
     {
         // Pad
-        fLines[0][4].push_back(
-            cluster.GetLine().GetPolyLine("xy", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
+        fLines[0][4].push_back(cluster.GetLine().GetPolyLine("xy", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+                                                             fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
         // Side
-        fLines[0][5].push_back(
-            cluster.GetLine().GetPolyLine("xz", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
+        fLines[0][5].push_back(cluster.GetLine().GetPolyLine("xz", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+                                                             fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
         // Front
-        fLines[0][6].push_back(
-            cluster.GetLine().GetPolyLine("yz", fTPC->GetNPADSX(), fTPC->GetNPADSY(), fTPC->GetNPADSZ()));
+        fLines[0][6].push_back(cluster.GetLine().GetPolyLine("yz", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+                                                             fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
     }
     // Set line parameters
     for(auto& [c, map] : fLines)

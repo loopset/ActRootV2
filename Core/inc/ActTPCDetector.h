@@ -12,9 +12,10 @@
 #include "TStopwatch.h"
 #include "TTree.h"
 
-#include <map>
+#include <functional>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 namespace ActRoot
@@ -38,12 +39,13 @@ public:
     TPCParameters() = default;
     TPCParameters(const std::string& type);
     // Setters
-    void SetREBINZ(int rebin) { fREBINZ = rebin; }
+    void SetREBINZ(int rebin);
     // Getters
     double GetPadSide() const { return fPadSide; }
     int GetNPADSX() const { return fNPADSX; }
     int GetNPADSY() const { return fNPADSY; }
-    int GetNPADSZ() const { return fNPADSZ; }
+    int GetNPADSZUNREBIN() const { return fNPADSZ; }
+    int GetNPADSZ() const { return fNPADSZ / fREBINZ; }
     int GetREBINZ() const { return fREBINZ; }
     int GetNBCOBO() const { return fNB_COBO; }
     int GetNBASAD() const { return fNB_ASAD; }
@@ -58,18 +60,23 @@ class TPCDetector : public VDetector
 private:
     // Parameters of detector
     TPCParameters fPars;
+
     // Auxiliars to read data
     MEventReduced* fMEvent {};
-    std::vector<ActRoot::Voxel>* fVoxels {};
+    std::vector<ActRoot::Voxel> fVoxels {};
+
     // Data itself
     TPCData* fData {};
+
     // Preanalysis when reading raw data
     bool fCleanSaturatedMEvent {false};
-    bool fCleanSaturatedVoxels {false};
+    bool fCleanDuplicatedVoxels {false};
+    bool fCleanPadMatrix {false};
     double fMinTBtoDelete {20};
     double fMinQtoDelete {2000};
-    std::map<std::pair<int, int>, std::pair<std::vector<unsigned int>, double>> fPadMatrix;
-    bool fCleanDuplicatedVoxels {false};
+    std::unordered_map<unsigned int, std::pair<std::set<unsigned int, std::greater<>>, double>> fPadMatrix;
+    std::unordered_map<unsigned int, unsigned int> fGlobalIndex {};
+
     // Timer for cluster (only cluster) step
     TStopwatch fClusterClock;
 
@@ -78,9 +85,13 @@ private:
     // Filter method
     std::shared_ptr<ActAlgorithm::VFilter> fFilter {};
 
+    // Ensure cleaning of news in this class
+    bool fDelMEvent {};
+    bool fDelData {};
+
 public:
     TPCDetector() = default;
-    virtual ~TPCDetector() = default;
+    ~TPCDetector() override;
 
     void ReadConfiguration(std::shared_ptr<InputBlock> config) override;
     void ReadCalibrations(std::shared_ptr<InputBlock> config) override;
@@ -104,7 +115,7 @@ public:
 
     // Setters and getters of data
     void SetInputData(VData* data) override {}
-    TPCData* GetInputData() const override { return nullptr; }
+    VData* GetInputData() const override { return nullptr; }
     void SetOutputData(VData* data) override { fData = data->CastAs<TPCData>(); }
     TPCData* GetOutputData() const override { return fData; }
 
@@ -112,7 +123,6 @@ public:
     TPCData* GetInputFilter() const override { return fData; }
     void SetOutputFilter(VData* data) override { fData = data->CastAs<TPCData>(); }
     TPCData* GetOutputFilter() const override { return fData; }
-
 
     // Getters
     TPCParameters* GetParameters() override { return &fPars; }
@@ -142,7 +152,8 @@ private:
     void CleanPadMatrix();
     void InitClusterMethod(const std::string& method);
     void InitFilterMethod(const std::string& method);
-    void EnsureUniquenessOfVoxels();
+    unsigned int BuildGlobalIndex(const int& x, const int& y, const int& z);
+    unsigned int BuildGlobalPadIndex(const int& x, const int& y);
 };
 } // namespace ActRoot
 

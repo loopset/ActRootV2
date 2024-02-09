@@ -53,6 +53,20 @@ void ActRoot::ModularParameters::Print() const
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+ActRoot::ModularDetector::~ModularDetector()
+{
+    if(fDelMEvent)
+    {
+        delete fMEvent;
+        fMEvent = nullptr;
+    }
+    if(fDelData)
+    {
+        delete fData;
+        fData = nullptr;
+    }
+}
+
 void ActRoot::ModularDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
     // Read action file
@@ -81,6 +95,8 @@ void ActRoot::ModularDetector::InitOutputData(std::shared_ptr<TTree> tree)
         delete fData;
     fData = new ModularData;
     tree->Branch("ModularData", &fData);
+    // Set to delete on destructor
+    fDelData = true;
 }
 
 void ActRoot::ModularDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}

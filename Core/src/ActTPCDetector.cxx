@@ -17,14 +17,22 @@
 
 #include <cstddef>
 #include <exception>
+#include <ios>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <tuple>
-#include <unordered_set>
 #include <utility>
 #include <vector>
+
+void ActRoot::TPCParameters::SetREBINZ(int rebin)
+{
+    if(rebin % 2)
+        throw std::runtime_error(
+            "TPCParameters::SetREBINZ(): rebin factor is not even. ActRoot is not adapted to that");
+    fREBINZ = rebin;
+}
 
 ActRoot::TPCParameters::TPCParameters(const std::string& type)
 {
@@ -55,6 +63,20 @@ void ActRoot::TPCParameters::Print() const
     std::cout << "====================" << '\n';
 }
 
+ActRoot::TPCDetector::~TPCDetector()
+{
+    if(fDelMEvent)
+    {
+        delete fMEvent;
+        fMEvent = nullptr;
+    }
+    if(fDelData)
+    {
+        delete fData;
+        fData = nullptr;
+    }
+}
+
 void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
     std::vector<std::string> keys {"Type", "RebinZ", "CleanSaturatedVoxels", "CleanPadMatrix", "CleanPadMatrixPars"};
@@ -65,11 +87,11 @@ void ActRoot::TPCDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
     // MEvent -> TPCData analysis options
     if(config->CheckTokenExists("CleanSaturatedMEvent", true))
         fCleanSaturatedMEvent = config->GetBool("CleanSaturatedMEvent");
-    if(config->CheckTokenExists("CleanSaturatedVoxels", true))
-        fCleanSaturatedVoxels = config->GetBool("CleanSaturatedVoxels");
-    if(config->CheckTokenExists("CleanSaturatedVoxelsPars", true))
+    if(config->CheckTokenExists("CleanPadMatrix", true))
+        fCleanPadMatrix = config->GetBool("CleanPadMatrix");
+    if(config->CheckTokenExists("CleanPadMatrixPars", true))
     {
-        auto pars {config->GetDoubleVector("CleanSaturatedVoxelsPars")};
+        auto pars {config->GetDoubleVector("CleanPadMatrixPars")};
         fMinTBtoDelete = pars.at(0);
         fMinQtoDelete = pars.at(1);
     }
@@ -143,13 +165,10 @@ void ActRoot::TPCDetector::InitInputData(std::shared_ptr<TTree> tree)
     if(fMEvent)
         delete fMEvent;
     fMEvent = new MEventReduced;
+    // Set branch address
     tree->SetBranchAddress("data", &fMEvent);
-    // Init voxels
-    if(fVoxels)
-        delete fVoxels;
-    fVoxels = new std::vector<ActRoot::Voxel>;
-    // Init pad matrix!
-    fPadMatrix = {};
+    // Set to delete on destructor
+    fDelMEvent = true;
 }
 
 void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -158,6 +177,8 @@ void ActRoot::TPCDetector::InitOutputData(std::shared_ptr<TTree> tree)
         delete fData;
     fData = new TPCData;
     tree->Branch("TPCData", &fData);
+    // Set to delete in destructor
+    fDelData = true;
 }
 
 void ActRoot::TPCDetector::InitInputFilter(std::shared_ptr<TTree> tree)
@@ -167,6 +188,8 @@ void ActRoot::TPCDetector::InitInputFilter(std::shared_ptr<TTree> tree)
     fData = new TPCData;
     tree->SetBranchStatus("fRaw*", false); // do not save fRaw voxels in filter tree
     tree->SetBranchAddress("TPCData", &fData);
+    // Delete in destructor
+    fDelData = true;
 }
 
 void ActRoot::TPCDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
@@ -179,11 +202,10 @@ void ActRoot::TPCDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
 void ActRoot::TPCDetector::ClearEventData()
 {
     fData->Clear();
-    // if opted, clean pad matrix
-    if(fCleanSaturatedVoxels)
+    fVoxels.clear();
+    fGlobalIndex.clear();
+    if(fCleanPadMatrix)
         fPadMatrix.clear();
-    if(fVoxels)
-        fVoxels->clear();
 }
 
 void ActRoot::TPCDetector::ClearEventFilter()
@@ -209,18 +231,15 @@ void ActRoot::TPCDetector::BuildEventData(int run, int entry)
             ReadHits(coas, where);
         }
     }
-    // Clean duplicated voxels
-    if(fCleanDuplicatedVoxels)
-        EnsureUniquenessOfVoxels();
-    // Clean pad matrix
-    if(fCleanSaturatedVoxels)
+    // Clean pad matrix from saturated tracks along Z
+    if(fCleanPadMatrix)
         CleanPadMatrix();
 
     // And now build clusters!
     if(fCluster)
-        std::tie(fData->fClusters, fData->fRaw) = fCluster->Run(*fVoxels, true); // enable returning of noise
+        std::tie(fData->fClusters, fData->fRaw) = fCluster->Run(fVoxels, true); // enable returning of noise
     else
-        fData->fRaw = *fVoxels;
+        fData->fRaw = std::move(fVoxels);
 }
 
 void ActRoot::TPCDetector::Recluster()
@@ -238,6 +257,16 @@ void ActRoot::TPCDetector::Recluster()
     }
 }
 
+unsigned int ActRoot::TPCDetector::BuildGlobalIndex(const int& x, const int& y, const int& z)
+{
+    return x + y * fPars.GetNPADSX() + z * fPars.GetNPADSX() * fPars.GetNPADSY();
+}
+
+unsigned int ActRoot::TPCDetector::BuildGlobalPadIndex(const int& x, const int& y)
+{
+    return x + y * fPars.GetNPADSX();
+}
+
 void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
 {
     int padx {};
@@ -249,8 +278,8 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
     }
     catch(std::exception& e)
     {
-        throw std::runtime_error(
-            "Error while reading hits in TPCDetector -> LT table out of range, check ACQ parameters");
+        throw std::runtime_error("TPCDetector::ReadHits(): error while reading hits in TPCDetector -> LT table out of "
+                                 "range, check ACQ parameters");
     }
     if(pady == -1) // unused channel
         return;
@@ -275,13 +304,33 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
         }
         else
         {
-            Voxel hit {ROOT::Math::XYZPointF(padx, pady, padz), qcal, coas.hasSaturation};
-            fVoxels->push_back(hit);
-            // push to pad matrix if enabled
-            if(fCleanSaturatedVoxels)
+            // Get global index
+            auto global {BuildGlobalIndex(padx, pady, padz)};
+            if(fGlobalIndex[global] == 0)
             {
-                fPadMatrix[{padx, pady}].first.push_back(fVoxels->size() - 1);
-                fPadMatrix[{padx, pady}].second += qcal;
+                fVoxels.push_back({ROOT::Math::XYZPointF {(float)padx, (float)pady, padz}, qcal, coas.hasSaturation});
+                fGlobalIndex[global] = fVoxels.size() - 1; // map global index to size in fVoxels vector
+                if(fCleanPadMatrix)
+                {
+                    auto global2d {BuildGlobalPadIndex(padx, pady)};
+                    fPadMatrix[global2d].first.insert(fVoxels.size() - 1);
+                    fPadMatrix[global2d].second += qcal;
+                }
+            }
+            else
+            {
+                if(fCleanDuplicatedVoxels) // to ensure uniqueness, do not update previously stored Voxel
+                    ;
+                else
+                {
+                    auto idx {fGlobalIndex[global]};
+                    fVoxels[idx].SetCharge(fVoxels[idx].GetCharge() + qcal);
+                    if(fCleanPadMatrix)
+                    {
+                        auto global2d {BuildGlobalPadIndex(padx, pady)};
+                        fPadMatrix[global2d].second += qcal;
+                    }
+                }
             }
         }
     }
@@ -291,48 +340,15 @@ void ActRoot::TPCDetector::CleanPadMatrix()
 {
     for(const auto& [_, pair] : fPadMatrix)
     {
-        const auto& vals {pair.first};
+        const auto& idxs {pair.first};
         const auto& totalQ {pair.second};
-        if(vals.size() >= fMinTBtoDelete &&
+        if(idxs.size() >= fMinTBtoDelete &&
            totalQ >= fMinQtoDelete) // threshold in time buckets and in Qtotal to delete pad data
         {
-            for(auto it = vals.rbegin(); it != vals.rend(); it++)
-                fVoxels->erase(fVoxels->begin() + *it);
+            for(const auto& idx : idxs)
+                fVoxels.erase(fVoxels.begin() + idx);
         }
     }
-}
-
-void ActRoot::TPCDetector::EnsureUniquenessOfVoxels()
-{
-    // Declare unordered_set
-    // Hash function
-    auto hash = [&](const Voxel& v)
-    {
-        const auto& pos {v.GetPosition()};
-        auto ret {(int)pos.X() + fPars.GetNPADSX() * (int)pos.Y() +
-                  fPars.GetNPADSX() * fPars.GetNPADSY() * (int)pos.Z()};
-        return ret;
-    };
-    auto equal = [](const Voxel& a, const Voxel& b)
-    {
-        const auto& pa {a.GetPosition()};
-        const auto& pb {b.GetPosition()};
-        bool bx {(int)pa.X() == (int)pb.X()};
-        bool by {(int)pa.Y() == (int)pb.Y()};
-        bool bz {(int)pa.Z() == (int)pb.Z()};
-        return bx && by && bz;
-    };
-    std::unordered_set<Voxel, decltype(hash), decltype(equal)> set(
-        10, hash, equal); // 10 = initial bucket count? I think it is not important
-    // Add from vector to it
-    for(const auto& voxel : *fVoxels)
-        set.insert(voxel);
-    // Back to vector!
-    // auto initSize {(int)fData->fVoxels.size()};
-    // auto setSize {(int)set.size()};
-    // if(initSize != setSize)
-    //     std::cout << "Cleaned some voxels! diff : " << (initSize - setSize) << '\n';
-    fVoxels->assign(set.begin(), set.end());
 }
 
 void ActRoot::TPCDetector::BuildEventFilter()
@@ -346,10 +362,18 @@ void ActRoot::TPCDetector::BuildEventFilter()
 
 void ActRoot::TPCDetector::Print() const
 {
+    std::cout << BOLDCYAN << "···· TPCDetector ····" << RESET << '\n';
+    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::EReadTPC)
+    {
+        std::cout << BOLDCYAN << "-> CleanSaturation       ? " << std::boolalpha << fCleanSaturatedMEvent << '\n';
+        std::cout << "-> CleanPadMatrix        ? " << std::boolalpha << fCleanPadMatrix << '\n';
+        std::cout << "-> CleanDuplicatedVoxels ? " << std::boolalpha << fCleanDuplicatedVoxels << RESET << '\n';
+    }
     if(fCluster)
         fCluster->Print();
     if(fFilter)
         fFilter->Print();
+    std::cout << BOLDCYAN << "······························" << RESET << '\n';
 }
 
 void ActRoot::TPCDetector::PrintReports() const

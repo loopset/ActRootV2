@@ -16,6 +16,7 @@
 #include <iterator>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 ActAlgorithm::RANSAC::RANSAC(int iterations, int minPoints, double distThres)
@@ -167,7 +168,7 @@ ActAlgorithm::VCluster::ClusterRet ActAlgorithm::RANSAC::Run(const std::vector<A
         }
     }
     fClock.Stop();
-    return {clusters, {}};
+    return std::make_pair(std::move(clusters), std::move(remain)); // remain voxels are noise
 }
 
 void ActAlgorithm::RANSAC::Print() const

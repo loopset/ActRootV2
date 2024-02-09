@@ -711,7 +711,7 @@ bool ActAlgorithm::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint
 
 template <typename T>
 bool ActAlgorithm::MultiStep::AutoIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, T xBreak, T widthY, T widthZ,
-                                         T offset)
+                                           T offset)
 {
     bool condX {pos.X() < xBreak + offset};
     bool condY {(gravity.Y() - widthY) <= pos.Y() && pos.Y() <= (gravity.Y() + widthY)};
@@ -789,9 +789,9 @@ ActAlgorithm::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, X
 bool ActAlgorithm::MultiStep::IsRPValid(const XYZPoint& rp)
 {
     // This function has to consider the 0.5 offset
-    bool isInX {0.5 <= rp.X() && rp.X() <= fTPC->GetNPADSX() + 0.5};
-    bool isInY {0.5 <= rp.Y() && rp.Y() <= fTPC->GetNPADSY() + 0.5};
-    bool isInZ {0.5 <= rp.Z() && rp.Z() <= (double)fTPC->GetNPADSZ() / fTPC->GetREBINZ() + 0.5};
+    bool isInX {0.5 <= rp.X() && rp.X() <= (fTPC->GetNPADSX() - 1) + 0.5};
+    bool isInY {0.5 <= rp.Y() && rp.Y() <= (fTPC->GetNPADSY() - 1) + 0.5};
+    bool isInZ {0.5 <= rp.Z() && rp.Z() <= (fTPC->GetNPADSZ() - 1) + 0.5};
     return isInX && isInY && isInZ;
 }
 

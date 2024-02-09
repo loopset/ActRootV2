@@ -27,7 +27,6 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
-#include <functional>
 #include <ios>
 #include <iostream>
 #include <iterator>
@@ -43,6 +42,24 @@
 ActRoot::MergerDetector::MergerDetector()
 {
     fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
+}
+
+ActRoot::MergerDetector::~MergerDetector()
+{
+    if(fDelTPCSilMod)
+    {
+        delete fTPCData;
+        fTPCData = nullptr;
+        delete fSilData;
+        fSilData = nullptr;
+        delete fModularData;
+        fModularData = nullptr;
+    }
+    if(fDelMerger)
+    {
+        delete fMergerData;
+        fMergerData = nullptr;
+    }
 }
 
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
@@ -144,6 +161,8 @@ void ActRoot::MergerDetector::InitInputFilter(std::shared_ptr<TTree> tree)
         delete fMergerData;
     fMergerData = new MergerData;
     tree->SetBranchAddress("MergerData", &fMergerData);
+    // Set to delete
+    fDelMerger = true;
 }
 
 void ActRoot::MergerDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
@@ -153,7 +172,7 @@ void ActRoot::MergerDetector::InitOutputFilter(std::shared_ptr<TTree> tree)
 
 void ActRoot::MergerDetector::InitInputData(std::shared_ptr<TTree> tree)
 {
-    tree->SetBranchStatus("fRaw", false);
+    tree->SetBranchStatus("fRaw*", false);
     // TPC physics
     if(fTPCData)
         delete fTPCData;
@@ -171,6 +190,9 @@ void ActRoot::MergerDetector::InitInputData(std::shared_ptr<TTree> tree)
         delete fModularData;
     fModularData = new ModularData;
     tree->SetBranchAddress("ModularData", &fModularData);
+
+    // Set to delete all these new
+    fDelTPCSilMod = true;
 }
 
 void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -180,6 +202,9 @@ void ActRoot::MergerDetector::InitOutputData(std::shared_ptr<TTree> tree)
     fMergerData = new MergerData;
     if(tree)
         tree->Branch("MergerData", &fMergerData);
+
+    // Set to delete this
+    fDelMerger = true;
 }
 
 void ActRoot::MergerDetector::ReadSilSpecs(const std::string& file)
@@ -268,9 +293,6 @@ void ActRoot::MergerDetector::DoMerge()
 
 void ActRoot::MergerDetector::BuildEventData(int run, int entry)
 {
-    // Clone before next step if required
-    if(fTPCClone)
-        *fTPCClone = *fTPCData;
     // Reset clears iterators of MergerData and sets [run, entry]
     Reset(run, entry);
     // Merge

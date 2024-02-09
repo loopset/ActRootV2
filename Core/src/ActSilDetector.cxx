@@ -65,6 +65,20 @@ std::pair<std::string, int> ActRoot::SilParameters::GetSilIndex(int vxi)
         return {"", -1};
 }
 
+ActRoot::SilDetector::~SilDetector()
+{
+    if(fDelMEvent)
+    {
+        delete fMEvent;
+        fMEvent = nullptr;
+    }
+    if(fDelData)
+    {
+        delete fData;
+        fData = nullptr;
+    }
+}
+
 void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 {
     // Read layer setup
@@ -89,6 +103,8 @@ void ActRoot::SilDetector::InitInputData(std::shared_ptr<TTree> tree)
         delete fMEvent;
     fMEvent = new MEventReduced;
     tree->SetBranchAddress("data", &fMEvent);
+    // Set to delete on destructor
+    fDelMEvent = true;
 }
 
 void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
@@ -97,6 +113,8 @@ void ActRoot::SilDetector::InitOutputData(std::shared_ptr<TTree> tree)
         delete fData;
     fData = new SilData;
     tree->Branch("SilData", &fData);
+    // Set to delete on destructor
+    fDelData = true;
 }
 
 void ActRoot::SilDetector::InitInputFilter(std::shared_ptr<TTree> tree) {}
