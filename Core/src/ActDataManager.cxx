@@ -145,12 +145,16 @@ ActRoot::OutputData ActRoot::DataManager::GetOuput(ActRoot::ModeType mode)
 std::shared_ptr<TChain> ActRoot::DataManager::GetJoinedData(ActRoot::ModeType mode)
 {
     InputData in;
-    if(mode == ModeType::EMerge)
+    if(mode == ModeType::EReadTPC)
+        in.AddInput(CheckAndGet("Cluster"));
+    else if(mode == ModeType::EReadSilMod)
+        in.AddInput(CheckAndGet("Data"));
+    else if(mode == ModeType::EMerge)
         in.AddInput(CheckAndGet("Merger"));
     else if(mode == ModeType::ECorrect)
         in.AddInput(CheckAndGet("Corrector"));
     else
-        throw std::runtime_error("DataManager::GetOutputAsInput(): no conversion out -> in for that mode");
+        throw std::runtime_error("DataManager::GetJoinedData(): no conversion out -> in for that mode");
     in.InitChain(fRuns);
     return std::move(in.GetChain());
 }

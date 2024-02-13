@@ -108,11 +108,12 @@ void ActRoot::MTExecutor::BuildEvent()
     // Build lambda for each worker
     auto build = [this](unsigned int thread)
     {
-        // Init input
-        auto input {fDatMan->GetInputForThread(fRunsPerThread[thread])};
-        auto output {fDatMan->GetOutputForThread(fRunsPerThread[thread])};
         for(const auto& run : fRunsPerThread[thread])
         {
+            // Init in/out data
+            auto input {fDatMan->GetInputForThread({run})};
+            auto output {fDatMan->GetOutputForThread({run})};
+            // Send them to detectors
             fDetMans[thread].InitInput(input.GetTree(run));
             fDetMans[thread].InitOutput(output.GetTree(run));
             auto nentries {input.GetNEntries(run)};
@@ -133,7 +134,7 @@ void ActRoot::MTExecutor::BuildEvent()
     TStopwatch timer {};
     timer.Start();
     // Parallelize loop
-    ftp.detach_loop(0, (int)fDetMans.size(), build, fDetMans.size());
+    ftp.detach_sequence(0, (int)fDetMans.size(), build);
     // Wait for tasks to finish
     ftp.wait();
     // Finish execution by couting elapased time

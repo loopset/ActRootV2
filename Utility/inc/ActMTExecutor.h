@@ -34,7 +34,7 @@ private:
     double fPercentPrint {10};
 
 public:
-    MTExecutor(int nthreads = std::thread::hardware_concurrency());
+    MTExecutor(int nthreads = 1.5 * std::thread::hardware_concurrency());
     void SetDataManager(DataManager* datman);
     void SetDetectorConfig(const std::string& detfile, const std::string& calfile);
     void BuildEvent();
