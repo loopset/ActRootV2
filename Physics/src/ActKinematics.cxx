@@ -352,23 +352,15 @@ double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double T3, double thet
     double p3 {TMath::Sqrt(T3 * (T3 + 2.0 * fm3))};
     // std::cout<<"p3: "<<p3<<'\n';
     double E3Lab {T3 + fm3}; // TOTAL energy
-    // //build 4-momemtum
-    // double phi3 {0.};//without generality loss
-    // FourVector P3Lab { p3 * TMath::Cos(theta3LabRads),
-    //     p3 * TMath::Sin(theta3LabRads) * TMath::Sin(phi3),
-    //     p3 * TMath::Sin(theta3LabRads) * TMath::Cos(phi3),
-    //     E3Lab};
-    // //move to CM
-    // std::cout<<"Boost = "<<BoostTransformation<<'\n';
-    // auto P3CM {BoostTransformation(P3Lab)};
-    // std::cout<<"P3Lab = "<<P3Lab<<'\n';
-    // std::cout<<"P3CM  = "<<P3CM<<'\n';
-    // return GetThetaFromVector(P3CM);
-    double E3CM {0.5 * (fEcm * fEcm + fm3 * fm3 - (fm4 + fEex) * (fm4 + fEex)) / fEcm};
-    double p3CM {TMath::Sqrt(E3CM * E3CM - fm3 * fm3)};
-    double cosTheta {(E3Lab / fGamma - E3CM) / (TMath::Abs(fBeta) * p3CM)};
-
-    return TMath::ACos(cosTheta);
+    //build 4-momemtum
+    double phi3 {0.};//without generality loss
+    FourVector P3Lab { p3 * TMath::Cos(theta3LabRads),
+        p3 * TMath::Sin(theta3LabRads) * TMath::Sin(phi3),
+        p3 * TMath::Sin(theta3LabRads) * TMath::Cos(phi3),
+        E3Lab};
+    //move to CM
+    auto P3CM {BoostTransformation(P3Lab)};
+    return GetThetaFromVector(P3CM);
 }
 
 double ActPhysics::Kinematics::ComputeTheoreticalT3(double argTheta3LabRads, const std::string& sol)
