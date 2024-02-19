@@ -842,26 +842,26 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;{</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> initialLab {};</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordtype">double</span> E1Lab {<a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>};</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordtype">double</span> p1Lab {TMath::Sqrt(E1Lab * E1Lab - <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>)};</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> newP1Lab {p1Lab, 0.0, 0.0, E1Lab}; <span class="comment">// beam along X axis! ACTAR TPC reference frame!</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    initialLab = newP1Lab + <a class="code" href="classActPhysics_1_1Kinematics.html#a183891db39358a3c7328e3b44f5568ec">fP2Lab</a>;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">// determine mass of the missing 4th particle</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <span class="keywordtype">double</span> E3Lab {argT3 + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordtype">double</span> p3Lab {TMath::Sqrt(E3Lab * E3Lab - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>)};</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> final3Lab {p3Lab * TMath::Cos(argTheta3LabRads),</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                          p3Lab * TMath::Sin(argTheta3LabRads) * TMath::Sin(argPhi3Rads),</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                          p3Lab * TMath::Sin(argTheta3LabRads) * TMath::Cos(argPhi3Rads), E3Lab};</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keyword">auto</span> missingVector {initialLab - final3Lab};</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordtype">double</span> missingMass {missingVector.M()};</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="comment">// return recoil kinetic energy</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    retTRecoil = initialLab.E() - final3Lab.E() - <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>; <span class="comment">// assumming fEex = 0.0</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    retPRecoil = missingVector.Vect();</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordflow">return</span> missingMass;</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;{</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> initialLab {};</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordtype">double</span> E1Lab {<a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>};</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="keywordtype">double</span> p1Lab {TMath::Sqrt(E1Lab * E1Lab - <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>)};</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> newP1Lab {p1Lab, 0.0, 0.0, E1Lab}; <span class="comment">// beam along X axis! ACTAR TPC reference frame!</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    initialLab = newP1Lab + <a class="code" href="classActPhysics_1_1Kinematics.html#a183891db39358a3c7328e3b44f5568ec">fP2Lab</a>;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="comment">// determine mass of the missing 4th particle</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">double</span> E3Lab {argT3 + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordtype">double</span> p3Lab {TMath::Sqrt(E3Lab * E3Lab - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>)};</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> final3Lab {p3Lab * TMath::Cos(argTheta3LabRads),</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                          p3Lab * TMath::Sin(argTheta3LabRads) * TMath::Sin(argPhi3Rads),</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                          p3Lab * TMath::Sin(argTheta3LabRads) * TMath::Cos(argPhi3Rads), E3Lab};</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keyword">auto</span> missingVector {initialLab - final3Lab};</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">double</span> missingMass {missingVector.M()};</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">// return recoil kinetic energy</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    retTRecoil = initialLab.E() - final3Lab.E() - <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>; <span class="comment">// assumming fEex = 0.0</span></div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    retPRecoil = missingVector.Vect();</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="keywordflow">return</span> missingMass;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a183891db39358a3c7328e3b44f5568ec"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a183891db39358a3c7328e3b44f5568ec">ActPhysics::Kinematics::fP2Lab</a></div><div class="ttdeci">FourVector fP2Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:46</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_aed6a25141646eb13078f13d1cb1d5e9b"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">ActPhysics::Kinematics::FourVector</a></div><div class="ttdeci">ROOT::Math::PxPyPzEVector FourVector</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:24</div></div>
 </div><!-- fragment -->
@@ -984,28 +984,28 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;{</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordtype">double</span> A {(TMath::Power(<a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>, 2) + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> - (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>) * (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>)) / (2.0 * <a class="code" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>)};</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordtype">double</span> B {TMath::Abs(<a class="code" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a>) * TMath::Cos(argTheta3LabRads)};</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="keywordtype">double</span> Delta {A * A * B * B - B * B * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * (1.0 - B * B)};</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordflow">if</span>(Delta &lt; 0)</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keywordflow">return</span> -11;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordtype">double</span> denom {1.0 - B * B};</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="keywordflow">if</span>(sol == <span class="stringliteral">&quot;pos&quot;</span>)</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    {</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        <span class="keyword">auto</span> val {(A + TMath::Sqrt(Delta)) / denom - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        <span class="keywordflow">return</span> val;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    }</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(sol == <span class="stringliteral">&quot;neg&quot;</span>)</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    {</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keyword">auto</span> val {(A - TMath::Sqrt(Delta)) / denom - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">return</span> val;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    {</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;sol arg only admits two options: pos or neg!&quot;</span>);</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;{</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordtype">double</span> A {(TMath::Power(<a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>, 2) + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> - (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>) * (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>)) / (2.0 * <a class="code" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>)};</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keywordtype">double</span> B {TMath::Abs(<a class="code" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a>) * TMath::Cos(argTheta3LabRads)};</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordtype">double</span> Delta {A * A * B * B - B * B * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * (1.0 - B * B)};</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">if</span>(Delta &lt; 0)</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="keywordflow">return</span> -11;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordtype">double</span> denom {1.0 - B * B};</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordflow">if</span>(sol == <span class="stringliteral">&quot;pos&quot;</span>)</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keyword">auto</span> val {(A + TMath::Sqrt(Delta)) / denom - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <span class="keywordflow">return</span> val;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(sol == <span class="stringliteral">&quot;neg&quot;</span>)</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="keyword">auto</span> val {(A - TMath::Sqrt(Delta)) / denom - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keywordflow">return</span> val;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    {</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;sol arg only admits two options: pos or neg!&quot;</span>);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a5d649f4fa30e7405ec00a1372c512d80"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">ActPhysics::Kinematics::fBeta</a></div><div class="ttdeci">double fBeta</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:41</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a6c1b67cb3e7ae66464c88a2a6aa2bbe4"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">ActPhysics::Kinematics::fEcm</a></div><div class="ttdeci">double fEcm</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:59</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a989c8363cc9e78156455e974aff06484"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">ActPhysics::Kinematics::fGamma</a></div><div class="ttdeci">double fGamma</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:40</div></div>
@@ -1037,22 +1037,22 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;{</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="comment">// get T3</span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keyword">auto</span> T3 {<a class="code" href="classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e">ComputeTheoreticalT3</a>(argTheta3LabRads, sol)};</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordflow">if</span>(T3 == -11 || !std::isfinite(T3))</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        <span class="keywordflow">return</span> -22;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="comment">// build total energy and momentum</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keywordtype">double</span> p3 {TMath::Sqrt(T3 * (T3 + 2 * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>))};</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="comment">// lets assume phi = 0 always</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> P3Lab {p3 * TMath::Cos(argTheta3LabRads), 0.0, p3 * TMath::Sin(argTheta3LabRads), T3 + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> P4Lab = {<a class="code" href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">fPInitialLab</a> - P3Lab};</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="comment">// and get theta</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a4d00224d531a9d36c5d30a3710ecd137">GetThetaFromVector</a>(P4Lab);</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;{</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="comment">// get T3</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keyword">auto</span> T3 {<a class="code" href="classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e">ComputeTheoreticalT3</a>(argTheta3LabRads, sol)};</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordflow">if</span>(T3 == -11 || !std::isfinite(T3))</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordflow">return</span> -22;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="comment">// build total energy and momentum</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordtype">double</span> p3 {TMath::Sqrt(T3 * (T3 + 2 * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>))};</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="comment">// lets assume phi = 0 always</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> P3Lab {p3 * TMath::Cos(argTheta3LabRads), 0.0, p3 * TMath::Sin(argTheta3LabRads), T3 + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>};</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> P4Lab = {<a class="code" href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">fPInitialLab</a> - P3Lab};</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="comment">// and get theta</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a4d00224d531a9d36c5d30a3710ecd137">GetThetaFromVector</a>(P4Lab);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a17e80dab928e3c421fd963f8aa698fc1"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">ActPhysics::Kinematics::fPInitialLab</a></div><div class="ttdeci">FourVector fPInitialLab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:47</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a4d00224d531a9d36c5d30a3710ecd137"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a4d00224d531a9d36c5d30a3710ecd137">ActPhysics::Kinematics::GetThetaFromVector</a></div><div class="ttdeci">double GetThetaFromVector(FourVector vect)</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:282</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_aee715620f046d0e54380f4ca8757b82e"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e">ActPhysics::Kinematics::ComputeTheoreticalT3</a></div><div class="ttdeci">double ComputeTheoreticalT3(double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:374</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_aee715620f046d0e54380f4ca8757b82e"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#aee715620f046d0e54380f4ca8757b82e">ActPhysics::Kinematics::ComputeTheoreticalT3</a></div><div class="ttdeci">double ComputeTheoreticalT3(double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:366</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1191,23 +1191,23 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;{</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="keyword">auto</span>* ret {<span class="keyword">new</span> TGraph};</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    ret-&gt;SetTitle(<span class="stringliteral">&quot;;#theta_{Lab} [#circ];E_{3} [MeV]&quot;</span>);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    ret-&gt;SetLineWidth(2);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    ret-&gt;SetLineColor(color);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    ret-&gt;SetLineStyle(style);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">double</span> thetaCM = 0; thetaCM &lt; 180; thetaCM += step)</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    {</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        <a class="code" href="classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5">ComputeRecoilKinematics</a>(thetaCM * TMath::DegToRad(), 0., 3);</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        <span class="keywordtype">double</span> thetaLab {<a class="code" href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">GetTheta3Lab</a>() * TMath::RadToDeg()};</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        <span class="keywordtype">double</span> T3Lab {<a class="code" href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">GetT3Lab</a>()};</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        <span class="keywordflow">if</span>(std::isfinite(thetaLab) &amp;&amp; std::isfinite(T3Lab))</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;            ret-&gt;SetPoint(ret-&gt;GetN(), thetaLab, T3Lab);</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    }</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160; </div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;{</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keyword">auto</span>* ret {<span class="keyword">new</span> TGraph};</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    ret-&gt;SetTitle(<span class="stringliteral">&quot;;#theta_{Lab} [#circ];E_{3} [MeV]&quot;</span>);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    ret-&gt;SetLineWidth(2);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    ret-&gt;SetLineColor(color);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    ret-&gt;SetLineStyle(style);</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">double</span> thetaCM = 0; thetaCM &lt; 180; thetaCM += step)</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    {</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <a class="code" href="classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5">ComputeRecoilKinematics</a>(thetaCM * TMath::DegToRad(), 0., 3);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        <span class="keywordtype">double</span> thetaLab {<a class="code" href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">GetTheta3Lab</a>() * TMath::RadToDeg()};</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        <span class="keywordtype">double</span> T3Lab {<a class="code" href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">GetT3Lab</a>()};</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        <span class="keywordflow">if</span>(std::isfinite(thetaLab) &amp;&amp; std::isfinite(T3Lab))</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            ret-&gt;SetPoint(ret-&gt;GetN(), thetaLab, T3Lab);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    }</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a18fd093501698e6640d2f2bfd4a335f5"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5">ActPhysics::Kinematics::ComputeRecoilKinematics</a></div><div class="ttdeci">void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom=4, bool computeBoth=false)</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:229</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a7f506f0e0c3e90fc103919df82371439"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">ActPhysics::Kinematics::GetT3Lab</a></div><div class="ttdeci">double GetT3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:105</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_ac75c3b9c01e5c18fa46494b5d1cf5664"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">ActPhysics::Kinematics::GetTheta3Lab</a></div><div class="ttdeci">double GetTheta3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:107</div></div>
@@ -1935,24 +1935,16 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordtype">double</span> p3 {TMath::Sqrt(T3 * (T3 + 2.0 * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>))};</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="comment">// std::cout&lt;&lt;&quot;p3: &quot;&lt;&lt;p3&lt;&lt;&#39;\n&#39;;</span></div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordtype">double</span> E3Lab {T3 + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>}; <span class="comment">// TOTAL energy</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="comment">// //build 4-momemtum</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="comment">// double phi3 {0.};//without generality loss</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="comment">// FourVector P3Lab { p3 * TMath::Cos(theta3LabRads),</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="comment">//     p3 * TMath::Sin(theta3LabRads) * TMath::Sin(phi3),</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="comment">//     p3 * TMath::Sin(theta3LabRads) * TMath::Cos(phi3),</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="comment">//     E3Lab};</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="comment">// //move to CM</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="comment">// std::cout&lt;&lt;&quot;Boost = &quot;&lt;&lt;BoostTransformation&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="comment">// auto P3CM {BoostTransformation(P3Lab)};</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="comment">// std::cout&lt;&lt;&quot;P3Lab = &quot;&lt;&lt;P3Lab&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">// std::cout&lt;&lt;&quot;P3CM  = &quot;&lt;&lt;P3CM&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="comment">// return GetThetaFromVector(P3CM);</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keywordtype">double</span> E3CM {0.5 * (<a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> - (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>) * (<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a> + <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>)) / <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>};</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordtype">double</span> p3CM {TMath::Sqrt(E3CM * E3CM - <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a> * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>)};</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keywordtype">double</span> cosTheta {(E3Lab / <a class="code" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a> - E3CM) / (TMath::Abs(<a class="code" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a>) * p3CM)};</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(cosTheta);</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;}</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="comment">//build 4-momemtum</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordtype">double</span> phi3 {0.};<span class="comment">//without generality loss</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">FourVector</a> P3Lab { p3 * TMath::Cos(theta3LabRads),</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        p3 * TMath::Sin(theta3LabRads) * TMath::Sin(phi3),</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        p3 * TMath::Sin(theta3LabRads) * TMath::Cos(phi3),</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        E3Lab};</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="comment">//move to CM</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keyword">auto</span> P3CM {<a class="code" href="classActPhysics_1_1Kinematics.html#a1f56e21fc0fa579781e3fcd1cd79c936">BoostTransformation</a>(P3Lab)};</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a4d00224d531a9d36c5d30a3710ecd137">GetThetaFromVector</a>(P3CM);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1970,9 +1962,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;{</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a>(<a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#ac88125333338706c093670c7893ada80">fm2</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>);</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;{</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a>(<a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#ac88125333338706c093670c7893ada80">fm2</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>);</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a4929cea1e7fdb89cf0f47adb715e356c"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">ActPhysics::Kinematics::Kinematics</a></div><div class="ttdeci">Kinematics()=default</div></div>
 </div><!-- fragment -->
 </div>
