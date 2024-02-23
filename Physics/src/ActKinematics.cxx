@@ -141,13 +141,14 @@ void ActPhysics::Kinematics::Init()
     auto betaVector {fPInitialLab.BoostToCM()};
     if((betaVector.Y() != 0.) || (betaVector.Z() != 0.))
     {
-        throw std::runtime_error("Error! Boost includes non-null Y and Z values -> This class only works with boost "
-                                 "along X axis, as ACTAR TPC standard reference frame");
+        throw std::runtime_error(
+            "Kinematics::Init(): Error -> Boost includes non-null Y and Z values -> This class only works with boost "
+            "along X axis, as ACTAR TPC standard reference frame");
     }
-    BoostTransformation.SetBeta(betaVector.X());
-    fBeta = BoostTransformation.Beta();
-    fGamma = BoostTransformation.Gamma();
-    fPInitialCM = BoostTransformation(fPInitialLab);
+    fBoostTransformation.SetBeta(betaVector.X());
+    fBeta = fBoostTransformation.Beta();
+    fGamma = fBoostTransformation.Gamma();
+    fPInitialCM = fBoostTransformation(fPInitialLab);
     fEcm = fPInitialCM.E();
 }
 
@@ -212,7 +213,7 @@ void ActPhysics::Kinematics::SetRecoilsCMKinematicsThrough4(double theta4CMRads,
 
 void ActPhysics::Kinematics::SetRecoil3LabKinematics()
 {
-    fP3Lab = {BoostTransformation.Inverse()(fP3CM)};
+    fP3Lab = {fBoostTransformation.Inverse()(fP3CM)};
     fT3Lab = fP3Lab.E() - fm3;
     fTheta3Lab = GetThetaFromVector(fP3Lab);
     fPhi3Lab = GetPhiFromVector(fP3Lab);
@@ -220,7 +221,7 @@ void ActPhysics::Kinematics::SetRecoil3LabKinematics()
 
 void ActPhysics::Kinematics::SetRecoil4LabKinematics()
 {
-    fP4Lab = {BoostTransformation.Inverse()(fP4CM)};
+    fP4Lab = {fBoostTransformation.Inverse()(fP4CM)};
     fT4Lab = fP4Lab.E() - (fm4 + fEex);
     fTheta4Lab = GetThetaFromVector(fP4Lab);
     fPhi4Lab = GetPhiFromVector(fP4Lab);
@@ -257,7 +258,7 @@ void ActPhysics::Kinematics::Print() const
         std::cout << "->Particle specs : " << '\n';
         p->Print();
     }
-    std::cout<<"······························"<<'\n';
+    std::cout << "······························" << '\n';
     std::cout << "-> Beam energy : " << fT1Lab << " MeV\n";
     std::cout << "--> transforms at CM with gamma: " << fGamma << " and beta: " << fBeta << '\n';
     std::cout << "--> transforms at CM with E_{CM}: " << fEcm << '\n';
@@ -347,20 +348,18 @@ double ActPhysics::Kinematics::ReconstructExcitationEnergy(double argT3, double 
     return recfEex;
 }
 
-double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double T3, double theta3LabRads)
+double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double TLab, double thetaLabRads)
 {
-    double p3 {TMath::Sqrt(T3 * (T3 + 2.0 * fm3))};
-    // std::cout<<"p3: "<<p3<<'\n';
-    double E3Lab {T3 + fm3}; // TOTAL energy
-    //build 4-momemtum
-    double phi3 {0.};//without generality loss
-    FourVector P3Lab { p3 * TMath::Cos(theta3LabRads),
-        p3 * TMath::Sin(theta3LabRads) * TMath::Sin(phi3),
-        p3 * TMath::Sin(theta3LabRads) * TMath::Cos(phi3),
-        E3Lab};
-    //move to CM
-    auto P3CM {BoostTransformation(P3Lab)};
-    return GetThetaFromVector(P3CM);
+    // Build momentum and energy
+    auto pLab {TMath::Sqrt(TLab * (TLab + 2 * fm3))};
+    double ELab {TLab + fm3}; // TOTAL energy
+    // Build 4-momemtum
+    double phi {0.}; // without generality loss
+    FourVector PLab {pLab * TMath::Cos(thetaLabRads), pLab * TMath::Sin(thetaLabRads) * TMath::Sin(phi),
+                     pLab * TMath::Sin(thetaLabRads) * TMath::Cos(phi), ELab};
+    // move to CM
+    auto PCM {fBoostTransformation(PLab)};
+    return GetThetaFromVector(PCM);
 }
 
 double ActPhysics::Kinematics::ComputeTheoreticalT3(double argTheta3LabRads, const std::string& sol)
