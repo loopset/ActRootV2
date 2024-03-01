@@ -19,7 +19,6 @@
 #include <stdexcept>
 #include <string>
 #include <tuple>
-#include <utility>
 
 ActPhysics::Kinematics::Kinematics(double m1, double m2, double m3, double m4, double T1, double Eex)
     : fm1(m1),
@@ -269,7 +268,7 @@ void ActPhysics::Kinematics::Print() const
     std::cout << "------------------------------" << RESET << '\n';
 }
 
-double ActPhysics::Kinematics::GetPhiFromVector(FourVector vect)
+double ActPhysics::Kinematics::GetPhiFromVector(const FourVector& vect)
 {
     double phi {};
     // we use the ATan2 function, but converting it to [0., 2pi) range
@@ -280,7 +279,7 @@ double ActPhysics::Kinematics::GetPhiFromVector(FourVector vect)
     return phi;
 }
 
-double ActPhysics::Kinematics::GetThetaFromVector(FourVector vect)
+double ActPhysics::Kinematics::GetThetaFromVector(const FourVector& vect)
 {
     return TMath::ACos(vect.X() / TMath::Sqrt(vect.Vect().Mag2()));
 }
@@ -445,5 +444,23 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELi
             ret->SetPoint(ret->GetN(), thetaLab, T3Lab);
     }
 
+    return ret;
+}
+
+TGraph* ActPhysics::Kinematics::GetKinematicLine4(double step, EColor color, ELineStyle style)
+{
+    auto* ret {new TGraph};
+    ret->SetTitle(";#theta_{Lab} [#circ];E_{4} [MeV]");
+    ret->SetLineWidth(2);
+    ret->SetLineColor(color);
+    ret->SetLineStyle(style);
+    for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
+    {
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        double thetaLab {GetTheta4Lab() * TMath::RadToDeg()};
+        double T4Lab {GetT4Lab()};
+        if(std::isfinite(thetaLab) && std::isfinite(T4Lab))
+            ret->SetPoint(ret->GetN(), thetaLab, T4Lab);
+    }
     return ret;
 }

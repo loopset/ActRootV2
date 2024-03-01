@@ -13,7 +13,6 @@
 #include <Math/Vector4Dfwd.h>
 #include <string>
 #include <tuple>
-#include <utility>
 
 namespace ActPhysics
 {
@@ -95,11 +94,12 @@ public:
     void Reset();
 
     TGraph* GetKinematicLine3(double step = 0.1, EColor color = kMagenta, ELineStyle style = kSolid);
+    TGraph* GetKinematicLine4(double step = 0.1, EColor color = kBlue, ELineStyle style = kSolid);
 
     // Setters
     void SetBeamEnergy(double T1);
     void SetEx(double Ex);
-    // getters
+    // Getters
     double GetT1Lab() const { return fT1Lab; }
     double GetT3Lab() const { return fT3Lab; }
     double GetT4Lab() const { return fT4Lab; }
@@ -129,8 +129,8 @@ private:
     void ComputeQValue();
     void CheckQValue();
     void Init();
-    double GetPhiFromVector(FourVector vect);
-    double GetThetaFromVector(FourVector vect);
+    double GetPhiFromVector(const FourVector& vect);
+    double GetThetaFromVector(const FourVector& vect);
 };
 } // namespace ActPhysics
 
