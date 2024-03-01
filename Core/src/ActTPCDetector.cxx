@@ -4,6 +4,7 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
+#include "ActMultiRegion.h"
 #include "ActMultiStep.h"
 #include "ActOptions.h"
 #include "ActRANSAC.h"
@@ -143,6 +144,11 @@ void ActRoot::TPCDetector::InitFilterMethod(const std::string& method)
         m->SetClusterPtr(fCluster);
         m->ReadConfiguration();
         fFilter = m;
+    }
+    else if(m == "multiregion")
+    {
+        fFilter = std::make_shared<ActAlgorithm::MultiRegion>();
+        fFilter->ReadConfiguration();
     }
     else if(m == "none")
         return;
