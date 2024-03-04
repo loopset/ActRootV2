@@ -20,6 +20,7 @@ class Region
 {
 public:
     typedef std::pair<double, double> RegionPair;
+    typedef std::pair<float, float> RangePair;
 
 private:
     RegionPair fX {};
@@ -40,12 +41,19 @@ public:
                   << '\n';
     }
 
-    inline bool IsInside(const ROOT::Math::XYZPointF& p)
+    inline bool IsInside(const ROOT::Math::XYZPointF& p) const
     {
         return (fX.first <= p.X() && p.X() < fX.second) && (fY.first <= p.Y() && p.Y() < fY.second);
     }
 
-    RegionPair GetCentre() const { return {(fX.first + fX.second) / 2, (fY.first + fY.second) / 2}; }
+    inline bool IsInside(const RangePair& x, const RangePair& y) const
+    {
+        bool condX {(fX.first <= x.first && x.first < fX.second) && (fX.first <= x.second && x.second < fX.second)};
+        bool condY {(fY.first <= y.first && y.first < fY.second) && (fY.first <= y.second && y.second < fY.second)};
+        return condX && condY;
+    }
+
+    inline RegionPair GetCentre() const { return {(fX.first + fX.second) / 2, (fY.first + fY.second) / 2}; }
 };
 } // namespace ActAlgorithm
 

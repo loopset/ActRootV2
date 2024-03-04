@@ -1,5 +1,6 @@
 #include "ActInputIterator.h"
 
+#include "ActColors.h"
 #include "ActInputData.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
@@ -43,7 +44,13 @@ std::pair<int, int> ActRoot::InputIterator::GetManualPrev()
         // find previous run
         auto it {fManual.find(fCurrentRun)};
         if(it == fManual.begin())
-            throw std::runtime_error("Could not go past beginning of manual entries");
+        {
+            std::cout << BOLDYELLOW
+                      << "InpuIterator::GetManualPrev(): previus cannot reverse, reached begin in manual entries"
+                      << RESET << '\n';
+            fManIdx = -1;
+            return {-1, -1};
+        }
         else
         {
             it = std::prev(it);
@@ -64,6 +71,8 @@ bool ActRoot::InputIterator::Previous()
     if(fIsManual)
     {
         auto [run, entry] {GetManualPrev()};
+        if(run == -1 && entry == -1)
+            return false; // reached beginning of entry list
         return GoTo(run, entry);
     }
     if(CheckEntryIsInRange(fCurrentRun, fCurrentEntry - 1))
@@ -102,7 +111,14 @@ std::pair<int, int> ActRoot::InputIterator::GetManualNext()
             fManIdx = 0;
         }
         else
-            throw std::runtime_error("Could not advance: reached end of manual entries");
+        {
+            std::cout << BOLDYELLOW
+                      << "InputIterator::GetManualNext(): next cannot advance, reached end of manual entries" << RESET
+                      << '\n';
+            // Set manual index to end of previous run entry list (-1 will be added by Previous() call)
+            fManIdx = std::prev(it)->second.size();
+            return {-1, -1};
+        }
     }
     return {fCurrentRun, fManual[fCurrentRun][fManIdx]};
 }
@@ -118,6 +134,8 @@ bool ActRoot::InputIterator::Next()
     if(fIsManual)
     {
         auto [run, entry] {GetManualNext()};
+        if(run == -1 && entry == -1) // reached end
+            return false;
         return GoTo(run, entry);
     }
     if(CheckEntryIsInRange(fCurrentRun, fCurrentEntry + 1))

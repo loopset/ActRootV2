@@ -148,6 +148,7 @@ void ActRoot::TPCDetector::InitFilterMethod(const std::string& method)
     else if(m == "multiregion")
     {
         fFilter = std::make_shared<ActAlgorithm::MultiRegion>();
+        fFilter->SetClusterPtr(fCluster);
         fFilter->ReadConfiguration();
     }
     else if(m == "none")

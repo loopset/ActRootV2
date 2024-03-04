@@ -1,5 +1,6 @@
 #include "ActSilDetector.h"
 
+#include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActSilData.h"
 #include "ActTPCLegacyData.h"
@@ -92,6 +93,16 @@ void ActRoot::SilDetector::ReadConfiguration(std::shared_ptr<InputBlock> config)
 
 void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
 {
+    // Set is enabled or not
+    bool enabled {true};
+    if(config->CheckTokenExists("IsEnabled", true))
+        enabled = config->GetBool("IsEnabled");
+    fCalMan->SetIsEnabled(enabled);
+    if(!fCalMan->GetIsEnabled())
+    {
+        std::cout << BOLDCYAN << "CalibrationManager::fIsEnabled == false" << '\n';
+        return;
+    }
     auto files {config->GetStringVector("Paths")};
     for(auto& file : files)
         fCalMan->ReadCalibration(file);

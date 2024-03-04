@@ -5,10 +5,8 @@
 #include <algorithm>
 #include <cctype>
 #include <cmath>
-#include <exception>
 #include <fstream>
 #include <iostream>
-#include <mutex>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -19,7 +17,7 @@ ActRoot::CalibrationManager::CalibrationManager(const std::string& calfile)
     ReadCalibration(calfile);
 }
 
-void ActRoot::CalibrationManager::ReadCalibration(const std::string &file)
+void ActRoot::CalibrationManager::ReadCalibration(const std::string& file)
 {
     std::ifstream streamer {file.c_str()};
     if(!streamer)
@@ -45,7 +43,7 @@ void ActRoot::CalibrationManager::ReadCalibration(const std::string &file)
     }
 }
 
-void ActRoot::CalibrationManager::ReadPadAlign(const std::string &file)
+void ActRoot::CalibrationManager::ReadPadAlign(const std::string& file)
 {
     std::ifstream streamer {file.c_str()};
     if(!streamer)
@@ -58,9 +56,9 @@ void ActRoot::CalibrationManager::ReadPadAlign(const std::string &file)
         fPadAlign.push_back({});
         while(std::getline(lineStreamer, row, ' '))
         {
-            //Clean whitespaces
-            row.erase(std::remove_if(row.begin(), row.end(),
-                                     [](unsigned char x){return std::isspace(x);}), row.end());
+            // Clean whitespaces
+            row.erase(std::remove_if(row.begin(), row.end(), [](unsigned char x) { return std::isspace(x); }),
+                      row.end());
             if(row.length() == 0)
                 continue;
             fPadAlign.back().push_back(std::stod(row));
@@ -68,72 +66,79 @@ void ActRoot::CalibrationManager::ReadPadAlign(const std::string &file)
     }
 }
 
-void ActRoot::CalibrationManager::ReadLookUpTable(const std::string &file)
+void ActRoot::CalibrationManager::ReadLookUpTable(const std::string& file)
 {
-    //number of rows automatically determined by file
-    //number of cols = 6
+    // number of rows automatically determined by file
+    // number of cols = 6
     std::ifstream streamer {file.c_str()};
     if(!streamer)
         throw std::runtime_error("Error loading LT table in CalibrationManager");
-    //Run!
+    // Run!
     std::string line {};
     while(std::getline(streamer, line))
     {
-        //Reset variables
-        int col0 {}; int col1 {}; int col2 {};
-        int col3 {}; int col4 {}; int col5 {};
-        //Line streamer
+        // Reset variables
+        int col0 {};
+        int col1 {};
+        int col2 {};
+        int col3 {};
+        int col4 {};
+        int col5 {};
+        // Line streamer
         std::istringstream lineStreamer {line};
-        lineStreamer >> col0 >> col1 >> col2 >> col3
-                     >> col4 >> col5;
-        //std::cout<<"================="<<'\n';
-        //std::cout<<"0 = "<<col0<<" back = "<<col5<<'\n';
+        lineStreamer >> col0 >> col1 >> col2 >> col3 >> col4 >> col5;
+        // std::cout<<"================="<<'\n';
+        // std::cout<<"0 = "<<col0<<" back = "<<col5<<'\n';
         fLT.push_back({col0, col1, col2, col3, col4, col5});
     }
 }
 
-double ActRoot::CalibrationManager::ApplyCalibration(const std::string &key, double raw)
+double ActRoot::CalibrationManager::ApplyCalibration(const std::string& key, double raw)
 {
-    double cal {0};
-    int order {0};
-    std::vector<double> coeffs {};
-    try
+    if(fCalibs.find(key) != fCalibs.end())
     {
-        coeffs = fCalibs.at(key);
+        double cal {0};
+        int order {0};
+        auto coeffs {fCalibs[key]};
+        for(const auto& coef : coeffs)
+        {
+            cal += coef * std::pow(raw, order);
+            order++;
+        }
+        return cal;
     }
-    catch(std::exception& e)
+    else
     {
-        throw std::runtime_error("Could not find calibration for key " + key);
+        if(!fIsEnabled)
+            return raw;
+        throw std::runtime_error(
+            "CalibrationManager::ApplyCalibration(): fIsEnabled == true but could not find calibration for key " + key);
     }
-    for(const auto& coef : coeffs)
-    {
-        cal += coef * std::pow(raw, order);
-        order++;
-    }
-    return cal;
 }
 
-bool ActRoot::CalibrationManager::ApplyThreshold(const std::string &key, double raw, double nsigma)
+bool ActRoot::CalibrationManager::ApplyThreshold(const std::string& key, double raw, double nsigma)
 {
-    std::vector<double> coeffs {};
-    try
+    if(fCalibs.find(key) != fCalibs.end())
     {
-        coeffs = fCalibs.at(key);
+        auto coeffs {fCalibs[key]};
+        // Value to compare to
+        double threshold {coeffs[0]};
+        if(coeffs.size() == 2) // CATS style
+        {
+            threshold += coeffs[1] * nsigma;
+        }
+        if(raw < threshold)
+            return false;
+        else
+            return true;
     }
-    catch(std::exception& e)
-    {
-        throw std::runtime_error("Could not find calibration for key " + key);
-    }
-    //Value to compare to
-    double threshold {coeffs[0]};
-    if(coeffs.size() == 2)//CATS style
-    {
-        threshold += coeffs[1] * nsigma;
-    }
-    if(raw < threshold)
-        return false;
     else
-        return true;;
+    {
+        if(!fIsEnabled)
+            return raw;
+        throw std::runtime_error(
+            "CalibrationManager::ApplyThreshold(): fIsEnabled == true but could not find threshold for key " + key);
+    }
 }
 
 int ActRoot::CalibrationManager::ApplyLookUp(int channel, int col)
@@ -155,14 +160,14 @@ double ActRoot::CalibrationManager::ApplyPadAlignment(int channel, double q)
 
 void ActRoot::CalibrationManager::Print() const
 {
-    std::cout<<"==============================================="<<'\n';
-    std::cout<<"Pad align table with size   = "<<fPadAlign.size()<<'\n';
-    std::cout<<"Pad look up table with size = "<<fLT.size()<<'\n';
-    std::cout<<"Other calibrations = "<<'\n';
+    std::cout << "===============================================" << '\n';
+    std::cout << "Pad align table with size   = " << fPadAlign.size() << '\n';
+    std::cout << "Pad look up table with size = " << fLT.size() << '\n';
+    std::cout << "Other calibrations = " << '\n';
     for(const auto& [key, vals] : fCalibs)
     {
-        std::cout<<"-> Key "<<key<<'\n';
+        std::cout << "-> Key " << key << '\n';
         for(const auto& val : vals)
-            std::cout<<"   "<<val<<'\n';
+            std::cout << "   " << val << '\n';
     }
 }

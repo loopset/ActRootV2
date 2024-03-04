@@ -68,34 +68,34 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Read (mandatory) SilSpecs config file
     if(block->CheckTokenExists("IsEnabled"))
         fIsEnabled = block->GetBool("IsEnabled");
-    if(block->CheckTokenExists("SilSpecsFile"))
+    if(block->CheckTokenExists("SilSpecsFile", true))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
     // Map GATCONFS to SilLayers, using gat command
     auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
     if(gatMap.size() > 0)
         fGatMap = gatMap;
     // Beam-like and multiplicities
-    if(block->CheckTokenExists("ForceBeamLike"))
+    if(block->CheckTokenExists("ForceBeamLike", true))
         fForceBeamLike = block->GetBool("ForceBeamLike");
-    if(block->CheckTokenExists("NotBeamMults"))
+    if(block->CheckTokenExists("NotBeamMults", true))
         fNotBMults = block->GetIntVector("NotBeamMults");
     // Gate on XVertex
-    if(block->CheckTokenExists("GateRPX"))
+    if(block->CheckTokenExists("GateRPX", true))
         fGateRPX = block->GetDouble("GateRPX");
     // Conversion to physical units
-    if(block->CheckTokenExists("EnableConversion"))
+    if(block->CheckTokenExists("EnableConversion", true))
         fEnableConversion = block->GetBool("EnableConversion");
-    if(block->CheckTokenExists("DriftFactor"))
+    if(block->CheckTokenExists("DriftFactor", true))
         fDriftFactor = block->GetDouble("DriftFactor");
     // Match SP to real placement
-    if(block->CheckTokenExists("EnableMatch"))
+    if(block->CheckTokenExists("EnableMatch", true))
         fEnableMatch = block->GetBool("EnableMatch");
-    if(block->CheckTokenExists("MatchUseZ"))
+    if(block->CheckTokenExists("MatchUseZ", true))
         fMatchUseZ = block->GetBool("MatchUseZ");
-    if(block->CheckTokenExists("ZOffset"))
+    if(block->CheckTokenExists("ZOffset", true))
         fZOffset = block->GetDouble("ZOffset");
     // Enable QProfile
-    if(block->CheckTokenExists("EnableQProfile"))
+    if(block->CheckTokenExists("EnableQProfile", true))
         fEnableQProfile = block->GetBool("EnableQProfile");
     // Build or not filter method
     if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)

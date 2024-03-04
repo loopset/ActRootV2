@@ -323,7 +323,7 @@ ActRoot::BlockPtr ActRoot::InputParser::GetBlock(const std::string& token) const
     for(auto& block : fBlocks)
         if(block->GetBlockName() == token)
             return block;
-    throw std::runtime_error("InputParser::GetBlock(): No token " + token + " was found in file!");
+    throw std::runtime_error("InputParser::GetBlock(): No token " + token + " was found");
 }
 
 std::vector<std::string> ActRoot::InputParser::GetBlockHeaders() const
