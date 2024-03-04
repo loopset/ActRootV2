@@ -103,13 +103,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7dc78d9b0ca9b0f41332bc2370f22df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1faf4826c9064fd574bf21d1fefa712"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712">ApplyPadAlignment</a> (int channel, double q)</td></tr>
 <tr class="separator:aa1faf4826c9064fd574bf21d1fefa712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80bba340dbe4b4d9be36b116892787d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a80bba340dbe4b4d9be36b116892787d7">SetIsEnabled</a> (bool enabled)</td></tr>
+<tr class="separator:a80bba340dbe4b4d9be36b116892787d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03d4ea56766697405be47ac7b209cc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#af03d4ea56766697405be47ac7b209cc4">GetIsEnabled</a> () const</td></tr>
+<tr class="separator:af03d4ea56766697405be47ac7b209cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a198aded3a7a62f1b9388c0386e807e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a198aded3a7a62f1b9388c0386e807e89">Print</a> () const</td></tr>
 <tr class="separator:a198aded3a7a62f1b9388c0386e807e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8608ee2ee767a355ae126fb78279e286"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a></td></tr>
-<tr class="memdesc:a8608ee2ee767a355ae126fb78279e286"><td class="mdescLeft">&#160;</td><td class="mdescRight">General map holding strings as keys for the vector of doubles (coeffs) of calib.  <a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">More...</a><br /></td></tr>
 <tr class="separator:a8608ee2ee767a355ae126fb78279e286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad346595880359ad866c13ab7fe909790"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a></td></tr>
 <tr class="separator:ad346595880359ad866c13ab7fe909790"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,9 +120,11 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a8e3622baa52ca22287581a064eb83e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pad align coefficiens.  <a href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">More...</a><br /></td></tr>
 <tr class="separator:a8e3622baa52ca22287581a064eb83e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#a7619a99e84361ac4dddaa9bd9ffee0d2">fFiles</a></td></tr>
-<tr class="memdesc:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of files read in calibration <br  />
-  <a href="classActRoot_1_1CalibrationManager.html#a7619a99e84361ac4dddaa9bd9ffee0d2">More...</a><br /></td></tr>
+<tr class="memdesc:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of files read in calibration.  <a href="classActRoot_1_1CalibrationManager.html#a7619a99e84361ac4dddaa9bd9ffee0d2">More...</a><br /></td></tr>
 <tr class="separator:a7619a99e84361ac4dddaa9bd9ffee0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff19986cf871b0d2552bd9c6d9d77706"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">fIsEnabled</a> {true}</td></tr>
+<tr class="memdesc:aff19986cf871b0d2552bd9c6d9d77706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to enable or not when calling ApplyCalibration/Threshold.  <a href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">More...</a><br /></td></tr>
+<tr class="separator:aff19986cf871b0d2552bd9c6d9d77706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class managing all calibrations (NO LONGER a singleton) </p>
@@ -167,10 +172,10 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Construct and read a standard calibration file at once. </p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a>(calfile);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a6dddb07f56998716ace3ff9abb38c2a4"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ActRoot::CalibrationManager::ReadCalibration</a></div><div class="ttdeci">void ReadCalibration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.cxx:22</div></div>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ReadCalibration</a>(calfile);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a6dddb07f56998716ace3ff9abb38c2a4"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a6dddb07f56998716ace3ff9abb38c2a4">ActRoot::CalibrationManager::ReadCalibration</a></div><div class="ttdeci">void ReadCalibration(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.cxx:20</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -225,26 +230,29 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">double</span> cal {0};</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> order {0};</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    std::vector&lt;double&gt; coeffs {};</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        coeffs = <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.at(key);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not find calibration for key &quot;</span> + key);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; coef : coeffs)</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        cal += coef * std::pow(raw, order);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        order++;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> cal;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8608ee2ee767a355ae126fb78279e286"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">ActRoot::CalibrationManager::fCalibs</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt; fCalibs</div><div class="ttdoc">General map holding strings as keys for the vector of doubles (coeffs) of calib.</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:23</div></div>
+<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.find(key) != <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.end())</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">double</span> cal {0};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordtype">int</span> order {0};</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">auto</span> coeffs {<a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>[key]};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; coef : coeffs)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            cal += coef * std::pow(raw, order);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            order++;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> cal;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">fIsEnabled</a>)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">return</span> raw;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="stringliteral">&quot;CalibrationManager::ApplyCalibration(): fIsEnabled == true but could not find calibration for key &quot;</span> + key);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8608ee2ee767a355ae126fb78279e286"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">ActRoot::CalibrationManager::fCalibs</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt; fCalibs</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:22</div></div>
+<div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_aff19986cf871b0d2552bd9c6d9d77706"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">ActRoot::CalibrationManager::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdoc">Whether to enable or not when calling ApplyCalibration/Threshold.</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -273,9 +281,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;{</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>[channel][col];</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;{</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>[channel][col];</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_ad346595880359ad866c13ab7fe909790"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">ActRoot::CalibrationManager::fLT</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; fLT</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:24</div></div>
 </div><!-- fragment -->
 </div>
@@ -305,16 +313,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;{</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">double</span> qAl {};</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">int</span> order {0};</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; coef : <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>[channel])</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        qAl += coef * std::pow(q, order);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        order++;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">return</span> qAl;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;{</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">double</span> qAl {};</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">int</span> order {0};</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; coef : <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>[channel])</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        qAl += coef * std::pow(q, order);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        order++;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">return</span> qAl;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1CalibrationManager_html_a8e3622baa52ca22287581a064eb83e5e"><div class="ttname"><a href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">ActRoot::CalibrationManager::fPadAlign</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; fPadAlign</div><div class="ttdoc">Pad align coefficiens.</div><div class="ttdef"><b>Definition:</b> ActCalibrationManager.h:25</div></div>
 </div><!-- fragment -->
 </div>
@@ -350,27 +358,55 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::vector&lt;double&gt; coeffs {};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        coeffs = <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.at(key);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Could not find calibration for key &quot;</span> + key);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="comment">//Value to compare to</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">double</span> threshold {coeffs[0]};</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">if</span>(coeffs.size() == 2)<span class="comment">//CATS style</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        threshold += coeffs[1] * nsigma;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">if</span>(raw &lt; threshold)</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.find(key) != <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>.end())</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">auto</span> coeffs {<a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>[key]};</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment">// Value to compare to</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordtype">double</span> threshold {coeffs[0]};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">if</span>(coeffs.size() == 2) <span class="comment">// CATS style</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            threshold += coeffs[1] * nsigma;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">if</span>(raw &lt; threshold)</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">fIsEnabled</a>)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">return</span> raw;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="stringliteral">&quot;CalibrationManager::ApplyThreshold(): fIsEnabled == true but could not find threshold for key &quot;</span> + key);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af03d4ea56766697405be47ac7b209cc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03d4ea56766697405be47ac7b209cc4">&#9670;&nbsp;</a></span>GetIsEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::CalibrationManager::GetIsEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">fIsEnabled</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -388,18 +424,18 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;{</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;===============================================&quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Pad align table with size   = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.size()&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Pad look up table with size = &quot;</span>&lt;&lt;<a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>.size()&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Other calibrations = &quot;</span>&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;-&gt; Key &quot;</span>&lt;&lt;key&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; val : vals)</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            std::cout&lt;&lt;<span class="stringliteral">&quot;   &quot;</span>&lt;&lt;val&lt;&lt;<span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;{</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;===============================================&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Pad align table with size   = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Pad look up table with size = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Other calibrations = &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Key &quot;</span> &lt;&lt; key &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; val : vals)</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -418,30 +454,30 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::ifstream streamer {file.c_str()};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No calibration file found: &quot;</span> + file);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::string line {};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> col {};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::string key {};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        std::istringstream lineStreamer {line};</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        std::string buffer {};</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">while</span>(std::getline(lineStreamer, buffer, <span class="charliteral">&#39; &#39;</span>))</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keyword">auto</span> val {<a class="code" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(buffer)};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">if</span>(val.length() == 0)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">if</span>(col == 0)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                key = val;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>[key].push_back(std::stod(val));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            col++;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::ifstream streamer {file.c_str()};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No calibration file found: &quot;</span> + file);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::string line {};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">int</span> col {};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        std::string key {};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::istringstream lineStreamer {line};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::string buffer {};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">while</span>(std::getline(lineStreamer, buffer, <span class="charliteral">&#39; &#39;</span>))</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">auto</span> val {<a class="code" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(buffer)};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span>(val.length() == 0)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">if</span>(col == 0)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                key = val;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classActRoot_1_1CalibrationManager.html#a8608ee2ee767a355ae126fb78279e286">fCalibs</a>[key].push_back(std::stod(val));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            col++;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:18</div></div>
 </div><!-- fragment -->
 </div>
@@ -461,28 +497,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//number of rows automatically determined by file</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">//number of cols = 6</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::ifstream streamer {file.c_str()};</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error loading LT table in CalibrationManager&quot;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//Run!</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::string line {};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//Reset variables</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">int</span> col0 {}; <span class="keywordtype">int</span> col1 {}; <span class="keywordtype">int</span> col2 {};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">int</span> col3 {}; <span class="keywordtype">int</span> col4 {}; <span class="keywordtype">int</span> col5 {};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">//Line streamer</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::istringstream lineStreamer {line};</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        lineStreamer &gt;&gt; col0 &gt;&gt; col1 &gt;&gt; col2 &gt;&gt; col3</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                     &gt;&gt; col4 &gt;&gt; col5;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">//std::cout&lt;&lt;&quot;=================&quot;&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">//std::cout&lt;&lt;&quot;0 = &quot;&lt;&lt;col0&lt;&lt;&quot; back = &quot;&lt;&lt;col5&lt;&lt;&#39;\n&#39;;</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>.push_back({col0, col1, col2, col3, col4, col5});</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// number of rows automatically determined by file</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// number of cols = 6</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::ifstream streamer {file.c_str()};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error loading LT table in CalibrationManager&quot;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Run!</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::string line {};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// Reset variables</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">int</span> col0 {};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">int</span> col1 {};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">int</span> col2 {};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">int</span> col3 {};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">int</span> col4 {};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">int</span> col5 {};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// Line streamer</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        std::istringstream lineStreamer {line};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        lineStreamer &gt;&gt; col0 &gt;&gt; col1 &gt;&gt; col2 &gt;&gt; col3 &gt;&gt; col4 &gt;&gt; col5;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// std::cout&lt;&lt;&quot;=================&quot;&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">// std::cout&lt;&lt;&quot;0 = &quot;&lt;&lt;col0&lt;&lt;&quot; back = &quot;&lt;&lt;col5&lt;&lt;&#39;\n&#39;;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">fLT</a>.push_back({col0, col1, col2, col3, col4, col5});</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -501,27 +540,54 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::ifstream streamer {file.c_str()};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Pad align coeff file does not exist in CalibrationManager&quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::string line {};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::istringstream lineStreamer {line};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::string row {};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.push_back({});</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">while</span>(std::getline(lineStreamer, row, <span class="charliteral">&#39; &#39;</span>))</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">//Clean whitespaces</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            row.erase(std::remove_if(row.begin(), row.end(),</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                     [](<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> x){return std::isspace(x);}), row.end());</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span>(row.length() == 0)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.back().push_back(std::stod(row));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::ifstream streamer {file.c_str()};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Pad align coeff file does not exist in CalibrationManager&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string line {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::istringstream lineStreamer {line};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        std::string row {};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.push_back({});</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">while</span>(std::getline(lineStreamer, row, <span class="charliteral">&#39; &#39;</span>))</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// Clean whitespaces</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            row.erase(std::remove_if(row.begin(), row.end(), [](<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> x) { return std::isspace(x); }),</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                      row.end());</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span>(row.length() == 0)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <a class="code" href="classActRoot_1_1CalibrationManager.html#a8e3622baa52ca22287581a064eb83e5e">fPadAlign</a>.back().push_back(std::stod(row));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a80bba340dbe4b4d9be36b116892787d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80bba340dbe4b4d9be36b116892787d7">&#9670;&nbsp;</a></span>SetIsEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::CalibrationManager::SetIsEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <a class="code" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">fIsEnabled</a> = enabled; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -545,8 +611,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>General map holding strings as keys for the vector of doubles (coeffs) of calib. </p>
+<p>General map holding strings as keys for the vector of doubles (coeffs) of calib </p>
 
 </div>
 </div>
@@ -570,8 +635,31 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>List of files read in calibration <br  />
- </p>
+<p>List of files read in calibration. </p>
+
+</div>
+</div>
+<a id="aff19986cf871b0d2552bd9c6d9d77706"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff19986cf871b0d2552bd9c6d9d77706">&#9670;&nbsp;</a></span>fIsEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::CalibrationManager::fIsEnabled {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to enable or not when calling ApplyCalibration/Threshold. </p>
 
 </div>
 </div>

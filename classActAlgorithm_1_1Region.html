@@ -82,6 +82,8 @@ $(function() {
 Public Types</h2></td></tr>
 <tr class="memitem:a670ff66dd9a1b4d385a9122ef8c5a9af"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">RegionPair</a></td></tr>
 <tr class="separator:a670ff66dd9a1b4d385a9122ef8c5a9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e3eef1a964d4ae0a93ab5bb8e32598"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a></td></tr>
+<tr class="separator:aa1e3eef1a964d4ae0a93ab5bb8e32598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -95,8 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5a9c8cb56eefd60310d6630d033bde9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66d4c46195d88db1a83c888149b59ea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#a66d4c46195d88db1a83c888149b59ea0">Print</a> () const</td></tr>
 <tr class="separator:a66d4c46195d88db1a83c888149b59ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafd8ecbdb2070ea3585986e0151ddbed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#aafd8ecbdb2070ea3585986e0151ddbed">IsInside</a> (const ROOT::Math::XYZPointF &amp;p)</td></tr>
-<tr class="separator:aafd8ecbdb2070ea3585986e0151ddbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa608a71b3266193c5bd197f873f483a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#aa608a71b3266193c5bd197f873f483a7">IsInside</a> (const ROOT::Math::XYZPointF &amp;p) const</td></tr>
+<tr class="separator:aa608a71b3266193c5bd197f873f483a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8189937de30d2d1cd2a74d14723fee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#acd8189937de30d2d1cd2a74d14723fee">IsInside</a> (const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;x, const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;y) const</td></tr>
+<tr class="separator:acd8189937de30d2d1cd2a74d14723fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9789715fda632232c9cba2cdb7fee60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">RegionPair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#ab9789715fda632232c9cba2cdb7fee60">GetCentre</a> () const</td></tr>
 <tr class="separator:ab9789715fda632232c9cba2cdb7fee60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -108,6 +112,20 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a6f958446796680e96f2c151ce6e4d52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aa1e3eef1a964d4ae0a93ab5bb8e32598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e3eef1a964d4ae0a93ab5bb8e32598">&#9670;&nbsp;</a></span>RangePair</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::pair&lt;float, float&gt; <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">ActAlgorithm::Region::RangePair</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a670ff66dd9a1b4d385a9122ef8c5a9af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a670ff66dd9a1b4d385a9122ef8c5a9af">&#9670;&nbsp;</a></span>RegionPair</h2>
 
@@ -193,9 +211,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;: <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>(xmin, xmax), <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>(ymin, ymax) {}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a2ed727150b3e42a93e122290e4d3ac6d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">ActAlgorithm::Region::fX</a></div><div class="ttdeci">RegionPair fX</div><div class="ttdef"><b>Definition:</b> ActRegion.h:25</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a6f958446796680e96f2c151ce6e4d52d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">ActAlgorithm::Region::fY</a></div><div class="ttdeci">RegionPair fY</div><div class="ttdef"><b>Definition:</b> ActRegion.h:26</div></div>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;: <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>(xmin, xmax), <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>(ymin, ymax) {}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a2ed727150b3e42a93e122290e4d3ac6d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">ActAlgorithm::Region::fX</a></div><div class="ttdeci">RegionPair fX</div><div class="ttdef"><b>Definition:</b> ActRegion.h:26</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a6f958446796680e96f2c151ce6e4d52d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">ActAlgorithm::Region::fY</a></div><div class="ttdeci">RegionPair fY</div><div class="ttdef"><b>Definition:</b> ActRegion.h:27</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -222,7 +240,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) / 2, (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) / 2}; }</div>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <span class="keywordflow">return</span> {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) / 2, (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) / 2}; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -248,7 +266,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -274,12 +292,53 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aafd8ecbdb2070ea3585986e0151ddbed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafd8ecbdb2070ea3585986e0151ddbed">&#9670;&nbsp;</a></span>IsInside()</h2>
+<a id="acd8189937de30d2d1cd2a74d14723fee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd8189937de30d2d1cd2a74d14723fee">&#9670;&nbsp;</a></span>IsInside() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActAlgorithm::Region::IsInside </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">bool</span> condX {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.first &amp;&amp; x.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.second &amp;&amp; x.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second)};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">bool</span> condY {(<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.first &amp;&amp; y.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.second &amp;&amp; y.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second)};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">return</span> condX &amp;&amp; condY;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa608a71b3266193c5bd197f873f483a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa608a71b3266193c5bd197f873f483a7">&#9670;&nbsp;</a></span>IsInside() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,7 +351,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const ROOT::Math::XYZPointF &amp;&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -301,9 +360,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= p.X() &amp;&amp; p.X() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= p.Y() &amp;&amp; p.Y() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= p.X() &amp;&amp; p.X() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= p.Y() &amp;&amp; p.Y() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -329,10 +388,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;X in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second &lt;&lt; <span class="stringliteral">&quot;], Y in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second &lt;&lt; <span class="stringliteral">&quot;]&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                  &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;X in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second &lt;&lt; <span class="stringliteral">&quot;], Y in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second &lt;&lt; <span class="stringliteral">&quot;]&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                  &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
