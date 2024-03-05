@@ -64,7 +64,10 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">ActAlgorithm Namespace Reference</div>  </div>
 </div><!--header-->
@@ -97,6 +100,13 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1VFilter.html">VFilter</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a8766befd594bfdc95d1f06aeaeeb1153"><td class="memItemLeft" align="right" valign="top">typedef ROOT::Math::XYZPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a></td></tr>
+<tr class="separator:a8766befd594bfdc95d1f06aeaeeb1153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7437a3a10e35411a4a8cfcd44c67d262"><td class="memItemLeft" align="right" valign="top">typedef ROOT::Math::XYZVectorF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a></td></tr>
+<tr class="separator:a7437a3a10e35411a4a8cfcd44c67d262"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a737351cc7e92ec8e9b7b2d80bf73c960"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a> { <a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f">EBeam</a>
@@ -105,10 +115,55 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e">ENone</a>
  }</td></tr>
 <tr class="separator:a737351cc7e92ec8e9b7b2d80bf73c960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac20e67a9ceefdb0dcf0261c0701b4a84"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a>, <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a>, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#ac20e67a9ceefdb0dcf0261c0701b4a84">ComputeRPIn3D</a> (<a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> pA, <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> vA, <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> pB, <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> vB)</td></tr>
+<tr class="separator:ac20e67a9ceefdb0dcf0261c0701b4a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ac6481a4ea05cee2b3c7b2c907beab2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2">IsRPValid</a> (const <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> &amp;rp, <a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *tpc)</td></tr>
+<tr class="separator:a2ac6481a4ea05cee2b3c7b2c907beab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f1e25fc8e4cf98bd15912864f40436f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a0f1e25fc8e4cf98bd15912864f40436f">MergeSimilarClusters</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, double distThresh, double minParallelFactor, double chi2Factor, bool isVerbose=false)</td></tr>
+<tr class="separator:a0f1e25fc8e4cf98bd15912864f40436f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8caa986e493b25377c425eddee3bd191"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a8caa986e493b25377c425eddee3bd191">RegionTypeAsStr</a> (<a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a> type)</td></tr>
+<tr class="separator:a8caa986e493b25377c425eddee3bd191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a632776ec2c852a1b3d5d5721a838f4b6"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; <a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a632776ec2c852a1b3d5d5721a838f4b6">kRegionTypeAsStr</a></td></tr>
+<tr class="separator:a632776ec2c852a1b3d5d5721a838f4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A namespace with all clustering utilities. </p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a8766befd594bfdc95d1f06aeaeeb1153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8766befd594bfdc95d1f06aeaeeb1153">&#9670;&nbsp;</a></span>XYZPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef ROOT::Math::XYZPointF <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">ActAlgorithm::XYZPoint</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7437a3a10e35411a4a8cfcd44c67d262"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7437a3a10e35411a4a8cfcd44c67d262">&#9670;&nbsp;</a></span>XYZVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef ROOT::Math::XYZVectorF <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">ActAlgorithm::XYZVector</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a737351cc7e92ec8e9b7b2d80bf73c960"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a737351cc7e92ec8e9b7b2d80bf73c960">&#9670;&nbsp;</a></span>RegionType</h2>
 
@@ -134,16 +189,351 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a737351cc7e92ec8e9b7b2d80bf73c960a8385ccbd27d378d7b28c2bc9d1a9a367"></a>EHeavy&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e"></a>ENone&#160;</td><td class="fielddoc"></td></tr>
 </table>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f">EBeam</a>,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9172c78110a6f2bf474131fdcb9cb3cf">ELight</a>,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8385ccbd27d378d7b28c2bc9d1a9a367">EHeavy</a>,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e">ENone</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f">EBeam</a>,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9172c78110a6f2bf474131fdcb9cb3cf">ELight</a>,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8385ccbd27d378d7b28c2bc9d1a9a367">EHeavy</a>,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e">ENone</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f"><div class="ttname"><a href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f">ActAlgorithm::RegionType::EBeam</a></div><div class="ttdeci">@ EBeam</div></div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a737351cc7e92ec8e9b7b2d80bf73c960a8385ccbd27d378d7b28c2bc9d1a9a367"><div class="ttname"><a href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8385ccbd27d378d7b28c2bc9d1a9a367">ActAlgorithm::RegionType::EHeavy</a></div><div class="ttdeci">@ EHeavy</div></div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a737351cc7e92ec8e9b7b2d80bf73c960a9172c78110a6f2bf474131fdcb9cb3cf"><div class="ttname"><a href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9172c78110a6f2bf474131fdcb9cb3cf">ActAlgorithm::RegionType::ELight</a></div><div class="ttdeci">@ ELight</div></div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e"><div class="ttname"><a href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a9902d58435e8208bf6fd67278632145e">ActAlgorithm::RegionType::ENone</a></div><div class="ttdeci">@ ENone</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ac20e67a9ceefdb0dcf0261c0701b4a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac20e67a9ceefdb0dcf0261c0701b4a84">&#9670;&nbsp;</a></span>ComputeRPIn3D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">ActAlgorithm::XYZPoint</a>, <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">ActAlgorithm::XYZPoint</a>, double &gt; ActAlgorithm::ComputeRPIn3D </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a>&#160;</td>
+          <td class="paramname"><em>pA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a>&#160;</td>
+          <td class="paramname"><em>vA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a>&#160;</td>
+          <td class="paramname"><em>pB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a>&#160;</td>
+          <td class="paramname"><em>vB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// 1-&gt; Normalize all directions</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    vA = vA.Unit();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    vB = vB.Unit();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// 2-&gt; Get cross product and normalize it</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">auto</span> vC {vB.Cross(vA)};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    vC = vC.Unit();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// If lines are parallel, skip them</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="namespaceActRoot.html#a79aa8144922aad33d16df5ccda898bd1">ActRoot::IsEqZero</a>(vC.R()))</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> {pA, pB, -1};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// 3-&gt; Matrices to solve system of equations in Math StackExchange</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    TMatrixD left {3, 3}; <span class="comment">// 3x3 matrix with double precision</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Fill left matrix with columns as each ABC vector</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> vecs[3] {vA, -vB, vC};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> col = 0; col &lt; 3; col++)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">double</span> components[3] {};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        vecs[col].GetCoordinates(components);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> row = 0; row &lt; 3; row++)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            left[row][col] = components[row];</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    TMatrixD right {3, 1};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">auto</span> diff {pB - pA};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">double</span> components[3] {};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    diff.GetCoordinates(components);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    right.SetMatrixArray(components);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// 4-&gt; Invert left to solve system</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    TMatrixD invLeft {TMatrixD::kInverted, left};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// 5-&gt; Solve system of linear eqs</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">auto</span> res {TMatrixD(invLeft, TMatrixD::kMult, right)};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// 6-&gt; Return results {point in A, point in B, distance AB}</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="ttc" id="anamespaceActAlgorithm_html_a7437a3a10e35411a4a8cfcd44c67d262"><div class="ttname"><a href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">ActAlgorithm::XYZVector</a></div><div class="ttdeci">ROOT::Math::XYZVectorF XYZVector</div><div class="ttdef"><b>Definition:</b> ActAlgoFuncs.h:21</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a79aa8144922aad33d16df5ccda898bd1"><div class="ttname"><a href="namespaceActRoot.html#a79aa8144922aad33d16df5ccda898bd1">ActRoot::IsEqZero</a></div><div class="ttdeci">bool IsEqZero(int val)</div><div class="ttdef"><b>Definition:</b> ActUtils.cxx:3</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2ac6481a4ea05cee2b3c7b2c907beab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac6481a4ea05cee2b3c7b2c907beab2">&#9670;&nbsp;</a></span>IsRPValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActAlgorithm::IsRPValid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>rp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *&#160;</td>
+          <td class="paramname"><em>tpc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// This function has to consider the 0.5 offset</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> isInX {0.5 &lt;= rp.X() &amp;&amp; rp.X() &lt;= (tpc-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>() - 1) + 0.5};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> isInY {0.5 &lt;= rp.Y() &amp;&amp; rp.Y() &lt;= (tpc-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>() - 1) + 0.5};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">bool</span> isInZ {0.5 &lt;= rp.Z() &amp;&amp; rp.Z() &lt;= (tpc-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">GetNPADSZ</a>() - 1) + 0.5};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> isInX &amp;&amp; isInY &amp;&amp; isInZ;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:48</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:46</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0f1e25fc8e4cf98bd15912864f40436f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f1e25fc8e4cf98bd15912864f40436f">&#9670;&nbsp;</a></span>MergeSimilarClusters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActAlgorithm::MergeSimilarClusters </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *&#160;</td>
+          <td class="paramname"><em>clusters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>distThresh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>minParallelFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>chi2Factor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isVerbose</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Sort clusters by decreasing voxel size</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::sort(clusters-&gt;begin(), clusters-&gt;end(),</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;              [](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&amp; l, <span class="keyword">const</span> <a class="code" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&amp; r)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;              { return l.GetSizeOfVoxels() &lt; r.GetSizeOfVoxels(); });</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Set of indexes to delete</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::set&lt;int, std::greater&lt;int&gt;&gt; toDelete {};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Run!</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0, isize = clusters-&gt;size(); i &lt; isize; i++)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// Get clusters as iterators</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">auto</span> out {clusters-&gt;begin() + i};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> j = 0, jsize = clusters-&gt;size(); j &lt; jsize; j++)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordtype">bool</span> isIinSet {toDelete.find(i) != toDelete.end()};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordtype">bool</span> isJinSet {toDelete.find(j) != toDelete.end()};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">if</span>(i == j || isIinSet || isJinSet) <span class="comment">// exclude comparison of same cluster and other already to be deleted</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="comment">// Get inner iterator</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keyword">auto</span> in {clusters-&gt;begin() + j};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="comment">// If any of them is set not to merge, do not do that :)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">if</span>(!out-&gt;GetToMerge() || !in-&gt;GetToMerge())</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="comment">// 1-&gt; Compare by distance from gravity point to line!</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keyword">auto</span> gravIn {in-&gt;GetLine().GetPoint()};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keyword">auto</span> distIn {out-&gt;GetLine().DistanceLineToPoint(gravIn)};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keyword">auto</span> gravOut {out-&gt;GetLine().GetPoint()};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keyword">auto</span> distOut {in-&gt;GetLine().DistanceLineToPoint(gravOut)};</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keyword">auto</span> dist {std::max(distIn, distOut)};</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="comment">// Get threshold distance to merge</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordtype">bool</span> isBelowThresh {dist &lt;= distThresh};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="comment">// auto threshIn {in-&gt;GetLine().GetChi2()};</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="comment">// auto threshOut {out-&gt;GetLine().GetChi2()};</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="comment">// auto distThresh {std::max(threshIn, threshOut)};</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="comment">// bool isBelowThresh {dist &lt; std::sqrt(distThresh)};</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;&lt;i, j&gt; : &lt;&quot; &lt;&lt; i &lt;&lt; &quot;, &quot; &lt;&lt; j &lt;&lt; &quot;&gt;&quot; &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;i size : &quot; &lt;&lt; out-&gt;GetSizeOfVoxels() &lt;&lt; &quot; j size : &quot; &lt;&lt; in-&gt;GetSizeOfVoxels() &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;gravOut&quot; &lt;&lt; gravOut &lt;&lt; &quot; gravIn : &quot; &lt;&lt; gravIn &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;dist : &quot; &lt;&lt; dist &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;distThresh: &quot; &lt;&lt; distThresh &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;------------------&quot; &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="comment">// 2-&gt; Compare by paralelity</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keyword">auto</span> outDir {out-&gt;GetLine().GetDirection().Unit()};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keyword">auto</span> inDir {in-&gt;GetLine().GetDirection().Unit()};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordtype">bool</span> areParallel {std::abs(outDir.Dot(inDir)) &gt; minParallelFactor};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="comment">// std::cout &lt;&lt; &quot;Parallel factor : &quot; &lt;&lt; std::abs(outDir.Dot(inDir)) &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="comment">// 3-&gt; Check if fits improves</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">if</span>(isBelowThresh &amp;&amp; areParallel)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <a class="code" href="classActPhysics_1_1Line.html">ActPhysics::Line</a> aux {};</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keyword">auto</span> outVoxels {out-&gt;GetVoxels()};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keyword">auto</span> inVoxels {in-&gt;GetVoxels()};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                outVoxels.reserve(outVoxels.size() + inVoxels.size());</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                outVoxels.insert(outVoxels.end(), std::make_move_iterator(inVoxels.begin()),</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                                 std::make_move_iterator(inVoxels.end()));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                aux.<a class="code" href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">FitVoxels</a>(outVoxels);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="comment">// Compare Chi2</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="keyword">auto</span> newChi2 {aux.GetChi2()};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="comment">// oldChi2 is obtained by quadratic sum of chi2s</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="keyword">auto</span> oldChi2 {std::sqrt(std::pow(out-&gt;GetLine().GetChi2(), 2) + std::pow(in-&gt;GetLine().GetChi2(), 2))};</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="comment">// auto oldChi2 {std::max(out-&gt;GetLine().GetChi2(), in-&gt;GetLine().GetChi2())};</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordtype">bool</span> improvesFit {newChi2 &lt; chi2Factor * oldChi2};</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="comment">// std::cout &lt;&lt; &quot;old chi2 : &quot; &lt;&lt; oldChi2 &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="comment">// std::cout &lt;&lt; &quot;new chi2 :  &quot; &lt;&lt; newChi2 &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;---- MergeTracks verbose ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;for &lt;i,j&gt; : &lt;&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; j &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;i size : &quot;</span> &lt;&lt; out-&gt;GetSizeOfVoxels() &lt;&lt; <span class="stringliteral">&quot; j size : &quot;</span> &lt;&lt; in-&gt;GetSizeOfVoxels() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;dist &lt; distThresh ? : &quot;</span> &lt;&lt; dist &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; distThresh &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;are parallel ? : &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; areParallel &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;newChi2 &lt; f * oldChi2 ? : &quot;</span> &lt;&lt; newChi2 &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; chi2Factor * oldChi2 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="comment">// Then, move and erase in iterator!</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                <span class="keywordflow">if</span>(improvesFit)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; merging cluster : &quot;</span> &lt;&lt; in-&gt;GetClusterID()</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                  &lt;&lt; <span class="stringliteral">&quot; with size : &quot;</span> &lt;&lt; in-&gt;GetSizeOfVoxels() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot; with cluster out : &quot;</span> &lt;&lt; out-&gt;GetClusterID()</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                  &lt;&lt; <span class="stringliteral">&quot; and size : &quot;</span> &lt;&lt; out-&gt;GetSizeOfVoxels() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    <span class="keyword">auto</span>&amp; refVoxels {out-&gt;GetRefToVoxels()};</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                    refVoxels.insert(refVoxels.end(), std::make_move_iterator(inVoxels.begin()),</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                                     std::make_move_iterator(inVoxels.end()));</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                    <span class="comment">// Refit and recompute ranges</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                    out-&gt;ReFit();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                    out-&gt;ReFillSets();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                    <span class="comment">// Mark to delete afterwards!</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    toDelete.insert(j);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">// Indeed delete</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; idx : toDelete) <span class="comment">// toDelete is sorted in greater order</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        clusters-&gt;erase(clusters-&gt;begin() + idx);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
+<div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
+<div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition:</b> ActLine.h:19</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a97fdcea6a145a1ce4435ee99dc89b4b9"><div class="ttname"><a href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, bool correctOffset=true)</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:82</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:19</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8caa986e493b25377c425eddee3bd191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8caa986e493b25377c425eddee3bd191">&#9670;&nbsp;</a></span>RegionTypeAsStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ActAlgorithm::RegionTypeAsStr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">auto</span> it {<a class="code" href="namespaceActAlgorithm.html#a632776ec2c852a1b3d5d5721a838f4b6">kRegionTypeAsStr</a>.find(type)}; it != <a class="code" href="namespaceActAlgorithm.html#a632776ec2c852a1b3d5d5721a838f4b6">kRegionTypeAsStr</a>.end())</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="ttc" id="anamespaceActAlgorithm_html_a632776ec2c852a1b3d5d5721a838f4b6"><div class="ttname"><a href="namespaceActAlgorithm.html#a632776ec2c852a1b3d5d5721a838f4b6">ActAlgorithm::kRegionTypeAsStr</a></div><div class="ttdeci">const std::unordered_map&lt; RegionType, std::string &gt; kRegionTypeAsStr</div><div class="ttdef"><b>Definition:</b> ActRegion.h:21</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a632776ec2c852a1b3d5d5721a838f4b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a632776ec2c852a1b3d5d5721a838f4b6">&#9670;&nbsp;</a></span>kRegionTypeAsStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::unordered_map&lt;<a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a>, std::string&gt; ActAlgorithm::kRegionTypeAsStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{{RegionType::EBeam, <span class="stringliteral">&quot;Beam&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::ELight, <span class="stringliteral">&quot;Light&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::EHeavy, <span class="stringliteral">&quot;Heavy&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::ENone, <span class="stringliteral">&quot;None&quot;</span>}}</div>
 </div><!-- fragment -->
 </div>
 </div>
