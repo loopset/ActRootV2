@@ -4,6 +4,8 @@
 #include "Math/Point3D.h"
 
 #include <iostream>
+#include <string>
+#include <unordered_map>
 #include <utility>
 namespace ActAlgorithm
 {
@@ -15,6 +17,18 @@ enum class RegionType
     EHeavy,
     ENone
 };
+
+inline const std::unordered_map<RegionType, std::string> kRegionTypeAsStr {{RegionType::EBeam, "Beam"},
+                                                                           {RegionType::ELight, "Light"},
+                                                                           {RegionType::EHeavy, "Heavy"},
+                                                                           {RegionType::ENone, "None"}};
+
+inline std::string RegionTypeAsStr(RegionType type)
+{
+    if(auto it {kRegionTypeAsStr.find(type)}; it != kRegionTypeAsStr.end())
+        return it->second;
+    return "";
+}
 
 class Region
 {

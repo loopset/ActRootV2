@@ -4,6 +4,7 @@
 #include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActTPCData.h"
+#include "ActTPCDetector.h"
 #include "ActVFilter.h"
 
 #include "TStopwatch.h"
@@ -110,6 +111,7 @@ public:
     void SetTPCData(ActRoot::TPCData* data) override;
     std::vector<ActRoot::Cluster>* GetClusters() const { return fClusters; }
     std::vector<XYZPoint>* GetRPs() const { return fRPs; }
+    ActRoot::TPCParameters* GetTPCParameters() const { return fTPC; }
 
     // Read config file
     void ReadConfiguration() override;
@@ -158,10 +160,6 @@ private:
     void ResetIndex();
     // Print during execution of each step
     void PrintStep() const;
-    // Using matrix calculus, returns two closest point between two lines in 3D
-    std::tuple<XYZPoint, XYZPoint, double> ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB);
-    // Check if RP is valid according to ranges
-    bool IsRPValid(const XYZPoint& rp);
     // Get -very- preliminary theta to rank RPs
     double GetThetaAngle(const XYZVector& beam, const XYZVector& recoil);
     // Cluster preliminary reaction points
@@ -169,6 +167,6 @@ private:
     // Check whether two clusters overlap
     bool ClustersOverlap(ItType out, ItType in);
 };
-} // namespace ActCluster
+} // namespace ActAlgorithm
 
 #endif // !ActMultiStep_h

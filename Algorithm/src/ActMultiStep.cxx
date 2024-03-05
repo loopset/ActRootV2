@@ -1,5 +1,6 @@
 #include "ActMultiStep.h"
 
+#include "ActAlgoFuncs.h"
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
@@ -8,14 +9,10 @@
 #include "ActOptions.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
-#include "ActUtils.h"
 #include "ActVoxel.h"
 
 #include "TMath.h"
 #include "TMathBase.h"
-#include "TMatrixD.h"
-#include "TMatrixDfwd.h"
-#include "TMatrixF.h"
 #include "TStopwatch.h"
 
 #include "Math/Point3D.h"
@@ -749,52 +746,6 @@ void ActAlgorithm::MultiStep::DetermineBeamLikes()
     }
 }
 
-std::tuple<ActAlgorithm::MultiStep::XYZPoint, ActAlgorithm::MultiStep::XYZPoint, double>
-ActAlgorithm::MultiStep::ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB)
-{
-    // Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866
-    // 1-> Normalize all directions
-    vA = vA.Unit();
-    vB = vB.Unit();
-    // 2-> Get cross product and normalize it
-    auto vC {vB.Cross(vA)};
-    vC = vC.Unit();
-    // If lines are parallel, skip them
-    if(ActRoot::IsEqZero(vC.R()))
-        return {pA, pB, -1};
-    // 3-> Matrices to solve system of equations in Math StackExchange
-    TMatrixD left {3, 3}; // 3x3 matrix with double precision
-    // Fill left matrix with columns as each ABC vector
-    XYZVector vecs[3] {vA, -vB, vC};
-    for(int col = 0; col < 3; col++)
-    {
-        double components[3] {};
-        vecs[col].GetCoordinates(components);
-        for(int row = 0; row < 3; row++)
-            left[row][col] = components[row];
-    }
-    TMatrixD right {3, 1};
-    auto diff {pB - pA};
-    double components[3] {};
-    diff.GetCoordinates(components);
-    right.SetMatrixArray(components);
-    // 4-> Invert left to solve system
-    TMatrixD invLeft {TMatrixD::kInverted, left};
-    // 5-> Solve system of linear eqs
-    auto res {TMatrixD(invLeft, TMatrixD::kMult, right)};
-    // 6-> Return results {point in A, point in B, distance AB}
-    return {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};
-}
-
-bool ActAlgorithm::MultiStep::IsRPValid(const XYZPoint& rp)
-{
-    // This function has to consider the 0.5 offset
-    bool isInX {0.5 <= rp.X() && rp.X() <= (fTPC->GetNPADSX() - 1) + 0.5};
-    bool isInY {0.5 <= rp.Y() && rp.Y() <= (fTPC->GetNPADSY() - 1) + 0.5};
-    bool isInZ {0.5 <= rp.Z() && rp.Z() <= (fTPC->GetNPADSZ() - 1) + 0.5};
-    return isInX && isInY && isInZ;
-}
-
 double ActAlgorithm::MultiStep::GetThetaAngle(const XYZVector& beam, const XYZVector& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
@@ -938,9 +889,9 @@ void ActAlgorithm::MultiStep::FindPreliminaryRP()
             XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
 
             // Check that all points are valid
-            bool checkA {IsRPValid(pA)};
-            bool checkB {IsRPValid(pB)};
-            bool checkRP {IsRPValid(rp)};
+            bool checkA {IsRPValid(pA, fTPC)};
+            bool checkB {IsRPValid(pB, fTPC)};
+            bool checkRP {IsRPValid(rp, fTPC)};
             auto checkPoints {checkA && checkB && checkRP};
             // And finally that distance AB is bellow threshold
             bool checkDist {dist <= fRPDistThresh};
@@ -1401,9 +1352,9 @@ void ActAlgorithm::MultiStep::FindPreciseRP()
                     continue;
                 XYZPoint rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};
                 // Check that all points are valid
-                bool checkA {IsRPValid(a)};
-                bool checkB {IsRPValid(b)};
-                bool checkRP {IsRPValid(rp)};
+                bool checkA {IsRPValid(a, fTPC)};
+                bool checkB {IsRPValid(b, fTPC)};
+                bool checkRP {IsRPValid(rp, fTPC)};
                 auto checkPoints {checkA && checkB && checkRP};
                 // std::cout << "RP of " << out->GetClusterID() << " with " << in->GetClusterID() << '\n';
                 // std::cout << "at angle : " << theta << " is : " << rp << '\n';

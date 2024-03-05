@@ -1,6 +1,7 @@
 #include "ActCluster.h"
 
 #include "ActColors.h"
+#include "ActRegion.h"
 #include "ActVoxel.h"
 
 #include "Math/Point3D.h"
@@ -180,5 +181,6 @@ void ActRoot::Cluster::Print() const
     std::cout << "-> BreakBeam   ? " << std::boolalpha << fIsBreak << '\n';
     std::cout << "-> SplitRP     ? " << std::boolalpha << fIsSplit << '\n';
     std::cout << "-> IsToDelete  ? " << std::boolalpha << fToDelete << '\n';
+    std::cout << "-> RegionType  : " << ActAlgorithm::RegionTypeAsStr(fRegion) << '\n';
     std::cout << "...................." << RESET << '\n';
 }

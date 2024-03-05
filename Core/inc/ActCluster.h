@@ -2,9 +2,10 @@
 #define ActCluster_h
 
 #include "ActLine.h"
+#include "ActRegion.h"
 #include "ActVoxel.h"
 
-#include "Math/Point3D.h"
+#include "Math/Point3Dfwd.h"
 
 #include <map>
 #include <set>
@@ -37,6 +38,7 @@ private:
     bool fToDelete {false};
     bool fIsBreak {false};
     bool fIsSplit {false};
+    ActAlgorithm::RegionType fRegion {ActAlgorithm::RegionType::ENone};
 
 public:
     Cluster() = default;
@@ -56,6 +58,7 @@ public:
     bool GetToDelete() const { return fToDelete; }
     bool GetIsBreakBeam() const { return fIsBreak; }
     bool GetIsSplitRP() const { return fIsSplit; }
+    ActAlgorithm::RegionType GetRegionType() const { return fRegion; }
 
     void SetLine(const ActPhysics::Line& line) { fLine = line; }
     void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
@@ -66,6 +69,7 @@ public:
     void SetToDelete(bool toDelete) { fToDelete = toDelete; }
     void SetIsBreakBeam(bool hasValidRP) { fIsBreak = hasValidRP; }
     void SetIsSplitRP(bool split) { fIsSplit = split; }
+    void SetRegionType(ActAlgorithm::RegionType type) { fRegion = type; }
 
     // Adders of voxels
     void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back

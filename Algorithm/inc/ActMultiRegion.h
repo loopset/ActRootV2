@@ -2,12 +2,14 @@
 #define ActMultiRegion_h
 
 #include "ActCluster.h"
+#include "ActMultiStep.h"
 #include "ActRegion.h"
 #include "ActVFilter.h"
 #include "ActVoxel.h"
 
 #include "TStopwatch.h"
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -24,6 +26,19 @@ public:
 private:
     std::unordered_map<RegionType, Region> fRegions;
     std::unordered_map<RegionType, ClusterItVec> fAssign;
+
+    // Pointer to MultiStep
+    std::shared_ptr<ActAlgorithm::MultiStep> fMStep;
+
+    // Parameters of algorithm
+    bool fIsEnabled {};
+    // Merge of similar tracks
+    bool fEnableMerge {};
+    double fMergeDistThresh {};
+    double fMergeMinParallel {};
+    double fMergeChi2Factor {};
+    // RP
+    double fRPMaxDist {};
 
     // Time control
     std::vector<TStopwatch> fClocks;
@@ -42,14 +57,21 @@ public:
 
     void PrintReports() const override;
 
+    // Setters
+    void SetMultiStep(std::shared_ptr<MultiStep> step) { fMStep = step; }
+
+    // Getters
+    std::shared_ptr<MultiStep> GetMultiStep() const { return fMStep; }
+
 private:
     void AddRegion(unsigned int i, const std::vector<double>& vec);
-    std::string RegionTypeToStr(const RegionType& r) const;
     void BreakIntoRegions();
     RegionType AssignRangeToRegion(ClusterIt it);
     RegionType AssignVoxelToRegion(const ActRoot::Voxel& v);
-    bool BreakCluster(ClusterIt it, BrokenVoxels& broken, std::vector<RegionType>& assigments);
-    void ProcessNotBeam(BrokenVoxels& broken, std::vector<RegionType>& assigments);
+    bool BreakCluster(ClusterIt it, BrokenVoxels& broken);
+    void ProcessNotBeam(BrokenVoxels& broken);
+    void MergeClusters();
+    void Assign();
     void FindRP();
     void ResetIndex();
 };

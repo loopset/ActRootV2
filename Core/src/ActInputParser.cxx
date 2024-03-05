@@ -86,7 +86,7 @@ bool ActRoot::InputBlock::CheckTokenExists(const std::string& token, bool soft)
 {
     bool exists {static_cast<bool>(fValues.count(token))};
     if(!exists && !soft)
-        throw std::runtime_error("InputBlock::CheckTokenExists(): Token " + token + " does not exit in InputBlock");
+        throw std::runtime_error("InputBlock::CheckTokenExists(): Token " + token + " does not exist in InputBlock");
     return exists;
 }
 

@@ -1,5 +1,6 @@
 #include "ActMultiRegion.h"
 
+#include "ActAlgoFuncs.h"
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
@@ -8,6 +9,7 @@
 #include "ActVoxel.h"
 
 #include <algorithm>
+#include <ios>
 #include <iostream>
 #include <iterator>
 #include <stdexcept>
@@ -51,6 +53,24 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     for(const auto& [idx, vec] : regions)
         AddRegion(idx, vec);
 
+    // Enable global algorithm or not
+    if(mr->CheckTokenExists("IsEnabled", false))
+        fIsEnabled = mr->GetBool("IsEnabled");
+
+    // Parameters of Merge algorithm
+    if(mr->CheckTokenExists("EnableMerge"))
+        fEnableMerge = mr->GetBool("EnableMerge");
+    if(mr->CheckTokenExists("MergeDistThresh", !fEnableMerge))
+        fMergeDistThresh = mr->GetDouble("MergeDistThresh");
+    if(mr->CheckTokenExists("MergeMinParallel", !fEnableMerge))
+        fMergeMinParallel = mr->GetDouble("MergeMinParallel");
+    if(mr->CheckTokenExists("MergeChi2Factor", !fEnableMerge))
+        fMergeChi2Factor = mr->GetDouble("MergeChi2Factor");
+
+    // Parameters of find RP
+    if(mr->CheckTokenExists("RPMaxDist", !fIsEnabled))
+        fRPMaxDist = mr->GetDouble("RPMaxDist");
+
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
     fClocks.push_back({});
@@ -66,11 +86,18 @@ void ActAlgorithm::MultiRegion::Run()
 {
     // 0-> Reset previously set variables
     fAssign.clear();
+    if(!fIsEnabled)
+        return;
     // 1-> Break set vector of clusters into regions
     fClocks[0].Start(false);
     BreakIntoRegions();
     fClocks[0].Stop();
-    // 2-> Find reaction point
+    // 2-> Merge similar tracks
+    if(fEnableMerge)
+        MergeClusters();
+    // 3-> Assign regions!
+    Assign();
+    // 4-> Find RP
     FindRP();
     // Always reset index at the end
     ResetIndex();
@@ -103,7 +130,7 @@ ActAlgorithm::RegionType ActAlgorithm::MultiRegion::AssignVoxelToRegion(const Ac
     return RegionType::ENone;
 }
 
-void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken, std::vector<RegionType>& assignments)
+void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken)
 {
     fClocks[2].Start(false);
     // Auxiliar structure
@@ -129,7 +156,7 @@ void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken, std::vector
             for(int idx = 0, size = newClusters.size(); idx < size; idx++)
             {
                 newClusters[idx].SetClusterID(fData->fClusters.size() + idx);
-                assignments.push_back(name);
+                newClusters[idx].SetRegionType(name);
                 if(fIsVerbose)
                 {
                     std::cout << "-> Adding new cluster " << idx << '\n';
@@ -143,10 +170,10 @@ void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken, std::vector
     fClocks[2].Stop();
 }
 
-bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken, std::vector<RegionType>& assignments)
+bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken)
 {
     fClocks[1].Start(false);
-    assignments.push_back(RegionType::EBeam);
+    it->SetRegionType(RegionType::EBeam);
     // 1-> Attempt to break the beam region
     if(auto r {fRegions.find(RegionType::EBeam)}; r != fRegions.end())
     {
@@ -167,6 +194,11 @@ bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken,
         refVoxels.erase(part, refVoxels.end());
         if(fIsVerbose)
             std::cout << "   after size : " << refVoxels.size() << '\n';
+        // Refit
+        it->ReFit();
+        it->ReFillSets();
+        // Mark not to merge
+        it->SetToMerge(false);
     }
     fClocks[1].Stop();
     // Mark to delete is sized fell below threshold
@@ -178,9 +210,7 @@ bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken,
 void ActAlgorithm::MultiRegion::BreakIntoRegions()
 {
     if(fIsVerbose)
-        std::cout << BOLDCYAN << "---- MultiRegion Verbose ----" << '\n';
-    // 1-> Preliminar assignment and breaking of cluster
-    std::vector<RegionType> assignments;
+        std::cout << BOLDYELLOW << "---- MultiRegion Verbose ----" << '\n';
     // New voxels to process later
     BrokenVoxels broken;
     // Clusters to delete
@@ -192,12 +222,12 @@ void ActAlgorithm::MultiRegion::BreakIntoRegions()
         // If found, save and continue
         if(r != RegionType::ENone)
         {
-            assignments.push_back(r);
+            it->SetRegionType(r);
             continue;
         }
         else
         {
-            auto ok {BreakCluster(it, broken, assignments)};
+            auto ok {BreakCluster(it, broken)};
             // If size of remaining voxels is lower than Cluster algorithm threshold, mark to delete
             if(!ok)
                 toDelete.insert(std::distance(fData->fClusters.begin(), it));
@@ -206,27 +236,14 @@ void ActAlgorithm::MultiRegion::BreakIntoRegions()
     // 2-> Delete clusters
     for(const auto& idx : toDelete)
     {
-        assignments.erase(assignments.begin() + idx);
         fData->fClusters.erase(fData->fClusters.begin() + idx);
         if(fIsVerbose)
             std::cout << "-> Deleting cluster " << (fData->fClusters.begin() + idx)->GetClusterID() << '\n';
     }
 
     // 2-> Process the leftover voxels
-    ProcessNotBeam(broken, assignments);
-    // 3-> Definitive assignment with new clusters
-    // (push_back in the middle of the previous for loop could invalidate previously stored iterators)
-    if(fIsVerbose)
-        std::cout << "-> Region assignments :" << '\n';
-    for(int c = 0, size = fData->fClusters.size(); c < size; c++)
-    {
-        auto it {fData->fClusters.begin() + c};
-        auto r {assignments.at(c)};
-        fAssign[r].push_back(it);
-        // it->Print();
-        if(fIsVerbose)
-            std::cout << "   cluster #" << it->GetClusterID() << " at region : " << RegionTypeToStr(r) << '\n';
-    }
+    ProcessNotBeam(broken);
+    ResetIndex();
     if(fIsVerbose)
         std::cout << RESET << '\n';
 }
@@ -237,45 +254,121 @@ void ActAlgorithm::MultiRegion::ResetIndex()
         (fData->fClusters)[i].SetClusterID(i);
 }
 
-void ActAlgorithm::MultiRegion::FindRP()
+void ActAlgorithm::MultiRegion::Assign()
 {
-    for(const auto& [name, clusters] : fAssign)
+    for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
     {
-        if(fIsVerbose)
-        {
-            std::cout << BOLDYELLOW << "-> Region : " << RegionTypeToStr(name) << '\n';
-            for(const auto& cluster : clusters)
-            {
-                std::cout << "   Cluster #" << cluster->GetClusterID() << '\n';
-            }
-            std::cout << RESET;
-        }
+        fAssign[it->GetRegionType()].push_back(it);
     }
 }
 
-std::string ActAlgorithm::MultiRegion::RegionTypeToStr(const RegionType& r) const
+void ActAlgorithm::MultiRegion::FindRP()
 {
-    if(r == RegionType::EBeam)
-        return "Beam";
-    if(r == RegionType::ELight)
-        return "Light";
-    if(r == RegionType::EHeavy)
-        return "Heavy";
-    if(r == RegionType::ENone)
-        return "None";
-    return "";
+    typedef std::vector<std::pair<XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair of indexes as values
+    auto comp {[](const auto& l, const auto& r) { return l.first < r.first; }};
+    typedef std::set<std::pair<double, std::pair<XYZPoint, std::pair<int, int>>>, decltype(comp)> RPSet;
+    RPSet rps(comp);
+    // Verbose
+    if(fIsVerbose)
+    {
+        std::cout << BOLDGREEN << "---- FindRP verbose ----" << '\n';
+        for(const auto& [name, its] : fAssign)
+        {
+            std::cout << "-> Region : " << RegionTypeAsStr(name) << '\n';
+            for(const auto& it : its)
+                std::cout << "   cluster #" << it->GetClusterID() << '\n';
+        }
+    }
+    for(const auto& [oname, oclusters] : fAssign)
+    {
+        if(oname != RegionType::EBeam)
+            continue;
+        for(const auto& out : oclusters)
+        {
+            for(const auto& [iname, iclusters] : fAssign)
+            {
+                if(iname == RegionType::EBeam)
+                    continue;
+                for(const auto& in : iclusters)
+                {
+                    // Compute RP
+                    auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
+                                                       in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+                    // Get mean
+                    XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+                    // Ckeck all of them are valid
+                    auto okA {IsRPValid(pA, fMStep->GetTPCParameters())};
+                    auto okB {IsRPValid(pB, fMStep->GetTPCParameters())};
+                    auto okAB {IsRPValid(rp, fMStep->GetTPCParameters())};
+                    // Distance condition
+                    auto okDist {std::abs(dist) <= fRPMaxDist};
+                    // Verbose
+                    if(fIsVerbose)
+                    {
+                        std::cout << "······························" << '\n';
+                        std::cout << "<i, j> : <" << out->GetClusterID() << ", " << in->GetClusterID() << ">" << '\n';
+                        std::cout << "okA    : " << std::boolalpha << okA << '\n';
+                        std::cout << "okB    : " << std::boolalpha << okB << '\n';
+                        std::cout << "okAB   : " << std::boolalpha << okAB << '\n';
+                        std::cout << "okDist : " << std::boolalpha << okDist << '\n';
+                        std::cout << "dist   : " << dist << '\n';
+                    }
+                    if(okA && okB && okAB && okDist)
+                        rps.insert({dist, {rp, {out->GetClusterID(), in->GetClusterID()}}});
+                }
+            }
+        }
+    }
+
+
+    // Print
+    if(fIsVerbose)
+    {
+        for(const auto& [dist, data] : rps)
+        {
+            std::cout << "RP : " << data.first << " at <" << data.second.first << ", " << data.second.second << ">"
+                      << '\n';
+            std::cout << "dist : " << dist << '\n';
+        }
+        std::cout << RESET << '\n';
+    }
+
+    // Add to TPCData!
+    if(rps.size() > 0)
+        fData->fRPs.push_back(rps.begin()->second.first);
+}
+
+void ActAlgorithm::MultiRegion::MergeClusters()
+{
+    MergeSimilarClusters(&(fData->fClusters), fMergeDistThresh, fMergeMinParallel, fMergeChi2Factor, fIsVerbose);
+    // Reset index
+    ResetIndex();
 }
 
 void ActAlgorithm::MultiRegion::Print() const
 {
     std::cout << BOLDCYAN << "**** MultiRegion ****" << '\n';
-    for(const auto& [type, r] : fRegions)
+    std::cout << "-> IsEnabled   ? " << std::boolalpha << fIsEnabled << '\n';
+    if(fIsEnabled)
     {
-        std::cout << "-> Region : " << RegionTypeToStr(type) << '\n';
-        std::cout << "   ";
-        r.Print();
+        for(const auto& [type, r] : fRegions)
+        {
+            std::cout << "-> Region : " << RegionTypeAsStr(type) << '\n';
+            std::cout << "   ";
+            r.Print();
+        }
+        std::cout << "-> EnableMerge ? " << std::boolalpha << fEnableMerge << '\n';
+        if(fEnableMerge)
+        {
+            std::cout << "   MergeDistThresh  : " << fMergeDistThresh << '\n';
+            std::cout << "   MergeMinParallel : " << fMergeMinParallel << '\n';
+            std::cout << "   MergeChi2Factor  : " << fMergeChi2Factor << '\n';
+        }
+        std::cout << "-> RPMaxDist  : " << fRPMaxDist << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
+    // if(fMStep)
+    //     fMStep->Print();
 }
 
 void ActAlgorithm::MultiRegion::PrintReports() const
