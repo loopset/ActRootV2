@@ -138,6 +138,7 @@ public:
 
     // Others
     std::shared_ptr<ActAlgorithm::VCluster> GetCluster() const { return fCluster; }
+    std::shared_ptr<ActAlgorithm::VFilter> GetFilter() const { return fFilter; }
 
     template <typename T>
     std::shared_ptr<T> GetClusterAs() const

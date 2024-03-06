@@ -62,6 +62,7 @@ public:
 
     // Getters
     std::shared_ptr<MultiStep> GetMultiStep() const { return fMStep; }
+    const std::unordered_map<RegionType, Region> GetRegions() const { return fRegions; }
 
 private:
     void AddRegion(unsigned int i, const std::vector<double>& vec);
@@ -70,6 +71,7 @@ private:
     RegionType AssignVoxelToRegion(const ActRoot::Voxel& v);
     bool BreakCluster(ClusterIt it, BrokenVoxels& broken);
     void ProcessNotBeam(BrokenVoxels& broken);
+    void MarkToMerge();
     void MergeClusters();
     void Assign();
     void FindRP();

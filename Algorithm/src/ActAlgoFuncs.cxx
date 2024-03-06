@@ -9,6 +9,8 @@
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
 
+#include <ios>
+#include <iostream>
 #include <tuple>
 
 std::tuple<ActAlgorithm::XYZPoint, ActAlgorithm::XYZPoint, double>
@@ -64,6 +66,9 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
     std::sort(clusters->begin(), clusters->end(),
               [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
               { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
+    // Verbose
+    if(isVerbose)
+        std::cout << BOLDYELLOW << "---- MergeSimilarClusters ----" << '\n';
 
     // Set of indexes to delete
     std::set<int, std::greater<int>> toDelete {};
@@ -74,17 +79,28 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
         auto out {clusters->begin() + i};
         for(size_t j = 0, jsize = clusters->size(); j < jsize; j++)
         {
+            if(isVerbose)
+                std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
+
             bool isIinSet {toDelete.find(i) != toDelete.end()};
             bool isJinSet {toDelete.find(j) != toDelete.end()};
             if(i == j || isIinSet || isJinSet) // exclude comparison of same cluster and other already to be deleted
+            {
+                if(isVerbose)
+                    std::cout << "   skipping j" << '\n';
                 continue;
+            }
 
             // Get inner iterator
             auto in {clusters->begin() + j};
 
             // If any of them is set not to merge, do not do that :)
             if(!out->GetToMerge() || !in->GetToMerge())
+            {
+                if(isVerbose)
+                    std::cout << "   i or j are set not to merge" << '\n';
                 continue;
+            }
 
             // 1-> Compare by distance from gravity point to line!
             auto gravIn {in->GetLine().GetPoint()};
@@ -111,6 +127,12 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
             bool areParallel {std::abs(outDir.Dot(inDir)) > minParallelFactor};
             // std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
 
+            if(isVerbose)
+            {
+                std::cout << "-> dist < distThres ? " << dist << " < " << distThresh << '\n';
+                std::cout << "-> are parellel ? " << std::boolalpha << areParallel << '\n';
+            }
+
             // 3-> Check if fits improves
             if(isBelowThresh && areParallel)
             {
@@ -131,27 +153,17 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
                 // std::cout << "new chi2 :  " << newChi2 << '\n';
 
                 if(isVerbose)
-                {
-                    std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
-                    std::cout << "for <i,j> : <" << i << ", " << j << ">" << '\n';
-                    std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
-                    std::cout << "dist < distThresh ? : " << dist << " < " << distThresh << '\n';
-                    std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
                     std::cout << "newChi2 < f * oldChi2 ? : " << newChi2 << " < " << chi2Factor * oldChi2 << '\n';
-                    std::cout << "------------------------------" << RESET << '\n';
-                }
 
                 // Then, move and erase in iterator!
                 if(improvesFit)
                 {
                     if(isVerbose)
                     {
-                        std::cout << BOLDYELLOW << "------------------------------" << '\n';
                         std::cout << "-> merging cluster : " << in->GetClusterID()
                                   << " with size : " << in->GetSizeOfVoxels() << '\n';
                         std::cout << " with cluster out : " << out->GetClusterID()
                                   << " and size : " << out->GetSizeOfVoxels() << '\n';
-                        std::cout << "------------------------------" << RESET << '\n';
                     }
                     auto& refVoxels {out->GetRefToVoxels()};
                     refVoxels.insert(refVoxels.end(), std::make_move_iterator(inVoxels.begin()),
@@ -168,4 +180,6 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
     // Indeed delete
     for(const auto& idx : toDelete) // toDelete is sorted in greater order
         clusters->erase(clusters->begin() + idx);
+    if(isVerbose)
+        std::cout << RESET << '\n';
 }

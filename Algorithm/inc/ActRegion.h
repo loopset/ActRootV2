@@ -1,15 +1,17 @@
 #ifndef ActRegion_h
 #define ActRegion_h
 
-#include "Math/Point3D.h"
+#include "TGraph.h"
 
-#include <iostream>
+#include "Math/Point3Dfwd.h"
+
 #include <string>
 #include <unordered_map>
 #include <utility>
+
+
 namespace ActAlgorithm
 {
-
 enum class RegionType
 {
     EBeam,
@@ -49,25 +51,15 @@ public:
     const RegionPair& GetY() const { return fY; }
 
     // Other functions
-    inline void Print() const
-    {
-        std::cout << "X in [" << fX.first << ", " << fX.second << "], Y in [" << fY.first << ", " << fY.second << "]"
-                  << '\n';
-    }
+    void Print() const;
 
-    inline bool IsInside(const ROOT::Math::XYZPointF& p) const
-    {
-        return (fX.first <= p.X() && p.X() < fX.second) && (fY.first <= p.Y() && p.Y() < fY.second);
-    }
+    bool IsInside(const ROOT::Math::XYZPointF& p) const;
 
-    inline bool IsInside(const RangePair& x, const RangePair& y) const
-    {
-        bool condX {(fX.first <= x.first && x.first < fX.second) && (fX.first <= x.second && x.second < fX.second)};
-        bool condY {(fY.first <= y.first && y.first < fY.second) && (fY.first <= y.second && y.second < fY.second)};
-        return condX && condY;
-    }
+    bool IsInside(const RangePair& x, const RangePair& y) const;
 
-    inline RegionPair GetCentre() const { return {(fX.first + fX.second) / 2, (fY.first + fY.second) / 2}; }
+    RegionPair GetCentre() const;
+
+    void FillGraph(TGraph* g, TString proj, double minZ = 0, double maxZ = 0) const;
 };
 } // namespace ActAlgorithm
 

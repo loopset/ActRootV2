@@ -4,15 +4,18 @@
 #include "ActDetectorManager.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
+#include "ActMultiRegion.h"
 #include "ActOptions.h"
 #include "ActSilDetector.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
+#include "ActTypes.h"
 
 #include "Rtypes.h"
 
 #include "TCanvas.h"
 #include "TColor.h"
+#include "TGraph.h"
 #include "TH2.h"
 #include "TPolyMarker.h"
 #include "TString.h"
@@ -251,6 +254,7 @@ void ActRoot::HistogramPainter::Draw()
                 h->Draw("scat");
         }
     }
+    DrawRegions();
     DrawPolyLines();
     DrawPolyMarkers();
 
@@ -356,6 +360,40 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
             // Draw
             fCanvas->at(c)->cd(pad);
             proj->Draw("same");
+        }
+    }
+}
+
+void ActRoot::HistogramPainter::InitRegionGraphs()
+{
+    auto filter {fDetMan->GetDetectorAs<TPCDetector>()->GetFilter()};
+    if(auto casted {std::dynamic_pointer_cast<ActAlgorithm::MultiRegion>(filter)}; casted)
+    {
+        // 1-> Get regions
+        const auto& regions {casted->GetRegions()};
+        for(const auto& [name, region] : regions)
+        {
+            // XY
+            auto gxy {std::make_shared<TGraph>()};
+            region.FillGraph(gxy.get(), "xy", 0, fTPC->GetNPADSZUNREBIN());
+            // Style
+            gxy->SetFillStyle(3001);
+            gxy->SetFillColorAlpha(kGray, 0.05);
+            fGraphs[0][4].push_back(gxy);
+        }
+    }
+}
+
+void ActRoot::HistogramPainter::DrawRegions()
+{
+
+    for(auto& [c, map] : fGraphs)
+    {
+        for(auto& [pad, vec] : map)
+        {
+            fCanvas->at(c)->cd(pad);
+            for(auto& g : vec)
+                g->Draw("f same");
         }
     }
 }

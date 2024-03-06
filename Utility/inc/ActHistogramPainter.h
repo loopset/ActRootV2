@@ -7,6 +7,7 @@
 #include "ActTPCDetector.h"
 
 #include "TCanvas.h"
+#include "TGraph.h"
 #include "TH2.h"
 #include "TPolyLine.h"
 #include "TPolyMarker.h"
@@ -29,6 +30,7 @@ public:
     using Histo1DMap = std::map<int, std::shared_ptr<TH1F>>;
     using LineMap = std::map<int, std::vector<std::shared_ptr<TPolyLine>>>;
     using MarkerMap = std::map<int, std::shared_ptr<TPolyMarker>>;
+    using GraphMap = std::map<int, std::vector<std::shared_ptr<TGraph>>>;
 
 private:
     // Canvases, from EventPainter
@@ -36,6 +38,9 @@ private:
 
     // Pointer to Wrapper
     InputWrapper* fWrap {};
+
+    // Pointer to DetMan
+    DetectorManager* fDetMan {};
 
     // Histograms
     std::map<int, Histo2DMap> fHist2D;
@@ -46,6 +51,7 @@ private:
     std::map<int, std::shared_ptr<TH2F>> fHistSil;
     std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
     std::map<int, std::shared_ptr<TPolyMarker>> fMarkerTpc;
+    std::map<int, GraphMap> fGraphs;
 
     // Parameters of detectors
     TPCParameters* fTPC {};
@@ -72,6 +78,13 @@ public:
     // Send wrapper pointer
     void SendInputWrapper(InputWrapper* wrap) { fWrap = wrap; }
 
+    // Send detector manager
+    void SendDetectorManager(DetectorManager* detman)
+    {
+        fDetMan = detman;
+        InitRegionGraphs();
+    }
+
     // TCanvas
     void SendCanvas(std::vector<TCanvas*>* canv)
     {
@@ -89,6 +102,8 @@ private:
     void FillVoxelsHisto();
     void FillSilHisto(int pad, const std::string& layer);
     void FillClusterHistos();
+    void InitRegionGraphs();
+    void DrawRegions();
     void DrawPolyLines();
     void DrawPolyMarkers();
     void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);

@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
         ActRoot::HistogramPainter server {};
         server.SendInputWrapper(&in);
         server.SendParameters(&detman);
+        server.SendDetectorManager(&detman);
 
         ActRoot::EventPainter painter {gClient->GetRoot(), 800, 600};
         painter.SendDetectorManager(&detman);

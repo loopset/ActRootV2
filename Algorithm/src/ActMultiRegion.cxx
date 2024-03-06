@@ -9,6 +9,7 @@
 #include "ActVoxel.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <ios>
 #include <iostream>
 #include <iterator>
@@ -91,6 +92,7 @@ void ActAlgorithm::MultiRegion::Run()
     // 1-> Break set vector of clusters into regions
     fClocks[0].Start(false);
     BreakIntoRegions();
+    MarkToMerge();
     fClocks[0].Stop();
     // 2-> Merge similar tracks
     if(fEnableMerge)
@@ -197,8 +199,6 @@ bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken)
         // Refit
         it->ReFit();
         it->ReFillSets();
-        // Mark not to merge
-        it->SetToMerge(false);
     }
     fClocks[1].Stop();
     // Mark to delete is sized fell below threshold
@@ -336,6 +336,20 @@ void ActAlgorithm::MultiRegion::FindRP()
     // Add to TPCData!
     if(rps.size() > 0)
         fData->fRPs.push_back(rps.begin()->second.first);
+}
+
+void ActAlgorithm::MultiRegion::MarkToMerge()
+{
+    auto comp {[](const auto& l, const auto& r) { return l.second > r.second; }};
+    std::set<std::pair<ClusterIt, int>, decltype(comp)> sizes(comp);
+    for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+    {
+        if(it->GetRegionType() == RegionType::EBeam)
+            sizes.insert({it, it->GetSizeOfVoxels()});
+    }
+    // Only mark not to delete cluster in beam region with the biggest size
+    if(sizes.size() > 0)
+        sizes.begin()->first->SetToMerge(false);
 }
 
 void ActAlgorithm::MultiRegion::MergeClusters()
