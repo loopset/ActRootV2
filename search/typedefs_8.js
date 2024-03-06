@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ptrfunc_2750',['PtrFunc',['../classActPhysics_1_1SRIM.html#ac500c3b5c3fd636b3b97118a5dbc3e3c',1,'ActPhysics::SRIM']]],
-  ['ptrspline_2751',['PtrSpline',['../classActPhysics_1_1SRIM.html#aa56eb855530b560ad1d7c9c1877b110d',1,'ActPhysics::SRIM']]]
+  ['optional_5findex_2766',['optional_index',['../namespaceBS_1_1this__thread.html#a1cc265a7867e43fe26b8db770462a7d1',1,'BS::this_thread']]],
+  ['optional_5fpool_2767',['optional_pool',['../namespaceBS_1_1this__thread.html#a133b2a6d8fc3bd01b23dd12bada83a33',1,'BS::this_thread']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['histo1dmap_2742',['Histo1DMap',['../classActRoot_1_1HistogramPainter.html#afcad7c2c961a577147c263127f37ed50',1,'ActRoot::HistogramPainter']]],
-  ['histo2dmap_2743',['Histo2DMap',['../classActRoot_1_1HistogramPainter.html#a45902371538229cd5834158ed901ff8e',1,'ActRoot::HistogramPainter']]]
+  ['graphmap_2759',['GraphMap',['../classActRoot_1_1HistogramPainter.html#ad4b65b23cbd442e66ba0b5bd10f74ef1',1,'ActRoot::HistogramPainter']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['markermap_2747',['MarkerMap',['../classActRoot_1_1HistogramPainter.html#a4e4607dfca02f4288d1074d971c10e91',1,'ActRoot::HistogramPainter']]]
+  ['linemap_2763',['LineMap',['../classActRoot_1_1HistogramPainter.html#abd0104d4af047797df62acab8dc221b2',1,'ActRoot::HistogramPainter']]],
+  ['lorentzboostx_2764',['LorentzBoostX',['../classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2',1,'ActPhysics::Kinematics']]]
 ];

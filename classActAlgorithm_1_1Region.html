@@ -101,8 +101,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa608a71b3266193c5bd197f873f483a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8189937de30d2d1cd2a74d14723fee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#acd8189937de30d2d1cd2a74d14723fee">IsInside</a> (const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;x, const <a class="el" href="classActAlgorithm_1_1Region.html#aa1e3eef1a964d4ae0a93ab5bb8e32598">RangePair</a> &amp;y) const</td></tr>
 <tr class="separator:acd8189937de30d2d1cd2a74d14723fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9789715fda632232c9cba2cdb7fee60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">RegionPair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#ab9789715fda632232c9cba2cdb7fee60">GetCentre</a> () const</td></tr>
-<tr class="separator:ab9789715fda632232c9cba2cdb7fee60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1103066cb6ccb7eeccf3345382f8331"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">RegionPair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#ae1103066cb6ccb7eeccf3345382f8331">GetCentre</a> () const</td></tr>
+<tr class="separator:ae1103066cb6ccb7eeccf3345382f8331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa316e9fb30d39cc8fcaaffc88cfe4a40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Region.html#aa316e9fb30d39cc8fcaaffc88cfe4a40">FillGraph</a> (TGraph *g, TString proj, double minZ=0, double maxZ=0) const</td></tr>
+<tr class="separator:aa316e9fb30d39cc8fcaaffc88cfe4a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -211,36 +213,97 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;: <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>(xmin, xmax), <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>(ymin, ymax) {}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a2ed727150b3e42a93e122290e4d3ac6d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">ActAlgorithm::Region::fX</a></div><div class="ttdeci">RegionPair fX</div><div class="ttdef"><b>Definition:</b> ActRegion.h:40</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a6f958446796680e96f2c151ce6e4d52d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">ActAlgorithm::Region::fY</a></div><div class="ttdeci">RegionPair fY</div><div class="ttdef"><b>Definition:</b> ActRegion.h:41</div></div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;: <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>(xmin, xmax), <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>(ymin, ymax) {}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a2ed727150b3e42a93e122290e4d3ac6d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">ActAlgorithm::Region::fX</a></div><div class="ttdeci">RegionPair fX</div><div class="ttdef"><b>Definition:</b> ActRegion.h:42</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Region_html_a6f958446796680e96f2c151ce6e4d52d"><div class="ttname"><a href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">ActAlgorithm::Region::fY</a></div><div class="ttdeci">RegionPair fY</div><div class="ttdef"><b>Definition:</b> ActRegion.h:43</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab9789715fda632232c9cba2cdb7fee60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9789715fda632232c9cba2cdb7fee60">&#9670;&nbsp;</a></span>GetCentre()</h2>
+<a id="aa316e9fb30d39cc8fcaaffc88cfe4a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa316e9fb30d39cc8fcaaffc88cfe4a40">&#9670;&nbsp;</a></span>FillGraph()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">RegionPair</a> ActAlgorithm::Region::GetCentre </td>
+          <td class="memname">void ActAlgorithm::Region::FillGraph </td>
+          <td>(</td>
+          <td class="paramtype">TGraph *&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>proj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>minZ</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>maxZ</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    proj.ToLower();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span>(proj == <span class="stringliteral">&quot;xy&quot;</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        g-&gt;SetPoint(0, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        g-&gt;SetPoint(1, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        g-&gt;SetPoint(2, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        g-&gt;SetPoint(3, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        g-&gt;SetPoint(4, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span>(proj == <span class="stringliteral">&quot;xz&quot;</span>)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        g-&gt;SetPoint(0, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, minZ);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        g-&gt;SetPoint(1, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, maxZ);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        g-&gt;SetPoint(2, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second, maxZ);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        g-&gt;SetPoint(3, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second, minZ);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        g-&gt;SetPoint(4, <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first, minZ);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span>(proj == <span class="stringliteral">&quot;yz&quot;</span>)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        g-&gt;SetPoint(0, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first, minZ);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        g-&gt;SetPoint(1, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first, maxZ);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        g-&gt;SetPoint(2, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second, maxZ);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        g-&gt;SetPoint(3, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second, minZ);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        g-&gt;SetPoint(4, <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first, minZ);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae1103066cb6ccb7eeccf3345382f8331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1103066cb6ccb7eeccf3345382f8331">&#9670;&nbsp;</a></span>GetCentre()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActAlgorithm_1_1Region.html#a670ff66dd9a1b4d385a9122ef8c5a9af">ActAlgorithm::Region::RegionPair</a> ActAlgorithm::Region::GetCentre </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{ <span class="keywordflow">return</span> {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) / 2, (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) / 2}; }</div>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) / 2, (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first + <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) / 2};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -266,7 +329,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -292,7 +355,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -301,9 +364,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool ActAlgorithm::Region::IsInside </td>
@@ -323,17 +383,13 @@ Private Attributes</h2></td></tr>
           <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">bool</span> condX {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.first &amp;&amp; x.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.second &amp;&amp; x.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second)};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">bool</span> condY {(<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.first &amp;&amp; y.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.second &amp;&amp; y.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second)};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> condX &amp;&amp; condY;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> condX {(<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.first &amp;&amp; x.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= x.second &amp;&amp; x.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second)};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> condY {(<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.first &amp;&amp; y.first &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= y.second &amp;&amp; y.second &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second)};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">return</span> condX &amp;&amp; condY;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -342,9 +398,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool ActAlgorithm::Region::IsInside </td>
@@ -354,15 +407,10 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= p.X() &amp;&amp; p.X() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= p.Y() &amp;&amp; p.Y() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;= p.X() &amp;&amp; p.X() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second) &amp;&amp; (<a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;= p.Y() &amp;&amp; p.Y() &lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -371,9 +419,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ActAlgorithm::Region::Print </td>
@@ -382,16 +427,10 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;X in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second &lt;&lt; <span class="stringliteral">&quot;], Y in [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second &lt;&lt; <span class="stringliteral">&quot;]&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;X  [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">fX</a>.second &lt;&lt; <span class="stringliteral">&quot;], Y [&quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Region.html#a6f958446796680e96f2c151ce6e4d52d">fY</a>.second &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -440,8 +479,9 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Algorithm/inc/<a class="el" href="ActRegion_8h_source.html">ActRegion.h</a></li>
+<li>Algorithm/src/<a class="el" href="ActRegion_8cxx.html">ActRegion.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
