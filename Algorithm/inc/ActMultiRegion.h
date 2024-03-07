@@ -2,14 +2,13 @@
 #define ActMultiRegion_h
 
 #include "ActCluster.h"
-#include "ActMultiStep.h"
 #include "ActRegion.h"
+#include "ActTPCDetector.h"
 #include "ActVFilter.h"
 #include "ActVoxel.h"
 
 #include "TStopwatch.h"
 
-#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -25,20 +24,29 @@ public:
 
 private:
     std::unordered_map<RegionType, Region> fRegions;
-    std::unordered_map<RegionType, ClusterItVec> fAssign;
 
-    // Pointer to MultiStep
-    std::shared_ptr<ActAlgorithm::MultiStep> fMStep;
+    // Pointer to TPCParameters
+    ActRoot::TPCParameters* fTPC {};
 
     // Parameters of algorithm
     bool fIsEnabled {};
+    // Determine beam-likes
+    double fBlXDirThresh {};
+    double fBLXBegin {};
     // Merge of similar tracks
     bool fEnableMerge {};
     double fMergeDistThresh {};
     double fMergeMinParallel {};
     double fMergeChi2Factor {};
+    // Cleaning of clusters
+    bool fEnableClean {};
+    double fCleanCylinderR {};
+    int fCleanMinVoxels {};
+    double fCleanMaxChi2 {};
     // RP
     double fRPMaxDist {};
+    double fRPClusterDist {};
+    bool fRPDelete {};
 
     // Time control
     std::vector<TStopwatch> fClocks;
@@ -58,24 +66,28 @@ public:
     void PrintReports() const override;
 
     // Setters
-    void SetMultiStep(std::shared_ptr<MultiStep> step) { fMStep = step; }
+    void SetTPCParameters(ActRoot::TPCParameters* pars) { fTPC = pars; }
 
     // Getters
-    std::shared_ptr<MultiStep> GetMultiStep() const { return fMStep; }
     const std::unordered_map<RegionType, Region> GetRegions() const { return fRegions; }
+    ActRoot::TPCParameters* GetTPCParameters() const { return fTPC; }
 
 private:
     void AddRegion(unsigned int i, const std::vector<double>& vec);
+    void CheckRegions();
     void BreakIntoRegions();
     RegionType AssignRangeToRegion(ClusterIt it);
     RegionType AssignVoxelToRegion(const ActRoot::Voxel& v);
     bool BreakCluster(ClusterIt it, BrokenVoxels& broken);
     void ProcessNotBeam(BrokenVoxels& broken);
-    void MarkToMerge();
     void MergeClusters();
-    void Assign();
+    void MarkBeamLikes();
+    // void Assign();
+    void CleanClusters();
+    void Sort();
     void FindRP();
-    void ResetIndex();
+    void DeleteAfterRP();
+    void ResetID();
 };
 } // namespace ActAlgorithm
 

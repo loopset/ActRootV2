@@ -7,6 +7,7 @@
 #include "Math/Vector3Dfwd.h"
 
 #include <tuple>
+#include <utility>
 #include <vector>
 
 // forward declararions
@@ -19,6 +20,9 @@ namespace ActAlgorithm
 {
 typedef ROOT::Math::XYZPointF XYZPoint;
 typedef ROOT::Math::XYZVectorF XYZVector;
+typedef std::pair<XYZPoint, std::pair<int, int>> RPElement;
+typedef std::vector<RPElement> RPVector;
+typedef std::pair<XYZPoint, std::set<int>> RPSet;
 
 // RP computation in 3D
 std::tuple<XYZPoint, XYZPoint, double> ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB);
@@ -29,6 +33,16 @@ bool IsRPValid(const XYZPoint& rp, ActRoot::TPCParameters* tpc);
 // Merge similar tracks is now a commom function!
 void MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters, double distThresh, double minParallelFactor,
                           double chi2Factor, bool isVerbose = false);
+
+// Clean voxels in cylinder
+void CylinderCleaning(std::vector<ActRoot::Cluster>* cluster, double cylinderR, int minVoxels, bool isVerbose = false);
+
+// Clean bad fit or with large chi2
+void Chi2AndSizeCleaning(std::vector<ActRoot::Cluster>* cluster, double chi2Threh, int minVoxels = -1,
+                         bool isVerbose = false);
+
+// Simplified version of a cluster of RP points. Returns mean of RPs close enough (given a threshold)
+RPSet SimplifyRPs(const RPVector& rps, double distThresh);
 
 } // namespace ActAlgorithm
 

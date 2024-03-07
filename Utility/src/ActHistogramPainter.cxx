@@ -9,7 +9,6 @@
 #include "ActSilDetector.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
-#include "ActTypes.h"
 
 #include "Rtypes.h"
 
@@ -336,30 +335,32 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
     auto data {fWrap->GetTPCDataClone2()};
 
     // Init
-    fMarkers[0][4] = std::make_shared<TPolyMarker>();
-    fMarkers[0][5] = std::make_shared<TPolyMarker>();
-    fMarkers[0][6] = std::make_shared<TPolyMarker>();
     for(const auto& rp : data->fRPs)
     {
         // Pad
-        fMarkers[0][4]->SetNextPoint(rp.X(), rp.Y());
+        fMarkers[0][4].push_back(std::make_shared<TPolyMarker>());
+        fMarkers[0][4].back()->SetNextPoint(rp.X(), rp.Y());
         // Side
-        fMarkers[0][5]->SetNextPoint(rp.X(), rp.Z() * fTPC->GetREBINZ());
+        fMarkers[0][5].push_back(std::make_shared<TPolyMarker>());
+        fMarkers[0][5].back()->SetNextPoint(rp.X(), rp.Z() * fTPC->GetREBINZ());
         // Front
-        fMarkers[0][6]->SetNextPoint(rp.Y(), rp.Z() * fTPC->GetREBINZ());
+        fMarkers[0][6].push_back(std::make_shared<TPolyMarker>());
+        fMarkers[0][6].back()->SetNextPoint(rp.Y(), rp.Z() * fTPC->GetREBINZ());
     }
     // Set marker style and draw
     for(auto& [c, map] : fMarkers)
     {
-        for(auto& [pad, proj] : map)
+        for(auto& [pad, markers] : map)
         {
-            proj->SetMarkerStyle(58);
-            proj->SetMarkerSize(2);
-            proj->SetMarkerColor(kRed);
-
-            // Draw
             fCanvas->at(c)->cd(pad);
-            proj->Draw("same");
+            for(auto& marker : markers)
+            {
+                marker->SetMarkerStyle(58);
+                marker->SetMarkerSize(2);
+                marker->SetMarkerColor(kRed);
+
+                marker->Draw("same");
+            }
         }
     }
 }
@@ -376,10 +377,21 @@ void ActRoot::HistogramPainter::InitRegionGraphs()
             // XY
             auto gxy {std::make_shared<TGraph>()};
             region.FillGraph(gxy.get(), "xy", 0, fTPC->GetNPADSZUNREBIN());
-            // Style
-            gxy->SetFillStyle(3001);
-            gxy->SetFillColorAlpha(kGray, 0.05);
             fGraphs[0][4].push_back(gxy);
+            // XZ
+            auto gxz {std::make_shared<TGraph>()};
+            region.FillGraph(gxz.get(), "xz", 0, fTPC->GetNPADSZUNREBIN());
+            fGraphs[0][5].push_back(gxz);
+            // YZ
+            auto gyz {std::make_shared<TGraph>()};
+            region.FillGraph(gyz.get(), "yz", 0, fTPC->GetNPADSZUNREBIN());
+            fGraphs[0][6].push_back(gyz);
+            // Set style
+            for(auto& g : {gxy, gxz, gyz})
+            {
+                g->SetFillStyle(3003);
+                g->SetFillColor(kGray + 1);
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ public:
     using Histo2DMap = std::map<int, std::shared_ptr<TH2F>>;
     using Histo1DMap = std::map<int, std::shared_ptr<TH1F>>;
     using LineMap = std::map<int, std::vector<std::shared_ptr<TPolyLine>>>;
-    using MarkerMap = std::map<int, std::shared_ptr<TPolyMarker>>;
+    using MarkerMap = std::map<int, std::vector<std::shared_ptr<TPolyMarker>>>;
     using GraphMap = std::map<int, std::vector<std::shared_ptr<TGraph>>>;
 
 private:

@@ -51,6 +51,7 @@ public:
     ActPhysics::Line& GetRefToLine() { return fLine; } // non-const: allows to change inner variable
     const std::vector<ActRoot::Voxel>& GetVoxels() const { return fVoxels; }
     std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; } // non-const: allows to change inner variable
+    std::vector<ActRoot::Voxel>* GetPtrToVoxels() { return &fVoxels; }
     int GetSizeOfVoxels() const { return fVoxels.size(); }
     int GetClusterID() const { return fClusterID; }
     bool GetIsBeamLike() const { return fIsBeamLike; }

@@ -20,9 +20,7 @@
 
 #include <algorithm>
 #include <cmath>
-#include <cstddef>
 #include <cstdlib>
-#include <functional>
 #include <ios>
 #include <iostream>
 #include <iterator>
@@ -588,115 +586,119 @@ void ActAlgorithm::MultiStep::BreakTrackClusters()
 
 void ActAlgorithm::MultiStep::MergeSimilarTracks()
 {
-    // Sort clusters by increasing voxel size
-    std::sort(fClusters->begin(), fClusters->end(),
-              [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
-              { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
-
-    // Set of indexes to delete
-    std::set<int, std::greater<int>> toDelete {};
-    // Run!
-    for(size_t i = 0, isize = fClusters->size(); i < isize; i++)
-    {
-        // Get clusters as iterators
-        auto out {fClusters->begin() + i};
-        for(size_t j = 0, jsize = fClusters->size(); j < jsize; j++)
-        {
-            bool isIinSet {toDelete.find(i) != toDelete.end()};
-            bool isJinSet {toDelete.find(j) != toDelete.end()};
-            if(i == j || isIinSet || isJinSet) // exclude comparison of same cluster and other already to be deleted
-                continue;
-
-            // Get inner iterator
-            auto in {fClusters->begin() + j};
-
-            // If any of them is set not to merge, do not do that :)
-            if(!out->GetToMerge() || !in->GetToMerge())
-                continue;
-
-            // 1-> Compare by distance from gravity point to line!
-            auto gravIn {in->GetLine().GetPoint()};
-            auto distIn {out->GetLine().DistanceLineToPoint(gravIn)};
-            auto gravOut {out->GetLine().GetPoint()};
-            auto distOut {in->GetLine().DistanceLineToPoint(gravOut)};
-            auto dist {std::max(distIn, distOut)};
-            // Get threshold distance to merge
-            bool isBelowThresh {dist <= fMergeDistThreshold};
-            // auto threshIn {in->GetLine().GetChi2()};
-            // auto threshOut {out->GetLine().GetChi2()};
-            // auto distThresh {std::max(threshIn, threshOut)};
-            // bool isBelowThresh {dist < std::sqrt(distThresh)};
-            // std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
-            // std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
-            // std::cout << "gravOut" << gravOut << " gravIn : " << gravIn << '\n';
-            // std::cout << "dist : " << dist << '\n';
-            // std::cout << "distThresh: " << distThresh << '\n';
-            // std::cout << "------------------" << '\n';
-
-            // 2-> Compare by paralelity
-            auto outDir {out->GetLine().GetDirection().Unit()};
-            auto inDir {in->GetLine().GetDirection().Unit()};
-            bool areParallel {std::abs(outDir.Dot(inDir)) > fMergeMinParallelFactor};
-            // std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
-
-            // 3-> Check if fits improves
-            if(isBelowThresh && areParallel)
-            {
-                ActPhysics::Line aux {};
-                auto outVoxels {out->GetVoxels()};
-                auto inVoxels {in->GetVoxels()};
-                outVoxels.reserve(outVoxels.size() + inVoxels.size());
-                outVoxels.insert(outVoxels.end(), std::make_move_iterator(inVoxels.begin()),
-                                 std::make_move_iterator(inVoxels.end()));
-                aux.FitVoxels(outVoxels);
-                // Compare Chi2
-                auto newChi2 {aux.GetChi2()};
-                // oldChi2 is obtained by quadratic sum of chi2s
-                auto oldChi2 {std::sqrt(std::pow(out->GetLine().GetChi2(), 2) + std::pow(in->GetLine().GetChi2(), 2))};
-                // auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
-                bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
-                // std::cout << "old chi2 : " << oldChi2 << '\n';
-                // std::cout << "new chi2 :  " << newChi2 << '\n';
-
-                if(fIsVerbose)
-                {
-                    std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
-                    std::cout << "for <i,j> : <" << i << ", " << j << ">" << '\n';
-                    std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
-                    std::cout << "dist < distThresh ? : " << dist << " < " << fMergeDistThreshold << '\n';
-                    std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
-                    std::cout << "newChi2 < f * oldChi2 ? : " << newChi2 << " < " << fMergeChi2CoverageFactor * oldChi2
-                              << '\n';
-                    std::cout << "------------------------------" << RESET << '\n';
-                }
-
-                // Then, move and erase in iterator!
-                if(improvesFit)
-                {
-                    if(fIsVerbose)
-                    {
-                        std::cout << BOLDYELLOW << "------------------------------" << '\n';
-                        std::cout << "-> merging cluster : " << in->GetClusterID()
-                                  << " with size : " << in->GetSizeOfVoxels() << '\n';
-                        std::cout << " with cluster out : " << out->GetClusterID()
-                                  << " and size : " << out->GetSizeOfVoxels() << '\n';
-                        std::cout << "------------------------------" << RESET << '\n';
-                    }
-                    auto& refVoxels {out->GetRefToVoxels()};
-                    refVoxels.insert(refVoxels.end(), std::make_move_iterator(inVoxels.begin()),
-                                     std::make_move_iterator(inVoxels.end()));
-                    // Refit and recompute ranges
-                    out->ReFit();
-                    out->ReFillSets();
-                    // Mark to delete afterwards!
-                    toDelete.insert(j);
-                }
-            }
-        }
-    }
-    // Indeed delete
-    for(const auto& idx : toDelete) // toDelete is sorted in greater order
-        fClusters->erase(fClusters->begin() + idx);
+    // Use general function
+    MergeSimilarClusters(fClusters, fMergeDistThreshold, fMergeMinParallelFactor, fMergeChi2CoverageFactor, fIsVerbose);
+    // // Sort clusters by increasing voxel size
+    // std::sort(fClusters->begin(), fClusters->end(),
+    //           [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
+    //           { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
+    //
+    // // Set of indexes to delete
+    // std::set<int, std::greater<int>> toDelete {};
+    // // Run!
+    // for(size_t i = 0, isize = fClusters->size(); i < isize; i++)
+    // {
+    //     // Get clusters as iterators
+    //     auto out {fClusters->begin() + i};
+    //     for(size_t j = 0, jsize = fClusters->size(); j < jsize; j++)
+    //     {
+    //         bool isIinSet {toDelete.find(i) != toDelete.end()};
+    //         bool isJinSet {toDelete.find(j) != toDelete.end()};
+    //         if(i == j || isIinSet || isJinSet) // exclude comparison of same cluster and other already to be deleted
+    //             continue;
+    //
+    //         // Get inner iterator
+    //         auto in {fClusters->begin() + j};
+    //
+    //         // If any of them is set not to merge, do not do that :)
+    //         if(!out->GetToMerge() || !in->GetToMerge())
+    //             continue;
+    //
+    //         // 1-> Compare by distance from gravity point to line!
+    //         auto gravIn {in->GetLine().GetPoint()};
+    //         auto distIn {out->GetLine().DistanceLineToPoint(gravIn)};
+    //         auto gravOut {out->GetLine().GetPoint()};
+    //         auto distOut {in->GetLine().DistanceLineToPoint(gravOut)};
+    //         auto dist {std::max(distIn, distOut)};
+    //         // Get threshold distance to merge
+    //         bool isBelowThresh {dist <= fMergeDistThreshold};
+    //         // auto threshIn {in->GetLine().GetChi2()};
+    //         // auto threshOut {out->GetLine().GetChi2()};
+    //         // auto distThresh {std::max(threshIn, threshOut)};
+    //         // bool isBelowThresh {dist < std::sqrt(distThresh)};
+    //         // std::cout << "<i, j> : <" << i << ", " << j << ">" << '\n';
+    //         // std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() << '\n';
+    //         // std::cout << "gravOut" << gravOut << " gravIn : " << gravIn << '\n';
+    //         // std::cout << "dist : " << dist << '\n';
+    //         // std::cout << "distThresh: " << distThresh << '\n';
+    //         // std::cout << "------------------" << '\n';
+    //
+    //         // 2-> Compare by paralelity
+    //         auto outDir {out->GetLine().GetDirection().Unit()};
+    //         auto inDir {in->GetLine().GetDirection().Unit()};
+    //         bool areParallel {std::abs(outDir.Dot(inDir)) > fMergeMinParallelFactor};
+    //         // std::cout << "Parallel factor : " << std::abs(outDir.Dot(inDir)) << '\n';
+    //
+    //         // 3-> Check if fits improves
+    //         if(isBelowThresh && areParallel)
+    //         {
+    //             ActPhysics::Line aux {};
+    //             auto outVoxels {out->GetVoxels()};
+    //             auto inVoxels {in->GetVoxels()};
+    //             outVoxels.reserve(outVoxels.size() + inVoxels.size());
+    //             outVoxels.insert(outVoxels.end(), std::make_move_iterator(inVoxels.begin()),
+    //                              std::make_move_iterator(inVoxels.end()));
+    //             aux.FitVoxels(outVoxels);
+    //             // Compare Chi2
+    //             auto newChi2 {aux.GetChi2()};
+    //             // oldChi2 is obtained by quadratic sum of chi2s
+    //             auto oldChi2 {std::sqrt(std::pow(out->GetLine().GetChi2(), 2) + std::pow(in->GetLine().GetChi2(),
+    //             2))};
+    //             // auto oldChi2 {std::max(out->GetLine().GetChi2(), in->GetLine().GetChi2())};
+    //             bool improvesFit {newChi2 < fMergeChi2CoverageFactor * oldChi2};
+    //             // std::cout << "old chi2 : " << oldChi2 << '\n';
+    //             // std::cout << "new chi2 :  " << newChi2 << '\n';
+    //
+    //             if(fIsVerbose)
+    //             {
+    //                 std::cout << BOLDYELLOW << "---- MergeTracks verbose ----" << '\n';
+    //                 std::cout << "for <i,j> : <" << i << ", " << j << ">" << '\n';
+    //                 std::cout << "i size : " << out->GetSizeOfVoxels() << " j size : " << in->GetSizeOfVoxels() <<
+    //                 '\n'; std::cout << "dist < distThresh ? : " << dist << " < " << fMergeDistThreshold << '\n';
+    //                 std::cout << "are parallel ? : " << std::boolalpha << areParallel << '\n';
+    //                 std::cout << "newChi2 < f * oldChi2 ? : " << newChi2 << " < " << fMergeChi2CoverageFactor *
+    //                 oldChi2
+    //                           << '\n';
+    //                 std::cout << "------------------------------" << RESET << '\n';
+    //             }
+    //
+    //             // Then, move and erase in iterator!
+    //             if(improvesFit)
+    //             {
+    //                 if(fIsVerbose)
+    //                 {
+    //                     std::cout << BOLDYELLOW << "------------------------------" << '\n';
+    //                     std::cout << "-> merging cluster : " << in->GetClusterID()
+    //                               << " with size : " << in->GetSizeOfVoxels() << '\n';
+    //                     std::cout << " with cluster out : " << out->GetClusterID()
+    //                               << " and size : " << out->GetSizeOfVoxels() << '\n';
+    //                     std::cout << "------------------------------" << RESET << '\n';
+    //                 }
+    //                 auto& refVoxels {out->GetRefToVoxels()};
+    //                 refVoxels.insert(refVoxels.end(), std::make_move_iterator(inVoxels.begin()),
+    //                                  std::make_move_iterator(inVoxels.end()));
+    //                 // Refit and recompute ranges
+    //                 out->ReFit();
+    //                 out->ReFillSets();
+    //                 // Mark to delete afterwards!
+    //                 toDelete.insert(j);
+    //             }
+    //         }
+    //     }
+    // }
+    // // Indeed delete
+    // for(const auto& idx : toDelete) // toDelete is sorted in greater order
+    //     fClusters->erase(fClusters->begin() + idx);
 }
 
 bool ActAlgorithm::MultiStep::ManualIsInBeam(const XYZPoint& pos, const XYZPoint& gravity, double scale)
