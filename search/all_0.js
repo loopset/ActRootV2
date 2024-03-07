@@ -152,10 +152,9 @@ var searchData=
   ['applypadalignment_149',['ApplyPadAlignment',['../classActRoot_1_1CalibrationManager.html#aa1faf4826c9064fd574bf21d1fefa712',1,'ActRoot::CalibrationManager']]],
   ['applystragglinginmaterialtorleft_150',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
   ['applythreshold_151',['ApplyThreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager::ApplyThreshold()'],['../classActPhysics_1_1SilLayer.html#a1cccf49d7ea66bd0e5e51c46de8c6fe4',1,'ActPhysics::SilLayer::ApplyThreshold()']]],
-  ['assign_152',['Assign',['../classActAlgorithm_1_1MultiRegion.html#a252e72f130fab16df1f39c844be4154c',1,'ActAlgorithm::MultiRegion']]],
-  ['assignrangetoregion_153',['AssignRangeToRegion',['../classActAlgorithm_1_1MultiRegion.html#a87e7223b5ff270d0e0c136f9135bbe6b',1,'ActAlgorithm::MultiRegion']]],
-  ['assignvoxeltoregion_154',['AssignVoxelToRegion',['../classActAlgorithm_1_1MultiRegion.html#aa84c73b05ba062c4fc68abbfd2fc5079',1,'ActAlgorithm::MultiRegion']]],
-  ['attachbintocluster_155',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['autoisinbeam_156',['AutoIsInBeam',['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep']]],
-  ['constants_157',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
+  ['assignrangetoregion_152',['AssignRangeToRegion',['../classActAlgorithm_1_1MultiRegion.html#a87e7223b5ff270d0e0c136f9135bbe6b',1,'ActAlgorithm::MultiRegion']]],
+  ['assignvoxeltoregion_153',['AssignVoxelToRegion',['../classActAlgorithm_1_1MultiRegion.html#aa84c73b05ba062c4fc68abbfd2fc5079',1,'ActAlgorithm::MultiRegion']]],
+  ['attachbintocluster_154',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
+  ['autoisinbeam_155',['AutoIsInBeam',['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep']]],
+  ['constants_156',['Constants',['../namespaceActPhysics_1_1Constants.html',1,'ActPhysics']]]
 ];

@@ -80,9 +80,6 @@ $(function() {
 <li>fAssemblies
 : <a class="el" href="classActSim_1_1Geometry.html#a70cb1403cb0ba15b8bc3ec800f77c586">ActSim::Geometry</a>
 </li>
-<li>fAssign
-: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#afcc671f16d2fbb20867fd4d50df02544">ActAlgorithm::MultiRegion</a>
-</li>
 <li>fBeamIt
 : <a class="el" href="classActRoot_1_1MergerDetector.html#aeee71a5c10541248db2176cd17815f92">ActRoot::MergerDetector</a>
 </li>
@@ -128,6 +125,12 @@ $(function() {
 <li>fBlocks
 : <a class="el" href="classActRoot_1_1DataManager.html#ae25489f180ad37ebeb70510a01bf073a">ActRoot::DataManager</a>
 , <a class="el" href="classActRoot_1_1InputParser.html#a36c4915e95f7984b5a45ef7edd2197c9">ActRoot::InputParser</a>
+</li>
+<li>fBLXBegin
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a285c8c80d596f2e2c7a8acdbb63ea5cc">ActAlgorithm::MultiRegion</a>
+</li>
+<li>fBlXDirThresh
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#ae074f072e9eafcf0b9f893e4cbd831e8">ActAlgorithm::MultiRegion</a>
 </li>
 <li>fBoostTransformation
 : <a class="el" href="classActPhysics_1_1Kinematics.html#afcd5e98b6e518a67c3d08c22c1284634">ActPhysics::Kinematics</a>
@@ -180,8 +183,17 @@ $(function() {
 <li>fCLabels
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#ab9ec3580e135f9018a82ee6c379b7a4d">ActAlgorithm::MultiStep</a>
 </li>
+<li>fCleanCylinderR
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a28eb8dd9c34713ae7021a914d508761e">ActAlgorithm::MultiRegion</a>
+</li>
 <li>fCleanDuplicatedVoxels
 : <a class="el" href="classActRoot_1_1TPCDetector.html#a8a4ae46de3607ece22b66ff36cb93b8b">ActRoot::TPCDetector</a>
+</li>
+<li>fCleanMaxChi2
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a291d7025e0822f430b90e20a95443136">ActAlgorithm::MultiRegion</a>
+</li>
+<li>fCleanMinVoxels
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a7924b62970046df9dec93ff4ef74175c">ActAlgorithm::MultiRegion</a>
 </li>
 <li>fCleanPadMatrix
 : <a class="el" href="classActRoot_1_1TPCDetector.html#ad4736940f5bcb54c0fc3c5d5abcfaa1b">ActRoot::TPCDetector</a>
@@ -317,6 +329,9 @@ $(function() {
 </li>
 <li>fEnableBreakMultiTracks
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a5b53eef13991a07dc8077d48606256e5">ActAlgorithm::MultiStep</a>
+</li>
+<li>fEnableClean
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#af3e6c8d6509da5bd6ad84340e4250b97">ActAlgorithm::MultiRegion</a>
 </li>
 <li>fEnableCleanBadFits
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a5052417e8ed0dd20e749190b53ca40ac">ActAlgorithm::MultiStep</a>
@@ -731,9 +746,6 @@ $(function() {
 <li>fModularPars
 : <a class="el" href="classActRoot_1_1MergerDetector.html#a98af5b95db671fd42a48a74ef23e7b7f">ActRoot::MergerDetector</a>
 </li>
-<li>fMStep
-: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a77c7f9e6f9b7cdc3d3c458470435ecf4">ActAlgorithm::MultiRegion</a>
-</li>
 <li>fMutex
 : <a class="el" href="classActPhysics_1_1PIDCorrector.html#a900316912adeac5214ae5abcc5eb77ff">ActPhysics::PIDCorrector</a>
 </li>
@@ -940,8 +952,14 @@ $(function() {
 <li>fRP
 : <a class="el" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData</a>
 </li>
+<li>fRPClusterDist
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#ae1d405a38472b47fff2c9efa065a9d25">ActAlgorithm::MultiRegion</a>
+</li>
 <li>fRPDefaultMinX
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#ad45c25194793d9682815d6cdd3310a4e">ActAlgorithm::MultiStep</a>
+</li>
+<li>fRPDelete
+: <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a5c658ed215236cc320a47ac5b651f2b9">ActAlgorithm::MultiRegion</a>
 </li>
 <li>fRPDistCluster
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#ab4d812c428df777d2076ddbd7aa68821">ActAlgorithm::MultiStep</a>
@@ -1139,6 +1157,7 @@ $(function() {
 </li>
 <li>fTPC
 : <a class="el" href="classActAlgorithm_1_1ClIMB.html#a1368bb743ad8c1d72f692df82c3a3e71">ActAlgorithm::ClIMB</a>
+, <a class="el" href="classActAlgorithm_1_1MultiRegion.html#abc0e4ac9484f69158d46c7c0ae2bd4cb">ActAlgorithm::MultiRegion</a>
 , <a class="el" href="classActAlgorithm_1_1MultiStep.html#ac6c2fdd03073b21b267512eaaf9fa6bb">ActAlgorithm::MultiStep</a>
 , <a class="el" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">ActRoot::HistogramPainter</a>
 </li>
