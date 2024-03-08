@@ -149,6 +149,8 @@ std::shared_ptr<TChain> ActRoot::DataManager::GetJoinedData(ActRoot::ModeType mo
         in.AddInput(CheckAndGet("Cluster"));
     else if(mode == ModeType::EReadSilMod)
         in.AddInput(CheckAndGet("Data"));
+    else if(mode == ModeType::EFilter)
+        in.AddInput(CheckAndGet("Filter"));
     else if(mode == ModeType::EMerge)
         in.AddInput(CheckAndGet("Merger"));
     else if(mode == ModeType::ECorrect)

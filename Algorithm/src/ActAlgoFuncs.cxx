@@ -6,6 +6,7 @@
 #include "ActUtils.h"
 #include "ActVoxel.h"
 
+#include "TMath.h"
 #include "TMatrixD.h"
 
 #include "Math/Point3D.h"
@@ -268,6 +269,8 @@ void ActAlgorithm::Chi2AndSizeCleaning(std::vector<ActRoot::Cluster>* cluster, d
 
 ActAlgorithm::RPSet ActAlgorithm::SimplifyRPs(const RPVector& rps, double distThresh)
 {
+    if(rps.size() == 0)
+        return {};
     if(rps.size() == 1)
         return {rps.front().first, {rps.front().second.first, rps.front().second.second}};
 
@@ -295,4 +298,132 @@ ActAlgorithm::RPSet ActAlgorithm::SimplifyRPs(const RPVector& rps, double distTh
     }
     ret.first = mean / aux.size();
     return ret;
+}
+
+void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, int minVoxels,
+                                    bool isVerbose)
+{
+    std::vector<ActRoot::Cluster> toAppend {};
+    for(auto it = clusters->begin(); it != clusters->end(); it++)
+    {
+        if(it->GetIsBeamLike())
+        {
+            auto& refVoxels {it->GetRefToVoxels()};
+            // Sort them
+            std::sort(refVoxels.begin(), refVoxels.end());
+            // Partition
+            auto rpBreak {std::partition(refVoxels.begin(), refVoxels.end(),
+                                         [&](const ActRoot::Voxel& voxel)
+                                         {
+                                             auto pos {voxel.GetPosition()};
+                                             pos += XYZVector {0.5, 0.5, 0.5};
+                                             return (pos.X() < rp.X());
+                                         })};
+            // Move
+            std::vector<ActRoot::Voxel> newVoxels;
+            newVoxels.insert(newVoxels.end(), std::make_move_iterator(rpBreak),
+                             std::make_move_iterator(refVoxels.end()));
+            refVoxels.erase(rpBreak, refVoxels.end());
+
+            // Add new cluster if size is enough!
+            if(newVoxels.size() >= minVoxels)
+            {
+                ActRoot::Cluster newCluster {(int)clusters->size()};
+                newCluster.SetVoxels(std::move(newVoxels));
+                newCluster.ReFit();
+                newCluster.ReFillSets();
+                newCluster.SetIsSplitRP(true);
+                newCluster.SetHasRP(true);
+                toAppend.push_back(std::move(newCluster));
+
+                if(isVerbose)
+                {
+                    std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
+                    std::cout << "-> Added heavy cluster of size : " << newCluster.GetSizeOfVoxels() << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
+            }
+
+            // Refit remanining voxels in beam-like
+            it->ReFit();
+            it->ReFillSets();
+        }
+    }
+    clusters->insert(clusters->end(), std::make_move_iterator(toAppend.begin()),
+                     std::make_move_iterator(toAppend.end()));
+}
+
+void ActAlgorithm::MaskBeginEnd(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, double pivotDist,
+                                int minVoxels, bool isVerbose)
+{
+    for(auto it = clusters->begin(); it != clusters->end(); it++)
+    {
+        // Declare variables
+        const auto& line {it->GetLine()};
+        const auto& gp {line.GetPoint()};
+        auto& refVoxels {it->GetRefToVoxels()};
+        auto oldSize {refVoxels.size()};
+        // Sort them
+        std::sort(refVoxels.begin(), refVoxels.end());
+        // Set same sign as rp
+        it->GetRefToLine().AlignUsingPoint(rp);
+        // Get init point
+        auto init {refVoxels.front()};
+        // Get end point
+        auto end {refVoxels.back()};
+        //// PROJECTIONS ON LINE, relative to GP of line (correct by +0.5 offset)
+        auto projInit {line.ProjectionPointOnLine(init.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
+        auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + XYZVector {0.5, 0.5, 0.5})};
+        // Partition: get iterator to last element to be kept
+        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += XYZVector {0.5, 0.5, 0.5};
+                                        auto proj {line.ProjectionPointOnLine(pos)};
+                                        // delete all points over projInit/end
+                                        // bc due to ordering and angle, some voxel could have a proj larger than
+                                        // the one of the last/first voxel
+                                        // TODO: check a better way to mask outling voxels (proj.X() < projInit.X()
+                                        // could) be troublesome depending on track angle
+                                        bool isInCapInit {(proj - projInit).R() <= pivotDist ||
+                                                          (proj.X() < projInit.X())};
+                                        bool isInCapEnd {(proj - projEnd).R() <= pivotDist || (proj.X() > projEnd.X())};
+                                        // if(it->GetIsBeamLike())
+                                        // {
+                                        //     std::cout << "Proj : " << proj << '\n';
+                                        //     std::cout << "isInCapInit : " << std::boolalpha << isInCapInit << '\n';
+                                        //     std::cout << "isInCapEnd : " << std::boolalpha << isInCapEnd << '\n';
+                                        //     std::cout << "--------------------" << '\n';
+                                        // }
+                                        return !(isInCapInit || isInCapEnd);
+                                    })};
+        auto newSize {std::distance(refVoxels.begin(), itKeep)};
+        // Refit if enough voxels remain
+        if(newSize >= minVoxels)
+        {
+            refVoxels.erase(itKeep, refVoxels.end());
+            it->ReFit();
+            it->ReFillSets();
+        }
+        //  Print
+        if(isVerbose)
+        {
+            std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
+            std::cout << "-> Init : " << init.GetPosition() << '\n';
+            std::cout << "-> Proj Init : " << projInit << '\n';
+            std::cout << "-> End : " << end.GetPosition() << '\n';
+            std::cout << "-> Proj End : " << projEnd << '\n';
+            std::cout << "-> (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
+            std::cout << "-> Gravity point : " << it->GetLine().GetPoint() << '\n';
+            std::cout << "------------------------------" << RESET << '\n';
+            // it->GetLine().Print();
+        }
+    }
+}
+
+double ActAlgorithm::GetClusterAngle(const XYZVector& beam, const XYZVector& recoil)
+{
+    auto dot {beam.Unit().Dot((recoil.Unit()))};
+    return TMath::ACos(dot) * TMath::RadToDeg();
 }

@@ -47,6 +47,7 @@ private:
     double fRPMaxDist {};
     double fRPClusterDist {};
     bool fRPDelete {};
+    double fRPPivotDist {};
 
     // Time control
     std::vector<TStopwatch> fClocks;
@@ -87,6 +88,8 @@ private:
     void Sort();
     void FindRP();
     void DeleteAfterRP();
+    void DoFinerFits();
+    void FindFineRP();
     void ResetID();
 };
 } // namespace ActAlgorithm

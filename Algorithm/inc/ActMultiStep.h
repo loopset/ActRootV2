@@ -160,8 +160,6 @@ private:
     void ResetIndex();
     // Print during execution of each step
     void PrintStep() const;
-    // Get -very- preliminary theta to rank RPs
-    double GetThetaAngle(const XYZVector& beam, const XYZVector& recoil);
     // Cluster preliminary reaction points
     std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     // Check whether two clusters overlap

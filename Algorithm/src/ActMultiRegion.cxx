@@ -92,6 +92,8 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
         fRPClusterDist = mr->GetDouble("RPClusterDist");
     if(mr->CheckTokenExists("RPDelete", !fIsEnabled))
         fRPDelete = mr->GetBool("RPDelete");
+    if(mr->CheckTokenExists("RPPivotDist", !fIsEnabled))
+        fRPPivotDist = mr->GetDouble("RPPivotDist");
 
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
@@ -148,6 +150,10 @@ void ActAlgorithm::MultiRegion::Run()
     FindRP();
     if(fRPDelete)
         DeleteAfterRP();
+    // 7-> Fine cluster treatment after RP is found
+    DoFinerFits();
+    ResetID();
+    FindFineRP();
     // Always reset ID at the end
     ResetID();
 }
@@ -358,6 +364,9 @@ void ActAlgorithm::MultiRegion::FindRP()
     {
         if(fIsVerbose)
             std::cout << RESET << '\n';
+        // Mark all clusters to delete
+        for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+            it->SetToDelete(true);
         return;
     }
     // Print before clustering
@@ -379,11 +388,15 @@ void ActAlgorithm::MultiRegion::FindRP()
         std::cout << '\n';
     }
     // Mark to delete clusters not belonging to RP
+    // and the other with the HaveRP flag
     for(int i = 0, size = fData->fClusters.size(); i < size; i++)
     {
+        auto it {fData->fClusters.begin() + i};
         bool keep {proc.second.find(i) != proc.second.end()};
         if(!keep)
-            (fData->fClusters.begin() + i)->SetToDelete(true);
+            it->SetToDelete(true);
+        else
+            it->SetHasRP(true);
     }
 
     // Print after clustering
@@ -451,6 +464,118 @@ void ActAlgorithm::MultiRegion::Sort()
               [](const auto& l, const auto& r) { return l.GetSizeOfVoxels() > r.GetSizeOfVoxels(); });
 }
 
+void ActAlgorithm::MultiRegion::DoFinerFits()
+{
+    if(fData->fRPs.size() == 0)
+        return;
+    // 1-> Split BL into heavy
+    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fIsVerbose);
+    // 2-> Mask region around RP
+    MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
+}
+
+void ActAlgorithm::MultiRegion::FindFineRP()
+{
+    if(fData->fRPs.size() == 0)
+        return;
+    // Get statistics
+    int nBL {};
+    int nHasRP {};
+    for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+    {
+        if(it->GetHasRP())
+        {
+            nHasRP++;
+            if(it->GetIsBeamLike())
+                nBL++;
+        }
+    }
+    // Determine whether to consider all nonBL clusters in fine RP or just the light one
+    // when there are 2 recoil tracks (light + heavy), just use the light in the computation
+    bool onlyUseLight {std::abs(nHasRP - nBL) <= 2};
+
+    if(fIsVerbose)
+    {
+        std::cout << BOLDCYAN << "---- Fine RP ----" << '\n';
+        std::cout << "-> Cluster stats :" << '\n';
+        std::cout << "   nBL           : " << nBL << '\n';
+        std::cout << "   nHasRP        : " << nHasRP << '\n';
+        std::cout << "   onlyUseLight  ? " << std::boolalpha << onlyUseLight << '\n';
+    }
+
+    auto comp {[](const auto& l, const auto& r) { return l.first > r.first; }};
+    std::set<std::pair<double, std::pair<XYZPoint, std::pair<int, int>>>, decltype(comp)> rpSet(comp);
+    for(auto iit = fData->fClusters.begin(); iit != fData->fClusters.end(); iit++)
+    {
+        if(iit->GetIsBeamLike() && iit->GetHasRP())
+        {
+            for(auto jit = fData->fClusters.begin(); jit != fData->fClusters.end(); jit++)
+            {
+                if(iit == jit || jit->GetIsBeamLike() || !jit->GetHasRP())
+                    continue;
+                // Find rps// Compute RP
+                auto [pA, pB, dist] {ComputeRPIn3D(iit->GetLine().GetPoint(), iit->GetLine().GetDirection(),
+                                                   jit->GetLine().GetPoint(), jit->GetLine().GetDirection())};
+                // Get mean
+                XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+                // Ckeck all of them are valid
+                auto okA {IsRPValid(pA, fTPC)};
+                auto okB {IsRPValid(pB, fTPC)};
+                auto okAB {IsRPValid(rp, fTPC)};
+                // Distance condition
+                auto okDist {std::abs(dist) <= fRPMaxDist};
+                // Verbose
+                if(fIsVerbose)
+                {
+                    std::cout << "······························" << '\n';
+                    std::cout << "<i, j> : <" << iit->GetClusterID() << ", " << jit->GetClusterID() << ">" << '\n';
+                    std::cout << "   okA    : " << std::boolalpha << okA << '\n';
+                    std::cout << "   okB    : " << std::boolalpha << okB << '\n';
+                    std::cout << "   okAB   : " << std::boolalpha << okAB << '\n';
+                    std::cout << "   okDist : " << std::boolalpha << okDist << '\n';
+                    std::cout << "   dist   : " << dist << '\n';
+                }
+                if(okA && okB && okAB && okDist)
+                {
+                    auto theta {GetClusterAngle(iit->GetLine().GetDirection(), jit->GetLine().GetDirection())};
+                    rpSet.insert({theta, {rp, {iit->GetClusterID(), jit->GetClusterID()}}});
+                }
+            }
+        }
+    }
+    // Get RP vector
+    RPVector rpVec;
+    for(const auto& [theta, vals] : rpSet)
+    {
+        const auto& rp {vals.first};
+        const auto& idxs {vals.second};
+        rpVec.push_back({rp, idxs});
+        if(fIsVerbose)
+        {
+            std::cout << "-> Using in fine computation :" << '\n';
+            std::cout << "   RP : " << rp << " at <" << idxs.first << ", " << idxs.second << ">" << '\n';
+            std::cout << "   Theta : " << theta << '\n';
+        }
+        if(onlyUseLight)
+            break;
+    }
+    // Process RPs
+    // If fine RP fails, keep prelimar RP
+    if(rpVec.size() == 0)
+    {
+        if(fIsVerbose)
+            std::cout << "-> Fine RP failed! rpVec.size() == 0" << RESET << '\n';
+        return;
+    }
+    auto proc {SimplifyRPs(rpVec, fRPClusterDist)};
+    fData->fRPs.clear();
+    fData->fRPs.push_back(proc.first);
+    if(fIsVerbose)
+    {
+        std::cout << "-> Fine RP : " << fData->fRPs.front() << RESET << '\n';
+    }
+}
+
 void ActAlgorithm::MultiRegion::Print() const
 {
     std::cout << BOLDCYAN << "**** MultiRegion ****" << '\n';
@@ -482,6 +607,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPMaxDist        : " << fRPMaxDist << '\n';
         std::cout << "-> RPClusterDist    : " << fRPClusterDist << '\n';
         std::cout << "-> RPDelete         ? " << std::boolalpha << fRPDelete << '\n';
+        std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }

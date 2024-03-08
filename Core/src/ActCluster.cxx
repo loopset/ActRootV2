@@ -182,5 +182,6 @@ void ActRoot::Cluster::Print() const
     std::cout << "-> SplitRP     ? " << std::boolalpha << fIsSplit << '\n';
     std::cout << "-> IsToDelete  ? " << std::boolalpha << fToDelete << '\n';
     std::cout << "-> RegionType  : " << ActAlgorithm::RegionTypeAsStr(fRegion) << '\n';
+    std::cout << "-> HasRP       ? " << std::boolalpha << fHasRP << '\n';
     std::cout << "...................." << RESET << '\n';
 }

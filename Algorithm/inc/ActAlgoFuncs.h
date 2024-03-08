@@ -44,6 +44,17 @@ void Chi2AndSizeCleaning(std::vector<ActRoot::Cluster>* cluster, double chi2Thre
 // Simplified version of a cluster of RP points. Returns mean of RPs close enough (given a threshold)
 RPSet SimplifyRPs(const RPVector& rps, double distThresh);
 
+// Break BL after RP is found
+void BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, int minVoxels,
+                      bool isVerbose = false);
+
+// Mask beginning and end of tracks to get a better fit
+void MaskBeginEnd(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, double pivotDist, int minVoxels,
+                  bool isVerbose = false);
+
+// Compute angle between two clusters
+double GetClusterAngle(const XYZVector& beam, const XYZVector& recoil);
+
 } // namespace ActAlgorithm
 
 #endif

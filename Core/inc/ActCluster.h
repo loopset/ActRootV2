@@ -38,6 +38,7 @@ private:
     bool fToDelete {false};
     bool fIsBreak {false};
     bool fIsSplit {false};
+    bool fHasRP {false};
     ActAlgorithm::RegionType fRegion {ActAlgorithm::RegionType::ENone};
 
 public:
@@ -60,6 +61,7 @@ public:
     bool GetIsBreakBeam() const { return fIsBreak; }
     bool GetIsSplitRP() const { return fIsSplit; }
     ActAlgorithm::RegionType GetRegionType() const { return fRegion; }
+    bool GetHasRP() const { return fHasRP; }
 
     void SetLine(const ActPhysics::Line& line) { fLine = line; }
     void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
@@ -71,6 +73,7 @@ public:
     void SetIsBreakBeam(bool hasValidRP) { fIsBreak = hasValidRP; }
     void SetIsSplitRP(bool split) { fIsSplit = split; }
     void SetRegionType(ActAlgorithm::RegionType type) { fRegion = type; }
+    void SetHasRP(bool has) { fHasRP = has; }
 
     // Adders of voxels
     void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back
