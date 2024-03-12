@@ -6,6 +6,16 @@
 #include <iostream>
 #include <memory>
 #include <set>
+#include <string>
+#include <vector>
+
+std::vector<std::string> ActRoot::SilData::GetLayers() const
+{
+    std::vector<std::string> ret;
+    for(const auto& [layer, vals] : fSiE)
+        ret.push_back(layer);
+    return ret;
+}
 
 void ActRoot::SilData::ApplyFinerThresholds(std::shared_ptr<ActPhysics::SilSpecs> specs)
 {
@@ -18,7 +28,7 @@ void ActRoot::SilData::ApplyFinerThresholds(std::shared_ptr<ActPhysics::SilSpecs
             if(!layer.ApplyThreshold(fSiN[key][i], energies[i]))
                 toDelete.insert(i);
         }
-        //Delete
+        // Delete
         for(const auto& i : toDelete)
         {
             fSiE[key].erase(fSiE[key].begin() + i);

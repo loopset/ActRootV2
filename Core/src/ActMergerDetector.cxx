@@ -65,41 +65,43 @@ ActRoot::MergerDetector::~MergerDetector()
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
     ////////////////// MergerDetector /////////////////////////
-    // Read (mandatory) SilSpecs config file
     if(block->CheckTokenExists("IsEnabled"))
         fIsEnabled = block->GetBool("IsEnabled");
-    if(block->CheckTokenExists("SilSpecsFile", true))
+    if(block->CheckTokenExists("IsSingle", !fIsEnabled))
+        fIsSingle = block->GetBool("IsSingle");
+    // Read silicon specs
+    if(block->CheckTokenExists("SilSpecsFile", !fIsEnabled))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
     // Map GATCONFS to SilLayers, using gat command
     auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
-    if(gatMap.size() > 0)
-        fGatMap = gatMap;
-    // Beam-like and multiplicities
-    if(block->CheckTokenExists("ForceBeamLike", true))
-        fForceBeamLike = block->GetBool("ForceBeamLike");
-    if(block->CheckTokenExists("NotBeamMults", true))
-        fNotBMults = block->GetIntVector("NotBeamMults");
-    // Gate on XVertex
-    if(block->CheckTokenExists("GateRPX", true))
-        fGateRPX = block->GetDouble("GateRPX");
-    // Conversion to physical units
-    if(block->CheckTokenExists("EnableConversion", true))
-        fEnableConversion = block->GetBool("EnableConversion");
-    if(block->CheckTokenExists("DriftFactor", true))
-        fDriftFactor = block->GetDouble("DriftFactor");
-    // Match SP to real placement
-    if(block->CheckTokenExists("EnableMatch", true))
-        fEnableMatch = block->GetBool("EnableMatch");
-    if(block->CheckTokenExists("MatchUseZ", true))
-        fMatchUseZ = block->GetBool("MatchUseZ");
-    if(block->CheckTokenExists("ZOffset", true))
-        fZOffset = block->GetDouble("ZOffset");
-    // Enable QProfile
-    if(block->CheckTokenExists("EnableQProfile", true))
-        fEnableQProfile = block->GetBool("EnableQProfile");
-    // Build or not filter method
-    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
-        InitCorrector();
+    if(fIsSingle)
+    {
+        if(gatMap.size() > 0)
+            fGatMap = gatMap;
+        // Beam-like and multiplicities
+        if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
+            fForceBeamLike = block->GetBool("ForceBeamLike");
+        if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
+            fNotBMults = block->GetIntVector("NotBeamMults");
+        // Conversion to physical units
+        if(block->CheckTokenExists("EnableConversion", !fIsEnabled))
+            fEnableConversion = block->GetBool("EnableConversion");
+        if(block->CheckTokenExists("DriftFactor", !fIsEnabled))
+            fDriftFactor = block->GetDouble("DriftFactor");
+        // Match SP to real placement
+        if(block->CheckTokenExists("EnableMatch", !fIsEnabled))
+            fEnableMatch = block->GetBool("EnableMatch");
+        if(block->CheckTokenExists("MatchUseZ", !fIsEnabled))
+            fMatchUseZ = block->GetBool("MatchUseZ");
+        if(block->CheckTokenExists("ZOffset", !fIsEnabled))
+            fZOffset = block->GetDouble("ZOffset");
+        // Enable QProfile
+        if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
+            fEnableQProfile = block->GetBool("EnableQProfile");
+        // Build or not filter method
+        if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
+            InitCorrector();
+    }
 
     // Disable TH1::AddDirectory
     TH1::AddDirectory(false);
@@ -232,9 +234,14 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[0].Start(false);
     auto isDoable {IsDoable()};
     fClocks[0].Stop();
-    if(!isDoable)
+    if(!isDoable && !fIsSingle)
     {
         fMergerData->Clear();
+        return;
+    }
+    if(!isDoable && fIsSingle)
+    {
+        // MinimalComputation();
         return;
     }
 
@@ -301,7 +308,7 @@ void ActRoot::MergerDetector::BuildEventData(int run, int entry)
 
 bool ActRoot::MergerDetector::IsDoable()
 {
-    auto condA {GateGATCONFandTrackMult() && GateOthers()};
+    auto condA {GateGATCONFandTrackMult()};
     if(!condA)
         return condA;
     else
@@ -351,6 +358,20 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     return isInGat && hasBL && hasMult && hasRP;
 }
 
+void ActRoot::MergerDetector::MinimalComputation()
+{
+    // This is just a propagation of the only one cluster
+    // towards the pad plane
+    if(fTPCData->fClusters.size() == 1)
+    {
+        fLightIt = fTPCData->fClusters.begin();
+        bool isOk {};
+        std::tie(fMergerData->fSP, isOk) =
+            fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+                .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection());
+    }
+}
+
 bool ActRoot::MergerDetector::GateSilMult()
 {
     // 1-> Apply finer thresholds in SilSpecs
@@ -376,14 +397,6 @@ bool ActRoot::MergerDetector::GateSilMult()
     }
     return (withHits == withMult) &&
            (withHits > 0); // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
-}
-
-bool ActRoot::MergerDetector::GateOthers()
-{
-    bool condRPX {false};
-    if(fTPCData->fRPs.size() > 0)
-        condRPX = fTPCData->fRPs.front().X() > fGateRPX;
-    return condRPX;
 }
 
 void ActRoot::MergerDetector::Reset(const int& run, const int& entry)
@@ -659,6 +672,7 @@ void ActRoot::MergerDetector::Print() const
     std::cout << "-> IsEnabled     ? " << std::boolalpha << fIsEnabled << '\n';
     if(fIsEnabled)
     {
+        std::cout << "-> IsSingle      ? " << std::boolalpha << fIsSingle << '\n';
         std::cout << "-> GATCONF map   : " << '\n';
         for(const auto& [key, vals] : fGatMap)
         {
@@ -672,7 +686,6 @@ void ActRoot::MergerDetector::Print() const
         for(const auto& m : fNotBMults)
             std::cout << m << ", ";
         std::cout << '\n';
-        std::cout << "-> GateRPX       : " << fGateRPX << '\n';
         std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
         std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
         std::cout << "-> MatchZOffset  : " << fZOffset << '\n';

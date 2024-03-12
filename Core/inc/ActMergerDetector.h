@@ -67,13 +67,14 @@ private:
     ///// Parameters of the detector
     // Is enabled?
     bool fIsEnabled {};
-    // GATCONF cuts
+    // Is a reaction? If not we would be interested only
+    // in computing some simple things: propagate to silicons
+    bool fIsSingle {};
+    // GATCONF cuts if enabled
     std::map<int, std::vector<std::string>> fGatMap {};
     // Event multiplicity and beam-likeness
     bool fForceBeamLike {};
     std::vector<int> fNotBMults {};
-    // Gate on XVertex position!
-    double fGateRPX {};
     // Drift conversion
     bool fEnableConversion {};
     double fDriftFactor {};
@@ -175,7 +176,7 @@ private:
     void ConvertToPhysicalUnits();
     bool GateGATCONFandTrackMult();
     bool GateSilMult();
-    bool GateOthers();
+    void MinimalComputation();
     void LightOrHeavy();
     void ComputeOtherPoints();
     bool ComputeSiliconPoint();
