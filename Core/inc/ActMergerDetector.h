@@ -67,9 +67,8 @@ private:
     ///// Parameters of the detector
     // Is enabled?
     bool fIsEnabled {};
-    // Is a reaction? If not we would be interested only
-    // in computing some simple things: propagate to silicons
-    bool fIsSingle {};
+    // Enable or not GATCIONF validation
+    bool fForceGATCONF {};
     // GATCONF cuts if enabled
     std::map<int, std::vector<std::string>> fGatMap {};
     // Event multiplicity and beam-likeness
@@ -176,7 +175,6 @@ private:
     void ConvertToPhysicalUnits();
     bool GateGATCONFandTrackMult();
     bool GateSilMult();
-    void MinimalComputation();
     void LightOrHeavy();
     void ComputeOtherPoints();
     bool ComputeSiliconPoint();

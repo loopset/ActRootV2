@@ -67,49 +67,47 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     ////////////////// MergerDetector /////////////////////////
     if(block->CheckTokenExists("IsEnabled"))
         fIsEnabled = block->GetBool("IsEnabled");
-    if(block->CheckTokenExists("IsSingle", !fIsEnabled))
-        fIsSingle = block->GetBool("IsSingle");
     // Read silicon specs
     if(block->CheckTokenExists("SilSpecsFile", !fIsEnabled))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
+    if(block->CheckTokenExists("ForceGATCONF", !fIsEnabled))
+        fForceGATCONF = block->GetBool("ForceGATCONF");
     // Map GATCONFS to SilLayers, using gat command
-    auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
-    if(fIsSingle)
+    if(fForceGATCONF)
     {
+        auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
         if(gatMap.size() > 0)
             fGatMap = gatMap;
-        // Beam-like and multiplicities
-        if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
-            fForceBeamLike = block->GetBool("ForceBeamLike");
-        if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
-            fNotBMults = block->GetIntVector("NotBeamMults");
-        // Conversion to physical units
-        if(block->CheckTokenExists("EnableConversion", !fIsEnabled))
-            fEnableConversion = block->GetBool("EnableConversion");
-        if(block->CheckTokenExists("DriftFactor", !fIsEnabled))
-            fDriftFactor = block->GetDouble("DriftFactor");
-        // Match SP to real placement
-        if(block->CheckTokenExists("EnableMatch", !fIsEnabled))
-            fEnableMatch = block->GetBool("EnableMatch");
-        if(block->CheckTokenExists("MatchUseZ", !fIsEnabled))
-            fMatchUseZ = block->GetBool("MatchUseZ");
-        if(block->CheckTokenExists("ZOffset", !fIsEnabled))
-            fZOffset = block->GetDouble("ZOffset");
-        // Enable QProfile
-        if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
-            fEnableQProfile = block->GetBool("EnableQProfile");
-        // Build or not filter method
-        if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
-            InitCorrector();
     }
+    // Beam-like and multiplicities
+    if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
+        fForceBeamLike = block->GetBool("ForceBeamLike");
+    if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
+        fNotBMults = block->GetIntVector("NotBeamMults");
+    // Conversion to physical units
+    if(block->CheckTokenExists("EnableConversion", !fIsEnabled))
+        fEnableConversion = block->GetBool("EnableConversion");
+    if(block->CheckTokenExists("DriftFactor", !fIsEnabled))
+        fDriftFactor = block->GetDouble("DriftFactor");
+    // Match SP to real placement
+    if(block->CheckTokenExists("EnableMatch", !fIsEnabled))
+        fEnableMatch = block->GetBool("EnableMatch");
+    if(block->CheckTokenExists("MatchUseZ", !fIsEnabled))
+        fMatchUseZ = block->GetBool("MatchUseZ");
+    if(block->CheckTokenExists("ZOffset", !fIsEnabled))
+        fZOffset = block->GetDouble("ZOffset");
+    // Enable QProfile
+    if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
+        fEnableQProfile = block->GetBool("EnableQProfile");
+    // Build or not filter method
+    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
+        InitCorrector();
 
     // Disable TH1::AddDirectory
     TH1::AddDirectory(false);
 
     // Init clocks
     InitClocks();
-
-    //////////////// MultiStep algorithm ///////////////////////////
 }
 
 void ActRoot::MergerDetector::InitCorrector()
@@ -234,14 +232,9 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[0].Start(false);
     auto isDoable {IsDoable()};
     fClocks[0].Stop();
-    if(!isDoable && !fIsSingle)
+    if(!isDoable)
     {
         fMergerData->Clear();
-        return;
-    }
-    if(!isDoable && fIsSingle)
-    {
-        // MinimalComputation();
         return;
     }
 
@@ -322,11 +315,14 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
 {
     // 1-> Apply GATCONF cut
     bool isInGat {true};
-    auto gat {(int)fModularData->Get("GATCONF")};
-    if(fGatMap.count(gat))
-        isInGat = true;
-    else
-        isInGat = false;
+    if(fForceGATCONF)
+    {
+        auto gat {(int)fModularData->Get("GATCONF")};
+        if(fGatMap.count(gat))
+            isInGat = true;
+        else
+            isInGat = false;
+    }
     // 2-> Has BL cluster and not BL multiplicity
     bool hasBL {true};
     bool hasMult {false};
@@ -358,19 +354,6 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     return isInGat && hasBL && hasMult && hasRP;
 }
 
-void ActRoot::MergerDetector::MinimalComputation()
-{
-    // This is just a propagation of the only one cluster
-    // towards the pad plane
-    if(fTPCData->fClusters.size() == 1)
-    {
-        fLightIt = fTPCData->fClusters.begin();
-        bool isOk {};
-        std::tie(fMergerData->fSP, isOk) =
-            fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-                .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection());
-    }
-}
 
 bool ActRoot::MergerDetector::GateSilMult()
 {
@@ -379,7 +362,7 @@ bool ActRoot::MergerDetector::GateSilMult()
     // 2-> Check and write silicon data
     int withHits {};
     int withMult {};
-    for(const auto& layer : fGatMap[(int)fModularData->Get("GATCONF")])
+    for(const auto& layer : (fForceGATCONF ? fGatMap[(int)fModularData->Get("GATCONF")] : fSilData->GetLayers()))
     {
         // Check only layers with hits over threshold!
         if(int mult {fSilData->GetMult(layer)}; mult > 0)
@@ -672,7 +655,7 @@ void ActRoot::MergerDetector::Print() const
     std::cout << "-> IsEnabled     ? " << std::boolalpha << fIsEnabled << '\n';
     if(fIsEnabled)
     {
-        std::cout << "-> IsSingle      ? " << std::boolalpha << fIsSingle << '\n';
+        std::cout << "-> ForceGATCONF  ? " << std::boolalpha << fForceGATCONF << '\n';
         std::cout << "-> GATCONF map   : " << '\n';
         for(const auto& [key, vals] : fGatMap)
         {
