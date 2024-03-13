@@ -351,6 +351,15 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     }
     // 3-> Has RP (either preliminary or fine)
     bool hasRP {fTPCData->fRPs.size() > 0};
+    // Verbose info
+    if(fIsVerbose)
+    {
+        std::cout << BOLDCYAN << "---- Merge valitation 1 ----" << '\n';
+        std::cout << " -> IsInGATCONF  ? " << std::boolalpha << isInGat << '\n';
+        std::cout << " -> HasBeamLike  ? " << std::boolalpha << hasBL << '\n';
+        std::cout << " -> HasTrackMult ? " << std::boolalpha << hasMult << '\n';
+        std::cout << " -> HasRP        ? " << std::boolalpha << hasRP << '\n';
+    }
     return isInGat && hasBL && hasMult && hasRP;
 }
 
@@ -378,8 +387,18 @@ bool ActRoot::MergerDetector::GateSilMult()
             }
         }
     }
-    return (withHits == withMult) &&
-           (withHits > 0); // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
+
+    bool condHitsPerLayer {withHits == withMult};
+    bool condHits {withHits >
+                   0}; // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
+
+    if(fIsVerbose)
+    {
+        std::cout << BOLDCYAN << "---- Merge valitation 2 ----" << '\n';
+        std::cout << "-> HasHits         ? " << std::boolalpha << condHits << '\n';
+        std::cout << "-> HasHitsPerLayer ? " << std::boolalpha << condHitsPerLayer << '\n';
+    }
+    return condHits && condHitsPerLayer;
 }
 
 void ActRoot::MergerDetector::Reset(const int& run, const int& entry)
