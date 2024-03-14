@@ -342,15 +342,29 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                }</div>
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            }</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="comment">// Refit remanining voxels in beam-like</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            it-&gt;ReFit();</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            it-&gt;ReFillSets();</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    }</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    clusters-&gt;insert(clusters-&gt;end(), std::make_move_iterator(toAppend.begin()),</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                     std::make_move_iterator(toAppend.end()));</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;}</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="comment">// Refit remanining voxels in beam-like if size is kept enough</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keywordflow">if</span>(refVoxels.size() &gt;= minVoxels)</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                it-&gt;ReFit();</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                it-&gt;ReFillSets();</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            }</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                {</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakAfterRP ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Remaining beam size is : &quot;</span> &lt;&lt; refVoxels.size() &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; minVoxels &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Not refitting !&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                    std::cout &lt;&lt; <span class="stringliteral">&quot;-----------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            }</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        }</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    }</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    clusters-&gt;insert(clusters-&gt;end(), std::make_move_iterator(toAppend.begin()),</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                     std::make_move_iterator(toAppend.end()));</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
+<div class="ttc" id="aActColors_8h_html_ab912d02c7998c3d47d05f87be4e2c920"><div class="ttname"><a href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a></div><div class="ttdeci">#define BOLDRED</div><div class="ttdef"><b>Definition:</b> ActColors.h:16</div></div>
 <div class="ttc" id="aActColors_8h_html_ac4723c5ee12cfca16e2172b57b99cb07"><div class="ttname"><a href="ActColors_8h.html#ac4723c5ee12cfca16e2172b57b99cb07">BOLDMAGENTA</a></div><div class="ttdeci">#define BOLDMAGENTA</div><div class="ttdef"><b>Definition:</b> ActColors.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition:</b> ActCluster.h:19</div></div>
 <div class="ttc" id="aclassActRoot_1_1Cluster_html_a0efa6961e0e4e69e20a13f3fb798ca84"><div class="ttname"><a href="classActRoot_1_1Cluster.html#a0efa6961e0e4e69e20a13f3fb798ca84">ActRoot::Cluster::SetVoxels</a></div><div class="ttdeci">void SetVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels)</div><div class="ttdef"><b>Definition:</b> ActCluster.h:67</div></div>
@@ -606,10 +620,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;{</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keyword">auto</span> dot {beam.Unit().Dot((recoil.Unit()))};</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;{</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keyword">auto</span> dot {beam.Unit().Dot((recoil.Unit()))};</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -694,71 +708,82 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;{</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = clusters-&gt;begin(); it != clusters-&gt;end(); it++)</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    {</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        <span class="comment">// Declare variables</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; line {it-&gt;GetLine()};</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; gp {line.GetPoint()};</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <span class="keyword">auto</span> oldSize {refVoxels.size()};</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <span class="comment">// Sort them</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        std::sort(refVoxels.begin(), refVoxels.end());</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        <span class="comment">// Set same sign as rp</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        it-&gt;GetRefToLine().AlignUsingPoint(rp);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="comment">// Get init point</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keyword">auto</span> init {refVoxels.front()};</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="comment">// Get end point</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keyword">auto</span> end {refVoxels.back()};</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keyword">auto</span> projInit {line.ProjectionPointOnLine(init.GetPosition() + <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5})};</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keyword">auto</span> projEnd {line.ProjectionPointOnLine(end.GetPosition() + <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5})};</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <span class="comment">// Partition: get iterator to last element to be kept</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="keyword">auto</span> itKeep {std::partition(refVoxels.begin(), refVoxels.end(),</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                                    [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                                    {</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                                        auto pos {voxel.GetPosition()};</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                                        pos += <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5};</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                                        <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                                        <span class="comment">// delete all points over projInit/end</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                                        <span class="comment">// bc due to ordering and angle, some voxel could have a proj larger than</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                                        <span class="comment">// the one of the last/first voxel</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                                        <span class="comment">// TODO: check a better way to mask outling voxels (proj.X() &lt; projInit.X()</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                                        <span class="comment">// could) be troublesome depending on track angle</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                                        <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= pivotDist ||</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                                                          (proj.X() &lt; projInit.X())};</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                                        <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= pivotDist || (proj.X() &gt; projEnd.X())};</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                                        <span class="comment">// if(it-&gt;GetIsBeamLike())</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                                        <span class="comment">// {</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;Proj : &quot; &lt;&lt; proj &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapInit : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapInit &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapEnd : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapEnd &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;--------------------&quot; &lt;&lt; &#39;\n&#39;;</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                                        <span class="comment">// }</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                                        <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                                    })};</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        <span class="keyword">auto</span> newSize {std::distance(refVoxels.begin(), itKeep)};</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        <span class="comment">// Refit if enough voxels remain</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        <span class="keywordflow">if</span>(newSize &gt;= minVoxels)</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        {</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            refVoxels.erase(itKeep, refVoxels.end());</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            it-&gt;ReFit();</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            it-&gt;ReFillSets();</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        }</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <span class="comment">//  Print</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="keywordflow">if</span>(isVerbose)</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        {</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;--- Masking beg. and end of #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Init : &quot;</span> &lt;&lt; init.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Proj Init : &quot;</span> &lt;&lt; projInit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; End : &quot;</span> &lt;&lt; end.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Proj End : &quot;</span> &lt;&lt; projEnd &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; (Old - New) sizes : &quot;</span> &lt;&lt; (oldSize - refVoxels.size()) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Gravity point : &quot;</span> &lt;&lt; it-&gt;GetLine().GetPoint() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <span class="comment">// it-&gt;GetLine().Print();</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        }</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    }</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;{</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = clusters-&gt;begin(); it != clusters-&gt;end(); it++)</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    {</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="comment">// Declare variables</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; line {it-&gt;GetLine()};</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; gp {line.GetPoint()};</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="keyword">auto</span> oldSize {refVoxels.size()};</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="comment">// Sort them</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        std::sort(refVoxels.begin(), refVoxels.end());</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="comment">// Set same sign as rp</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        it-&gt;GetRefToLine().AlignUsingPoint(rp);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <span class="comment">// Get init point</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        <span class="keyword">auto</span> init {refVoxels.front()};</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        <span class="comment">// Get end point</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        <span class="keyword">auto</span> end {refVoxels.back()};</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keyword">auto</span> projInit {line.ProjectionPointOnLine(init.GetPosition() + <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5})};</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keyword">auto</span> projEnd {line.ProjectionPointOnLine(end.GetPosition() + <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5})};</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="comment">// Partition: get iterator to last element to be kept</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        <span class="keyword">auto</span> itKeep {std::partition(refVoxels.begin(), refVoxels.end(),</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                                    [&amp;](<span class="keyword">const</span> <a class="code" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                                    {</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                                        auto pos {voxel.GetPosition()};</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                                        pos += <a class="code" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> {0.5, 0.5, 0.5};</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                                        <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                                        <span class="comment">// delete all points over projInit/end</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                                        <span class="comment">// bc due to ordering and angle, some voxel could have a proj larger than</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                                        <span class="comment">// the one of the last/first voxel</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                                        <span class="comment">// TODO: check a better way to mask outling voxels (proj.X() &lt; projInit.X()</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                                        <span class="comment">// could) be troublesome depending on track angle</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                                        <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= pivotDist ||</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                                                          (proj.X() &lt; projInit.X())};</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                        <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= pivotDist || (proj.X() &gt; projEnd.X())};</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                                        <span class="comment">// if(it-&gt;GetIsBeamLike())</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                                        <span class="comment">// {</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;Proj : &quot; &lt;&lt; proj &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapInit : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapInit &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;isInCapEnd : &quot; &lt;&lt; std::boolalpha &lt;&lt; isInCapEnd &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                                        <span class="comment">//     std::cout &lt;&lt; &quot;--------------------&quot; &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                        <span class="comment">// }</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                                        <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                                    })};</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        <span class="keyword">auto</span> newSize {std::distance(refVoxels.begin(), itKeep)};</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        <span class="comment">// Refit if enough voxels remain</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        <span class="keywordflow">if</span>(newSize &gt;= minVoxels)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        {</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            refVoxels.erase(itKeep, refVoxels.end());</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            it-&gt;ReFit();</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            it-&gt;ReFillSets(); <span class="comment">//  Print</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;--- Masking beg. and end of #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Init : &quot;</span> &lt;&lt; init.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Proj Init : &quot;</span> &lt;&lt; projInit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; End : &quot;</span> &lt;&lt; end.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Proj End : &quot;</span> &lt;&lt; projEnd &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; (Old - New) sizes : &quot;</span> &lt;&lt; (oldSize - refVoxels.size()) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Gravity point : &quot;</span> &lt;&lt; it-&gt;GetLine().GetPoint() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                <span class="comment">// it-&gt;GetLine().Print();</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            }</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;        }</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        {</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            <span class="comment">//  Print</span></div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            {</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;--- Masking beg. and end of #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Reaming cluster size : &quot;</span> &lt;&lt; refVoxels.size() &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; minVoxels &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   Not erasing nor refitting !&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                <span class="comment">// it-&gt;GetLine().Print();</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            }</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        }</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    }</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
 </div><!-- fragment -->
 </div>
