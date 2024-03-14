@@ -16,9 +16,11 @@
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
 
+#include "TF1.h"
 #include "TH1.h"
 #include "TMath.h"
 #include "TMathBase.h"
+#include "TSpline.h"
 #include "TStopwatch.h"
 #include "TTree.h"
 
@@ -545,6 +547,7 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
     ScalePoint(fMergerData->fRP, xy, fDriftFactor);
     ScalePoint(fMergerData->fBP, xy, fDriftFactor);
     ScalePoint(fMergerData->fSP, xy, fDriftFactor);
+    ScalePoint(fMergerData->fBSP, xy, fDriftFactor);
 
     // Scale Line in Clusters
     for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
@@ -665,17 +668,24 @@ void ActRoot::MergerDetector::ComputeBSP()
     // Just using BL and HL
     if(fBeamIt != fTPCData->fClusters.end() && fHeavyIt != fTPCData->fClusters.end())
     {
-        TH1F hQprojX {"hQProjX", "BL + HL Q along X;Q_{proj X}", 135, 0, 135};
+        TH1F hQprojX {"hQProjX", "BL + HL Q along X;X [pad];Q_{proj X}", 135, 0, 135};
         for(auto& it : {&fBeamIt, &fHeavyIt})
         {
             for(const auto& v : (*it)->GetVoxels())
                 hQprojX.Fill(v.GetPosition().X(), v.GetCharge());
         }
         auto maxBin {hQprojX.GetMaximumBin()};
+        auto maxBinX {hQprojX.GetBinCenter(maxBin)};
         auto maxQ {hQprojX.GetBinContent(maxBin)};
+        // Value to consider as stopping point : maxQ / 10 (Thomas considers / 2 in his thesis)
         auto range {maxQ / 10};
-        auto rangeBin {hQprojX.FindLastBinAbove(range)};
-        auto xMax {hQprojX.GetBinCenter(rangeBin)};
+        // Create TSpline
+        auto spe {std::make_unique<TSpline3>(&hQprojX)};
+        // And now function
+        auto func {std::make_unique<TF1>(
+            "func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
+        // Find maximum in the range [minBinX, xRangeMax of histogram]
+        auto xMax {func->GetX(range, maxBinX, hQprojX.GetXaxis()->GetXmax())};
         fMergerData->fBSP = {(float)xMax, 0, 0};
         // Save in MergerData
         fMergerData->fQprojX = hQprojX;
