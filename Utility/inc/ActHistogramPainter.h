@@ -106,6 +106,7 @@ private:
     void DrawRegions();
     void DrawPolyLines();
     void DrawPolyMarkers();
+    void DrawProjections();
     void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
 };
 } // namespace ActRoot

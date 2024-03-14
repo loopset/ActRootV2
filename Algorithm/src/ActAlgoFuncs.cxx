@@ -344,9 +344,22 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
                 }
             }
 
-            // Refit remanining voxels in beam-like
-            it->ReFit();
-            it->ReFillSets();
+            // Refit remanining voxels in beam-like if size is kept enough
+            if(refVoxels.size() >= minVoxels)
+            {
+                it->ReFit();
+                it->ReFillSets();
+            }
+            else
+            {
+                if(isVerbose)
+                {
+                    std::cout << BOLDRED << "---- BreakAfterRP ----" << '\n';
+                    std::cout << "-> Remaining beam size is : " << refVoxels.size() << " < " << minVoxels << '\n';
+                    std::cout << "   Not refitting !" << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
+            }
         }
     }
     clusters->insert(clusters->end(), std::make_move_iterator(toAppend.begin()),
@@ -404,20 +417,31 @@ void ActAlgorithm::MaskBeginEnd(std::vector<ActRoot::Cluster>* clusters, const X
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
-            it->ReFillSets();
+            it->ReFillSets(); //  Print
+            if(isVerbose)
+            {
+                std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
+                std::cout << "-> Init : " << init.GetPosition() << '\n';
+                std::cout << "-> Proj Init : " << projInit << '\n';
+                std::cout << "-> End : " << end.GetPosition() << '\n';
+                std::cout << "-> Proj End : " << projEnd << '\n';
+                std::cout << "-> (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
+                std::cout << "-> Gravity point : " << it->GetLine().GetPoint() << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+                // it->GetLine().Print();
+            }
         }
-        //  Print
-        if(isVerbose)
+        else
         {
-            std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
-            std::cout << "-> Init : " << init.GetPosition() << '\n';
-            std::cout << "-> Proj Init : " << projInit << '\n';
-            std::cout << "-> End : " << end.GetPosition() << '\n';
-            std::cout << "-> Proj End : " << projEnd << '\n';
-            std::cout << "-> (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
-            std::cout << "-> Gravity point : " << it->GetLine().GetPoint() << '\n';
-            std::cout << "------------------------------" << RESET << '\n';
-            // it->GetLine().Print();
+            //  Print
+            if(isVerbose)
+            {
+                std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
+                std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << minVoxels << '\n';
+                std::cout << "   Not erasing nor refitting !" << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+                // it->GetLine().Print();
+            }
         }
     }
 }

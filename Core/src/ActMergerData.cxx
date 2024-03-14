@@ -17,9 +17,10 @@ void ActRoot::MergerData::Clear()
 void ActRoot::MergerData::Print() const
 {
     std::cout << BOLDGREEN << ":::: MergerData ::::" << '\n';
-    std::cout << "-> WP : " << fWP << '\n';
-    std::cout << "-> RP : " << fRP << '\n';
-    std::cout << "-> SP : " << fSP << '\n';
+    std::cout << "-> WP  : " << fWP << '\n';
+    std::cout << "-> RP  : " << fRP << '\n';
+    std::cout << "-> SP  : " << fSP << '\n';
+    std::cout << "-> BSP : " << fBSP << '\n';
     std::cout << "-> Silicons : " << '\n';
     for(int i = 0; i < fSilLayers.size(); i++)
         std::cout << "   layer : " << fSilLayers[i] << " idx : " << fSilNs[i] << " E : " << fSilEs[i] << " MeV" << '\n';

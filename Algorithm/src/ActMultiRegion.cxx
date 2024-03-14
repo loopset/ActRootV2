@@ -152,8 +152,8 @@ void ActAlgorithm::MultiRegion::Run()
         DeleteAfterRP();
     // 7-> Fine cluster treatment after RP is found
     DoFinerFits();
-    ResetID();
-    FindFineRP();
+    // ResetID();
+    // FindFineRP();
     // Always reset ID at the end
     ResetID();
 }
@@ -471,7 +471,7 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
     // 1-> Split BL into heavy
     BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fIsVerbose);
     // 2-> Mask region around RP
-    MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
+    // MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
 }
 
 void ActAlgorithm::MultiRegion::FindFineRP()

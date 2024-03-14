@@ -4,6 +4,7 @@
 #include "ActDetectorManager.h"
 #include "ActInputIterator.h"
 #include "ActInputParser.h"
+#include "ActMergerDetector.h"
 #include "ActMultiRegion.h"
 #include "ActOptions.h"
 #include "ActSilDetector.h"
@@ -256,6 +257,7 @@ void ActRoot::HistogramPainter::Draw()
     DrawRegions();
     DrawPolyLines();
     DrawPolyMarkers();
+    DrawProjections();
 
     // Update all after drawing poly things
     for(auto& c : *fCanvas)
@@ -362,6 +364,21 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
                 marker->Draw("same");
             }
         }
+    }
+}
+
+void ActRoot::HistogramPainter::DrawProjections()
+{
+    auto merger {fDetMan->GetDetectorAs<MergerDetector>()};
+    if(merger)
+    {
+        auto data {merger->GetOutputData()};
+        // Cd to correct pad
+        fCanvas->at(1)->cd(3);
+        data->fQprojX.Draw("hist");
+        // Draw also pad plane in 2nd tab
+        fCanvas->at(1)->cd(4);
+        fHist2D[0][4]->Draw("colz");
     }
 }
 

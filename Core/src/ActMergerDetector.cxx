@@ -243,6 +243,9 @@ void ActRoot::MergerDetector::DoMerge()
     LightOrHeavy();
     fClocks[1].Stop();
 
+    // 2.1-> Compute BSP here?
+    ComputeBSP();
+
     // 3-> Compute SP and BP
     fClocks[2].Start(false);
     auto isSPOk {ComputeSiliconPoint()};
@@ -395,8 +398,8 @@ bool ActRoot::MergerDetector::GateSilMult()
     if(fIsVerbose)
     {
         std::cout << BOLDCYAN << "---- Merge valitation 2 ----" << '\n';
-        std::cout << "-> HasHits         ? " << std::boolalpha << condHits << '\n';
-        std::cout << "-> HasHitsPerLayer ? " << std::boolalpha << condHitsPerLayer << '\n';
+        std::cout << "-> HasSilHits         ? " << std::boolalpha << condHits << '\n';
+        std::cout << "-> HasMult1PerLayer   ? " << std::boolalpha << condHitsPerLayer << '\n';
     }
     return condHits && condHitsPerLayer;
 }
@@ -657,6 +660,28 @@ void ActRoot::MergerDetector::ComputeQProfile()
     fMergerData->fQProf = h;
 }
 
+void ActRoot::MergerDetector::ComputeBSP()
+{
+    // Just using BL and HL
+    if(fBeamIt != fTPCData->fClusters.end() && fHeavyIt != fTPCData->fClusters.end())
+    {
+        TH1F hQprojX {"hQProjX", "BL + HL Q along X;Q_{proj X}", 135, 0, 135};
+        for(auto& it : {&fBeamIt, &fHeavyIt})
+        {
+            for(const auto& v : (*it)->GetVoxels())
+                hQprojX.Fill(v.GetPosition().X(), v.GetCharge());
+        }
+        auto maxBin {hQprojX.GetMaximumBin()};
+        auto maxQ {hQprojX.GetBinContent(maxBin)};
+        auto range {maxQ / 10};
+        auto rangeBin {hQprojX.FindLastBinAbove(range)};
+        auto xMax {hQprojX.GetBinCenter(rangeBin)};
+        fMergerData->fBSP = {(float)xMax, 0, 0};
+        // Save in MergerData
+        fMergerData->fQprojX = hQprojX;
+    }
+}
+
 void ActRoot::MergerDetector::ClearEventFilter()
 {
     // Not needed because we are reading directly from ttree
@@ -688,10 +713,15 @@ void ActRoot::MergerDetector::Print() const
         for(const auto& m : fNotBMults)
             std::cout << m << ", ";
         std::cout << '\n';
-        std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
-        std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
-        std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
-        std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
+        std::cout << "-> EnableConver  ? " << std::boolalpha << fEnableConversion << '\n';
+        if(fEnableConversion)
+        {
+            std::cout << "-> DriftFactor   : " << fDriftFactor << '\n';
+            std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
+            std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
+            std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
+            std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
+        }
     }
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';

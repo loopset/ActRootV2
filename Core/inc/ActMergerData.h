@@ -15,37 +15,39 @@
 
 namespace ActRoot
 {
-    class MergerData : public VData
-    {
-    public:
-        using XYZPoint = ROOT::Math::XYZPointF;
-        using XYZVector = ROOT::Math::XYZVectorF;
+class MergerData : public VData
+{
+public:
+    using XYZPoint = ROOT::Math::XYZPointF;
+    using XYZVector = ROOT::Math::XYZVectorF;
 
-    public:
-        TH1F fQProf {};
-        XYZPoint fWP {-1, -1, -1}; // window point aka entrance point
-        XYZPoint fRP {-1, -1, -1};
-        XYZPoint fSP {-1, -1, -1};
-        XYZPoint fBP {-1, -1, -1};
-        std::vector<std::string> fSilLayers {};
-        std::vector<float> fSilEs {};
-        std::vector<float> fSilNs {};
-        float fTrackLength {-1};
-        float fThetaBeam {-1};
-        float fThetaBeamZ {-1}; // emittance angle along Z
-        float fPhiBeamY {-1};   // emittance angle along Y
-        float fThetaLight {-1};
-        float fThetaDebug {-1};
-        float fThetaLegacy {-1}; // this is just fThetaLight but will not be corrected in CorrDetector
-        float fThetaHeavy {-1};
-        float fPhiLight {-1};
-        float fQave {-1};
-        int fEntry {-1};
-        int fRun {-1};
+public:
+    TH1F fQprojX {};
+    TH1F fQProf {};
+    XYZPoint fWP {-1, -1, -1}; // window point aka entrance point
+    XYZPoint fRP {-1, -1, -1};
+    XYZPoint fSP {-1, -1, -1};
+    XYZPoint fBP {-1, -1, -1};
+    XYZPoint fBSP {-1, -1, -1};
+    std::vector<std::string> fSilLayers {};
+    std::vector<float> fSilEs {};
+    std::vector<float> fSilNs {};
+    float fTrackLength {-1};
+    float fThetaBeam {-1};
+    float fThetaBeamZ {-1}; // emittance angle along Z
+    float fPhiBeamY {-1};   // emittance angle along Y
+    float fThetaLight {-1};
+    float fThetaDebug {-1};
+    float fThetaLegacy {-1}; // this is just fThetaLight but will not be corrected in CorrDetector
+    float fThetaHeavy {-1};
+    float fPhiLight {-1};
+    float fQave {-1};
+    int fEntry {-1};
+    int fRun {-1};
 
-        void Clear() override;
-        void Print() const override;
-    };
+    void Clear() override;
+    void Print() const override;
+};
 } // namespace ActRoot
 
 #endif // !ActMergerData_h
