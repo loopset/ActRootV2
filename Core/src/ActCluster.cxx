@@ -177,6 +177,7 @@ void ActRoot::Cluster::Print() const
     std::cout << "-> Y range     : [" << ymin << " , " << ymax << "]" << '\n';
     std::cout << "-> Z range     : [" << zmin << " , " << zmax << "]" << '\n';
     std::cout << "-> IsBeamLike  ? " << std::boolalpha << fIsBeamLike << '\n';
+    std::cout << "-> IsRecoil    ? " << std::boolalpha << fIsRecoil << '\n';
     std::cout << "-> IsToMerge   ? " << std::boolalpha << fToMerge << '\n';
     std::cout << "-> BreakBeam   ? " << std::boolalpha << fIsBreak << '\n';
     std::cout << "-> SplitRP     ? " << std::boolalpha << fIsSplit << '\n';

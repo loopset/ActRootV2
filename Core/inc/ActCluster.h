@@ -34,6 +34,7 @@ private:
     std::map<int, std::set<int>> fXZMap {}; //!
     int fClusterID {};
     bool fIsBeamLike {false};
+    bool fIsRecoil {false};
     bool fToMerge {true};
     bool fToDelete {false};
     bool fIsBreak {false};
@@ -56,6 +57,7 @@ public:
     int GetSizeOfVoxels() const { return fVoxels.size(); }
     int GetClusterID() const { return fClusterID; }
     bool GetIsBeamLike() const { return fIsBeamLike; }
+    bool GetIsRecoil() const { return fIsRecoil; }
     bool GetToMerge() const { return fToMerge; }
     bool GetToDelete() const { return fToDelete; }
     bool GetIsBreakBeam() const { return fIsBreak; }
@@ -68,6 +70,7 @@ public:
     void SetVoxels(std::vector<ActRoot::Voxel>&& voxels) { fVoxels = std::move(voxels); }
     void SetClusterID(int id) { fClusterID = id; }
     void SetBeamLike(bool isBeam) { fIsBeamLike = isBeam; }
+    void SetIsRecoil(bool isRec) { fIsRecoil = isRec; }
     void SetToMerge(bool toMerge) { fToMerge = toMerge; }
     void SetToDelete(bool toDelete) { fToDelete = toDelete; }
     void SetIsBreakBeam(bool hasValidRP) { fIsBreak = hasValidRP; }

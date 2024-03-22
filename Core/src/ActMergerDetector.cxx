@@ -41,6 +41,15 @@
 #include <utility>
 #include <vector>
 
+void ActRoot::MergerParameters::Print() const
+{
+    std::cout << BOLDYELLOW << ":::: MergerParameters ::::" << '\n';
+    std::cout << "-> UseRP ? " << std::boolalpha << fUseRP << '\n';
+    std::cout << "-> IsL1  ? " << std::boolalpha << fIsL1 << '\n';
+    std::cout << "-> IsCal ? " << std::boolalpha << fIsCal << '\n';
+    std::cout << "::::::::::::::::::::::::::::::" << RESET << '\n';
+}
+
 ActRoot::MergerDetector::MergerDetector()
 {
     fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
@@ -82,6 +91,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
             fGatMap = gatMap;
     }
     // Beam-like and multiplicities
+    if(block->CheckTokenExists("ForceRP", !fIsEnabled))
+        fForceRP = block->GetBool("ForceRP");
     if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
         fForceBeamLike = block->GetBool("ForceBeamLike");
     if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
@@ -234,6 +245,9 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[0].Start(false);
     auto isDoable {IsDoable()};
     fClocks[0].Stop();
+    // Always print Merger configuration
+    if(fIsVerbose)
+        fPars.Print();
     if(!isDoable)
     {
         fMergerData->Clear();
@@ -324,7 +338,12 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     {
         auto gat {(int)fModularData->Get("GATCONF")};
         if(fGatMap.count(gat))
+        {
             isInGat = true;
+            // Check if L1 trigger
+            if(IsInVector({"L1"}, fGatMap[gat]))
+                fPars.fIsL1 = true;
+        }
         else
             isInGat = false;
     }
@@ -339,7 +358,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         {
             if(it->GetIsBeamLike())
             {
-                fBeamIt = it;
+                fBeamPtr = &(*it);
                 bl++;
             }
             else
@@ -355,7 +374,17 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         hasMult = IsInVector((int)fTPCData->fClusters.size(), fNotBMults);
     }
     // 3-> Has RP (either preliminary or fine)
-    bool hasRP {fTPCData->fRPs.size() > 0};
+    bool hasRP {true};
+    if(fForceRP)
+    {
+        fPars.fUseRP = true;
+        hasRP = fTPCData->fRPs.size() > 0;
+    }
+    else
+        fPars.fUseRP = false;
+    // 4-> Set calibration mode
+    if(!fForceRP && fTPCData->fClusters.size() == 1)
+        fPars.fIsCal = true;
     // Verbose info
     if(fIsVerbose)
     {
@@ -371,47 +400,72 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
 
 bool ActRoot::MergerDetector::GateSilMult()
 {
-    // 1-> Apply finer thresholds in SilSpecs
-    fSilData->ApplyFinerThresholds(fSilSpecs);
-    // 2-> Check and write silicon data
-    int withHits {};
-    int withMult {};
-    for(const auto& layer : (fForceGATCONF ? fGatMap[(int)fModularData->Get("GATCONF")] : fSilData->GetLayers()))
+    if(fPars.fIsL1)
+        return true;
+    // If not calibration mode
+    if(!fPars.fIsCal)
     {
-        // Check only layers with hits over threshold!
-        if(int mult {fSilData->GetMult(layer)}; mult > 0)
+        // 1-> Apply finer thresholds in SilSpecs
+        fSilData->ApplyFinerThresholds(fSilSpecs);
+        // 2-> Check and write silicon data
+        int withHits {};
+        int withMult {};
+        for(const auto& layer : (fForceGATCONF ? fGatMap[(int)fModularData->Get("GATCONF")] : fSilData->GetLayers()))
         {
-            withHits++;
-            if(mult == 1) // and now add to multiplicity == 1 counter
+            // Check if layer indeed exists (L1 trigger not registered in silicon)
+            if(!fSilSpecs->CheckLayersExists(layer))
+                continue;
+            // Check only layers with hits over threshold!
+            if(int mult {fSilData->GetMult(layer)}; mult > 0)
             {
-                withMult++;
-                // Write data
-                fMergerData->fSilLayers.push_back(layer);
-                fMergerData->fSilEs.push_back(fSilData->fSiE[layer].front());
-                fMergerData->fSilNs.push_back(fSilData->fSiN[layer].front());
+                withHits++;
+                if(mult == 1) // and now add to multiplicity == 1 counter
+                {
+                    withMult++;
+                    // Write data
+                    fMergerData->fSilLayers.push_back(layer);
+                    fMergerData->fSilEs.push_back(fSilData->fSiE[layer].front());
+                    fMergerData->fSilNs.push_back(fSilData->fSiN[layer].front());
+                }
             }
         }
+
+        bool condHitsPerLayer {withHits == withMult};
+        bool condHits {withHits >
+                       0}; // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
+
+        if(fIsVerbose)
+        {
+            std::cout << BOLDCYAN << "---- Merge valitation 2 ----" << '\n';
+            std::cout << "-> HasSilHits         ? " << std::boolalpha << condHits << '\n';
+            std::cout << "-> HasMult1PerLayer   ? " << std::boolalpha << condHitsPerLayer << '\n';
+        }
+        return condHits && condHitsPerLayer;
     }
-
-    bool condHitsPerLayer {withHits == withMult};
-    bool condHits {withHits >
-                   0}; // bugfix: whitHits > 0 to avoid case in which GATCONF ok but no silicon hit above threshold!
-
-    if(fIsVerbose)
+    else
     {
-        std::cout << BOLDCYAN << "---- Merge valitation 2 ----" << '\n';
-        std::cout << "-> HasSilHits         ? " << std::boolalpha << condHits << '\n';
-        std::cout << "-> HasMult1PerLayer   ? " << std::boolalpha << condHitsPerLayer << '\n';
+        // If is calibration just get the maximum of all elements
+        for(const auto& layer : fSilData->GetLayers())
+        {
+            auto itMax {std::max_element(fSilData->fSiE[layer].begin(), fSilData->fSiE[layer].end())};
+            auto idx {std::distance(fSilData->fSiE[layer].begin(), itMax)};
+            // Write data
+            fMergerData->fSilLayers.push_back(layer);
+            fMergerData->fSilEs.push_back(*itMax);
+            fMergerData->fSilNs.push_back(fSilData->fSiN[layer][idx]);
+        }
+        return true;
     }
-    return condHits && condHitsPerLayer;
 }
 
 void ActRoot::MergerDetector::Reset(const int& run, const int& entry)
 {
-    // Reset iterators before moving on to work with them
-    fBeamIt = fTPCData->fClusters.end();
-    fLightIt = fTPCData->fClusters.end();
-    fHeavyIt = fTPCData->fClusters.end();
+    // Reset parameters
+    fPars = {};
+    // Reset pointers before moving on to work with them
+    fBeamPtr = nullptr;
+    fLightPtr = nullptr;
+    fHeavyPtr = nullptr;
     // Reset other variables
     fMergerData->fRun = run;
     fMergerData->fEntry = entry;
@@ -437,24 +491,37 @@ double ActRoot::MergerDetector::GetPhi3D(const XYZVector& beam, const XYZVector&
 
 void ActRoot::MergerDetector::LightOrHeavy()
 {
-    // Firstly, set sign of X direction of BL to be always positive
-    fMergerData->fRP = fTPCData->fRPs.front();
-    auto& refLine {fBeamIt->GetRefToLine()};
+    // 0-> If calibration, go straigth to unique cluster
+    if(fPars.fIsCal)
+    {
+        fLightPtr = &(fTPCData->fClusters.front());
+        return;
+    }
+    // 1-> Set RP
+    if(fPars.fUseRP)
+        fMergerData->fRP = fTPCData->fRPs.front();
+    // 2-> Set sign of X direction of BL to be always positive
+    auto& refLine {fBeamPtr->GetRefToLine()};
     const auto& oldDir {refLine.GetDirection()};
     refLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});
-    // Rank by larger angle
+    // 3-> Rank by larger angle
     // .first = angle; .second = index; larger angles at begin
     auto lambda {[](const std::pair<double, int>& a, const std::pair<double, int>& b) { return a.first > b.first; }};
     std::set<std::pair<double, int>, decltype(lambda)> set(lambda);
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
         auto it {fTPCData->fClusters.begin() + i};
-        if(it == fBeamIt)
+        auto ptr {&(*it)};
+        if(ptr == fBeamPtr)
             continue;
         // Orient track following RP and gravity point
-        it->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
+        // only if RP exists; if not, set X direction to be positive
+        if(fPars.fUseRP)
+            it->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
+        else
+            it->GetRefToLine().AlignUsingPoint({0, (float)fTPCPars->GetNPADSY() / 2, (float)fTPCPars->GetNPADSZ() / 2});
         // Get angle
-        auto theta {GetTheta3D(fBeamIt->GetLine().GetDirection(), it->GetLine().GetDirection())};
+        auto theta {GetTheta3D(fBeamPtr->GetLine().GetDirection(), it->GetLine().GetDirection())};
         set.insert({TMath::Abs(theta), i});
     }
     if(fIsVerbose)
@@ -465,22 +532,42 @@ void ActRoot::MergerDetector::LightOrHeavy()
         std::cout << "------------------------------" << RESET << '\n';
     }
     // Set iterators
-    fLightIt = fTPCData->fClusters.begin() + set.begin()->second;
+    fLightPtr = &(*(fTPCData->fClusters.begin() + set.begin()->second));
     if(set.size() > 1)
-        fHeavyIt = fTPCData->fClusters.begin() + std::next(set.begin())->second;
+        fHeavyPtr = &(*(fTPCData->fClusters.begin() + std::next(set.begin())->second));
+}
+
+double ActRoot::MergerDetector::TrackLengthFromLightIt(bool scale)
+{
+    // Sort voxels
+    std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
+    // Distance
+    auto begin {fLightPtr->GetRefToVoxels().front().GetPosition()};
+    auto end {fLightPtr->GetRefToVoxels().back().GetPosition()};
+    if(scale)
+    {
+        ScalePoint(begin, fTPCPars->GetPadSide(), fDriftFactor);
+        ScalePoint(end, fTPCPars->GetPadSide(), fDriftFactor);
+    }
+    return (begin - end).R();
 }
 
 bool ActRoot::MergerDetector::ComputeSiliconPoint()
 {
-    // Align cluster according to RP
-    fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
+    if(fPars.fIsL1)
+        return true;
+    // Align cluster according to RP (already done in LightOrHeavy function)
+    // fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
     // Compute SP
     bool isOk {};
     std::tie(fMergerData->fSP, isOk) =
         fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-            .GetSiliconPointOfTrack(fLightIt->GetLine().GetPoint(), fLightIt->GetLine().GetDirection());
+            .GetSiliconPointOfTrack(fLightPtr->GetLine().GetPoint(), fLightPtr->GetLine().GetDirection());
     // And compute track length
-    fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+    if(fPars.fUseRP)
+        fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+    else
+        fMergerData->fTrackLength = TrackLengthFromLightIt(false);
     return isOk;
 }
 
@@ -497,9 +584,9 @@ void ActRoot::MergerDetector::CorrectZOffset()
     // 2-> SP
     MoveZ(fMergerData->fSP);
     // 3-> Por all iterators
-    for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
+    for(auto& it : {fBeamPtr, fLightPtr, fHeavyPtr})
     {
-        if(it == fTPCData->fClusters.end())
+        if(it == nullptr)
             continue;
         auto p {it->GetLine().GetPoint()};
         MoveZ(p);
@@ -509,6 +596,8 @@ void ActRoot::MergerDetector::CorrectZOffset()
 
 bool ActRoot::MergerDetector::MatchSPtoRealPlacement()
 {
+    if(fPars.fIsL1)
+        return true;
     // Use only first value in std::vector<int> of Ns
     auto n {fMergerData->fSilNs.front()};
     auto layer {fMergerData->fSilLayers.front()};
@@ -543,64 +632,77 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
 {
     // Convert points
     auto xy {fTPCPars->GetPadSide()};
-    ScalePoint(fMergerData->fWP, xy, fDriftFactor);
-    ScalePoint(fMergerData->fRP, xy, fDriftFactor);
-    ScalePoint(fMergerData->fBP, xy, fDriftFactor);
-    ScalePoint(fMergerData->fSP, xy, fDriftFactor);
-    ScalePoint(fMergerData->fBSP, xy, fDriftFactor);
+    if(fPars.fUseRP)
+        ScalePoint(fMergerData->fRP, xy, fDriftFactor);
+    if(!fPars.fIsCal)
+    {
+        ScalePoint(fMergerData->fWP, xy, fDriftFactor);
+        ScalePoint(fMergerData->fBSP, xy, fDriftFactor);
+    }
+    if(!fPars.fIsL1)
+    {
+        ScalePoint(fMergerData->fBP, xy, fDriftFactor);
+        ScalePoint(fMergerData->fSP, xy, fDriftFactor);
+    }
 
     // Scale Line in Clusters
-    for(auto& it : {fBeamIt, fLightIt, fHeavyIt})
+    for(auto& ptr : {fBeamPtr, fLightPtr, fHeavyPtr})
     {
-        if(it != fTPCData->fClusters.end())
-            it->GetRefToLine().Scale(xy, fDriftFactor);
+        if(ptr != nullptr)
+            ptr->GetRefToLine().Scale(xy, fDriftFactor);
     }
 
     // And recompute track length
-    fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+    if(fPars.fUseRP && !fPars.fIsL1)
+        fMergerData->fTrackLength = (fMergerData->fSP - fMergerData->fRP).R();
+    else
+        fMergerData->fTrackLength = TrackLengthFromLightIt(true);
 }
 
 void ActRoot::MergerDetector::ComputeAngles()
 {
     // Theta Light
-    fMergerData->fThetaLight = GetTheta3D(fBeamIt->GetLine().GetDirection(), fLightIt->GetLine().GetDirection());
+    fMergerData->fThetaLight = GetTheta3D(fBeamPtr->GetLine().GetDirection(), fLightPtr->GetLine().GetDirection());
     fMergerData->fThetaLegacy = fMergerData->fThetaLight;
     // Debug: angle computed assuming beam exactly along X axis
-    fMergerData->fThetaDebug = GetTheta3D({1, 0, 0}, fLightIt->GetLine().GetDirection());
+    fMergerData->fThetaDebug = GetTheta3D({1, 0, 0}, fLightPtr->GetLine().GetDirection());
     // Phi Light
-    fMergerData->fPhiLight = GetPhi3D(fBeamIt->GetLine().GetDirection(), fLightIt->GetLine().GetDirection());
+    fMergerData->fPhiLight = GetPhi3D(fBeamPtr->GetLine().GetDirection(), fLightPtr->GetLine().GetDirection());
     // Beam angles
-    auto beamDir {fBeamIt->GetLine().GetDirection().Unit()};
+    auto beamDir {fBeamPtr->GetLine().GetDirection().Unit()};
     fMergerData->fThetaBeam = GetTheta3D({1, 0, 0}, beamDir);
     fMergerData->fThetaBeamZ = TMath::ATan(beamDir.Z() / beamDir.X()) * TMath::RadToDeg();
     fMergerData->fPhiBeamY = TMath::ATan(beamDir.Y() / beamDir.X()) * TMath::RadToDeg();
     // Theta Heavy
-    if(fBeamIt != fTPCData->fClusters.end())
-        fMergerData->fThetaHeavy = GetTheta3D(fBeamIt->GetLine().GetDirection(), fHeavyIt->GetLine().GetDirection());
+    if(fHeavyPtr != nullptr)
+        fMergerData->fThetaHeavy = GetTheta3D(fBeamPtr->GetLine().GetDirection(), fHeavyPtr->GetLine().GetDirection());
 }
 
 void ActRoot::MergerDetector::ComputeOtherPoints()
 {
     // Boundary point: light track at ACTAR's flanges
-    fMergerData->fBP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-                           .GetBoundaryPointOfTrack(fTPCPars, fLightIt->GetLine().GetPoint(),
-                                                    fLightIt->GetLine().GetDirection().Unit());
+    // but only if SP could be computed
+    if(!fPars.fIsL1)
+        fMergerData->fBP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+                               .GetBoundaryPointOfTrack(fTPCPars, fLightPtr->GetLine().GetPoint(),
+                                                        fLightPtr->GetLine().GetDirection().Unit());
     // Window point: beam entrance point at X = 0 from fit parameters
-    fMergerData->fWP = fBeamIt->GetLine().MoveToX(0);
+    if(fBeamPtr != nullptr)
+        fMergerData->fWP = fBeamPtr->GetLine().MoveToX(0);
 }
 
 void ActRoot::MergerDetector::ComputeQave()
 {
-    std::sort(fLightIt->GetRefToVoxels().begin(), fLightIt->GetRefToVoxels().end());
+    std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
     // Get min
-    auto front {fLightIt->GetVoxels().front().GetPosition()};
-    auto back {fLightIt->GetVoxels().back().GetPosition()};
+    auto front {fLightPtr->GetVoxels().front().GetPosition()};
+    auto back {fLightPtr->GetVoxels().back().GetPosition()};
     // Scale them
     ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
     ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
     // Get projections
-    auto min {fLightIt->GetLine().ProjectionPointOnLine(front)};
-    auto max {fLightIt->GetLine().ProjectionPointOnLine(back)};
+    auto min {fLightPtr->GetLine().ProjectionPointOnLine(front)};
+    auto max {fLightPtr->GetLine().ProjectionPointOnLine(back)};
     // Convert them to physical points
     // ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
     // ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
@@ -617,7 +719,7 @@ void ActRoot::MergerDetector::ComputeQave()
     // std::cout << "BP : " << fMergerData->fBP << '\n';
     // std::cout << "dist (RP - BP) : " << (fMergerData->fRP - fMergerData->fBP).R() << '\n';
     // Sum to obtain total Q
-    auto qTotal {std::accumulate(fLightIt->GetVoxels().begin(), fLightIt->GetVoxels().end(), 0.f,
+    auto qTotal {std::accumulate(fLightPtr->GetVoxels().begin(), fLightPtr->GetVoxels().end(), 0.f,
                                  [](float sum, const Voxel& v) { return sum + v.GetCharge(); })};
     // std::cout << "Qtotal : " << qTotal << '\n';
     // std::cout << "Qtotal / dist : " << qTotal / dist << '\n';
@@ -631,13 +733,13 @@ void ActRoot::MergerDetector::ComputeQProfile()
     h.SetTitle("QProfile;dist [mm];Q [au]");
     // Voxels should be already ordered
     // 1-> Ref point is vector.begin() projection on line
-    auto front {fLightIt->GetVoxels().front().GetPosition()};
+    auto front {fLightPtr->GetVoxels().front().GetPosition()};
     // Convert it to physical units
     ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
-    auto ref {fLightIt->GetLine().ProjectionPointOnLine(front)};
+    auto ref {fLightPtr->GetLine().ProjectionPointOnLine(front)};
     // Use 3 divisions in voxel to obtain a better profile
     float div {1.f / 3};
-    for(const auto& v : fLightIt->GetVoxels())
+    for(const auto& v : fLightPtr->GetVoxels())
     {
         const auto& pos {v.GetPosition()};
         auto q {v.GetCharge()};
@@ -652,7 +754,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
                     // Convert to physical units
                     ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
                     // Project it on line
-                    auto proj {fLightIt->GetLine().ProjectionPointOnLine(bin)};
+                    auto proj {fLightPtr->GetLine().ProjectionPointOnLine(bin)};
                     // Fill histograms
                     auto dist {(proj - ref).R()};
                     h.Fill(dist, q / 27);
@@ -666,10 +768,10 @@ void ActRoot::MergerDetector::ComputeQProfile()
 void ActRoot::MergerDetector::ComputeBSP()
 {
     // Just using BL and HL
-    if(fBeamIt != fTPCData->fClusters.end() && fHeavyIt != fTPCData->fClusters.end())
+    if(fBeamPtr != nullptr && fHeavyPtr != nullptr)
     {
         TH1F hQprojX {"hQProjX", "BL + HL Q along X;X [pad];Q_{proj X}", 135, 0, 135};
-        for(auto& it : {&fBeamIt, &fHeavyIt})
+        for(auto& it : {&fBeamPtr, &fHeavyPtr})
         {
             for(const auto& v : (*it)->GetVoxels())
                 hQprojX.Fill(v.GetPosition().X(), v.GetCharge());
@@ -718,6 +820,7 @@ void ActRoot::MergerDetector::Print() const
                 std::cout << s << ", ";
             std::cout << '\n';
         }
+        std::cout << "-> ForceRP       ? " << std::boolalpha << fForceRP << '\n';
         std::cout << "-> ForceBeamLike ? " << std::boolalpha << fForceBeamLike << '\n';
         std::cout << "-> NotBeamMults  : ";
         for(const auto& m : fNotBMults)

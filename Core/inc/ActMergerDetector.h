@@ -1,6 +1,7 @@
 #ifndef ActMergerDetector_h
 #define ActMergerDetector_h
 
+#include "ActCluster.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
@@ -33,6 +34,17 @@ class TPCParameters;
 class SilParameters;
 class ModularParameters;
 
+class MergerParameters : public VParameters
+{
+public:
+    // Just flags setting event-by-event merger settings
+    bool fUseRP {};
+    bool fIsL1 {};
+    bool fIsCal {};
+
+    void Print() const override;
+};
+
 class MergerDetector : public VDetector
 {
 public:
@@ -51,7 +63,8 @@ private:
     ModularParameters* fModularPars {};
     ModularData* fModularData {};
 
-    // Merger data
+    // Merger
+    MergerParameters fPars {};
     MergerData* fMergerData {};
 
     // Flags to delete news in destructor
@@ -67,11 +80,12 @@ private:
     ///// Parameters of the detector
     // Is enabled?
     bool fIsEnabled {};
-    // Enable or not GATCIONF validation
+    // Enable or not GATCONF validation
     bool fForceGATCONF {};
     // GATCONF cuts if enabled
     std::map<int, std::vector<std::string>> fGatMap {};
     // Event multiplicity and beam-likeness
+    bool fForceRP {};
     bool fForceBeamLike {};
     std::vector<int> fNotBMults {};
     // Drift conversion
@@ -84,10 +98,10 @@ private:
     // Enable computation of QProfile
     bool fEnableQProfile {};
 
-    // Store iterators to beam, light and heavy
-    decltype(TPCData::fClusters)::iterator fBeamIt;
-    decltype(TPCData::fClusters)::iterator fLightIt;
-    decltype(TPCData::fClusters)::iterator fHeavyIt;
+    // Store pointers to beam, light and heavy
+    ActRoot::Cluster* fBeamPtr;
+    ActRoot::Cluster* fLightPtr;
+    ActRoot::Cluster* fHeavyPtr;
 
     // Time counting
     std::vector<TStopwatch> fClocks {};
@@ -178,6 +192,7 @@ private:
     void LightOrHeavy();
     void ComputeOtherPoints();
     bool ComputeSiliconPoint();
+    double TrackLengthFromLightIt(bool scale);
     void CorrectZOffset();
     bool MatchSPtoRealPlacement();
     void ComputeAngles();

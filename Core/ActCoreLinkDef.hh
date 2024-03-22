@@ -60,6 +60,7 @@
 #pragma link C++ class ActRoot::TPCParameters + ;
 #pragma link C++ class ActRoot::SilParameters + ;
 #pragma link C++ class ActRoot::ModularParameters + ;
+#pragma link C++ class ActRoot::MergerParameters + ;
 
 // options manager
 #pragma link C++ class ActRoot::Options;
