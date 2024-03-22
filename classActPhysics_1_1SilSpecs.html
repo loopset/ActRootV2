@@ -83,6 +83,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa0facb61a4ac9c82c63b76900f0bec96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac118a6f4ccb4ca47b2724611f33f7a7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#ac118a6f4ccb4ca47b2724611f33f7a7f">Print</a> () const</td></tr>
 <tr class="separator:ac118a6f4ccb4ca47b2724611f33f7a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29edc06fa84b3cf9ce8a6f155a8dd96e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a29edc06fa84b3cf9ce8a6f155a8dd96e">CheckLayersExists</a> (const std::string &amp;name) const</td></tr>
+<tr class="separator:a29edc06fa84b3cf9ce8a6f155a8dd96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30de0b4d1cf809e53231f19cd5f7cecf"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html">SilLayer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a30de0b4d1cf809e53231f19cd5f7cecf">GetLayer</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a30de0b4d1cf809e53231f19cd5f7cecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -92,6 +94,34 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1ed9df47761219dcc5c71eb92c2dc18c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a29edc06fa84b3cf9ce8a6f155a8dd96e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29edc06fa84b3cf9ce8a6f155a8dd96e">&#9670;&nbsp;</a></span>CheckLayersExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActPhysics::SilSpecs::CheckLayersExists </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.count(name); }</div>
+<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition:</b> ActSilSpecs.h:85</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a30de0b4d1cf809e53231f19cd5f7cecf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a30de0b4d1cf809e53231f19cd5f7cecf">&#9670;&nbsp;</a></span>GetLayer()</h2>
 
@@ -115,8 +145,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; };</div>
-<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition:</b> ActSilSpecs.h:84</div></div>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; };</div>
 </div><!-- fragment -->
 </div>
 </div>
