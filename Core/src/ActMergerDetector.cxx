@@ -502,12 +502,18 @@ void ActRoot::MergerDetector::LightOrHeavy()
     if(fPars.fIsCal)
     {
         fLightPtr = &(fTPCData->fClusters.front());
+        // Sort and align
+        std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
+        fLightPtr->GetRefToLine().AlignUsingPoint(fLightPtr->GetRefToVoxels().front().GetPosition(), true);
         return;
     }
     // If no beam like, just set light ptr
     if(!fBeamPtr)
     {
         fLightPtr = &(fTPCData->fClusters.front());
+        // Sort and align
+        std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
+        fLightPtr->GetRefToLine().AlignUsingPoint(fLightPtr->GetRefToVoxels().front().GetPosition(), true);
         return;
     }
     // 1-> Set RP
@@ -569,8 +575,6 @@ bool ActRoot::MergerDetector::ComputeSiliconPoint()
 {
     if(fPars.fIsL1)
         return true;
-    // Align cluster according to RP (already done in LightOrHeavy function)
-    // fLightIt->GetRefToLine().AlignUsingPoint(fMergerData->fRP);
     // Compute SP
     bool isOk {};
     std::tie(fMergerData->fSP, isOk) =
@@ -766,13 +770,14 @@ void ActRoot::MergerDetector::ComputeQProfile()
             ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
         auto ref {fLightPtr->GetLine().ProjectionPointOnLine(front)};
     }
-    if(f2DProfile)
-        ref.SetZ(0);
+    // Safe check: align again using reference point
+    fLightPtr->GetRefToLine().AlignUsingPoint(ref, true);
     // Declare line to use, bc it depends on 3D or 2D mode
     ActPhysics::Line line {fLightPtr->GetLine()};
-    line.AlignUsingPoint(fLightPtr->GetLine().GetPoint());
     if(f2DProfile)
     {
+        // Set ref.Z component to be 0
+        ref.SetZ(0);
         const auto& gp {fLightPtr->GetLine().GetPoint()};
         line = {{gp.X(), gp.Y(), 0}, ref};
     }
@@ -789,8 +794,8 @@ void ActRoot::MergerDetector::ComputeQProfile()
             {
                 for(int iz = -1; iz < 2; iz++)
                 {
-                    XYZPoint bin {(pos.X() + 0.5) + ix * div, (pos.Y() + 0.5) + iy * div,
-                                  (f2DProfile) ? 0.f : (pos.Z() + 0.5) + iz * div};
+                    XYZPoint bin {(pos.X() + 0.5f) + ix * div, (pos.Y() + 0.5f) + iy * div,
+                                  (f2DProfile) ? 0.f : (pos.Z() + 0.5f) + iz * div};
                     // Convert to physical units
                     if(fEnableConversion)
                         ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
