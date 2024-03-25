@@ -454,7 +454,7 @@ bool ActRoot::MergerDetector::GateSilMult()
             fMergerData->fSilEs.push_back(*itMax);
             fMergerData->fSilNs.push_back(fSilData->fSiN[layer][idx]);
         }
-        return true;
+        return (fMergerData->fSilLayers.size() > 0);
     }
 }
 
