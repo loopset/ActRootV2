@@ -374,6 +374,8 @@ void ActRoot::HistogramPainter::DrawProjections()
     {
         auto data {merger->GetOutputData()};
         // Cd to correct pad
+        fCanvas->at(1)->cd(2);
+        data->fQProf.Draw("hist");
         fCanvas->at(1)->cd(3);
         data->fQprojX.Draw("hist");
         // Draw also pad plane in 2nd tab

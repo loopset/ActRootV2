@@ -97,6 +97,7 @@ private:
     double fZOffset {};
     // Enable computation of QProfile
     bool fEnableQProfile {};
+    bool f2DProfile {};
 
     // Store pointers to beam, light and heavy
     ActRoot::Cluster* fBeamPtr;
@@ -211,6 +212,7 @@ private:
     {
         return std::find(vec.begin(), vec.end(), val) != vec.end();
     }
+    double GetRangeFromProfile(TH1F* h);
 };
 } // namespace ActRoot
 

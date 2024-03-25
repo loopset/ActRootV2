@@ -29,6 +29,7 @@ public:
     XYZPoint fSP {-1, -1, -1};
     XYZPoint fBP {-1, -1, -1};
     XYZPoint fBSP {-1, -1, -1};
+    XYZPoint fBraggP {-1, -1, -1};
     std::vector<std::string> fSilLayers {};
     std::vector<float> fSilEs {};
     std::vector<float> fSilNs {};

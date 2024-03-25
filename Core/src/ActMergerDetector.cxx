@@ -1,9 +1,11 @@
 #include "ActMergerDetector.h"
 
+#include "ActCluster.h"
 #include "ActColors.h"
 #include "ActCorrector.h"
 #include "ActDetectorManager.h"
 #include "ActInputParser.h"
+#include "ActLine.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
 #include "ActModularDetector.h"
@@ -15,6 +17,7 @@
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
 #include "ActTypes.h"
+#include "ActVoxel.h"
 
 #include "TF1.h"
 #include "TH1.h"
@@ -112,6 +115,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     // Enable QProfile
     if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
         fEnableQProfile = block->GetBool("EnableQProfile");
+    if(block->CheckTokenExists("2DProfile", !fIsEnabled))
+        f2DProfile = block->GetBool("2DProfile");
     // Build or not filter method
     if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
         InitCorrector();
@@ -275,6 +280,14 @@ void ActRoot::MergerDetector::DoMerge()
         return;
     }
     ComputeOtherPoints();
+
+    // 3.1-> Qave and charge profile computations
+    fClocks[6].Start(false);
+    ComputeQave();
+    if(fEnableQProfile)
+        ComputeQProfile();
+    fClocks[6].Stop();
+
     // 4-> Scale points to physical dimensions
     // if conversion is disabled, no further steps can be done!
     if(!fEnableConversion)
@@ -302,12 +315,6 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[5].Start(false);
     ComputeAngles();
     fClocks[5].Stop();
-    // 7-> Qave and charge profile computations
-    fClocks[6].Start(false);
-    ComputeQave();
-    if(fEnableQProfile)
-        ComputeQProfile();
-    fClocks[6].Stop();
 }
 
 void ActRoot::MergerDetector::BuildEventData(int run, int entry)
@@ -383,7 +390,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     else
         fPars.fUseRP = false;
     // 4-> Set calibration mode
-    if(!fForceRP && fTPCData->fClusters.size() == 1)
+    if(!fForceRP && !fPars.fIsL1 && fTPCData->fClusters.size() == 1)
         fPars.fIsCal = true;
     // Verbose info
     if(fIsVerbose)
@@ -493,6 +500,12 @@ void ActRoot::MergerDetector::LightOrHeavy()
 {
     // 0-> If calibration, go straigth to unique cluster
     if(fPars.fIsCal)
+    {
+        fLightPtr = &(fTPCData->fClusters.front());
+        return;
+    }
+    // If no beam like, just set light ptr
+    if(!fBeamPtr)
     {
         fLightPtr = &(fTPCData->fClusters.front());
         return;
@@ -689,17 +702,24 @@ void ActRoot::MergerDetector::ComputeOtherPoints()
     // Window point: beam entrance point at X = 0 from fit parameters
     if(fBeamPtr != nullptr)
         fMergerData->fWP = fBeamPtr->GetLine().MoveToX(0);
+    if((fPars.fIsCal || fTPCData->fClusters.size() == 1) && fLightPtr != nullptr)
+        fMergerData->fWP = fLightPtr->GetLine().MoveToX(0);
 }
 
 void ActRoot::MergerDetector::ComputeQave()
 {
+    if(!fLightPtr)
+        return;
     std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
     // Get min
     auto front {fLightPtr->GetVoxels().front().GetPosition()};
     auto back {fLightPtr->GetVoxels().back().GetPosition()};
     // Scale them
-    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
-    ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
+    if(fEnableConversion)
+    {
+        ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
+        ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
+    }
     // Get projections
     auto min {fLightPtr->GetLine().ProjectionPointOnLine(front)};
     auto max {fLightPtr->GetLine().ProjectionPointOnLine(back)};
@@ -728,16 +748,35 @@ void ActRoot::MergerDetector::ComputeQave()
 
 void ActRoot::MergerDetector::ComputeQProfile()
 {
+    if(!fLightPtr)
+        return;
     // 0-> Init histogram
     TH1F h {"hQProfile", "QProfile", 100, -5, 150};
     h.SetTitle("QProfile;dist [mm];Q [au]");
-    // Voxels should be already ordered
-    // 1-> Ref point is vector.begin() projection on line
-    auto front {fLightPtr->GetVoxels().front().GetPosition()};
-    // Convert it to physical units
-    ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
-    auto ref {fLightPtr->GetLine().ProjectionPointOnLine(front)};
-    // Use 3 divisions in voxel to obtain a better profile
+    // 1-> Ref point is either WP or beginning of projection on line
+    XYZPoint ref {};
+    if(fMergerData->fWP.X() != -1)
+        ref = fMergerData->fWP;
+    else
+    {
+        std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
+        auto front {fLightPtr->GetVoxels().front().GetPosition()};
+        // Convert it to physical units
+        if(fEnableConversion)
+            ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
+        auto ref {fLightPtr->GetLine().ProjectionPointOnLine(front)};
+    }
+    if(f2DProfile)
+        ref.SetZ(0);
+    // Declare line to use, bc it depends on 3D or 2D mode
+    ActPhysics::Line line {fLightPtr->GetLine()};
+    line.AlignUsingPoint(fLightPtr->GetLine().GetPoint());
+    if(f2DProfile)
+    {
+        const auto& gp {fLightPtr->GetLine().GetPoint()};
+        line = {{gp.X(), gp.Y(), 0}, ref};
+    }
+    // Use 3 divisions to get better resolution
     float div {1.f / 3};
     for(const auto& v : fLightPtr->GetVoxels())
     {
@@ -750,48 +789,83 @@ void ActRoot::MergerDetector::ComputeQProfile()
             {
                 for(int iz = -1; iz < 2; iz++)
                 {
-                    XYZPoint bin {pos.X() + ix * div, pos.Y() + iy * div, pos.Z() + iz * div};
+                    XYZPoint bin {(pos.X() + 0.5) + ix * div, (pos.Y() + 0.5) + iy * div,
+                                  (f2DProfile) ? 0.f : (pos.Z() + 0.5) + iz * div};
                     // Convert to physical units
-                    ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
+                    if(fEnableConversion)
+                        ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
                     // Project it on line
-                    auto proj {fLightPtr->GetLine().ProjectionPointOnLine(bin)};
+                    auto proj {line.ProjectionPointOnLine(bin)};
                     // Fill histograms
                     auto dist {(proj - ref).R()};
-                    h.Fill(dist, q / 27);
+                    h.Fill(dist, q / ((f2DProfile) ? 9 : 27));
+                    if(f2DProfile)
+                        break;
                 }
             }
         }
     }
     fMergerData->fQProf = h;
+    // Compute range from profile
+    auto distMax {GetRangeFromProfile(&h)};
+    // And move to point
+    fMergerData->fBraggP = ref + distMax * line.GetDirection().Unit();
+    if(f2DProfile)
+    {
+        // Get the Z value manually
+        auto p3d {fMergerData->fWP + distMax * fLightPtr->GetLine().GetDirection().Unit()};
+        fMergerData->fBraggP.SetZ(p3d.Z());
+    }
 }
 
 void ActRoot::MergerDetector::ComputeBSP()
 {
-    // Just using BL and HL
-    if(fBeamPtr != nullptr && fHeavyPtr != nullptr)
+    // Set points to project according to mode
+    bool isOkReaction {fBeamPtr != nullptr && fHeavyPtr != nullptr && !fPars.fIsCal};
+    bool isOkOther {(fPars.fIsCal || fPars.fIsL1) && fLightPtr != nullptr};
+    if(isOkReaction || isOkOther)
     {
         TH1F hQprojX {"hQProjX", "BL + HL Q along X;X [pad];Q_{proj X}", 135, 0, 135};
-        for(auto& it : {&fBeamPtr, &fHeavyPtr})
+        std::vector<ActRoot::Cluster*> ptrs;
+        if(isOkReaction)
+            ptrs = {fBeamPtr, fHeavyPtr};
+        if(isOkOther)
+            ptrs = {fLightPtr};
+        // Run for the set points!
+        for(auto& ptr : ptrs)
         {
-            for(const auto& v : (*it)->GetVoxels())
+            if(!ptr)
+                continue;
+            for(const auto& v : ptr->GetVoxels())
                 hQprojX.Fill(v.GetPosition().X(), v.GetCharge());
         }
-        auto maxBin {hQprojX.GetMaximumBin()};
-        auto maxBinX {hQprojX.GetBinCenter(maxBin)};
-        auto maxQ {hQprojX.GetBinContent(maxBin)};
-        // Value to consider as stopping point : maxQ / 10 (Thomas considers / 2 in his thesis)
-        auto range {maxQ / 10};
-        // Create TSpline
-        auto spe {std::make_unique<TSpline3>(&hQprojX)};
-        // And now function
-        auto func {std::make_unique<TF1>(
-            "func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
-        // Find maximum in the range [minBinX, xRangeMax of histogram]
-        auto xMax {func->GetX(range, maxBinX, hQprojX.GetXaxis()->GetXmax())};
+        // Compute x max from profile
+        auto xMax {GetRangeFromProfile(&hQprojX)};
         fMergerData->fBSP = {(float)xMax, 0, 0};
         // Save in MergerData
         fMergerData->fQprojX = hQprojX;
     }
+}
+
+double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h)
+{
+    // 1-> Smooth the histogram
+    h->Smooth();
+    // 2-> Find maximum
+    auto maxBin {h->GetMaximumBin()};
+    auto xMax {h->GetBinCenter(maxBin)};
+    auto yMax {h->GetBinContent(maxBin)};
+    // 3-> Set reference point
+    auto range {yMax / 5};
+    // 4-> Create interpolation functions
+    // Create TSpline
+    auto spe {std::make_unique<TSpline3>(h)};
+    // And now function
+    auto func {std::make_unique<TF1>(
+        "func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
+    // Find maximum in the range [xMax, xRangeMax of histogram]
+    auto ret {func->GetX(range, xMax, h->GetXaxis()->GetXmax())};
+    return ret;
 }
 
 void ActRoot::MergerDetector::ClearEventFilter()
@@ -833,7 +907,11 @@ void ActRoot::MergerDetector::Print() const
             std::cout << "-> EnableMatch   ? " << std::boolalpha << fEnableMatch << '\n';
             std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
             std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
+        }
+        if(fEnableQProfile)
+        {
             std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
+            std::cout << "-> 2DProfile     ? " << std::boolalpha << f2DProfile << '\n';
         }
     }
     // fSilSpecs->Print();
