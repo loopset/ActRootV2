@@ -387,7 +387,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a0ea39e22d2de895e4e876a98bda3e7da"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">ActRoot::HistogramPainter::fCanvas</a></div><div class="ttdeci">std::vector&lt; TCanvas * &gt; * fCanvas</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:37</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a44356d561e749be9ecf18617acc89374"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a44356d561e749be9ecf18617acc89374">ActRoot::HistogramPainter::fHist2D</a></div><div class="ttdeci">std::map&lt; int, Histo2DMap &gt; fHist2D</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:46</div></div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a7ca3dd4f12c7a3de303a655b1d18f59c"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a7ca3dd4f12c7a3de303a655b1d18f59c">ActRoot::HistogramPainter::DrawRegions</a></div><div class="ttdeci">void DrawRegions()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:416</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a7ca3dd4f12c7a3de303a655b1d18f59c"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a7ca3dd4f12c7a3de303a655b1d18f59c">ActRoot::HistogramPainter::DrawRegions</a></div><div class="ttdeci">void DrawRegions()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:418</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_ab0eb6e6ab4dab412e5bf3215301c7128"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#ab0eb6e6ab4dab412e5bf3215301c7128">ActRoot::HistogramPainter::DrawPolyLines</a></div><div class="ttdeci">void DrawPolyLines()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:297</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_ada6dbd3dc78f3153c33c2802ae101b00"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#ada6dbd3dc78f3153c33c2802ae101b00">ActRoot::HistogramPainter::DrawProjections</a></div><div class="ttdeci">void DrawProjections()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:370</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_adb04e85e3c51c5c3be6f376a34a8a111"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#adb04e85e3c51c5c3be6f376a34a8a111">ActRoot::HistogramPainter::DrawPolyMarkers</a></div><div class="ttdeci">void DrawPolyMarkers()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:332</div></div>
@@ -551,13 +551,15 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    {</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keyword">auto</span> data {merger-&gt;GetOutputData()};</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="comment">// Cd to correct pad</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(1)-&gt;cd(3);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        data-&gt;fQprojX.Draw(<span class="stringliteral">&quot;hist&quot;</span>);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="comment">// Draw also pad plane in 2nd tab</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(1)-&gt;cd(4);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a44356d561e749be9ecf18617acc89374">fHist2D</a>[0][4]-&gt;Draw(<span class="stringliteral">&quot;colz&quot;</span>);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    }</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;}</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(1)-&gt;cd(2);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        data-&gt;fQProf.Draw(<span class="stringliteral">&quot;hist&quot;</span>);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(1)-&gt;cd(3);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        data-&gt;fQprojX.Draw(<span class="stringliteral">&quot;hist&quot;</span>);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="comment">// Draw also pad plane in 2nd tab</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(1)-&gt;cd(4);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a44356d561e749be9ecf18617acc89374">fHist2D</a>[0][4]-&gt;Draw(<span class="stringliteral">&quot;colz&quot;</span>);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    }</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1DetectorManager_html_a28e6ff97b6c343c26639eafb656013fa"><div class="ttname"><a href="classActRoot_1_1DetectorManager.html#a28e6ff97b6c343c26639eafb656013fa">ActRoot::DetectorManager::GetDetectorAs</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; GetDetectorAs()</div><div class="ttdef"><b>Definition:</b> ActDetectorManager.h:72</div></div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a80c8feaed280634fe94b0f974b6a4139"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a80c8feaed280634fe94b0f974b6a4139">ActRoot::HistogramPainter::fDetMan</a></div><div class="ttdeci">DetectorManager * fDetMan</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:43</div></div>
 </div><!-- fragment -->
@@ -585,18 +587,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;{</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [c, map] : <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>)</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    {</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [pad, vec] : map)</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        {</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(c)-&gt;cd(pad);</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g : vec)</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                g-&gt;Draw(<span class="stringliteral">&quot;f same&quot;</span>);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;        }</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    }</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;{</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [c, map] : <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>)</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [pad, vec] : map)</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;        {</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#a0ea39e22d2de895e4e876a98bda3e7da">fCanvas</a>-&gt;at(c)-&gt;cd(pad);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g : vec)</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                g-&gt;Draw(<span class="stringliteral">&quot;f same&quot;</span>);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        }</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    }</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_aeac22f78e74671f94b82aeb6788271a9"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">ActRoot::HistogramPainter::fGraphs</a></div><div class="ttdeci">std::map&lt; int, GraphMap &gt; fGraphs</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.h:54</div></div>
 </div><!-- fragment -->
 </div>
@@ -924,35 +926,35 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;{</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keyword">auto</span> filter {<a class="code" href="classActRoot_1_1HistogramPainter.html#a80c8feaed280634fe94b0f974b6a4139">fDetMan</a>-&gt;<a class="code" href="classActRoot_1_1DetectorManager.html#a28e6ff97b6c343c26639eafb656013fa">GetDetectorAs</a>&lt;TPCDetector&gt;()-&gt;GetFilter()};</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">auto</span> casted {std::dynamic_pointer_cast&lt;ActAlgorithm::MultiRegion&gt;(filter)}; casted)</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    {</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="comment">// 1-&gt; Get regions</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; regions {casted-&gt;GetRegions()};</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, region] : regions)</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        {</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <span class="comment">// XY</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            <span class="keyword">auto</span> gxy {std::make_shared&lt;TGraph&gt;()};</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            region.FillGraph(gxy.get(), <span class="stringliteral">&quot;xy&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][4].push_back(gxy);</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            <span class="comment">// XZ</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            <span class="keyword">auto</span> gxz {std::make_shared&lt;TGraph&gt;()};</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            region.FillGraph(gxz.get(), <span class="stringliteral">&quot;xz&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][5].push_back(gxz);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <span class="comment">// YZ</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <span class="keyword">auto</span> gyz {std::make_shared&lt;TGraph&gt;()};</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            region.FillGraph(gyz.get(), <span class="stringliteral">&quot;yz&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][6].push_back(gyz);</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            <span class="comment">// Set style</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g : {gxy, gxz, gyz})</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            {</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                g-&gt;SetFillStyle(3003);</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                g-&gt;SetFillColor(kGray + 1);</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            }</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        }</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    }</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;{</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keyword">auto</span> filter {<a class="code" href="classActRoot_1_1HistogramPainter.html#a80c8feaed280634fe94b0f974b6a4139">fDetMan</a>-&gt;<a class="code" href="classActRoot_1_1DetectorManager.html#a28e6ff97b6c343c26639eafb656013fa">GetDetectorAs</a>&lt;TPCDetector&gt;()-&gt;GetFilter()};</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">auto</span> casted {std::dynamic_pointer_cast&lt;ActAlgorithm::MultiRegion&gt;(filter)}; casted)</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    {</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        <span class="comment">// 1-&gt; Get regions</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; regions {casted-&gt;GetRegions()};</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, region] : regions)</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <span class="comment">// XY</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="keyword">auto</span> gxy {std::make_shared&lt;TGraph&gt;()};</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            region.FillGraph(gxy.get(), <span class="stringliteral">&quot;xy&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][4].push_back(gxy);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            <span class="comment">// XZ</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="keyword">auto</span> gxz {std::make_shared&lt;TGraph&gt;()};</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            region.FillGraph(gxz.get(), <span class="stringliteral">&quot;xz&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][5].push_back(gxz);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            <span class="comment">// YZ</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <span class="keyword">auto</span> gyz {std::make_shared&lt;TGraph&gt;()};</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            region.FillGraph(gyz.get(), <span class="stringliteral">&quot;yz&quot;</span>, 0, <a class="code" href="classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee">fTPC</a>-&gt;<a class="code" href="classActRoot_1_1TPCParameters.html#a5b7db7d0a904f0c2f29b3ff23e184bcc">GetNPADSZUNREBIN</a>());</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            <a class="code" href="classActRoot_1_1HistogramPainter.html#aeac22f78e74671f94b82aeb6788271a9">fGraphs</a>[0][6].push_back(gyz);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            <span class="comment">// Set style</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; g : {gxy, gxz, gyz})</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            {</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                g-&gt;SetFillStyle(3003);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                g-&gt;SetFillColor(kGray + 1);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            }</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        }</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -983,7 +985,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(hb-&gt;CheckTokenExists(<span class="stringliteral">&quot;ShowStats&quot;</span>, <span class="keyword">true</span>))</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#aafb069d628e4ee2cca763400cd0af4aa">fShowHistStats</a> = hb-&gt;GetBool(<span class="stringliteral">&quot;ShowStats&quot;</span>);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a3f7b88f2a45fef889a0ae2165e338aaa"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a3f7b88f2a45fef889a0ae2165e338aaa">ActRoot::HistogramPainter::SetPalette</a></div><div class="ttdeci">void SetPalette(const std::string &amp;name, bool reverse=false)</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:430</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_a3f7b88f2a45fef889a0ae2165e338aaa"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#a3f7b88f2a45fef889a0ae2165e338aaa">ActRoot::HistogramPainter::SetPalette</a></div><div class="ttdeci">void SetPalette(const std::string &amp;name, bool reverse=false)</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:432</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:112</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:321</div></div>
 <div class="ttc" id="aclassActRoot_1_1Options_html_a7bd54eeb620ca48afccde8edcadb6bb6"><div class="ttname"><a href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Options &gt; GetInstance(int argc=0, char **=nullptr)</div><div class="ttdef"><b>Definition:</b> ActOptions.cxx:29</div></div>
@@ -1083,7 +1085,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#a80c8feaed280634fe94b0f974b6a4139">fDetMan</a> = detman;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="classActRoot_1_1HistogramPainter.html#aa6215ec89b5f3c250270ee3987b2d51d">InitRegionGraphs</a>();</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_aa6215ec89b5f3c250270ee3987b2d51d"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#aa6215ec89b5f3c250270ee3987b2d51d">ActRoot::HistogramPainter::InitRegionGraphs</a></div><div class="ttdeci">void InitRegionGraphs()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:385</div></div>
+<div class="ttc" id="aclassActRoot_1_1HistogramPainter_html_aa6215ec89b5f3c250270ee3987b2d51d"><div class="ttname"><a href="classActRoot_1_1HistogramPainter.html#aa6215ec89b5f3c250270ee3987b2d51d">ActRoot::HistogramPainter::InitRegionGraphs</a></div><div class="ttdeci">void InitRegionGraphs()</div><div class="ttdef"><b>Definition:</b> ActHistogramPainter.cxx:387</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1170,25 +1172,25 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;{</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <span class="comment">// Set path to color palettes</span></div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    TString path {gSystem-&gt;Getenv(<span class="stringliteral">&quot;ACTROOT&quot;</span>)};</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    path += <span class="stringliteral">&quot;/Core/Data/ColorPalettes/&quot;</span>;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="comment">// Get Palette</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    path += name;</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    path += <span class="stringliteral">&quot;.txt&quot;</span>;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordflow">if</span>(gSystem-&gt;AccessPathName(path))</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    {</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;Palette named &quot;</span> &lt;&lt; name &lt;&lt; <span class="stringliteral">&quot; does not exist in ActRoot database&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="comment">// Set!</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    gStyle-&gt;SetPalette(path);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    gStyle-&gt;SetNumberContours(256);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="comment">// Reverse?</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordflow">if</span>(reverse)</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        TColor::InvertPalette();</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;{</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="comment">// Set path to color palettes</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    TString path {gSystem-&gt;Getenv(<span class="stringliteral">&quot;ACTROOT&quot;</span>)};</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    path += <span class="stringliteral">&quot;/Core/Data/ColorPalettes/&quot;</span>;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="comment">// Get Palette</span></div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    path += name;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    path += <span class="stringliteral">&quot;.txt&quot;</span>;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordflow">if</span>(gSystem-&gt;AccessPathName(path))</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    {</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;Palette named &quot;</span> &lt;&lt; name &lt;&lt; <span class="stringliteral">&quot; does not exist in ActRoot database&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    }</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="comment">// Set!</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    gStyle-&gt;SetPalette(path);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    gStyle-&gt;SetNumberContours(256);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="comment">// Reverse?</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordflow">if</span>(reverse)</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        TColor::InvertPalette();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ab912d02c7998c3d47d05f87be4e2c920"><div class="ttname"><a href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a></div><div class="ttdeci">#define BOLDRED</div><div class="ttdef"><b>Definition:</b> ActColors.h:16</div></div>
 </div><!-- fragment -->
