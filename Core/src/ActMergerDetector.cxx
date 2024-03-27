@@ -759,6 +759,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
     h.SetTitle("QProfile;dist [mm];Q [au]");
     // 1-> Ref point is either WP or beginning of projection on line
     XYZPoint ref {};
+    XYZPoint ref3D {};
     if(fPars.fUseRP && fMergerData->fRP.X() != -1)
         ref = fMergerData->fRP;
     else if(!fPars.fUseRP && fMergerData->fWP.X() != -1)
@@ -776,6 +777,8 @@ void ActRoot::MergerDetector::ComputeQProfile()
     fLightPtr->GetRefToLine().AlignUsingPoint(ref, true);
     // Declare line to use, bc it depends on 3D or 2D mode
     ActPhysics::Line line {fLightPtr->GetLine()};
+    // Save in 3D before setting 2D (if so)
+    ref3D = ref;
     if(f2DProfile)
     {
         // Set ref.Z component to be 0
@@ -800,7 +803,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
                                   (f2DProfile) ? 0.f : (pos.Z() + 0.5f) + iz * div};
                     // Convert to physical units
                     if(fEnableConversion)
-                        ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, true);
+                        ScalePoint(bin, fTPCPars->GetPadSide(), fDriftFactor, false); // +0.5 already considered
                     // Project it on line
                     auto proj {line.ProjectionPointOnLine(bin)};
                     // Fill histograms
@@ -820,8 +823,24 @@ void ActRoot::MergerDetector::ComputeQProfile()
     if(f2DProfile)
     {
         // Get the Z value manually
-        auto p3d {fMergerData->fWP + distMax * fLightPtr->GetLine().GetDirection().Unit()};
+        auto p3d {ref3D + distMax * fLightPtr->GetLine().GetDirection().Unit()};
         fMergerData->fBraggP.SetZ(p3d.Z());
+        // This method works! It can be checked that
+        // manually computing the mean if Z values in the (X,Y) region
+        // just calculated returns the ~ same Z value!!!
+
+        // std::vector<double> zetas;
+        // auto x {fMergerData->fBraggP.X()};
+        // auto y {fMergerData->fBraggP.Y()};
+        // for(auto& v : fLightPtr->GetVoxels())
+        // {
+        //     const auto& pos {v.GetPosition()};
+        //     double shift {2};
+        //     if(std::abs(pos.X() - x) <= shift && std::abs(pos.Y() - y) <= shift)
+        //         zetas.push_back(pos.Z() + 0.5);
+        // }
+        // // Get Z mean
+        // fMergerData->fBraggP.SetZ(TMath::Mean(zetas.begin(), zetas.end()));
     }
 }
 
