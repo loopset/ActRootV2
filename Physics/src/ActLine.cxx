@@ -1,10 +1,10 @@
 #include "ActLine.h"
 
 #include "ActColors.h"
+#include "ActOptions.h"
 #include "ActUtils.h"
 #include "ActVoxel.h"
 
-#include "TEnv.h"
 #include "TMath.h"
 #include "TMathBase.h"
 #include "TPolyLine.h"
@@ -295,7 +295,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX,
     // Slope in X can be 0 if cluster is from pad saturation -> skip drawing of that line
     if(!std::isfinite(slope3DXY) || !std::isfinite(slope3DXZ))
     {
-        if(gEnv->GetValue("ActRoot.Verbose", false))
+        if(ActRoot::Options::GetInstance()->GetIsVerbose())
             std::cout << BOLDMAGENTA << "PolyLine with slope X = 0 -> skip drawing" << RESET << '\n';
         return {TreatSaturationLine(proj, maxZ, rebinZ)}; // return empty polyline
     }

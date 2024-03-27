@@ -31,7 +31,6 @@
 #pragma link C++ class ActRoot::SilDetector;
 #pragma link C++ class ActRoot::ModularDetector;
 #pragma link C++ class ActRoot::MergerDetector;
-#pragma link C++ class ActRoot::CorrDetector;
 
 // detector manager
 #pragma link C++ class ActRoot::DetectorManager;
