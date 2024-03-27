@@ -759,9 +759,11 @@ void ActRoot::MergerDetector::ComputeQProfile()
     h.SetTitle("QProfile;dist [mm];Q [au]");
     // 1-> Ref point is either WP or beginning of projection on line
     XYZPoint ref {};
-    if(fMergerData->fWP.X() != -1)
+    if(fPars.fUseRP && fMergerData->fRP.X() != -1)
+        ref = fMergerData->fRP;
+    else if(!fPars.fUseRP && fMergerData->fWP.X() != -1)
         ref = fMergerData->fWP;
-    else
+    else // default case: go to beginning of light track
     {
         std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
         auto front {fLightPtr->GetVoxels().front().GetPosition()};
