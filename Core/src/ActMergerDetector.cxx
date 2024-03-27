@@ -823,7 +823,9 @@ void ActRoot::MergerDetector::ComputeQProfile()
     if(f2DProfile)
     {
         // Get the Z value manually
-        auto p3d {ref3D + distMax * fLightPtr->GetLine().GetDirection().Unit()};
+        // auto p3d {ref3D + distMax * fLightPtr->GetLine().GetDirection().Unit()};
+        // Simpliest way of doing this!
+        auto p3d {fLightPtr->GetLine().MoveToX(fMergerData->fBraggP.X())};
         fMergerData->fBraggP.SetZ(p3d.Z());
         // This method works! It can be checked that
         // manually computing the mean if Z values in the (X,Y) region
