@@ -8,6 +8,7 @@
 #include "TRegexp.h"
 #include "TString.h"
 
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
@@ -37,7 +38,7 @@ void ActRoot::SilParameters::ReadActions(const std::vector<std::string>& layers,
     std::ifstream streamer {file};
     if(!streamer)
         throw std::runtime_error("No Action file for SilParameters");
-    TString key {};
+    std::string key {};
     int vxi {};
     int aux0 {};
     int aux1 {};
@@ -45,12 +46,25 @@ void ActRoot::SilParameters::ReadActions(const std::vector<std::string>& layers,
     {
         for(int i = 0; i < names.size(); i++)
         {
-            auto index {key.Index(names[i].c_str())};
-            if(index != -1) //-1 implies not found
+            auto pos {key.find(names[i])};
+            // npos -> not found
+            // 0 -> we have to force names[i] to be at first position of the name (otherwise SCA_OR_SI_UP would be used
+            // also!)
+            if(pos != std::string::npos && pos == 0)
             {
                 // and now get index
                 auto length {names[i].length()};
-                fVXI[vxi] = {layers[i], std::stoi(std::string(key).substr(index + length))};
+                int index {};
+                try
+                {
+                    index = std::stoi(key.substr(pos + length));
+                }
+                catch(std::exception& e)
+                {
+                    throw std::runtime_error(
+                        "SilParameters::ReadActions(): could not locate index of silicon with name " + names[i]);
+                }
+                fVXI[vxi] = {layers[i], index};
                 break;
             }
         }
