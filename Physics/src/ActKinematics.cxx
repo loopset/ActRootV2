@@ -230,9 +230,9 @@ void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double 
                                                      bool computeBoth)
 {
     // this function allows to choose which angles are given
-    if(fEex < 0.0)
-        throw std::runtime_error(
-            "Cannot proceed: fEex < 0, probably you dont want to use this function depending on inner fEex!");
+    // if(fEex < 0.0)
+    //     throw std::runtime_error(
+    //         "Cannot proceed: fEex < 0, probably you dont want to use this function depending on inner fEex!");
 
     switch(anglesFrom)
     {
