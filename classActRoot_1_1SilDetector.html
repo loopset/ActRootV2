@@ -809,13 +809,14 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;SetIsEnabled(enabled);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;GetIsEnabled())</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;CalibrationManager::fIsEnabled == false&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;CalibrationManager::fIsEnabled == false&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">auto</span> files {config-&gt;GetStringVector(<span class="stringliteral">&quot;Paths&quot;</span>)};</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; file : files)</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classActRoot_1_1VDetector.html#a4d8fea032d928ce494d6a116f9df0517">fCalMan</a>-&gt;ReadCalibration(file);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
 </div><!-- fragment -->
 </div>
