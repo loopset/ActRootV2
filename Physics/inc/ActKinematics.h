@@ -99,6 +99,7 @@ public:
     // Setters
     void SetBeamEnergy(double T1);
     void SetEx(double Ex);
+    void SetBeamEnergyAndEx(double T1, double Ex);
     // Getters
     double GetT1Lab() const { return fT1Lab; }
     double GetT3Lab() const { return fT3Lab; }

@@ -163,6 +163,13 @@ void ActPhysics::Kinematics::SetEx(double Ex)
     Init();
 }
 
+void ActPhysics::Kinematics::SetBeamEnergyAndEx(double T1, double Ex)
+{
+    fT1Lab = T1;
+    fEex = Ex;
+    Init();
+}
+
 double ActPhysics::Kinematics::GetMass(unsigned int index) const
 {
     switch(index)
