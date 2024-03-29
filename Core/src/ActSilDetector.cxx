@@ -114,7 +114,7 @@ void ActRoot::SilDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
     fCalMan->SetIsEnabled(enabled);
     if(!fCalMan->GetIsEnabled())
     {
-        std::cout << BOLDCYAN << "CalibrationManager::fIsEnabled == false" << '\n';
+        std::cout << BOLDCYAN << "CalibrationManager::fIsEnabled == false" << RESET << '\n';
         return;
     }
     auto files {config->GetStringVector("Paths")};
