@@ -67,6 +67,8 @@ void ActRoot::MTExecutor::ComputeRunsPerThread()
     std::cout << BOLDYELLOW << "----- MTExecutor -----" << '\n';
     for(int t = 0; t < fRunsPerThread.size(); t++)
     {
+        if(IsThreadEmpty(t))
+            continue;
         std::cout << "Thread " << t << '\n';
         for(auto& run : fRunsPerThread[t])
         {
