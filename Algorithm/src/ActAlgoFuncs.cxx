@@ -301,7 +301,7 @@ ActAlgorithm::RPSet ActAlgorithm::SimplifyRPs(const RPVector& rps, double distTh
 }
 
 void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, int minVoxels,
-                                    bool isVerbose)
+                                    bool keepSplit, bool isVerbose)
 {
     std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = clusters->begin(); it != clusters->end(); it++)
@@ -326,7 +326,7 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
             refVoxels.erase(rpBreak, refVoxels.end());
 
             // Add new cluster if size is enough!
-            if(newVoxels.size() >= minVoxels)
+            if(newVoxels.size() >= minVoxels && keepSplit)
             {
                 ActRoot::Cluster newCluster {(int)clusters->size()};
                 newCluster.SetVoxels(std::move(newVoxels));

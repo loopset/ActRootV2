@@ -1005,7 +1005,7 @@ void ActAlgorithm::MultiStep::PerformFinerFits()
     const auto& rp {fRPs->front()};
 
     // 2-> Break BL starting on RP
-    BreakBeamToHeavy(fClusters, rp, fAlgo->GetMinPoints(), fIsVerbose);
+    BreakBeamToHeavy(fClusters, rp, fAlgo->GetMinPoints(), true, fIsVerbose);
     // std::vector<ActRoot::Cluster> toAppend {};
     // for(auto it = fClusters->begin(); it != fClusters->end(); it++)
     // {

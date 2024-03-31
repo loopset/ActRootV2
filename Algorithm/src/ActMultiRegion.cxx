@@ -95,6 +95,10 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     if(mr->CheckTokenExists("RPPivotDist", !fIsEnabled))
         fRPPivotDist = mr->GetDouble("RPPivotDist");
 
+    // Cleaning of SplitRP
+    if(mr->CheckTokenExists("RPCleanSplit", !fIsEnabled))
+        fCleanSplitRP = mr->GetBool("RPCleanSplit");
+
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
     fClocks.push_back({});
@@ -469,7 +473,7 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
     if(fData->fRPs.size() == 0)
         return;
     // 1-> Split BL into heavy
-    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fIsVerbose);
+    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fCleanSplitRP, fIsVerbose);
     // 2-> Mask region around RP
     // MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
 }
@@ -608,6 +612,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPClusterDist    : " << fRPClusterDist << '\n';
         std::cout << "-> RPDelete         ? " << std::boolalpha << fRPDelete << '\n';
         std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
+        std::cout << "-> RPCleanSplit     ? " << std::boolalpha << fCleanSplitRP << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }

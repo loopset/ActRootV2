@@ -45,7 +45,7 @@ void Chi2AndSizeCleaning(std::vector<ActRoot::Cluster>* cluster, double chi2Thre
 RPSet SimplifyRPs(const RPVector& rps, double distThresh);
 
 // Break BL after RP is found
-void BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, int minVoxels,
+void BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, int minVoxels, bool keepSplit = true,
                       bool isVerbose = false);
 
 // Mask beginning and end of tracks to get a better fit
