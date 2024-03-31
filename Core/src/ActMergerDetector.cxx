@@ -678,15 +678,19 @@ void ActRoot::MergerDetector::ConvertToPhysicalUnits()
 
 void ActRoot::MergerDetector::ComputeAngles()
 {
+    XYZVector beamDir {};
+    if(fBeamPtr != nullptr)
+        beamDir = fBeamPtr->GetLine().GetDirection().Unit();
+    else
+        beamDir = {1, 0, 0};
     // Theta Light
-    fMergerData->fThetaLight = GetTheta3D(fBeamPtr->GetLine().GetDirection(), fLightPtr->GetLine().GetDirection());
+    fMergerData->fThetaLight = GetTheta3D(beamDir, fLightPtr->GetLine().GetDirection());
     fMergerData->fThetaLegacy = fMergerData->fThetaLight;
     // Debug: angle computed assuming beam exactly along X axis
     fMergerData->fThetaDebug = GetTheta3D({1, 0, 0}, fLightPtr->GetLine().GetDirection());
     // Phi Light
-    fMergerData->fPhiLight = GetPhi3D(fBeamPtr->GetLine().GetDirection(), fLightPtr->GetLine().GetDirection());
+    fMergerData->fPhiLight = GetPhi3D(beamDir, fLightPtr->GetLine().GetDirection());
     // Beam angles
-    auto beamDir {fBeamPtr->GetLine().GetDirection().Unit()};
     fMergerData->fThetaBeam = GetTheta3D({1, 0, 0}, beamDir);
     fMergerData->fThetaBeamZ = TMath::ATan(beamDir.Z() / beamDir.X()) * TMath::RadToDeg();
     fMergerData->fPhiBeamY = TMath::ATan(beamDir.Y() / beamDir.X()) * TMath::RadToDeg();
@@ -849,7 +853,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
 void ActRoot::MergerDetector::ComputeBSP()
 {
     // Set points to project according to mode
-    bool isOkReaction {fBeamPtr != nullptr && fHeavyPtr != nullptr && !fPars.fIsCal};
+    bool isOkReaction {fBeamPtr != nullptr && !fPars.fIsCal};
     bool isOkOther {(fPars.fIsCal || fPars.fIsL1) && fLightPtr != nullptr};
     if(isOkReaction || isOkOther)
     {
