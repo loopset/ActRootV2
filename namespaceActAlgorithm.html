@@ -136,8 +136,8 @@ Functions</h2></td></tr>
 <tr class="separator:a70386661cbcfbcd8913f24faa3f6656e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af84057989ea7445fea6e90bdb0dc4681"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceActAlgorithm.html#a5efa1e274a84a167f1a5a3086558c6ae">RPSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#af84057989ea7445fea6e90bdb0dc4681">SimplifyRPs</a> (const <a class="el" href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">RPVector</a> &amp;rps, double distThresh)</td></tr>
 <tr class="separator:af84057989ea7445fea6e90bdb0dc4681"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc48c7edcac25b37e1136d84aa2cf2f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#afc48c7edcac25b37e1136d84aa2cf2f0">BreakBeamToHeavy</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, const <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> &amp;rp, int minVoxels, bool isVerbose=false)</td></tr>
-<tr class="separator:afc48c7edcac25b37e1136d84aa2cf2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99209407f536fbe7c35c94adff0a44ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad">BreakBeamToHeavy</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, const <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> &amp;rp, int minVoxels, bool keepSplit=true, bool isVerbose=false)</td></tr>
+<tr class="separator:a99209407f536fbe7c35c94adff0a44ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d6542e57ca99a30df3efe191a4e79b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a5d6542e57ca99a30df3efe191a4e79b2">MaskBeginEnd</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, const <a class="el" href="namespaceActAlgorithm.html#a8766befd594bfdc95d1f06aeaeeb1153">XYZPoint</a> &amp;rp, double pivotDist, int minVoxels, bool isVerbose=false)</td></tr>
 <tr class="separator:a5d6542e57ca99a30df3efe191a4e79b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c876a251d902ff5bad25b1ddfc03080"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a1c876a251d902ff5bad25b1ddfc03080">GetClusterAngle</a> (const <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> &amp;beam, const <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> &amp;recoil)</td></tr>
@@ -263,8 +263,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="afc48c7edcac25b37e1136d84aa2cf2f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc48c7edcac25b37e1136d84aa2cf2f0">&#9670;&nbsp;</a></span>BreakBeamToHeavy()</h2>
+<a id="a99209407f536fbe7c35c94adff0a44ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99209407f536fbe7c35c94adff0a44ad">&#9670;&nbsp;</a></span>BreakBeamToHeavy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,6 +286,12 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>minVoxels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>keepSplit</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -324,7 +330,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            refVoxels.erase(rpBreak, refVoxels.end());</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="comment">// Add new cluster if size is enough!</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">if</span>(newVoxels.size() &gt;= minVoxels)</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">if</span>(newVoxels.size() &gt;= minVoxels &amp;&amp; keepSplit)</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            {</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <a class="code" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> newCluster {(int)clusters-&gt;size()};</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                newCluster.<a class="code" href="classActRoot_1_1Cluster.html#a0efa6961e0e4e69e20a13f3fb798ca84">SetVoxels</a>(std::move(newVoxels));</div>

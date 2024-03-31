@@ -16,7 +16,7 @@ var searchData=
   ['boldwhite_168',['BOLDWHITE',['../ActColors_8h.html#aa4ef051614aa0bd503b0a18ee158c5d7',1,'ActColors.h']]],
   ['boldyellow_169',['BOLDYELLOW',['../ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26',1,'ActColors.h']]],
   ['breakbeamclusters_170',['BreakBeamClusters',['../classActAlgorithm_1_1MultiStep.html#ac4d54da7c399d52ce578cc09eb8a4f70',1,'ActAlgorithm::MultiStep']]],
-  ['breakbeamtoheavy_171',['BreakBeamToHeavy',['../namespaceActAlgorithm.html#afc48c7edcac25b37e1136d84aa2cf2f0',1,'ActAlgorithm']]],
+  ['breakbeamtoheavy_171',['BreakBeamToHeavy',['../namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad',1,'ActAlgorithm']]],
   ['breakcluster_172',['BreakCluster',['../classActAlgorithm_1_1MultiRegion.html#a4ed3a04f19e10e6eadb458d913c1c997',1,'ActAlgorithm::MultiRegion']]],
   ['breakintoregions_173',['BreakIntoRegions',['../classActAlgorithm_1_1MultiRegion.html#aa1437730a06992d80e89ef426cf5c9cf',1,'ActAlgorithm::MultiRegion']]],
   ['breaktrackclusters_174',['BreakTrackClusters',['../classActAlgorithm_1_1MultiStep.html#a425888a5cac8ef4a5691a1e8e3cc3beb',1,'ActAlgorithm::MultiStep']]],
