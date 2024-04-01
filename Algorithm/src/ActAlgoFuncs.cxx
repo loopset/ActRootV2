@@ -351,7 +351,6 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
             if(refVoxels.size() >= minVoxels)
             {
                 it->ReFit();
-                it->ReFillSets();
             }
             else
             {
@@ -363,6 +362,7 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
                     std::cout << "-----------------------------" << RESET << '\n';
                 }
             }
+            it->ReFillSets();
         }
     }
     clusters->insert(clusters->end(), std::make_move_iterator(toAppend.begin()),
