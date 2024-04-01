@@ -287,6 +287,9 @@ ActAlgorithm::RPSet ActAlgorithm::SimplifyRPs(const RPVector& rps, double distTh
             }
         }
     }
+    // If none in distance threshold
+    if(aux.size() == 0)
+        return {};
     // And compute mean
     RPSet ret;
     XYZPoint mean;

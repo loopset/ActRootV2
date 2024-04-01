@@ -136,11 +136,6 @@ void ActAlgorithm::MultiRegion::Run()
 {
     if(!fIsEnabled)
         return;
-    // 1-> Break set vector of clusters into regions
-    fClocks[0].Start(false);
-    BreakIntoRegions();
-    fClocks[0].Stop();
-    ResetID();
     // 2-> Merge similar tracks
     if(fEnableMerge)
     {
@@ -149,6 +144,12 @@ void ActAlgorithm::MultiRegion::Run()
         fClocks[3].Stop();
         ResetID();
     }
+    // 1-> Break set vector of clusters into regions
+    fClocks[0].Start(false);
+    BreakIntoRegions();
+    fClocks[0].Stop();
+    ResetID();
+    // 2-> was before here
     // 3-> Clean before finding RP
     CleanClusters();
     ResetID();
@@ -164,7 +165,7 @@ void ActAlgorithm::MultiRegion::Run()
         DeleteAfterRP();
     // 7-> Fine cluster treatment after RP is found
     DoFinerFits();
-    // ResetID();
+    ResetID();
     // FindFineRP();
     if(fEnableFinalClean)
         FinalClean();
@@ -486,7 +487,44 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
     if(fData->fRPs.size() == 0)
         return;
     // 1-> Split BL into heavy
-    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fKeepSplitRP, fIsVerbose);
+    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), true, fIsVerbose);
+    // Decide whether to keep or delete SplitRP
+    int nBL {};
+    int notBLnotSplit {};
+    bool deleteSplit {false};
+    for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+    {
+        if(it->GetIsBeamLike())
+            nBL++;
+        else
+        {
+            if(!it->GetIsSplitRP())
+                notBLnotSplit++;
+        }
+    }
+    // Only set to delete in this case
+    if(nBL == 1)
+    {
+        if(notBLnotSplit > 1)
+            deleteSplit = true;
+    }
+    if(deleteSplit && !fKeepSplitRP)
+    {
+        for(auto it = fData->fClusters.begin(); it != fData->fClusters.end();)
+        {
+            if(it->GetIsSplitRP())
+            {
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDRED << "-> Deleting SplitRP at #" << it->GetClusterID() << RESET << '\n';
+                }
+                it = fData->fClusters.erase(it);
+            }
+            else
+                it++;
+        }
+    }
+
     // 2-> Mask region around RP
     // MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
 }
