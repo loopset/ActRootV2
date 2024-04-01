@@ -108,6 +108,8 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     // Clean
     if(mr->CheckTokenExists("EnableFinalClean", !fIsEnabled))
         fEnableFinalClean = mr->GetBool("EnableFinalClean");
+    if(mr->CheckTokenExists("CausalShiftX", !fIsEnabled))
+        fCausalShiftX = mr->GetDouble("CausalShiftX");
 
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
@@ -434,7 +436,7 @@ void ActAlgorithm::MultiRegion::DeleteAfterRP()
 {
     for(auto it = fData->fClusters.begin(); it != fData->fClusters.end();)
     {
-        if(it->GetToDelete())
+        if(it->GetToDelete() || !it->GetHasRP())
             it = fData->fClusters.erase(it);
         else
             it++;
@@ -634,8 +636,60 @@ void ActAlgorithm::MultiRegion::FindFineRP()
 
 void ActAlgorithm::MultiRegion::FinalClean()
 {
-    // Cleaning based on size
+    if(fData->fClusters.size() == 0)
+        return;
+    // 1-> Cleaning based on size of cluster
     Chi2AndSizeCleaning(&fData->fClusters, fCleanMaxChi2, fCleanMinVoxels, fIsVerbose);
+    // 2-> Cleaning based on causality
+    if(fData->fRPs.size() > 0)
+    {
+        // Get the X position of the RP
+        auto rpX {fData->fRPs.front().X()};
+        // Get the minimum position of a non-beam cluster
+        double otherXMin {11111};
+        for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+        {
+            if(!it->GetIsBeamLike())
+            {
+                auto [xmin, xmax] {it->GetXRange()};
+                if(xmin < otherXMin)
+                    otherXMin = xmin;
+            }
+        }
+        // Clear
+        if(otherXMin < (rpX - fCausalShiftX))
+        {
+            if(fIsVerbose)
+            {
+                std::cout << BOLDGREEN;
+                std::cout << "-> Causal cleaning : " << '\n';
+                std::cout << "   RP.X() : " << rpX << '\n';
+                std::cout << "   otherX : " << otherXMin << '\n';
+                std::cout << "   ShiftX : " << fCausalShiftX << RESET << '\n';
+            }
+            // Delete
+            fData->fClusters.clear();
+            fData->fRPs.clear();
+        }
+    }
+    // // Get beam like last position in X
+    // double maxXBeam {-1};
+    // double minXOther {11111};
+    // for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+    // {
+    //     if(it->GetIsBeamLike())
+    //     {
+    //         auto [xmin, xmax] {it->GetXRange()};
+    //         if(xmax > maxXBeam)
+    //             maxXBeam = xmax;
+    //     }
+    //     else
+    //     {
+    //         auto [xmin, xmax] {it->GetXRange()};
+    //         if(xmin < minXOther)
+    //             minXOther = xmin;
+    //     }
+    // }
     // And delete everything based on size
     if(fData->fClusters.size() <= 1)
     {
@@ -684,6 +738,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPKeepSplitRP    ? " << std::boolalpha << fKeepSplitRP << '\n';
         std::cout << "-> RPOutsideBeam    ? " << std::boolalpha << fRPOutsideBeam << '\n';
         std::cout << "-> EnableFinalClean ? " << std::boolalpha << fEnableFinalClean << '\n';
+        std::cout << "-> CausalShiftX     : " << fCausalShiftX << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }

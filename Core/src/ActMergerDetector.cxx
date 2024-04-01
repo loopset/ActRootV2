@@ -883,10 +883,10 @@ void ActRoot::MergerDetector::ComputeBSP()
     bool isOkOther {(fPars.fIsCal || fPars.fIsL1) && fLightPtr != nullptr};
     if(isOkReaction || isOkOther)
     {
-        TH1F hQprojX {"hQProjX", "BL + HL Q along X;X [pad];Q_{proj X}", 135, 0, 135};
+        TH1F hQprojX {"hQProjX", "All Q along X;X [pad];Q_{proj X}", 135, 0, 135};
         std::vector<ActRoot::Cluster*> ptrs;
         if(isOkReaction)
-            ptrs = {fBeamPtr, fHeavyPtr};
+            ptrs = {fBeamPtr, fLightPtr, fHeavyPtr};
         if(isOkOther)
             ptrs = {fLightPtr};
         // Run for the set points!

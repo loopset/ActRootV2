@@ -54,6 +54,7 @@ private:
     bool fKeepSplitRP {};
     // Enable final cleaning
     bool fEnableFinalClean {};
+    double fCausalShiftX {};
 
     // Time control
     std::vector<TStopwatch> fClocks;
