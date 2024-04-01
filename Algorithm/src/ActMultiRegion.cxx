@@ -103,6 +103,10 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     if(mr->CheckTokenExists("RPOutsideBeam", !fIsEnabled))
         fRPOutsideBeam = mr->GetBool("RPOutsideBeam");
 
+    // Clean
+    if(mr->CheckTokenExists("EnableFinalClean", !fIsEnabled))
+        fEnableFinalClean = mr->GetBool("EnableFinalClean");
+
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
     fClocks.push_back({});
@@ -162,6 +166,8 @@ void ActAlgorithm::MultiRegion::Run()
     DoFinerFits();
     // ResetID();
     // FindFineRP();
+    if(fEnableFinalClean)
+        FinalClean();
     // Always reset ID at the end
     ResetID();
 }
@@ -587,6 +593,22 @@ void ActAlgorithm::MultiRegion::FindFineRP()
     }
 }
 
+void ActAlgorithm::MultiRegion::FinalClean()
+{
+    // Cleaning based on size
+    Chi2AndSizeCleaning(&fData->fClusters, fCleanMaxChi2, fCleanMinVoxels, fIsVerbose);
+    // And delete everything based on size
+    if(fData->fClusters.size() <= 1)
+    {
+        if(fIsVerbose)
+        {
+            std::cout << BOLDRED << "-> Final clean : erasing all in this event" << RESET << '\n';
+        }
+        fData->fClusters.clear();
+        fData->fRPs.clear();
+    }
+}
+
 void ActAlgorithm::MultiRegion::Print() const
 {
     std::cout << BOLDCYAN << "**** MultiRegion ****" << '\n';
@@ -621,6 +643,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
         std::cout << "-> RPKeepSplitRP    ? " << std::boolalpha << fKeepSplitRP << '\n';
         std::cout << "-> RPOutsideBeam    ? " << std::boolalpha << fRPOutsideBeam << '\n';
+        std::cout << "-> EnableFinalClean ? " << std::boolalpha << fEnableFinalClean << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }

@@ -51,6 +51,8 @@ private:
     bool fRPOutsideBeam {};
     // Clean split RP
     bool fKeepSplitRP {};
+    // Enable final cleaning
+    bool fEnableFinalClean {};
 
     // Time control
     std::vector<TStopwatch> fClocks;
@@ -93,6 +95,7 @@ private:
     void DeleteAfterRP();
     void DoFinerFits();
     void FindFineRP();
+    void FinalClean();
     void ResetID();
 };
 } // namespace ActAlgorithm
