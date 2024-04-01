@@ -48,8 +48,9 @@ private:
     double fRPClusterDist {};
     bool fRPDelete {};
     double fRPPivotDist {};
+    bool fRPOutsideBeam {};
     // Clean split RP
-    bool fCleanSplitRP {};
+    bool fKeepSplitRP {};
 
     // Time control
     std::vector<TStopwatch> fClocks;

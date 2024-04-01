@@ -96,8 +96,12 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
         fRPPivotDist = mr->GetDouble("RPPivotDist");
 
     // Cleaning of SplitRP
-    if(mr->CheckTokenExists("RPCleanSplit", !fIsEnabled))
-        fCleanSplitRP = mr->GetBool("RPCleanSplit");
+    if(mr->CheckTokenExists("RPKeepSplit", !fIsEnabled))
+        fKeepSplitRP = mr->GetBool("RPCleanSplit");
+
+    // Force a cluster outside beam region
+    if(mr->CheckTokenExists("RPOutsideBeam", !fIsEnabled))
+        fRPOutsideBeam = mr->GetBool("RPOutsideBeam");
 
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
@@ -338,6 +342,9 @@ void ActAlgorithm::MultiRegion::FindRP()
             // Assert one of them is BL
             if(!(iit->GetIsBeamLike() || jit->GetIsBeamLike()))
                 continue;
+            if(fRPOutsideBeam &&
+               (iit->GetRegionType() == RegionType::EBeam && jit->GetRegionType() == RegionType::EBeam))
+                continue;
             // Compute RP
             auto [pA, pB, dist] {ComputeRPIn3D(iit->GetLine().GetPoint(), iit->GetLine().GetDirection(),
                                                jit->GetLine().GetPoint(), jit->GetLine().GetDirection())};
@@ -473,7 +480,7 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
     if(fData->fRPs.size() == 0)
         return;
     // 1-> Split BL into heavy
-    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fCleanSplitRP, fIsVerbose);
+    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fKeepSplitRP, fIsVerbose);
     // 2-> Mask region around RP
     // MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
 }
@@ -612,7 +619,8 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPClusterDist    : " << fRPClusterDist << '\n';
         std::cout << "-> RPDelete         ? " << std::boolalpha << fRPDelete << '\n';
         std::cout << "-> RPPivotDist      : " << fRPPivotDist << '\n';
-        std::cout << "-> RPCleanSplit     ? " << std::boolalpha << fCleanSplitRP << '\n';
+        std::cout << "-> RPKeepSplitRP    ? " << std::boolalpha << fKeepSplitRP << '\n';
+        std::cout << "-> RPOutsideBeam    ? " << std::boolalpha << fRPOutsideBeam << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }
