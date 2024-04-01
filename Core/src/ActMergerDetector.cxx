@@ -117,6 +117,11 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fEnableQProfile = block->GetBool("EnableQProfile");
     if(block->CheckTokenExists("2DProfile", !fIsEnabled))
         f2DProfile = block->GetBool("2DProfile");
+    if(block->CheckTokenExists("EnableDefaultBeam", !fIsEnabled))
+        fEnableDefaultBeam = block->GetBool("EnableDefaultBeam");
+    if(block->CheckTokenExists("DefaultBeamXThresh", !fEnableDefaultBeam))
+        fDefaultBeamXThresh = block->GetDouble("DefaultBeamXThresh");
+
     // Build or not filter method
     if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
         InitCorrector();
@@ -258,6 +263,9 @@ void ActRoot::MergerDetector::DoMerge()
         fMergerData->Clear();
         return;
     }
+
+    // 1-> Default beam?
+    DefaultBeamDirection();
 
     // 2-> Identify light and heavy
     fClocks[1].Start(false);
@@ -476,6 +484,24 @@ void ActRoot::MergerDetector::Reset(const int& run, const int& entry)
     // Reset other variables
     fMergerData->fRun = run;
     fMergerData->fEntry = entry;
+}
+
+void ActRoot::MergerDetector::DefaultBeamDirection()
+{
+    if(fBeamPtr && fEnableDefaultBeam)
+    {
+        auto [xmin, xmax] {fBeamPtr->GetXRange()};
+        if((xmax - xmin) < fDefaultBeamXThresh)
+        {
+            fBeamPtr->GetRefToLine().SetDirection({1, 0, 0});
+            if(fIsVerbose)
+            {
+                std::cout << BOLDCYAN << "---- Merger DefaultBeam ----" << '\n';
+                std::cout << "-> Setting {1, 0 ,0} dir for cluster #" << fBeamPtr->GetClusterID() << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+            }
+        }
+    }
 }
 
 double ActRoot::MergerDetector::GetTheta3D(const XYZVector& beam, const XYZVector& other)
@@ -944,6 +970,11 @@ void ActRoot::MergerDetector::Print() const
         {
             std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
             std::cout << "-> 2DProfile     ? " << std::boolalpha << f2DProfile << '\n';
+        }
+        if(fEnableDefaultBeam)
+        {
+            std::cout << "-> DefaultBeam   ? " << std::boolalpha << fEnableDefaultBeam << '\n';
+            std::cout << "-> DefaultMinX   : " << std::boolalpha << fDefaultBeamXThresh << '\n';
         }
     }
     // fSilSpecs->Print();
