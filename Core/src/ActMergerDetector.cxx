@@ -121,6 +121,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fEnableDefaultBeam = block->GetBool("EnableDefaultBeam");
     if(block->CheckTokenExists("DefaultBeamXThresh", !fEnableDefaultBeam))
         fDefaultBeamXThresh = block->GetDouble("DefaultBeamXThresh");
+    if(block->CheckTokenExists("InvertAngle", !fIsEnabled))
+        fInvertAngle = block->GetBool("InvertAngle");
 
     // Build or not filter method
     if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
@@ -551,7 +553,13 @@ void ActRoot::MergerDetector::LightOrHeavy()
     refLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});
     // 3-> Rank by larger angle
     // .first = angle; .second = index; larger angles at begin
-    auto lambda {[](const std::pair<double, int>& a, const std::pair<double, int>& b) { return a.first > b.first; }};
+    auto lambda {[&](const std::pair<double, int>& a, const std::pair<double, int>& b)
+                 {
+                     if(!fInvertAngle)
+                         return a.first > b.first;
+                     else
+                         return a.first < b.first; // Small angle is the light particle
+                 }};
     std::set<std::pair<double, int>, decltype(lambda)> set(lambda);
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
@@ -954,6 +962,7 @@ void ActRoot::MergerDetector::Print() const
         }
         std::cout << "-> ForceRP       ? " << std::boolalpha << fForceRP << '\n';
         std::cout << "-> ForceBeamLike ? " << std::boolalpha << fForceBeamLike << '\n';
+        std::cout << "-> InvertAngle   ? " << std::boolalpha << fInvertAngle << '\n';
         std::cout << "-> NotBeamMults  : ";
         for(const auto& m : fNotBMults)
             std::cout << m << ", ";

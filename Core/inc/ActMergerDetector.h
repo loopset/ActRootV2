@@ -101,6 +101,8 @@ private:
     // Fallback to default beam
     bool fEnableDefaultBeam {};
     double fDefaultBeamXThresh {};
+    // Invert angle picking
+    bool fInvertAngle {};
 
     // Store pointers to beam, light and heavy
     ActRoot::Cluster* fBeamPtr;
