@@ -50,6 +50,7 @@ private:
     double fRPPivotDist {};
     bool fRPOutsideBeam {};
     // Clean split RP
+    bool fRPBreakAfter {};
     bool fKeepSplitRP {};
     // Enable final cleaning
     bool fEnableFinalClean {};
