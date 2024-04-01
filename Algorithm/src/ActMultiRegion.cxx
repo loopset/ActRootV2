@@ -97,7 +97,7 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
 
     // Cleaning of SplitRP
     if(mr->CheckTokenExists("RPKeepSplit", !fIsEnabled))
-        fKeepSplitRP = mr->GetBool("RPCleanSplit");
+        fKeepSplitRP = mr->GetBool("RPKeepSplit");
 
     // Force a cluster outside beam region
     if(mr->CheckTokenExists("RPOutsideBeam", !fIsEnabled))
