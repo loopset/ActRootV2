@@ -49,6 +49,7 @@ private:
     bool fRPDelete {};
     double fRPPivotDist {};
     bool fRPOutsideBeam {};
+    bool fRPEnableFine {};
     // Clean split RP
     bool fRPBreakAfter {};
     bool fKeepSplitRP {};

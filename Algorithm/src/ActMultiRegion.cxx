@@ -94,6 +94,8 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
         fRPDelete = mr->GetBool("RPDelete");
     if(mr->CheckTokenExists("RPPivotDist", !fIsEnabled))
         fRPPivotDist = mr->GetDouble("RPPivotDist");
+    if(mr->CheckTokenExists("RPEnableFine", !fIsEnabled))
+        fRPEnableFine = mr->GetDouble("RPEnableFine");
 
     // Cleaning of SplitRP
     if(mr->CheckTokenExists("RPBreakAfter", !fIsEnabled))
@@ -169,9 +171,11 @@ void ActAlgorithm::MultiRegion::Run()
     // 7-> Fine cluster treatment after RP is found
     DoFinerFits();
     ResetID();
-    // FindFineRP();
     if(fEnableFinalClean)
         FinalClean();
+    // 8-> Improve fit
+    if(fRPEnableFine)
+        FindFineRP();
     // Always reset ID at the end
     ResetID();
 }
@@ -737,6 +741,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPBreakAfter     ? " << std::boolalpha << fRPBreakAfter << '\n';
         std::cout << "-> RPKeepSplitRP    ? " << std::boolalpha << fKeepSplitRP << '\n';
         std::cout << "-> RPOutsideBeam    ? " << std::boolalpha << fRPOutsideBeam << '\n';
+        std::cout << "-> RPEnableFine     ? " << std::boolalpha << fRPEnableFine << '\n';
         std::cout << "-> EnableFinalClean ? " << std::boolalpha << fEnableFinalClean << '\n';
         std::cout << "-> CausalShiftX     : " << fCausalShiftX << '\n';
     }
