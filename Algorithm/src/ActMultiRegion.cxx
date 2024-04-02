@@ -533,7 +533,8 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
     // }
 
     // 2-> Mask region around RP
-    // MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
+    if(fRPEnableFine)
+        MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
 }
 
 void ActAlgorithm::MultiRegion::FindFineRP()
