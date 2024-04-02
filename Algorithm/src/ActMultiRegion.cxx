@@ -95,7 +95,7 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     if(mr->CheckTokenExists("RPPivotDist", !fIsEnabled))
         fRPPivotDist = mr->GetDouble("RPPivotDist");
     if(mr->CheckTokenExists("RPEnableFine", !fIsEnabled))
-        fRPEnableFine = mr->GetDouble("RPEnableFine");
+        fRPEnableFine = mr->GetBool("RPEnableFine");
 
     // Cleaning of SplitRP
     if(mr->CheckTokenExists("RPBreakAfter", !fIsEnabled))
