@@ -95,6 +95,7 @@ public:
 
     TGraph* GetKinematicLine3(double step = 0.1, EColor color = kMagenta, ELineStyle style = kSolid);
     TGraph* GetKinematicLine4(double step = 0.1, EColor color = kBlue, ELineStyle style = kSolid);
+    TGraph* GetTheta3vs4Line(double step = 0.1, EColor color = kBlue, ELineStyle style = kSolid);
 
     // Setters
     void SetBeamEnergy(double T1);

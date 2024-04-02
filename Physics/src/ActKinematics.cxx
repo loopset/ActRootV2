@@ -471,3 +471,21 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine4(double step, EColor color, ELi
     }
     return ret;
 }
+
+TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELineStyle style)
+{
+    auto* ret {new TGraph};
+    ret->SetTitle(";#theta_{3} [#circ];#theta_{4} [#circ]");
+    ret->SetLineWidth(2);
+    ret->SetLineColor(color);
+    ret->SetLineStyle(style);
+    for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
+    {
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        auto theta3 {GetTheta3Lab() * TMath::RadToDeg()};
+        auto theta4 {GetTheta4Lab() * TMath::RadToDeg()};
+        if(std::isfinite(theta3) && std::isfinite(theta4))
+            ret->SetPoint(ret->GetN(), theta3, theta4);
+    }
+    return ret;
+}
