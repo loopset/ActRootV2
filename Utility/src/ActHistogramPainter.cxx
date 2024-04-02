@@ -297,6 +297,16 @@ void ActRoot::HistogramPainter::Reset()
             fCanvas->at(c)->cd(p)->Modified();
         }
     }
+    for(auto& [c, map] : fHist1D)
+    {
+        for(auto& [p, h] : map)
+        {
+            h->Reset();
+            h->GetXaxis()->UnZoom();
+            h->GetYaxis()->UnZoom();
+            fCanvas->at(c)->cd(p)->Modified();
+        }
+    }
 
     // Update all canvas
     for(auto& c : *fCanvas)
