@@ -533,9 +533,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(rebin % 2)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>((rebin != 1 &amp;&amp; (rebin % 2)) || rebin == 0)</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="stringliteral">&quot;TPCParameters::SetREBINZ(): rebin factor is not even. ActRoot is not adapted to that&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="stringliteral">&quot;TPCParameters::SetREBINZ(): rebin factor is either 0 or not even; must be 1 or 2, 4, 6, ...&quot;</span>);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classActRoot_1_1TPCParameters.html#ab5e368690985d2baed6c671a4a9fe930">fREBINZ</a> = rebin;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment -->
