@@ -29,9 +29,9 @@
 
 void ActRoot::TPCParameters::SetREBINZ(int rebin)
 {
-    if(rebin % 2)
+    if((rebin != 1 && (rebin % 2)) || rebin == 0)
         throw std::runtime_error(
-            "TPCParameters::SetREBINZ(): rebin factor is not even. ActRoot is not adapted to that");
+            "TPCParameters::SetREBINZ(): rebin factor is either 0 or not even; must be 1 or 2, 4, 6, ...");
     fREBINZ = rebin;
 }
 
@@ -328,7 +328,10 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
             }
             else
             {
-                if(fCleanDuplicatedVoxels) // to ensure uniqueness, do not update previously stored Voxel
+                // INFO: we found for REBINZ = 1 still some duplicated voxels
+                // could be an issue on Thomas' side so we leave here the cout
+                // std::cout << "-> Duplicated voxel with global id : " << global << '\n';
+                if(fCleanDuplicatedVoxels)
                     ;
                 else
                 {
