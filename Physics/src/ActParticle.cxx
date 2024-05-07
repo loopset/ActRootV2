@@ -54,6 +54,19 @@ void ActPhysics::Particle::ParseFile(int Z, int A, const std::string& file)
 void ActPhysics::Particle::ParseFile(const std::string& particle, const std::string& file)
 {
     auto isotope {StripWhitespaces(particle)};
+    // Convert legacy names to table ones
+    if(isotope == "p")
+        isotope = "1H";
+    else if(isotope == "d")
+        isotope = "2H";
+    else if(isotope == "t")
+        isotope = "3H";
+    else if(isotope == "a")
+        isotope = "4He";
+    else if(isotope == "n")
+        isotope = "1n";
+    else
+        ;
     // If no file provided, use default
     std::string filename {file};
     if(filename.length() == 0)
