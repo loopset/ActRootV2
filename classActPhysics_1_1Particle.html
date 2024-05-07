@@ -307,30 +307,30 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Get important info</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// 1-&gt;Name</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">auto</span> name {line.substr(11, 5)};</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Strip whitespaces if needed</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    name.erase(std::remove_if(name.begin(), name.end(), [](<span class="keywordtype">char</span> x) { return std::isspace(x); }), name.end());</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a> = name;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// 2-&gt;A</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">auto</span> astr {line.substr(0, 3)};</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> = std::stoi(astr);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// 3-&gt;Z</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">auto</span> zstr {line.substr(4, 3)};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> = std::stoi(zstr);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// 4-&gt; Mass excess</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">auto</span> massexcess {line.substr(18, 13)};</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">fMassExcess</a> = std::stod(massexcess) * 1.e-3; <span class="comment">// keV to MeV</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Build mass</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a> = <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">Constants::kamuToMeVC2</a> + <a class="code" href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">fMassExcess</a> - <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">Constants::keMass</a>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a925a7e7bb827b583d4070788119002a0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdoc">Name in database of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:14</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab76f793d03b157cafcf655f7762b5818"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">ActPhysics::Particle::fMassExcess</a></div><div class="ttdeci">double fMassExcess</div><div class="ttdoc">Mass excess in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:15</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab9426cc4c7a71d8e721537b4aa2ddd70"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle::fMass</a></div><div class="ttdeci">double fMass</div><div class="ttdoc">Mass in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:16</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_ade02efcafaf9596e92803043c4086e83"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">ActPhysics::Particle::fZ</a></div><div class="ttdeci">int fZ</div><div class="ttdoc">Charge of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:18</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_aea893f4402bc8854ef2997c775ad4046"><div class="ttname"><a href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">ActPhysics::Particle::fA</a></div><div class="ttdeci">int fA</div><div class="ttdoc">Masic number.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:17</div></div>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Get important info</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// 1-&gt;Name</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">auto</span> name {line.substr(11, 5)};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Strip whitespaces if needed</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    name.erase(std::remove_if(name.begin(), name.end(), [](<span class="keywordtype">char</span> x) { return std::isspace(x); }), name.end());</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a> = name;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// 2-&gt;A</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">auto</span> astr {line.substr(0, 3)};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> = std::stoi(astr);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// 3-&gt;Z</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">auto</span> zstr {line.substr(4, 3)};</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> = std::stoi(zstr);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// 4-&gt; Mass excess</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">auto</span> massexcess {line.substr(18, 13)};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">fMassExcess</a> = std::stod(massexcess) * 1.e-3; <span class="comment">// keV to MeV</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// Build mass</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a> = <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">Constants::kamuToMeVC2</a> + <a class="code" href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">fMassExcess</a> - <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> * <a class="code" href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">Constants::keMass</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a925a7e7bb827b583d4070788119002a0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">ActPhysics::Particle::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdoc">Name in database of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:13</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab76f793d03b157cafcf655f7762b5818"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab76f793d03b157cafcf655f7762b5818">ActPhysics::Particle::fMassExcess</a></div><div class="ttdeci">double fMassExcess</div><div class="ttdoc">Mass excess in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:14</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ab9426cc4c7a71d8e721537b4aa2ddd70"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle::fMass</a></div><div class="ttdeci">double fMass</div><div class="ttdoc">Mass in MeV/c2.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:15</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_ade02efcafaf9596e92803043c4086e83"><div class="ttname"><a href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">ActPhysics::Particle::fZ</a></div><div class="ttdeci">int fZ</div><div class="ttdoc">Charge of the particle.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:17</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_aea893f4402bc8854ef2997c775ad4046"><div class="ttname"><a href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">ActPhysics::Particle::fA</a></div><div class="ttdeci">int fA</div><div class="ttdoc">Masic number.</div><div class="ttdef"><b>Definition:</b> ActParticle.h:16</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a18c63f6ebbc1233496d95dc8e56c4c7f"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a18c63f6ebbc1233496d95dc8e56c4c7f">ActPhysics::Constants::kamuToMeVC2</a></div><div class="ttdeci">const double kamuToMeVC2</div><div class="ttdoc">amu to MeV / c2 scaling factor</div><div class="ttdef"><b>Definition:</b> ActConstants.h:9</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_a9ee6c5906c1394dc08f470f7e07274cb"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#a9ee6c5906c1394dc08f470f7e07274cb">ActPhysics::Constants::keMass</a></div><div class="ttdeci">const double keMass</div><div class="ttdoc">electron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:10</div></div>
 </div><!-- fragment -->
@@ -358,7 +358,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -438,7 +438,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -464,8 +464,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">GetSnX</a>(2);}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a5b95715858587e4a87dd7da681adce8a"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">ActPhysics::Particle::GetSnX</a></div><div class="ttdeci">double GetSnX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:117</div></div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">GetSnX</a>(2); }</div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a5b95715858587e4a87dd7da681adce8a"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">ActPhysics::Particle::GetSnX</a></div><div class="ttdeci">double GetSnX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:130</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -491,8 +491,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">GetSpX</a>(2);}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a8c9d007fd0c8c6b84c2c5f2f37ef77e0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">ActPhysics::Particle::GetSpX</a></div><div class="ttdeci">double GetSpX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:123</div></div>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">GetSpX</a>(2); }</div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a8c9d007fd0c8c6b84c2c5f2f37ef77e0"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">ActPhysics::Particle::GetSpX</a></div><div class="ttdeci">double GetSpX(unsigned int X) const</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:136</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -518,7 +518,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">GetSnX</a>(1);}</div>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a5b95715858587e4a87dd7da681adce8a">GetSnX</a>(1); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -545,10 +545,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">Particle</a> N(<a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a>, <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> - X);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">return</span> N.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">Constants::knMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">Particle</a> N(<a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a>, <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> - X);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">return</span> N.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">Constants::knMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html_a5549948933bac9d81662d341618360da"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">ActPhysics::Particle::Particle</a></div><div class="ttdeci">Particle()=default</div></div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_ae930a4a8c842f20f7ece45fc24a8d55b"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b">ActPhysics::Constants::knMass</a></div><div class="ttdeci">const double knMass</div><div class="ttdoc">neutron mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:12</div></div>
 </div><!-- fragment -->
@@ -576,7 +576,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">GetSpX</a>(1);}</div>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#a8c9d007fd0c8c6b84c2c5f2f37ef77e0">GetSpX</a>(1); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -603,10 +603,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">Particle</a> P(<a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> - X, <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> - X);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> P.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">Constants::kpMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;{</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="classActPhysics_1_1Particle.html#a5549948933bac9d81662d341618360da">Particle</a> P(<a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> - X, <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> - X);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">return</span> P.GetMass() + X * <a class="code" href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">Constants::kpMass</a> - <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
 <div class="ttc" id="anamespaceActPhysics_1_1Constants_html_afbe77d3a00bc7a28eb94709bb7f3cbfe"><div class="ttname"><a href="namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe">ActPhysics::Constants::kpMass</a></div><div class="ttdeci">const double kpMass</div><div class="ttdoc">proton mass in MeV / c2</div><div class="ttdef"><b>Definition:</b> ActConstants.h:11</div></div>
 </div><!-- fragment -->
 </div>
@@ -633,7 +633,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -698,32 +698,45 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">auto</span> isotope {<a class="code" href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">StripWhitespaces</a>(particle)};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// If no file provided, use default</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::string filename {file};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span>(filename.length() == 0)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        filename = std::string(gSystem-&gt;Getenv(<span class="stringliteral">&quot;ACTROOT&quot;</span>)) + <span class="stringliteral">&quot;/Physics/Data/nubase20.txt&quot;</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Streamer</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::ifstream streamer {filename};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Mass database file &quot;</span> + filename + <span class="stringliteral">&quot; could not be opened&quot;</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Parse</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::string line, name, istr;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        istr = line.substr(7, 1);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        name = line.substr(11, 5);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        name = <a class="code" href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">StripWhitespaces</a>(name);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> i {std::stoi(istr)};      <span class="comment">// this measures whether it is an isomer or a normal ground state ( = 0)</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span>(name == isotope &amp;&amp; i == 0) <span class="comment">// we will work almost always with standard gs</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <a class="code" href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">Extract</a>(line);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(TString::Format(<span class="stringliteral">&quot;No found particle with name: %s&quot;</span>, particle.c_str()));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9153388d8d6fdfbe2d19581b6e729364"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">ActPhysics::Particle::StripWhitespaces</a></div><div class="ttdeci">std::string StripWhitespaces(std::string str)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:111</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Particle_html_acdbe88b9b62cce5685496d28e276b3a9"><div class="ttname"><a href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">ActPhysics::Particle::Extract</a></div><div class="ttdeci">void Extract(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:82</div></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Convert legacy names to table ones</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span>(isotope == <span class="stringliteral">&quot;p&quot;</span>)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        isotope = <span class="stringliteral">&quot;1H&quot;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isotope == <span class="stringliteral">&quot;d&quot;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        isotope = <span class="stringliteral">&quot;2H&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isotope == <span class="stringliteral">&quot;t&quot;</span>)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        isotope = <span class="stringliteral">&quot;3H&quot;</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isotope == <span class="stringliteral">&quot;a&quot;</span>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        isotope = <span class="stringliteral">&quot;4He&quot;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isotope == <span class="stringliteral">&quot;n&quot;</span>)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        isotope = <span class="stringliteral">&quot;1n&quot;</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    else</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        ;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// If no file provided, use default</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string filename {file};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span>(filename.length() == 0)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        filename = std::string(gSystem-&gt;Getenv(<span class="stringliteral">&quot;ACTROOT&quot;</span>)) + <span class="stringliteral">&quot;/Physics/Data/nubase20.txt&quot;</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Streamer</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::ifstream streamer {filename};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span>(!streamer)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Mass database file &quot;</span> + filename + <span class="stringliteral">&quot; could not be opened&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Parse</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::string line, name, istr;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">while</span>(std::getline(streamer, line))</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        istr = line.substr(7, 1);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        name = line.substr(11, 5);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        name = <a class="code" href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">StripWhitespaces</a>(name);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">int</span> i {std::stoi(istr)};      <span class="comment">// this measures whether it is an isomer or a normal ground state ( = 0)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span>(name == isotope &amp;&amp; i == 0) <span class="comment">// we will work almost always with standard gs</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <a class="code" href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">Extract</a>(line);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(TString::Format(<span class="stringliteral">&quot;No found particle with name: %s&quot;</span>, particle.c_str()));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_a9153388d8d6fdfbe2d19581b6e729364"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364">ActPhysics::Particle::StripWhitespaces</a></div><div class="ttdeci">std::string StripWhitespaces(std::string str)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:124</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Particle_html_acdbe88b9b62cce5685496d28e276b3a9"><div class="ttname"><a href="classActPhysics_1_1Particle.html#acdbe88b9b62cce5685496d28e276b3a9">ActPhysics::Particle::Extract</a></div><div class="ttdeci">void Extract(const std::string &amp;line)</div><div class="ttdef"><b>Definition:</b> ActParticle.cxx:95</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -810,12 +823,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;======== Particle: &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a> &lt;&lt; <span class="stringliteral">&quot; =========&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; A    = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Z    = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Mass = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a> &lt;&lt; <span class="stringliteral">&quot; MeV / c2&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;======== Particle: &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#a925a7e7bb827b583d4070788119002a0">fName</a> &lt;&lt; <span class="stringliteral">&quot; =========&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; A    = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#aea893f4402bc8854ef2997c775ad4046">fA</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Z    = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#ade02efcafaf9596e92803043c4086e83">fZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Mass = &quot;</span> &lt;&lt; <a class="code" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">fMass</a> &lt;&lt; <span class="stringliteral">&quot; MeV / c2&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -842,10 +855,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    str.erase(std::remove_if(str.begin(), str.end(), [](<span class="keywordtype">char</span> x) { return std::isspace(x); }), str.end());</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> str;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    str.erase(std::remove_if(str.begin(), str.end(), [](<span class="keywordtype">char</span> x) { return std::isspace(x); }), str.end());</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">return</span> str;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
