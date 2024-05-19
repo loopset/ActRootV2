@@ -206,14 +206,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    : <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>(sri), <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>(geo), <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>(rand)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">//initialize sil resolution with sigma at 5.5 MeV</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a> = std::make_unique&lt;TF1&gt;(<span class="stringliteral">&quot;fSilResolution&quot;</span>,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                           [=](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                           {<span class="keywordflow">return</span> silSigma * TMath::Sqrt(x[0] / 5.5);},</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                           0.0, 100.0, 1);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    : <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>(sri),</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;      <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>(geo),</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;      <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>(rand)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// initialize sil resolution with sigma at 5.5 MeV</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a> = std::make_unique&lt;TF1&gt;(</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="stringliteral">&quot;fSilResolution&quot;</span>, [=](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> silSigma * TMath::Sqrt(x[0] / 5.5); }, 0.0, 100.0, 1);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 <div class="ttc" id="aclassActSim_1_1Runner_html_a698e33770e59fedd4699600396333a13"><div class="ttname"><a href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">ActSim::Runner::fsrim</a></div><div class="ttdeci">ActPhysics::SRIM * fsrim</div><div class="ttdef"><b>Definition:</b> ActRunner.h:28</div></div>
 <div class="ttc" id="aclassActSim_1_1Runner_html_acd282d9e71570d96c56453c1609361f6"><div class="ttname"><a href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">ActSim::Runner::fRand</a></div><div class="ttdeci">TRandom3 * fRand</div><div class="ttdef"><b>Definition:</b> ActRunner.h:27</div></div>
 <div class="ttc" id="aclassActSim_1_1Runner_html_af9794214da2c7011296d1d55cce0cfa9"><div class="ttname"><a href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">ActSim::Runner::fgeo</a></div><div class="ttdeci">ActSim::Geometry * fgeo</div><div class="ttdef"><b>Definition:</b> ActRunner.h:29</div></div>
@@ -253,20 +253,19 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">auto</span> distance {RIni - RLeft};</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">auto</span> straggRIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a40909439d59e13ffc90d76b3482732e7">EvalLongStraggling</a>(srimKey, RIni)};</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">auto</span> straggRLeft{<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a40909439d59e13ffc90d76b3482732e7">EvalLongStraggling</a>(srimKey, RLeft)};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">auto</span> straggDist {TMath::Sqrt(TMath::Power(straggRIni, 2) - TMath::Power(straggRLeft, 2))};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">double</span> RLeftWithStraggling {};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">auto</span> distanceStragg {<a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(distance, straggDist)};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        RLeftWithStraggling = RIni - distanceStragg;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">while</span>(RLeftWithStraggling &lt; 0.);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> RLeftWithStraggling;<span class="comment">//return RLeft after straggling</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">auto</span> distance {RIni - RLeft};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">auto</span> straggRIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a40909439d59e13ffc90d76b3482732e7">EvalLongStraggling</a>(srimKey, RIni)};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">auto</span> straggRLeft {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a40909439d59e13ffc90d76b3482732e7">EvalLongStraggling</a>(srimKey, RLeft)};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">auto</span> straggDist {TMath::Sqrt(TMath::Power(straggRIni, 2) - TMath::Power(straggRLeft, 2))};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">double</span> RLeftWithStraggling {};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">auto</span> distanceStragg {<a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(distance, straggDist)};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        RLeftWithStraggling = RIni - distanceStragg;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    } <span class="keywordflow">while</span>(RLeftWithStraggling &lt; 0.);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> RLeftWithStraggling; <span class="comment">// return RLeft after straggling</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1SRIM_html_a40909439d59e13ffc90d76b3482732e7"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a40909439d59e13ffc90d76b3482732e7">ActPhysics::SRIM::EvalLongStraggling</a></div><div class="ttdeci">double EvalLongStraggling(const std::string &amp;key, double range)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:59</div></div>
 </div><!-- fragment -->
 </div>
@@ -286,15 +285,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;{</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            (pointGeo.X() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a>) * 10.,</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            (pointGeo.Y() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">Y</a>) * 10. ,</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            (pointGeo.Z() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">Z</a>) * 10.</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        };</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret {(pointGeo.X() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a>) * 10.,</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                  (pointGeo.Y() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">Y</a>) * 10.,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                  (pointGeo.Z() + <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">Z</a>) * 10.};</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
 <div class="ttc" id="aclassActSim_1_1Geometry_html_a1a2a450d0dc870ac8f2c6aeae8522a83"><div class="ttname"><a href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">ActSim::Geometry::GetDriftParameters</a></div><div class="ttdeci">const DriftChamber &amp; GetDriftParameters() const</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:113</div></div>
 <div class="ttc" id="aclassActSim_1_1Runner_html_a331ac2915d46cd8bfabcdaef25213897"><div class="ttname"><a href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">ActSim::Runner::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPoint XYZPoint</div><div class="ttdef"><b>Definition:</b> ActRunner.h:24</div></div>
 <div class="ttc" id="astructActSim_1_1DriftChamber_html_a8e66a78978dde9099aa53c684d22e60c"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">ActSim::DriftChamber::Y</a></div><div class="ttdeci">double Y</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:26</div></div>
@@ -318,15 +314,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;{</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            point.X() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a>,</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            point.Y() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">Y</a>,</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            point.Z() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">Z</a></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        };</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret {point.X() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a>, point.Y() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">Y</a>,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                  point.Z() / 10. - <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">Z</a>};</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -367,22 +359,22 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(gasKey, TIni)};</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">auto</span> RLeft {RIni - distance};</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span>(RLeft &lt; 0)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> std::nan(<span class="stringliteral">&quot;stopped in gas&quot;</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span>(!straggling)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RLeft);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">auto</span> RLeftWithStraggling {<a class="code" href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ApplyStragglingInMaterialToRLeft</a>(RIni, RLeft, gasKey)};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RLeftWithStraggling);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(gasKey, TIni)};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">auto</span> RLeft {RIni - distance};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">if</span>(RLeft &lt; 0)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> std::nan(<span class="stringliteral">&quot;stopped in gas&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">if</span>(!straggling)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RLeft);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">auto</span> RLeftWithStraggling {<a class="code" href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ApplyStragglingInMaterialToRLeft</a>(RIni, RLeft, gasKey)};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RLeftWithStraggling);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1SRIM_html_a69f23aa83f71e4d440196811e028c421"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">ActPhysics::SRIM::EvalDirect</a></div><div class="ttdeci">double EvalDirect(const std::string &amp;key, double energy)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:54</div></div>
 <div class="ttc" id="aclassActPhysics_1_1SRIM_html_a7d31778587101dc9b23596361f04c281"><div class="ttname"><a href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">ActPhysics::SRIM::EvalInverse</a></div><div class="ttdeci">double EvalInverse(const std::string &amp;key, double range)</div><div class="ttdef"><b>Definition:</b> ActSRIM.h:55</div></div>
-<div class="ttc" id="aclassActSim_1_1Runner_html_a3792693ce2f1e39e8ec5d8c2d7c115f3"><div class="ttname"><a href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ActSim::Runner::ApplyStragglingInMaterialToRLeft</a></div><div class="ttdeci">double ApplyStragglingInMaterialToRLeft(double RIni, double RLeft, const std::string &amp;srimKey)</div><div class="ttdef"><b>Definition:</b> ActRunner.cxx:77</div></div>
+<div class="ttc" id="aclassActSim_1_1Runner_html_a3792693ce2f1e39e8ec5d8c2d7c115f3"><div class="ttname"><a href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ActSim::Runner::ApplyStragglingInMaterialToRLeft</a></div><div class="ttdeci">double ApplyStragglingInMaterialToRLeft(double RIni, double RLeft, const std::string &amp;srimKey)</div><div class="ttdef"><b>Definition:</b> ActRunner.cxx:70</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -435,47 +427,48 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//defs</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">double</span> eLoss {}; <span class="keywordtype">double</span> T3AfterSil0 {};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">//initial range</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(silString, T3EnteringSil)};</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">//RLeft without straggling</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">auto</span> RLeft {RIni - silWidth};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span>(RLeft &lt; 0)<span class="comment">//particle stopped in silicon</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        eLoss = T3EnteringSil;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span>(enableResolution)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            eLoss = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(T3EnteringSil, <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a>-&gt;Eval(T3EnteringSil));</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        T3AfterSil0 = 0.;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">//if threshold</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span>(eLoss &lt; silThresh)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">return</span> {std::nan(<span class="stringliteral">&quot;threshold&quot;</span>), 0.};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span> {eLoss, T3AfterSil0};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">double</span> RLeftWithStraggling {};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span>(enableStraggling)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            RLeftWithStraggling = <a class="code" href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ApplyStragglingInMaterialToRLeft</a>(RIni, RLeft, silString);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            RLeftWithStraggling = RLeft;<span class="comment">//no straggling</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        T3AfterSil0 = T3EnteringSil - <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(silString, RLeftWithStraggling);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        eLoss = {T3EnteringSil - T3AfterSil0};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span>(enableResolution)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            eLoss = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(eLoss, <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a>-&gt;Eval(eLoss));</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span>(eLoss &lt; silThresh)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> {std::nan(<span class="stringliteral">&quot;threshold&quot;</span>), T3AfterSil0};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">return</span> {eLoss, T3AfterSil0};    </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// defs</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">double</span> eLoss {};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">double</span> T3AfterSil0 {};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// initial range</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(silString, T3EnteringSil)};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// RLeft without straggling</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">auto</span> RLeft {RIni - silWidth};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span>(RLeft &lt; 0) <span class="comment">// particle stopped in silicon</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        eLoss = T3EnteringSil;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">if</span>(enableResolution)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            eLoss = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(T3EnteringSil, <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a>-&gt;Eval(T3EnteringSil));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        T3AfterSil0 = 0.;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// if threshold</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span>(eLoss &lt; silThresh)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> {std::nan(<span class="stringliteral">&quot;threshold&quot;</span>), 0.};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">return</span> {eLoss, T3AfterSil0};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">double</span> RLeftWithStraggling {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span>(enableStraggling)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            RLeftWithStraggling = <a class="code" href="classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3">ApplyStragglingInMaterialToRLeft</a>(RIni, RLeft, silString);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            RLeftWithStraggling = RLeft; <span class="comment">// no straggling</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        T3AfterSil0 = <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(silString, RLeftWithStraggling);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        eLoss = {T3EnteringSil - T3AfterSil0};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span>(enableResolution)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            eLoss = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(eLoss, <a class="code" href="classActSim_1_1Runner.html#afefd5b0653db133c6bfa2854d1396c0b">fSilResolution</a>-&gt;Eval(eLoss));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span>(eLoss &lt; silThresh)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">return</span> {std::nan(<span class="stringliteral">&quot;threshold&quot;</span>), T3AfterSil0};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> {eLoss, T3AfterSil0};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -510,11 +503,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(gasKey, Esil)};</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">auto</span> RVertex {RIni + trackLengthInMM};</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RVertex);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">auto</span> RIni {<a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a69f23aa83f71e4d440196811e028c421">EvalDirect</a>(gasKey, Esil)};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">auto</span> RVertex {RIni + trackLengthInMM};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">fsrim</a>-&gt;<a class="code" href="classActPhysics_1_1SRIM.html#a7d31778587101dc9b23596361f04c281">EvalInverse</a>(gasKey, RVertex);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -621,9 +614,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(Tini, sigma);</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(Tini, sigma);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -670,29 +663,29 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret {};</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">double</span> x { <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Uniform() * <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a> * 2 *10.};<span class="comment">//*2 (half length to length) and * 10. (cm to mm)</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">double</span> y {}; <span class="keywordtype">double</span> z {};</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">if</span>(histBeam)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        z = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanZ, sigmaZ);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordtype">double</span> thetaXYHist {}; <span class="keywordtype">double</span> thetaXZHist {};</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        histBeam-&gt;GetRandom3(y, thetaXYHist, thetaXZHist);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        ret = {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            x,</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            y - x * TMath::Tan(thetaXYHist * TMath::DegToRad()),</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            z - x * TMath::Tan(thetaXZHist * TMath::DegToRad())</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        };</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        y = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanY, sigmaY);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        z = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanZ, sigmaZ);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        ret = {x, y, z};</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="classActSim_1_1Runner.html#a331ac2915d46cd8bfabcdaef25213897">XYZPoint</a> ret {};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">double</span> x {<a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Uniform() * <a class="code" href="classActSim_1_1Runner.html#af9794214da2c7011296d1d55cce0cfa9">fgeo</a>-&gt;<a class="code" href="classActSim_1_1Geometry.html#a1a2a450d0dc870ac8f2c6aeae8522a83">GetDriftParameters</a>().<a class="code" href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">X</a> * 2 *</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;              10.}; <span class="comment">//*2 (half length to length) and * 10. (cm to mm)</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">double</span> y {};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">double</span> z {};</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span>(histBeam)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        z = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanZ, sigmaZ);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">double</span> thetaXYHist {};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">double</span> thetaXZHist {};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        histBeam-&gt;GetRandom3(y, thetaXYHist, thetaXZHist);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        ret = {x, y - x * TMath::Tan(thetaXYHist * TMath::DegToRad()),</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;               z - x * TMath::Tan(thetaXZHist * TMath::DegToRad())};</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        y = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanY, sigmaY);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        z = <a class="code" href="classActSim_1_1Runner.html#acd282d9e71570d96c56453c1609361f6">fRand</a>-&gt;Gaus(meanZ, sigmaZ);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        ret = {x, y, z};</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
