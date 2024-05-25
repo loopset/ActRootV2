@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['nignoredlinesangular_2797',['nIgnoredLinesAngular',['../classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78',1,'ActSim::TheoCrossSection']]],
-  ['nignoredlinesscattering_2798',['nIgnoredLinesScattering',['../classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78',1,'ActSim::TheoCrossSection']]],
-  ['nlegendrecoeffs_2799',['nLegendreCoeffs',['../classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088',1,'ActSim::TheoCrossSection']]],
-  ['num_5fblocks_2800',['num_blocks',['../classBS_1_1thread__pool_1_1blocks.html#a76cc826ed3697758e3e5e92f90f23258',1,'BS::thread_pool::blocks']]]
+  ['nignoredlinesangular_2801',['nIgnoredLinesAngular',['../classActSim_1_1TheoCrossSection.html#a092c36ea8a86a98d155542611eff2a78',1,'ActSim::TheoCrossSection']]],
+  ['nignoredlinesscattering_2802',['nIgnoredLinesScattering',['../classActSim_1_1TheoCrossSection.html#a2a90a9428032b95dfb0d7b8e63c71b78',1,'ActSim::TheoCrossSection']]],
+  ['nlegendrecoeffs_2803',['nLegendreCoeffs',['../classActSim_1_1TheoCrossSection.html#a21dfe2c83dcf75a3e21b7139da08d088',1,'ActSim::TheoCrossSection']]],
+  ['num_5fblocks_2804',['num_blocks',['../classBS_1_1thread__pool_1_1blocks.html#a76cc826ed3697758e3e5e92f90f23258',1,'BS::thread_pool::blocks']]]
 ];
