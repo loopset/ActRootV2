@@ -15,6 +15,7 @@
 #include <Math/Vector4D.h>
 #include <cmath>
 #include <iomanip>
+#include <ios>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -122,6 +123,9 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
 
 void ActPhysics::Kinematics::Init()
 {
+    // Determine inversion
+    fReverse = (fm1 > fm2);
+    // Compute Q value
     ComputeQValue();
     if(fT1Lab == -1)
     {
@@ -236,11 +240,10 @@ void ActPhysics::Kinematics::SetRecoil4LabKinematics()
 void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom,
                                                      bool computeBoth)
 {
-    // this function allows to choose which angles are given
-    // if(fEex < 0.0)
-    //     throw std::runtime_error(
-    //         "Cannot proceed: fEex < 0, probably you dont want to use this function depending on inner fEex!");
-
+    // Invert theta CM if needed
+    // std::cout << "fReverse in ComputeRecoil : " << std::boolalpha << fReverse << '\n';
+    if(fReverse)
+        thetaCMRads = TMath::Pi() - thetaCMRads;
     switch(anglesFrom)
     {
     case 3: SetRecoilsCMKinematicsThrough3(thetaCMRads, phiCMRads); break;
@@ -286,9 +289,12 @@ double ActPhysics::Kinematics::GetPhiFromVector(const FourVector& vect)
     return phi;
 }
 
-double ActPhysics::Kinematics::GetThetaFromVector(const FourVector& vect)
+double ActPhysics::Kinematics::GetThetaFromVector(const FourVector& vect, bool reverse)
 {
-    return TMath::ACos(vect.X() / TMath::Sqrt(vect.Vect().Mag2()));
+    if(!reverse)
+        return TMath::ACos(vect.X() / TMath::Sqrt(vect.Vect().Mag2()));
+    else
+        return TMath::Pi() - TMath::ACos(vect.X() / TMath::Sqrt(vect.Vect().Mag2()));
 }
 
 double ActPhysics::Kinematics::ReconstructBeamEnergyFromLabKinematics(double argT3, double argTheta3LabRads)
@@ -365,7 +371,7 @@ double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double TLab, double th
                      pLab * TMath::Sin(thetaLabRads) * TMath::Cos(phi), ELab};
     // move to CM
     auto PCM {fBoostTransformation(PLab)};
-    return GetThetaFromVector(PCM);
+    return GetThetaFromVector(PCM, fReverse);
 }
 
 double ActPhysics::Kinematics::ComputeTheoreticalT3(double argTheta3LabRads, const std::string& sol)
@@ -486,6 +492,23 @@ TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELin
         auto theta4 {GetTheta4Lab() * TMath::RadToDeg()};
         if(std::isfinite(theta3) && std::isfinite(theta4))
             ret->SetPoint(ret->GetN(), theta3, theta4);
+    }
+    return ret;
+}
+
+TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor color, ELineStyle style)
+{
+    auto* ret {new TGraph};
+    ret->SetTitle(";#theta_{CM} [#circ];#theta_{Lab} [#circ]");
+    ret->SetLineWidth(2);
+    ret->SetLineColor(color);
+    ret->SetLineStyle(style);
+    for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
+    {
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        auto thetaLab {GetTheta3Lab() * TMath::RadToDeg()};
+        if(std::isfinite(thetaLab))
+            ret->SetPoint(ret->GetN(), thetaCM, thetaLab);
     }
     return ret;
 }
