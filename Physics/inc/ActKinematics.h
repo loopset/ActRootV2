@@ -82,7 +82,7 @@ public:
     Kinematics& operator=(const Kinematics&) = default;
     ~Kinematics() = default;
 
-    void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom = 4, bool computeBoth = false);
+    void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom = 3, bool computeBoth = false);
     double ReconstructBeamEnergyFromLabKinematics(double T3, double theta3LabRads);
     double ReconstructTheta3CMFromLab(double TLab, double thetaLabRads);
     double ReconstructExcitationEnergy(double argT3, double argTheta3LabRads);

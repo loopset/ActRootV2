@@ -241,7 +241,6 @@ void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double 
                                                      bool computeBoth)
 {
     // Invert theta CM if needed
-    // std::cout << "fReverse in ComputeRecoil : " << std::boolalpha << fReverse << '\n';
     if(fReverse)
         thetaCMRads = TMath::Pi() - thetaCMRads;
     switch(anglesFrom)
@@ -499,13 +498,13 @@ TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELin
 TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor color, ELineStyle style)
 {
     auto* ret {new TGraph};
-    ret->SetTitle(";#theta_{CM} [#circ];#theta_{Lab} [#circ]");
+    ret->SetTitle(";#theta_{3, CM} [#circ];#theta_{3, Lab} [#circ]");
     ret->SetLineWidth(2);
     ret->SetLineColor(color);
     ret->SetLineStyle(style);
     for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
     {
-        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, false);
         auto thetaLab {GetTheta3Lab() * TMath::RadToDeg()};
         if(std::isfinite(thetaLab))
             ret->SetPoint(ret->GetN(), thetaCM, thetaLab);
