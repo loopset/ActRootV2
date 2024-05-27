@@ -47,7 +47,7 @@ var searchData=
   ['computeqave_243',['ComputeQave',['../classActRoot_1_1MergerDetector.html#a49c792bb6f425fb3982b427c2a0d1977',1,'ActRoot::MergerDetector']]],
   ['computeqprofile_244',['ComputeQProfile',['../classActRoot_1_1MergerDetector.html#ab409e1ad08aedd3773a372cc92ab4ca0',1,'ActRoot::MergerDetector']]],
   ['computeqvalue_245',['ComputeQValue',['../classActPhysics_1_1Kinematics.html#ade4b2fa6be29738167099ec804e3d2da',1,'ActPhysics::Kinematics']]],
-  ['computerecoilkinematics_246',['ComputeRecoilKinematics',['../classActPhysics_1_1Kinematics.html#a18fd093501698e6640d2f2bfd4a335f5',1,'ActPhysics::Kinematics']]],
+  ['computerecoilkinematics_246',['ComputeRecoilKinematics',['../classActPhysics_1_1Kinematics.html#a9ad7a8ca81602149f8e0f98a0d295a14',1,'ActPhysics::Kinematics']]],
   ['computerpin3d_247',['ComputeRPIn3D',['../namespaceActAlgorithm.html#ac20e67a9ceefdb0dcf0261c0701b4a84',1,'ActAlgorithm']]],
   ['computerunsperthread_248',['ComputeRunsPerThread',['../classActRoot_1_1MTExecutor.html#aba9092c4becb647fb47599da3dd78ae6',1,'ActRoot::MTExecutor']]],
   ['computesiliconpoint_249',['ComputeSiliconPoint',['../classActRoot_1_1MergerDetector.html#a49ab093f87ff7f6fea51eeffd75dcf07',1,'ActRoot::MergerDetector']]],
