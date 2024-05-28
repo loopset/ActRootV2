@@ -165,7 +165,8 @@ void ActRoot::TPCDetector::ReadCalibrations(std::shared_ptr<InputBlock> config)
     // Add LookUp table
     fCalMan->ReadLookUpTable(config->GetString("LookUp"));
     // Pad align table
-    fCalMan->ReadPadAlign(config->GetString("PadAlign"));
+    if(config->CheckTokenExists("PadAlign", true))
+        fCalMan->ReadPadAlign(config->GetString("PadAlign"));
 }
 
 void ActRoot::TPCDetector::InitInputData(std::shared_ptr<TTree> tree)

@@ -148,6 +148,10 @@ int ActRoot::CalibrationManager::ApplyLookUp(int channel, int col)
 
 double ActRoot::CalibrationManager::ApplyPadAlignment(int channel, double q)
 {
+    // If alignment is disabled, return given value
+    if(fPadAlign.size() == 0)
+        return q;
+    // Else, compute correction with any order given in the file
     double qAl {};
     int order {0};
     for(const auto& coef : fPadAlign[channel])
