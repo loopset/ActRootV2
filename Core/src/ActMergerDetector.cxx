@@ -81,6 +81,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
     ////////////////// MergerDetector /////////////////////////
     if(block->CheckTokenExists("IsEnabled"))
         fIsEnabled = block->GetBool("IsEnabled");
+    if(!fIsEnabled)
+        return;
     // Read silicon specs
     if(block->CheckTokenExists("SilSpecsFile", !fIsEnabled))
         ReadSilSpecs(block->GetString("SilSpecsFile"));
@@ -927,8 +929,7 @@ double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h)
     // Create TSpline
     auto spe {std::make_unique<TSpline3>(h)};
     // And now function
-    auto func {std::make_unique<TF1>(
-        "func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
+    auto func {std::make_unique<TF1>("func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
     // Find maximum in the range [xMax, xRangeMax of histogram]
     auto ret {func->GetX(range, xMax, h->GetXaxis()->GetXmax())};
     return ret;
