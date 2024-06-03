@@ -894,11 +894,12 @@ void ActRoot::MergerDetector::ComputeBSP()
     if(isOkReaction || isOkOther)
     {
         TH1F hQprojX {"hQProjX", "All Q along X;X [pad];Q_{proj X}", 135, 0, 135};
-        std::vector<ActRoot::Cluster*> ptrs;
-        if(isOkReaction)
-            ptrs = {fBeamPtr, fLightPtr, fHeavyPtr};
-        if(isOkOther)
-            ptrs = {fLightPtr};
+        std::vector<ActRoot::Cluster*> ptrs {fBeamPtr, fLightPtr, fHeavyPtr};
+        // Workaround: we analyze all the tracks in the event to find the BSP or compute the X profile
+        // if(isOkReaction)
+        //     ptrs = {fBeamPtr, fLightPtr, fHeavyPtr};
+        // if(isOkOther)
+        //     ptrs = {fLightPtr};
         // Run for the set points!
         for(auto& ptr : ptrs)
         {
