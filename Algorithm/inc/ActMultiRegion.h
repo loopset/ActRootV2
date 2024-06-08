@@ -30,6 +30,11 @@ private:
 
     // Parameters of algorithm
     bool fIsEnabled {};
+    // Cleaning of pileup
+    bool fEnableCleanPileUp;
+    double fPileUpXPercent;
+    double fPileUpLowerZ;
+    double fPileUpUpperZ;
     // Determine beam-likes
     double fBlXDirThresh {};
     double fBLXBegin {};
@@ -56,6 +61,7 @@ private:
     // Enable final cleaning
     bool fEnableFinalClean {};
     double fCausalShiftX {};
+    bool fEnableCleanMult1 {};
 
     // Time control
     std::vector<TStopwatch> fClocks;

@@ -59,6 +59,16 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
     if(mr->CheckTokenExists("IsEnabled", false))
         fIsEnabled = mr->GetBool("IsEnabled");
 
+    // Parameters of pileup cleaning
+    if(mr->CheckTokenExists("EnableCleanPileUp"))
+        fEnableCleanPileUp = mr->GetBool("EnableCleanPileUp");
+    if(mr->CheckTokenExists("PileUpXPercent"))
+        fPileUpXPercent = mr->GetDouble("PileUpXPercent");
+    if(mr->CheckTokenExists("BeamLowerZ"))
+        fPileUpLowerZ = mr->GetDouble("BeamLowerZ");
+    if(mr->CheckTokenExists("BeamUpperZ"))
+        fPileUpUpperZ = mr->GetDouble("BeamUpperZ");
+
     // Parameters of Merge algorithm
     if(mr->CheckTokenExists("EnableMerge"))
         fEnableMerge = mr->GetBool("EnableMerge");
@@ -696,7 +706,7 @@ void ActAlgorithm::MultiRegion::FinalClean()
     //     }
     // }
     // And delete everything based on size
-    if(fData->fClusters.size() <= 1)
+    if(fData->fClusters.size() <= 1 && fEnableCleanMult1)
     {
         if(fIsVerbose)
         {
@@ -718,6 +728,13 @@ void ActAlgorithm::MultiRegion::Print() const
             std::cout << "-> Region : " << RegionTypeAsStr(type) << '\n';
             std::cout << "   ";
             r.Print();
+        }
+        std::cout << "-> EnableCleanPileUp ? " << std::boolalpha << fEnableCleanPileUp << '\n';
+        if(fEnableCleanPileUp)
+        {
+            std::cout << "  PileUpXPercent : " << fPileUpXPercent << '\n';
+            std::cout << "  PileUpLowerZ   : " << fPileUpLowerZ << '\n';
+            std::cout << "  PileUpUpperZ   : " << fPileUpUpperZ << '\n';
         }
         std::cout << "-> EnableMerge ? " << std::boolalpha << fEnableMerge << '\n';
         if(fEnableMerge)
@@ -745,6 +762,7 @@ void ActAlgorithm::MultiRegion::Print() const
         std::cout << "-> RPEnableFine     ? " << std::boolalpha << fRPEnableFine << '\n';
         std::cout << "-> EnableFinalClean ? " << std::boolalpha << fEnableFinalClean << '\n';
         std::cout << "-> CausalShiftX     : " << fCausalShiftX << '\n';
+        std::cout << "-> EnableCleanMult1 ? " << std::boolalpha << fEnableCleanMult1 << '\n';
     }
     std::cout << "******************************" << RESET << '\n';
 }

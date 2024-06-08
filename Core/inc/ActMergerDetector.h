@@ -204,7 +204,7 @@ private:
     void ComputeAngles();
     void ComputeQave();
     void ComputeQProfile();
-    void ComputeBSP();
+    void ComputeXProfile();
     void Reset(const int& run, const int& entry);
     //// Even inner functions
     void MoveZ(XYZPoint& p);

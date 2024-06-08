@@ -55,6 +55,10 @@ void MaskBeginEnd(std::vector<ActRoot::Cluster>* clusters, const XYZPoint& rp, d
 // Compute angle between two clusters
 double GetClusterAngle(const XYZVector& beam, const XYZVector& recoil);
 
+// Clean pile-up
+void ErasePileup(std::vector<ActRoot::Cluster>* clusters, double xPercent, double lowerZ, double upperZ,
+                 ActRoot::TPCParameters* tpc);
+
 } // namespace ActAlgorithm
 
 #endif

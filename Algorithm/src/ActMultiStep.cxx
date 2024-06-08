@@ -326,29 +326,7 @@ void ActAlgorithm::MultiStep::CleanDeltas()
 
 void ActAlgorithm::MultiStep::CleanPileup()
 {
-    for(auto it = fClusters->begin(); it != fClusters->end();)
-    {
-        // 1-> Eval condition of X range
-        auto [xmin, xmax] {it->GetXRange()};
-        bool spansActarX {(xmax - xmin) > fPileUpXPercent * fTPC->GetNPADSX()};
-        // auto [zmin, zmax] {it->GetZRange()};
-        // bool isConstantZ {(double)(zmax - zmin) <= fPileUpXPercent};
-        // std::cout << "XRange : [" << xmin << ", " << xmax << "]" << '\n';
-        // std::cout << "spansActarX ? " << std::boolalpha << spansActarX << '\n';
-        // 2-> Get condition: out of beam region
-        auto [zmin, zmax] {it->GetZRange()};
-        zmin *= fTPC->GetREBINZ();
-        zmax *= fTPC->GetREBINZ();
-        bool isInBeamZMin {fBeamLowerZ <= zmin && zmin <= fBeamUpperZ};
-        bool isInBeamZMax {fBeamLowerZ <= zmax && zmax <= fBeamUpperZ};
-        bool isInBeamZ {isInBeamZMin || isInBeamZMax};
-        if(spansActarX && !isInBeamZ)
-        {
-            it = fClusters->erase(it);
-        }
-        else
-            it++;
-    }
+    ErasePileup(fClusters, fPileUpXPercent, fBeamLowerZ, fBeamUpperZ, fTPC);
 }
 
 std::tuple<ActAlgorithm::MultiStep::XYZPoint, double, double> ActAlgorithm::MultiStep::DetermineBreakPoint(ItType it)
@@ -775,8 +753,7 @@ std::vector<ActAlgorithm::MultiStep::RPCluster> ActAlgorithm::MultiStep::Cluster
     std::vector<std::vector<RPValue>> clusters;
     for(auto it = rps.begin();;)
     {
-        auto last {std::adjacent_find(it, rps.end(),
-                                      [&](const RPValue& l, const RPValue& r)
+        auto last {std::adjacent_find(it, rps.end(), [&](const RPValue& l, const RPValue& r)
                                       { return (l.first - r.first).R() > fRPDistCluster; })};
         if(last == rps.end())
         {

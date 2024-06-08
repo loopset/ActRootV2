@@ -67,8 +67,7 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
                                         double minParallelFactor, double chi2Factor, bool isVerbose)
 {
     // Sort clusters by increasing voxel size
-    std::sort(clusters->begin(), clusters->end(),
-              [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
+    std::sort(clusters->begin(), clusters->end(), [](const ActRoot::Cluster& l, const ActRoot::Cluster& r)
               { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
     // Verbose
     if(isVerbose)
@@ -453,4 +452,36 @@ double ActAlgorithm::GetClusterAngle(const XYZVector& beam, const XYZVector& rec
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();
+}
+
+void ActAlgorithm::ErasePileup(std::vector<ActRoot::Cluster>* clusters, double xPercent, double lowerZ, double upperZ,
+                               ActRoot::TPCParameters* tpc)
+{
+    for(auto it = clusters->begin(); it != clusters->end();)
+    {
+        // 1-> Eval condition of X range
+        // Tracks X range must span a
+        // minimum percent of ACTAR's length
+        auto [xmin, xmax] {it->GetXRange()};
+        bool spansActarX {(xmax - xmin) > xPercent * tpc->GetNPADSX()};
+        // auto [zmin, zmax] {it->GetZRange()};
+        // bool isConstantZ {(double)(zmax - zmin) <= fPileUpXPercent};
+        // std::cout << "XRange : [" << xmin << ", " << xmax << "]" << '\n';
+        // std::cout << "spansActarX ? " << std::boolalpha << spansActarX << '\n';
+
+        // 2-> Track must be FULLY contained in the outter region
+        // defined by lowerZ and upperZ (the region to be masked)
+        auto [zmin, zmax] {it->GetZRange()};
+        zmin *= tpc->GetREBINZ();
+        zmax *= tpc->GetREBINZ();
+        bool isInBeamZMin {lowerZ <= zmin && zmin <= upperZ};
+        bool isInBeamZMax {lowerZ <= zmax && zmax <= upperZ};
+        bool isInBeamZ {isInBeamZMin || isInBeamZMax};
+        if(spansActarX && !isInBeamZ)
+        {
+            it = clusters->erase(it);
+        }
+        else
+            it++;
+    }
 }

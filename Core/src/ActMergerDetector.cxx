@@ -277,7 +277,7 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[1].Stop();
 
     // 2.1-> Compute BSP here?
-    ComputeBSP();
+    ComputeXProfile();
 
     // 3-> Compute SP and BP
     fClocks[2].Start(false);
@@ -394,7 +394,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
     }
     // 3-> Has RP (either preliminary or fine)
     bool hasRP {true};
-    if(fForceRP)
+    if(fForceRP && fTPCData->fClusters.size() > 1)
     {
         fPars.fUseRP = true;
         hasRP = fTPCData->fRPs.size() > 0;
@@ -412,6 +412,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         std::cout << " -> HasBeamLike  ? " << std::boolalpha << hasBL << '\n';
         std::cout << " -> HasTrackMult ? " << std::boolalpha << hasMult << '\n';
         std::cout << " -> HasRP        ? " << std::boolalpha << hasRP << '\n';
+        fPars.Print();
     }
     return isInGat && hasBL && hasMult && hasRP;
 }
@@ -586,7 +587,7 @@ void ActRoot::MergerDetector::LightOrHeavy()
             std::cout << "Theta : " << pair.first << " at : " << pair.second << '\n';
         std::cout << "------------------------------" << RESET << '\n';
     }
-    // Set iterators
+    // Set pointers
     fLightPtr = &(*(fTPCData->fClusters.begin() + set.begin()->second));
     if(set.size() > 1)
         fHeavyPtr = &(*(fTPCData->fClusters.begin() + std::next(set.begin())->second));
@@ -886,7 +887,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
     }
 }
 
-void ActRoot::MergerDetector::ComputeBSP()
+void ActRoot::MergerDetector::ComputeXProfile()
 {
     // Set points to project according to mode
     bool isOkReaction {fBeamPtr != nullptr && !fPars.fIsCal};
