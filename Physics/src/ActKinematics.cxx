@@ -13,6 +13,8 @@
 #include <Math/GenVector/BoostX.h>
 #include <Math/Vector3D.h>
 #include <Math/Vector4D.h>
+#include <algorithm>
+#include <cctype>
 #include <cmath>
 #include <iomanip>
 #include <ios>
@@ -20,6 +22,11 @@
 #include <stdexcept>
 #include <string>
 #include <tuple>
+
+ActPhysics::Kinematics::Kinematics(const std::string& reaction)
+{
+    ConstructFromStr(reaction);
+}
 
 ActPhysics::Kinematics::Kinematics(double m1, double m2, double m3, double m4, double T1, double Eex)
     : fm1(m1),
@@ -121,10 +128,46 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
     Init();
 }
 
+void ActPhysics::Kinematics::ConstructFromStr(const std::string& reaction)
+{
+    std::string str {reaction};
+    // Clean whitespaces
+    str.erase(std::remove_if(str.begin(), str.end(), [](auto c) { return std::isspace(c); }), str.end());
+    // Locate all components
+    auto open {str.find_first_of("(")};
+    auto beam {str.substr(0, open)};
+    auto comma {str.find_first_of(",")};
+    auto target {str.substr(open + 1, comma - (open + 1))};
+    auto close {str.find_last_of(")")};
+    auto light {str.substr(comma + 1, close - (comma + 1))};
+    // After @ there is the beam energy
+    auto at {str.find_last_of("@")};
+    auto energy {str.substr(at + 1)};
+    bool withHeavy {(at - close) > 1};
+    std::string heavy {};
+    if(withHeavy)
+        heavy = str.substr(close + 1, at - (close + 1));
+    // After | there is the Ex of the heavy particle
+    auto vertical {str.find_last_of("|")};
+    bool withEx {};
+    std::string ex {};
+    if(vertical != std::string::npos)
+    {
+        ex = str.substr(vertical + 1);
+        if(ex.size() > 0)
+            withEx = true;
+    }
+    // Construct
+    if(withHeavy)
+        *this = Kinematics {beam, target, light, heavy, std::stod(energy), withEx ? std::stod(ex) : 0};
+    else
+        *this = Kinematics {beam, target, light, std::stod(energy), withEx ? std::stod(ex) : 0};
+}
+
 void ActPhysics::Kinematics::Init()
 {
     // Determine inversion
-    fReverse = (fm1 > fm2);
+    fInverse = (fm1 > fm2);
     // Compute Q value
     ComputeQValue();
     if(fT1Lab == -1)
@@ -191,36 +234,6 @@ std::tuple<double, double, double, double> ActPhysics::Kinematics::GetMasses() c
     return std::make_tuple(fm1, fm2, fm3, fm4);
 }
 
-void ActPhysics::Kinematics::SetRecoilsCMKinematicsThrough3(double theta3CMRads, double phi3CMRads)
-{
-    double E3CM {0.5 * (fEcm * fEcm + fm3 * fm3 - (fm4 + fEex) * (fm4 + fEex)) / fEcm};
-    double p3CM {TMath::Sqrt(E3CM * E3CM - fm3 * fm3)};
-    fP3CM = {p3CM * TMath::Cos(theta3CMRads), p3CM * TMath::Sin(theta3CMRads) * TMath::Sin(phi3CMRads),
-             p3CM * TMath::Sin(theta3CMRads) * TMath::Cos(phi3CMRads), E3CM};
-    fTheta3CM = theta3CMRads;
-    fPhi3CM = phi3CMRads;
-
-    // for 4th particle
-    fP4CM = fPInitialCM - fP3CM;
-    fTheta4CM = GetThetaFromVector(fP4CM);
-    fPhi4CM = GetPhiFromVector(fP4CM);
-}
-
-void ActPhysics::Kinematics::SetRecoilsCMKinematicsThrough4(double theta4CMRads, double phi4CMRads)
-{
-    double E4CM {0.5 * (fEcm * fEcm + (fm4 + fEex) * (fm4 + fEex) - fm3 * fm3) / fEcm};
-    double p4CM {TMath::Sqrt(E4CM * E4CM - (fm4 + fEex) * (fm4 + fEex))};
-    fP4CM = {p4CM * TMath::Cos(theta4CMRads), p4CM * TMath::Sin(theta4CMRads) * TMath::Sin(phi4CMRads),
-             p4CM * TMath::Sin(theta4CMRads) * TMath::Cos(phi4CMRads), E4CM};
-    fTheta4CM = theta4CMRads;
-    fPhi4CM = phi4CMRads;
-
-    // for 3rd particle
-    fP3CM = fPInitialCM - fP4CM;
-    fTheta3CM = GetThetaFromVector(fP3CM);
-    fPhi3CM = GetPhiFromVector(fP3CM);
-}
-
 void ActPhysics::Kinematics::SetRecoil3LabKinematics()
 {
     fP3Lab = {fBoostTransformation.Inverse()(fP3CM)};
@@ -237,24 +250,24 @@ void ActPhysics::Kinematics::SetRecoil4LabKinematics()
     fPhi4Lab = GetPhiFromVector(fP4Lab);
 }
 
-void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom,
-                                                     bool computeBoth)
+void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double phiCMRads)
 {
     // Invert theta CM if needed
-    if(fReverse)
+    if(fInverse)
         thetaCMRads = TMath::Pi() - thetaCMRads;
-    switch(anglesFrom)
-    {
-    case 3: SetRecoilsCMKinematicsThrough3(thetaCMRads, phiCMRads); break;
-    case 4: SetRecoilsCMKinematicsThrough4(thetaCMRads, phiCMRads); break;
-    default: throw std::runtime_error("Wrong value passed: only 3 or 4 int values are allowed!"); break;
-    }
-    // we are mainly interesed in 3rd particle
+    // Set angles
+    fThetaCM = thetaCMRads;
+    fPhiCM = phiCMRads;
+    // Compute kinematics in CM for 3rd particle
+    double E3CM {0.5 * (fEcm * fEcm + fm3 * fm3 - (fm4 + fEex) * (fm4 + fEex)) / fEcm};
+    double p3CM {TMath::Sqrt(E3CM * E3CM - fm3 * fm3)};
+    fP3CM = {p3CM * TMath::Cos(fThetaCM), p3CM * TMath::Sin(fThetaCM) * TMath::Sin(fPhiCM),
+             p3CM * TMath::Sin(fThetaCM) * TMath::Cos(fPhiCM), E3CM};
+    // And now for 4th particle
+    fP4CM = fPInitialCM - fP3CM;
+    // And now back to Lab
     SetRecoil3LabKinematics();
-    // but if bool computeBoth passed, compute 4th particle kinematics in LAB
-    if(computeBoth)
-        SetRecoil4LabKinematics();
-    //(in this way we save computation time)
+    SetRecoil4LabKinematics();
 }
 
 void ActPhysics::Kinematics::Print() const
@@ -333,8 +346,9 @@ void ActPhysics::Kinematics::CheckQValue()
         auto T1threshold {GetT1Thresh()};
         if(fT1Lab < T1threshold)
         {
-            throw std::runtime_error(("Error! Reaction has a threshold energy of " + std::to_string(T1threshold) +
-                                      " MeV, but given beam has only " + std::to_string(fT1Lab) + " MeV!"));
+            throw std::runtime_error(("Kinematics::CheckQValue(): Reaction has a threshold energy of " +
+                                      std::to_string(T1threshold) + " MeV, but given beam has only " +
+                                      std::to_string(fT1Lab) + " MeV!"));
         }
     }
 }
@@ -370,7 +384,7 @@ double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double TLab, double th
                      pLab * TMath::Sin(thetaLabRads) * TMath::Cos(phi), ELab};
     // move to CM
     auto PCM {fBoostTransformation(PLab)};
-    return GetThetaFromVector(PCM, fReverse);
+    return GetThetaFromVector(PCM, fInverse);
 }
 
 double ActPhysics::Kinematics::ComputeTheoreticalT3(double argTheta3LabRads, const std::string& sol)
@@ -449,7 +463,7 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELi
     ret->SetLineStyle(style);
     for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
     {
-        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3);
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0.);
         double thetaLab {GetTheta3Lab() * TMath::RadToDeg()};
         double T3Lab {GetT3Lab()};
         if(std::isfinite(thetaLab) && std::isfinite(T3Lab))
@@ -468,7 +482,7 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine4(double step, EColor color, ELi
     ret->SetLineStyle(style);
     for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
     {
-        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0.);
         double thetaLab {GetTheta4Lab() * TMath::RadToDeg()};
         double T4Lab {GetT4Lab()};
         if(std::isfinite(thetaLab) && std::isfinite(T4Lab))
@@ -486,7 +500,7 @@ TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELin
     ret->SetLineStyle(style);
     for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
     {
-        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, true);
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0.);
         auto theta3 {GetTheta3Lab() * TMath::RadToDeg()};
         auto theta4 {GetTheta4Lab() * TMath::RadToDeg()};
         if(std::isfinite(theta3) && std::isfinite(theta4))
@@ -504,7 +518,7 @@ TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor col
     ret->SetLineStyle(style);
     for(double thetaCM = 0; thetaCM < 180; thetaCM += step)
     {
-        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0., 3, false);
+        ComputeRecoilKinematics(thetaCM * TMath::DegToRad(), 0.);
         auto thetaLab {GetTheta3Lab() * TMath::RadToDeg()};
         if(std::isfinite(thetaLab))
             ret->SetPoint(ret->GetN(), thetaCM, thetaLab);

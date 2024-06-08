@@ -40,9 +40,9 @@ private:
     double fBeta {};
     double fQvalue {};
     // flag to invert theta CM if reaction is in inverse kinematics
-    bool fReverse {};
+    bool fInverse {};
 
-    // vectors
+    // 4-Vectors
     FourVector fP1Lab {};
     FourVector fP2Lab {};
     FourVector fPInitialLab {};
@@ -52,11 +52,10 @@ private:
     FourVector fP3Lab {};
     FourVector fP4Lab {};
     LorentzBoostX fBoostTransformation {};
-    // auxiliar to avoid calling member functions every time
-    double fTheta3CM {};
-    double fTheta4CM {};
-    double fPhi3CM {};
-    double fPhi4CM {};
+
+    // Store values in class
+    double fThetaCM {};
+    double fPhiCM {};
     double fEcm {};
     double fT3Lab {};
     double fT4Lab {};
@@ -67,6 +66,7 @@ private:
 
 public:
     Kinematics() = default;
+    Kinematics(const std::string& reaction);
     Kinematics(double m1, double m2, double m3, double m4, double T1 = -1,
                double Eex = 0.); //!< Constructor using masses
     Kinematics(const std::string& p1, const std::string& p2, const std::string& p3, const std::string& p4,
@@ -82,7 +82,7 @@ public:
     Kinematics& operator=(const Kinematics&) = default;
     ~Kinematics() = default;
 
-    void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads, int anglesFrom = 3, bool computeBoth = false);
+    void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads);
     double ReconstructBeamEnergyFromLabKinematics(double T3, double theta3LabRads);
     double ReconstructTheta3CMFromLab(double TLab, double thetaLabRads);
     double ReconstructExcitationEnergy(double argT3, double argTheta3LabRads);
@@ -112,10 +112,8 @@ public:
     double GetTheta4Lab() const { return fTheta4Lab; }
     double GetPhi3Lab() const { return fPhi3Lab; }
     double GetPhi4Lab() const { return fPhi4Lab; }
-    double GetTheta3CM() const { return fTheta3CM; }
-    double GetTheta4CM() const { return fTheta4CM; }
-    double GetPhi3CM() const { return fPhi3CM; }
-    double GetPhi4CM() const { return fPhi4CM; }
+    double GetThetaCM() const { return fThetaCM; }
+    double GetPhiCM() const { return fPhiCM; }
     double GetBeta() const { return fBeta; }
     double GetGamma() const { return fGamma; }
     double GetECM() const { return fEcm; }
@@ -127,8 +125,7 @@ public:
     double GetT1Thresh() const;
 
 private:
-    void SetRecoilsCMKinematicsThrough3(double fTheta3CMRads, double phi3CMRads);
-    void SetRecoilsCMKinematicsThrough4(double theta4CMRads, double phi4CMRads);
+    void ConstructFromStr(const std::string& reaction);
     void SetRecoil3LabKinematics();
     void SetRecoil4LabKinematics();
     void ComputeQValue();
