@@ -191,6 +191,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7778267c7cb039fb74cdd93739789491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae69e05699cc9be349a9aee78ddaaaf8c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#ae69e05699cc9be349a9aee78ddaaaf8c">GetT1Thresh</a> () const</td></tr>
 <tr class="separator:ae69e05699cc9be349a9aee78ddaaaf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9699c585a0373bcdbee7c9e837f466c1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1Particle.html">Particle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a9699c585a0373bcdbee7c9e837f466c1">GetParticle</a> (unsigned int i) const</td></tr>
+<tr class="separator:a9699c585a0373bcdbee7c9e837f466c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -1388,6 +1390,34 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;{</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">return</span> std::make_tuple(<a class="code" href="classActPhysics_1_1Kinematics.html#affa02eaa3abdfd71d7a4eff90fa481e2">fm1</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#ac88125333338706c093670c7893ada80">fm2</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>, <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>);</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9699c585a0373bcdbee7c9e837f466c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9699c585a0373bcdbee7c9e837f466c1">&#9670;&nbsp;</a></span>GetParticle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classActPhysics_1_1Particle.html">ActPhysics::Particle</a> &amp; ActPhysics::Kinematics::GetParticle </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;{</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;    <span class="keywordflow">if</span>(i == 1)</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a304fb989f40ae0be52a57cbe396fb115">fp1</a>;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(i == 2)</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aadb499dcee260d1d9d156a6b360d0bd8">fp2</a>;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(i == 3)</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#abc623852091838787618629ad7619f7f">fp3</a>;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a6818f9fa9e8ecd1e369413ea32556b0a">fp4</a>;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
