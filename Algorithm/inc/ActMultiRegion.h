@@ -97,7 +97,7 @@ private:
     void ProcessNotBeam(BrokenVoxels& broken);
     void MergeClusters();
     void MarkBeamLikes();
-    // void Assign();
+    void CleanPileUp();
     void CleanClusters();
     void Sort();
     void FindRP();

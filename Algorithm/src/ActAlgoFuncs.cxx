@@ -455,7 +455,7 @@ double ActAlgorithm::GetClusterAngle(const XYZVector& beam, const XYZVector& rec
 }
 
 void ActAlgorithm::ErasePileup(std::vector<ActRoot::Cluster>* clusters, double xPercent, double lowerZ, double upperZ,
-                               ActRoot::TPCParameters* tpc)
+                               ActRoot::TPCParameters* tpc, bool isVerbose)
 {
     for(auto it = clusters->begin(); it != clusters->end();)
     {
@@ -479,6 +479,15 @@ void ActAlgorithm::ErasePileup(std::vector<ActRoot::Cluster>* clusters, double x
         bool isInBeamZ {isInBeamZMin || isInBeamZMax};
         if(spansActarX && !isInBeamZ)
         {
+            if(isVerbose)
+            {
+                std::cout << BOLDCYAN << "---- Erase PileUp verbose ----" << '\n';
+                std::cout << "-> Deleted cluster #" << it->GetClusterID() << " with :" << '\n';
+                std::cout << "   zmin    : " << zmin << '\n';
+                std::cout << "   zmax    : " << zmax << '\n';
+                std::cout << "   xlength : " << (xmax - xmin) << '\n';
+                std::cout << "------------------------------" << '\n';
+            }
             it = clusters->erase(it);
         }
         else

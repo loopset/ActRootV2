@@ -64,10 +64,10 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
         fEnableCleanPileUp = mr->GetBool("EnableCleanPileUp");
     if(mr->CheckTokenExists("PileUpXPercent"))
         fPileUpXPercent = mr->GetDouble("PileUpXPercent");
-    if(mr->CheckTokenExists("BeamLowerZ"))
-        fPileUpLowerZ = mr->GetDouble("BeamLowerZ");
-    if(mr->CheckTokenExists("BeamUpperZ"))
-        fPileUpUpperZ = mr->GetDouble("BeamUpperZ");
+    if(mr->CheckTokenExists("PileUpLowerZ"))
+        fPileUpLowerZ = mr->GetDouble("PileUpLowerZ");
+    if(mr->CheckTokenExists("PileUpUpperZ"))
+        fPileUpUpperZ = mr->GetDouble("PileUpUpperZ");
 
     // Parameters of Merge algorithm
     if(mr->CheckTokenExists("EnableMerge"))
@@ -157,6 +157,12 @@ void ActAlgorithm::MultiRegion::Run()
     BreakIntoRegions();
     fClocks[0].Stop();
     ResetID();
+    // Before merging, clean pileup
+    if(fEnableCleanPileUp)
+    {
+        CleanPileUp();
+        ResetID();
+    }
     // 2-> Merge similar tracks
     if(fEnableMerge)
     {
@@ -334,13 +340,10 @@ void ActAlgorithm::MultiRegion::ResetID()
         (fData->fClusters)[i].SetClusterID(i);
 }
 
-// void ActAlgorithm::MultiRegion::Assign()
-// {
-//     for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
-//     {
-//         fAssign[it->GetRegionType()].push_back(it);
-//     }
-// }
+void ActAlgorithm::MultiRegion::CleanPileUp()
+{
+    ActAlgorithm::ErasePileup(&fData->fClusters, fPileUpXPercent, fPileUpLowerZ, fPileUpUpperZ, fTPC);
+}
 
 void ActAlgorithm::MultiRegion::FindRP()
 {

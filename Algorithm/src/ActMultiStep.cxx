@@ -1387,9 +1387,9 @@ void ActAlgorithm::MultiStep::Print() const
         }
         if(fEnableCleanPileUp)
         {
-            std::cout << "-> PileUpChangeZ    : " << fPileUpXPercent << '\n';
-            std::cout << "-> BeamLowerZ       : " << fBeamLowerZ << '\n';
-            std::cout << "-> BeamUpperZ       : " << fBeamUpperZ << '\n';
+            std::cout << "-> PileUpXPercent     : " << fPileUpXPercent << '\n';
+            std::cout << "-> PileUpLowerZ       : " << fBeamLowerZ << '\n';
+            std::cout << "-> PileUpUpperZ       : " << fBeamUpperZ << '\n';
             std::cout << "-----------------------" << '\n';
         }
         if(fEnableCleanZs)

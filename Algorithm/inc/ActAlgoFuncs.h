@@ -57,7 +57,7 @@ double GetClusterAngle(const XYZVector& beam, const XYZVector& recoil);
 
 // Clean pile-up
 void ErasePileup(std::vector<ActRoot::Cluster>* clusters, double xPercent, double lowerZ, double upperZ,
-                 ActRoot::TPCParameters* tpc);
+                 ActRoot::TPCParameters* tpc, bool isVerbose = false);
 
 } // namespace ActAlgorithm
 
