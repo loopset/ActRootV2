@@ -142,8 +142,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5d6542e57ca99a30df3efe191a4e79b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c876a251d902ff5bad25b1ddfc03080"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a1c876a251d902ff5bad25b1ddfc03080">GetClusterAngle</a> (const <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> &amp;beam, const <a class="el" href="namespaceActAlgorithm.html#a7437a3a10e35411a4a8cfcd44c67d262">XYZVector</a> &amp;recoil)</td></tr>
 <tr class="separator:a1c876a251d902ff5bad25b1ddfc03080"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3f7946e84a2b04821efb474d29ad1d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#ae3f7946e84a2b04821efb474d29ad1d1">ErasePileup</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, double xPercent, double lowerZ, double upperZ, <a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *tpc)</td></tr>
-<tr class="separator:ae3f7946e84a2b04821efb474d29ad1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7791b1e960d59c82aafc486a78e387"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#aca7791b1e960d59c82aafc486a78e387">ErasePileup</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; *clusters, double xPercent, double lowerZ, double upperZ, <a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *tpc, bool isVerbose=false)</td></tr>
+<tr class="separator:aca7791b1e960d59c82aafc486a78e387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8caa986e493b25377c425eddee3bd191"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActAlgorithm.html#a8caa986e493b25377c425eddee3bd191">RegionTypeAsStr</a> (<a class="el" href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960">RegionType</a> type)</td></tr>
 <tr class="separator:a8caa986e493b25377c425eddee3bd191"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -603,8 +603,8 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ae3f7946e84a2b04821efb474d29ad1d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3f7946e84a2b04821efb474d29ad1d1">&#9670;&nbsp;</a></span>ErasePileup()</h2>
+<a id="aca7791b1e960d59c82aafc486a78e387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7791b1e960d59c82aafc486a78e387">&#9670;&nbsp;</a></span>ErasePileup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -637,7 +637,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *&#160;</td>
-          <td class="paramname"><em>tpc</em>&#160;</td>
+          <td class="paramname"><em>tpc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isVerbose</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -669,12 +675,21 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;        <span class="keywordtype">bool</span> isInBeamZ {isInBeamZMin || isInBeamZMax};</div>
 <div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        <span class="keywordflow">if</span>(spansActarX &amp;&amp; !isInBeamZ)</div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;        {</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;            it = clusters-&gt;erase(it);</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;        }</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;            it++;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    }</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;}</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;            <span class="keywordflow">if</span>(isVerbose)</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;            {</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;                std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;---- Erase PileUp verbose ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Deleted cluster #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; with :&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   zmin    : &quot;</span> &lt;&lt; zmin &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   zmax    : &quot;</span> &lt;&lt; zmax &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   xlength : &quot;</span> &lt;&lt; (xmax - xmin) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;            }</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;            it = clusters-&gt;erase(it);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        }</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;            it++;</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    }</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a53245f1683330070e850291de5c3807c"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c">ActRoot::TPCParameters::GetREBINZ</a></div><div class="ttdeci">int GetREBINZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:49</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:45</div></div>
 </div><!-- fragment -->
