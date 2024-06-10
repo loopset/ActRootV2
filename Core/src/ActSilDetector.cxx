@@ -44,20 +44,24 @@ void ActRoot::SilParameters::ReadActions(const std::vector<std::string>& layers,
     int aux1 {};
     while(streamer >> key >> vxi >> aux0 >> aux1)
     {
+        // Clean of whitespaces
+        key = StripSpaces(key);
+        // Locate index if any
+        auto idx {key.find_first_of("0123456789")};
+        if(idx == std::string::npos)
+            continue;
+        // Then, get the letters part ONLY
+        auto letters {key};
+        letters.erase(idx);
         for(int i = 0; i < names.size(); i++)
         {
-            auto pos {key.find(names[i])};
-            // npos -> not found
-            // 0 -> we have to force names[i] to be at first position of the name (otherwise SCA_OR_SI_UP would be used
-            // also!)
-            if(pos != std::string::npos && pos == 0)
+            if(letters == names[i])
             {
                 // and now get index
-                auto length {names[i].length()};
                 int index {};
                 try
                 {
-                    index = std::stoi(key.substr(pos + length));
+                    index = std::stoi(key.substr(idx));
                 }
                 catch(std::exception& e)
                 {
