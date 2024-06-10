@@ -123,6 +123,7 @@ public:
     FourVector GetPInitialLab() const { return fPInitialLab; }
     double GetQValue() const { return fQvalue; }
     double GetT1Thresh() const;
+    const Particle& GetParticle(unsigned int i) const;
 
 private:
     void ConstructFromStr(const std::string& reaction);

@@ -525,3 +525,15 @@ TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor col
     }
     return ret;
 }
+
+const ActPhysics::Particle& ActPhysics::Kinematics::GetParticle(unsigned int i) const
+{
+    if(i == 1)
+        return fp1;
+    else if(i == 2)
+        return fp2;
+    else if(i == 3)
+        return fp3;
+    else
+        return fp4;
+}
