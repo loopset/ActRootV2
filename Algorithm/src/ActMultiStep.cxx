@@ -82,10 +82,10 @@ void ActAlgorithm::MultiStep::ReadConfiguration()
         fEnableCleanPileUp = mb->GetBool("EnableCleanPileUp");
     if(mb->CheckTokenExists("PileUpXPercent"))
         fPileUpXPercent = mb->GetDouble("PileUpXPercent");
-    if(mb->CheckTokenExists("BeamLowerZ"))
-        fBeamLowerZ = mb->GetDouble("BeamLowerZ");
-    if(mb->CheckTokenExists("BeamUpperZ"))
-        fBeamUpperZ = mb->GetDouble("BeamUpperZ");
+    if(mb->CheckTokenExists("PileUpLowerZ"))
+        fBeamLowerZ = mb->GetDouble("PileUpLowerZ");
+    if(mb->CheckTokenExists("PileUpUpperZ"))
+        fBeamUpperZ = mb->GetDouble("PileUpUpperZ");
     // Parameters of cleaning vertical tracks
     if(mb->CheckTokenExists("EnableCleanZs"))
         fEnableCleanZs = mb->GetBool("EnableCleanZs");
