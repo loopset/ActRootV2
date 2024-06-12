@@ -217,7 +217,7 @@ private:
     {
         return std::find(vec.begin(), vec.end(), val) != vec.end();
     }
-    double GetRangeFromProfile(TH1F* h);
+    double GetRangeFromProfile(TH1F* h, bool smooth = true);
     void DefaultBeamDirection();
 };
 } // namespace ActRoot

@@ -918,17 +918,18 @@ void ActRoot::MergerDetector::ComputeXProfile()
                 hQprojX.Fill(v.GetPosition().X(), v.GetCharge());
         }
         // Compute x max from profile
-        auto xMax {GetRangeFromProfile(&hQprojX)};
+        auto xMax {GetRangeFromProfile(&hQprojX, false)}; // dont smooth
         fMergerData->fBSP = {(float)xMax, 0, 0};
         // Save in MergerData
         fMergerData->fQprojX = hQprojX;
     }
 }
 
-double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h)
+double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h, bool smooth)
 {
     // 1-> Smooth the histogram
-    h->Smooth();
+    if(smooth)
+        h->Smooth();
     // 2-> Find maximum
     auto maxBin {h->GetMaximumBin()};
     auto xMax {h->GetBinCenter(maxBin)};
