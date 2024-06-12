@@ -412,7 +412,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         std::cout << " -> HasBeamLike  ? " << std::boolalpha << hasBL << '\n';
         std::cout << " -> HasTrackMult ? " << std::boolalpha << hasMult << '\n';
         std::cout << " -> HasRP        ? " << std::boolalpha << hasRP << '\n';
-        fPars.Print();
+        // fPars.Print();
     }
     return isInGat && hasBL && hasMult && hasRP;
 }

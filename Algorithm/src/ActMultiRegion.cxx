@@ -122,6 +122,8 @@ void ActAlgorithm::MultiRegion::ReadConfiguration()
         fEnableFinalClean = mr->GetBool("EnableFinalClean");
     if(mr->CheckTokenExists("CausalShiftX", !fIsEnabled))
         fCausalShiftX = mr->GetDouble("CausalShiftX");
+    if(mr->CheckTokenExists("EnableCleanMult1", !fIsEnabled))
+        fEnableCleanMult1 = mr->GetBool("EnableCleanMult1");
 
     // Init clocks
     fClockLabels.push_back("BreakIntoRegions");
@@ -185,7 +187,6 @@ void ActAlgorithm::MultiRegion::Run()
     if(fRPDelete)
         DeleteAfterRP();
     // 7-> Fine cluster treatment after RP is found
-    DoFinerFits();
     ResetID();
     if(fEnableFinalClean)
         FinalClean();
@@ -654,11 +655,15 @@ void ActAlgorithm::MultiRegion::FindFineRP()
 
 void ActAlgorithm::MultiRegion::FinalClean()
 {
-    if(fData->fClusters.size() == 0)
+    if(fData->fClusters.size() == 0 || fData->fRPs.size() == 0)
         return;
-    // 1-> Cleaning based on size of cluster
+    // 1-> Split BL into heavy
+    BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fKeepSplitRP, fIsVerbose);
+    // 2-> Mask region around RP
+    MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
+    // 3-> Cleaning based on size of cluster
     Chi2AndSizeCleaning(&fData->fClusters, fCleanMaxChi2, fCleanMinVoxels, fIsVerbose);
-    // 2-> Cleaning based on causality
+    // 4-> Cleaning based on causality
     if(fData->fRPs.size() > 0)
     {
         // Get the X position of the RP
