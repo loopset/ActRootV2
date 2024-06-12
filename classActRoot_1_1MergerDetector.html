@@ -247,8 +247,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a21bcd5ae15954aa18f755115bc83992b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a21bcd5ae15954aa18f755115bc83992b"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b">IsInVector</a> (T val, const std::vector&lt; T &gt; &amp;vec)</td></tr>
 <tr class="separator:a21bcd5ae15954aa18f755115bc83992b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1edcb425fc8a5afe18e37de9efd196c5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a1edcb425fc8a5afe18e37de9efd196c5">GetRangeFromProfile</a> (TH1F *h)</td></tr>
-<tr class="separator:a1edcb425fc8a5afe18e37de9efd196c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e660896fa4d0cd1bd6ea38ad4ef98ac"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a3e660896fa4d0cd1bd6ea38ad4ef98ac">GetRangeFromProfile</a> (TH1F *h, bool smooth=true)</td></tr>
+<tr class="separator:a3e660896fa4d0cd1bd6ea38ad4ef98ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3edb7eada8628706f105f0d99ed4b50e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#a3edb7eada8628706f105f0d99ed4b50e">DefaultBeamDirection</a> ()</td></tr>
 <tr class="separator:a3edb7eada8628706f105f0d99ed4b50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -536,9 +536,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a8d046f65ecc6dfb5de44f5e94624e0ee">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;{</div>
-<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">Clear</a>();</div>
-<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;{</div>
+<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">Clear</a>();</div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a6fe8f48864e1ca108d8a866a86ff683a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">ActRoot::MergerData::Clear</a></div><div class="ttdeci">void Clear() override</div><div class="ttdef"><b>Definition:</b> ActMergerData.cxx:7</div></div>
 </div><!-- fragment -->
 </div>
@@ -567,9 +567,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a078e944629ce0692c574b09cef12674c">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;{</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;    <span class="comment">// Not needed because we are reading directly from ttree</span></div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;{</div>
+<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;    <span class="comment">// Not needed because we are reading directly from ttree</span></div>
+<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -843,7 +843,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;    }</div>
 <div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a4a2c3d720c4de5c5c932f091dd2b414f">fQProf</a> = h;</div>
 <div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    <span class="comment">// Compute range from profile</span></div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <span class="keyword">auto</span> distMax {<a class="code" href="classActRoot_1_1MergerDetector.html#a1edcb425fc8a5afe18e37de9efd196c5">GetRangeFromProfile</a>(&amp;h)};</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <span class="keyword">auto</span> distMax {<a class="code" href="classActRoot_1_1MergerDetector.html#a3e660896fa4d0cd1bd6ea38ad4ef98ac">GetRangeFromProfile</a>(&amp;h)};</div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    <span class="comment">// And move to point</span></div>
 <div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">fBraggP</a> = ref + distMax * line.GetDirection().Unit();</div>
 <div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a4ba50740d41e6c8d97849b509f0b7114">f2DProfile</a>)</div>
@@ -877,7 +877,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a4a2c3d720c4de5c5c932f091dd2b414f"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a4a2c3d720c4de5c5c932f091dd2b414f">ActRoot::MergerData::fQProf</a></div><div class="ttdeci">TH1F fQProf</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:26</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_ab830ef6910752dc0e9a902692e82cb4b"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">ActRoot::MergerData::fBraggP</a></div><div class="ttdeci">XYZPoint fBraggP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:32</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:28</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a1edcb425fc8a5afe18e37de9efd196c5"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a1edcb425fc8a5afe18e37de9efd196c5">ActRoot::MergerDetector::GetRangeFromProfile</a></div><div class="ttdeci">double GetRangeFromProfile(TH1F *h)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:928</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a3e660896fa4d0cd1bd6ea38ad4ef98ac"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a3e660896fa4d0cd1bd6ea38ad4ef98ac">ActRoot::MergerDetector::GetRangeFromProfile</a></div><div class="ttdeci">double GetRangeFromProfile(TH1F *h, bool smooth=true)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:928</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a4ba50740d41e6c8d97849b509f0b7114"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a4ba50740d41e6c8d97849b509f0b7114">ActRoot::MergerDetector::f2DProfile</a></div><div class="ttdeci">bool f2DProfile</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:100</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a4bc51f5c51fcf5896db233e9bf232119"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a4bc51f5c51fcf5896db233e9bf232119">ActRoot::MergerDetector::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPointF XYZPoint</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:51</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerParameters_html_ab9b85f8852106f7ad0cc747f55c4f465"><div class="ttname"><a href="classActRoot_1_1MergerParameters.html#ab9b85f8852106f7ad0cc747f55c4f465">ActRoot::MergerParameters::fUseRP</a></div><div class="ttdeci">bool fUseRP</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:41</div></div>
@@ -971,7 +971,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;                hQprojX.Fill(v.GetPosition().X(), v.GetCharge());</div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;        }</div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;        <span class="comment">// Compute x max from profile</span></div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;        <span class="keyword">auto</span> xMax {<a class="code" href="classActRoot_1_1MergerDetector.html#a1edcb425fc8a5afe18e37de9efd196c5">GetRangeFromProfile</a>(&amp;hQprojX)};</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;        <span class="keyword">auto</span> xMax {<a class="code" href="classActRoot_1_1MergerDetector.html#a3e660896fa4d0cd1bd6ea38ad4ef98ac">GetRangeFromProfile</a>(&amp;hQprojX, <span class="keyword">false</span>)}; <span class="comment">// dont smooth</span></div>
 <div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#aa28022b8769eca32204162f6f2687969">fBSP</a> = {(float)xMax, 0, 0};</div>
 <div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;        <span class="comment">// Save in MergerData</span></div>
 <div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a70a7ab4a8a5b25d936276f0f7e99a5f3">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a6ae9ebc86436dae600de510206bfe984">fQprojX</a> = hQprojX;</div>
@@ -1660,8 +1660,8 @@ template&lt;typename T &gt; </div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a1edcb425fc8a5afe18e37de9efd196c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1edcb425fc8a5afe18e37de9efd196c5">&#9670;&nbsp;</a></span>GetRangeFromProfile()</h2>
+<a id="a3e660896fa4d0cd1bd6ea38ad4ef98ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e660896fa4d0cd1bd6ea38ad4ef98ac">&#9670;&nbsp;</a></span>GetRangeFromProfile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1673,8 +1673,18 @@ template&lt;typename T &gt; </div>
           <td class="memname">double ActRoot::MergerDetector::GetRangeFromProfile </td>
           <td>(</td>
           <td class="paramtype">TH1F *&#160;</td>
-          <td class="paramname"><em>h</em></td><td>)</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>smooth</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1685,22 +1695,23 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;{</div>
 <div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;    <span class="comment">// 1-&gt; Smooth the histogram</span></div>
-<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;    h-&gt;Smooth();</div>
-<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;    <span class="comment">// 2-&gt; Find maximum</span></div>
-<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;    <span class="keyword">auto</span> maxBin {h-&gt;GetMaximumBin()};</div>
-<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;    <span class="keyword">auto</span> xMax {h-&gt;GetBinCenter(maxBin)};</div>
-<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;    <span class="keyword">auto</span> yMax {h-&gt;GetBinContent(maxBin)};</div>
-<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;    <span class="comment">// 3-&gt; Set reference point</span></div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;    <span class="keyword">auto</span> range {yMax / 5};</div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;    <span class="comment">// 4-&gt; Create interpolation functions</span></div>
-<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;    <span class="comment">// Create TSpline</span></div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;    <span class="keyword">auto</span> spe {std::make_unique&lt;TSpline3&gt;(h)};</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;    <span class="comment">// And now function</span></div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;    <span class="keyword">auto</span> func {std::make_unique&lt;TF1&gt;(<span class="stringliteral">&quot;func&quot;</span>, [&amp;](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> spe-&gt;Eval(x[0]); }, 0, 128, 1)};</div>
-<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;    <span class="comment">// Find maximum in the range [xMax, xRangeMax of histogram]</span></div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;    <span class="keyword">auto</span> ret {func-&gt;GetX(range, xMax, h-&gt;GetXaxis()-&gt;GetXmax())};</div>
-<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;}</div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;    <span class="keywordflow">if</span>(smooth)</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;        h-&gt;Smooth();</div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;    <span class="comment">// 2-&gt; Find maximum</span></div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;    <span class="keyword">auto</span> maxBin {h-&gt;GetMaximumBin()};</div>
+<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;    <span class="keyword">auto</span> xMax {h-&gt;GetBinCenter(maxBin)};</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;    <span class="keyword">auto</span> yMax {h-&gt;GetBinContent(maxBin)};</div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;    <span class="comment">// 3-&gt; Set reference point</span></div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;    <span class="keyword">auto</span> range {yMax / 5};</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;    <span class="comment">// 4-&gt; Create interpolation functions</span></div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;    <span class="comment">// Create TSpline</span></div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;    <span class="keyword">auto</span> spe {std::make_unique&lt;TSpline3&gt;(h)};</div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;    <span class="comment">// And now function</span></div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;    <span class="keyword">auto</span> func {std::make_unique&lt;TF1&gt;(<span class="stringliteral">&quot;func&quot;</span>, [&amp;](<span class="keywordtype">double</span>* x, <span class="keywordtype">double</span>* p) { <span class="keywordflow">return</span> spe-&gt;Eval(x[0]); }, 0, 128, 1)};</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;    <span class="comment">// Find maximum in the range [xMax, xRangeMax of histogram]</span></div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;    <span class="keyword">auto</span> ret {func-&gt;GetX(range, xMax, h-&gt;GetXaxis()-&gt;GetXmax())};</div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2233,53 +2244,53 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a4fa45aadd3520841e1c35cba502f41aa">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;{</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160; </div>
-<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;:::: Merger detector ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; IsEnabled     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">fIsEnabled</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">fIsEnabled</a>)</div>
-<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;    {</div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceGATCONF  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a321aff4a02deaa21b3f57de605f9da0f">fForceGATCONF</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; GATCONF map   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">fGatMap</a>)</div>
-<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;        {</div>
-<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot; = &quot;</span>;</div>
-<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; s : vals)</div>
-<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;                std::cout &lt;&lt; s &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;            std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;        }</div>
-<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceRP       ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#ae5b49b945d4d06b8e9fb91b15235e678">fForceRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceBeamLike ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">fForceBeamLike</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; InvertAngle   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#af41bdc80c2bde402ea910cfa7603343a">fInvertAngle</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NotBeamMults  : &quot;</span>;</div>
-<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : <a class="code" href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">fNotBMults</a>)</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;            std::cout &lt;&lt; m &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;        std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableConver  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a0c97e0533060be413149538078012459">fEnableConversion</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a0c97e0533060be413149538078012459">fEnableConversion</a>)</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;        {</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DriftFactor   : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a660c5e5229cd670c5d1a6afb4146b2a2">fDriftFactor</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableMatch   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#ae30eab9276811b7f26671bdf83bcac78">fEnableMatch</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; MatchUseZ     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a5f88cd7b1c6938b764c44da08320d9e3">fMatchUseZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; MatchZOffset  : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a471ebf1cf840ae98b10d7752d0387383">fZOffset</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;        }</div>
-<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a46e3333f52ab3d32b48fa63a134934d5">fEnableQProfile</a>)</div>
-<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;        {</div>
-<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableQProf   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a46e3333f52ab3d32b48fa63a134934d5">fEnableQProfile</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; 2DProfile     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a4ba50740d41e6c8d97849b509f0b7114">f2DProfile</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;        }</div>
-<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a8c1be236cfdad1b3d12becbdc4323026">fEnableDefaultBeam</a>)</div>
-<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;        {</div>
-<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DefaultBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a8c1be236cfdad1b3d12becbdc4323026">fEnableDefaultBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DefaultMinX   : &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#aa8499d00a6ef084fad85e766cbd4be7e">fDefaultBeamXThresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;        }</div>
-<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;    }</div>
-<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;    <span class="comment">// fSilSpecs-&gt;Print();</span></div>
-<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160; </div>
-<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a06f6e6c0e3195df5a47909cff6a3ec90">fFilter</a>)</div>
-<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a06f6e6c0e3195df5a47909cff6a3ec90">fFilter</a>-&gt;Print();</div>
-<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;{</div>
+<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160; </div>
+<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;:::: Merger detector ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; IsEnabled     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">fIsEnabled</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">fIsEnabled</a>)</div>
+<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;    {</div>
+<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceGATCONF  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a321aff4a02deaa21b3f57de605f9da0f">fForceGATCONF</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; GATCONF map   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vals] : <a class="code" href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">fGatMap</a>)</div>
+<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;        {</div>
+<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot; = &quot;</span>;</div>
+<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; s : vals)</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;                std::cout &lt;&lt; s &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;            std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;        }</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceRP       ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#ae5b49b945d4d06b8e9fb91b15235e678">fForceRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ForceBeamLike ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">fForceBeamLike</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; InvertAngle   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#af41bdc80c2bde402ea910cfa7603343a">fInvertAngle</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; NotBeamMults  : &quot;</span>;</div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : <a class="code" href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">fNotBMults</a>)</div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;            std::cout &lt;&lt; m &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;        std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableConver  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a0c97e0533060be413149538078012459">fEnableConversion</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a0c97e0533060be413149538078012459">fEnableConversion</a>)</div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;        {</div>
+<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DriftFactor   : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a660c5e5229cd670c5d1a6afb4146b2a2">fDriftFactor</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableMatch   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#ae30eab9276811b7f26671bdf83bcac78">fEnableMatch</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; MatchUseZ     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a5f88cd7b1c6938b764c44da08320d9e3">fMatchUseZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; MatchZOffset  : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a471ebf1cf840ae98b10d7752d0387383">fZOffset</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;        }</div>
+<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a46e3333f52ab3d32b48fa63a134934d5">fEnableQProfile</a>)</div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;        {</div>
+<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; EnableQProf   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a46e3333f52ab3d32b48fa63a134934d5">fEnableQProfile</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; 2DProfile     ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a4ba50740d41e6c8d97849b509f0b7114">f2DProfile</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;        }</div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a8c1be236cfdad1b3d12becbdc4323026">fEnableDefaultBeam</a>)</div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;        {</div>
+<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DefaultBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a8c1be236cfdad1b3d12becbdc4323026">fEnableDefaultBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; DefaultMinX   : &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#aa8499d00a6ef084fad85e766cbd4be7e">fDefaultBeamXThresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;        }</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;    }</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    <span class="comment">// fSilSpecs-&gt;Print();</span></div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160; </div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1MergerDetector.html#a06f6e6c0e3195df5a47909cff6a3ec90">fFilter</a>)</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a06f6e6c0e3195df5a47909cff6a3ec90">fFilter</a>-&gt;Print();</div>
+<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
 </div><!-- fragment -->
 </div>
@@ -2308,15 +2319,15 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#ac6111dbded8f6ba09f480ad072a3086d">ActRoot::VDetector</a>.</p>
-<div class="fragment"><div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;{</div>
-<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== MergerDetector time report ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a32607a7d7180b5fa5c16f7c33b033d11">fClockLabels</a>.size(); i++)</div>
-<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;    {</div>
-<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Timer : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a32607a7d7180b5fa5c16f7c33b033d11">fClockLabels</a>[i] &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a96c33da45187c131638561cbcca89458">fClocks</a>[i].Print();</div>
-<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;    }</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;{</div>
+<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;==== MergerDetector time report ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a32607a7d7180b5fa5c16f7c33b033d11">fClockLabels</a>.size(); i++)</div>
+<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;    {</div>
+<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Timer : &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1MergerDetector.html#a32607a7d7180b5fa5c16f7c33b033d11">fClockLabels</a>[i] &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a96c33da45187c131638561cbcca89458">fClocks</a>[i].Print();</div>
+<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;    }</div>
+<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

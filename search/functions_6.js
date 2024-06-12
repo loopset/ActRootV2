@@ -168,7 +168,7 @@ var searchData=
   ['getptrtovoxels_1991',['GetPtrToVoxels',['../classActRoot_1_1Cluster.html#a0e13fdfaf75d90bbf86a4415d881ef89',1,'ActRoot::Cluster']]],
   ['getqvalue_1992',['GetQValue',['../classActPhysics_1_1Kinematics.html#a7778267c7cb039fb74cdd93739789491',1,'ActPhysics::Kinematics']]],
   ['getrand_1993',['GetRand',['../classActSim_1_1Runner.html#a76481714ac2c1ddc1147b7422186d5a4',1,'ActSim::Runner']]],
-  ['getrangefromprofile_1994',['GetRangeFromProfile',['../classActRoot_1_1MergerDetector.html#a1edcb425fc8a5afe18e37de9efd196c5',1,'ActRoot::MergerDetector']]],
+  ['getrangefromprofile_1994',['GetRangeFromProfile',['../classActRoot_1_1MergerDetector.html#a3e660896fa4d0cd1bd6ea38ad4ef98ac',1,'ActRoot::MergerDetector']]],
   ['getrebinz_1995',['GetREBINZ',['../classActRoot_1_1TPCParameters.html#a53245f1683330070e850291de5c3807c',1,'ActRoot::TPCParameters']]],
   ['getreftoline_1996',['GetRefToLine',['../classActRoot_1_1Cluster.html#ab32463c002df94b9ce0190b9c33d8fbd',1,'ActRoot::Cluster']]],
   ['getreftovoxels_1997',['GetRefToVoxels',['../classActRoot_1_1Cluster.html#ac6613af09383edda3cee33f7638b2adf',1,'ActRoot::Cluster']]],
