@@ -174,8 +174,11 @@ void ActAlgorithm::MultiRegion::Run()
         ResetID();
     }
     // 3-> Clean before finding RP
-    CleanClusters();
-    ResetID();
+    if(fEnableClean)
+    {
+        CleanClusters();
+        ResetID();
+    }
     // 4-> Identify valid BL in Beam region
     MarkBeamLikes();
     // 5-> Final assignment and sorting

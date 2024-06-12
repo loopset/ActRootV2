@@ -264,6 +264,8 @@ void ActRoot::MergerDetector::DoMerge()
         fPars.Print();
     if(!isDoable)
     {
+        if(fIsVerbose)
+            std::cout << BOLDRED << "  Event is not doable, skipping" << RESET << '\n';
         fMergerData->Clear();
         return;
     }
@@ -545,6 +547,12 @@ void ActRoot::MergerDetector::LightOrHeavy()
         // Sort and align
         std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
         fLightPtr->GetRefToLine().AlignUsingPoint(fLightPtr->GetRefToVoxels().front().GetPosition(), true);
+        if(fIsVerbose)
+        {
+            std::cout << BOLDCYAN << "---- Merger LightOrHeavy ----" << '\n';
+            std::cout << "  Setting directly cluster #" << fLightPtr->GetClusterID() << " as light" << RESET << '\n';
+            std::cout << "------------------------------" << RESET << '\n';
+        }
         return;
     }
     // 1-> Set RP

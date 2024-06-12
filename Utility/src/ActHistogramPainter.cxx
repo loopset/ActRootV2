@@ -121,8 +121,6 @@ void ActRoot::HistogramPainter::Init()
     fHist2D[1][5] = std::make_shared<TH2F>("hF0", "F0;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
     // Front L1
     fHist2D[1][6] = std::make_shared<TH2F>("hF1", "F1;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
-    // 1D histogram
-    fHist1D[1][3] = std::make_shared<TH1F>("hQx", "Q;X [pad]", 128, 0, 128);
     for(auto& [_, h] : fHist2D[1])
     {
         // Style for TEXT option
@@ -158,8 +156,6 @@ void ActRoot::HistogramPainter::FillVoxelsHisto()
         fHist2D[0][2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
         // Front
         fHist2D[0][3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
-        // Projection along X of charge
-        fHist1D[1][3]->Fill(pos.X(), voxel.GetCharge());
     }
     // Fill with voxels of clusters
     for(const auto& cluster : clone->fClusters)
@@ -173,8 +169,6 @@ void ActRoot::HistogramPainter::FillVoxelsHisto()
             fHist2D[0][2]->Fill(pos.X(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
             // Front
             fHist2D[0][3]->Fill(pos.Y(), pos.Z() * fTPC->GetREBINZ(), voxel.GetCharge());
-            // Projection along X of charge
-            fHist1D[1][3]->Fill(pos.X(), voxel.GetCharge());
         }
     }
 }
@@ -405,8 +399,8 @@ void ActRoot::HistogramPainter::DrawProjections()
         // Cd to correct pad
         fCanvas->at(1)->cd(2);
         data->fQProf.Draw("hist");
-        // fCanvas->at(1)->cd(3);
-        // data->fQprojX.Draw("hist");
+        fCanvas->at(1)->cd(3);
+        data->fQprojX.Draw("hist");
         // Draw also pad plane in 2nd tab
         fCanvas->at(1)->cd(4);
         fHist2D[0][4]->Draw("colz");
