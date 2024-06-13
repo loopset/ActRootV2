@@ -98,6 +98,7 @@ private:
     // Enable computation of QProfile
     bool fEnableQProfile {};
     bool f2DProfile {};
+    bool fEnableRootFind {};
     // Fallback to default beam
     bool fEnableDefaultBeam {};
     double fDefaultBeamXThresh {};

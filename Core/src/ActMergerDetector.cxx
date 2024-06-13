@@ -119,6 +119,8 @@ void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> bloc
         fEnableQProfile = block->GetBool("EnableQProfile");
     if(block->CheckTokenExists("2DProfile", !fIsEnabled))
         f2DProfile = block->GetBool("2DProfile");
+    if(block->CheckTokenExists("EnableRootFind", !fIsEnabled))
+        fEnableRootFind = block->GetBool("EnableRootFind");
     if(block->CheckTokenExists("EnableDefaultBeam", !fIsEnabled))
         fEnableDefaultBeam = block->GetBool("EnableDefaultBeam");
     if(block->CheckTokenExists("DefaultBeamXThresh", !fEnableDefaultBeam))
@@ -942,7 +944,9 @@ double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h, bool smooth)
     // And now function
     auto func {std::make_unique<TF1>("func", [&](double* x, double* p) { return spe->Eval(x[0]); }, 0, 128, 1)};
     // Find maximum in the range [xMax, xRangeMax of histogram]
-    auto ret {func->GetX(range, xMax, h->GetXaxis()->GetXmax())};
+    double ret {};
+    if(fEnableRootFind)
+        ret = func->GetX(range, xMax, h->GetXaxis()->GetXmax());
     return ret;
 }
 
@@ -991,6 +995,7 @@ void ActRoot::MergerDetector::Print() const
         {
             std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
             std::cout << "-> 2DProfile     ? " << std::boolalpha << f2DProfile << '\n';
+            std::cout << "-> EnableRootFind? " << std::boolalpha << fEnableRootFind << '\n';
         }
         if(fEnableDefaultBeam)
         {
