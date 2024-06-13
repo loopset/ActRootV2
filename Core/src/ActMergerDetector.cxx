@@ -386,7 +386,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
                 notBL++;
         }
         hasBL = (bl == 1); // admit only one BL
-        hasMult = IsInVector((int)fTPCData->fClusters.size(), fNotBMults);
+        hasMult = IsInVector(notBL, fNotBMults);
         // if(notBL > 2)
         // std::cout << "hasMult? " << std::boolalpha << hasMult << '\n';
     }
