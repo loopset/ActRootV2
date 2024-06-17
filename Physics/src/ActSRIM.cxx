@@ -291,7 +291,11 @@ double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double t
     auto RAfter {RIni - dist};
     if(RAfter <= 0)
         return 0;
-    return EvalInverse(material, RAfter);
+    auto ret {EvalInverse(material, RAfter)};
+    if(ret > Tini)
+        throw std::runtime_error(
+            "SRIM::Slow(): Tafter > Tini due to TSpline precision. Consider using a larger step in thickness");
+    return ret;
 }
 
 
