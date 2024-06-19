@@ -479,7 +479,10 @@ void ActAlgorithm::MultiRegion::MarkBeamLikes()
             auto [xmin, xmax] {it->GetXRange()};
             bool condBegin {xmin <= fBLXBegin};
             if(condDir && condBegin)
+            {
                 it->SetBeamLike(true);
+                it->SetToMerge(false);
+            }
         }
     }
 }
@@ -668,7 +671,9 @@ void ActAlgorithm::MultiRegion::FinalClean()
     MaskBeginEnd(&fData->fClusters, fData->fRPs.front(), fRPPivotDist, fAlgo->GetMinPoints(), fIsVerbose);
     // 3-> Cleaning based on size of cluster
     Chi2AndSizeCleaning(&fData->fClusters, fCleanMaxChi2, fCleanMinVoxels, fIsVerbose);
-    // 4-> Cleaning based on causality
+    // 4-> Usually you need to merge again, because regions split parts of tracks
+    MergeSimilarClusters(&fData->fClusters, fMergeDistThresh, fMergeMinParallel, fMergeChi2Factor, fIsVerbose);
+    // 5-> Cleaning based on causality
     if(fData->fRPs.size() > 0)
     {
         // Get the X position of the RP
