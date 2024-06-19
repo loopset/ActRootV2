@@ -105,6 +105,7 @@ private:
     void DoFinerFits();
     void FindFineRP();
     void FinalClean();
+    void FixBreakHeavy();
     void ResetID();
 };
 } // namespace ActAlgorithm

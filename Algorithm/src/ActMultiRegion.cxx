@@ -705,6 +705,8 @@ void ActAlgorithm::MultiRegion::FinalClean()
             fData->fRPs.clear();
         }
     }
+    // 6-> Last step
+    FixBreakHeavy();
     // // Get beam like last position in X
     // double maxXBeam {-1};
     // double minXOther {11111};
@@ -732,6 +734,51 @@ void ActAlgorithm::MultiRegion::FinalClean()
         }
         fData->fClusters.clear();
         fData->fRPs.clear();
+    }
+}
+
+void ActAlgorithm::MultiRegion::FixBreakHeavy()
+{
+    // This function has to be executed after the merging after the SplitToHeavy
+    // If this merger didn't succedded to merge tracks and we have only two, force merge
+    // 1-> Count not-beams and get pointer to not-beam in Beam region
+    std::vector<ClusterIt> its;
+    bool force {};
+    for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
+        if(!it->GetIsBeamLike())
+        {
+            its.push_back(it);
+            if(it->GetRegionType() == RegionType::EBeam)
+                force = true;
+        }
+    // 2-> If 2 not-beams and track remaining in BeamRegion, force merge
+    if(its.size() == 2 && force)
+    {
+        // 1-> Get larger cluster as the front
+        std::sort(its.begin(), its.end(),
+                  [](const ClusterIt& l, const ClusterIt& r) { return l->GetSizeOfVoxels() > r->GetSizeOfVoxels(); });
+        // 2-> Split
+        ClusterIt big {its.front()};
+        ClusterIt small {its.back()};
+        auto& main {big->GetRefToVoxels()};
+        auto& del {small->GetRefToVoxels()};
+        main.insert(main.end(), del.begin(), del.end());
+        // 3-> Refit
+        big->ReFit();
+        big->ReFillSets();
+        // 4-> Delete from vector
+        if(fIsVerbose)
+        {
+            std::cout << BOLDYELLOW << "---- FixBreakHeavy verbose ----" << '\n';
+            std::cout << "  Deleting cluster : " << '\n';
+            small->Print();
+            std::cout << RESET << '\n';
+        }
+        fData->fClusters.erase(its.back());
+    }
+    else
+    {
+        ;
     }
 }
 

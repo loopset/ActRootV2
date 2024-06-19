@@ -2,6 +2,7 @@
 
 #include "ActCluster.h"
 #include "ActColors.h"
+#include "ActRegion.h"
 #include "ActTPCDetector.h"
 #include "ActUtils.h"
 #include "ActVoxel.h"
@@ -336,6 +337,7 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
                 newCluster.ReFillSets();
                 newCluster.SetIsSplitRP(true);
                 newCluster.SetHasRP(true);
+                newCluster.SetRegionType(RegionType::EBeam);
                 toAppend.push_back(std::move(newCluster));
 
                 if(isVerbose)
