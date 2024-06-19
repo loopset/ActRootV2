@@ -739,20 +739,24 @@ void ActAlgorithm::MultiRegion::FinalClean()
 
 void ActAlgorithm::MultiRegion::FixBreakHeavy()
 {
-    // This function has to be executed after the merging after the SplitToHeavy
-    // If this merger didn't succedded to merge tracks and we have only two, force merge
-    // 1-> Count not-beams and get pointer to not-beam in Beam region
+    // Mandatory: execute this function after attempting to MergeCluster
+    // just after breaking beam in RP
+    // 1-> Count not-beams and get iterator to not-beam in Beam region
     std::vector<ClusterIt> its;
-    bool force {};
+    bool treat {};
+    ClusterIt toDel {};
     for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
         if(!it->GetIsBeamLike())
         {
             its.push_back(it);
             if(it->GetRegionType() == RegionType::EBeam)
-                force = true;
+            {
+                treat = true;
+                toDel = it;
+            }
         }
     // 2-> If 2 not-beams and track remaining in BeamRegion, force merge
-    if(its.size() == 2 && force)
+    if(its.size() == 2 && treat)
     {
         // 1-> Get larger cluster as the front
         std::sort(its.begin(), its.end(),
@@ -770,11 +774,21 @@ void ActAlgorithm::MultiRegion::FixBreakHeavy()
         if(fIsVerbose)
         {
             std::cout << BOLDYELLOW << "---- FixBreakHeavy verbose ----" << '\n';
-            std::cout << "  Deleting cluster : " << '\n';
+            std::cout << "-> Forcing merge of spureous cluster : " << '\n';
             small->Print();
             std::cout << RESET << '\n';
         }
-        fData->fClusters.erase(its.back());
+        // Actually erase
+        fData->fClusters.erase(small);
+    }
+    else if(its.size() > 2 && treat) // Force delete of spureous cluster
+    {
+        std::cout << BOLDYELLOW << "---- FixBreakHeavy verbose ----" << '\n';
+        std::cout << "-> Forcing delete of spureous cluster : " << '\n';
+        toDel->Print();
+        std::cout << RESET << '\n';
+        // Actually erase
+        fData->fClusters.erase(toDel);
     }
     else
     {
