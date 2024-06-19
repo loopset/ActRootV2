@@ -561,6 +561,10 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
 
 void ActAlgorithm::MultiRegion::FindFineRP()
 {
+    // After cleaning, maybe some clusters were deleted
+    // Then, do not keep preliminary RP
+    if(fData->fClusters.size() <= 1)
+        fData->fRPs.clear();
     if(fData->fRPs.size() == 0)
         return;
     // Get statistics
