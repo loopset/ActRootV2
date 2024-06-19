@@ -512,6 +512,8 @@ void ActAlgorithm::MultiRegion::DoFinerFits()
         return;
     // 1-> Split BL into heavy
     BreakBeamToHeavy(&fData->fClusters, fData->fRPs.front(), fAlgo->GetMinPoints(), fKeepSplitRP, fIsVerbose);
+    // Usually you need to merge again, because regions split parts of tracks
+    MergeSimilarClusters(&fData->fClusters, fMergeDistThresh, fMergeMinParallel, fMergeChi2Factor, fIsVerbose);
     // Decide whether to keep or delete SplitRP
     // int nBL {};
     // int notBLnotSplit {};
