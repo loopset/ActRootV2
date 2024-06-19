@@ -787,10 +787,13 @@ void ActAlgorithm::MultiRegion::FixBreakHeavy()
     }
     else if(its.size() > 2 && treat) // Force delete of spureous cluster
     {
-        std::cout << BOLDYELLOW << "---- FixBreakHeavy verbose ----" << '\n';
-        std::cout << "-> Forcing delete of spureous cluster : " << '\n';
-        toDel->Print();
-        std::cout << RESET << '\n';
+        if(fIsVerbose)
+        {
+            std::cout << BOLDYELLOW << "---- FixBreakHeavy verbose ----" << '\n';
+            std::cout << "-> Forcing delete of spureous cluster : " << '\n';
+            toDel->Print();
+            std::cout << RESET << '\n';
+        }
         // Actually erase
         fData->fClusters.erase(toDel);
     }
