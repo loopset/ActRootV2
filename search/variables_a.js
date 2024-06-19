@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mangular_2804',['mAngular',['../classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d',1,'ActSim::TheoCrossSection']]]
+  ['mangular_2806',['mAngular',['../classActSim_1_1TheoCrossSection.html#acda1fba76677e4cb6ce6c0161ae8415d',1,'ActSim::TheoCrossSection']]]
 ];
