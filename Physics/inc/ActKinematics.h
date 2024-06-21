@@ -1,6 +1,7 @@
 #ifndef ActKinematics_h
 #define ActKinematics_h
 
+#include "ActInputParser.h"
 #include "ActParticle.h"
 
 #include "Rtypes.h"
@@ -11,6 +12,7 @@
 #include <Math/GenVector/BoostX.h>
 #include <Math/Vector3Dfwd.h>
 #include <Math/Vector4Dfwd.h>
+#include <memory>
 #include <string>
 #include <tuple>
 
@@ -104,6 +106,8 @@ public:
     void SetBeamEnergy(double T1);
     void SetEx(double Ex);
     void SetBeamEnergyAndEx(double T1, double Ex);
+    void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block);
+    void ReadConfiguration(const std::string& file);
     // Getters
     double GetT1Lab() const { return fT1Lab; }
     double GetT3Lab() const { return fT3Lab; }

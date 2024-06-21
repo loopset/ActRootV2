@@ -1,15 +1,20 @@
 #include "ActRunner.h"
 
 #include "ActGeometry.h"
+#include "ActInputParser.h"
 #include "ActSRIM.h"
 
 #include "TH3.h"
 #include "TMath.h"
+#include "TRandom.h"
 #include "TRandom3.h"
 
 #include <cmath>
+#include <memory>
 #include <string>
 #include <utility>
+
+ActSim::Runner::Runner(ActPhysics::SRIM* srim) : fsrim(srim), fRand(dynamic_cast<TRandom3*>(gRandom)) {}
 
 ActSim::Runner::Runner(ActPhysics::SRIM* sri, Geometry* geo, TRandom3* rand, double silSigma)
     : fsrim(sri),
@@ -148,4 +153,29 @@ ActSim::Runner::XYZPoint ActSim::Runner::DisplacePointToStandardFrame(const XYZP
 double ActSim::Runner::RandomizeBeamEnergy(double Tini, double sigma)
 {
     return fRand->Gaus(Tini, sigma);
+}
+
+////////////////////
+ActSim::Runner::XYZPoint ActSim::Runner::GetRandomVertex(double lengthX)
+{
+    double x {fBeamEntrance.X() + fRand->Uniform() * lengthX};
+    double y {fRand->Gaus(fBeamEntrance.Y(), fVertexSigmaY)};
+    double z {fRand->Gaus(fBeamEntrance.Z(), fVertexSigmaZ)};
+    return {x, y, z};
+}
+
+void ActSim::Runner::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
+{
+    // 1-> Vertex sampling perpendicular to beam direction
+    auto entrance {block->GetDoubleVector("Entrance")};
+    fBeamEntrance = {entrance[0], entrance[1], entrance[2]};
+    fVertexSigmaY = block->GetDouble("VertexSigmaY");
+    fVertexSigmaZ = block->GetDouble("VertexSigmaZ");
+}
+
+void ActSim::Runner::ReadConfiguration(const std::string& file)
+{
+    ActRoot::InputParser parser {file};
+    auto block {parser.GetBlock("Simulation")};
+    ReadConfiguration(block);
 }

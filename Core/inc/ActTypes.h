@@ -13,14 +13,15 @@ enum class DetectorType
 
 enum class ModeType
 {
-    EReadTPC,    // !< Convert from Raw to TPCData
-    EReadSilMod, // !< Convert from Raw to Sil and Modular data
-    EFilter,     // !< Exec filter before Merger
-    EMerge,      // !< Merge detectors and build physical event
-    EFilterMerge,// !< Both operations at the same time
-    ECorrect,    // !< Exec filter after merger
-    EGui,     // !< For GUI in actplot
-    ENone        // !< Default value
+    EReadTPC,     // !< Convert from Raw to TPCData
+    EReadSilMod,  // !< Convert from Raw to Sil and Modular data
+    EFilter,      // !< Exec filter before Merger
+    EMerge,       // !< Merge detectors and build physical event
+    EFilterMerge, // !< Both operations at the same time
+    ECorrect,     // !< Exec filter after merger
+    EGui,         // !< For GUI in actplot
+    ESimu,        // !< Simulation mode
+    ENone         // !< Default value
 };
 
 } // namespace ActRoot

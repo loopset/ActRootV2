@@ -1,6 +1,7 @@
 #include "ActKinematics.h"
 
 #include "ActColors.h"
+#include "ActInputParser.h"
 #include "ActParticle.h"
 
 #include "Rtypes.h"
@@ -19,6 +20,7 @@
 #include <iomanip>
 #include <ios>
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <string>
 #include <tuple>
@@ -536,4 +538,33 @@ const ActPhysics::Particle& ActPhysics::Kinematics::GetParticle(unsigned int i) 
         return fp3;
     else
         return fp4;
+}
+
+void ActPhysics::Kinematics::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
+{
+    // Specify particles to be read
+    auto p1 {block->GetString("Beam")};
+    auto p2 {block->GetString("Target")};
+    auto p3 {block->GetString("Light")};
+    std::string p4 {};
+    if(block->CheckTokenExists("Heavy", true))
+        p4 = block->GetString("Heavy");
+    // Nominal beam energy
+    auto T1 {block->GetDouble("BeamEnergy")};
+    // Excitation energy of the heavy particle
+    double Ex {};
+    if(block->CheckTokenExists("Ex", true))
+        Ex = block->GetDouble("Ex");
+    // Construct
+    if(p4.length() > 0)
+        *this = Kinematics {p1, p2, p3, p4, T1, Ex};
+    else
+        *this = Kinematics {p1, p2, p3, T1, Ex};
+}
+
+void ActPhysics::Kinematics::ReadConfiguration(const std::string& file)
+{
+    ActRoot::InputParser parser {file};
+    auto block {parser.GetBlock("Kinematics")};
+    ReadConfiguration(block);
 }

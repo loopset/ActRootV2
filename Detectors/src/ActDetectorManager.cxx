@@ -68,6 +68,8 @@ void ActRoot::DetectorManager::InitDetectors()
         // Correct is a filter at second stage: Merger -> Merger
         fDetectors[DetectorType::EMerger] = std::make_shared<ActRoot::MergerDetector>();
     }
+    else if(fMode == ModeType::ESimu)
+        fDetectors[DetectorType::EActar] = std::make_shared<ActRoot::TPCDetector>();
     else
         throw std::runtime_error("DetectorManager::InitDetectors() : fMode is None, enter other mode!");
 }

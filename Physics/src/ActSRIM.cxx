@@ -1,5 +1,7 @@
 #include "ActSRIM.h"
 
+#include "ActInputParser.h"
+
 #include "TCanvas.h"
 #include "TF1.h"
 #include "TLegend.h"
@@ -314,4 +316,18 @@ ActPhysics::SRIM::EvalInitialEnergy(const std::string& material, double Tafter, 
 bool ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
 {
     return std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end();
+}
+
+void ActPhysics::SRIM::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
+{
+    // Parse block: read all tokens as keys and values as paths to files
+    for(const auto& token : block->GetTokens())
+        ReadTable(token, block->GetString(token));
+}
+
+void ActPhysics::SRIM::ReadConfiguration(const std::string& file)
+{
+    ActRoot::InputParser parser {file};
+    auto block {parser.GetBlock("SRIM")};
+    ReadConfiguration(block);
 }

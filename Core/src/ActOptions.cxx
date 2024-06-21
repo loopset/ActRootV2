@@ -15,7 +15,7 @@
 std::unordered_map<ActRoot::ModeType, std::string> ActRoot::Options::fModeTable = {
     {ModeType::ENone, "None"},       {ModeType::EReadTPC, "ReadTPC"}, {ModeType::EReadSilMod, "ReadSilMod"},
     {ModeType::EFilter, "Filter"},   {ModeType::EMerge, "Merger"},    {ModeType::EFilterMerge, "Filter&Merge"},
-    {ModeType::ECorrect, "Correct"}, {ModeType::EGui, "Visual"}};
+    {ModeType::ECorrect, "Correct"}, {ModeType::EGui, "Visual"},      {ModeType::ESimu, "Simulation"}};
 
 std::shared_ptr<ActRoot::Options> ActRoot::Options::fInstance = nullptr;
 

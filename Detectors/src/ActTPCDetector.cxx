@@ -60,8 +60,8 @@ void ActRoot::TPCParameters::Print() const
     std::cout << "-> NPADSX : " << fNPADSX << '\n';
     std::cout << "-> NPADSY : " << fNPADSY << '\n';
     std::cout << "-> NPADSZ : " << fNPADSZ << '\n';
-    std::cout << "-> REBINZ :" << fREBINZ << '\n';
-    std::cout << "====================" << '\n';
+    std::cout << "-> REBINZ : " << fREBINZ << '\n';
+    std::cout << "====================" << RESET << '\n';
 }
 
 ActRoot::TPCDetector::~TPCDetector()

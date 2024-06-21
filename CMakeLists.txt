@@ -27,6 +27,7 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
 # include all the includes!
 include_directories(Core/inc)
+include_directories(Detectors/inc)
 include_directories(Utility/inc)
 include_directories(Physics/inc)
 include_directories(Simulation/inc)
@@ -37,6 +38,7 @@ endif()
 
 #add subdirs CMakeLists.txt
 add_subdirectory(Core)
+add_subdirectory(Detectors)
 add_subdirectory(Utility)
 add_subdirectory(Physics)
 add_subdirectory(Simulation)

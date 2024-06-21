@@ -1,1 +1,1 @@
-add_actlibrary(NAME ActPhysics LINK)
+add_actlibrary(NAME ActPhysics LINK ActCore)
