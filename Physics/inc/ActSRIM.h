@@ -2,6 +2,7 @@
 #define ActSRIM_h
 
 #include "TF1.h"
+#include "TGraph.h"
 #include "TSpline.h"
 
 #include <map>
@@ -27,24 +28,30 @@ class SRIM
 public:
     using PtrSpline = std::unique_ptr<TSpline3>;
     using PtrFunc = std::unique_ptr<TF1>;
+    using PtrGraph = std::unique_ptr<TGraph>;
 
 private:
     std::vector<std::string> fKeys; //!< Store known tables
     // Energy->Range
     std::map<std::string, std::unique_ptr<TSpline3>> fSplinesDirect;
     std::map<std::string, std::unique_ptr<TF1>> fInterpolationsDirect;
+    std::map<std::string, PtrGraph> fGraphsDirect;
     // Range->Energy
     std::map<std::string, std::unique_ptr<TSpline3>> fSplinesInverse;
     std::map<std::string, std::unique_ptr<TF1>> fInterpolationsInverse;
+    std::map<std::string, PtrGraph> fGraphsInverse;
     // Energy->Stopping powers (nuclear + electronic)
     std::map<std::string, std::unique_ptr<TSpline3>> fSplinesStoppings;
     std::map<std::string, std::unique_ptr<TF1>> fStoppings;
+    std::map<std::string, PtrGraph> fGraphsStoppings;
     // Range->Longitudinal straggling
     std::map<std::string, std::unique_ptr<TSpline3>> fSplinesLongStrag;
     std::map<std::string, std::unique_ptr<TF1>> fLongStrag;
+    std::map<std::string, PtrGraph> fGraphsLongStrag;
     // Range->Lateral straggling
     std::map<std::string, std::unique_ptr<TSpline3>> fSplinesLatStrag;
     std::map<std::string, std::unique_ptr<TF1>> fLatStrag;
+    std::map<std::string, PtrGraph> fGraphsLatStrag;
 
 
 public:
@@ -79,6 +86,7 @@ public:
 private:
     bool IsBreakLine(const std::string& line);
     double ConvertToDouble(std::string& str, const std::string& unit);
+    PtrGraph GetGraph(std::vector<double>& x, std::vector<double>& y, const std::string& name);
     PtrSpline GetSpline(std::vector<double>& x, std::vector<double>& y, const std::string& name);
 };
 }; // namespace ActPhysics

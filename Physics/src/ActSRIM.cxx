@@ -4,6 +4,7 @@
 
 #include "TCanvas.h"
 #include "TF1.h"
+#include "TGraph.h"
 #include "TLegend.h"
 #include "TMath.h"
 #include "TSpline.h"
@@ -18,6 +19,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 ActPhysics::SRIM::SRIM(const std::string& key, const std::string& file)
@@ -90,6 +92,15 @@ ActPhysics::SRIM::GetSpline(std::vector<double>& x, std::vector<double>& y, cons
     return std::make_unique<TSpline3>(name.c_str(), &(x[0]), &(y[0]), x.size(), "b2,e2", 0., 0.);
 }
 
+ActPhysics::SRIM::PtrGraph
+ActPhysics::SRIM::GetGraph(std::vector<double>& x, std::vector<double>& y, const std::string& name)
+{
+    auto g {std::make_unique<TGraph>(x.size(), x.data(), y.data())};
+    g->SetName(("g" + name).c_str());
+    g->SetBit(TGraph::kIsSortedX);
+    return std::move(g);
+}
+
 void ActPhysics::SRIM::ReadTable(const std::string& key, const std::string& file)
 {
     std::ifstream streamer(file);
@@ -138,32 +149,37 @@ void ActPhysics::SRIM::ReadTable(const std::string& key, const std::string& file
 
     // Init splines and funcs
     // 1-> Energy -> Range
-    fSplinesDirect[key] = GetSpline(vE, vR, "speEtoR");
+    fSplinesDirect[key] = GetSpline(vE, vR, "EtoR");
+    fGraphsDirect[key] = GetGraph(vE, vR, "EtoT");
     fInterpolationsDirect[key] =
         std::make_unique<TF1>(("fEtoR" + key).c_str(), [key, this](double* x, double* p)
                               { return fSplinesDirect[key]->Eval(x[0]); }, vE.front(), vE.back(), 1);
     fInterpolationsDirect[key]->SetTitle(";Energy [MeV];Range [mm]");
     // 2-> Range -> Energy
-    fSplinesInverse[key] = GetSpline(vR, vE, "speRtoE");
+    fSplinesInverse[key] = GetSpline(vR, vE, "RtoE");
+    fGraphsInverse[key] = GetGraph(vE, vR, "RtoE");
     fInterpolationsInverse[key] =
         std::make_unique<TF1>(("fRtoE" + key).c_str(), [key, this](double* x, double* p)
                               { return fSplinesInverse[key]->Eval(x[0]); }, vR.front(), vR.back(), 1);
     fInterpolationsInverse[key]->SetTitle(";Range [mm];Energy [MeV]");
 
     // 3-> E to Stopping
-    fSplinesStoppings[key] = GetSpline(vE, vStop, "speEtodE");
+    fSplinesStoppings[key] = GetSpline(vE, vStop, "EtodE");
+    fGraphsStoppings[key] = GetGraph(vE, vStop, "EtodE");
     fStoppings[key] = std::make_unique<TF1>(("fEtodE" + key).c_str(), [key, this](double* x, double* p)
                                             { return fSplinesStoppings[key]->Eval(x[0]); }, vE.front(), vE.back(), 1);
     fStoppings[key]->SetTitle(";Energy [MeV];#frac{dE}{dx} [MeV/mm]");
 
     // 4-> R to LS
-    fSplinesLongStrag[key] = GetSpline(vR, vLongStrag, "speRtoLongS");
+    fSplinesLongStrag[key] = GetSpline(vR, vLongStrag, "RtoLongS");
+    fGraphsLongStrag[key] = GetGraph(vR, vLongStrag, "RtoLongS");
     fLongStrag[key] = std::make_unique<TF1>(("fRtoLongS" + key).c_str(), [key, this](double* x, double* p)
                                             { return fSplinesLongStrag[key]->Eval(x[0]); }, vR.front(), vR.back(), 1);
     fLongStrag[key]->SetTitle(";Range [mm];Longitudinal straggling [mm]");
 
     // 5-> R to LatS
-    fSplinesLatStrag[key] = GetSpline(vR, vLatStrag, "speRtoLatS");
+    fSplinesLatStrag[key] = GetSpline(vR, vLatStrag, "RtoLatS");
+    fGraphsLatStrag[key] = GetGraph(vR, vLatStrag, "RtoLatS");
     fLatStrag[key] = std::make_unique<TF1>(("fRtoLatS" + key).c_str(), [key, this](double* x, double* p)
                                            { return fSplinesLatStrag[key]->Eval(x[0]); }, vR.front(), vR.back(), 1);
     fLatStrag[key]->SetTitle(";Range [mm];Lateral stragging [mm]");

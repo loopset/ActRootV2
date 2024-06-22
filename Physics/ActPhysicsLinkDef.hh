@@ -22,4 +22,7 @@
 #pragma link C++ class ActPhysics::PIDCorrector;
 
 #pragma link C++ class ActPhysics::SilMatrix + ;
+
+#pragma link C++ class ActPhysics::Gas;
+
 #endif

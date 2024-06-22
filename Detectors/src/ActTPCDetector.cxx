@@ -43,15 +43,20 @@ ActRoot::TPCParameters::TPCParameters(const std::string& type)
         fNPADSX = 128;
         fNPADSY = 128;
         fNPADSZ = 512;
+        fZ = 235;
     }
     else if(type == "protoActar")
     {
         fNPADSX = 64;
         fNPADSY = 32;
         fNPADSZ = 512;
+        fZ = 170;
     }
     else
         throw std::runtime_error("No TPCParameters config available for passed " + type);
+    // And init sizes
+    fX = fNPADSX * fPadSide;
+    fY = fNPADSY * fPadSide;
 }
 
 void ActRoot::TPCParameters::Print() const
@@ -61,6 +66,9 @@ void ActRoot::TPCParameters::Print() const
     std::cout << "-> NPADSY : " << fNPADSY << '\n';
     std::cout << "-> NPADSZ : " << fNPADSZ << '\n';
     std::cout << "-> REBINZ : " << fREBINZ << '\n';
+    std::cout << "-> X      : " << fX << " mm" << '\n';
+    std::cout << "-> Y      : " << fY << " mm" << '\n';
+    std::cout << "-> Z      : " << fZ << " mm" << '\n';
     std::cout << "====================" << RESET << '\n';
 }
 
