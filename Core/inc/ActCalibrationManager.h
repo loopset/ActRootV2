@@ -5,8 +5,11 @@
 Singleton class holding the calibrations for all the detectors!
 */
 
+#include <map>
 #include <string>
+#include <tuple>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 namespace ActRoot
@@ -21,10 +24,11 @@ class CalibrationManager
 private:
     std::unordered_map<std::string, std::vector<double>> fCalibs; //!< General map holding strings as keys for the
                                                                   //!< vector of doubles (coeffs) of calib
-    std::vector<std::vector<int>> fLT;                            //<! Special for Look up table on pad plane
-    std::vector<std::vector<double>> fPadAlign;                   //!< Pad align coefficiens
-    std::vector<std::string> fFiles;                              //!< List of files read in calibration
-    bool fIsEnabled {true}; //!< Whether to enable or not when calling ApplyCalibration/Threshold
+    std::map<std::pair<int, int>, std::tuple<int, int, int, int>> fInvertedLT; //<! Special: inverted pad plane LT table
+    std::vector<std::vector<int>> fLT;          //<! Special for Look up table on pad plane
+    std::vector<std::vector<double>> fPadAlign; //!< Pad align coefficiens
+    std::vector<std::string> fFiles;            //!< List of files read in calibration
+    bool fIsEnabled {true};                     //!< Whether to enable or not when calling ApplyCalibration/Threshold
 
 public:
     CalibrationManager() = default;                 //<! Default constructor
@@ -34,12 +38,14 @@ public:
     // Actar: needs improvements but that depends on .txt file format (need to add keys to parameters)
     void ReadCalibration(const std::string& file);
     void ReadLookUpTable(const std::string& file);
+    void ReadInvertedLookUpTable(const std::string& file);
     void ReadPadAlign(const std::string& file);
 
     // Apply methods
     double ApplyCalibration(const std::string& key, double raw);
     bool ApplyThreshold(const std::string& key, double raw, double nsigma = 1);
     int ApplyLookUp(int channel, int col);
+    std::tuple<int, int, int, int> ApplyInvLookUp(int x, int y);
     double ApplyPadAlignment(int channel, double q);
 
     // Setters

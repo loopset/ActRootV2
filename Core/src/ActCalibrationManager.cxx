@@ -10,6 +10,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <tuple>
 #include <vector>
 
 ActRoot::CalibrationManager::CalibrationManager(const std::string& calfile)
@@ -93,6 +94,31 @@ void ActRoot::CalibrationManager::ReadLookUpTable(const std::string& file)
     }
 }
 
+void ActRoot::CalibrationManager::ReadInvertedLookUpTable(const std::string& file)
+{
+    // number of cols = 6
+    std::ifstream streamer {file.c_str()};
+    if(!streamer)
+        throw std::runtime_error("CalibrationManager::ReadInvertedLT(): could not open file");
+    // Run!
+    std::string line {};
+    while(std::getline(streamer, line))
+    {
+        // Reset variables
+        int col0 {};
+        int col1 {};
+        int col2 {};
+        int col3 {};
+        int col4 {};
+        int col5 {};
+        // Line streamer
+        std::istringstream lineStreamer {line};
+        lineStreamer >> col0 >> col1 >> col2 >> col3 >> col4 >> col5;
+        // std::cout<<"================="<<'\n';
+        // std::cout<<"0 = "<<col0<<" back = "<<col5<<'\n';
+        fInvertedLT[{col4, col5}] = {col0, col1, col2, col3};
+    }
+}
 double ActRoot::CalibrationManager::ApplyCalibration(const std::string& key, double raw)
 {
     if(fCalibs.find(key) != fCalibs.end())
@@ -144,6 +170,11 @@ bool ActRoot::CalibrationManager::ApplyThreshold(const std::string& key, double 
 int ActRoot::CalibrationManager::ApplyLookUp(int channel, int col)
 {
     return fLT[channel][col];
+}
+
+std::tuple<int, int, int, int> ActRoot::CalibrationManager::ApplyInvLookUp(int x, int y)
+{
+    return fInvertedLT[{x, y}];
 }
 
 double ActRoot::CalibrationManager::ApplyPadAlignment(int channel, double q)

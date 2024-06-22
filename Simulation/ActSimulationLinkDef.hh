@@ -22,4 +22,7 @@
 //Theoretical cross section
 #pragma link C++ class ActSim::TheoCrossSection;
 
+// Track generator
+#pragma link C++ class ActSim::TrackGenerator;
+
 #endif
