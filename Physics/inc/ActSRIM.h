@@ -75,7 +75,7 @@ public:
     double EvalLatStraggling(const std::string& key, double range);
 
     // Drawing method
-    void Draw(const std::string& what, const std::vector<std::string>& keys = {});
+    void Draw(const std::vector<std::string>& keys = {});
 
     // Main methods: same as in nptools
     double Slow(const std::string& material, double Tini, double thickness, double angleInRad = 0);

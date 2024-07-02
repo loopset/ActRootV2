@@ -8,6 +8,7 @@
 #include "TMath.h"
 #include "TROOT.h"
 #include "TSpline.h"
+#include "TString.h"
 
 #include <algorithm>
 #include <exception>
@@ -247,44 +248,31 @@ double ActPhysics::SRIM::EvalLatStraggling(const std::string& key, double range)
     return fGraphsLatStrag[key]->Eval(range, (fUseSpline) ? fSplinesLatStrag[key].get() : nullptr);
 }
 
-void ActPhysics::SRIM::Draw(const std::string& what, const std::vector<std::string>& keys)
+void ActPhysics::SRIM::Draw(const std::vector<std::string>& keys)
 {
     std::vector<std::string> keysToDraw {keys};
     if(keys.empty())
         keysToDraw = fKeys;
 
     // Canvas and legend
-    auto canvas = new TCanvas(("canv_" + what).c_str(), "Canvas", 1);
-    auto legend = new TLegend(0.3, 0.3);
-    legend->SetBorderSize(0);
-    legend->SetFillStyle(0);
-    // legend->SetTextSize(0.04);
-    canvas->cd();
-    int counter {1};
-    std::vector<PtrGraph> graphsToDraw;
-    for(auto& key : keysToDraw)
+    std::vector<TCanvas*> cs;
+    int idx {};
+    for(const auto& key : keysToDraw)
     {
-        if(what == "direct")
-            graphsToDraw.push_back(fGraphsDirect[key]);
-        else if(what == "inverse")
-            graphsToDraw.push_back(fGraphsInverse[key]);
-        else if(what == "stopping")
-            graphsToDraw.push_back(fGraphsStoppings[key]);
-        else if(what == "longStrag")
-            graphsToDraw.push_back(fGraphsLongStrag[key]);
-        else if(what == "latStrag")
-            graphsToDraw.push_back(fGraphsLatStrag[key]);
-        else
-            throw std::runtime_error("Accepted values are: direct, inverse, stopping, longStrag and latStrag!");
-
-        graphsToDraw.back()->SetLineColor(counter);
-        graphsToDraw.back()->SetLineWidth(2);
-        graphsToDraw.back()->DrawClone((counter > 1) ? "same" : "l");
-        legend->AddEntry(graphsToDraw.back().get(), key.c_str(), "l");
-        counter++;
+        cs.push_back(new TCanvas {TString::Format("cSRIM%d", idx), TString::Format("SRIM for %s", key.c_str())});
+        auto* c {cs.back()};
+        c->DivideSquare(4);
+        int inner {1};
+        for(auto ptr : {fGraphsDirect[key], fGraphsInverse[key], fGraphsStoppings[key], fGraphsLongStrag[key]})
+        {
+            c->cd(inner);
+            ptr->SetLineWidth(2);
+            ptr->DrawClone("al");
+            inner++;
+        }
+        idx++;
     }
     gROOT->SetSelectedPad(nullptr);
-    legend->Draw();
 }
 
 double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double thickness, double angleInRad)
