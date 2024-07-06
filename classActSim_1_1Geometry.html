@@ -117,8 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6c76acaa9337a03c1031227f8200d715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0353cf98d80a8a745abf0ed6fce4f91e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#a0353cf98d80a8a745abf0ed6fce4f91e">Print</a> () const</td></tr>
 <tr class="separator:a0353cf98d80a8a745abf0ed6fce4f91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a94e8f8908a66fd0c0981a6e04ff833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#a2a94e8f8908a66fd0c0981a6e04ff833">Draw</a> ()</td></tr>
-<tr class="separator:a2a94e8f8908a66fd0c0981a6e04ff833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5679dea9d28c0d710360e67cb7151fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#ae5679dea9d28c0d710360e67cb7151fc">Draw</a> (bool axis=true)</td></tr>
+<tr class="separator:ae5679dea9d28c0d710360e67cb7151fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062a16aa46cfcbf1e498d1626f317f8b"><td class="memItemLeft" align="right" valign="top">TGeoVolume *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#a062a16aa46cfcbf1e498d1626f317f8b">GetMasterVolume</a> () const</td></tr>
+<tr class="separator:a062a16aa46cfcbf1e498d1626f317f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d3abac1ca21bee26fdf6d658cdd48a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#a1d3abac1ca21bee26fdf6d658cdd48a6">PropagateTrackToSiliconArray</a> (const <a class="el" href="classActSim_1_1Geometry.html#ac462da3e9112884315335d3aad745d4d">XYZPoint</a> &amp;initPoint, const <a class="el" href="classActSim_1_1Geometry.html#aba0b09ef5a8e52228c704ab8e438d00e">XYZVector</a> &amp;direction, int assemblyIndex, bool &amp;isMirror, double &amp;distance, int &amp;silType, int &amp;silIndex, <a class="el" href="classActSim_1_1Geometry.html#ac462da3e9112884315335d3aad745d4d">XYZPoint</a> &amp;newPoint, bool debug=false)</td></tr>
 <tr class="separator:a1d3abac1ca21bee26fdf6d658cdd48a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f1cf3c5070b046609846b8b846d7f34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1Geometry.html#a2f1cf3c5070b046609846b8b846d7f34">CheckIfStepIsInsideDriftChamber</a> (const <a class="el" href="classActSim_1_1Geometry.html#ac462da3e9112884315335d3aad745d4d">XYZPoint</a> &amp;point, const <a class="el" href="classActSim_1_1Geometry.html#aba0b09ef5a8e52228c704ab8e438d00e">XYZVector</a> &amp;direction, double step, bool &amp;isInside, <a class="el" href="classActSim_1_1Geometry.html#ac462da3e9112884315335d3aad745d4d">XYZPoint</a> &amp;newPoint, bool debug=false)</td></tr>
@@ -235,10 +237,10 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                100.); <span class="comment">// 2x2x2 m3</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;SetTopVolume(<a class="code" href="classActSim_1_1Geometry.html#aa0220a342637e853c35779eff6d522d1">fTopVol</a>);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a093c269586743409cc0b581a07fe1696"><div class="ttname"><a href="classActSim_1_1Geometry.html#a093c269586743409cc0b581a07fe1696">ActSim::Geometry::fNoneMaterial</a></div><div class="ttdeci">TGeoMaterial * fNoneMaterial</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:95</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a377c4a0fb5d6a062df335d97a9a54527"><div class="ttname"><a href="classActSim_1_1Geometry.html#a377c4a0fb5d6a062df335d97a9a54527">ActSim::Geometry::fNoneMedium</a></div><div class="ttdeci">TGeoMedium * fNoneMedium</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:96</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a7d4d9edde81df7a93223db20a7ed6114"><div class="ttname"><a href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">ActSim::Geometry::fManager</a></div><div class="ttdeci">TGeoManager * fManager</div><div class="ttdoc">Manager of the geometry.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:85</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_aa0220a342637e853c35779eff6d522d1"><div class="ttname"><a href="classActSim_1_1Geometry.html#aa0220a342637e853c35779eff6d522d1">ActSim::Geometry::fTopVol</a></div><div class="ttdeci">TGeoVolume * fTopVol</div><div class="ttdoc">GeoVolume of world.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:89</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a093c269586743409cc0b581a07fe1696"><div class="ttname"><a href="classActSim_1_1Geometry.html#a093c269586743409cc0b581a07fe1696">ActSim::Geometry::fNoneMaterial</a></div><div class="ttdeci">TGeoMaterial * fNoneMaterial</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:103</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a377c4a0fb5d6a062df335d97a9a54527"><div class="ttname"><a href="classActSim_1_1Geometry.html#a377c4a0fb5d6a062df335d97a9a54527">ActSim::Geometry::fNoneMedium</a></div><div class="ttdeci">TGeoMedium * fNoneMedium</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:104</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a7d4d9edde81df7a93223db20a7ed6114"><div class="ttname"><a href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">ActSim::Geometry::fManager</a></div><div class="ttdeci">TGeoManager * fManager</div><div class="ttdoc">Manager of the geometry.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:93</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_aa0220a342637e853c35779eff6d522d1"><div class="ttname"><a href="classActSim_1_1Geometry.html#aa0220a342637e853c35779eff6d522d1">ActSim::Geometry::fTopVol</a></div><div class="ttdeci">TGeoVolume * fTopVol</div><div class="ttdoc">GeoVolume of world.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:97</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,8 +288,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{<a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a>[ass.fIndex] = ass;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a203b34cf61c6e750b8c4737826b97063"><div class="ttname"><a href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">ActSim::Geometry::fAssDataMap</a></div><div class="ttdeci">std::map&lt; unsigned int, SilAssembly &gt; fAssDataMap</div><div class="ttdoc">Silicon parameters.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:100</div></div>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{ <a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a>[ass.fIndex] = ass; }</div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a203b34cf61c6e750b8c4737826b97063"><div class="ttname"><a href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">ActSim::Geometry::fAssDataMap</a></div><div class="ttdeci">std::map&lt; unsigned int, SilAssembly &gt; fAssDataMap</div><div class="ttdoc">Silicon parameters.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:108</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -340,25 +342,25 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;{</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(point.X(), point.Y(), point.Z(), direction.X(), direction.Y(), direction.Z());</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;SetStep(step);</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;Step(<span class="keyword">false</span>); <span class="comment">// false bc is given by hand</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keyword">auto</span> distance {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep()};</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Step in drift debug: &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">if</span>(path.Contains(<span class="stringliteral">&quot;Drift&quot;</span>))</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        isInside = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        newPoint = point + distance * direction.Unit();</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    }</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    {</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        isInside = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        newPoint = {-1, -1, -1};</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;{</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(point.X(), point.Y(), point.Z(), direction.X(), direction.Y(), direction.Z());</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;SetStep(step);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;Step(<span class="keyword">false</span>); <span class="comment">// false bc is given by hand</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keyword">auto</span> distance {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep()};</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Step in drift debug: &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">if</span>(path.Contains(<span class="stringliteral">&quot;Drift&quot;</span>))</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        isInside = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        newPoint = point + distance * direction.Unit();</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    {</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        isInside = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        newPoint = {-1, -1, -1};</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    }</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -443,19 +445,19 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a03645db26158951414ed5f6717954e6c">fNavigator</a> = <span class="keyword">new</span> TGeoNavigator(<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>);</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;SetCurrentNavigator(0);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a03645db26158951414ed5f6717954e6c"><div class="ttname"><a href="classActSim_1_1Geometry.html#a03645db26158951414ed5f6717954e6c">ActSim::Geometry::fNavigator</a></div><div class="ttdeci">TGeoNavigator * fNavigator</div><div class="ttdoc">Navigator queries.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:86</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a44134e4efa18112e8daa85f4575e389e"><div class="ttname"><a href="classActSim_1_1Geometry.html#a44134e4efa18112e8daa85f4575e389e">ActSim::Geometry::fUnitSilVols</a></div><div class="ttdeci">std::map&lt; int, TGeoVolume * &gt; fUnitSilVols</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:91</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a62f0ac07be7adeccb5dced31fab674bd"><div class="ttname"><a href="classActSim_1_1Geometry.html#a62f0ac07be7adeccb5dced31fab674bd">ActSim::Geometry::fDriftVol</a></div><div class="ttdeci">TGeoVolume * fDriftVol</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:90</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a70cb1403cb0ba15b8bc3ec800f77c586"><div class="ttname"><a href="classActSim_1_1Geometry.html#a70cb1403cb0ba15b8bc3ec800f77c586">ActSim::Geometry::fAssemblies</a></div><div class="ttdeci">std::map&lt; unsigned int, TGeoVolume * &gt; fAssemblies</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:92</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_ae47171957d9927818f3702f5379c964f"><div class="ttname"><a href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">ActSim::Geometry::fActar</a></div><div class="ttdeci">DriftChamber fActar</div><div class="ttdoc">Drift cage parameters.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:99</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a8e66a78978dde9099aa53c684d22e60c"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">ActSim::DriftChamber::Y</a></div><div class="ttdeci">double Y</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:26</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a91de0c43f2e4af32ed3da34688e460bc"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">ActSim::DriftChamber::X</a></div><div class="ttdeci">double X</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:25</div></div>
-<div class="ttc" id="astructActSim_1_1DriftChamber_html_a9eb33eb5e36fae66c75c1a1174c7f3e0"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">ActSim::DriftChamber::Z</a></div><div class="ttdeci">double Z</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:27</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a03645db26158951414ed5f6717954e6c"><div class="ttname"><a href="classActSim_1_1Geometry.html#a03645db26158951414ed5f6717954e6c">ActSim::Geometry::fNavigator</a></div><div class="ttdeci">TGeoNavigator * fNavigator</div><div class="ttdoc">Navigator queries.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:94</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a44134e4efa18112e8daa85f4575e389e"><div class="ttname"><a href="classActSim_1_1Geometry.html#a44134e4efa18112e8daa85f4575e389e">ActSim::Geometry::fUnitSilVols</a></div><div class="ttdeci">std::map&lt; int, TGeoVolume * &gt; fUnitSilVols</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:99</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a62f0ac07be7adeccb5dced31fab674bd"><div class="ttname"><a href="classActSim_1_1Geometry.html#a62f0ac07be7adeccb5dced31fab674bd">ActSim::Geometry::fDriftVol</a></div><div class="ttdeci">TGeoVolume * fDriftVol</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:98</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a70cb1403cb0ba15b8bc3ec800f77c586"><div class="ttname"><a href="classActSim_1_1Geometry.html#a70cb1403cb0ba15b8bc3ec800f77c586">ActSim::Geometry::fAssemblies</a></div><div class="ttdeci">std::map&lt; unsigned int, TGeoVolume * &gt; fAssemblies</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:100</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_ae47171957d9927818f3702f5379c964f"><div class="ttname"><a href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">ActSim::Geometry::fActar</a></div><div class="ttdeci">DriftChamber fActar</div><div class="ttdoc">Drift cage parameters.</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:107</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a8e66a78978dde9099aa53c684d22e60c"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a8e66a78978dde9099aa53c684d22e60c">ActSim::DriftChamber::Y</a></div><div class="ttdeci">double Y</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:29</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a91de0c43f2e4af32ed3da34688e460bc"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a91de0c43f2e4af32ed3da34688e460bc">ActSim::DriftChamber::X</a></div><div class="ttdeci">double X</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:28</div></div>
+<div class="ttc" id="astructActSim_1_1DriftChamber_html_a9eb33eb5e36fae66c75c1a1174c7f3e0"><div class="ttname"><a href="structActSim_1_1DriftChamber.html#a9eb33eb5e36fae66c75c1a1174c7f3e0">ActSim::DriftChamber::Z</a></div><div class="ttdeci">double Z</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:30</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a2a94e8f8908a66fd0c0981a6e04ff833"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a94e8f8908a66fd0c0981a6e04ff833">&#9670;&nbsp;</a></span>Draw()</h2>
+<a id="ae5679dea9d28c0d710360e67cb7151fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5679dea9d28c0d710360e67cb7151fc">&#9670;&nbsp;</a></span>Draw()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -463,7 +465,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void ActSim::Geometry::Draw </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>axis</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -473,13 +476,14 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;cd();</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetMasterVolume()-&gt;Draw(<span class="stringliteral">&quot;ogle&quot;</span>);</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;Update();</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    TAxis3D::ToggleRulers();</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;cd();</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;Update();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;WaitPrimitive();</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;Close();</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a1c63a03297222fe998d649e0f3bd869e"><div class="ttname"><a href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">ActSim::Geometry::fCanvas</a></div><div class="ttdeci">TCanvas * fCanvas</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:103</div></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">if</span>(axis)</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        TAxis3D::ToggleRulers();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;cd();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;Update();</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;WaitPrimitive();</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">fCanvas</a>-&gt;Close();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a1c63a03297222fe998d649e0f3bd869e"><div class="ttname"><a href="classActSim_1_1Geometry.html#a1c63a03297222fe998d649e0f3bd869e">ActSim::Geometry::fCanvas</a></div><div class="ttdeci">TCanvas * fCanvas</div><div class="ttdef"><b>Definition:</b> ActGeometry.h:111</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -526,31 +530,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;{</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="comment">// set to default values</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    distance = -1;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    bp = {-1, -1, -1};</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(vertex.X(), vertex.Y(), vertex.Z(), direction.X(), direction.Y(), direction.Z());</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="comment">// Check that indeed we are inside drif chamber</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Initia path = &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="keywordflow">if</span>(!path.Contains(<span class="stringliteral">&quot;Drift&quot;</span>))</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;In SimGeometry::FindBoundaryPoint() initial point was not inside Drift volume!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    }</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="comment">// Then, propagate to boundary of drift chamber</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;FindNextBoundaryAndStep();</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    TString pathbp {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Path of BP = &quot;</span> &lt;&lt; pathbp &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="comment">// and return values!</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    distance = <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep();</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    bp = vertex + direction.Unit() * distance; <span class="comment">// remember: SimGeometry works in cm, likely you would like to convert to</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                                               <span class="comment">// mm after function calling</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;{</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="comment">// set to default values</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    distance = -1;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    bp = {-1, -1, -1};</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(vertex.X(), vertex.Y(), vertex.Z(), direction.X(), direction.Y(), direction.Z());</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="comment">// Check that indeed we are inside drif chamber</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Initia path = &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keywordflow">if</span>(!path.Contains(<span class="stringliteral">&quot;Drift&quot;</span>))</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;In SimGeometry::FindBoundaryPoint() initial point was not inside Drift volume!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    }</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="comment">// Then, propagate to boundary of drift chamber</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;FindNextBoundaryAndStep();</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    TString pathbp {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Path of BP = &quot;</span> &lt;&lt; pathbp &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="comment">// and return values!</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    distance = <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep();</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    bp = vertex + direction.Unit() * distance; <span class="comment">// remember: SimGeometry works in cm, likely you would like to convert to</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                                               <span class="comment">// mm after function calling</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -577,26 +581,26 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;{</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    TRegexp legacy {<span class="stringliteral">&quot;SiliconAssembly_.&quot;</span>};</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    TString subLegacy {path(legacy)};</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;SiliconAssembly._.&quot;</span>};</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    TString subStr {path(regexp)};</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">if</span>(subLegacy.Length())</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keyword">auto</span> underscore {subLegacy.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordflow">return</span> TString(subLegacy(underscore + 1)).Atoi();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(subStr.Length())</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    {</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">return</span> TString(subStr(underscore - 1)).Atoi();</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error: Legacy and new methods for AssemblyIndex at the same time&quot;</span>);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    TRegexp legacy {<span class="stringliteral">&quot;SiliconAssembly_.&quot;</span>};</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    TString subLegacy {path(legacy)};</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;SiliconAssembly._.&quot;</span>};</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    TString subStr {path(regexp)};</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">if</span>(subLegacy.Length())</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keyword">auto</span> underscore {subLegacy.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">return</span> TString(subLegacy(underscore + 1)).Atoi();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(subStr.Length())</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">return</span> TString(subStr(underscore - 1)).Atoi();</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error: Legacy and new methods for AssemblyIndex at the same time&quot;</span>);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -623,20 +627,20 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;{</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;SiliconAssembly._-?./&quot;</span>};</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    TString subStr {path(regexp)};</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keyword">auto</span> slash {subStr.Index(<span class="stringliteral">&quot;/&quot;</span>)};</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keyword">auto</span> length {(slash - 1) - underscore};</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keyword">auto</span> mirror {TString(subStr(underscore + 1, length))};</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">if</span>(mirror == <span class="stringliteral">&quot;1&quot;</span>)</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(mirror == <span class="stringliteral">&quot;-1&quot;</span>)</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Wrong mirror value in SimGeometry&quot;</span>);</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;{</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;SiliconAssembly._-?./&quot;</span>};</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    TString subStr {path(regexp)};</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keyword">auto</span> slash {subStr.Index(<span class="stringliteral">&quot;/&quot;</span>)};</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keyword">auto</span> length {(slash - 1) - underscore};</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keyword">auto</span> mirror {TString(subStr(underscore + 1, length))};</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">if</span>(mirror == <span class="stringliteral">&quot;1&quot;</span>)</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(mirror == <span class="stringliteral">&quot;-1&quot;</span>)</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Wrong mirror value in SimGeometry&quot;</span>);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -685,7 +689,33 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{<span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a062a16aa46cfcbf1e498d1626f317f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062a16aa46cfcbf1e498d1626f317f8b">&#9670;&nbsp;</a></span>GetMasterVolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TGeoVolume* ActSim::Geometry::GetMasterVolume </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetMasterVolume(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -712,15 +742,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;{</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;UnitSiliconType._..&quot;</span>};</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    TString subStr {path(regexp)};</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordtype">int</span> indexLength {(subStr.Length() - 1) - underscore};</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordtype">int</span> silType {TString(subStr(underscore - 1)).Atoi()};</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">int</span> silIndex {TString(subStr(underscore + 1, indexLength)).Atoi()}; <span class="comment">// selft determination of index length</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">return</span> std::make_tuple(silType, silIndex);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    TRegexp regexp {<span class="stringliteral">&quot;UnitSiliconType._..&quot;</span>};</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    TString subStr {path(regexp)};</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keyword">auto</span> underscore {subStr.Index(<span class="stringliteral">&quot;_&quot;</span>)};</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordtype">int</span> indexLength {(subStr.Length() - 1) - underscore};</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">int</span> silType {TString(subStr(underscore - 1)).Atoi()};</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordtype">int</span> silIndex {TString(subStr(underscore + 1, indexLength)).Atoi()}; <span class="comment">// selft determination of index length</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">return</span> std::make_tuple(silType, silIndex);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -819,49 +849,49 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;{</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="comment">// set to default values</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    isMirror = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    distance = 0;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    silType = -1;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    silIndex = -1;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    newPoint = {-1, -1, -1};</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="comment">// initializing state</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(initPoint.X(), initPoint.Y(), initPoint.Z(), direction.X(), direction.Y(), direction.Z());</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; Path at 0: &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt; 6; i++)</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;FindNextBoundaryAndStep();</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        path = <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath();</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Path at &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        distance += <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep();</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <span class="keywordflow">if</span>(path.Contains(TString::Format(<span class="stringliteral">&quot;SiliconAssembly%d&quot;</span>, assemblyIndex)))</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keyword">auto</span> silValues {<a class="code" href="classActSim_1_1Geometry.html#a46ade077b14dd36c4e2c5db2dfb10e9f">GetSilTypeAndIndexFromTString</a>(path)};</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            silType = std::get&lt;0&gt;(silValues);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            silIndex = std::get&lt;1&gt;(silValues);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            isMirror = <a class="code" href="classActSim_1_1Geometry.html#a0332e6181ebe977beafac69823fc5c5b">GetAssemblyMirrorFromTString</a>(path);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="keywordflow">if</span>(debug)</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            {</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   Fixed ass. = &quot;</span> &lt;&lt; assemblyIndex &lt;&lt; <span class="stringliteral">&quot; isMirrored? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; isMirror</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                          &lt;&lt; <span class="stringliteral">&quot; silType = &quot;</span> &lt;&lt; silType &lt;&lt; <span class="stringliteral">&quot; silIndex = &quot;</span> &lt;&lt; silIndex &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   dist = &quot;</span> &lt;&lt; distance &lt;&lt; <span class="stringliteral">&quot; cm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            }</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        }</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(path.IsWhitespace()) <span class="comment">// out of world</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="comment">// and return new point!</span></div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    newPoint = initPoint + distance * direction.Unit();</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a0332e6181ebe977beafac69823fc5c5b"><div class="ttname"><a href="classActSim_1_1Geometry.html#a0332e6181ebe977beafac69823fc5c5b">ActSim::Geometry::GetAssemblyMirrorFromTString</a></div><div class="ttdeci">bool GetAssemblyMirrorFromTString(const TString &amp;path)</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:238</div></div>
-<div class="ttc" id="aclassActSim_1_1Geometry_html_a46ade077b14dd36c4e2c5db2dfb10e9f"><div class="ttname"><a href="classActSim_1_1Geometry.html#a46ade077b14dd36c4e2c5db2dfb10e9f">ActSim::Geometry::GetSilTypeAndIndexFromTString</a></div><div class="ttdeci">std::tuple&lt; int, int &gt; GetSilTypeAndIndexFromTString(const TString &amp;path)</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:254</div></div>
+<div class="fragment"><div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;{</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="comment">// set to default values</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    isMirror = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    distance = 0;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    silType = -1;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    silIndex = -1;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    newPoint = {-1, -1, -1};</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="comment">// initializing state</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;InitTrack(initPoint.X(), initPoint.Y(), initPoint.Z(), direction.X(), direction.Y(), direction.Z());</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    TString path {<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath()};</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; Path at 0: &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt; 6; i++)</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    {</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;FindNextBoundaryAndStep();</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        path = <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetPath();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Path at &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        distance += <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;GetStep();</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">if</span>(path.Contains(TString::Format(<span class="stringliteral">&quot;SiliconAssembly%d&quot;</span>, assemblyIndex)))</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        {</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            <span class="keyword">auto</span> silValues {<a class="code" href="classActSim_1_1Geometry.html#a46ade077b14dd36c4e2c5db2dfb10e9f">GetSilTypeAndIndexFromTString</a>(path)};</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            silType = std::get&lt;0&gt;(silValues);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            silIndex = std::get&lt;1&gt;(silValues);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            isMirror = <a class="code" href="classActSim_1_1Geometry.html#a0332e6181ebe977beafac69823fc5c5b">GetAssemblyMirrorFromTString</a>(path);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keywordflow">if</span>(debug)</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   Fixed ass. = &quot;</span> &lt;&lt; assemblyIndex &lt;&lt; <span class="stringliteral">&quot; isMirrored? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; isMirror</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                          &lt;&lt; <span class="stringliteral">&quot; silType = &quot;</span> &lt;&lt; silType &lt;&lt; <span class="stringliteral">&quot; silIndex = &quot;</span> &lt;&lt; silIndex &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;   dist = &quot;</span> &lt;&lt; distance &lt;&lt; <span class="stringliteral">&quot; cm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        }</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(path.IsWhitespace()) <span class="comment">// out of world</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        {</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="comment">// and return new point!</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    newPoint = initPoint + distance * direction.Unit();</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;}</div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a0332e6181ebe977beafac69823fc5c5b"><div class="ttname"><a href="classActSim_1_1Geometry.html#a0332e6181ebe977beafac69823fc5c5b">ActSim::Geometry::GetAssemblyMirrorFromTString</a></div><div class="ttdeci">bool GetAssemblyMirrorFromTString(const TString &amp;path)</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:239</div></div>
+<div class="ttc" id="aclassActSim_1_1Geometry_html_a46ade077b14dd36c4e2c5db2dfb10e9f"><div class="ttname"><a href="classActSim_1_1Geometry.html#a46ade077b14dd36c4e2c5db2dfb10e9f">ActSim::Geometry::GetSilTypeAndIndexFromTString</a></div><div class="ttdeci">std::tuple&lt; int, int &gt; GetSilTypeAndIndexFromTString(const TString &amp;path)</div><div class="ttdef"><b>Definition:</b> ActGeometry.cxx:255</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -890,20 +920,20 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;{</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a> = TGeoManager::Import((path + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str());</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>)</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error reading TGeoManager from &quot;</span> + fileName);</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">// also, read parameters</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keyword">auto</span>* infile = <span class="keyword">new</span> TFile((path + <span class="stringliteral">&quot;parameters_&quot;</span> + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str(), <span class="stringliteral">&quot;read&quot;</span>);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    infile-&gt;cd();</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a> = *(infile-&gt;Get&lt;DriftChamber&gt;(<span class="stringliteral">&quot;drift&quot;</span>));</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    std::map&lt;unsigned int, SilAssembly&gt;* assemblyMapAux {};</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    infile-&gt;GetObject(<span class="stringliteral">&quot;assemblies&quot;</span>, assemblyMapAux);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a> = *assemblyMapAux;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    infile-&gt;Close();</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keyword">delete</span> infile;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;{</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a> = TGeoManager::Import((path + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str());</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>)</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Error reading TGeoManager from &quot;</span> + fileName);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="comment">// also, read parameters</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keyword">auto</span>* infile = <span class="keyword">new</span> TFile((path + <span class="stringliteral">&quot;parameters_&quot;</span> + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str(), <span class="stringliteral">&quot;read&quot;</span>);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    infile-&gt;cd();</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a> = *(infile-&gt;Get&lt;DriftChamber&gt;(<span class="stringliteral">&quot;drift&quot;</span>));</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    std::map&lt;unsigned int, SilAssembly&gt;* assemblyMapAux {};</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    infile-&gt;GetObject(<span class="stringliteral">&quot;assemblies&quot;</span>, assemblyMapAux);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a> = *assemblyMapAux;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    infile-&gt;Close();</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keyword">delete</span> infile;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -930,7 +960,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{<a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a> = dr;}</div>
+<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{ <a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a> = dr; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -959,17 +989,17 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;{</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;Export((path + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str());</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="comment">// write parameters to file</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keyword">auto</span>* outFile = <span class="keyword">new</span> TFile((path + <span class="stringliteral">&quot;parameters_&quot;</span> + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str(), <span class="stringliteral">&quot;recreate&quot;</span>);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    outFile-&gt;cd();</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    outFile-&gt;WriteObject(&amp;<a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a>, <span class="stringliteral">&quot;drift&quot;</span>);</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    outFile-&gt;WriteObject(&amp;<a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a>, <span class="stringliteral">&quot;assemblies&quot;</span>);</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    outFile-&gt;Close();</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keyword">delete</span> outFile;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;{</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <a class="code" href="classActSim_1_1Geometry.html#a7d4d9edde81df7a93223db20a7ed6114">fManager</a>-&gt;Export((path + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str());</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="comment">// write parameters to file</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="keyword">auto</span>* outFile = <span class="keyword">new</span> TFile((path + <span class="stringliteral">&quot;parameters_&quot;</span> + fileName + <span class="stringliteral">&quot;.root&quot;</span>).c_str(), <span class="stringliteral">&quot;recreate&quot;</span>);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    outFile-&gt;cd();</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    outFile-&gt;WriteObject(&amp;<a class="code" href="classActSim_1_1Geometry.html#ae47171957d9927818f3702f5379c964f">fActar</a>, <span class="stringliteral">&quot;drift&quot;</span>);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    outFile-&gt;WriteObject(&amp;<a class="code" href="classActSim_1_1Geometry.html#a203b34cf61c6e750b8c4737826b97063">fAssDataMap</a>, <span class="stringliteral">&quot;assemblies&quot;</span>);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    outFile-&gt;Close();</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keyword">delete</span> outFile;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
