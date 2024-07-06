@@ -1,156 +1,153 @@
 #ifndef ActGeometry_h
 #define ActGeometry_h
 
-#include "Math/Point3Dfwd.h"
-#include "Math/Vector3Dfwd.h"
 #include "RtypesCore.h"
+
 #include "TCanvas.h"
 #include "TGeoManager.h"
 #include "TGeoMaterial.h"
 #include "TGeoMedium.h"
+#include "TGeoNavigator.h"
 #include "TGeoVolume.h"
+#include "TObject.h"
 #include "TString.h"
 #include "TView3D.h"
-#include "TGeoNavigator.h"
-#include "TObject.h"
+
+#include "Math/Point3Dfwd.h"
+#include "Math/Vector3Dfwd.h"
 
 #include <map>
 #include <string>
 #include <tuple>
 #include <utility>
 
-namespace ActSim {
-    struct DriftChamber
+namespace ActSim
+{
+struct DriftChamber
+{
+    double X {};
+    double Y {};
+    double Z {};
+
+    DriftChamber() = default;
+    inline DriftChamber(double x, double y, double z) : X(x), Y(y), Z(z) {}
+    ~DriftChamber() = default;
+
+    void Print() const;
+};
+
+struct SilUnit
+{
+    unsigned int fIndex {};
+    double fLengthX {};
+    double fLengthY {};
+    double fLengthZ {};
+
+    SilUnit() = default;
+    inline SilUnit(unsigned int type, double x, double y, double z)
+        : fIndex(type),
+          fLengthX(x),
+          fLengthY(y),
+          fLengthZ(z)
     {
-        double X {};
-        double Y {};
-        double Z {};
+    }
+    ~SilUnit() = default;
 
-        DriftChamber() = default;
-        inline DriftChamber(double x, double y, double z)
-            : X(x), Y(y), Z(z)
-        {}
-        ~DriftChamber() = default;
+    void Print() const;
+};
 
-        void Print() const;
-    };
+struct SilAssembly
+{
+    unsigned int fIndex {};
+    SilUnit fUnit {};
+    std::map<int, std::pair<double, double>> fPlacements {};
+    std::pair<double, double> fOffset {-1, -1};
+    bool fIsAlongX {};
+    bool fIsAlongY {};
+    bool fHasXOffset {};
+    bool fHasYOffset {};
+    bool fIsMirrored {};
 
-    struct SilUnit
-    {
-        unsigned int fIndex {};
-        double fLengthX {};
-        double fLengthY {};
-        double fLengthZ {};
-    
-        SilUnit() = default;
-        inline SilUnit(unsigned int type, double x, double y, double z)
-            : fIndex(type), fLengthX(x), fLengthY(y), fLengthZ(z)
-        {}
-        ~SilUnit() = default;
+    SilAssembly() = default;
+    SilAssembly(unsigned int index, const SilUnit& uniy, bool alongx = false, bool alongy = false);
+    ~SilAssembly() = default;
+    void SetAssemblyPlacements(const std::map<int, std::pair<double, double>>& placements) { fPlacements = placements; }
+    void SetOffsets(double xoffset = -1, double yoffset = -1);
+    void SetMirror(bool m) { fIsMirrored = m; }
 
-        void Print() const;
-    };
+    void Print() const;
+};
 
-    struct SilAssembly
-    {
-        unsigned int fIndex {};
-        SilUnit fUnit {};
-        std::map<int, std::pair<double, double>> fPlacements {};
-        std::pair<double, double> fOffset {-1, -1};
-        bool fIsAlongX {}; bool fIsAlongY {};
-        bool fHasXOffset {}; bool fHasYOffset {};
-        bool fIsMirrored {};
+//! A simple geometry manager implemented in ROOT
+/*!
+  This class includes all the basic funtionalities of Geant4 but in root
+  and in a simplier manner, allowing to implement realistic-geometry simulations in a macro
+ */
+class Geometry
+{
+public:
+    using XYZPoint = ROOT::Math::XYZPoint;
+    using XYZVector = ROOT::Math::XYZVector;
 
-        SilAssembly() = default;
-        SilAssembly(unsigned int index, const SilUnit& uniy, bool alongx = false, bool alongy = false);
-        ~SilAssembly() = default;
-        void SetAssemblyPlacements(const std::map<int, std::pair<double, double>>& placements) {fPlacements = placements;}
-        void SetOffsets(double xoffset = -1, double yoffset = -1);
-        void SetMirror(bool m){ fIsMirrored = m; }
+private:
+    TGeoManager* fManager {nullptr};     //!< Manager of the geometry
+    TGeoNavigator* fNavigator {nullptr}; //!< Navigator queries
 
-        void Print() const;
-    };
+    // shapes (stored in maps for silicons, since we have various types)
+    TGeoVolume* fTopVol {nullptr}; //!< GeoVolume of world
+    TGeoVolume* fDriftVol {nullptr};
+    std::map<int, TGeoVolume*> fUnitSilVols {};
+    std::map<unsigned int, TGeoVolume*> fAssemblies {};
 
-    //! A simple geometry manager implemented in ROOT
-    /*!
-      This class includes all the basic funtionalities of Geant4 but in root
-      and in a simplier manner, allowing to implement realistic-geometry simulations in a macro
-     */
-    class Geometry
-    {
-    public:
-        using XYZPoint  = ROOT::Math::XYZPoint;
-        using XYZVector = ROOT::Math::XYZVector;
-    private:
-        TGeoManager* fManager {nullptr}; //!< Manager of the geometry
-        TGeoNavigator* fNavigator {nullptr}; //!< Navigator queries
+    // materials and mediums (not relevant, just we need some kind of material)
+    TGeoMaterial* fNoneMaterial {nullptr};
+    TGeoMedium* fNoneMedium {nullptr};
 
-        //shapes (stored in maps for silicons, since we have various types)
-        TGeoVolume* fTopVol {nullptr}; //!< GeoVolume of world
-        TGeoVolume* fDriftVol {nullptr};
-        std::map<int, TGeoVolume*> fUnitSilVols {};
-        std::map<unsigned int, TGeoVolume*> fAssemblies {};
+    // sizes (remember that they are half lengths)
+    DriftChamber fActar {};                             //!< Drift cage parameters
+    std::map<unsigned int, SilAssembly> fAssDataMap {}; //!< Silicon parameters
 
-        //materials and mediums (not relevant, just we need some kind of material)
-        TGeoMaterial* fNoneMaterial {nullptr};
-        TGeoMedium* fNoneMedium {nullptr};
+    // for plotting
+    TCanvas* fCanvas {nullptr};
 
-        //sizes (remember that they are half lengths)
-        DriftChamber fActar {}; //!< Drift cage parameters
-        std::map<unsigned int, SilAssembly> fAssDataMap {}; //!< Silicon parameters
+public:
+    Geometry();
+    ~Geometry();
 
-        //for plotting
-        TCanvas* fCanvas {nullptr};
+    // setters
+    void SetDrift(const DriftChamber& dr) { fActar = dr; }
+    void AddAssemblyData(const SilAssembly& ass) { fAssDataMap[ass.fIndex] = ass; }
+    // getters
+    const DriftChamber& GetDriftParameters() const { return fActar; }
+    double GetAssemblyUnitWidth(unsigned int index); //!< Returns full width of silicon unit in mm
 
-    public:
-        Geometry();
-        ~Geometry();
+    void Construct();
 
-        //setters
-        void SetDrift(const DriftChamber& dr){fActar = dr;}
-        void AddAssemblyData(const SilAssembly& ass){fAssDataMap[ass.fIndex] = ass;}
-        //getters
-        const DriftChamber& GetDriftParameters() const {return fActar;}
-        double GetAssemblyUnitWidth(unsigned int index); //!< Returns full width of silicon unit in mm
+    void Print() const;
 
-        void Construct();
-        
-        void Print() const;
+    void Draw(bool axis = true);
 
-        void Draw();
-        
-        void PropagateTrackToSiliconArray(const XYZPoint& initPoint,
-                                          const XYZVector& direction,
-                                          int assemblyIndex,
-                                          bool& isMirror,
-                                          double& distance,
-                                          int& silType,
-                                          int& silIndex,
-                                          XYZPoint& newPoint,
-                                          bool debug = false);
+    TGeoVolume* GetMasterVolume() const { return fManager->GetMasterVolume(); }
 
-        void CheckIfStepIsInsideDriftChamber(const XYZPoint& point,
-                                             const XYZVector& direction,
-                                             double step,
-                                             bool& isInside,
-                                             XYZPoint& newPoint,
-                                             bool debug = false);
-    
-        void FindBoundaryPoint(const XYZPoint& vertex,
-                               const XYZVector& direction,
-                               double& distance,
-                               XYZPoint& bp,
-                               bool debug = false);
-    
-        void ReadGeometry(std::string path, std::string fileName);
+    void PropagateTrackToSiliconArray(const XYZPoint& initPoint, const XYZVector& direction, int assemblyIndex,
+                                      bool& isMirror, double& distance, int& silType, int& silIndex, XYZPoint& newPoint,
+                                      bool debug = false);
 
-        void WriteGeometry(std::string path, std::string fileName);
+    void CheckIfStepIsInsideDriftChamber(const XYZPoint& point, const XYZVector& direction, double step, bool& isInside,
+                                         XYZPoint& newPoint, bool debug = false);
 
-    private:
-        std::tuple<int, int> GetSilTypeAndIndexFromTString(const TString& path);
-        int GetAssemblyIndexFromTString(const TString& path);
-        bool GetAssemblyMirrorFromTString(const TString& path);
-    };
-}
+    void FindBoundaryPoint(const XYZPoint& vertex, const XYZVector& direction, double& distance, XYZPoint& bp,
+                           bool debug = false);
+
+    void ReadGeometry(std::string path, std::string fileName);
+
+    void WriteGeometry(std::string path, std::string fileName);
+
+private:
+    std::tuple<int, int> GetSilTypeAndIndexFromTString(const TString& path);
+    int GetAssemblyIndexFromTString(const TString& path);
+    bool GetAssemblyMirrorFromTString(const TString& path);
+};
+} // namespace ActSim
 
 #endif

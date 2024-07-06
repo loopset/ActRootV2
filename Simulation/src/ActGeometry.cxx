@@ -200,13 +200,14 @@ double ActSim::Geometry::GetAssemblyUnitWidth(unsigned int index)
     return fAssDataMap.at(index).fUnit.fLengthX * 2; // in cm
 }
 
-void ActSim::Geometry::Draw()
+void ActSim::Geometry::Draw(bool axis)
 {
     fCanvas = new TCanvas("c1", "Drawing geometry", 1);
     fCanvas->cd();
     fManager->GetMasterVolume()->Draw("ogle");
     fCanvas->Update();
-    TAxis3D::ToggleRulers();
+    if(axis)
+        TAxis3D::ToggleRulers();
     fCanvas->cd();
     fCanvas->Update();
     fCanvas->WaitPrimitive();
