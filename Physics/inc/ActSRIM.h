@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 
+class TRandom;
+
 namespace ActRoot
 {
 class InputBlock;
@@ -79,6 +81,9 @@ public:
 
     // Main methods: same as in nptools
     double Slow(const std::string& material, double Tini, double thickness, double angleInRad = 0);
+
+    double SlowWithStraggling(const std::string& material, double Tini, double thickness, double angleInRad = 0,
+                              TRandom* rand = nullptr);
 
     double EvalInitialEnergy(const std::string& material, double Tafter, double thickness, double angleInRad = 0);
 

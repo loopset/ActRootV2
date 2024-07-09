@@ -4,9 +4,9 @@
 
 #include "TCanvas.h"
 #include "TGraph.h"
-#include "TLegend.h"
 #include "TMath.h"
 #include "TROOT.h"
+#include "TRandom.h"
 #include "TSpline.h"
 #include "TString.h"
 
@@ -292,6 +292,28 @@ double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double t
     return ret;
 }
 
+double ActPhysics::SRIM::SlowWithStraggling(const std::string& material, double Tini, double thickness,
+                                            double angleInRad, TRandom* rand)
+{
+    // Compute effective length
+    double dist {thickness / TMath::Cos(angleInRad)};
+    // Initial range
+    auto RIni {EvalRange(material, Tini)};
+    // Initial straggling
+    auto uRini {EvalLongStraggling(material, RIni)};
+    // New range
+    auto RAfter {RIni - dist};
+    if(RAfter <= 0)
+        return 0;
+    // Final straggling
+    auto uRAfter {EvalLongStraggling(material, RAfter)};
+    // Build uncertainty in distance
+    auto udist {TMath::Sqrt(uRini * uRini - uRAfter * uRAfter)};
+    // New distance
+    dist = (rand ? rand : gRandom)->Gaus(dist, udist);
+    RAfter = RIni - dist;
+    return EvalEnergy(material, RAfter);
+}
 
 double
 ActPhysics::SRIM::EvalInitialEnergy(const std::string& material, double Tafter, double thickness, double angleInRad)
