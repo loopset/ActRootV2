@@ -3,6 +3,7 @@
 
 #include "ActMergerData.h"
 #include "ActTPCData.h"
+#include "ActTPCParameters.h"
 #include "ActVCluster.h"
 
 #include <memory>
@@ -13,6 +14,7 @@ class VFilter
 {
 protected:
     ActRoot::TPCData* fData {};
+    ActRoot::TPCParameters* fTPC {};
     ActRoot::MergerData* fMergerData {};
     std::shared_ptr<ActAlgorithm::VCluster> fAlgo {};
     bool fIsVerbose {};
@@ -20,6 +22,9 @@ protected:
 public:
     VFilter() = default;
     virtual ~VFilter() = default;
+
+    virtual void SetTPCParameters(ActRoot::TPCParameters* tpc) { fTPC = tpc; }
+    ActRoot::TPCParameters* GetTPCParameters() const { return fTPC; }
 
     virtual void SetTPCData(ActRoot::TPCData* data) { fData = data; }
     ActRoot::TPCData* GetTPCData() const { return fData; }
@@ -37,6 +42,6 @@ public:
     virtual void Print() const = 0;
     virtual void PrintReports() const = 0;
 };
-} // namespace ActCluster
+} // namespace ActAlgorithm
 
 #endif

@@ -8,7 +8,6 @@
 #include "ActLine.h"
 #include "ActOptions.h"
 #include "ActTPCData.h"
-#include "ActTPCDetector.h"
 #include "ActVoxel.h"
 
 #include "TMath.h"

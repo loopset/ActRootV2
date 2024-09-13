@@ -7,6 +7,7 @@
 #include "ActOptions.h"
 #include "ActRegion.h"
 #include "ActVoxel.h"
+#include "ActTPCData.h"
 
 #include <algorithm>
 #include <cstdlib>

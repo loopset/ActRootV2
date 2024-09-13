@@ -1,28 +1,19 @@
 #ifndef ActMultiStep_h
 #define ActMultiStep_h
 
-#include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActTPCData.h"
-#include "ActTPCDetector.h"
 #include "ActVFilter.h"
 
 #include "TStopwatch.h"
 
 #include "Math/Point3Dfwd.h"
 
-#include <memory>
 #include <set>
 #include <string>
 #include <tuple>
 #include <utility>
 #include <vector>
-
-// forward declaration
-namespace ActRoot
-{
-class TPCParameters;
-}
 
 namespace ActAlgorithm
 {
@@ -36,8 +27,6 @@ public:
     using RPCluster = std::pair<XYZPoint, std::set<int>>;
 
 private:
-    // Pointer to TPC Parameters
-    ActRoot::TPCParameters* fTPC {};
     // Pointer to vector to analyze
     std::vector<ActRoot::Cluster>* fClusters {};
     // Pointer to RP vector
@@ -107,11 +96,9 @@ public:
     void Print() const override;
 
     // Setters and getters
-    void SetTPCParameters(ActRoot::TPCParameters* pars) { fTPC = pars; }
     void SetTPCData(ActRoot::TPCData* data) override;
     std::vector<ActRoot::Cluster>* GetClusters() const { return fClusters; }
     std::vector<XYZPoint>* GetRPs() const { return fRPs; }
-    ActRoot::TPCParameters* GetTPCParameters() const { return fTPC; }
 
     // Read config file
     void ReadConfiguration() override;

@@ -3,7 +3,6 @@
 
 #include "ActCluster.h"
 #include "ActRegion.h"
-#include "ActTPCDetector.h"
 #include "ActVFilter.h"
 #include "ActVoxel.h"
 
@@ -24,9 +23,6 @@ public:
 
 private:
     std::unordered_map<RegionType, Region> fRegions;
-
-    // Pointer to TPCParameters
-    ActRoot::TPCParameters* fTPC {};
 
     // Parameters of algorithm
     bool fIsEnabled {};
@@ -80,12 +76,9 @@ public:
 
     void PrintReports() const override;
 
-    // Setters
-    void SetTPCParameters(ActRoot::TPCParameters* pars) { fTPC = pars; }
 
     // Getters
     const std::unordered_map<RegionType, Region> GetRegions() const { return fRegions; }
-    ActRoot::TPCParameters* GetTPCParameters() const { return fTPC; }
 
 private:
     void AddRegion(unsigned int i, const std::vector<double>& vec);

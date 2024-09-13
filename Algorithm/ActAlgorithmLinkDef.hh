@@ -31,5 +31,11 @@
 #pragma link C++ class ActAlgorithm::MultiStep;
 #pragma link C++ class ActAlgorithm::MultiRegion;
 #pragma link C++ class ActAlgorithm::Corrector;
+#pragma link C++ class ActAlgorithm::MultiAction;
 
+// Action algorithms
+#pragma link C++ class ActAlgorithm::VAction;
+
+#pragma link C++ namespace ActAlgorithm::Actions;
+#pragma link C++ class ActAlgorithm::Actions::Clean;
 #endif
