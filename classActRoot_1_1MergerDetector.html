@@ -97,7 +97,7 @@ Collaboration diagram for ActRoot::MergerDetector:</div>
 <area shape="rect" href="classActRoot_1_1TPCParameters.html" title=" " alt="" coords="269,56,449,83"/>
 <area shape="rect" href="classActRoot_1_1VParameters.html" title=" " alt="" coords="5,133,169,160"/>
 <area shape="rect" href="classActRoot_1_1SilParameters.html" title="A class holding basic silicon parameters." alt="" coords="273,107,444,133"/>
-<area shape="rect" href="classActRoot_1_1ModularParameters.html" title="A class holding ModularLeaf experimental setups: VXI equivalences Detector of type ModularLeaf." alt="" coords="255,157,463,184"/>
+<area shape="rect" href="classActRoot_1_1ModularParameters.html" title="A class holding ModularLeaf experimental setups: VXI equivalences." alt="" coords="255,157,463,184"/>
 <area shape="rect" href="classActRoot_1_1MergerParameters.html" title=" " alt="" coords="258,208,459,235"/>
 <area shape="rect" href="classActRoot_1_1MergerData.html" title=" " alt="" coords="279,259,438,285"/>
 <area shape="rect" href="classActRoot_1_1VData.html" title=" " alt="" coords="27,333,148,360"/>
@@ -753,7 +753,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a0c97e0533060be413149538078012459"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a0c97e0533060be413149538078012459">ActRoot::MergerDetector::fEnableConversion</a></div><div class="ttdeci">bool fEnableConversion</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:92</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a660c5e5229cd670c5d1a6afb4146b2a2"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a660c5e5229cd670c5d1a6afb4146b2a2">ActRoot::MergerDetector::fDriftFactor</a></div><div class="ttdeci">double fDriftFactor</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:93</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a94a7f6139467885b95ac5345483bc57c"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a94a7f6139467885b95ac5345483bc57c">ActRoot::MergerDetector::ScalePoint</a></div><div class="ttdeci">void ScalePoint(XYZPoint &amp;point, float xy, float z, bool addOffset=false)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.cxx:686</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a707cbe8fc774d60ac3bfe2a63251ab44"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a707cbe8fc774d60ac3bfe2a63251ab44">ActRoot::TPCParameters::GetPadSide</a></div><div class="ttdeci">double GetPadSide() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:48</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a707cbe8fc774d60ac3bfe2a63251ab44"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a707cbe8fc774d60ac3bfe2a63251ab44">ActRoot::TPCParameters::GetPadSide</a></div><div class="ttdeci">double GetPadSide() const</div><div class="ttdef"><b>Definition:</b> ActTPCParameters.h:33</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2156,8 +2156,8 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;        <a class="code" href="classActRoot_1_1MergerDetector.html#a34b825a9e620170ee45ce572479b9215">fHeavyPtr</a> = &amp;(*(<a class="code" href="classActRoot_1_1MergerDetector.html#a9af16a31218a72ebab41bcc3141356f7">fTPCData</a>-&gt;<a class="code" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin() + std::next(set.begin())-&gt;second));</div>
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_af41bdc80c2bde402ea910cfa7603343a"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#af41bdc80c2bde402ea910cfa7603343a">ActRoot::MergerDetector::fInvertAngle</a></div><div class="ttdeci">bool fInvertAngle</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:106</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:52</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> ActTPCDetector.h:50</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a1c24e33928f47eadeb7830235f867510"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a1c24e33928f47eadeb7830235f867510">ActRoot::TPCParameters::GetNPADSZ</a></div><div class="ttdeci">int GetNPADSZ() const</div><div class="ttdef"><b>Definition:</b> ActTPCParameters.h:37</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition:</b> ActTPCParameters.h:35</div></div>
 </div><!-- fragment -->
 </div>
 </div>
