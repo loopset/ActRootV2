@@ -118,14 +118,19 @@ $(function() {
 <li>fBeamUpperZ
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#affee655533f776a74fbd7918cb474392">ActAlgorithm::MultiStep</a>
 </li>
+<li>fBeamWindowScale
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">ActAlgorithm::Actions::BreakChi2</a>
+</li>
 <li>fBeamWindowScaling
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a3e485b4a7c74445efedb8305519f60a3">ActAlgorithm::MultiStep</a>
 </li>
 <li>fBeamWindowY
-: <a class="el" href="classActAlgorithm_1_1MultiStep.html#af09e6dc527a726e91b8facb5f2ed6e96">ActAlgorithm::MultiStep</a>
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">ActAlgorithm::Actions::BreakChi2</a>
+, <a class="el" href="classActAlgorithm_1_1MultiStep.html#af09e6dc527a726e91b8facb5f2ed6e96">ActAlgorithm::MultiStep</a>
 </li>
 <li>fBeamWindowZ
-: <a class="el" href="classActAlgorithm_1_1MultiStep.html#a5a4e5a62c52827d2e48cb81bf7ad90a4">ActAlgorithm::MultiStep</a>
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">ActAlgorithm::Actions::BreakChi2</a>
+, <a class="el" href="classActAlgorithm_1_1MultiStep.html#a5a4e5a62c52827d2e48cb81bf7ad90a4">ActAlgorithm::MultiStep</a>
 </li>
 <li>fBegin
 : <a class="el" href="classActRoot_1_1OutputData.html#a6351c760ff05649c3b60d1e0c73d0bc7">ActRoot::OutputData</a>
@@ -206,6 +211,9 @@ $(function() {
 </li>
 <li>fChi2
 : <a class="el" href="classActPhysics_1_1Line.html#a23e8b6a7d64d6f61ced409b6dd8afa1f">ActPhysics::Line</a>
+</li>
+<li>fChi2Thresh
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">ActAlgorithm::Actions::BreakChi2</a>
 </li>
 <li>fChi2Threshold
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a94f55236e8a02beca92f990eac2f0e2d">ActAlgorithm::MultiStep</a>
@@ -336,6 +344,12 @@ $(function() {
 </li>
 <li>fDistThreshold
 : <a class="el" href="classActAlgorithm_1_1RANSAC.html#a00124665e9d4c773f26d96b0021a0636">ActAlgorithm::RANSAC</a>
+</li>
+<li>fDoBreakMultiTracks
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">ActAlgorithm::Actions::BreakChi2</a>
+</li>
+<li>fDoClusterNotBeam
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">ActAlgorithm::Actions::BreakChi2</a>
 </li>
 <li>fDriftFactor
 : <a class="el" href="classActRoot_1_1MergerDetector.html#a660c5e5229cd670c5d1a6afb4146b2a2">ActRoot::MergerDetector</a>
@@ -589,6 +603,7 @@ $(function() {
 <li>fIsEnabled
 : <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a20c6fc022ec9d8c92c2ff14073ea0721">ActAlgorithm::MultiRegion</a>
 , <a class="el" href="classActAlgorithm_1_1MultiStep.html#ae236e4a52e8ced989280a11c15c8b213">ActAlgorithm::MultiStep</a>
+, <a class="el" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">ActAlgorithm::VAction</a>
 , <a class="el" href="classActRoot_1_1CalibrationManager.html#aff19986cf871b0d2552bd9c6d9d77706">ActRoot::CalibrationManager</a>
 , <a class="el" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">ActRoot::MergerDetector</a>
 </li>
@@ -652,7 +667,8 @@ $(function() {
 : <a class="el" href="structActSim_1_1SilUnit.html#af7e36835d2320140e1a05119eb1bc010">ActSim::SilUnit</a>
 </li>
 <li>fLengthXToBreak
-: <a class="el" href="classActAlgorithm_1_1MultiStep.html#a6fe593340b1e0c8a2077a053012e5599">ActAlgorithm::MultiStep</a>
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">ActAlgorithm::Actions::BreakChi2</a>
+, <a class="el" href="classActAlgorithm_1_1MultiStep.html#a6fe593340b1e0c8a2077a053012e5599">ActAlgorithm::MultiStep</a>
 </li>
 <li>fLengthY
 : <a class="el" href="structActSim_1_1SilUnit.html#a2f5b200a045bec3d7aa445ad03065486">ActSim::SilUnit</a>
@@ -669,6 +685,9 @@ $(function() {
 <li>fLines
 : <a class="el" href="classActRoot_1_1HistogramPainter.html#a2f9faa02ad277183b9d909420d76d730">ActRoot::HistogramPainter</a>
 , <a class="el" href="classActRoot_1_1InputBlock.html#a95688cf9475fa46d1d064ca7c5ee6982">ActRoot::InputBlock</a>
+</li>
+<li>fLowerZ
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1CleanPileUp.html#a0c2121e8417496ad19e3a24de37396c8">ActAlgorithm::Actions::CleanPileUp</a>
 </li>
 <li>fLT
 : <a class="el" href="classActRoot_1_1CalibrationManager.html#ad346595880359ad866c13ab7fe909790">ActRoot::CalibrationManager</a>
@@ -767,6 +786,9 @@ $(function() {
 </li>
 <li>fMinTBtoDelete
 : <a class="el" href="classActRoot_1_1TPCDetector.html#a166de828df51355534caeab7b4d16c4d">ActRoot::TPCDetector</a>
+</li>
+<li>fMinXRange
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">ActAlgorithm::Actions::BreakChi2</a>
 </li>
 <li>fMode
 : <a class="el" href="classActRoot_1_1DataManager.html#a079ba89dc5b63fa357ede231a36567a4">ActRoot::DataManager</a>
@@ -1229,7 +1251,11 @@ $(function() {
 : <a class="el" href="classActRoot_1_1MTExecutor.html#a128d9cc53d311d72b68f0cde533ee57e">ActRoot::MTExecutor</a>
 </li>
 <li>fTPCPars
-: <a class="el" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector</a>
+: <a class="el" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">ActAlgorithm::VAction</a>
+, <a class="el" href="classActRoot_1_1MergerDetector.html#a5977583cbd2479a5f2c65be6d1d28cb5">ActRoot::MergerDetector</a>
+</li>
+<li>fTrackChi2Thresh
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">ActAlgorithm::Actions::BreakChi2</a>
 </li>
 <li>fTrackChi2Threshold
 : <a class="el" href="classActAlgorithm_1_1MultiStep.html#a6250cf764ec7e37907b27c476b9410e2">ActAlgorithm::MultiStep</a>
@@ -1262,6 +1288,9 @@ $(function() {
 </li>
 <li>fUnitSilVols
 : <a class="el" href="classActSim_1_1Geometry.html#a44134e4efa18112e8daa85f4575e389e">ActSim::Geometry</a>
+</li>
+<li>fUpperZ
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1CleanPileUp.html#a4a9c4a811d55fd3567de6ba6e3f1d7da">ActAlgorithm::Actions::CleanPileUp</a>
 </li>
 <li>fUseLmeds
 : <a class="el" href="classActAlgorithm_1_1RANSAC.html#adb2f823dd7e2bcf043e5c0ff108b8ad5">ActAlgorithm::RANSAC</a>
@@ -1321,6 +1350,9 @@ $(function() {
 <li>fX
 : <a class="el" href="classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d">ActAlgorithm::Region</a>
 , <a class="el" href="classActRoot_1_1TPCParameters.html#a7568ff882863a1531ad2dc638f8763a6">ActRoot::TPCParameters</a>
+</li>
+<li>fXPercent
+: <a class="el" href="classActAlgorithm_1_1Actions_1_1CleanPileUp.html#a33d677c8715d7ff0adb479f917fc96c6">ActAlgorithm::Actions::CleanPileUp</a>
 </li>
 <li>fXRange
 : <a class="el" href="classActRoot_1_1Cluster.html#a264e5ca155360284b20fee5744c2986b">ActRoot::Cluster</a>
