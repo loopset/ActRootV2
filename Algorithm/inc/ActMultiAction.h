@@ -2,6 +2,7 @@
 #define ActMultiAction_h
 
 #include "ActVAction.h"
+#include "ActVCluster.h"
 #include "ActVFilter.h"
 
 #include <memory>
@@ -13,7 +14,8 @@
 namespace ActRoot
 {
 class TPCData;
-}
+class TPCParameters;
+} // namespace ActRoot
 
 namespace ActAlgorithm
 {
@@ -31,7 +33,9 @@ public:
     MultiAction();
     ~MultiAction() override = default;
 
+    void SetTPCParameters(ActRoot::TPCParameters* pars) override;
     void SetTPCData(ActRoot::TPCData* data) override;
+    void SetClusterPtr(std::shared_ptr<ActAlgorithm::VCluster> ptr) override;
     void ReadConfiguration() override;
     void Run() override;
     void Print() const override;

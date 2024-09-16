@@ -112,9 +112,9 @@ void ActRoot::TPCDetector::InitFilterMethod(const std::string& method)
     else
         throw std::runtime_error("TPCDetector::InitFilterMethod: no listed method from Multistep or None");
     // Common for all
+    fFilter->ReadConfiguration();
     fFilter->SetTPCParameters(&fPars);
     fFilter->SetClusterPtr(fCluster);
-    fFilter->ReadConfiguration();
     // Data is set afterwards
 }
 
