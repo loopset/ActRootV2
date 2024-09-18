@@ -4,6 +4,7 @@
 #include <Rtypes.h>
 #include <RtypesCore.h>
 
+#include "TMath.h"
 #include <TCutG.h>
 #include <TFile.h>
 
@@ -32,7 +33,24 @@ public:
     TCutG* GetCut(const T& key);
     void SetLineAttributes(const T& key, Color_t color, Width_t width = 1);
     std::vector<T> GetListOfKeys() const;
+    std::pair<double, double> GetXRange(const T& key) const { return GetRange(key, "x"); };
+    std::pair<double, double> GetYRange(const T& key) const { return GetRange(key, "y"); };
+
+private:
+    std::pair<double, double> GetRange(const T& key, const std::string& dim) const;
 };
+
+template <typename T>
+inline std::pair<double, double> CutsManager<T>::GetRange(const T& key, const std::string& dim) const
+{
+    int n {fCuts.at(key)->GetN()};
+    double* ptr {};
+    if(dim == "x")
+        ptr = fCuts.at(key)->GetX();
+    else
+        ptr = fCuts.at(key)->GetY();
+    return {TMath::MinElement(n, ptr), TMath::MaxElement(n, ptr)};
+}
 
 template <typename T>
 inline bool CutsManager<T>::ReadCut(const T& key, std::string_view file, std::string_view name)
