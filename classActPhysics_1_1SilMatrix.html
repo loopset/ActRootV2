@@ -98,6 +98,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae6f7f3be939b4f8289dc5edfad4c0821"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9cc377a43929e4356463366b0f177c6"><td class="memItemLeft" align="right" valign="top">std::set&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ad9cc377a43929e4356463366b0f177c6">GetSilIndexes</a> () const</td></tr>
 <tr class="separator:ad9cc377a43929e4356463366b0f177c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b69a10ba5df20387a374b4420532ca5"><td class="memItemLeft" align="right" valign="top">const TCutG *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a7b69a10ba5df20387a374b4420532ca5">GetSil</a> (int idx) const</td></tr>
+<tr class="separator:a7b69a10ba5df20387a374b4420532ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42369d1bd2f58bc410b7d838befef28a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a42369d1bd2f58bc410b7d838befef28a">Draw</a> (bool same=true, const std::string &amp;xlabel=&quot;Y [mm]&quot;, const std::string &amp;ylabel=&quot;Z [mm]&quot;)</td></tr>
 <tr class="separator:a42369d1bd2f58bc410b7d838befef28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad68637cd586673c967eb223f02350be4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ad68637cd586673c967eb223f02350be4">MoveZTo</a> (double ztarget, const std::set&lt; int &gt; &amp;idxs)</td></tr>
@@ -353,6 +355,33 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7b69a10ba5df20387a374b4420532ca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b69a10ba5df20387a374b4420532ca5">&#9670;&nbsp;</a></span>GetSil()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const TCutG* ActPhysics::SilMatrix::GetSil </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.at(idx); }</div>
 </div><!-- fragment -->
 </div>
 </div>
