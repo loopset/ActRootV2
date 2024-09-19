@@ -35,31 +35,33 @@ void ActRoot::SilParameters::ReadActions(const std::vector<std::string>& layers,
     {
         // Clean of whitespaces
         key = StripSpaces(key);
-        // Locate index if any
-        auto idx {key.find_first_of("0123456789")};
-        if(idx == std::string::npos)
-            continue;
-        // Then, get the letters part ONLY
-        auto letters {key};
-        letters.erase(idx);
+        // Locate a name
         for(int i = 0; i < names.size(); i++)
         {
-            if(letters == names[i])
+            // Find iterator
+            auto it {key.find(names[i])};
+            // And impose it to be at the beginning
+            if(it == std::string::npos || it != 0)
+                continue;
+            // If ok, locate a number
+            auto nbr {key.substr(it + names[i].length())};
+            // Assert all substr is composed of digits
+            auto no {nbr.find_first_not_of("0123456789")};
+            if(no != std::string::npos)
+                continue;
+            // Then, we're good
+            int index {};
+            try
             {
-                // and now get index
-                int index {};
-                try
-                {
-                    index = std::stoi(key.substr(idx));
-                }
-                catch(std::exception& e)
-                {
-                    throw std::runtime_error(
-                        "SilParameters::ReadActions(): could not locate index of silicon with name " + names[i]);
-                }
-                fVXI[vxi] = {layers[i], index};
-                break;
+                index = std::stoi(nbr);
             }
+            catch(std::exception& e)
+            {
+                throw std::runtime_error("SilParameters::ReadActions(): could not locate index of silicon with name " +
+                                         names[i]);
+            }
+            fVXI[vxi] = {layers[i], index};
+            break;
         }
     }
 }
