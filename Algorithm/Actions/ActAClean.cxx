@@ -14,6 +14,7 @@ void ActAlgorithm::Actions::Clean::ReadConfiguration(std::shared_ptr<ActRoot::In
 void ActAlgorithm::Actions::Clean::Run()
 {
     std::cout << "testing github" << '\n';
+    std::cout << "test branch" << '\n';
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         std::cout << "Running clean for cluster #" << it->GetClusterID() << '\n';
