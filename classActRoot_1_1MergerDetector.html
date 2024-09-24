@@ -180,6 +180,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3d7b0f9930ffefdc978749516938cd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac322f390348b5d23f2748cc3703e6950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#ac322f390348b5d23f2748cc3703e6950">PrintReports</a> () const override</td></tr>
 <tr class="separator:ac322f390348b5d23f2748cc3703e6950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e57f11c08d7dbbdf9c5e4df908a02c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html#ae7e57f11c08d7dbbdf9c5e4df908a02c">GetIsEnabled</a> () const</td></tr>
+<tr class="separator:ae7e57f11c08d7dbbdf9c5e4df908a02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VDetector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VDetector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VDetector.html">ActRoot::VDetector</a></td></tr>
 <tr class="memitem:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37">VDetector</a> ()=default</td></tr>
 <tr class="separator:a7f90fa1f9c6769b51ae6ddfe4ec03e37 inherit pub_methods_classActRoot_1_1VDetector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1339,7 +1341,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordflow">return</span> isInGat &amp;&amp; hasBL &amp;&amp; hasMult &amp;&amp; hasRP;</div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a12d1e7f682a1fe8ff80139f2d61ad6d7"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a12d1e7f682a1fe8ff80139f2d61ad6d7">ActRoot::MergerDetector::fForceBeamLike</a></div><div class="ttdeci">bool fForceBeamLike</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:89</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a21bcd5ae15954aa18f755115bc83992b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b">ActRoot::MergerDetector::IsInVector</a></div><div class="ttdeci">bool IsInVector(T val, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:217</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a21bcd5ae15954aa18f755115bc83992b"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b">ActRoot::MergerDetector::IsInVector</a></div><div class="ttdeci">bool IsInVector(T val, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:220</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a321aff4a02deaa21b3f57de605f9da0f"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a321aff4a02deaa21b3f57de605f9da0f">ActRoot::MergerDetector::fForceGATCONF</a></div><div class="ttdeci">bool fForceGATCONF</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:84</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_a87d7e1cb74a50401e43ca40bfd2763fa"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#a87d7e1cb74a50401e43ca40bfd2763fa">ActRoot::MergerDetector::fGatMap</a></div><div class="ttdeci">std::map&lt; int, std::vector&lt; std::string &gt; &gt; fGatMap</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:86</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerDetector_html_ab3e406bd5760f16901e68e6a95f54ddf"><div class="ttname"><a href="classActRoot_1_1MergerDetector.html#ab3e406bd5760f16901e68e6a95f54ddf">ActRoot::MergerDetector::fNotBMults</a></div><div class="ttdeci">std::vector&lt; int &gt; fNotBMults</div><div class="ttdef"><b>Definition:</b> ActMergerDetector.h:90</div></div>
@@ -1529,6 +1531,32 @@ template&lt;typename T &gt; </div>
 
 <p>Implements <a class="el" href="classActRoot_1_1VDetector.html#a08a93da5ef78355e1c0f5ff7095672dc">ActRoot::VDetector</a>.</p>
 <div class="fragment"><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae7e57f11c08d7dbbdf9c5e4df908a02c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e57f11c08d7dbbdf9c5e4df908a02c">&#9670;&nbsp;</a></span>GetIsEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::MergerDetector::GetIsEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1MergerDetector.html#a9a03b9a051d67379a87ec8d9479d96f8">fIsEnabled</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2057,9 +2085,9 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordflow">return</span> std::find(vec.begin(), vec.end(), val) != vec.end();</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">return</span> std::find(vec.begin(), vec.end(), val) != vec.end();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>

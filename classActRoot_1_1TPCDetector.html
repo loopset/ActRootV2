@@ -1442,8 +1442,12 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a>)</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a>-&gt;ReadConfiguration();</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActRoot_1_1TPCDetector.html#a7e2927726330d72ce719c19e70cbc34c">fFilter</a>)</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a7e2927726330d72ce719c19e70cbc34c">fFilter</a>-&gt;ReadConfiguration();</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;}</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    {</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a7e2927726330d72ce719c19e70cbc34c">fFilter</a>-&gt;ReadConfiguration();</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a7e2927726330d72ce719c19e70cbc34c">fFilter</a>-&gt;SetTPCParameters(&amp;<a class="code" href="classActRoot_1_1TPCDetector.html#a0dfe427358f3425b6f2f54f741ff7aca">fPars</a>);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <a class="code" href="classActRoot_1_1TPCDetector.html#a7e2927726330d72ce719c19e70cbc34c">fFilter</a>-&gt;SetClusterPtr(<a class="code" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a>);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    }</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -274,7 +274,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classActAlgorithm_1_1MultiAction.html#aea993b1801c738d7dfd6eda17576e637">fMap</a>[actionID]();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;ActAlgorithm::MultiAction::ConstructAction(): &quot;</span> + actionID +</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                 <span class="stringliteral">&quot; is not in fMap -&gt; add it and recompile!&quot;</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                 <span class="stringliteral">&quot; is not in fMap -&gt; register it and recompile!&quot;</span>);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
@@ -329,10 +329,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#aa02453b9d2bb4efa7c57662ddf4b7c76">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; action : <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        action-&gt;Print();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; action : <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        action-&gt;Print();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiAction_html_af4b58ab9c82c94a8d492e0204d87c957"><div class="ttname"><a href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">ActAlgorithm::MultiAction::fActions</a></div><div class="ttdeci">std::vector&lt; Ptr &gt; fActions</div><div class="ttdef"><b>Definition:</b> ActMultiAction.h:30</div></div>
 </div><!-- fragment -->
 </div>
@@ -361,7 +361,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#ad733191b939102286d840389f72fd99e">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{}</div>
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -390,20 +390,22 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#a788bb798d56f344de5759d615e27166e">ActAlgorithm::VFilter</a>.</p>
 <div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">auto</span> conf {<a class="code" href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a>()-&gt;GetConfigDir()};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    conf += <span class="stringliteral">&quot;multiaction.conf&quot;</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Parse</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {conf};</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Get list of headers (orderes by first appearance)</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> headers {parser.<a class="code" href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">GetBlockHeaders</a>()};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// And init!</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; header : headers)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.push_back(<a class="code" href="classActAlgorithm_1_1MultiAction.html#a80804110d0e2067014adcccb801567d2">ConstructAction</a>(header));</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.back()-&gt;SetClusterPtr(<a class="code" href="classActAlgorithm_1_1VFilter.html#ab69f93088c11368e17400518d1221452">fAlgo</a>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.back()-&gt;ReadConfiguration(parser.GetBlock(header));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Clear always in case we re-read configuration</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.clear();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">auto</span> conf {<a class="code" href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a>()-&gt;GetConfigDir()};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    conf += <span class="stringliteral">&quot;multiaction.conf&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Parse</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {conf};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Get list of headers (orderes by first appearance)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">auto</span> headers {parser.<a class="code" href="classActRoot_1_1InputParser.html#a67d08ebce56f6d35c5c62921a8a0520e">GetBlockHeaders</a>()};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// And init!</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; header : headers)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.push_back(<a class="code" href="classActAlgorithm_1_1MultiAction.html#a80804110d0e2067014adcccb801567d2">ConstructAction</a>(header));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.back()-&gt;SetClusterPtr(<a class="code" href="classActAlgorithm_1_1VFilter.html#ab69f93088c11368e17400518d1221452">fAlgo</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>.back()-&gt;ReadConfiguration(parser.GetBlock(header));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiAction_html_a80804110d0e2067014adcccb801567d2"><div class="ttname"><a href="classActAlgorithm_1_1MultiAction.html#a80804110d0e2067014adcccb801567d2">ActAlgorithm::MultiAction::ConstructAction</a></div><div class="ttdeci">Ptr ConstructAction(const std::string &amp;actionID)</div><div class="ttdef"><b>Definition:</b> ActMultiAction.cxx:25</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VFilter_html_ab69f93088c11368e17400518d1221452"><div class="ttname"><a href="classActAlgorithm_1_1VFilter.html#ab69f93088c11368e17400518d1221452">ActAlgorithm::VFilter::fAlgo</a></div><div class="ttdeci">std::shared_ptr&lt; ActAlgorithm::VCluster &gt; fAlgo</div><div class="ttdef"><b>Definition:</b> ActVFilter.h:19</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:112</div></div>
@@ -435,10 +437,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#ab8d45d2eb68ba8294d8399d06da64420">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; action : <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        action-&gt;Run();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; action : <a class="code" href="classActAlgorithm_1_1MultiAction.html#af4b58ab9c82c94a8d492e0204d87c957">fActions</a>)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        action-&gt;Run();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
