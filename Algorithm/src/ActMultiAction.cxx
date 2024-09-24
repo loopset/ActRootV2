@@ -28,7 +28,7 @@ ActAlgorithm::MultiAction::Ptr ActAlgorithm::MultiAction::ConstructAction(const 
         return fMap[actionID]();
     else
         throw std::runtime_error("ActAlgorithm::MultiAction::ConstructAction(): " + actionID +
-                                 " is not in fMap -> add it and recompile!");
+                                 " is not in fMap -> register it and recompile!");
 }
 
 void ActAlgorithm::MultiAction::SetTPCParameters(ActRoot::TPCParameters* pars)
@@ -55,6 +55,8 @@ void ActAlgorithm::MultiAction::SetClusterPtr(std::shared_ptr<VCluster> ptr)
 
 void ActAlgorithm::MultiAction::ReadConfiguration()
 {
+    // Clear always in case we re-read configuration
+    fActions.clear();
     auto conf {ActRoot::Options::GetInstance()->GetConfigDir()};
     conf += "multiaction.conf";
     // Parse

@@ -273,7 +273,10 @@ void ActRoot::EventPainter::DoVerbosePhysics()
     fWrap->GetTPCDataClone2()->Print();
 
     auto merger {fDetMan->GetDetectorAs<MergerDetector>()};
-    merger->ClearEventData();
-    merger->BuildEventData();
-    fWrap->GetMergerData()->Print();
+    if(merger->GetIsEnabled())
+    {
+        merger->ClearEventData();
+        merger->BuildEventData();
+        fWrap->GetMergerData()->Print();
+    }
 }

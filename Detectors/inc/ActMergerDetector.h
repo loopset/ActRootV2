@@ -186,6 +186,9 @@ public:
     // Printer of reports
     void PrintReports() const override;
 
+    // Getter of status
+    bool GetIsEnabled() const { return fIsEnabled; }
+
 private:
     void InitCorrector();
     void InitClocks();

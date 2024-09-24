@@ -19,6 +19,8 @@ void ActAlgorithm::Actions::CleanPileUp::ReadConfiguration(std::shared_ptr<ActRo
 
 void ActAlgorithm::Actions::CleanPileUp::Run()
 {
+    if(!fIsEnabled)
+        return;
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
         // 1-> Eval condition of X range
@@ -44,7 +46,7 @@ void ActAlgorithm::Actions::CleanPileUp::Run()
                 std::cout << "   zmin    : " << zmin << '\n';
                 std::cout << "   zmax    : " << zmax << '\n';
                 std::cout << "   xlength : " << (xmax - xmin) << '\n';
-                std::cout << "------------------------------" << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
             }
             it = fTPCData->fClusters.erase(it);
         }

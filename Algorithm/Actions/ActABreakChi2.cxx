@@ -38,6 +38,8 @@ void ActAlgorithm::Actions::BreakChi2::ReadConfiguration(std::shared_ptr<ActRoot
 
 void ActAlgorithm::Actions::BreakChi2::Run()
 {
+    if(!fIsEnabled)
+        return;
     std::vector<ActRoot::Cluster> toAppend {};
     // Pointer to cluster vector
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)

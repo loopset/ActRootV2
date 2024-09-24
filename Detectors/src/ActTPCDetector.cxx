@@ -361,5 +361,9 @@ void ActRoot::TPCDetector::Reconfigure()
     if(fCluster)
         fCluster->ReadConfiguration();
     if(fFilter)
+    {
         fFilter->ReadConfiguration();
+        fFilter->SetTPCParameters(&fPars);
+        fFilter->SetClusterPtr(fCluster);
+    }
 }
