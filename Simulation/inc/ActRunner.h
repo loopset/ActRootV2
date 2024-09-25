@@ -68,6 +68,9 @@ public:
 
     double ApplyStragglingInMaterialToRLeft(double RIni, double RLeft, const std::string& srimKey);
 
+    // Function that rotates tracks
+    XYZVector RotateToWorldFrame(const XYZVector& vBeamFrame, const XYZVector& beamDir) const;
+
     // New versions of functions
     XYZPoint GetRandomVertex(double lengthX);
 

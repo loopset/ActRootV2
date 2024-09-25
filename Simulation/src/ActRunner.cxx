@@ -9,6 +9,11 @@
 #include "TRandom.h"
 #include "TRandom3.h"
 
+#include "Math/AxisAngle.h"
+#include "Math/GenVector/AxisAnglefwd.h"
+#include "Math/GenVector/Rotation3D.h"
+#include "Math/Rotation3D.h"
+
 #include <cmath>
 #include <memory>
 #include <string>
@@ -120,9 +125,14 @@ ActSim::Runner::SampleVertex(double meanY, double sigmaY, double meanZ, double s
     if(histBeam)
     {
         z = fRand->Gaus(meanZ, sigmaZ);
+        // Workaround: histogram and meanY are centered around different values
+        // So we have to compute an offset
+        auto yoffset {meanY - histBeam->GetMean()};
         double thetaXYHist {};
         double thetaXZHist {};
         histBeam->GetRandom3(y, thetaXYHist, thetaXZHist);
+        // Correct y by offset
+        y += yoffset;
         ret = {x, y - x * TMath::Tan(thetaXYHist * TMath::DegToRad()),
                z - x * TMath::Tan(thetaXZHist * TMath::DegToRad())};
     }
@@ -162,6 +172,25 @@ ActSim::Runner::XYZPoint ActSim::Runner::GetRandomVertex(double lengthX)
     double y {fRand->Gaus(fBeamEntrance.Y(), fVertexSigmaY)};
     double z {fRand->Gaus(fBeamEntrance.Z(), fVertexSigmaZ)};
     return {x, y, z};
+}
+
+ActSim::Runner::XYZVector
+ActSim::Runner::RotateToWorldFrame(const XYZVector& vBeamFrame, const XYZVector& beamDir) const
+{
+    // Usually a sampled reaction returns the angles in the beam frame
+    //  But to compute geometrical things (propagate that track to a silicon)
+    //  We need to work in the "geometry = world" frame,
+    //  where in ACTAR the "beam" goes in {1, 0, 0}
+    //  Using XYZPoint and XYZVector is easy to compute it,
+    //  as quoted here: https://root-forum.cern.ch/t/get-3x3-rotation-matrix-between-two-tvector3/60070
+    //  Using only GenVector classes
+    auto originalFrame {beamDir.Unit()};
+    XYZVector worldFrame {1, 0, 0};
+    auto cross {worldFrame.Cross(originalFrame)}; // this defines the rotation axis
+    auto angle {TMath::ACos(originalFrame.Dot(worldFrame))};
+    ROOT::Math::AxisAngle axis {cross, angle};
+    ROOT::Math::Rotation3D rotation {axis};
+    return rotation(vBeamFrame);
 }
 
 void ActSim::Runner::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
