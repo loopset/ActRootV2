@@ -137,6 +137,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a35a605811eb1ad51623cbfffb3fc052d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85eb7a2a990a172234ee3112af15236b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a85eb7a2a990a172234ee3112af15236b">ComputeTheoreticalTheta4</a> (double argTheta3LabRads, const std::string &amp;sol={&quot;pos&quot;})</td></tr>
 <tr class="separator:a85eb7a2a990a172234ee3112af15236b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa18f69fdc1828979f8f244967cd99d6d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#aa18f69fdc1828979f8f244967cd99d6d">ComputeEquivalentBeamEnergy</a> ()</td></tr>
+<tr class="separator:aa18f69fdc1828979f8f244967cd99d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31781cdb99d26a4cd004fe092bfa662a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a31781cdb99d26a4cd004fe092bfa662a">Print</a> () const</td></tr>
 <tr class="separator:a31781cdb99d26a4cd004fe092bfa662a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85459522d8246f31d53f1549886f8376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1Kinematics.html#a85459522d8246f31d53f1549886f8376">Reset</a> ()</td></tr>
@@ -824,6 +826,31 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="aa18f69fdc1828979f8f244967cd99d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa18f69fdc1828979f8f244967cd99d6d">&#9670;&nbsp;</a></span>ComputeEquivalentBeamEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActPhysics::Kinematics::ComputeEquivalentBeamEnergy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;{</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    <span class="comment">// This means getting the kinetic energy of the ejectile that would give</span></div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    <span class="comment">// the same centre-of-mass energy as the combination of beam and target</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;    <span class="comment">// Assuming particle 3 at rest</span></div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    <span class="keywordtype">double</span> Teq {(TMath::Power(<a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>, 2) - TMath::Power(<a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>, 2) - TMath::Power(<a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>, 2)) / (2 * <a class="code" href="classActPhysics_1_1Kinematics.html#af3ca4ee550c4813853085b8d2475ca16">fm3</a>) - <a class="code" href="classActPhysics_1_1Kinematics.html#a0aa98280565dca1bdd0808905bbd4089">fm4</a>};</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <span class="keywordflow">return</span> Teq;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a6c1b67cb3e7ae66464c88a2a6aa2bbe4"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">ActPhysics::Kinematics::fEcm</a></div><div class="ttdeci">double fEcm</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:61</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a35a605811eb1ad51623cbfffb3fc052d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35a605811eb1ad51623cbfffb3fc052d">&#9670;&nbsp;</a></span>ComputeMissingMass()</h2>
 
@@ -975,7 +1002,6 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a34a650d60491e54d463e36cb7a4201db"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a34a650d60491e54d463e36cb7a4201db">ActPhysics::Kinematics::fP3CM</a></div><div class="ttdeci">FourVector fP3CM</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:52</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a3d0a5cdfe5621da657909f8b0e075ba6"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a3d0a5cdfe5621da657909f8b0e075ba6">ActPhysics::Kinematics::fPhiCM</a></div><div class="ttdeci">double fPhiCM</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:60</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a484b4f93a77f644e3eb99731890971af"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a484b4f93a77f644e3eb99731890971af">ActPhysics::Kinematics::fInverse</a></div><div class="ttdeci">bool fInverse</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:45</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a6c1b67cb3e7ae66464c88a2a6aa2bbe4"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">ActPhysics::Kinematics::fEcm</a></div><div class="ttdeci">double fEcm</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:61</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a7677a1b9c684d8a67589dc32f30b7df0"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a7677a1b9c684d8a67589dc32f30b7df0">ActPhysics::Kinematics::fThetaCM</a></div><div class="ttdeci">double fThetaCM</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:59</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a8d0f4dd3bcda1a2820d550f43e46b089"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a8d0f4dd3bcda1a2820d550f43e46b089">ActPhysics::Kinematics::SetRecoil4LabKinematics</a></div><div class="ttdeci">void SetRecoil4LabKinematics()</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:247</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_adc067bb1ee57193f9c86d97e74db1c2c"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#adc067bb1ee57193f9c86d97e74db1c2c">ActPhysics::Kinematics::fP4CM</a></div><div class="ttdeci">FourVector fP4CM</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:53</div></div>
@@ -1161,7 +1187,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80">fBeta</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1187,7 +1213,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a6c1b67cb3e7ae66464c88a2a6aa2bbe4">fEcm</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1213,7 +1239,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#ae30ae9701c59710f7a67bc7d000eb0da">fEex</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1239,7 +1265,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a989c8363cc9e78156455e974aff06484">fGamma</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1291,8 +1317,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160; </div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a7f506f0e0c3e90fc103919df82371439"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">ActPhysics::Kinematics::GetT3Lab</a></div><div class="ttdeci">double GetT3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:113</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_ac75c3b9c01e5c18fa46494b5d1cf5664"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">ActPhysics::Kinematics::GetTheta3Lab</a></div><div class="ttdeci">double GetTheta3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:115</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a7f506f0e0c3e90fc103919df82371439"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a7f506f0e0c3e90fc103919df82371439">ActPhysics::Kinematics::GetT3Lab</a></div><div class="ttdeci">double GetT3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:114</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_ac75c3b9c01e5c18fa46494b5d1cf5664"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#ac75c3b9c01e5c18fa46494b5d1cf5664">ActPhysics::Kinematics::GetTheta3Lab</a></div><div class="ttdeci">double GetTheta3Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:116</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af8b7c34fd0afcdcc5ba60dd79d63f112"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af8b7c34fd0afcdcc5ba60dd79d63f112">ActPhysics::Kinematics::ComputeRecoilKinematics</a></div><div class="ttdeci">void ComputeRecoilKinematics(double thetaCMRads, double phiCMRads)</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:255</div></div>
 </div><!-- fragment -->
 </div>
@@ -1344,8 +1370,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    }</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a91b54a72884bf94bde3fa679b456b28b"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a91b54a72884bf94bde3fa679b456b28b">ActPhysics::Kinematics::GetTheta4Lab</a></div><div class="ttdeci">double GetTheta4Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:116</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af9290f414c7368d548d6f8f3614c6370"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af9290f414c7368d548d6f8f3614c6370">ActPhysics::Kinematics::GetT4Lab</a></div><div class="ttdeci">double GetT4Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:114</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a91b54a72884bf94bde3fa679b456b28b"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a91b54a72884bf94bde3fa679b456b28b">ActPhysics::Kinematics::GetTheta4Lab</a></div><div class="ttdeci">double GetTheta4Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:117</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af9290f414c7368d548d6f8f3614c6370"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af9290f414c7368d548d6f8f3614c6370">ActPhysics::Kinematics::GetT4Lab</a></div><div class="ttdeci">double GetT4Lab() const</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:115</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1447,7 +1473,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#af8b93f76064011eee15f3b4426fa5dc8">fPhi3Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#af8b93f76064011eee15f3b4426fa5dc8">fPhi3Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af8b93f76064011eee15f3b4426fa5dc8"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af8b93f76064011eee15f3b4426fa5dc8">ActPhysics::Kinematics::fPhi3Lab</a></div><div class="ttdeci">double fPhi3Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:66</div></div>
 </div><!-- fragment -->
 </div>
@@ -1474,7 +1500,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#abaa9b87116c17213e85921424ec85368">fPhi4Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#abaa9b87116c17213e85921424ec85368">fPhi4Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_abaa9b87116c17213e85921424ec85368"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#abaa9b87116c17213e85921424ec85368">ActPhysics::Kinematics::fPhi4Lab</a></div><div class="ttdeci">double fPhi4Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:67</div></div>
 </div><!-- fragment -->
 </div>
@@ -1501,7 +1527,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a3d0a5cdfe5621da657909f8b0e075ba6">fPhiCM</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a3d0a5cdfe5621da657909f8b0e075ba6">fPhiCM</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1562,7 +1588,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">fPInitialLab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a17e80dab928e3c421fd963f8aa698fc1">fPInitialLab</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1588,7 +1614,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a2159f1ab22ee69d47a1439441fc18613">fQvalue</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a2159f1ab22ee69d47a1439441fc18613">fQvalue</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1614,7 +1640,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">fT1Lab</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1660,7 +1686,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aed738cb2342966d6ae12f7a8d58503b9">fT3Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aed738cb2342966d6ae12f7a8d58503b9">fT3Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_aed738cb2342966d6ae12f7a8d58503b9"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#aed738cb2342966d6ae12f7a8d58503b9">ActPhysics::Kinematics::fT3Lab</a></div><div class="ttdeci">double fT3Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:62</div></div>
 </div><!-- fragment -->
 </div>
@@ -1687,7 +1713,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a46952cf833954732e565f9219669d156">fT4Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a46952cf833954732e565f9219669d156">fT4Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_a46952cf833954732e565f9219669d156"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#a46952cf833954732e565f9219669d156">ActPhysics::Kinematics::fT4Lab</a></div><div class="ttdeci">double fT4Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:63</div></div>
 </div><!-- fragment -->
 </div>
@@ -1714,7 +1740,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#ac37fb4f85d1799f2fb8551c6fb2ea903">fTheta3Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#ac37fb4f85d1799f2fb8551c6fb2ea903">fTheta3Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_ac37fb4f85d1799f2fb8551c6fb2ea903"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#ac37fb4f85d1799f2fb8551c6fb2ea903">ActPhysics::Kinematics::fTheta3Lab</a></div><div class="ttdeci">double fTheta3Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:64</div></div>
 </div><!-- fragment -->
 </div>
@@ -1791,7 +1817,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aaef6d43ecd2be47820972043aa54b673">fTheta4Lab</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#aaef6d43ecd2be47820972043aa54b673">fTheta4Lab</a>; }</div>
 <div class="ttc" id="aclassActPhysics_1_1Kinematics_html_aaef6d43ecd2be47820972043aa54b673"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#aaef6d43ecd2be47820972043aa54b673">ActPhysics::Kinematics::fTheta4Lab</a></div><div class="ttdeci">double fTheta4Lab</div><div class="ttdef"><b>Definition:</b> ActKinematics.h:65</div></div>
 </div><!-- fragment -->
 </div>
@@ -1818,7 +1844,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a7677a1b9c684d8a67589dc32f30b7df0">fThetaCM</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1Kinematics.html#a7677a1b9c684d8a67589dc32f30b7df0">fThetaCM</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2052,12 +2078,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;{</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;Kinematics&quot;</span>)};</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#af58985f07020983fc04d7f076ba2dd8a">ReadConfiguration</a>(block);</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;}</div>
-<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af58985f07020983fc04d7f076ba2dd8a"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af58985f07020983fc04d7f076ba2dd8a">ActPhysics::Kinematics::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(std::shared_ptr&lt; ActRoot::InputBlock &gt; block)</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:543</div></div>
+<div class="fragment"><div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;{</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;    <span class="keyword">auto</span> block {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;Kinematics&quot;</span>)};</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;    <a class="code" href="classActPhysics_1_1Kinematics.html#af58985f07020983fc04d7f076ba2dd8a">ReadConfiguration</a>(block);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;}</div>
+<div class="ttc" id="aclassActPhysics_1_1Kinematics_html_af58985f07020983fc04d7f076ba2dd8a"><div class="ttname"><a href="classActPhysics_1_1Kinematics.html#af58985f07020983fc04d7f076ba2dd8a">ActPhysics::Kinematics::ReadConfiguration</a></div><div class="ttdeci">void ReadConfiguration(std::shared_ptr&lt; ActRoot::InputBlock &gt; block)</div><div class="ttdef"><b>Definition:</b> ActKinematics.cxx:552</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:112</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:321</div></div>
 </div><!-- fragment -->
@@ -2078,26 +2104,26 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;{</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    <span class="comment">// Specify particles to be read</span></div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    <span class="keyword">auto</span> p1 {block-&gt;GetString(<span class="stringliteral">&quot;Beam&quot;</span>)};</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;    <span class="keyword">auto</span> p2 {block-&gt;GetString(<span class="stringliteral">&quot;Target&quot;</span>)};</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    <span class="keyword">auto</span> p3 {block-&gt;GetString(<span class="stringliteral">&quot;Light&quot;</span>)};</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    std::string p4 {};</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Heavy&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        p4 = block-&gt;GetString(<span class="stringliteral">&quot;Heavy&quot;</span>);</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;    <span class="comment">// Nominal beam energy</span></div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    <span class="keyword">auto</span> T1 {block-&gt;GetDouble(<span class="stringliteral">&quot;BeamEnergy&quot;</span>)};</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <span class="comment">// Excitation energy of the heavy particle</span></div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    <span class="keywordtype">double</span> Ex {};</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Ex&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;        Ex = block-&gt;GetDouble(<span class="stringliteral">&quot;Ex&quot;</span>);</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;    <span class="comment">// Construct</span></div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    <span class="keywordflow">if</span>(p4.length() &gt; 0)</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a> {p1, p2, p3, p4, T1, Ex};</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;        *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a> {p1, p2, p3, T1, Ex};</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;{</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <span class="comment">// Specify particles to be read</span></div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    <span class="keyword">auto</span> p1 {block-&gt;GetString(<span class="stringliteral">&quot;Beam&quot;</span>)};</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    <span class="keyword">auto</span> p2 {block-&gt;GetString(<span class="stringliteral">&quot;Target&quot;</span>)};</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;    <span class="keyword">auto</span> p3 {block-&gt;GetString(<span class="stringliteral">&quot;Light&quot;</span>)};</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;    std::string p4 {};</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Heavy&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        p4 = block-&gt;GetString(<span class="stringliteral">&quot;Heavy&quot;</span>);</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    <span class="comment">// Nominal beam energy</span></div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    <span class="keyword">auto</span> T1 {block-&gt;GetDouble(<span class="stringliteral">&quot;BeamEnergy&quot;</span>)};</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;    <span class="comment">// Excitation energy of the heavy particle</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;    <span class="keywordtype">double</span> Ex {};</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Ex&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;        Ex = block-&gt;GetDouble(<span class="stringliteral">&quot;Ex&quot;</span>);</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <span class="comment">// Construct</span></div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <span class="keywordflow">if</span>(p4.length() &gt; 0)</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a> {p1, p2, p3, p4, T1, Ex};</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;        *<span class="keyword">this</span> = <a class="code" href="classActPhysics_1_1Kinematics.html#a4929cea1e7fdb89cf0f47adb715e356c">Kinematics</a> {p1, p2, p3, T1, Ex};</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
