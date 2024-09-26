@@ -92,6 +92,7 @@ public:
     double ComputeMissingMass(double argT3, double argTheta3LabRads, double argPhi3Rads, double Tbeam,
                               double& retTRecoil, ThreeVector& retPRecoil);
     double ComputeTheoreticalTheta4(double argTheta3LabRads, const std::string& sol = {"pos"});
+    double ComputeEquivalentBeamEnergy();
 
     void Print() const;
 

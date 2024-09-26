@@ -540,6 +540,15 @@ const ActPhysics::Particle& ActPhysics::Kinematics::GetParticle(unsigned int i) 
         return fp4;
 }
 
+double ActPhysics::Kinematics::ComputeEquivalentBeamEnergy()
+{
+    // This means getting the kinetic energy of the ejectile that would give
+    // the same centre-of-mass energy as the combination of beam and target
+    // Assuming particle 3 at rest
+    double Teq {(TMath::Power(fEcm, 2) - TMath::Power(fm3, 2) - TMath::Power(fm4, 2)) / (2 * fm3) - fm4};
+    return Teq;
+}
+
 void ActPhysics::Kinematics::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
     // Specify particles to be read
