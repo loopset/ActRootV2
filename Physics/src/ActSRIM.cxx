@@ -312,6 +312,8 @@ double ActPhysics::SRIM::SlowWithStraggling(const std::string& material, double 
     // New distance
     dist = (rand ? rand : gRandom)->Gaus(dist, udist);
     RAfter = RIni - dist;
+    if(RAfter <= 0)
+        return 0;
     return EvalEnergy(material, RAfter);
 }
 
