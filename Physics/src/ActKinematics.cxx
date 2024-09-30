@@ -544,8 +544,12 @@ double ActPhysics::Kinematics::ComputeEquivalentBeamEnergy()
 {
     // This means getting the kinetic energy of the ejectile that would give
     // the same centre-of-mass energy as the combination of beam and target
+    // This is done in DIRECT kinematics, therefore,
+    // the excitation energy corresponds to the 3rd particle:
+    // d (1) + 20O (2) -> 19O (3) + t (4)
     // Assuming particle 3 at rest
-    double Teq {(TMath::Power(fEcm, 2) - TMath::Power(fm3, 2) - TMath::Power(fm4, 2)) / (2 * fm3) - fm4};
+    double Teq {(TMath::Power(fEcm, 2) - TMath::Power(fm3 + fEex, 2) - TMath::Power(fm4, 2)) / (2 * (fm3 + fEex)) -
+                fm4};
     return Teq;
 }
 
