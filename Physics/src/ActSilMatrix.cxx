@@ -171,3 +171,13 @@ void ActPhysics::SilMatrix::Print() const
     }
     std::cout << "::::::::::::::::::::::::::::::" << RESET << '\n';
 }
+
+void ActPhysics::SilMatrix::Erase(int idx)
+{
+    auto it {fMatrix.find(idx)};
+    if(it != fMatrix.end())
+    {
+        delete fMatrix[idx];
+        fMatrix.erase(it);
+    }
+}
