@@ -3,6 +3,7 @@
 #include "ActABreakChi2.h"
 #include "ActAClean.h"
 #include "ActACleanPileUp.h"
+#include "ActAMerge.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
 #include "ActTPCData.h"
@@ -20,6 +21,7 @@ ActAlgorithm::MultiAction::MultiAction()
     fMap["Clean"] = &RegisterAction<Actions::Clean>;
     fMap["BreakChi2"] = &RegisterAction<Actions::BreakChi2>;
     fMap["CleanPileUp"] = &RegisterAction<Actions::CleanPileUp>;
+    fMap["Merge"] = &RegisterAction<Actions::Merge>;
 }
 
 ActAlgorithm::MultiAction::Ptr ActAlgorithm::MultiAction::ConstructAction(const std::string& actionID)

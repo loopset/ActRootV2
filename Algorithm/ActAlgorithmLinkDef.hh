@@ -40,4 +40,5 @@
 #pragma link C++ class ActAlgorithm::Actions::Clean;
 #pragma link C++ class ActAlgorithm::Actions::BreakChi2;
 #pragma link C++ class ActAlgorithm::Actions::CleanPileUp;
+#pragma link C++ class ActAlgorithm::Actions::Merge;
 #endif
