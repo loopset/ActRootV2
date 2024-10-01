@@ -38,12 +38,13 @@ var searchData=
   ['iseqzero_1135',['IsEqZero',['../namespaceActRoot.html#a77d04b871ac0d2b16d3df5a7224879d9',1,'ActRoot::IsEqZero(double val)'],['../namespaceActRoot.html#a413d9bd9865ff23f81694b6897d93dc4',1,'ActRoot::IsEqZero(float val)'],['../namespaceActRoot.html#a79aa8144922aad33d16df5ccda898bd1',1,'ActRoot::IsEqZero(int val)']]],
   ['isincage_1136',['IsInCage',['../classActAlgorithm_1_1ClIMB.html#ac95f2812d71fababacb7ad21d2047861',1,'ActAlgorithm::ClIMB']]],
   ['isinchamber_1137',['IsInChamber',['../classActSim_1_1TrackGenerator.html#a159a3b8eb245e290586c1965f4411d1f',1,'ActSim::TrackGenerator']]],
-  ['isinrange_1138',['IsInRange',['../classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581',1,'ActPhysics::Line']]],
-  ['isinside_1139',['IsInside',['../classActAlgorithm_1_1Region.html#aa608a71b3266193c5bd197f873f483a7',1,'ActAlgorithm::Region::IsInside(const ROOT::Math::XYZPointF &amp;p) const'],['../classActAlgorithm_1_1Region.html#acd8189937de30d2d1cd2a74d14723fee',1,'ActAlgorithm::Region::IsInside(const RangePair &amp;x, const RangePair &amp;y) const'],['../classActPhysics_1_1SilMatrix.html#a2433f0f2e7ffc9a47f5cedafab36ec41',1,'ActPhysics::SilMatrix::IsInside(int idx, double x, double y)'],['../classActPhysics_1_1SilMatrix.html#a1226afee56c5eceb3ca536323292e043',1,'ActPhysics::SilMatrix::IsInside(double x, double y)'],['../classActRoot_1_1CutsManager.html#ad6af23e4d80989490ce5f326505d61f7',1,'ActRoot::CutsManager::IsInside()']]],
-  ['isinvector_1140',['IsInVector',['../classActAlgorithm_1_1RANSAC.html#af49493f114be2d71f51bd0e42738e805',1,'ActAlgorithm::RANSAC::IsInVector()'],['../classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b',1,'ActRoot::MergerDetector::IsInVector()']]],
-  ['isrpvalid_1141',['IsRPValid',['../namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2',1,'ActAlgorithm']]],
-  ['issplit_1142',['IsSplit',['../classActAlgorithm_1_1IntervalMap.html#af7a7c7423ed2416587b57ac421208d88',1,'ActAlgorithm::IntervalMap']]],
-  ['isthreadempty_1143',['IsThreadEmpty',['../classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3',1,'ActRoot::MTExecutor']]],
-  ['isvector_1144',['IsVector',['../classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7',1,'ActRoot::InputBlock']]],
-  ['ittype_1145',['ItType',['../classActAlgorithm_1_1MultiStep.html#ad16be17d95157968e9d12dc78be15e47',1,'ActAlgorithm::MultiStep']]]
+  ['isinmatrix_1138',['IsInMatrix',['../classActPhysics_1_1SilMatrix.html#a3e019cf721223550cf645b5513cba3ba',1,'ActPhysics::SilMatrix']]],
+  ['isinrange_1139',['IsInRange',['../classActPhysics_1_1Line.html#a2b84f8175fb29d37505b3bba66f56581',1,'ActPhysics::Line']]],
+  ['isinside_1140',['IsInside',['../classActAlgorithm_1_1Region.html#aa608a71b3266193c5bd197f873f483a7',1,'ActAlgorithm::Region::IsInside(const ROOT::Math::XYZPointF &amp;p) const'],['../classActAlgorithm_1_1Region.html#acd8189937de30d2d1cd2a74d14723fee',1,'ActAlgorithm::Region::IsInside(const RangePair &amp;x, const RangePair &amp;y) const'],['../classActPhysics_1_1SilMatrix.html#a2433f0f2e7ffc9a47f5cedafab36ec41',1,'ActPhysics::SilMatrix::IsInside(int idx, double x, double y)'],['../classActPhysics_1_1SilMatrix.html#a1226afee56c5eceb3ca536323292e043',1,'ActPhysics::SilMatrix::IsInside(double x, double y)'],['../classActRoot_1_1CutsManager.html#ad6af23e4d80989490ce5f326505d61f7',1,'ActRoot::CutsManager::IsInside()']]],
+  ['isinvector_1141',['IsInVector',['../classActAlgorithm_1_1RANSAC.html#af49493f114be2d71f51bd0e42738e805',1,'ActAlgorithm::RANSAC::IsInVector()'],['../classActRoot_1_1MergerDetector.html#a21bcd5ae15954aa18f755115bc83992b',1,'ActRoot::MergerDetector::IsInVector()']]],
+  ['isrpvalid_1142',['IsRPValid',['../namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2',1,'ActAlgorithm']]],
+  ['issplit_1143',['IsSplit',['../classActAlgorithm_1_1IntervalMap.html#af7a7c7423ed2416587b57ac421208d88',1,'ActAlgorithm::IntervalMap']]],
+  ['isthreadempty_1144',['IsThreadEmpty',['../classActRoot_1_1MTExecutor.html#a25c2fd311b141d6fca3d7f8c2df058c3',1,'ActRoot::MTExecutor']]],
+  ['isvector_1145',['IsVector',['../classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7',1,'ActRoot::InputBlock']]],
+  ['ittype_1146',['ItType',['../classActAlgorithm_1_1MultiStep.html#ad16be17d95157968e9d12dc78be15e47',1,'ActAlgorithm::MultiStep']]]
 ];

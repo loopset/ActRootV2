@@ -90,6 +90,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2433f0f2e7ffc9a47f5cedafab36ec41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1226afee56c5eceb3ca536323292e043"><td class="memItemLeft" align="right" valign="top">std::optional&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a1226afee56c5eceb3ca536323292e043">IsInside</a> (double x, double y)</td></tr>
 <tr class="separator:a1226afee56c5eceb3ca536323292e043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e019cf721223550cf645b5513cba3ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a3e019cf721223550cf645b5513cba3ba">IsInMatrix</a> (int idx) const</td></tr>
+<tr class="separator:a3e019cf721223550cf645b5513cba3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abca8c5ec44bfbaef0fdc3a545ee6b529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#abca8c5ec44bfbaef0fdc3a545ee6b529">SetSyle</a> (bool enableLabel=true, Style_t ls=kSolid, Width_t lw=2, Style_t fs=0)</td></tr>
 <tr class="separator:abca8c5ec44bfbaef0fdc3a545ee6b529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52b2f7aaa064ad6b8d1cf1c13c8390aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a52b2f7aaa064ad6b8d1cf1c13c8390aa">SetName</a> (const std::string &amp;name)</td></tr>
@@ -104,6 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a42369d1bd2f58bc410b7d838befef28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad68637cd586673c967eb223f02350be4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ad68637cd586673c967eb223f02350be4">MoveZTo</a> (double ztarget, const std::set&lt; int &gt; &amp;idxs)</td></tr>
 <tr class="separator:ad68637cd586673c967eb223f02350be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e11a9c9c4aaa3a65b39856ecf4a987"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ac9e11a9c9c4aaa3a65b39856ecf4a987">Erase</a> (int idx)</td></tr>
+<tr class="separator:ac9e11a9c9c4aaa3a65b39856ecf4a987"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e442d3d31468320be4b03c8f4e1498c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a9e442d3d31468320be4b03c8f4e1498c">Read</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a9e442d3d31468320be4b03c8f4e1498c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb120a3e2d58fb243434c2738e9184a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#abb120a3e2d58fb243434c2738e9184a5">Write</a> (const std::string &amp;file)</td></tr>
@@ -332,6 +336,32 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="ac9e11a9c9c4aaa3a65b39856ecf4a987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e11a9c9c4aaa3a65b39856ecf4a987">&#9670;&nbsp;</a></span>Erase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::SilMatrix::Erase </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keyword">auto</span> it {<a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.find(idx)};</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordflow">if</span>(it != <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.end())</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>[idx];</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.erase(it);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ae6f7f3be939b4f8289dc5edfad4c0821"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6f7f3be939b4f8289dc5edfad4c0821">&#9670;&nbsp;</a></span>GetName()</h2>
 
@@ -354,7 +384,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -381,7 +411,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.at(idx); }</div>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.at(idx); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -435,6 +465,33 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>[idx] = <span class="keyword">new</span> TCutG {};</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>[idx]-&gt;SetTitle(TString::Format(<span class="stringliteral">&quot;Surface matrix for sil %d&quot;</span>, idx));</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3e019cf721223550cf645b5513cba3ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e019cf721223550cf645b5513cba3ba">&#9670;&nbsp;</a></span>IsInMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActPhysics::SilMatrix::IsInMatrix </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.count(idx); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -648,7 +705,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{ <a class="code" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a> = name; }</div>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <a class="code" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a> = name; }</div>
 </div><!-- fragment -->
 </div>
 </div>
