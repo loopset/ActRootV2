@@ -43,6 +43,9 @@ public:
 
     MapActions& GetActionsMap() { return fMap; }
     Ptr ConstructAction(const std::string& actionID);
+
+private:
+    void ResetClusterID();
 };
 
 template <typename T>
