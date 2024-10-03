@@ -15,6 +15,8 @@ void ActAlgorithm::Actions::Merge::ReadConfiguration(std::shared_ptr<ActRoot::In
         fDistThresh = block->GetDouble("DistThresh");
     if(block->CheckTokenExists("MinParallelFactor"))
         fMinParallelFactor = block->GetDouble("MinParallelFactor");
+    if(block->CheckTokenExists("Chi2Factor"))
+        fChi2Factor = block->GetDouble("Chi2Factor");
 }
 
 void ActAlgorithm::Actions::Merge::Run()
@@ -22,7 +24,7 @@ void ActAlgorithm::Actions::Merge::Run()
     if(!fIsEnabled)
         return;
 
-    std::vector<ActRoot::Cluster> clusters = fTPCData->fClusters;
+    auto& clusters {fTPCData->fClusters};
     // Sort cluster increaing size
     std::sort(clusters.begin(), clusters.end(),
               [](ActRoot::Cluster& l, ActRoot::Cluster& r) { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
@@ -36,10 +38,10 @@ void ActAlgorithm::Actions::Merge::Run()
     {
         // Get the iterator for clusters
         auto iit {clusters.begin() + i};
-        for(size_t j = 0; i < clusters.size(); i++)
+        for(size_t j = 0; j < clusters.size(); j++)
         {
             bool isIinSet {toDelete.find(i) != toDelete.end()};
-            bool isJinSet {toDelete.find(i) != toDelete.end()};
+            bool isJinSet {toDelete.find(j) != toDelete.end()};
 
             if(i == j || isIinSet || isJinSet)
                 continue;
@@ -90,7 +92,8 @@ void ActAlgorithm::Actions::Merge::Run()
                 bool improvesFit {newChi2 < fChi2Factor * oldChi2};
 
                 if(fIsVerbose)
-                    std::cout << "   newChi2 < f * oldChi2 ? : " << newChi2 << " < " << fChi2Factor * oldChi2 << '\n';
+                    std::cout << "   newChi2 < f * oldChi2 (" << i << " " << j << ") ? : " << newChi2 << " < "
+                              << fChi2Factor * oldChi2 << '\n';
 
                 // Check whether fit is improved: reduces chi2
                 if(improvesFit)
@@ -131,15 +134,23 @@ void ActAlgorithm::Actions::Merge::Run()
                 }
             }
         }
-        // Delete clusters
-        for(const auto& idx : toDelete) // toDelete is sorted in greater order
-            clusters.erase(clusters.begin() + idx);
-        if(fIsVerbose)
-            std::cout << RESET << '\n';
     }
+    // Delete clusters
+    for(const auto& idx : toDelete) // toDelete is sorted in greater order
+        clusters.erase(clusters.begin() + idx);
+    if(fIsVerbose)
+        std::cout << RESET << '\n';
 }
 void ActAlgorithm::Actions::Merge::Print() const
 {
+    // This function just prints the current parameters of the action
+    std::cout << BOLDCYAN << "····· " << GetActionID() << " ·····" << '\n';
     if(!fIsEnabled)
+    {
+        std::cout << "······························" << RESET << '\n';
         return;
+    }
+    std::cout << "  DistThresh         : " << fDistThresh << '\n';
+    std::cout << "  MinParalellFactor  : " << fMinParallelFactor << '\n';
+    std::cout << "  Chi2Factor         : " << fChi2Factor << RESET << '\n';
 }

@@ -77,7 +77,10 @@ void ActAlgorithm::MultiAction::ReadConfiguration()
 void ActAlgorithm::MultiAction::Run()
 {
     for(auto& action : fActions)
+    {
         action->Run();
+        ResetClusterID();
+    }
 }
 
 void ActAlgorithm::MultiAction::Print() const
@@ -87,3 +90,9 @@ void ActAlgorithm::MultiAction::Print() const
 }
 
 void ActAlgorithm::MultiAction::PrintReports() const {}
+
+void ActAlgorithm::MultiAction::ResetClusterID()
+{
+    for(int i = 0, size = fData->fClusters.size(); i < size; i++)
+        fData->fClusters[i].SetClusterID(i);
+}
