@@ -1,7 +1,7 @@
 var searchData=
 [
   ['sampleline_2386',['SampleLine',['../classActAlgorithm_1_1RANSAC.html#acfcd5ed9b719bd4ece97a7a54873c7fc',1,'ActAlgorithm::RANSAC']]],
-  ['samplevertex_2387',['SampleVertex',['../classActSim_1_1Runner.html#a16810fcfcbd65455bdc951521312349d',1,'ActSim::Runner']]],
+  ['samplevertex_2387',['SampleVertex',['../classActSim_1_1Runner.html#a809f9c559a4cfd2dcf7a144c68d11c19',1,'ActSim::Runner']]],
   ['samplexs_2388',['SampleXS',['../classActSim_1_1TheoCrossSection.html#a26fa9d633d423fb874fd60e2f309fe58',1,'ActSim::TheoCrossSection']]],
   ['scale_2389',['Scale',['../classActPhysics_1_1Line.html#aebbf4778230195fde8b2ae70906fddde',1,'ActPhysics::Line']]],
   ['scalepoint_2390',['ScalePoint',['../classActRoot_1_1MergerDetector.html#a94a7f6139467885b95ac5345483bc57c',1,'ActRoot::MergerDetector']]],
