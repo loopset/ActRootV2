@@ -4,8 +4,8 @@
 #include "ActCluster.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
+#include "ActMergerParameters.h"
 #include "ActModularData.h"
-#include "ActMultiStep.h"
 #include "ActSilData.h"
 #include "ActSilSpecs.h"
 #include "ActTPCData.h"
@@ -34,16 +34,6 @@ class TPCParameters;
 class SilParameters;
 class ModularParameters;
 
-class MergerParameters : public VParameters
-{
-public:
-    // Just flags setting event-by-event merger settings
-    bool fUseRP {};
-    bool fIsL1 {};
-    bool fIsCal {};
-
-    void Print() const override;
-};
 
 class MergerDetector : public VDetector
 {
@@ -80,6 +70,11 @@ private:
     ///// Parameters of the detector
     // Is enabled?
     bool fIsEnabled {};
+    // Mode of the analysis
+    MergerMode fMode {};
+    // Set type of event
+    MergerEvent fEvent {};
+
     // Enable or not GATCONF validation
     bool fForceGATCONF {};
     // GATCONF cuts if enabled

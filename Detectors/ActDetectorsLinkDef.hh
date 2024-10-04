@@ -42,6 +42,10 @@
 #pragma link C++ class ActRoot::ModularData + ;
 #pragma link C++ class ActRoot::MergerData + ;
 
+// types
+#pragma link C++ enum class ActRoot::MergerMode + ;
+#pragma link C++ enum class ActRoot::MergerEvent + ;
+
 // virtual parameters
 #pragma link C++ class ActRoot::VParameters + ;
 

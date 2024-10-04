@@ -7,6 +7,7 @@
 #include "ActInputParser.h"
 #include "ActLine.h"
 #include "ActMergerData.h"
+#include "ActMergerParameters.h"
 #include "ActModularData.h"
 #include "ActModularDetector.h"
 #include "ActMultiStep.h"
@@ -44,15 +45,6 @@
 #include <utility>
 #include <vector>
 
-void ActRoot::MergerParameters::Print() const
-{
-    std::cout << BOLDYELLOW << ":::: MergerParameters ::::" << '\n';
-    std::cout << "-> UseRP ? " << std::boolalpha << fUseRP << '\n';
-    std::cout << "-> IsL1  ? " << std::boolalpha << fIsL1 << '\n';
-    std::cout << "-> IsCal ? " << std::boolalpha << fIsCal << '\n';
-    std::cout << "::::::::::::::::::::::::::::::" << RESET << '\n';
-}
-
 ActRoot::MergerDetector::MergerDetector()
 {
     fIsVerbose = ActRoot::Options::GetInstance()->GetIsVerbose();
@@ -78,65 +70,71 @@ ActRoot::MergerDetector::~MergerDetector()
 
 void ActRoot::MergerDetector::ReadConfiguration(std::shared_ptr<InputBlock> block)
 {
-    ////////////////// MergerDetector /////////////////////////
-    if(block->CheckTokenExists("IsEnabled"))
-        fIsEnabled = block->GetBool("IsEnabled");
-    if(!fIsEnabled)
+    // Mode: this determines whether algorithm is enabled or not
+    auto str {block->GetString("Mode")};
+    fMode = StrToMergerMode(str);
+    fIsEnabled = !(fMode == MergerMode::ENone);
+    if(fIsEnabled)
         return;
-    // Read silicon specs
-    if(block->CheckTokenExists("SilSpecsFile", !fIsEnabled))
-        ReadSilSpecs(block->GetString("SilSpecsFile"));
-    if(block->CheckTokenExists("ForceGATCONF", !fIsEnabled))
-        fForceGATCONF = block->GetBool("ForceGATCONF");
-    // Map GATCONFS to SilLayers, using gat command
-    if(fForceGATCONF)
-    {
-        auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
-        if(gatMap.size() > 0)
-            fGatMap = gatMap;
-    }
-    // Beam-like and multiplicities
-    if(block->CheckTokenExists("ForceRP", !fIsEnabled))
-        fForceRP = block->GetBool("ForceRP");
-    if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
-        fForceBeamLike = block->GetBool("ForceBeamLike");
-    if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
-        fNotBMults = block->GetIntVector("NotBeamMults");
-    // Conversion to physical units
-    if(block->CheckTokenExists("EnableConversion", !fIsEnabled))
-        fEnableConversion = block->GetBool("EnableConversion");
-    if(block->CheckTokenExists("DriftFactor", !fIsEnabled))
-        fDriftFactor = block->GetDouble("DriftFactor");
-    // Match SP to real placement
-    if(block->CheckTokenExists("EnableMatch", !fIsEnabled))
-        fEnableMatch = block->GetBool("EnableMatch");
-    if(block->CheckTokenExists("MatchUseZ", !fIsEnabled))
-        fMatchUseZ = block->GetBool("MatchUseZ");
-    if(block->CheckTokenExists("ZOffset", !fIsEnabled))
-        fZOffset = block->GetDouble("ZOffset");
-    // Enable QProfile
-    if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
-        fEnableQProfile = block->GetBool("EnableQProfile");
-    if(block->CheckTokenExists("2DProfile", !fIsEnabled))
-        f2DProfile = block->GetBool("2DProfile");
-    if(block->CheckTokenExists("EnableRootFind", !fIsEnabled))
-        fEnableRootFind = block->GetBool("EnableRootFind");
-    if(block->CheckTokenExists("EnableDefaultBeam", !fIsEnabled))
-        fEnableDefaultBeam = block->GetBool("EnableDefaultBeam");
-    if(block->CheckTokenExists("DefaultBeamXThresh", !fEnableDefaultBeam))
-        fDefaultBeamXThresh = block->GetDouble("DefaultBeamXThresh");
-    if(block->CheckTokenExists("InvertAngle", !fIsEnabled))
-        fInvertAngle = block->GetBool("InvertAngle");
-
-    // Build or not filter method
-    if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
-        InitCorrector();
-
-    // Disable TH1::AddDirectory
-    TH1::AddDirectory(false);
-
-    // Init clocks
-    InitClocks();
+    ////////////////// MergerDetector /////////////////////////
+    // if(block->CheckTokenExists("IsEnabled"))
+    //     fIsEnabled = block->GetBool("IsEnabled");
+    // if(!fIsEnabled)
+    //     return;
+    // // Read silicon specs
+    // if(block->CheckTokenExists("SilSpecsFile", !fIsEnabled))
+    //     ReadSilSpecs(block->GetString("SilSpecsFile"));
+    // if(block->CheckTokenExists("ForceGATCONF", !fIsEnabled))
+    //     fForceGATCONF = block->GetBool("ForceGATCONF");
+    // // Map GATCONFS to SilLayers, using gat command
+    // if(fForceGATCONF)
+    // {
+    //     auto gatMap {block->GetMappedValuesVectorOf<std::string>("gat")};
+    //     if(gatMap.size() > 0)
+    //         fGatMap = gatMap;
+    // }
+    // // Beam-like and multiplicities
+    // if(block->CheckTokenExists("ForceRP", !fIsEnabled))
+    //     fForceRP = block->GetBool("ForceRP");
+    // if(block->CheckTokenExists("ForceBeamLike", !fIsEnabled))
+    //     fForceBeamLike = block->GetBool("ForceBeamLike");
+    // if(block->CheckTokenExists("NotBeamMults", !fIsEnabled))
+    //     fNotBMults = block->GetIntVector("NotBeamMults");
+    // // Conversion to physical units
+    // if(block->CheckTokenExists("EnableConversion", !fIsEnabled))
+    //     fEnableConversion = block->GetBool("EnableConversion");
+    // if(block->CheckTokenExists("DriftFactor", !fIsEnabled))
+    //     fDriftFactor = block->GetDouble("DriftFactor");
+    // // Match SP to real placement
+    // if(block->CheckTokenExists("EnableMatch", !fIsEnabled))
+    //     fEnableMatch = block->GetBool("EnableMatch");
+    // if(block->CheckTokenExists("MatchUseZ", !fIsEnabled))
+    //     fMatchUseZ = block->GetBool("MatchUseZ");
+    // if(block->CheckTokenExists("ZOffset", !fIsEnabled))
+    //     fZOffset = block->GetDouble("ZOffset");
+    // // Enable QProfile
+    // if(block->CheckTokenExists("EnableQProfile", !fIsEnabled))
+    //     fEnableQProfile = block->GetBool("EnableQProfile");
+    // if(block->CheckTokenExists("2DProfile", !fIsEnabled))
+    //     f2DProfile = block->GetBool("2DProfile");
+    // if(block->CheckTokenExists("EnableRootFind", !fIsEnabled))
+    //     fEnableRootFind = block->GetBool("EnableRootFind");
+    // if(block->CheckTokenExists("EnableDefaultBeam", !fIsEnabled))
+    //     fEnableDefaultBeam = block->GetBool("EnableDefaultBeam");
+    // if(block->CheckTokenExists("DefaultBeamXThresh", !fEnableDefaultBeam))
+    //     fDefaultBeamXThresh = block->GetDouble("DefaultBeamXThresh");
+    // if(block->CheckTokenExists("InvertAngle", !fIsEnabled))
+    //     fInvertAngle = block->GetBool("InvertAngle");
+    //
+    // // Build or not filter method
+    // if(ActRoot::Options::GetInstance()->GetMode() == ModeType::ECorrect)
+    //     InitCorrector();
+    //
+    // // Disable TH1::AddDirectory
+    // TH1::AddDirectory(false);
+    //
+    // // Init clocks
+    // InitClocks();
 }
 
 void ActRoot::MergerDetector::InitCorrector()
@@ -335,6 +333,8 @@ void ActRoot::MergerDetector::DoMerge()
 
 void ActRoot::MergerDetector::BuildEventData(int run, int entry)
 {
+    if(fIsEnabled)
+        return;
     // Reset clears iterators of MergerData and sets [run, entry]
     Reset(run, entry);
     // Merge
@@ -964,7 +964,7 @@ void ActRoot::MergerDetector::Print() const
 {
 
     std::cout << BOLDYELLOW << ":::: Merger detector ::::" << '\n';
-    std::cout << "-> IsEnabled     ? " << std::boolalpha << fIsEnabled << '\n';
+    std::cout << "-> Mode : " << MergerModeToStr(fMode) << '\n';
     if(fIsEnabled)
     {
         std::cout << "-> ForceGATCONF  ? " << std::boolalpha << fForceGATCONF << '\n';
