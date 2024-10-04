@@ -114,35 +114,68 @@ double ActSim::Runner::EnergyBeforeGas(double Esil, double trackLengthInMM, cons
     return fsrim->EvalInverse(gasKey, RVertex);
 }
 
-ActSim::Runner::XYZPoint
+std::pair<ActSim::Runner::XYZPoint, ActSim::Runner::XYZPoint>
 ActSim::Runner::SampleVertex(double meanY, double sigmaY, double meanZ, double sigmaZ, TH3F* histBeam)
 {
-    XYZPoint ret {};
-    double x {fRand->Uniform() * fgeo->GetDriftParameters().X * 2 *
-              10.}; //*2 (half length to length) and * 10. (cm to mm)
-    double y {};
-    double z {};
+    // X is always common for both manners
+    double Xstart {0};
+    double Xrp {fRand->Uniform() * fgeo->GetDriftParameters().X * 2 * 10.};
+    // Y depends completely on the method of calculation
+    double Ystart {-1};
+    double Yrp {-1};
+    // Z of beam at entrance
+    double Zstart {fRand->Gaus(meanZ, sigmaZ)};
+    double Zrp {-1};
+    // Two options depending on the existance of a emittance histogram or not
     if(histBeam)
     {
-        z = fRand->Gaus(meanZ, sigmaZ);
-        // Workaround: histogram and meanY are centered around different values
-        // So we have to compute an offset
-        auto yoffset {meanY - histBeam->GetMean()};
-        double thetaXYHist {};
-        double thetaXZHist {};
-        histBeam->GetRandom3(y, thetaXYHist, thetaXZHist);
-        // Correct y by offset
-        y += yoffset;
-        ret = {x, y - x * TMath::Tan(thetaXYHist * TMath::DegToRad()),
-               z - x * TMath::Tan(thetaXZHist * TMath::DegToRad())};
+        // Ystart in this case is sampled from the histogram itself!
+        double thetaXY {};
+        double thetaXZ {};
+        histBeam->GetRandom3(Ystart, thetaXY, thetaXZ);
+        // Mind that Y is not centred in the histogram value!
+        // Rp values are computed as follows:
+        Yrp = Ystart - Xrp * TMath::Tan(thetaXY * TMath::DegToRad());
+        Zrp = Zstart - Xrp * TMath::Tan(thetaXZ * TMath::DegToRad());
     }
     else
     {
-        y = fRand->Gaus(meanY, sigmaY);
-        z = fRand->Gaus(meanZ, sigmaZ);
-        ret = {x, y, z};
+        // Starting point in Y is also random
+        Ystart = fRand->Gaus(meanY, sigmaY);
+        // And now rp values
+        // This way, emittance is fully random
+        Yrp = fRand->Gaus(meanY, sigmaY);
+        Zrp = fRand->Gaus(meanZ, sigmaZ);
     }
-    return ret;
+    XYZPoint start {Xstart, Ystart, Zstart};
+    XYZPoint vertex {Xrp, Yrp, Zrp};
+    return {std::move(start), std::move(vertex)};
+    // XYZPoint ret {};
+    // double x {fRand->Uniform() * fgeo->GetDriftParameters().X * 2 *
+    //           10.}; //*2 (half length to length) and * 10. (cm to mm)
+    // double y {};
+    // double z {};
+    // if(histBeam)
+    // {
+    //     z = fRand->Gaus(meanZ, sigmaZ);
+    //     // Workaround: histogram and meanY are centered around different values
+    //     // So we have to compute an offset
+    //     auto yoffset {meanY - histBeam->GetMean()};
+    //     double thetaXYHist {};
+    //     double thetaXZHist {};
+    //     histBeam->GetRandom3(y, thetaXYHist, thetaXZHist);
+    //     // Correct y by offset
+    //     y += yoffset;
+    //     ret = {x, y - x * TMath::Tan(thetaXYHist * TMath::DegToRad()),
+    //            z - x * TMath::Tan(thetaXZHist * TMath::DegToRad())};
+    // }
+    // else
+    // {
+    //     y = fRand->Gaus(meanY, sigmaY);
+    //     z = fRand->Gaus(meanZ, sigmaZ);
+    //     ret = {x, y, z};
+    // }
+    // return ret;
 }
 
 ActSim::Runner::XYZPoint ActSim::Runner::DisplacePointToTGeometryFrame(const XYZPoint& point)

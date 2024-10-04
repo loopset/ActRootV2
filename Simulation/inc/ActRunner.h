@@ -58,8 +58,8 @@ public:
 
     double EnergyBeforeGas(double Esil, double trackLengthInMM, const std::string& gasKey);
 
-    XYZPoint SampleVertex(double meanY = -1, double sigmaY = -1, double meanZ = -1, double sigmaZ = -1,
-                          TH3F* histBeam = nullptr);
+    std::pair<XYZPoint, XYZPoint> SampleVertex(double meanY = -1, double sigmaY = -1, double meanZ = -1,
+                                                double sigmaZ = -1, TH3F* histBeam = nullptr);
     XYZPoint DisplacePointToTGeometryFrame(const XYZPoint& pointInMM);
 
     XYZPoint DisplacePointToStandardFrame(const XYZPoint& pointGeo);
