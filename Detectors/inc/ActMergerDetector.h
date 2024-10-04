@@ -189,6 +189,7 @@ private:
     void InitClocks();
     void ReadSilSpecs(const std::string& file);
     void DoMerge();
+    void ClassifyEvent();
     // Inner functions of Merger detector
     bool IsDoable();
     void ConvertToPhysicalUnits();

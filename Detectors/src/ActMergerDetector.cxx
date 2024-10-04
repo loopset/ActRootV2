@@ -250,6 +250,10 @@ void ActRoot::MergerDetector::BuildEventFilter()
     }
 }
 
+void ActRoot::MergerDetector::ClassifyEvent()
+{
+    // By track number
+}
 
 void ActRoot::MergerDetector::DoMerge()
 {
@@ -333,8 +337,6 @@ void ActRoot::MergerDetector::DoMerge()
 
 void ActRoot::MergerDetector::BuildEventData(int run, int entry)
 {
-    if(fIsEnabled)
-        return;
     // Reset clears iterators of MergerData and sets [run, entry]
     Reset(run, entry);
     // Merge
