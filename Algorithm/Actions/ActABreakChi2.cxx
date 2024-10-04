@@ -129,6 +129,8 @@ void ActAlgorithm::Actions::BreakChi2::Run()
     // Append clusters to original TPCData
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
+    if(fDoBreakMultiTracks)
+        BreakMultiTrack();
 }
 
 void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
