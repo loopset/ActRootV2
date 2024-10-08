@@ -9,9 +9,9 @@ namespace Actions
 class CleanPileUp : public VAction
 {
 private:
-    double fXPercent {};   //!< Min X percent to be considered pileup
-    double fLowerZ {}; //!< Lower Z frontier
-    double fUpperZ {}; //!< Upper Z frontier
+    double fXPercent {}; //!< Min X percent to be considered pileup
+    double fLowerZ {};   //!< Lower Z frontier
+    double fUpperZ {};   //!< Upper Z frontier
 public:
     CleanPileUp() : VAction("CleanPileUp") {}
 
