@@ -16,6 +16,8 @@ void ActAlgorithm::Actions::CleanZs::ReadConfiguration(std::shared_ptr<ActRoot::
 
 void ActAlgorithm::Actions::CleanZs::Run()
 {
+    if(!fIsEnabled)
+        return;
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
         // 1-> Check if the track is vertical
