@@ -4,6 +4,7 @@
 #include "ActAClean.h"
 #include "ActACleanDeltas.h"
 #include "ActACleanPileUp.h"
+#include "ActACleanZs.h"
 #include "ActAMerge.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
@@ -24,6 +25,7 @@ ActAlgorithm::MultiAction::MultiAction()
     fMap["CleanPileUp"] = &RegisterAction<Actions::CleanPileUp>;
     fMap["Merge"] = &RegisterAction<Actions::Merge>;
     fMap["CleanDeltas"] = &RegisterAction<Actions::CleanDeltas>;
+    fMap["CleanZs"] = &RegisterAction<Actions::CleanZs>;
 }
 
 ActAlgorithm::MultiAction::Ptr ActAlgorithm::MultiAction::ConstructAction(const std::string& actionID)
