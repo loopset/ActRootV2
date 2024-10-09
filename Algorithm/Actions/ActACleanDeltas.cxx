@@ -17,6 +17,8 @@ void ActAlgorithm::Actions::CleanDeltas::ReadConfiguration(std::shared_ptr<ActRo
 
 void ActAlgorithm::Actions::CleanDeltas::Run()
 {
+    if(!fIsEnabled)
+        return;
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
         // 1-> Check whether cluster has a large Chi2
