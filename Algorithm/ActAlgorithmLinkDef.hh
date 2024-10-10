@@ -43,4 +43,5 @@
 #pragma link C++ class ActAlgorithm::Actions::Merge;
 #pragma link C++ class ActAlgorithm::Actions::CleanDeltas;
 #pragma link C++ class ActAlgorithm::Actions::CleanZs;
+#pragma link C++ class ActAlgorithm::Actions::CleanBadFits;
 #endif
