@@ -12,6 +12,7 @@
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
 #include "ActVCluster.h"
+#include "ActAFindRP.h"
 
 #include <memory>
 #include <stdexcept>
@@ -28,6 +29,7 @@ ActAlgorithm::MultiAction::MultiAction()
     fMap["CleanDeltas"] = &RegisterAction<Actions::CleanDeltas>;
     fMap["CleanZs"] = &RegisterAction<Actions::CleanZs>;
     fMap["CleanBadFits"] = &RegisterAction<Actions::CleanBadFits>;
+    fMap["FindRP"] = &RegisterAction<Actions::FindRP>;
 }
 
 ActAlgorithm::MultiAction::Ptr ActAlgorithm::MultiAction::ConstructAction(const std::string& actionID)

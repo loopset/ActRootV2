@@ -9,8 +9,8 @@ namespace Actions
 class CleanZs : public VAction
 {
 private:
-    double fZDirectionThreshold {};
-    double fMaxSpanInPlane {};
+    double fZDirectionThreshold {}; // Min Z direction component
+    double fMaxSpanInPlane {};      // Max width of the cluster in X or Y
 
 public:
     CleanZs() : VAction("CleanZs") {}
