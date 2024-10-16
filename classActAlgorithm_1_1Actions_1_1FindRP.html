@@ -124,6 +124,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a989a326ed085b3e76281dd0cca0c2ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ac59a378ddff74d5c64688bf098b365" id="r_a0ac59a378ddff74d5c64688bf098b365"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a0ac59a378ddff74d5c64688bf098b365">DetermineBeamLikes</a> ()</td></tr>
 <tr class="separator:a0ac59a378ddff74d5c64688bf098b365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace2f96e3a54835cafc27baea6033ff93" id="r_ace2f96e3a54835cafc27baea6033ff93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93">FindPreliminaryRP</a> ()</td></tr>
+<tr class="separator:ace2f96e3a54835cafc27baea6033ff93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActAlgorithm_1_1VAction"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActAlgorithm_1_1VAction')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActAlgorithm_1_1VAction.html">ActAlgorithm::VAction</a></td></tr>
 <tr class="memitem:a2f668f17900dee55342988c465510aba inherit pub_methods_classActAlgorithm_1_1VAction" id="r_a2f668f17900dee55342988c465510aba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a> (const std::string &amp;actionID=&quot;Base&quot;)</td></tr>
 <tr class="separator:a2f668f17900dee55342988c465510aba inherit pub_methods_classActAlgorithm_1_1VAction"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,6 +158,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:af9a277e1a9c9c698c46f26d0742787ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae64bb177339132617aa18df601c1b3c3" id="r_ae64bb177339132617aa18df601c1b3c3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">fBeamLikeParallelF</a> {}</td></tr>
 <tr class="separator:ae64bb177339132617aa18df601c1b3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a262330f67df507b7c3de4ba8942bfe7a" id="r_a262330f67df507b7c3de4ba8942bfe7a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">fRPDistThresh</a> {}</td></tr>
+<tr class="separator:a262330f67df507b7c3de4ba8942bfe7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -205,7 +209,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   15</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;FindRP&quot;</span>) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;FindRP&quot;</span>) {}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2f668f17900dee55342988c465510aba"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">ActAlgorithm::VAction::VAction</a></div><div class="ttdeci">VAction(const std::string &amp;actionID=&quot;Base&quot;)</div><div class="ttdef"><b>Definition</b> ActVAction.cxx:7</div></div>
 </div><!-- fragment -->
 </div>
@@ -225,32 +229,32 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordtype">int</span> nBeam {};</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
-<div class="line"><span class="lineno">   42</span>    {</div>
-<div class="line"><span class="lineno">   43</span>        <span class="comment">// 1-&gt; Check if xmin is bellow threshold</span></div>
-<div class="line"><span class="lineno">   44</span>        <span class="keyword">auto</span> [xmin, xmax] {it-&gt;GetXRange()};</div>
-<div class="line"><span class="lineno">   45</span>        <span class="keywordtype">bool</span> isInEntrance {xmin &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#af9a277e1a9c9c698c46f26d0742787ad">fBeamLikeXMinThresh</a>};</div>
-<div class="line"><span class="lineno">   46</span>        <span class="comment">// 2-&gt; Check if track is parallel</span></div>
-<div class="line"><span class="lineno">   47</span>        <span class="keyword">auto</span> uDir {it-&gt;GetLine().GetDirection().Unit()};</div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordtype">bool</span> isAlongX {std::abs(uDir.X()) &gt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">fBeamLikeParallelF</a>};</div>
-<div class="line"><span class="lineno">   49</span>        <span class="comment">// 3-&gt; If both conditions true, mark as beam-like</span></div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">if</span>(isInEntrance &amp;&amp; isAlongX)</div>
-<div class="line"><span class="lineno">   51</span>        {</div>
-<div class="line"><span class="lineno">   52</span>            it-&gt;SetBeamLike(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   53</span>            nBeam++;</div>
-<div class="line"><span class="lineno">   54</span>        }</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span>    <span class="comment">// Print</span></div>
-<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">   58</span>    {</div>
-<div class="line"><span class="lineno">   59</span>        std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;---- Beam-Like ID verbose ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   60</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; N beam clusters  : &quot;</span> &lt;&lt; nBeam &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   61</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; N total clusters : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   62</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   63</span>    }</div>
-<div class="line"><span class="lineno">   64</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{</div>
+<div class="line"><span class="lineno">   41</span>    <span class="keywordtype">int</span> nBeam {};</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        <span class="comment">// 1-&gt; Check if xmin is bellow threshold</span></div>
+<div class="line"><span class="lineno">   45</span>        <span class="keyword">auto</span> [xmin, xmax] {it-&gt;GetXRange()};</div>
+<div class="line"><span class="lineno">   46</span>        <span class="keywordtype">bool</span> isInEntrance {xmin &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#af9a277e1a9c9c698c46f26d0742787ad">fBeamLikeXMinThresh</a>};</div>
+<div class="line"><span class="lineno">   47</span>        <span class="comment">// 2-&gt; Check if track is parallel</span></div>
+<div class="line"><span class="lineno">   48</span>        <span class="keyword">auto</span> uDir {it-&gt;GetLine().GetDirection().Unit()};</div>
+<div class="line"><span class="lineno">   49</span>        <span class="keywordtype">bool</span> isAlongX {std::abs(uDir.X()) &gt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">fBeamLikeParallelF</a>};</div>
+<div class="line"><span class="lineno">   50</span>        <span class="comment">// 3-&gt; If both conditions true, mark as beam-like</span></div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">if</span>(isInEntrance &amp;&amp; isAlongX)</div>
+<div class="line"><span class="lineno">   52</span>        {</div>
+<div class="line"><span class="lineno">   53</span>            it-&gt;SetBeamLike(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   54</span>            nBeam++;</div>
+<div class="line"><span class="lineno">   55</span>        }</div>
+<div class="line"><span class="lineno">   56</span>    }</div>
+<div class="line"><span class="lineno">   57</span>    <span class="comment">// Print</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">   59</span>    {</div>
+<div class="line"><span class="lineno">   60</span>        std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;---- Beam-Like ID verbose ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   61</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; N beam clusters  : &quot;</span> &lt;&lt; nBeam &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   62</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; N total clusters : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   63</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   64</span>    }</div>
+<div class="line"><span class="lineno">   65</span>}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition</b> ActColors.h:18</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_ae64bb177339132617aa18df601c1b3c3"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">ActAlgorithm::Actions::FindRP::fBeamLikeParallelF</a></div><div class="ttdeci">double fBeamLikeParallelF</div><div class="ttdef"><b>Definition</b> ActAFindRP.h:13</div></div>
@@ -258,6 +262,73 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a07fee27dcb3da2c28d912278dc290f53"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">ActAlgorithm::VAction::fIsVerbose</a></div><div class="ttdeci">bool fIsVerbose</div><div class="ttdef"><b>Definition</b> ActVAction.h:37</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_add8078a2aa1a83e3eb110a0274a8908f"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">ActAlgorithm::VAction::fTPCData</a></div><div class="ttdeci">ActRoot::TPCData * fTPCData</div><div class="ttdef"><b>Definition</b> ActVAction.h:32</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCData_html_adf84fa184a479d60824d87ec02b64b99"><div class="ttname"><a href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">ActRoot::TPCData::fClusters</a></div><div class="ttdeci">std::vector&lt; Cluster &gt; fClusters</div><div class="ttdef"><b>Definition</b> ActTPCData.h:19</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ace2f96e3a54835cafc27baea6033ff93" name="ace2f96e3a54835cafc27baea6033ff93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace2f96e3a54835cafc27baea6033ff93">&#9670;&#160;</a></span>FindPreliminaryRP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActAlgorithm::Actions::FindRP::FindPreliminaryRP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
+<div class="line"><span class="lineno">   69</span>    <span class="comment">// If there is only one track, set to delete</span></div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size() == 0)</div>
+<div class="line"><span class="lineno">   71</span>        <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin()-&gt;SetToDelete(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <span class="keyword">typedef</span> std::vector&lt;std::pair&lt;XYZPoint, std::pair&lt;int, int&gt;&gt;&gt; <a class="code hl_typedef" href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">RPVector</a>; <span class="comment">// includes RP and pair of indexes as values</span></div>
+<div class="line"><span class="lineno">   74</span>    <span class="comment">// Declare vector of RPs</span></div>
+<div class="line"><span class="lineno">   75</span>    <a class="code hl_typedef" href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">RPVector</a> rps;</div>
+<div class="line"><span class="lineno">   76</span>    <span class="comment">// Run</span></div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size(); i &lt; size; i++)</div>
+<div class="line"><span class="lineno">   78</span>    {</div>
+<div class="line"><span class="lineno">   79</span>        <span class="comment">// Get clusters as iterators</span></div>
+<div class="line"><span class="lineno">   80</span>        <span class="keyword">auto</span> out {<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin() + i};</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = i + 1; j &lt; size; j++) <span class="comment">// only get diferent clusters</span></div>
+<div class="line"><span class="lineno">   82</span>        {</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keyword">auto</span> in {<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin() + j};</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>            <span class="comment">// If both are BL, continue</span></div>
+<div class="line"><span class="lineno">   86</span>            <span class="keywordflow">if</span>(out-&gt;GetIsBeamLike() &amp;&amp; in-&gt;GetIsBeamLike())</div>
+<div class="line"><span class="lineno">   87</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>            <span class="comment">// Compute min distance between both lines</span></div>
+<div class="line"><span class="lineno">   90</span>            <span class="keyword">auto</span> [pA, pB, dist] {<a class="code hl_function" href="namespaceActAlgorithm.html#ac20e67a9ceefdb0dcf0261c0701b4a84">ComputeRPIn3D</a>(out-&gt;GetLine().GetPoint(), out-&gt;GetLine().GetDirection(),</div>
+<div class="line"><span class="lineno">   91</span>                                               in-&gt;GetLine().GetPoint(), in-&gt;GetLine().GetDirection())};</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">if</span>(dist &lt; 0) <span class="comment">// just in case they are parellel</span></div>
+<div class="line"><span class="lineno">   94</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   95</span>            <span class="comment">// Build RP as mean of A and B</span></div>
+<div class="line"><span class="lineno">   96</span>            <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#ae74bd7aea498641186a521b3d9d77808">XYZPoint</a> rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>            <span class="comment">// Check that all points are valid</span></div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordtype">bool</span> checkA {<a class="code hl_function" href="namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2">IsRPValid</a>(pA, <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a44d1d4387aea6b157a12e40dbff715b3">GetTPCParameters</a>())};</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordtype">bool</span> checkB {<a class="code hl_function" href="namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2">IsRPValid</a>(pB, <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a44d1d4387aea6b157a12e40dbff715b3">GetTPCParameters</a>())};</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keywordtype">bool</span> checkRP {<a class="code hl_function" href="namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2">IsRPValid</a>(rp, <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a44d1d4387aea6b157a12e40dbff715b3">GetTPCParameters</a>())};</div>
+<div class="line"><span class="lineno">  102</span>            <span class="keyword">auto</span> checkPoints {checkA &amp;&amp; checkB &amp;&amp; checkRP};</div>
+<div class="line"><span class="lineno">  103</span>            <span class="comment">// Check distance is bellow threshold</span></div>
+<div class="line"><span class="lineno">  104</span>            <span class="keywordtype">bool</span> checkDist {dist &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">fRPDistThresh</a>};</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">if</span>(checkPoints &amp;&amp; checkDist)</div>
+<div class="line"><span class="lineno">  106</span>                rps.push_back({rp, {i, j}});</div>
+<div class="line"><span class="lineno">  107</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  108</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  109</span>        }</div>
+<div class="line"><span class="lineno">  110</span>    }</div>
+<div class="line"><span class="lineno">  111</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a262330f67df507b7c3de4ba8942bfe7a"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">ActAlgorithm::Actions::FindRP::fRPDistThresh</a></div><div class="ttdeci">double fRPDistThresh</div><div class="ttdef"><b>Definition</b> ActAFindRP.h:14</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a44d1d4387aea6b157a12e40dbff715b3"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a44d1d4387aea6b157a12e40dbff715b3">ActAlgorithm::VAction::GetTPCParameters</a></div><div class="ttdeci">ActRoot::TPCParameters * GetTPCParameters() const</div><div class="ttdef"><b>Definition</b> ActVAction.h:44</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1VAction_html_ae74bd7aea498641186a521b3d9d77808"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#ae74bd7aea498641186a521b3d9d77808">ActAlgorithm::VAction::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPoint XYZPoint</div><div class="ttdef"><b>Definition</b> ActVAction.h:26</div></div>
+<div class="ttc" id="anamespaceActAlgorithm_html_a25ab775a4c2a4cfb2a6466ebb2b11a27"><div class="ttname"><a href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">ActAlgorithm::RPVector</a></div><div class="ttdeci">std::vector&lt; RPElement &gt; RPVector</div><div class="ttdef"><b>Definition</b> ActAlgoFuncs.h:24</div></div>
+<div class="ttc" id="anamespaceActAlgorithm_html_a2ac6481a4ea05cee2b3c7b2c907beab2"><div class="ttname"><a href="namespaceActAlgorithm.html#a2ac6481a4ea05cee2b3c7b2c907beab2">ActAlgorithm::IsRPValid</a></div><div class="ttdeci">bool IsRPValid(const XYZPoint &amp;rp, ActRoot::TPCParameters *tpc)</div><div class="ttdef"><b>Definition</b> ActAlgoFuncs.cxx:58</div></div>
+<div class="ttc" id="anamespaceActAlgorithm_html_ac20e67a9ceefdb0dcf0261c0701b4a84"><div class="ttname"><a href="namespaceActAlgorithm.html#ac20e67a9ceefdb0dcf0261c0701b4a84">ActAlgorithm::ComputeRPIn3D</a></div><div class="ttdeci">std::tuple&lt; XYZPoint, XYZPoint, double &gt; ComputeRPIn3D(XYZPoint pA, XYZVector vA, XYZPoint pB, XYZVector vB)</div><div class="ttdef"><b>Definition</b> ActAlgoFuncs.cxx:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -285,17 +356,17 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a376e68966cbc0e74bbbab6f5d10afcdc">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   29</span>    {</div>
-<div class="line"><span class="lineno">   30</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   32</span>    }</div>
-<div class="line"><span class="lineno">   33</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  XPercent : &quot;</span> &lt;&lt; 2 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   36</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
+<div class="line"><span class="lineno">   28</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
+<div class="line"><span class="lineno">   34</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  XPercent : &quot;</span> &lt;&lt; 2 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   35</span> </div>
+<div class="line"><span class="lineno">   36</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   37</span>}</div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition</b> ActColors.h:21</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2a299818265c1afa62ef5e9917ecb3b5"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">ActAlgorithm::VAction::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdef"><b>Definition</b> ActVAction.h:36</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_abc573631cdaa8b4e3d34aacc0fdaf22c"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">ActAlgorithm::VAction::GetActionID</a></div><div class="ttdeci">const std::string &amp; GetActionID() const</div><div class="ttdef"><b>Definition</b> ActVAction.h:51</div></div>
@@ -327,15 +398,15 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a6132baf4ee0100109bb6ecb51baec70f">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    7</span>{</div>
-<div class="line"><span class="lineno">    8</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a> = block-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
-<div class="line"><span class="lineno">    9</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   10</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   11</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamLikeParallelF&quot;</span>))</div>
-<div class="line"><span class="lineno">   12</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">fBeamLikeParallelF</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamLikeParallelF&quot;</span>);</div>
-<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamLikeXMinThresh&quot;</span>))</div>
-<div class="line"><span class="lineno">   14</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#af9a277e1a9c9c698c46f26d0742787ad">fBeamLikeXMinThresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamLikeXMinThresh&quot;</span>);</div>
-<div class="line"><span class="lineno">   15</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
+<div class="line"><span class="lineno">   10</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a> = block-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   12</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamLikeParallelF&quot;</span>))</div>
+<div class="line"><span class="lineno">   14</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ae64bb177339132617aa18df601c1b3c3">fBeamLikeParallelF</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamLikeParallelF&quot;</span>);</div>
+<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamLikeXMinThresh&quot;</span>))</div>
+<div class="line"><span class="lineno">   16</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#af9a277e1a9c9c698c46f26d0742787ad">fBeamLikeXMinThresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamLikeXMinThresh&quot;</span>);</div>
+<div class="line"><span class="lineno">   17</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -363,13 +434,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a03261405a5648594cf8b515c74024990">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
-<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   20</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   21</span>    <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a0ac59a378ddff74d5c64688bf098b365">DetermineBeamLikes</a>();</div>
-<div class="line"><span class="lineno">   22</span>    </div>
-<div class="line"><span class="lineno">   23</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a0ac59a378ddff74d5c64688bf098b365"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a0ac59a378ddff74d5c64688bf098b365">ActAlgorithm::Actions::FindRP::DetermineBeamLikes</a></div><div class="ttdeci">void DetermineBeamLikes()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:38</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>{</div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   22</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a0ac59a378ddff74d5c64688bf098b365">DetermineBeamLikes</a>();</div>
+<div class="line"><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a0ac59a378ddff74d5c64688bf098b365"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a0ac59a378ddff74d5c64688bf098b365">ActAlgorithm::Actions::FindRP::DetermineBeamLikes</a></div><div class="ttdeci">void DetermineBeamLikes()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:39</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -417,6 +487,29 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   12</span>{}; <span class="comment">// Min value in X that has to be in the cluster to be beam-like</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a262330f67df507b7c3de4ba8942bfe7a" name="a262330f67df507b7c3de4ba8942bfe7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a262330f67df507b7c3de4ba8942bfe7a">&#9670;&#160;</a></span>fRPDistThresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActAlgorithm::Actions::FindRP::fRPDistThresh {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   14</span>{};       <span class="comment">// Max distance between two lines to form a RP</span></div>
 </div><!-- fragment -->
 </div>
 </div>
