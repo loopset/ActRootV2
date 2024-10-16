@@ -1,7 +1,9 @@
 #include "ActAFindRP.h"
 
+#include "ActAlgoFuncs.h"
 #include "ActColors.h"
 #include "ActTPCData.h"
+#include "ActTPCParameters.h"
 
 void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
@@ -19,7 +21,6 @@ void ActAlgorithm::Actions::FindRP::Run()
     if(!fIsEnabled)
         return;
     DetermineBeamLikes();
-    
 }
 
 void ActAlgorithm::Actions::FindRP::Print() const
@@ -60,5 +61,51 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
         std::cout << "-> N beam clusters  : " << nBeam << '\n';
         std::cout << "-> N total clusters : " << fTPCData->fClusters.size() << '\n';
         std::cout << "-------------------------" << RESET << '\n';
+    }
+}
+
+void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
+{
+    // If there is only one track, set to delete
+    if(fTPCData->fClusters.size() == 0)
+        fTPCData->fClusters.begin()->SetToDelete(true);
+
+    typedef std::vector<std::pair<XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair of indexes as values
+    // Declare vector of RPs
+    RPVector rps;
+    // Run
+    for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
+    {
+        // Get clusters as iterators
+        auto out {fTPCData->fClusters.begin() + i};
+        for(int j = i + 1; j < size; j++) // only get diferent clusters
+        {
+            auto in {fTPCData->fClusters.begin() + j};
+
+            // If both are BL, continue
+            if(out->GetIsBeamLike() && in->GetIsBeamLike())
+                continue;
+
+            // Compute min distance between both lines
+            auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
+                                               in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+
+            if(dist < 0) // just in case they are parellel
+                continue;
+            // Build RP as mean of A and B
+            XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+
+            // Check that all points are valid
+            bool checkA {IsRPValid(pA, GetTPCParameters())};
+            bool checkB {IsRPValid(pB, GetTPCParameters())};
+            bool checkRP {IsRPValid(rp, GetTPCParameters())};
+            auto checkPoints {checkA && checkB && checkRP};
+            // Check distance is bellow threshold
+            bool checkDist {dist <= fRPDistThresh};
+            if(checkPoints && checkDist)
+                rps.push_back({rp, {i, j}});
+            else
+                continue;
+        }
     }
 }
