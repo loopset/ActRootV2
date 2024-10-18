@@ -1,51 +1,20 @@
 <map id="Detectors/inc/ActSilDetector.h" name="Detectors/inc/ActSilDetector.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="419,5,635,31"/>
-<area shape="rect" id="Node000002" href="$ActSilData_8h.html" title=" " alt="" coords="293,79,396,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="499,33,388,76,386,71,497,28"/>
-<area shape="rect" id="Node000003" href="$ActVData_8h.html" title=" " alt="" coords="432,152,527,177"/>
-<area shape="poly" id="edge17_Node000001_Node000003" title=" " alt="" coords="525,32,509,80,489,139,484,138,503,78,520,30"/>
-<area shape="rect" id="Node000008" href="$ActSilParameters_8h.html" title=" " alt="" coords="109,152,255,177"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="436,33,359,51,319,64,282,81,238,111,204,143,200,139,235,107,279,76,318,59,358,46,435,28"/>
-<area shape="rect" id="Node000011" href="$ActTPCLegacyData_8h.html" title=" " alt="" coords="810,152,967,177"/>
-<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="557,28,849,145,847,149,555,33"/>
-<area shape="rect" id="Node000014" href="$ActVDetector_8h.html" title=" " alt="" coords="517,79,636,104"/>
-<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="538,29,563,66,559,69,533,33"/>
-<area shape="rect" id="Node000018" title=" " alt="" coords="991,152,1061,177"/>
-<area shape="poly" id="edge31_Node000001_Node000018" title=" " alt="" coords="568,28,979,147,977,152,566,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,102,446,143,444,148,365,106"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="330,152,407,177"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="351,103,363,138,358,140,346,105"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="154,225,213,251"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="294,100,180,119,129,134,111,143,99,154,94,162,94,170,103,187,122,203,145,217,142,222,119,208,99,191,89,172,89,161,95,150,108,139,127,129,179,114,293,95"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,225,129,251"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="293,101,176,120,122,135,102,144,88,154,79,166,73,181,69,212,64,211,68,180,74,164,84,150,99,139,120,130,175,115,293,95"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="519,225,581,251"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="337,106,318,140,314,159,320,175,388,194,506,223,505,229,387,200,316,179,309,159,312,138,333,103"/>
-<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="185,178,186,212,180,212,180,178"/>
-<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="165,180,99,220,96,216,162,175"/>
-<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="248,175,501,223,506,224,504,229,500,228,247,180"/>
-<area shape="rect" id="Node000009" href="$ActVParameters_8h.html" title=" " alt="" coords="265,225,403,251"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="208,175,298,217,296,222,205,180"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="438,225,489,251"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="228,175,425,224,424,230,227,180"/>
-<area shape="poly" id="edge16_Node000011_Node000007" title=" " alt="" coords="830,180,597,228,595,228,594,223,596,223,829,175"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="929,225,1008,251"/>
-<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="903,175,947,214,944,218,900,179"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="821,225,905,251"/>
-<area shape="poly" id="edge15_Node000011_Node000013" title=" " alt="" coords="887,179,874,213,869,212,882,177"/>
-<area shape="poly" id="edge27_Node000014_Node000003" title=" " alt="" coords="563,106,508,146,505,141,559,102"/>
-<area shape="poly" id="edge30_Node000014_Node000004" title=" " alt="" coords="544,107,416,150,415,145,542,101"/>
-<area shape="poly" id="edge28_Node000014_Node000009" title=" " alt="" coords="577,105,567,141,556,162,541,179,518,193,485,205,407,225,406,220,484,200,516,188,538,175,552,159,562,139,572,104"/>
-<area shape="poly" id="edge26_Node000014_Node000011" title=" " alt="" coords="627,101,826,146,824,152,626,107"/>
-<area shape="rect" id="Node000015" href="$ActCalibrationManager_8h.html" title=" " alt="" coords="603,152,785,177"/>
-<area shape="poly" id="edge19_Node000014_Node000015" title=" " alt="" coords="597,102,664,142,662,147,594,106"/>
-<area shape="poly" id="edge29_Node000014_Node000018" title=" " alt="" coords="637,97,788,117,978,149,977,155,787,123,636,102"/>
-<area shape="poly" id="edge21_Node000015_Node000005" title=" " alt="" coords="604,180,253,228,227,232,226,227,252,223,604,175"/>
-<area shape="poly" id="edge23_Node000015_Node000006" title=" " alt="" coords="603,177,397,198,143,228,143,223,396,193,602,172"/>
-<area shape="poly" id="edge25_Node000015_Node000007" title=" " alt="" coords="672,180,587,221,585,217,670,175"/>
-<area shape="poly" id="edge20_Node000015_Node000010" title=" " alt="" coords="658,180,503,227,501,222,656,175"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="692,225,747,251"/>
-<area shape="poly" id="edge22_Node000015_Node000016" title=" " alt="" coords="701,177,713,212,708,213,696,179"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="608,225,668,251"/>
-<area shape="poly" id="edge24_Node000015_Node000017" title=" " alt="" coords="687,179,658,216,653,213,683,176"/>
+<area shape="rect" id="node1" title=" " alt="" coords="419,5,635,32"/>
+<area shape="rect" id="node2" href="$ActSilData_8h.html" title=" " alt="" coords="293,80,396,107"/>
+<area shape="rect" id="node3" href="$ActVData_8h.html" title=" " alt="" coords="432,155,527,181"/>
+<area shape="rect" id="node8" href="$ActSilParameters_8h.html" title=" " alt="" coords="109,155,255,181"/>
+<area shape="rect" id="node11" href="$ActTPCLegacyData_8h.html" title=" " alt="" coords="810,155,967,181"/>
+<area shape="rect" id="node14" href="$ActVDetector_8h.html" title=" " alt="" coords="517,80,636,107"/>
+<area shape="rect" id="node18" title=" " alt="" coords="991,155,1061,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="330,155,407,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="154,229,213,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,229,129,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="519,229,581,256"/>
+<area shape="rect" id="node9" href="$ActVParameters_8h.html" title=" " alt="" coords="265,229,403,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="438,229,489,256"/>
+<area shape="rect" id="node12" title=" " alt="" coords="929,229,1008,256"/>
+<area shape="rect" id="node13" title=" " alt="" coords="821,229,905,256"/>
+<area shape="rect" id="node15" href="$ActCalibrationManager_8h.html" title=" " alt="" coords="603,155,785,181"/>
+<area shape="rect" id="node16" title=" " alt="" coords="692,229,747,256"/>
+<area shape="rect" id="node17" title=" " alt="" coords="608,229,668,256"/>
 </map>

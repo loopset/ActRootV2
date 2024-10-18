@@ -1,67 +1,35 @@
 <map id="Core/inc/ActColors.h" name="Core/inc/ActColors.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="3722,5,3875,31"/>
-<area shape="rect" id="Node000002" href="$ActABreakChi2_8cxx.html" title=" " alt="" coords="5,79,216,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3708,22,3059,22,2051,28,1511,35,1000,46,559,61,227,81,216,82,216,77,226,76,559,56,1000,40,1511,29,2051,22,3059,17,3708,16"/>
-<area shape="rect" id="Node000003" href="$ActAClean_8cxx.html" title=" " alt="" coords="239,86,475,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="3708,22,3101,24,2168,32,1200,50,793,64,487,81,425,89,424,83,486,76,793,58,1200,45,2168,27,3101,19,3708,17"/>
-<area shape="rect" id="Node000004" href="$ActACleanBadFits_8cxx.html" title=" " alt="" coords="499,79,709,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="3708,22,3139,24,2274,32,1379,49,1003,63,720,81,709,82,709,77,720,76,1003,58,1379,44,2273,26,3139,19,3708,17"/>
-<area shape="rect" id="Node000005" href="$ActACleanDeltas_8cxx.html" title=" " alt="" coords="733,79,942,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="3708,22,3177,25,2379,33,1558,51,1213,64,954,81,942,82,942,77,953,76,1213,59,1558,46,2379,28,3177,20,3708,17"/>
-<area shape="rect" id="Node000006" href="$ActACleanPileUp_8cxx.html" title=" " alt="" coords="966,79,1175,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="3708,22,3216,26,2486,35,1737,53,1424,66,1187,81,1176,82,1175,77,1186,76,1423,60,1737,48,2486,30,3216,21,3708,17"/>
-<area shape="rect" id="Node000007" href="$ActACleanZs_8cxx.html" title=" " alt="" coords="1199,79,1409,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="3708,23,3255,27,2594,37,1917,55,1634,67,1420,81,1409,82,1409,77,1420,76,1634,61,1917,49,2593,32,3255,22,3708,17"/>
-<area shape="rect" id="Node000008" href="$ActAFindRP_8cxx.html" title=" " alt="" coords="1433,79,1631,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="3708,23,3293,28,2697,39,2090,56,1836,68,1644,81,1632,83,1631,77,1644,76,1836,62,2089,51,2696,33,3293,23,3708,17"/>
-<area shape="rect" id="Node000009" href="$ActAMerge_8cxx.html" title=" " alt="" coords="1656,86,1896,111"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="3708,21,3409,22,2965,29,2442,47,2173,62,1908,81,1846,89,1846,83,1908,76,2172,56,2442,41,2965,23,3409,17,3708,16"/>
-<area shape="rect" id="Node000010" href="$ActAlgoFuncs_8cxx.html" title=" " alt="" coords="1920,86,2147,111"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="3708,22,3444,23,3061,31,2614,49,2384,63,2159,81,2100,89,2100,83,2158,76,2384,58,2614,44,3061,26,3444,18,3708,16"/>
-<area shape="rect" id="Node000011" href="$ActClIMB_8cxx.html" title=" " alt="" coords="2171,86,2370,111"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="3708,22,3476,24,3148,32,2768,50,2573,64,2382,81,2330,89,2329,83,2381,76,2572,58,2768,45,3148,27,3476,19,3708,17"/>
-<area shape="rect" id="Node000012" href="$ActCorrector_8cxx.html" title=" " alt="" coords="2394,86,2614,111"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="3708,23,3244,38,2937,56,2626,81,2570,89,2570,83,2625,76,2936,50,3244,33,3708,18"/>
-<area shape="rect" id="Node000013" href="$ActMultiRegion_8cxx.html" title=" " alt="" coords="2638,86,2877,111"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="3709,26,3349,44,3120,60,2888,81,2830,89,2829,83,2888,76,3119,55,3349,39,3708,20"/>
-<area shape="rect" id="Node000014" href="$ActMultiStep_8cxx.html" title=" " alt="" coords="2901,86,3123,111"/>
-<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="3709,28,3451,49,3136,81,3083,89,3082,83,3136,76,3451,44,3708,23"/>
-<area shape="rect" id="Node000015" href="$ActRANSAC_8cxx.html" title=" " alt="" coords="3148,86,3364,111"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="3709,34,3376,81,3329,89,3328,83,3376,76,3708,29"/>
-<area shape="rect" id="Node000016" href="$ActInputData_8cxx.html" title=" " alt="" coords="3389,86,3579,111"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="3740,37,3530,89,3529,83,3739,31"/>
-<area shape="rect" id="Node000017" href="$ActOptions_8cxx.html" title=" " alt="" coords="3603,86,3781,111"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="3774,41,3709,88,3706,84,3770,37"/>
-<area shape="rect" id="Node000018" href="$ActOutputData_8cxx.html" title=" " alt="" coords="3805,86,4008,111"/>
-<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="3827,37,3892,84,3889,88,3824,41"/>
-<area shape="rect" id="Node000019" href="$ActCluster_8cxx.html" title=" " alt="" coords="4032,86,4237,111"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="3861,31,4086,83,4085,89,3860,36"/>
-<area shape="rect" id="Node000020" href="$ActInputIterator_8cxx.html" title=" " alt="" coords="4261,86,4501,111"/>
-<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="3890,28,4250,76,4302,83,4301,89,4249,81,3889,34"/>
-<area shape="rect" id="Node000021" href="$ActMergerData_8cxx.html" title=" " alt="" coords="4525,86,4763,111"/>
-<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="3889,22,4168,43,4514,76,4570,83,4569,89,4513,81,4168,48,3889,28"/>
-<area shape="rect" id="Node000022" href="$ActMergerDetector_8cxx.html" title=" " alt="" coords="4787,86,5048,111"/>
-<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="3889,20,4275,39,4523,55,4775,76,4839,83,4838,89,4774,81,4523,60,4274,44,3889,25"/>
-<area shape="rect" id="Node000023" href="$ActSilDetector_8cxx.html" title=" " alt="" coords="5073,86,5303,111"/>
-<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="3890,18,4389,32,4722,50,5060,76,5119,83,5118,89,5060,81,4722,55,4389,38,3889,23"/>
-<area shape="rect" id="Node000024" href="$ActTPCDetector_8cxx.html" title=" " alt="" coords="5328,86,5568,111"/>
-<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="3889,17,4135,20,4488,29,4898,47,5316,76,5378,83,5377,89,5316,81,4898,52,4488,34,4135,25,3889,22"/>
-<area shape="rect" id="Node000025" href="$ActTPCParameters_8cxx.html" title=" " alt="" coords="5592,86,5851,111"/>
-<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="3889,17,4173,18,4591,26,5080,44,5333,58,5580,76,5646,83,5646,89,5580,81,5332,63,5080,50,4590,32,4173,24,3889,22"/>
-<area shape="rect" id="Node000026" href="$ActKinematics_8cxx.html" title=" " alt="" coords="5875,86,6093,111"/>
-<area shape="poly" id="edge25_Node000001_Node000026" title=" " alt="" coords="3889,18,4858,35,5438,53,5680,63,5863,76,5920,83,5920,89,5862,81,5679,69,5437,58,4858,41,3889,23"/>
-<area shape="rect" id="Node000027" href="$ActLine_8cxx.html" title=" " alt="" coords="6117,86,6291,111"/>
-<area shape="poly" id="edge26_Node000001_Node000027" title=" " alt="" coords="3890,17,4330,20,4971,30,5625,47,5899,60,6106,76,6153,83,6152,89,6105,81,5899,65,5625,53,4971,35,4330,26,3889,22"/>
-<area shape="rect" id="Node000028" href="$ActPIDCorrector_8cxx.html" title=" " alt="" coords="6315,86,6541,111"/>
-<area shape="poly" id="edge27_Node000001_Node000028" title=" " alt="" coords="3889,17,4362,22,5061,32,5777,50,6076,62,6303,76,6362,83,6362,89,6302,81,6076,67,5776,55,5061,38,4362,27,3889,23"/>
-<area shape="rect" id="Node000029" href="$ActSilMatrix_8cxx.html" title=" " alt="" coords="6566,86,6770,111"/>
-<area shape="poly" id="edge28_Node000001_Node000029" title=" " alt="" coords="3890,17,4405,20,5176,29,5970,46,6303,59,6554,76,6608,83,6608,89,6553,81,6302,65,5970,52,5176,34,4405,25,3889,22"/>
-<area shape="rect" id="Node000030" href="$ActSilSpecs_8cxx.html" title=" " alt="" coords="6795,86,6995,111"/>
-<area shape="poly" id="edge29_Node000001_Node000030" title=" " alt="" coords="3889,17,4443,19,5280,26,6146,44,6509,58,6783,76,6837,83,6836,89,6782,81,6509,63,6146,49,5280,32,4443,24,3889,22"/>
-<area shape="rect" id="Node000031" href="$ActKinematicGenerator_8cxx.html" title=" " alt="" coords="7019,79,7226,119"/>
-<area shape="poly" id="edge30_Node000001_Node000031" title=" " alt="" coords="3889,17,4479,18,5382,25,5863,33,6318,43,6711,57,7007,76,7019,77,7019,83,7006,81,6710,63,6318,48,5863,38,5382,31,4479,23,3889,22"/>
-<area shape="rect" id="Node000032" href="$ActHistogramPainter_8cxx.html" title=" " alt="" coords="7251,79,7429,119"/>
-<area shape="poly" id="edge31_Node000001_Node000032" title=" " alt="" coords="3889,17,5626,35,6643,53,7018,64,7239,76,7251,77,7250,83,7238,81,7017,69,6643,58,5626,41,3889,23"/>
-<area shape="rect" id="Node000033" href="$ActMTExecutor_8cxx.html" title=" " alt="" coords="7454,86,7666,111"/>
-<area shape="poly" id="edge32_Node000001_Node000033" title=" " alt="" coords="3889,16,4550,17,5579,22,6130,30,6651,40,7102,56,7442,76,7498,83,7498,89,7441,81,7102,61,6651,46,6130,35,5579,28,4550,22,3889,22"/>
+<area shape="rect" id="node1" title=" " alt="" coords="3722,5,3875,32"/>
+<area shape="rect" id="node2" href="$ActABreakChi2_8cxx.html" title=" " alt="" coords="5,80,216,121"/>
+<area shape="rect" id="node3" href="$ActAClean_8cxx.html" title=" " alt="" coords="239,87,475,114"/>
+<area shape="rect" id="node4" href="$ActACleanBadFits_8cxx.html" title=" " alt="" coords="499,80,709,121"/>
+<area shape="rect" id="node5" href="$ActACleanDeltas_8cxx.html" title=" " alt="" coords="733,80,942,121"/>
+<area shape="rect" id="node6" href="$ActACleanPileUp_8cxx.html" title=" " alt="" coords="966,80,1175,121"/>
+<area shape="rect" id="node7" href="$ActACleanZs_8cxx.html" title=" " alt="" coords="1199,80,1409,121"/>
+<area shape="rect" id="node8" href="$ActAFindRP_8cxx.html" title=" " alt="" coords="1433,80,1631,121"/>
+<area shape="rect" id="node9" href="$ActAMerge_8cxx.html" title=" " alt="" coords="1656,87,1896,114"/>
+<area shape="rect" id="node10" href="$ActAlgoFuncs_8cxx.html" title=" " alt="" coords="1920,87,2147,114"/>
+<area shape="rect" id="node11" href="$ActClIMB_8cxx.html" title=" " alt="" coords="2171,87,2370,114"/>
+<area shape="rect" id="node12" href="$ActCorrector_8cxx.html" title=" " alt="" coords="2394,87,2614,114"/>
+<area shape="rect" id="node13" href="$ActMultiRegion_8cxx.html" title=" " alt="" coords="2638,87,2877,114"/>
+<area shape="rect" id="node14" href="$ActMultiStep_8cxx.html" title=" " alt="" coords="2901,87,3123,114"/>
+<area shape="rect" id="node15" href="$ActRANSAC_8cxx.html" title=" " alt="" coords="3148,87,3364,114"/>
+<area shape="rect" id="node16" href="$ActInputData_8cxx.html" title=" " alt="" coords="3389,87,3579,114"/>
+<area shape="rect" id="node17" href="$ActOptions_8cxx.html" title=" " alt="" coords="3603,87,3781,114"/>
+<area shape="rect" id="node18" href="$ActOutputData_8cxx.html" title=" " alt="" coords="3805,87,4008,114"/>
+<area shape="rect" id="node19" href="$ActCluster_8cxx.html" title=" " alt="" coords="4032,87,4237,114"/>
+<area shape="rect" id="node20" href="$ActInputIterator_8cxx.html" title=" " alt="" coords="4261,87,4501,114"/>
+<area shape="rect" id="node21" href="$ActMergerData_8cxx.html" title=" " alt="" coords="4525,87,4763,114"/>
+<area shape="rect" id="node22" href="$ActMergerDetector_8cxx.html" title=" " alt="" coords="4787,87,5048,114"/>
+<area shape="rect" id="node23" href="$ActSilDetector_8cxx.html" title=" " alt="" coords="5073,87,5303,114"/>
+<area shape="rect" id="node24" href="$ActTPCDetector_8cxx.html" title=" " alt="" coords="5328,87,5568,114"/>
+<area shape="rect" id="node25" href="$ActTPCParameters_8cxx.html" title=" " alt="" coords="5592,87,5851,114"/>
+<area shape="rect" id="node26" href="$ActKinematics_8cxx.html" title=" " alt="" coords="5875,87,6093,114"/>
+<area shape="rect" id="node27" href="$ActLine_8cxx.html" title=" " alt="" coords="6117,87,6291,114"/>
+<area shape="rect" id="node28" href="$ActPIDCorrector_8cxx.html" title=" " alt="" coords="6315,87,6541,114"/>
+<area shape="rect" id="node29" href="$ActSilMatrix_8cxx.html" title=" " alt="" coords="6566,87,6770,114"/>
+<area shape="rect" id="node30" href="$ActSilSpecs_8cxx.html" title=" " alt="" coords="6795,87,6995,114"/>
+<area shape="rect" id="node31" href="$ActKinematicGenerator_8cxx.html" title=" " alt="" coords="7019,80,7226,121"/>
+<area shape="rect" id="node32" href="$ActHistogramPainter_8cxx.html" title=" " alt="" coords="7251,80,7429,121"/>
+<area shape="rect" id="node33" href="$ActMTExecutor_8cxx.html" title=" " alt="" coords="7454,87,7666,114"/>
 </map>
