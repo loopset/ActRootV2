@@ -103,14 +103,14 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             // Check that all points are valid
             bool checkA {IsRPValid(pA, GetTPCParameters())};
             bool checkB {IsRPValid(pB, GetTPCParameters())};
-            bool checkRP {IsRPValid(rp, GetTPCParameters())};
-            auto checkPoints {checkA && checkB && checkRP};
+            //bool checkRP {IsRPValid(rp, GetTPCParameters())};
+            //auto checkPoints {checkA && checkB && checkRP};
             // Check distance is bellow threshold
-            bool checkDist {dist <= fRPDistThresh};
-            if(checkPoints && checkDist)
-                rps.push_back({rp, {i, j}});
-            else
-                continue;
+            //bool checkDist {dist <= fRPDistThresh};
+            //if(checkPoints && checkDist)
+            //    rps.push_back({rp, {i, j}});
+            //else
+            //    continue;
         }
     }
 }
