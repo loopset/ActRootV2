@@ -15,11 +15,17 @@ private:
 public:
     FindRP() : VAction("FindRP") {}
 
+    typedef std::vector<std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>>> RPVector;
+    typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
+
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
     void Run() override;
     void Print() const override;
+
+private:
     void DetermineBeamLikes();
     void FindPreliminaryRP();
+    std::vector<RPCluster> ClusterAndSortRPs(RPVector);
 };
 } // namespace Actions
 } // namespace ActAlgorithm
