@@ -4,6 +4,11 @@
 #include "ActColors.h"
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
+#include "ActVAction.h"
+#include "Math/Point3D.h"
+
+#include <utility>
+#include <vector>
 
 void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
@@ -64,13 +69,13 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
     }
 }
 
+typedef std::vector<std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair of indexes as values
 void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 {
     // If there is only one track, set to delete
     if(fTPCData->fClusters.size() == 0)
         fTPCData->fClusters.begin()->SetToDelete(true);
 
-    typedef std::vector<std::pair<XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair of indexes as values
     // Declare vector of RPs
     RPVector rps;
     // Run
@@ -108,4 +113,10 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
                 continue;
         }
     }
+}
+
+typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
+std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(RPVector)
+{
+
 }
