@@ -111,7 +111,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             //    rps.push_back({rp, {i, j}});
             //else
             //    continue;
-            // testing github
+            //test
         }
     }
 }
