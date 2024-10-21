@@ -25,6 +25,7 @@ public:
 private:
     void DetermineBeamLikes();
     void FindPreliminaryRP();
+    bool IsRPValid(const XYZPoint & rp, ActRoot::TPCParameters * tpc);
     std::vector<RPCluster> ClusterAndSortRPs(RPVector);
 };
 } // namespace Actions

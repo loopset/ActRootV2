@@ -5,7 +5,6 @@
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
 #include "ActVAction.h"
-#include "Math/Point3D.h"
 
 #include <utility>
 #include <vector>
@@ -114,6 +113,15 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             //test again again
         }
     }
+}
+
+bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPoint & rp, ActRoot::TPCParameters * tpc)
+{
+    // Need to consider the offset in the voxels 
+    bool isInX {0.5 <= rp.X() && rp.X() <= (tpc->GetNPADSX() - 1) + 0.5};
+    bool isInY {0.5 <= rp.Y() && rp.Y() <= (tpc->GetNPADSY() - 1) + 0.5};
+    bool isInZ {0.5 <= rp.Z() && rp.Z() <= (tpc->GetNPADSZ() - 1) + 0.5};
+    return isInX && isInY && isInZ
 }
 
 typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
