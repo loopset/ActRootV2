@@ -907,7 +907,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    }</div>
 <div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    <span class="comment">// Sort</span></div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    <span class="keyword">auto</span> cmp {[](<span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">RPValue</a>&amp; vl, <span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">RPValue</a>&amp; vr)</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    <span class="keyword">auto</span> cmp {[](<span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#ad08d67242126af173fcb7a89d49e8cee">RPValue</a>&amp; vl, <span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#ad08d67242126af173fcb7a89d49e8cee">RPValue</a>&amp; vr)</div>
 <div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;              {</div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;                  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; l {vl.first};</div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;                  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; r {vr.first};</div>
@@ -922,7 +922,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;    std::vector&lt;std::vector&lt;RPValue&gt;&gt; clusters;</div>
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = rps.begin();;)</div>
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;    {</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;        <span class="keyword">auto</span> last {std::adjacent_find(it, rps.end(), [&amp;](<span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">RPValue</a>&amp; l, <span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">RPValue</a>&amp; r)</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;        <span class="keyword">auto</span> last {std::adjacent_find(it, rps.end(), [&amp;](<span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#ad08d67242126af173fcb7a89d49e8cee">RPValue</a>&amp; l, <span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#ad08d67242126af173fcb7a89d49e8cee">RPValue</a>&amp; r)</div>
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                                      { return (l.first - r.first).R() &gt; fRPDistCluster; })};</div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        <span class="keywordflow">if</span>(last == rps.end())</div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        {</div>
@@ -998,8 +998,8 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;              });</div>
 <div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;}</div>
-<div class="ttc" id="aActAFindRP_8cxx_html_af82a7d6173f340249e4da15304b4ca04"><div class="ttname"><a href="ActAFindRP_8cxx.html#af82a7d6173f340249e4da15304b4ca04">RPCluster</a></div><div class="ttdeci">std::pair&lt; ActAlgorithm::VAction::XYZPoint, std::set&lt; int &gt; &gt; RPCluster</div><div class="ttdef"><b>Definition:</b> ActAFindRP.cxx:179</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_a7ae833fa5c1961a3621ae0bc1a89074f"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">ActAlgorithm::MultiStep::RPValue</a></div><div class="ttdeci">std::pair&lt; XYZPoint, std::pair&lt; int, int &gt; &gt; RPValue</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:26</div></div>
+<div class="ttc" id="aActAFindRP_8cxx_html_ad08d67242126af173fcb7a89d49e8cee"><div class="ttname"><a href="ActAFindRP_8cxx.html#ad08d67242126af173fcb7a89d49e8cee">RPValue</a></div><div class="ttdeci">std::pair&lt; ActAlgorithm::VAction::XYZPoint, std::pair&lt; int, int &gt; &gt; RPValue</div><div class="ttdef"><b>Definition:</b> ActAFindRP.cxx:84</div></div>
+<div class="ttc" id="aActAFindRP_8cxx_html_af82a7d6173f340249e4da15304b4ca04"><div class="ttname"><a href="ActAFindRP_8cxx.html#af82a7d6173f340249e4da15304b4ca04">RPCluster</a></div><div class="ttdeci">std::pair&lt; ActAlgorithm::VAction::XYZPoint, std::set&lt; int &gt; &gt; RPCluster</div><div class="ttdef"><b>Definition:</b> ActAFindRP.cxx:189</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_ab78b4759e90c2b31b8b9ef821c59f516"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#ab78b4759e90c2b31b8b9ef821c59f516">ActAlgorithm::MultiStep::fRPDistValidate</a></div><div class="ttdeci">double fRPDistValidate</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:76</div></div>
 </div><!-- fragment -->
 </div>
@@ -1305,7 +1305,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160; </div>
 <div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;    <span class="keyword">typedef</span> std::vector&lt;std::pair&lt;XYZPoint, std::pair&lt;int, int&gt;&gt;&gt; <a class="code" href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">RPVector</a>; <span class="comment">// includes RP and pair of indexes as values</span></div>
 <div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    <span class="comment">// Declare vector of RPs</span></div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;    <a class="code" href="ActAFindRP_8cxx.html#a756ce897666f56bdb3908620ced18c0c">RPVector</a> rps;</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;    <a class="code" href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">RPVector</a> rps;</div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;    <span class="comment">// Run</span></div>
 <div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = <a class="code" href="classActAlgorithm_1_1MultiStep.html#a47d75b13279da97af223d8b6305fc3cf">fClusters</a>-&gt;size(); i &lt; size; i++)</div>
 <div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;    {</div>
@@ -1428,7 +1428,6 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;    <span class="comment">// fRPs-&gt;clear();</span></div>
 <div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;    <span class="comment">// fRPs-&gt;push_back(rp);</span></div>
 <div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;}</div>
-<div class="ttc" id="aActAFindRP_8cxx_html_a756ce897666f56bdb3908620ced18c0c"><div class="ttname"><a href="ActAFindRP_8cxx.html#a756ce897666f56bdb3908620ced18c0c">RPVector</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; ActAlgorithm::VAction::XYZPoint, std::pair&lt; int, int &gt; &gt; &gt; RPVector</div><div class="ttdef"><b>Definition:</b> ActAFindRP.cxx:76</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_a34eafc7dc63c4f895f74c6f9eb755ba9"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#a34eafc7dc63c4f895f74c6f9eb755ba9">ActAlgorithm::MultiStep::ClusterAndSortRPs</a></div><div class="ttdeci">std::vector&lt; RPCluster &gt; ClusterAndSortRPs(std::vector&lt; RPValue &gt; &amp;rps)</div><div class="ttdef"><b>Definition:</b> ActMultiStep.cxx:728</div></div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a25ab775a4c2a4cfb2a6466ebb2b11a27"><div class="ttname"><a href="namespaceActAlgorithm.html#a25ab775a4c2a4cfb2a6466ebb2b11a27">ActAlgorithm::RPVector</a></div><div class="ttdeci">std::vector&lt; RPElement &gt; RPVector</div><div class="ttdef"><b>Definition:</b> ActAlgoFuncs.h:24</div></div>
 </div><!-- fragment -->
