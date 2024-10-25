@@ -11,6 +11,8 @@
 #include <TMatrixD.h>
 #include <TVectorD.h>
 
+#include "Math/Point3D.h"
+
 #include <utility>
 #include <vector>
 
@@ -23,6 +25,12 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fBeamLikeParallelF = block->GetDouble("BeamLikeParallelF");
     if(block->CheckTokenExists("BeamLikeXMinThresh"))
         fBeamLikeXMinThresh = block->GetDouble("BeamLikeXMinThresh");
+    if(block->CheckTokenExists("RPDistThresh"))
+        fRPDistThresh = block->GetDouble("RPDistThresh");
+    if(block->CheckTokenExists("RPDistCluster"))
+        fRPDistCluster = block->GetDouble("RPDistCluster");
+    if(block->CheckTokenExists("RPDistValidate"))
+        fRPDistValidate = block->GetDouble("RPDistValidate");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -73,8 +81,8 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
     }
 }
 
-typedef std::vector<std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>>> RPVector; // includes RP and pair
-                                                                                               // of indexes as values
+typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>> RPValue; // includes RP and pair
+                                                                                 // of indexes as values
 void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 {
     // If there is only one track, set to delete
@@ -82,7 +90,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
         fTPCData->fClusters.begin()->SetToDelete(true);
 
     // Declare vector of RPs
-    RPVector rps;
+    std::vector<RPValue> rps;
     // Run
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
@@ -106,7 +114,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
 
             // Check that all points are valid
-            bool checkA {IsRPValid(pA, GetTPCParameters())};
+            bool checkA {IsRPValid(pA, fTPCPars)};
             bool checkB {IsRPValid(pB, GetTPCParameters())};
             bool checkRP {IsRPValid(rp, GetTPCParameters())};
             auto checkPoints {checkA && checkB && checkRP};
@@ -134,10 +142,10 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActP
     // If lines are parallel, skip them
     if(ActRoot::IsEqZero(vC.R()))
         return {ActAlgorithm::VAction::XYZPoint(static_cast<double>(pA.X()), static_cast<double>(pA.Y()),
-                                            static_cast<double>(pA.Z())),
-            ActAlgorithm::VAction::XYZPoint(static_cast<double>(pB.X()), static_cast<double>(pB.Y()),
-                                            static_cast<double>(pB.Z())),
-            -1}; // done like that because class Line usess float and VAction double
+                                                static_cast<double>(pA.Z())),
+                ActAlgorithm::VAction::XYZPoint(static_cast<double>(pB.X()), static_cast<double>(pB.Y()),
+                                                static_cast<double>(pB.Z())),
+                -1}; // done like that because class Line usess float and VAction double
     // 3-> Matrices to solve system of equations in Math StackExchange
     TMatrixD left {3, 3}; // 3x3 matrix with double precision
     // Fill left matrix with columns as each ABC vector
@@ -159,10 +167,12 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActP
     // 5-> Solve system of linear eqs
     auto res {TMatrixD(invLeft, TMatrixD::kMult, right)};
     // 6-> Return results {point in A, point in B, distance AB}
-    return {ActAlgorithm::VAction::XYZPoint(static_cast<double>(pA.X()), static_cast<double>(pA.Y()),
-                                            static_cast<double>(pA.Z())),
-            ActAlgorithm::VAction::XYZPoint(static_cast<double>(pB.X()), static_cast<double>(pB.Y()),
-                                            static_cast<double>(pB.Z())),
+    return {ActAlgorithm::VAction::XYZPoint(static_cast<double>((pA + res[0][0] * vA).X()),
+                                            static_cast<double>((pA + res[0][0] * vA).Y()),
+                                            static_cast<double>((pA + res[0][0] * vA).Z())),
+            ActAlgorithm::VAction::XYZPoint(static_cast<double>((pB + res[1][0] * vB).X()),
+                                            static_cast<double>((pB + res[1][0] * vB).Y()),
+                                            static_cast<double>((pB + res[1][0] * vB).Z())),
             TMath::Abs(res[2][0])}; // done like that because class Line usess float and VAction double
 }
 
@@ -177,7 +187,99 @@ bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPoint& rp, ActRoot::TPCPa
 }
 
 typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
-// std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(RPVector)
-//{
+std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<RPValue>& rps)
+{
+    std::vector<RPCluster> ret;
+    if(rps.empty())
+        return ret;
+    if(rps.size() == 1)
+    {
+        ret.push_back({rps.front().first, {rps.front().second.first, rps.front().second.second}});
+        return ret;
+    }
+    // Sort
+    auto cmp {[](const RPValue& vl, const RPValue& vr)
+              {
+                  const auto& l {vl.first};
+                  const auto& r {vr.first};
+                  if(l.X() != r.X())
+                      return l.X() < r.X();
+                  if(l.Y() != r.Y())
+                      return l.Y() < r.Y();
+                  return l.Z() < r.Z();
+              }};
+    std::sort(rps.begin(), rps.end(), cmp);
+    // Cluster
+    std::vector<std::vector<RPValue>> clusters;
+    for(auto it = rps.begin();;)
+    {
+        auto last {std::adjacent_find(it, rps.end(), [&](const RPValue& l, const RPValue& r)
+                                      { return (l.first - r.first).R() > fRPDistCluster; })};
+        if(last == rps.end())
+        {
+            clusters.emplace_back(it, last);
+            break;
+            ;
+        }
 
-//}
+        // Get next-to-last iterator
+        auto gap {std::next(last)};
+
+        // Push back and continue
+        clusters.emplace_back(it, gap);
+
+        // Prepare for next iteration
+        it = gap;
+    }
+    // Sort by size of cluster
+    std::sort(clusters.begin(), clusters.end(),
+              [](const std::vector<RPValue>& l, const std::vector<RPValue>& r) { return l.size() > r.size(); });
+
+    // Get mean clusters
+    for(const auto& cluster : clusters)
+    {
+        std::set<int> set {};
+        ActAlgorithm::VAction::XYZPoint mean;
+        for(const auto& [rps, idx] : cluster)
+        {
+            mean += ActAlgorithm::VAction::XYZVector {rps};
+            set.insert(idx.first);
+            set.insert(idx.second);
+        }
+        mean /= cluster.size();
+        ret.push_back({mean, set});
+    }
+    // Validate once again using distance
+    auto distValid = [this](const RPCluster& cluster)
+    {
+        int count {};
+        for(const auto& idx : cluster.second)
+        {
+            auto it {fTPCData->fClusters.begin() + idx};
+            if(it->GetIsBeamLike())
+                continue;
+            // Sort voxels: ActRoot voxels has a function > and <, work as the cmp built in this function
+            std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
+            // Min and max
+            auto min {it->GetRefToVoxels().front().GetPosition()};
+            auto max {it->GetRefToVoxels().back().GetPosition()};
+            for(auto p : {min, max})
+            {
+                p += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                auto dist {(p - cluster.first).R()};
+                if(dist < fRPDistValidate)
+                    count++;
+            }
+        }
+        return count;
+    };
+    // Call to sort
+    std::sort(ret.begin(), ret.end(),
+              [this, &distValid](RPCluster& l, RPCluster& r)
+              {
+                  auto lc {distValid(l)};
+                  auto rc {distValid(r)};
+                  return lc > rc;
+              });
+    return ret;
+}
