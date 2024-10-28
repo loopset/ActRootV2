@@ -31,6 +31,7 @@ private:
                   ActPhysics::Line::XYZVector vB);
     bool IsRPValid(const XYZPoint& rp, ActRoot::TPCParameters* tpc);
     std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue> & rps);
+    void DeleteInvalidCluster();
 };
 } // namespace Actions
 } // namespace ActAlgorithm
