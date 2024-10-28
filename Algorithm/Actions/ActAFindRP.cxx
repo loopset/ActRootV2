@@ -126,6 +126,19 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
                 continue;
         }
     }
+    auto proc {ClusterAndSortRPs(rps)};
+    std::set<int> toKeep {};
+    fTPCData->fRPs.clear();
+    if(proc.size() > 0)
+    {
+        // Set RP as the one with the biggest number
+        // of cluster within distance
+        fTPCData->fRPs.push_back(ActRoot::TPCData::XYZPoint(static_cast<float>(proc.front().first.X()),
+                                                            static_cast<float>(proc.front().first.Y()),
+                                                            static_cast<float>(proc.front().first.Z())));
+        // Marks its tracks to be kept
+        toKeep = proc.front().second;
+    }
 }
 
 std::tuple<ActAlgorithm::VAction::XYZPoint, ActAlgorithm::VAction::XYZPoint, double>
