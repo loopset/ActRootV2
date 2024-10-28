@@ -139,6 +139,16 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
         // Marks its tracks to be kept
         toKeep = proc.front().second;
     }
+    // This method ensures always a RP vector with size > 1 always!
+    for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
+    {
+        auto it {fTPCData->fClusters.begin() + i};
+        auto isToKeep {toKeep.find(i) != toKeep.end()};
+        if(isToKeep)
+            it->SetToDelete(false);
+        else
+            it->SetToDelete(true);
+    }
 }
 
 std::tuple<ActAlgorithm::VAction::XYZPoint, ActAlgorithm::VAction::XYZPoint, double>
@@ -297,4 +307,13 @@ std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vec
     return ret;
 }
 
-void ActAlgorithm::Actions::ActFind
+void ActAlgorithm::Actions::FindRP::DeleteInvalidCluster()
+{
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    {
+        if(it->GetToDelete())
+            it = fTPCData->fClusters.erase(it);
+        else
+            it++;
+    }
+}
