@@ -32,7 +32,17 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
     if(block->CheckTokenExists("RPDistValidate"))
         fRPDistValidate = block->GetDouble("RPDistValidate");
     if(block->CheckTokenExists("EnableDeleteInvalidCluster"))
-        fEnableDeleteInvalidCluster = block->GetDouble("EnableDeleteInvalidCluster");
+        fEnableDeleteInvalidCluster = block->GetBool("EnableDeleteInvalidCluster");
+    if(block->CheckTokenExists("BeamLikeMinVoxels"))
+        fBeamLikeMinVoxels = block->GetDouble("BeamLikeMinVoxels");
+    if(block->CheckTokenExists("RPMaskXY"))
+        fRPMaskXY = block->GetDouble("RPMaskXY");
+    if(block->CheckTokenExists("RPMaskZ"))
+        fRPMaskZ = block->GetDouble("RPMaskZ");
+    if(block->CheckTokenExists("EnableCylinder"))
+        fEnableCylinder = block->GetBool("EnableCylinder");
+    if(block->CheckTokenExists("CylinderR"))
+        fCylinderR = block->GetDouble("CylinderR");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -323,12 +333,87 @@ void ActAlgorithm::Actions::FindRP::DeleteInvalidCluster()
     }
 }
 
-void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters,
+void ActAlgorithm::Actions::FindRP::PerformFinerFits()
+{
+    if(fTPCData->fRPs.size() == 0)
+        return;
+    const auto& rp {fTPCData->fRPs.front()};
+
+    // 2-> Break BL starting on RP
+    BreakBeamToHeavy(fTPCData->fClusters, rp, fAlgo->GetMinPoints(), true, fIsVerbose);
+
+    // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    {
+        if(it->GetIsBeamLike())
+        {
+            if(it->GetSizeOfVoxels() <= fBeamLikeMinVoxels)
+            {
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose ----" << '\n';
+                    std::cout << "What: Deleting RP with fVoxels.size() < fBLMinVoxels" << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
+                it = fTPCData->fClusters.erase(it);
+            }
+            else
+                it++;
+        }
+        else
+        {
+            if(it->GetSizeOfVoxels() <= fAlgo->GetMinPoints())
+                it = fTPCData->fClusters.erase(it);
+            else
+                it++;
+        }
+    }
+
+    // 4 -> Mask region around RP
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    {
+        auto& refVoxels {it->GetRefToVoxels()};
+        auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                        bool condX {std::abs(pos.X() - rp.X()) <= fRPMaskXY};
+                                        bool condY {std::abs(pos.Y() - rp.Y()) <= fRPMaskXY};
+                                        bool condZ {std::abs(pos.Z() - rp.Z()) <= fRPMaskZ};
+                                        return !(condX && condY && condZ);
+                                    })};
+        // Compare sizes
+        auto remainSize {std::distance(refVoxels.begin(), toKeep)};
+        // Indeed delete region and refit
+        if(remainSize > fAlgo->GetMinPoints())
+        {
+            refVoxels.erase(toKeep, refVoxels.end());
+            it->ReFit();
+            it->ReFillSets();
+            if(fIsVerbose)
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
+                    std::cout << "What: masking region around RP" << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                }
+        }
+    }
+
+    // 5 -> Clean voxels outside cylinder
+    if(fEnableCylinder)
+        CylinderCleaning(fTPCData->fClusters, fCylinderR, fAlgo->GetMinPoints(), fIsVerbose);
+    // 6 -> Mask region at the begining and end of the tracks
+
+}
+
+void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluster>& clusters,
                                                      const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
                                                      bool keepSplit = true, bool isVerbose = false)
 {
     std::vector<ActRoot::Cluster> toAppend {};
-    for(auto it = clusters->begin(); it != clusters->end(); it++)
+    for(auto it = clusters.begin(); it != clusters.end(); it++)
     {
         if(it->GetIsBeamLike())
         {
@@ -352,7 +437,7 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
             // Add new cluster if size is enough!
             if(newVoxels.size() >= minVoxels && keepSplit)
             {
-                ActRoot::Cluster newCluster {(int)clusters->size()};
+                ActRoot::Cluster newCluster {(int)clusters.size()};
                 newCluster.SetVoxels(std::move(newVoxels));
                 newCluster.ReFit();
                 newCluster.ReFillSets();
@@ -387,6 +472,38 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
             it->ReFillSets();
         }
     }
-    clusters->insert(clusters->end(), std::make_move_iterator(toAppend.begin()),
-                     std::make_move_iterator(toAppend.end()));
+    clusters.insert(clusters.end(), std::make_move_iterator(toAppend.begin()), std::make_move_iterator(toAppend.end()));
+}
+
+void ActAlgorithm::Actions::FindRP::CylinderCleaning(std::vector<ActRoot::Cluster>& clusters, double cylinderR,
+                                                     int minVoxels, bool isVerbose = false)
+{
+    for(auto it = clusters.begin(); it != clusters.end(); it++)
+    {
+        auto& refVoxels {it->GetRefToVoxels()};
+        auto oldSize {refVoxels.size()};
+        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                        auto dist {it->GetLine().DistanceLineToPoint(pos)};
+                                        return dist <= cylinderR;
+                                    })};
+        // if enough voxels remain
+        auto remain {std::distance(refVoxels.begin(), itKeep)};
+        if(remain > minVoxels)
+        {
+            refVoxels.erase(itKeep, refVoxels.end());
+            it->ReFit();
+            it->ReFillSets();
+            if(isVerbose)
+            {
+                std::cout << BOLDGREEN << "---- CylinderCleaning ----" << '\n';
+                std::cout << "   cluster #" << it->GetClusterID() << '\n';
+                std::cout << "   (old - new) sizes : " << (oldSize - remain) << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+            }
+        }
+    }
 }

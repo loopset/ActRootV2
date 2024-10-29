@@ -15,6 +15,11 @@ private:
     double fRPDistCluster {};            // Max distance to cluster RPs
     double fRPDistValidate {};           // Max distance from track to rp
     bool fEnableDeleteInvalidCluster {}; // Bool to enable the function DeleteInvalidCluster
+    double fBeamLikeMinVoxels {};        // Min voxels for BL particles
+    double fRPMaskXY {};                 // Distance to aply the mask in XY
+    double fRPMaskZ {};                  // Distance to aply the mask in Z
+    bool fEnableCylinder {};             // Bool to enable the function CylinderCleaning
+    double fCylinderR {};                // Cylinder radious for CylinderCleaning function
 public:
     FindRP() : VAction("FindRP") {}
 
@@ -34,8 +39,12 @@ private:
     std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     void DeleteInvalidCluster();
     void PerformFinerFits();
-    void BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
+    void BreakBeamToHeavy(std::vector<ActRoot::Cluster>& clusters, const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
                           bool keepSplit = true, bool isVerbose = false);
+    void
+    CylinderCleaning(std::vector<ActRoot::Cluster>& clusters, double cylinderR, int minVoxels, bool isVerbose = false);
+    void MaskBeginEnd(std::vector<ActRoot::Cluster>& clusters, const ActRoot::TPCData::XYZPoint rp, double pivotDist,
+                      int minVoxels, bool isVerbose = false);
 };
 } // namespace Actions
 } // namespace ActAlgorithm
