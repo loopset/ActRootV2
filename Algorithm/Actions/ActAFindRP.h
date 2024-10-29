@@ -9,11 +9,12 @@ namespace Actions
 class FindRP : public VAction
 {
 private:
-    double fBeamLikeXMinThresh {}; // Min value in X that has to be in the cluster to be beam-like
-    double fBeamLikeParallelF {};  // Min value for X component
-    double fRPDistThresh {};       // Max distance between two lines to form a RP
-    double fRPDistCluster {};      // Max distance to cluster RPs
-    double fRPDistValidate {};     // Max distance from track to rp 
+    double fBeamLikeXMinThresh {};       // Min value in X that has to be in the cluster to be beam-like
+    double fBeamLikeParallelF {};        // Min value for X component
+    double fRPDistThresh {};             // Max distance between two lines to form a RP
+    double fRPDistCluster {};            // Max distance to cluster RPs
+    double fRPDistValidate {};           // Max distance from track to rp
+    bool fEnableDeleteInvalidCluster {}; // Bool to enable the function DeleteInvalidCluster
 public:
     FindRP() : VAction("FindRP") {}
 
@@ -30,8 +31,11 @@ private:
     ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActPhysics::Line::XYZVector vA, ActPhysics::Line::XYZPoint pB,
                   ActPhysics::Line::XYZVector vB);
     bool IsRPValid(const XYZPoint& rp, ActRoot::TPCParameters* tpc);
-    std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue> & rps);
+    std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     void DeleteInvalidCluster();
+    void PerformFinerFits();
+    void BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
+                          bool keepSplit = true, bool isVerbose = false);
 };
 } // namespace Actions
 } // namespace ActAlgorithm

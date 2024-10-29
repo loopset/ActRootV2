@@ -31,6 +31,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fRPDistCluster = block->GetDouble("RPDistCluster");
     if(block->CheckTokenExists("RPDistValidate"))
         fRPDistValidate = block->GetDouble("RPDistValidate");
+    if(block->CheckTokenExists("EnableDeleteInvalidCluster"))
+        fEnableDeleteInvalidCluster = block->GetDouble("EnableDeleteInvalidCluster");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -38,6 +40,9 @@ void ActAlgorithm::Actions::FindRP::Run()
     if(!fIsEnabled)
         return;
     DetermineBeamLikes();
+    FindPreliminaryRP();
+    if(fEnableDeleteInvalidCluster)
+        DeleteInvalidCluster();
 }
 
 void ActAlgorithm::Actions::FindRP::Print() const
@@ -316,4 +321,72 @@ void ActAlgorithm::Actions::FindRP::DeleteInvalidCluster()
         else
             it++;
     }
+}
+
+void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters,
+                                                     const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
+                                                     bool keepSplit = true, bool isVerbose = false)
+{
+    std::vector<ActRoot::Cluster> toAppend {};
+    for(auto it = clusters->begin(); it != clusters->end(); it++)
+    {
+        if(it->GetIsBeamLike())
+        {
+            auto& refVoxels {it->GetRefToVoxels()};
+            // Sort them
+            std::sort(refVoxels.begin(), refVoxels.end());
+            // Partition
+            auto rpBreak {std::partition(refVoxels.begin(), refVoxels.end(),
+                                         [&](const ActRoot::Voxel& voxel)
+                                         {
+                                             auto pos {voxel.GetPosition()};
+                                             pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                             return (pos.X() < rp.X());
+                                         })};
+            // Move
+            std::vector<ActRoot::Voxel> newVoxels;
+            newVoxels.insert(newVoxels.end(), std::make_move_iterator(rpBreak),
+                             std::make_move_iterator(refVoxels.end()));
+            refVoxels.erase(rpBreak, refVoxels.end());
+
+            // Add new cluster if size is enough!
+            if(newVoxels.size() >= minVoxels && keepSplit)
+            {
+                ActRoot::Cluster newCluster {(int)clusters->size()};
+                newCluster.SetVoxels(std::move(newVoxels));
+                newCluster.ReFit();
+                newCluster.ReFillSets();
+                newCluster.SetIsSplitRP(true);
+                newCluster.SetHasRP(true);
+                newCluster.SetRegionType(RegionType::EBeam);
+                toAppend.push_back(std::move(newCluster));
+
+                if(isVerbose)
+                {
+                    std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
+                    std::cout << "-> Added heavy cluster of size : " << newCluster.GetSizeOfVoxels() << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
+            }
+
+            // Refit remaining voxels in beam-like if size is kept enough
+            if(refVoxels.size() >= minVoxels)
+            {
+                it->ReFit();
+            }
+            else
+            {
+                if(isVerbose)
+                {
+                    std::cout << BOLDRED << "---- BreakAfterRP ----" << '\n';
+                    std::cout << "-> Remaining beam size is : " << refVoxels.size() << " < " << minVoxels << '\n';
+                    std::cout << "   Not refitting !" << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
+            }
+            it->ReFillSets();
+        }
+    }
+    clusters->insert(clusters->end(), std::make_move_iterator(toAppend.begin()),
+                     std::make_move_iterator(toAppend.end()));
 }
