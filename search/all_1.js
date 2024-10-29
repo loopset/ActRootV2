@@ -16,7 +16,7 @@ var searchData=
   ['boldwhite_203',['BOLDWHITE',['../ActColors_8h.html#aa4ef051614aa0bd503b0a18ee158c5d7',1,'ActColors.h']]],
   ['boldyellow_204',['BOLDYELLOW',['../ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26',1,'ActColors.h']]],
   ['breakbeamclusters_205',['BreakBeamClusters',['../classActAlgorithm_1_1MultiStep.html#ac4d54da7c399d52ce578cc09eb8a4f70',1,'ActAlgorithm::MultiStep']]],
-  ['breakbeamtoheavy_206',['BreakBeamToHeavy',['../namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad',1,'ActAlgorithm']]],
+  ['breakbeamtoheavy_206',['BreakBeamToHeavy',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a6e4a813b3813332c003038db03efc23b',1,'ActAlgorithm::Actions::FindRP::BreakBeamToHeavy()'],['../namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad',1,'ActAlgorithm::BreakBeamToHeavy()']]],
   ['breakchi2_207',['BreakChi2',['../classActAlgorithm_1_1Actions_1_1BreakChi2.html',1,'ActAlgorithm::Actions::BreakChi2'],['../classActAlgorithm_1_1Actions_1_1BreakChi2.html#a520e2093fbddf4cb9ab6967010589e81',1,'ActAlgorithm::Actions::BreakChi2::BreakChi2()']]],
   ['breakcluster_208',['BreakCluster',['../classActAlgorithm_1_1MultiRegion.html#a4ed3a04f19e10e6eadb458d913c1c997',1,'ActAlgorithm::MultiRegion']]],
   ['breakintoregions_209',['BreakIntoRegions',['../classActAlgorithm_1_1MultiRegion.html#aa1437730a06992d80e89ef426cf5c9cf',1,'ActAlgorithm::MultiRegion']]],
