@@ -405,7 +405,6 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     if(fEnableCylinder)
         CylinderCleaning(fTPCData->fClusters, fCylinderR, fAlgo->GetMinPoints(), fIsVerbose);
     // 6 -> Mask region at the begining and end of the tracks
-
 }
 
 void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluster>& clusters,
@@ -503,6 +502,81 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning(std::vector<ActRoot::Cluste
                 std::cout << "   cluster #" << it->GetClusterID() << '\n';
                 std::cout << "   (old - new) sizes : " << (oldSize - remain) << '\n';
                 std::cout << "------------------------------" << RESET << '\n';
+            }
+        }
+    }
+}
+
+void ActAlgorithm::Actions::FindRP::MaskBeginEnd(std::vector<ActRoot::Cluster>& clusters,
+                                                 const ActRoot::TPCData::XYZPoint rp, double pivotDist, int minVoxels,
+                                                 bool isVerbose = false)
+{
+    for(auto it = clusters.begin(); it != clusters.end(); it++)
+    {
+        // Declare variables
+        const auto& line {it->GetLine()};
+        const auto& gp {line.GetPoint()};
+        auto& refVoxels {it->GetRefToVoxels()};
+        auto oldSize {refVoxels.size()};
+        // Sort them
+        std::sort(refVoxels.begin(), refVoxels.end());
+        // Set same sign as rp
+        it->GetRefToLine().AlignUsingPoint(rp);
+        // Get init point
+        auto init {refVoxels.front()};
+        // Get end point
+        auto end {refVoxels.back()};
+        auto projInit {line.ProjectionPointOnLine(init.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
+        auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
+        // Partition: get iterator to last element to be kept
+        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                        auto proj {line.ProjectionPointOnLine(pos)};
+                                        // delete all points over projInit/end
+                                        // bc due to ordering and angle, some voxel could have a proj larger than
+                                        // the one of the last/firt voxel
+                                        // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
+                                        // could be troublesome depending on track angle
+                                        bool isInCapInit {(proj - projInit).R() <= pivotDist ||
+                                                          (proj.X() < projInit.X())};
+                                        bool isInCapEnd {(proj - projEnd).R() <= pivotDist || (proj.X() > projEnd.X())};
+                                        return !(isInCapInit && isInCapEnd);
+                                    })};
+        auto newSize {std::distance(refVoxels.begin(), itKeep)};
+        // Refit if eneugh voxels remain
+        if(newSize >= minVoxels)
+        {
+            refVoxels.erase(itKeep, refVoxels.end());
+            it->ReFit();
+            it->ReFillSets(); // Print
+            if(isVerbose)
+            {
+                {
+                    std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
+                    std::cout << "-> Init : " << init.GetPosition() << '\n';
+                    std::cout << "-> Proj Init : " << projInit << '\n';
+                    std::cout << "-> End : " << end.GetPosition() << '\n';
+                    std::cout << "-> Proj End : " << projEnd << '\n';
+                    std::cout << "-> (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
+                    std::cout << "-> Gravity point : " << it->GetLine().GetPoint() << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                    // it->GetLine().Print();
+                }
+            }
+            else
+            {
+                //  Print
+                if(isVerbose)
+                {
+                    std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
+                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << minVoxels << '\n';
+                    std::cout << "   Not erasing nor refitting !" << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                    // it->GetLine().Print();
+                }
             }
         }
     }
