@@ -1,6 +1,5 @@
 #include "ActAFindRP.h"
 
-#include "ActAlgoFuncs.h"
 #include "ActColors.h"
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
@@ -43,6 +42,12 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fEnableCylinder = block->GetBool("EnableCylinder");
     if(block->CheckTokenExists("CylinderR"))
         fCylinderR = block->GetDouble("CylinderR");
+    if(block->CheckTokenExists("RPPivotDist"))
+        fRPPivotDist = block->GetDouble("RPPivotDist");
+    if(block->CheckTokenExists("EnableRPDefaultBeam"))
+        fEnableRPDefaultBeam = block->GetBool("EnableRPDefaultBeam");
+    if(block->CheckTokenExists("RPDefaultMinX"))
+        fRPDefaultMinX = block->GetDouble("RPDefaultMinX");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -340,7 +345,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     const auto& rp {fTPCData->fRPs.front()};
 
     // 2-> Break BL starting on RP
-    BreakBeamToHeavy(fTPCData->fClusters, rp, fAlgo->GetMinPoints(), true, fIsVerbose);
+    BreakBeamToHeavy(rp, true);
 
     // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
@@ -403,16 +408,39 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
 
     // 5 -> Clean voxels outside cylinder
     if(fEnableCylinder)
-        CylinderCleaning(fTPCData->fClusters, fCylinderR, fAlgo->GetMinPoints(), fIsVerbose);
+        CylinderCleaning();
+
     // 6 -> Mask region at the begining and end of the tracks
+    MaskBeginEnd(rp);
+
+    // 7 -> Set default fit for BLs
+    if(fEnableRPDefaultBeam)
+    {
+        for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+        {
+            if(it->GetIsBeamLike())
+            {
+                auto [xmin, xmax] {it->GetXRange()};
+                bool isShort {(xmax - xmin) <= fRPDefaultMinX};
+                if(isShort)
+                {
+                    it->GetRefToLine().SetDirection({1, 0, 0});
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
+                        std::cout << "What: short beam : setting (1, 0, 0) direction" << '\n';
+                        std::cout << "------------------------------" << RESET << '\n';
+                    }
+                }
+            }
+        }
+    }
 }
 
-void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluster>& clusters,
-                                                     const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
-                                                     bool keepSplit = true, bool isVerbose = false)
+void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ROOT::Math::XYZPointF& rp, bool keepSplit)
 {
     std::vector<ActRoot::Cluster> toAppend {};
-    for(auto it = clusters.begin(); it != clusters.end(); it++)
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         if(it->GetIsBeamLike())
         {
@@ -434,9 +462,9 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
             refVoxels.erase(rpBreak, refVoxels.end());
 
             // Add new cluster if size is enough!
-            if(newVoxels.size() >= minVoxels && keepSplit)
+            if(newVoxels.size() >= fAlgo->GetMinPoints() && keepSplit)
             {
-                ActRoot::Cluster newCluster {(int)clusters.size()};
+                ActRoot::Cluster newCluster {(int)fTPCData->fClusters.size()};
                 newCluster.SetVoxels(std::move(newVoxels));
                 newCluster.ReFit();
                 newCluster.ReFillSets();
@@ -445,7 +473,7 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
                 newCluster.SetRegionType(RegionType::EBeam);
                 toAppend.push_back(std::move(newCluster));
 
-                if(isVerbose)
+                if(fIsVerbose)
                 {
                     std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
                     std::cout << "-> Added heavy cluster of size : " << newCluster.GetSizeOfVoxels() << '\n';
@@ -454,16 +482,17 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
             }
 
             // Refit remaining voxels in beam-like if size is kept enough
-            if(refVoxels.size() >= minVoxels)
+            if(refVoxels.size() >= fAlgo->GetMinPoints())
             {
                 it->ReFit();
             }
             else
             {
-                if(isVerbose)
+                if(fIsVerbose)
                 {
                     std::cout << BOLDRED << "---- BreakAfterRP ----" << '\n';
-                    std::cout << "-> Remaining beam size is : " << refVoxels.size() << " < " << minVoxels << '\n';
+                    std::cout << "-> Remaining beam size is : " << refVoxels.size() << " < " << fAlgo->GetMinPoints()
+                              << '\n';
                     std::cout << "   Not refitting !" << '\n';
                     std::cout << "-----------------------------" << RESET << '\n';
                 }
@@ -471,13 +500,13 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(std::vector<ActRoot::Cluste
             it->ReFillSets();
         }
     }
-    clusters.insert(clusters.end(), std::make_move_iterator(toAppend.begin()), std::make_move_iterator(toAppend.end()));
+    fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
+                               std::make_move_iterator(toAppend.end()));
 }
 
-void ActAlgorithm::Actions::FindRP::CylinderCleaning(std::vector<ActRoot::Cluster>& clusters, double cylinderR,
-                                                     int minVoxels, bool isVerbose = false)
+void ActAlgorithm::Actions::FindRP::CylinderCleaning()
 {
-    for(auto it = clusters.begin(); it != clusters.end(); it++)
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         auto& refVoxels {it->GetRefToVoxels()};
         auto oldSize {refVoxels.size()};
@@ -487,16 +516,16 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning(std::vector<ActRoot::Cluste
                                         auto pos {voxel.GetPosition()};
                                         pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
                                         auto dist {it->GetLine().DistanceLineToPoint(pos)};
-                                        return dist <= cylinderR;
+                                        return dist <= fCylinderR;
                                     })};
         // if enough voxels remain
         auto remain {std::distance(refVoxels.begin(), itKeep)};
-        if(remain > minVoxels)
+        if(remain > fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
             it->ReFillSets();
-            if(isVerbose)
+            if(fIsVerbose)
             {
                 std::cout << BOLDGREEN << "---- CylinderCleaning ----" << '\n';
                 std::cout << "   cluster #" << it->GetClusterID() << '\n';
@@ -507,11 +536,9 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning(std::vector<ActRoot::Cluste
     }
 }
 
-void ActAlgorithm::Actions::FindRP::MaskBeginEnd(std::vector<ActRoot::Cluster>& clusters,
-                                                 const ActRoot::TPCData::XYZPoint rp, double pivotDist, int minVoxels,
-                                                 bool isVerbose = false)
+void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ROOT::Math::XYZPointF rp)
 {
-    for(auto it = clusters.begin(); it != clusters.end(); it++)
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         // Declare variables
         const auto& line {it->GetLine()};
@@ -540,19 +567,19 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(std::vector<ActRoot::Cluster>& 
                                         // the one of the last/firt voxel
                                         // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
                                         // could be troublesome depending on track angle
-                                        bool isInCapInit {(proj - projInit).R() <= pivotDist ||
+                                        bool isInCapInit {(proj - projInit).R() <= fRPPivotDist ||
                                                           (proj.X() < projInit.X())};
-                                        bool isInCapEnd {(proj - projEnd).R() <= pivotDist || (proj.X() > projEnd.X())};
+                                        bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
                                         return !(isInCapInit && isInCapEnd);
                                     })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if eneugh voxels remain
-        if(newSize >= minVoxels)
+        if(newSize >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
             it->ReFillSets(); // Print
-            if(isVerbose)
+            if(fIsVerbose)
             {
                 {
                     std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
@@ -569,15 +596,89 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(std::vector<ActRoot::Cluster>& 
             else
             {
                 //  Print
-                if(isVerbose)
+                if(fIsVerbose)
                 {
                     std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
-                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << minVoxels << '\n';
+                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << fAlgo->GetMinPoints() << '\n';
                     std::cout << "   Not erasing nor refitting !" << '\n';
                     std::cout << "------------------------------" << RESET << '\n';
                     // it->GetLine().Print();
                 }
             }
         }
+    }
+}
+
+void ActAlgorithm::Actions::FindRP::FindPreciseRP()
+{
+    if(fTPCData->fRPs.size() == 0)
+        return;
+    // Precise RP is found by intersection of a BL cluster with the track with larger angle
+    // We sort them in this way using a set
+    typedef std::pair<double, ActAlgorithm::VAction::XYZPoint> SetValue;
+    auto lambda {[](const SetValue& l, const SetValue& r) { return l.first > r.first; }};
+    std::set<SetValue, decltype(lambda)> set {lambda};
+    for(auto out = fTPCData->fClusters.begin(); out != fTPCData->fClusters.end(); out++)
+    {
+        // Find a BL cluster
+        if(out->GetIsBeamLike())
+        {
+            // Ensure direction of BL is always positive along X
+            auto& outLine {out->GetRefToLine()};
+            const auto& oldDir {outLine.GetDirection()};
+            outLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});
+
+            for(auto in = fTPCData->fClusters.begin(); in != fTPCData->fClusters.end(); in++)
+            {
+                if(in == out)
+                    continue;
+                // Ensure direction signs are defined from preliminary RP
+                in->GetRefToLine().AlignUsingPoint(fTPCData->fRPs.front());
+                // Compute angle theta
+                auto theta {GetClusterAngle(out->GetLine().GetDirection(), in->GetLine().GetDirection())};
+                // Compute RPs
+                auto [a, b, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
+                                                 in->GetLine().GetPoint(), in->GetLine().GetDirection())};
+                if(dist < 0) // just in case lines were parallel
+                    continue;
+                ActAlgorithm::VAction::XYZPoint rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};
+                // Check that all points are valid
+                bool checkA {IsRPValid(a, fTPCPars)};
+                bool checkB {IsRPValid(b, fTPCPars)};
+                bool checkRP {IsRPValid(rp, fTPCPars)};
+                auto checkPoints {checkA && checkB && checkRP};
+                // And finally that distance AB is bellow threshold
+                bool checkDist {dist <= fRPDistThresh};
+                if(checkPoints && checkDist)
+                    set.insert({std::abs(theta), rp});
+            }
+        }
+    }
+    // Write
+    if(set.size() > 0)
+    {
+        fTPCData->fRPs.clear();
+        fTPCData->fRPs.push_back(ActRoot::TPCData::XYZPoint(static_cast<float>(set.begin()->second.X()),
+                                                            static_cast<float>(set.begin()->second.Y()),
+                                                            static_cast<float>(set.begin()->second.Z())));
+    }
+    else
+    {
+        ; // keep preliminary RP just in case this finner method fails
+    }
+}
+
+double GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil)
+{
+    auto dot {beam.Unit().Dot((recoil.Unit()))};
+    return TMath::ACos(dot) * TMath::RadToDeg();
+}
+
+void ActAlgorithm::Actions::FindRP::ResetIndex()
+{
+    int idx {};
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++, idx++)
+    {
+        it->SetClusterID(idx);
     }
 }

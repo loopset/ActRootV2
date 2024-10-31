@@ -20,6 +20,10 @@ private:
     double fRPMaskZ {};                  // Distance to aply the mask in Z
     bool fEnableCylinder {};             // Bool to enable the function CylinderCleaning
     double fCylinderR {};                // Cylinder radious for CylinderCleaning function
+    double fRPPivotDist {}; // Distance to erase Init and End of tracks (if voxels projection on line is too close of
+                            // first/last voxel projection)
+    bool fEnableRPDefaultBeam {}; // Enable set direction to short BLs tracks as (1,0,0)
+    double fRPDefaultMinX {};     // Parameter that determines if a BL track is short in x
 public:
     FindRP() : VAction("FindRP") {}
 
@@ -39,12 +43,13 @@ private:
     std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     void DeleteInvalidCluster();
     void PerformFinerFits();
-    void BreakBeamToHeavy(std::vector<ActRoot::Cluster>& clusters, const ActRoot::TPCData::XYZPoint& rp, int minVoxels,
-                          bool keepSplit = true, bool isVerbose = false);
     void
-    CylinderCleaning(std::vector<ActRoot::Cluster>& clusters, double cylinderR, int minVoxels, bool isVerbose = false);
-    void MaskBeginEnd(std::vector<ActRoot::Cluster>& clusters, const ActRoot::TPCData::XYZPoint rp, double pivotDist,
-                      int minVoxels, bool isVerbose = false);
+    BreakBeamToHeavy(const ROOT::Math::XYZPointF& rp, bool keepSplit = true);
+    void CylinderCleaning();
+    void MaskBeginEnd(const ROOT::Math::XYZPointF rp);
+    void FindPreciseRP();
+    double GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil);
+    void ResetIndex();
 };
 } // namespace Actions
 } // namespace ActAlgorithm
