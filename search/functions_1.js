@@ -4,7 +4,7 @@ var searchData=
   ['beginofrunaction_1833',['BeginOfRunAction',['../classActRunAction.html#a54cec9c965d24cf2969a1df284298b59',1,'ActRunAction']]],
   ['blocks_1834',['blocks',['../classBS_1_1thread__pool_1_1blocks.html#a22d99083ea7abae332f36c15c4e369b8',1,'BS::thread_pool::blocks']]],
   ['breakbeamclusters_1835',['BreakBeamClusters',['../classActAlgorithm_1_1MultiStep.html#ac4d54da7c399d52ce578cc09eb8a4f70',1,'ActAlgorithm::MultiStep']]],
-  ['breakbeamtoheavy_1836',['BreakBeamToHeavy',['../namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad',1,'ActAlgorithm::BreakBeamToHeavy()'],['../classActAlgorithm_1_1Actions_1_1FindRP.html#a288ab286a06d52ef9f3940384a58bf85',1,'ActAlgorithm::Actions::FindRP::BreakBeamToHeavy()']]],
+  ['breakbeamtoheavy_1836',['BreakBeamToHeavy',['../namespaceActAlgorithm.html#a99209407f536fbe7c35c94adff0a44ad',1,'ActAlgorithm::BreakBeamToHeavy()'],['../classActAlgorithm_1_1Actions_1_1FindRP.html#a5dbdb0f4621a4df96a98456c3cbac1f3',1,'ActAlgorithm::Actions::FindRP::BreakBeamToHeavy()']]],
   ['breakchi2_1837',['BreakChi2',['../classActAlgorithm_1_1Actions_1_1BreakChi2.html#a520e2093fbddf4cb9ab6967010589e81',1,'ActAlgorithm::Actions::BreakChi2']]],
   ['breakcluster_1838',['BreakCluster',['../classActAlgorithm_1_1MultiRegion.html#a4ed3a04f19e10e6eadb458d913c1c997',1,'ActAlgorithm::MultiRegion']]],
   ['breakintoregions_1839',['BreakIntoRegions',['../classActAlgorithm_1_1MultiRegion.html#aa1437730a06992d80e89ef426cf5c9cf',1,'ActAlgorithm::MultiRegion']]],
