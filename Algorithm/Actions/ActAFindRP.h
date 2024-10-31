@@ -24,6 +24,7 @@ private:
                             // first/last voxel projection)
     bool fEnableRPDefaultBeam {}; // Enable set direction to short BLs tracks as (1,0,0)
     double fRPDefaultMinX {};     // Parameter that determines if a BL track is short in x
+    bool fEnableFineRP {};
 public:
     FindRP() : VAction("FindRP") {}
 
@@ -31,9 +32,9 @@ public:
     void Run() override;
     void Print() const override;
 
-private:
     typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>> RPValue;
     typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
+private:
     void DetermineBeamLikes();
     void FindPreliminaryRP();
     std::tuple<ActAlgorithm::VAction::XYZPoint, ActAlgorithm::VAction::XYZPoint, double>

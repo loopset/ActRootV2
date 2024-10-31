@@ -48,6 +48,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fEnableRPDefaultBeam = block->GetBool("EnableRPDefaultBeam");
     if(block->CheckTokenExists("RPDefaultMinX"))
         fRPDefaultMinX = block->GetDouble("RPDefaultMinX");
+    if(block->CheckTokenExists("EnableFineRP"))
+        fEnableFineRP = block->GetBool("EnableFineRP");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -58,6 +60,12 @@ void ActAlgorithm::Actions::FindRP::Run()
     FindPreliminaryRP();
     if(fEnableDeleteInvalidCluster)
         DeleteInvalidCluster();
+    if(fEnableFineRP)
+    {
+        PerformFinerFits();
+        FindPreciseRP();
+    }
+    ResetIndex();
 }
 
 void ActAlgorithm::Actions::FindRP::Print() const
@@ -668,7 +676,7 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
     }
 }
 
-double GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil)
+double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();
