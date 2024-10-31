@@ -67,8 +67,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">ActAFindRP.cxx File Reference</div>  </div>
 </div><!--header-->
@@ -136,11 +135,6 @@ Typedefs</h2></td></tr>
 <tr class="separator:ad08d67242126af173fcb7a89d49e8cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af82a7d6173f340249e4da15304b4ca04"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; <a class="el" href="classActAlgorithm_1_1VAction.html#ae74bd7aea498641186a521b3d9d77808">ActAlgorithm::VAction::XYZPoint</a>, std::set&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ActAFindRP_8cxx.html#af82a7d6173f340249e4da15304b4ca04">RPCluster</a></td></tr>
 <tr class="separator:af82a7d6173f340249e4da15304b4ca04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a6109ab3e11773ba9b98fa719bd39471a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ActAFindRP_8cxx.html#a6109ab3e11773ba9b98fa719bd39471a">GetClusterAngle</a> (const <a class="el" href="classActPhysics_1_1Line.html#a93e53f147dcccc282119b32dcec1a6c0">ActPhysics::Line::XYZVector</a> &amp;beam, const <a class="el" href="classActPhysics_1_1Line.html#a93e53f147dcccc282119b32dcec1a6c0">ActPhysics::Line::XYZVector</a> &amp;recoil)</td></tr>
-<tr class="separator:a6109ab3e11773ba9b98fa719bd39471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="af82a7d6173f340249e4da15304b4ca04"></a>
@@ -169,39 +163,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a6109ab3e11773ba9b98fa719bd39471a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6109ab3e11773ba9b98fa719bd39471a">&#9670;&nbsp;</a></span>GetClusterAngle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double GetClusterAngle </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Line.html#a93e53f147dcccc282119b32dcec1a6c0">ActPhysics::Line::XYZVector</a> &amp;&#160;</td>
-          <td class="paramname"><em>beam</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1Line.html#a93e53f147dcccc282119b32dcec1a6c0">ActPhysics::Line::XYZVector</a> &amp;&#160;</td>
-          <td class="paramname"><em>recoil</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;{</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;    <span class="keyword">auto</span> dot {beam.Unit().Dot((recoil.Unit()))};</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;}</div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
