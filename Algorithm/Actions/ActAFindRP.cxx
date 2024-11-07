@@ -12,6 +12,7 @@
 
 #include "Math/Point3D.h"
 
+#include <algorithm>
 #include <utility>
 #include <vector>
 
@@ -505,6 +506,38 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
     }
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
+    // And attempt to fix in case this creates artificial new clusters
+    auto heavy {fTPCData->fClusters.end() - 1};
+    // Sort clusters
+    std::sort(heavy->GetRefToVoxels().begin(), heavy->GetRefToVoxels().end());
+    auto begin {heavy->GetVoxels().front().GetPosition()};
+    auto end {heavy->GetVoxels().back().GetPosition()};
+    // Compare with the other NOT BEAM clusters
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+    {
+        if(it == heavy || it->GetIsBeamLike())
+            continue;
+        std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
+        auto inbegin {it->GetVoxels().front().GetPosition()};
+        auto inend {it->GetVoxels().back().GetPosition()};
+        // Get minimum distance
+        double dist {1111};
+        for(auto out : {&begin, &end})
+        {
+            for(auto in : {&inbegin, &inend})
+            {
+                auto aux {(*out - *in).R()};
+                if(aux < dist)
+                    dist = aux;
+            }
+        }
+        if(fIsVerbose)
+        {
+            std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
+            std::cout << "Minimum dist " << dist << " for cluster " << it->GetClusterID() << '\n';
+            std::cout << "-----------------------------" << RESET << '\n';
+        }
+    }
 }
 
 void ActAlgorithm::Actions::FindRP::CylinderCleaning()
