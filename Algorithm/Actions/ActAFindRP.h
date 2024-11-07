@@ -25,6 +25,7 @@ private:
     bool fEnableRPDefaultBeam {}; // Enable set direction to short BLs tracks as (1,0,0)
     double fRPDefaultMinX {};     // Parameter that determines if a BL track is short in x
     bool fEnableFineRP {};
+
 public:
     FindRP() : VAction("FindRP") {}
 
@@ -32,25 +33,29 @@ public:
     void Run() override;
     void Print() const override;
 
-    typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>> RPValue;
-    typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
 private:
+    // Major functions of FindRP
     void DetermineBeamLikes();
     void FindPreliminaryRP();
-    std::tuple<ActAlgorithm::VAction::XYZPoint, ActAlgorithm::VAction::XYZPoint, double>
-    ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActPhysics::Line::XYZVector vA, ActPhysics::Line::XYZPoint pB,
-                  ActPhysics::Line::XYZVector vB);
-    bool IsRPValid(const XYZPoint& rp, ActRoot::TPCParameters* tpc);
-    std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
     void DeleteInvalidCluster();
     void PerformFinerFits();
-    void
-    BreakBeamToHeavy(const ROOT::Math::XYZPointF& rp, bool keepSplit = true);
+    void BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit = true);
     void CylinderCleaning();
-    void MaskBeginEnd(const ROOT::Math::XYZPointF rp);
+    void MaskBeginEnd(const ActAlgorithm::VAction::XYZPointF& rp);
     void FindPreciseRP();
+
+    // Auxiliary functions
+    std::tuple<ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double>
+    ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActPhysics::Line::XYZVector vA, ActPhysics::Line::XYZPoint pB,
+                  ActPhysics::Line::XYZVector vB);
+
+    bool IsRPValid(const XYZPointF& rp, ActRoot::TPCParameters* tpc);
+
+    typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::pair<int, int>> RPValue;
+    typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::set<int>> RPCluster;
+    std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
+
     double GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil);
-    void ResetIndex();
 };
 } // namespace Actions
 } // namespace ActAlgorithm

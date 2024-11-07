@@ -65,7 +65,6 @@ void ActAlgorithm::Actions::FindRP::Run()
         PerformFinerFits();
         FindPreciseRP();
     }
-    ResetIndex();
 }
 
 void ActAlgorithm::Actions::FindRP::Print() const
@@ -76,17 +75,17 @@ void ActAlgorithm::Actions::FindRP::Print() const
         std::cout << "······························" << RESET << '\n';
         return;
     }
-    std::cout << "  BeamLikeParallelF         : " << fBeamLikeParallelF << '\n';
-    std::cout << "  BeamLikeXMinThresh        : " << fBeamLikeXMinThresh << '\n';
-    std::cout << "  RPDistThresh        : " << fRPDistThresh << '\n';
-    std::cout << "  RPDistCluster        : " << fRPDistCluster << '\n';
-    std::cout << "  RPDistValidate        : " << fRPDistValidate << '\n';
-    std::cout << "  BeamLikeMinVoxels        : " << fBeamLikeMinVoxels << '\n';
-    std::cout << "  RPMaskXY        : " << fRPMaskXY << '\n';
-    std::cout << "  RPMaskZ        : " << fRPMaskZ << '\n';
-    std::cout << "  CylinderR        : " << fCylinderR << '\n';
-    std::cout << "  RPPivotDist        : " << fRPPivotDist << '\n';
-    std::cout << "  RPDefaultMinX        : " << fRPDefaultMinX << '\n';    
+    std::cout << "  BeamLikeParallel   : " << fBeamLikeParallelF << '\n';
+    std::cout << "  BeamLikeXMinThresh : " << fBeamLikeXMinThresh << '\n';
+    std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
+    std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
+    std::cout << "  RPDistValidate     : " << fRPDistValidate << '\n';
+    std::cout << "  BeamLikeMinVoxels  : " << fBeamLikeMinVoxels << '\n';
+    std::cout << "  RPMaskXY      : " << fRPMaskXY << '\n';
+    std::cout << "  RPMaskZ       : " << fRPMaskZ << '\n';
+    std::cout << "  CylinderR     : " << fCylinderR << '\n';
+    std::cout << "  RPPivotDist   : " << fRPPivotDist << '\n';
+    std::cout << "  RPDefaultMinX : " << fRPDefaultMinX << '\n';
 
     std::cout << "······························" << RESET << '\n';
 }
@@ -119,12 +118,10 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
     }
 }
 
-typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::pair<int, int>> RPValue; // includes RP and pair
-                                                                                 // of indexes as values
 void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 {
     // If there is only one track, set to delete
-    if(fTPCData->fClusters.size() == 0)
+    if(fTPCData->fClusters.size() == 1)
         fTPCData->fClusters.begin()->SetToDelete(true);
 
     // Declare vector of RPs
@@ -149,7 +146,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             if(dist < 0) // just in case they are parellel
                 continue;
             // Build RP as mean of A and B
-            XYZPoint rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
+            XYZPointF rp {(pA.X() + pB.X()) / 2, (pA.Y() + pB.Y()) / 2, (pA.Z() + pB.Z()) / 2};
 
             // Check that all points are valid
             bool checkA {IsRPValid(pA, fTPCPars)};
@@ -171,9 +168,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
     {
         // Set RP as the one with the biggest number
         // of cluster within distance
-        fTPCData->fRPs.push_back(ActRoot::TPCData::XYZPoint(static_cast<float>(proc.front().first.X()),
-                                                            static_cast<float>(proc.front().first.Y()),
-                                                            static_cast<float>(proc.front().first.Z())));
+        fTPCData->fRPs.push_back(proc.front().first);
         // Marks its tracks to be kept
         toKeep = proc.front().second;
     }
@@ -189,7 +184,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
     }
 }
 
-std::tuple<ActAlgorithm::VAction::XYZPoint, ActAlgorithm::VAction::XYZPoint, double>
+std::tuple<ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double>
 ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActPhysics::Line::XYZVector vA,
                                              ActPhysics::Line::XYZPoint pB, ActPhysics::Line::XYZVector vB)
 {
@@ -202,11 +197,7 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActP
     vC = vC.Unit();
     // If lines are parallel, skip them
     if(ActRoot::IsEqZero(vC.R()))
-        return {ActAlgorithm::VAction::XYZPoint(static_cast<double>(pA.X()), static_cast<double>(pA.Y()),
-                                                static_cast<double>(pA.Z())),
-                ActAlgorithm::VAction::XYZPoint(static_cast<double>(pB.X()), static_cast<double>(pB.Y()),
-                                                static_cast<double>(pB.Z())),
-                -1}; // done like that because class Line usess float and VAction double
+        return {pA, pB, -1};
     // 3-> Matrices to solve system of equations in Math StackExchange
     TMatrixD left {3, 3}; // 3x3 matrix with double precision
     // Fill left matrix with columns as each ABC vector
@@ -228,17 +219,11 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActP
     // 5-> Solve system of linear eqs
     auto res {TMatrixD(invLeft, TMatrixD::kMult, right)};
     // 6-> Return results {point in A, point in B, distance AB}
-    return {ActAlgorithm::VAction::XYZPoint(static_cast<double>((pA + res[0][0] * vA).X()),
-                                            static_cast<double>((pA + res[0][0] * vA).Y()),
-                                            static_cast<double>((pA + res[0][0] * vA).Z())),
-            ActAlgorithm::VAction::XYZPoint(static_cast<double>((pB + res[1][0] * vB).X()),
-                                            static_cast<double>((pB + res[1][0] * vB).Y()),
-                                            static_cast<double>((pB + res[1][0] * vB).Z())),
-            TMath::Abs(res[2][0])}; // done like that because class Line usess float and VAction double
+    return {pA + res[0][0] * vA, pB + res[1][0] * vB, TMath::Abs(res[2][0])};
 }
 
 
-bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPoint& rp, ActRoot::TPCParameters* tpc)
+bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPointF& rp, ActRoot::TPCParameters* tpc)
 {
     // Need to consider the offset in the voxels
     bool isInX {0.5 <= rp.X() && rp.X() <= (tpc->GetNPADSX() - 1) + 0.5};
@@ -247,7 +232,7 @@ bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPoint& rp, ActRoot::TPCPa
     return isInX && isInY && isInZ;
 }
 
-typedef std::pair<ActAlgorithm::VAction::XYZPoint, std::set<int>> RPCluster;
+typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::set<int>> RPCluster;
 std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<RPValue>& rps)
 {
     std::vector<RPCluster> ret;
@@ -300,7 +285,7 @@ std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vec
     for(const auto& cluster : clusters)
     {
         std::set<int> set {};
-        ActAlgorithm::VAction::XYZPoint mean;
+        ActAlgorithm::VAction::XYZPointF mean;
         for(const auto& [rps, idx] : cluster)
         {
             mean += ActAlgorithm::VAction::XYZVector {rps};
@@ -455,7 +440,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     }
 }
 
-void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ROOT::Math::XYZPointF& rp, bool keepSplit)
+void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit)
 {
     std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
@@ -554,7 +539,7 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning()
     }
 }
 
-void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ROOT::Math::XYZPointF rp)
+void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XYZPointF& rp)
 {
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
@@ -574,22 +559,22 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ROOT::Math::XYZPointF rp)
         auto projInit {line.ProjectionPointOnLine(init.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
         auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
         // Partition: get iterator to last element to be kept
-        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
-                                    [&](const ActRoot::Voxel& voxel)
-                                    {
-                                        auto pos {voxel.GetPosition()};
-                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
-                                        auto proj {line.ProjectionPointOnLine(pos)};
-                                        // delete all points over projInit/end
-                                        // bc due to ordering and angle, some voxel could have a proj larger than
-                                        // the one of the last/firt voxel
-                                        // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
-                                        // could be troublesome depending on track angle
-                                        bool isInCapInit {(proj - projInit).R() <= fRPPivotDist ||
-                                                          (proj.X() < projInit.X())};
-                                        bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
-                                        return !(isInCapInit && isInCapEnd);
-                                    })};
+        auto itKeep {
+            std::partition(refVoxels.begin(), refVoxels.end(),
+                           [&](const ActRoot::Voxel& voxel)
+                           {
+                               auto pos {voxel.GetPosition()};
+                               pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                               auto proj {line.ProjectionPointOnLine(pos)};
+                               // delete all points over projInit/end
+                               // bc due to ordering and angle, some voxel could have a proj larger than
+                               // the one of the last/firt voxel
+                               // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
+                               // could be troublesome depending on track angle
+                               bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
+                               bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
+                               return !(isInCapInit && isInCapEnd);
+                           })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if eneugh voxels remain
         if(newSize >= fAlgo->GetMinPoints())
@@ -617,7 +602,8 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ROOT::Math::XYZPointF rp)
                 if(fIsVerbose)
                 {
                     std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
-                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << fAlgo->GetMinPoints() << '\n';
+                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << fAlgo->GetMinPoints()
+                              << '\n';
                     std::cout << "   Not erasing nor refitting !" << '\n';
                     std::cout << "------------------------------" << RESET << '\n';
                     // it->GetLine().Print();
@@ -633,7 +619,7 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
         return;
     // Precise RP is found by intersection of a BL cluster with the track with larger angle
     // We sort them in this way using a set
-    typedef std::pair<double, ActAlgorithm::VAction::XYZPoint> SetValue;
+    typedef std::pair<double, ActAlgorithm::VAction::XYZPointF> SetValue;
     auto lambda {[](const SetValue& l, const SetValue& r) { return l.first > r.first; }};
     std::set<SetValue, decltype(lambda)> set {lambda};
     for(auto out = fTPCData->fClusters.begin(); out != fTPCData->fClusters.end(); out++)
@@ -659,7 +645,7 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
                                                  in->GetLine().GetPoint(), in->GetLine().GetDirection())};
                 if(dist < 0) // just in case lines were parallel
                     continue;
-                ActAlgorithm::VAction::XYZPoint rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};
+                ActAlgorithm::VAction::XYZPointF rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};
                 // Check that all points are valid
                 bool checkA {IsRPValid(a, fTPCPars)};
                 bool checkB {IsRPValid(b, fTPCPars)};
@@ -676,9 +662,7 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
     if(set.size() > 0)
     {
         fTPCData->fRPs.clear();
-        fTPCData->fRPs.push_back(ActRoot::TPCData::XYZPoint(static_cast<float>(set.begin()->second.X()),
-                                                            static_cast<float>(set.begin()->second.Y()),
-                                                            static_cast<float>(set.begin()->second.Z())));
+        fTPCData->fRPs.push_back(set.begin()->second);
     }
     else
     {
@@ -686,17 +670,9 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
     }
 }
 
-double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil)
+double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVector& beam,
+                                                      const ActPhysics::Line::XYZVector& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();
-}
-
-void ActAlgorithm::Actions::FindRP::ResetIndex()
-{
-    int idx {};
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++, idx++)
-    {
-        it->SetClusterID(idx);
-    }
 }
