@@ -117,6 +117,9 @@ void ActRoot::EventPainter::AddButtons()
                                       0,
                                       99999};
     fButtonsFrame->AddFrame(fEntryButton, hints);
+    // Connect ReturnPressed for both TGNumberEntries
+    for(auto* b : {fRunButton, fEntryButton})
+        b->GetNumberEntry()->Connect("ReturnPressed()", "ActRoot::EventPainter", this, "DoGoTo()");
     // 8-> Goto button
     fTextButtons.push_back(new TGTextButton {fButtonsFrame, "&GoTo"});
     fTextButtons.back()->Connect("Pressed()", "ActRoot::EventPainter", this, "DoGoTo()");
