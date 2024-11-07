@@ -194,6 +194,12 @@ Functions</h2></td></tr>
 <tr class="separator:a413d9bd9865ff23f81694b6897d93dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77d04b871ac0d2b16d3df5a7224879d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a77d04b871ac0d2b16d3df5a7224879d9">IsEqZero</a> (double val)</td></tr>
 <tr class="separator:a77d04b871ac0d2b16d3df5a7224879d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a059d323d2ce509ce82bdd2ecc0f25940"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a059d323d2ce509ce82bdd2ecc0f25940"><td class="memTemplItemLeft" align="right" valign="top">ROOT::Math::PositionVector3D&lt; ROOT::Math::Cartesian3D&lt; T &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a059d323d2ce509ce82bdd2ecc0f25940">CastXYZPoint</a> (const ROOT::Math::PositionVector3D&lt; ROOT::Math::Cartesian3D&lt; U &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; &amp;p)</td></tr>
+<tr class="separator:a059d323d2ce509ce82bdd2ecc0f25940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb91f05f801ddfbc34e867a254c35602"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:aeb91f05f801ddfbc34e867a254c35602"><td class="memTemplItemLeft" align="right" valign="top">ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; T &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#aeb91f05f801ddfbc34e867a254c35602">CastXYZVector</a> (const ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; U &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; &amp;v)</td></tr>
+<tr class="separator:aeb91f05f801ddfbc34e867a254c35602"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -324,6 +330,69 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a059d323d2ce509ce82bdd2ecc0f25940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a059d323d2ce509ce82bdd2ecc0f25940">&#9670;&nbsp;</a></span>CastXYZPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::Math::PositionVector3D&lt;ROOT::Math::Cartesian3D&lt;T&gt;, ROOT::Math::DefaultCoordinateSystemTag&gt; ActRoot::CastXYZPoint </td>
+          <td>(</td>
+          <td class="paramtype">const ROOT::Math::PositionVector3D&lt; ROOT::Math::Cartesian3D&lt; U &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> {(T)p.X(), (T)p.Y(), (T)p.Z()};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aeb91f05f801ddfbc34e867a254c35602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb91f05f801ddfbc34e867a254c35602">&#9670;&nbsp;</a></span>CastXYZVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::Math::DisplacementVector3D&lt;ROOT::Math::Cartesian3D&lt;T&gt;, ROOT::Math::DefaultCoordinateSystemTag&gt; ActRoot::CastXYZVector </td>
+          <td>(</td>
+          <td class="paramtype">const ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; U &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> {(T)v.X(), (T)v.Y(), (T)v.Z()};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a77d04b871ac0d2b16d3df5a7224879d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77d04b871ac0d2b16d3df5a7224879d9">&#9670;&nbsp;</a></span>IsEqZero() <span class="overload">[1/3]</span></h2>
 
@@ -342,7 +411,7 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">return</span> val * val &lt;= <a class="code" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a> * <a class="code" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
-<div class="ttc" id="anamespaceActRoot_html_adc42cdbe4350e1f2b3a778146328d018"><div class="ttname"><a href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">ActRoot::kDoubleEps</a></div><div class="ttdeci">constexpr double kDoubleEps</div><div class="ttdef"><b>Definition:</b> ActUtils.h:18</div></div>
+<div class="ttc" id="anamespaceActRoot_html_adc42cdbe4350e1f2b3a778146328d018"><div class="ttname"><a href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">ActRoot::kDoubleEps</a></div><div class="ttdeci">constexpr double kDoubleEps</div><div class="ttdef"><b>Definition:</b> ActUtils.h:20</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,7 +433,7 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">return</span> val * val &lt;= <a class="code" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a> * <a class="code" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a>;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
-<div class="ttc" id="anamespaceActRoot_html_a588d04230a19b5278f49475ae41da81f"><div class="ttname"><a href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">ActRoot::kFloatEps</a></div><div class="ttdeci">constexpr float kFloatEps</div><div class="ttdef"><b>Definition:</b> ActUtils.h:17</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a588d04230a19b5278f49475ae41da81f"><div class="ttname"><a href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">ActRoot::kFloatEps</a></div><div class="ttdeci">constexpr float kFloatEps</div><div class="ttdef"><b>Definition:</b> ActUtils.h:19</div></div>
 </div><!-- fragment -->
 </div>
 </div>
