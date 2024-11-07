@@ -76,7 +76,17 @@ void ActAlgorithm::Actions::FindRP::Print() const
         std::cout << "······························" << RESET << '\n';
         return;
     }
-    std::cout << "  XPercent : " << 2 << '\n';
+    std::cout << "  BeamLikeParallelF         : " << fBeamLikeParallelF << '\n';
+    std::cout << "  BeamLikeXMinThresh        : " << fBeamLikeXMinThresh << '\n';
+    std::cout << "  RPDistThresh        : " << fRPDistThresh << '\n';
+    std::cout << "  RPDistCluster        : " << fRPDistCluster << '\n';
+    std::cout << "  RPDistValidate        : " << fRPDistValidate << '\n';
+    std::cout << "  BeamLikeMinVoxels        : " << fBeamLikeMinVoxels << '\n';
+    std::cout << "  RPMaskXY        : " << fRPMaskXY << '\n';
+    std::cout << "  RPMaskZ        : " << fRPMaskZ << '\n';
+    std::cout << "  CylinderR        : " << fCylinderR << '\n';
+    std::cout << "  RPPivotDist        : " << fRPPivotDist << '\n';
+    std::cout << "  RPDefaultMinX        : " << fRPDefaultMinX << '\n';    
 
     std::cout << "······························" << RESET << '\n';
 }
@@ -84,7 +94,7 @@ void ActAlgorithm::Actions::FindRP::Print() const
 void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
 {
     int nBeam {};
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         // 1-> Check if xmin is bellow threshold
         auto [xmin, xmax] {it->GetXRange()};
@@ -383,7 +393,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     }
 
     // 4 -> Mask region around RP
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
         auto& refVoxels {it->GetRefToVoxels()};
         auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),

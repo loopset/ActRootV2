@@ -52,5 +52,7 @@ void ActAlgorithm::Actions::CleanDeltas::Print() const
         return;
     }
     std::cout << "  Chi2Thresh         : " << fDeltaChi2Threshold << '\n';
-    std::cout << "  MaxVoxeles         : " << fDeltaMaxVoxels << RESET << '\n';
+    std::cout << "  MaxVoxeles         : " << fDeltaMaxVoxels  << '\n';
+
+    std::cout << "······························" << RESET << '\n';
 }
