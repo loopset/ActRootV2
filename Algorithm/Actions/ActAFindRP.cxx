@@ -5,6 +5,7 @@
 #include "ActTPCParameters.h"
 #include "ActUtils.h"
 #include "ActVAction.h"
+#include "ActVoxel.h"
 
 #include <TMath.h>
 #include <TMatrixD.h>
@@ -13,6 +14,8 @@
 #include "Math/Point3D.h"
 
 #include <algorithm>
+#include <functional>
+#include <ios>
 #include <utility>
 #include <vector>
 
@@ -51,6 +54,15 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fRPDefaultMinX = block->GetDouble("RPDefaultMinX");
     if(block->CheckTokenExists("EnableFineRP"))
         fEnableFineRP = block->GetBool("EnableFineRP");
+    // Break beam to heavy
+    if(block->CheckTokenExists("KeepBreakBeam"))
+        fKeepBreakBeam = block->GetBool("KeepBreakBeam");
+    if(block->CheckTokenExists("EnableFixBreakBeam"))
+        fEnableFixBreakBeam = block->GetBool("EnableFixBreakBeam");
+    if(block->CheckTokenExists("MaxVoxelsFixBreak"))
+        fMaxVoxelsFixBreak = block->GetDouble("MaxVoxelsFixBreak");
+    if(block->CheckTokenExists("MinPercentFixBreak"))
+        fMinPercentFixBreak = block->GetDouble("MinPercentFixBreak");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -81,13 +93,20 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
     std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
     std::cout << "  RPDistValidate     : " << fRPDistValidate << '\n';
+    std::cout << "  EnableDelInvalid   ? " << std::boolalpha << fEnableDeleteInvalidCluster << '\n';
     std::cout << "  BeamLikeMinVoxels  : " << fBeamLikeMinVoxels << '\n';
-    std::cout << "  RPMaskXY      : " << fRPMaskXY << '\n';
-    std::cout << "  RPMaskZ       : " << fRPMaskZ << '\n';
-    std::cout << "  CylinderR     : " << fCylinderR << '\n';
-    std::cout << "  RPPivotDist   : " << fRPPivotDist << '\n';
-    std::cout << "  RPDefaultMinX : " << fRPDefaultMinX << '\n';
-
+    std::cout << "  RPMaskXY           : " << fRPMaskXY << '\n';
+    std::cout << "  RPMaskZ            : " << fRPMaskZ << '\n';
+    std::cout << "  EnableCylinder     ? " << std::boolalpha << fEnableCylinder << '\n';
+    std::cout << "  CylinderR          : " << fCylinderR << '\n';
+    std::cout << "  RPPivotDist        : " << fRPPivotDist << '\n';
+    std::cout << "  EnableDefaultBeam  ? " << std::boolalpha << fEnableRPDefaultBeam << '\n';
+    std::cout << "  RPDefaultMinX      : " << fRPDefaultMinX << '\n';
+    std::cout << "  EnableFineRP       ? " << std::boolalpha << fEnableFineRP << '\n';
+    std::cout << "  EnabbleKeepBreak   ? " << std::boolalpha << fKeepBreakBeam << '\n';
+    std::cout << "  EnableFixBreak     ? " << std::boolalpha << fEnableFixBreakBeam << '\n';
+    std::cout << "  MaxVoxelsFixBreak  : " << fMaxVoxelsFixBreak << '\n';
+    std::cout << "  MinPercentFixBreak : " << fMinPercentFixBreak << '\n';
     std::cout << "······························" << RESET << '\n';
 }
 
@@ -349,7 +368,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     const auto& rp {fTPCData->fRPs.front()};
 
     // 2-> Break BL starting on RP
-    BreakBeamToHeavy(rp, true);
+    BreakBeamToHeavy(rp, fKeepBreakBeam);
 
     // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
@@ -506,38 +525,70 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
     }
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
-    // And attempt to fix in case this creates artificial new clusters
-    auto heavy {fTPCData->fClusters.end() - 1};
-    // Sort clusters
-    std::sort(heavy->GetRefToVoxels().begin(), heavy->GetRefToVoxels().end());
-    auto begin {heavy->GetVoxels().front().GetPosition()};
-    auto end {heavy->GetVoxels().back().GetPosition()};
-    // Compare with the other NOT BEAM clusters
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+    if(!fEnableFixBreakBeam)
+        return;
+    // Attempt to fix BreakBeam
+    auto size {fTPCData->fClusters.size()};
+    auto added {toAppend.size()};
+    std::map<int, std::set<int>> toAdd;
+    for(int i = (size - 1); i > (size - added - 1); i--)
     {
-        if(it == heavy || it->GetIsBeamLike())
-            continue;
-        std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
-        auto inbegin {it->GetVoxels().front().GetPosition()};
-        auto inend {it->GetVoxels().back().GetPosition()};
-        // Get minimum distance
-        double dist {1111};
-        for(auto out : {&begin, &end})
+        // Get iterator
+        auto iit {fTPCData->fClusters.begin() + i};
+        // Check added cluster verifies condition of being small
+        if(iit->GetSizeOfVoxels() <= fMaxVoxelsFixBreak)
         {
-            for(auto in : {&inbegin, &inend})
+            int idx {-1};
+            double percent {-1};
+            for(int j = 0; j <= (size - added - 1); j++)
             {
-                auto aux {(*out - *in).R()};
-                if(aux < dist)
-                    dist = aux;
+                // Get iterator
+                auto jit {fTPCData->fClusters.begin() + j};
+                if(i == j || jit->GetIsBeamLike())
+                    continue;
+                // Count number of voxels within cylinder radius
+                // WARNING: using same cylinder radius as for the other function!
+                auto count {
+                    std::count_if(iit->GetVoxels().begin(), iit->GetVoxels().end(), [&](const ActRoot::Voxel& v)
+                                  { return jit->GetLine().DistanceLineToPoint(v.GetPosition()) < fCylinderR; })};
+                double aux {(double)count / iit->GetSizeOfVoxels()};
+                if(aux > percent)
+                {
+                    percent = aux;
+                    idx = j;
+                }
+            }
+            if(percent >= fMinPercentFixBreak)
+            {
+                toAdd[idx].insert(i);
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDRED << "-> Fixing break beam" << '\n';
+                    std::cout << "   Small cluster sized : " << iit->GetSizeOfVoxels() << " with percent " << percent
+                              << '\n';
+                    std::cout << "-----------------------------" << RESET << '\n';
+                }
             }
         }
-        if(fIsVerbose)
-        {
-            std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
-            std::cout << "Minimum dist " << dist << " for cluster " << it->GetClusterID() << '\n';
-            std::cout << "-----------------------------" << RESET << '\n';
-        }
     }
+    // Add to clusters
+    std::set<int, std::greater<int>> toDelete;
+    for(const auto& [out, set] : toAdd)
+    {
+        auto& outvoxels {fTPCData->fClusters[out].GetRefToVoxels()};
+        for(const auto& in : set)
+        {
+            toDelete.insert(in);
+            auto& invoxels {fTPCData->fClusters[in].GetRefToVoxels()};
+            outvoxels.insert(outvoxels.end(), std::make_move_iterator(invoxels.begin()),
+                             std::make_move_iterator(invoxels.end()));
+        }
+        fTPCData->fClusters[out].ReFit();
+        fTPCData->fClusters[out].ReFillSets();
+    }
+    // Erase
+    for(const auto& idx : toDelete)
+        fTPCData->fClusters.erase(fTPCData->fClusters.begin() + idx);
 }
 
 void ActAlgorithm::Actions::FindRP::CylinderCleaning()

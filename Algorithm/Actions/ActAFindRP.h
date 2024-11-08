@@ -25,6 +25,10 @@ private:
     bool fEnableRPDefaultBeam {}; // Enable set direction to short BLs tracks as (1,0,0)
     double fRPDefaultMinX {};     // Parameter that determines if a BL track is short in x
     bool fEnableFineRP {};
+    bool fKeepBreakBeam {}; //!< Keep heavy-like cluster after breaking beam starting on RP
+    bool fEnableFixBreakBeam {};
+    double fMaxVoxelsFixBreak {};  //!< Max voxels to enable fix voxel routine
+    double fMinPercentFixBreak {}; //!< Min percent of voxels inside the bigger one to fix
 
 public:
     FindRP() : VAction("FindRP") {}
