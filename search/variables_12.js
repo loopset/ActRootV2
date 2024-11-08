@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['waiting_3087',['waiting',['../classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40',1,'BS::thread_pool']]],
-  ['workers_5frunning_3088',['workers_running',['../classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9',1,'BS::thread_pool']]]
+  ['waiting_3095',['waiting',['../classBS_1_1thread__pool.html#ada3f9e45366bd2b6a66fdf1e15df9b40',1,'BS::thread_pool']]],
+  ['workers_5frunning_3096',['workers_running',['../classBS_1_1thread__pool.html#a031db7480dd2ff3d13a4ba3d0aec3bc9',1,'BS::thread_pool']]]
 ];
