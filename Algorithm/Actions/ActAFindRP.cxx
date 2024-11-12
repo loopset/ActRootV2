@@ -1,5 +1,6 @@
 #include "ActAFindRP.h"
 
+#include "ActCluster.h"
 #include "ActColors.h"
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
@@ -16,6 +17,7 @@
 #include <algorithm>
 #include <functional>
 #include <ios>
+#include <iostream>
 #include <utility>
 #include <vector>
 
@@ -70,6 +72,8 @@ void ActAlgorithm::Actions::FindRP::Run()
     if(!fIsEnabled)
         return;
     DetermineBeamLikes();
+    if(!IsDoable())
+        return;
     FindPreliminaryRP();
     if(fEnableDeleteInvalidCluster)
         DeleteInvalidCluster();
@@ -131,11 +135,40 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
     // Print
     if(fIsVerbose)
     {
-        std::cout << BOLDYELLOW << "---- Beam-Like ID verbose ----" << '\n';
+        std::cout << BOLDYELLOW << "---- FindRP::DetermineBeamLikes ----" << '\n';
         std::cout << "-> N beam clusters  : " << nBeam << '\n';
         std::cout << "-> N total clusters : " << fTPCData->fClusters.size() << '\n';
         std::cout << "-------------------------" << RESET << '\n';
     }
+}
+
+bool ActAlgorithm::Actions::FindRP::IsDoable()
+{
+    // Empty event
+    if(fTPCData->fClusters.size() == 0)
+    {
+        if(fIsVerbose)
+        {
+            std::cout << BOLDYELLOW << "---- FindRP::IsDoable ----" << '\n';
+            std::cout << "  Skipping since empty fClusters" << '\n';
+            std::cout << "-------------------------" << RESET << '\n';
+        }
+        return false;
+    }
+    // Only pileup
+    auto allBeam {std::all_of(fTPCData->fClusters.begin(), fTPCData->fClusters.end(),
+                              [](ActRoot::Cluster& cl) { return cl.GetIsBeamLike(); })};
+    if(allBeam)
+    {
+        if(fIsVerbose)
+        {
+            std::cout << BOLDYELLOW << "---- FindRP::IsDoable ----" << '\n';
+            std::cout << "  Skipping since all beam-likes" << '\n';
+            std::cout << "-------------------------" << RESET << '\n';
+        }
+        return false;
+    }
+    return true;
 }
 
 void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
@@ -170,15 +203,25 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 
             // Check that all points are valid
             bool checkA {IsRPValid(pA, fTPCPars)};
-            bool checkB {IsRPValid(pB, GetTPCParameters())};
-            bool checkRP {IsRPValid(rp, GetTPCParameters())};
+            bool checkB {IsRPValid(pB, fTPCPars)};
+            bool checkRP {IsRPValid(rp, fTPCPars)};
             auto checkPoints {checkA && checkB && checkRP};
             // Check distance is bellow threshold
             bool checkDist {dist <= fRPDistThresh};
             if(checkPoints && checkDist)
                 rps.push_back({rp, {i, j}});
             else
+            {
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDYELLOW << "---- FindRP::PreliminaryRP ----" << '\n';
+                    std::cout << "  <i,j> : <" << i << "," << j << "> not in TPC or below dist threshold" << '\n';
+                    std::cout << "  RP    : " << rp << '\n';
+                    std::cout << "  dist  : " << dist << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
+                }
                 continue;
+            }
         }
     }
     auto proc {ClusterAndSortRPs(rps)};
@@ -347,6 +390,17 @@ std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vec
                   auto rc {distValid(r)};
                   return lc > rc;
               });
+    if(fIsVerbose)
+    {
+        std::cout << BOLDYELLOW << "---- FindRP::SortAndCluster ----" << '\n';
+        for(const auto& [rp, set] : ret)
+        {
+            std::cout << "-> RP : " << rp << " with indexes" << '\n';
+            for(const auto& i : set)
+                std::cout << "    " << i << '\n';
+        }
+        std::cout << RESET;
+    }
     return ret;
 }
 
@@ -552,6 +606,11 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                     std::count_if(iit->GetVoxels().begin(), iit->GetVoxels().end(), [&](const ActRoot::Voxel& v)
                                   { return jit->GetLine().DistanceLineToPoint(v.GetPosition()) < fCylinderR; })};
                 double aux {(double)count / iit->GetSizeOfVoxels()};
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDYELLOW << "---- FindRP::BreakBeamToHeavy ----" << '\n';
+                    std::cout << "  <i,j> : <" << i << "," << j << "> with percent : " << percent << '\n';
+                }
                 if(aux > percent)
                 {
                     percent = aux;

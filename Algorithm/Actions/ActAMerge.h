@@ -11,8 +11,8 @@ class Merge : public VAction
 {
 private:
     // Parameters of this action
-    double fDistThresh {};        // Min distance of cluster line to others cluster line gravity point
-    double fMinParallelFactor {}; // Min parallelity between 2 clusters to consider merging
+    double fDistThresh {};        //!< Min distance of cluster line to others cluster line gravity point
+    double fMinParallelFactor {}; //!< Min parallelity between 2 clusters to consider merging
     double fChi2Factor {};
 
 public:

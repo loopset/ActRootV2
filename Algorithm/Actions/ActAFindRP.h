@@ -40,6 +40,7 @@ public:
 private:
     // Major functions of FindRP
     void DetermineBeamLikes();
+    bool IsDoable();
     void FindPreliminaryRP();
     void DeleteInvalidCluster();
     void PerformFinerFits();

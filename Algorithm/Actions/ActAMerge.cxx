@@ -4,6 +4,7 @@
 #include "ActInputParser.h"
 #include "ActTPCData.h"
 
+#include <ios>
 #include <memory>
 
 void ActAlgorithm::Actions::Merge::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
@@ -25,7 +26,7 @@ void ActAlgorithm::Actions::Merge::Run()
         return;
 
     auto& clusters {fTPCData->fClusters};
-    // Sort cluster increaing size
+    // Sort cluster by increasing size
     std::sort(clusters.begin(), clusters.end(),
               [](ActRoot::Cluster& l, ActRoot::Cluster& r) { return l.GetSizeOfVoxels() < r.GetSizeOfVoxels(); });
     // Verbose
@@ -74,6 +75,12 @@ void ActAlgorithm::Actions::Merge::Run()
             // 3-> Check if fit improves
             if(isBelowThresh && areParallel)
             {
+                if(fIsVerbose)
+                {
+                    std::cout << "  <i,j> : <" << i << "," << j << ">" << '\n';
+                    std::cout << "  distance " << dist << " below thresh ? " << std::boolalpha << isBelowThresh << '\n';
+                    std::cout << "  are parallel ? " << std::boolalpha << areParallel << '\n';
+                }
                 // Sum voxels from both cluster
                 std::vector<ActRoot::Voxel> sumVoxels;
                 sumVoxels.reserve(iit->GetPtrToVoxels()->size() + jit->GetPtrToVoxels()->size());
