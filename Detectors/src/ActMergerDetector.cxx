@@ -292,6 +292,8 @@ void ActRoot::MergerDetector::DoMerge()
         // this checks whether the SP is fine or not
         // probably bc the propagation does not occur in
         // the same sense of motion as defined by Line::fDirection
+        if(fIsVerbose)
+            std::cout << BOLDRED << "MergerDetector::Run(): SP is not OK, skipping event" << RESET << '\n';
         fMergerData->Clear();
         return;
     }
@@ -666,7 +668,20 @@ bool ActRoot::MergerDetector::MatchSPtoRealPlacement()
     auto n {fMergerData->fSilNs.front()};
     auto layer {fMergerData->fSilLayers.front()};
     // And check!
-    return fSilSpecs->GetLayer(layer).MatchesRealPlacement(n, fMergerData->fSP, fMatchUseZ);
+    auto ret {fSilSpecs->GetLayer(layer).MatchesRealPlacement(n, fMergerData->fSP, fMatchUseZ)};
+    if(!ret && fIsVerbose)
+    {
+        std::cout << BOLDCYAN << "---- Merger MatchSP ----" << '\n';
+        std::cout << "  Layer : " << layer << '\n';
+        std::cout << "  Pad   : " << n << '\n';
+        std::cout << "  SP    : " << fMergerData->fSP << '\n';
+        std::cout << "  does not match real placement at" << '\n';
+        auto xy {fSilSpecs->GetLayer(layer).GetPlacements().at(n).first};
+        auto w {fSilSpecs->GetLayer(layer).GetUnit().GetWidth()};
+        std::cout << "  XY    : [" << xy - w / 2 << ", " << xy + w / 2 << "]" << '\n';
+        std::cout << "------------------------------" << RESET << '\n';
+    }
+    return ret;
 }
 
 ActRoot::MergerDetector::XYZVector ActRoot::MergerDetector::RotateTrack(XYZVector beam, XYZVector track)

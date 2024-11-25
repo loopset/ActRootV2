@@ -15,6 +15,7 @@
 #include "Math/Point3D.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <functional>
 #include <ios>
 #include <iostream>
@@ -65,6 +66,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fMaxVoxelsFixBreak = block->GetDouble("MaxVoxelsFixBreak");
     if(block->CheckTokenExists("MinPercentFixBreak"))
         fMinPercentFixBreak = block->GetDouble("MinPercentFixBreak");
+    if(block->CheckTokenExists("MinXSepBreakBeam"))
+        fMinXSepBreakBeam = block->GetDouble("MinXSepBreakBeam");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -111,6 +114,7 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  EnableFixBreak     ? " << std::boolalpha << fEnableFixBreakBeam << '\n';
     std::cout << "  MaxVoxelsFixBreak  : " << fMaxVoxelsFixBreak << '\n';
     std::cout << "  MinPercentFixBreak : " << fMinPercentFixBreak << '\n';
+    std::cout << "  MinXSepBreakBeam   : " << fMinXSepBreakBeam << '\n';
     std::cout << "······························" << RESET << '\n';
 }
 
@@ -179,6 +183,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 
     // Declare vector of RPs
     std::vector<RPValue> rps;
+    std::vector<RPOps> rpops;
     // Run
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
@@ -209,7 +214,12 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             // Check distance is bellow threshold
             bool checkDist {dist <= fRPDistThresh};
             if(checkPoints && checkDist)
+            {
                 rps.push_back({rp, {i, j}});
+                rpops.push_back(RPOps {});
+                rpops.back().fRP = rp;
+                rpops.back().fIdxs.insert({i, j});
+            }
             else
             {
                 if(fIsVerbose)
@@ -422,7 +432,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     const auto& rp {fTPCData->fRPs.front()};
 
     // 2-> Break BL starting on RP
-    BreakBeamToHeavy(rp, fKeepBreakBeam);
+    auto hasBroken {BreakBeamToHeavy(rp, fKeepBreakBeam)};
 
     // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
@@ -454,6 +464,9 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     // 4 -> Mask region around RP
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
+        // Skipn in case BL has not broken
+        if(it->GetIsBeamLike() && !hasBroken)
+            continue;
         auto& refVoxels {it->GetRefToVoxels()};
         auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),
                                     [&](const ActRoot::Voxel& voxel)
@@ -514,12 +527,18 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     }
 }
 
-void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit)
+bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit)
 {
     std::vector<ActRoot::Cluster> toAppend {};
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
-        if(it->GetIsBeamLike())
+        // Determine whether is breakable
+        auto [xmin, xmax] {it->GetXRange()};
+        // In order to be breakable, besides being BeamLike,
+        // there must be a certain distance between the RP.X() and the last voxel of the cluster
+        auto dist {std::abs(xmax - fTPCData->fRPs.front().X())};
+        bool isBreakable {dist >= fMinXSepBreakBeam};
+        if(it->GetIsBeamLike() && isBreakable)
         {
             auto& refVoxels {it->GetRefToVoxels()};
             // Sort them
@@ -576,11 +595,23 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
             }
             it->ReFillSets();
         }
+        // Print info
+        if(it->GetIsBeamLike() && !isBreakable && fIsVerbose)
+        {
+            std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
+            std::cout << "-> IsNotBreakable!" << '\n';
+            std::cout << "-> Xmax   : " << xmax << '\n';
+            std::cout << "-> RP.X() : " << fTPCData->fRPs.front().X() << '\n';
+            std::cout << "-> Dist   : " << dist << " < " << fMinXSepBreakBeam << '\n';
+            std::cout << "-----------------------------" << RESET << '\n';
+        }
     }
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
+    // Return whether function has provided a new cluster or not
+    bool ret {static_cast<bool>(toAppend.size())};
     if(!fEnableFixBreakBeam)
-        return;
+        return ret;
     // Attempt to fix BreakBeam
     auto size {fTPCData->fClusters.size()};
     auto added {toAppend.size()};
@@ -648,6 +679,7 @@ void ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
     // Erase
     for(const auto& idx : toDelete)
         fTPCData->fClusters.erase(fTPCData->fClusters.begin() + idx);
+    return ret;
 }
 
 void ActAlgorithm::Actions::FindRP::CylinderCleaning()
@@ -666,7 +698,7 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning()
                                     })};
         // if enough voxels remain
         auto remain {std::distance(refVoxels.begin(), itKeep)};
-        if(remain > fAlgo->GetMinPoints())
+        if(remain >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
@@ -716,7 +748,7 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
                                // could be troublesome depending on track angle
                                bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
                                bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
-                               return !(isInCapInit && isInCapEnd);
+                               return !(isInCapInit || isInCapEnd);
                            })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if eneugh voxels remain
@@ -724,7 +756,7 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
-            it->ReFillSets(); // Print
+            it->ReFillSets();
             if(fIsVerbose)
             {
                 {
@@ -741,7 +773,6 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
             }
             else
             {
-                //  Print
                 if(fIsVerbose)
                 {
                     std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';

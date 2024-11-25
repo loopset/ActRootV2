@@ -18,17 +18,27 @@ private:
     double fBeamLikeMinVoxels {};        // Min voxels for BL particles
     double fRPMaskXY {};                 // Distance to aply the mask in XY
     double fRPMaskZ {};                  // Distance to aply the mask in Z
-    bool fEnableCylinder {};             // Bool to enable the function CylinderCleaning
-    double fCylinderR {};                // Cylinder radious for CylinderCleaning function
-    double fRPPivotDist {}; // Distance to erase Init and End of tracks (if voxels projection on line is too close of
-                            // first/last voxel projection)
-    bool fEnableRPDefaultBeam {}; // Enable set direction to short BLs tracks as (1,0,0)
-    double fRPDefaultMinX {};     // Parameter that determines if a BL track is short in x
+    bool fEnableRPDefaultBeam {};        // Enable set direction to short BLs tracks as (1,0,0)
+    double fRPDefaultMinX {};            // Parameter that determines if a BL track is short in x
     bool fEnableFineRP {};
-    bool fKeepBreakBeam {}; //!< Keep heavy-like cluster after breaking beam starting on RP
+    bool fKeepBreakBeam {};      //!< Keep heavy-like cluster after breaking beam starting on RP
+    double fMinXSepBreakBeam {}; //!< Min separation preRP.X() to BeamLike.Xend() to separete heavy track
     bool fEnableFixBreakBeam {};
     double fMaxVoxelsFixBreak {};  //!< Max voxels to enable fix voxel routine
     double fMinPercentFixBreak {}; //!< Min percent of voxels inside the bigger one to fix
+    bool fEnableCylinder {};       //!< Bool to enable the function CylinderCleaning
+    double fCylinderR {};          //!< Cylinder radious for CylinderCleaning function
+    double fRPPivotDist {}; //!< Distance to erase Init and End of tracks (if voxels projection on line is too close of
+                            // first/last voxel projection)
+
+    // Class to store RPOperations
+    struct RPOps
+    {
+        XYZPointF fRP {-1, -1, -1};
+        std::set<int> fIdxs {};
+        double fMinDist {-1};
+        int fCounts {};
+    };
 
 public:
     FindRP() : VAction("FindRP") {}
@@ -44,7 +54,7 @@ private:
     void FindPreliminaryRP();
     void DeleteInvalidCluster();
     void PerformFinerFits();
-    void BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit = true);
+    bool BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit = true);
     void CylinderCleaning();
     void MaskBeginEnd(const ActAlgorithm::VAction::XYZPointF& rp);
     void FindPreciseRP();

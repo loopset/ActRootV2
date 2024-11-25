@@ -27,16 +27,17 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
         bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
         // 3-> Check if after all there are clusters with Chi2 = -1
         bool isBadFit {it->GetLine().GetChi2() == -1};
-        if(fIsVerbose)
-        {
-            std::cout << BOLDCYAN << "---- CleanDeltas verbose ----" << '\n';
-            std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
-            std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
-            std::cout << "-------------------" << RESET << '\n';
-        }
-
         if(hasLargeChi || isSmall || isBadFit)
+        {
+            if(fIsVerbose)
+            {
+                std::cout << BOLDCYAN << "---- CleanDeltas verbose ----" << '\n';
+                std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
+                std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
+                std::cout << "-------------------" << RESET << '\n';
+            }
             it = fTPCData->fClusters.erase(it);
+        }
         else
             it++;
     }
@@ -52,7 +53,7 @@ void ActAlgorithm::Actions::CleanDeltas::Print() const
         return;
     }
     std::cout << "  Chi2Thresh         : " << fDeltaChi2Threshold << '\n';
-    std::cout << "  MaxVoxeles         : " << fDeltaMaxVoxels  << '\n';
+    std::cout << "  MaxVoxeles         : " << fDeltaMaxVoxels << '\n';
 
     std::cout << "······························" << RESET << '\n';
 }
