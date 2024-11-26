@@ -962,7 +962,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;        ret.push_back({mean, set});</div>
 <div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    }</div>
 <div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;    <span class="comment">// Validate once again using distance</span></div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    <span class="keyword">auto</span> distvalid = [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#a715fb36ad63c8993ad5c535269bc96d3">RPCluster</a>&amp; cluster)</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    <span class="keyword">auto</span> distvalid = [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a1e332bbb28fcff4dc1c2bd80fb4d0fd4">RPCluster</a>&amp; cluster)</div>
 <div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    {</div>
 <div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordtype">int</span> count {};</div>
 <div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; idx : cluster.second)</div>
@@ -990,7 +990,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;    };</div>
 <div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;    <span class="comment">// Call to sort</span></div>
 <div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;    std::sort(ret.begin(), ret.end(),</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;              [<span class="keyword">this</span>, &amp;distvalid](<span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#a715fb36ad63c8993ad5c535269bc96d3">RPCluster</a>&amp; l, <span class="keyword">const</span> <a class="code" href="ActAFindRP_8cxx.html#a715fb36ad63c8993ad5c535269bc96d3">RPCluster</a>&amp; r)</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;              [<span class="keyword">this</span>, &amp;distvalid](<span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a1e332bbb28fcff4dc1c2bd80fb4d0fd4">RPCluster</a>&amp; l, <span class="keyword">const</span> <a class="code" href="classActAlgorithm_1_1MultiStep.html#a1e332bbb28fcff4dc1c2bd80fb4d0fd4">RPCluster</a>&amp; r)</div>
 <div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;              {</div>
 <div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                  auto lc {distvalid(l)};</div>
 <div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                  <span class="keyword">auto</span> rc {distvalid(r)};</div>
@@ -998,7 +998,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;              });</div>
 <div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;}</div>
-<div class="ttc" id="aActAFindRP_8cxx_html_a715fb36ad63c8993ad5c535269bc96d3"><div class="ttname"><a href="ActAFindRP_8cxx.html#a715fb36ad63c8993ad5c535269bc96d3">RPCluster</a></div><div class="ttdeci">std::pair&lt; ActAlgorithm::VAction::XYZPointF, std::set&lt; int &gt; &gt; RPCluster</div><div class="ttdef"><b>Definition:</b> ActAFindRP.cxx:308</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_a1e332bbb28fcff4dc1c2bd80fb4d0fd4"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#a1e332bbb28fcff4dc1c2bd80fb4d0fd4">ActAlgorithm::MultiStep::RPCluster</a></div><div class="ttdeci">std::pair&lt; XYZPoint, std::set&lt; int &gt; &gt; RPCluster</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:27</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_a7ae833fa5c1961a3621ae0bc1a89074f"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#a7ae833fa5c1961a3621ae0bc1a89074f">ActAlgorithm::MultiStep::RPValue</a></div><div class="ttdeci">std::pair&lt; XYZPoint, std::pair&lt; int, int &gt; &gt; RPValue</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:26</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1MultiStep_html_ab78b4759e90c2b31b8b9ef821c59f516"><div class="ttname"><a href="classActAlgorithm_1_1MultiStep.html#ab78b4759e90c2b31b8b9ef821c59f516">ActAlgorithm::MultiStep::fRPDistValidate</a></div><div class="ttdeci">double fRPDistValidate</div><div class="ttdef"><b>Definition:</b> ActMultiStep.h:76</div></div>
 </div><!-- fragment -->
