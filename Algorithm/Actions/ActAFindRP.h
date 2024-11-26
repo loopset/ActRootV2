@@ -13,7 +13,6 @@ private:
     double fBeamLikeParallelF {};        // Min value for X component
     double fRPDistThresh {};             // Max distance between two lines to form a RP
     double fRPDistCluster {};            // Max distance to cluster RPs
-    double fRPDistValidate {};           // Max distance from track to rp
     bool fEnableDeleteInvalidCluster {}; // Bool to enable the function DeleteInvalidCluster
     double fBeamLikeMinVoxels {};        // Min voxels for BL particles
     double fRPMaskXY {};                 // Distance to aply the mask in XY
@@ -31,13 +30,14 @@ private:
     double fRPPivotDist {}; //!< Distance to erase Init and End of tracks (if voxels projection on line is too close of
                             // first/last voxel projection)
 
+public:
     // Class to store RPOperations
     struct RPOps
     {
-        XYZPointF fRP {-1, -1, -1};
-        std::set<int> fIdxs {};
-        double fMinDist {-1};
-        int fCounts {};
+        XYZPointF fRP {};       //!< RP (maybe a mean of RPs after clustering)
+        std::set<int> fIdxs {}; //!< Indexes of clusters belonging to RP
+        double fMinDist {};     //!< Minimum distance of a cluster to this RP
+        int fNrp {};            //!< Number of RPs that contributed to this Cluster of RPs
     };
 
 public:
@@ -66,9 +66,7 @@ private:
 
     bool IsRPValid(const XYZPointF& rp, ActRoot::TPCParameters* tpc);
 
-    typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::pair<int, int>> RPValue;
-    typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::set<int>> RPCluster;
-    std::vector<RPCluster> ClusterAndSortRPs(std::vector<RPValue>& rps);
+    std::vector<RPOps> ClusterAndSortRPs(std::vector<RPOps>& rps);
 
     double GetClusterAngle(const ActPhysics::Line::XYZVector& beam, const ActPhysics::Line::XYZVector& recoil);
 };

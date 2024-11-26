@@ -19,6 +19,8 @@
 #include <functional>
 #include <ios>
 #include <iostream>
+#include <iterator>
+#include <numeric>
 #include <utility>
 #include <vector>
 
@@ -35,8 +37,6 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fRPDistThresh = block->GetDouble("RPDistThresh");
     if(block->CheckTokenExists("RPDistCluster"))
         fRPDistCluster = block->GetDouble("RPDistCluster");
-    if(block->CheckTokenExists("RPDistValidate"))
-        fRPDistValidate = block->GetDouble("RPDistValidate");
     if(block->CheckTokenExists("EnableDeleteInvalidCluster"))
         fEnableDeleteInvalidCluster = block->GetBool("EnableDeleteInvalidCluster");
     if(block->CheckTokenExists("BeamLikeMinVoxels"))
@@ -99,7 +99,6 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  BeamLikeXMinThresh : " << fBeamLikeXMinThresh << '\n';
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
     std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
-    std::cout << "  RPDistValidate     : " << fRPDistValidate << '\n';
     std::cout << "  EnableDelInvalid   ? " << std::boolalpha << fEnableDeleteInvalidCluster << '\n';
     std::cout << "  BeamLikeMinVoxels  : " << fBeamLikeMinVoxels << '\n';
     std::cout << "  RPMaskXY           : " << fRPMaskXY << '\n';
@@ -182,7 +181,6 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
         fTPCData->fClusters.begin()->SetToDelete(true);
 
     // Declare vector of RPs
-    std::vector<RPValue> rps;
     std::vector<RPOps> rpops;
     // Run
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
@@ -215,7 +213,6 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             bool checkDist {dist <= fRPDistThresh};
             if(checkPoints && checkDist)
             {
-                rps.push_back({rp, {i, j}});
                 rpops.push_back(RPOps {});
                 rpops.back().fRP = rp;
                 rpops.back().fIdxs.insert({i, j});
@@ -234,16 +231,16 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             }
         }
     }
-    auto proc {ClusterAndSortRPs(rps)};
+    auto proc {ClusterAndSortRPs(rpops)};
     std::set<int> toKeep {};
     fTPCData->fRPs.clear();
     if(proc.size() > 0)
     {
         // Set RP as the one with the biggest number
         // of cluster within distance
-        fTPCData->fRPs.push_back(proc.front().first);
+        fTPCData->fRPs.push_back(proc.front().fRP);
         // Marks its tracks to be kept
-        toKeep = proc.front().second;
+        toKeep = proc.front().fIdxs;
     }
     // This method ensures always a RP vector with size > 1 always!
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
@@ -305,40 +302,37 @@ bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPointF& rp, ActRoot::TPCP
     return isInX && isInY && isInZ;
 }
 
-typedef std::pair<ActAlgorithm::VAction::XYZPointF, std::set<int>> RPCluster;
-std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<RPValue>& rps)
+std::vector<ActAlgorithm::Actions::FindRP::RPOps>
+ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actions::FindRP::RPOps>& rps)
 {
-    std::vector<RPCluster> ret;
+    std::vector<RPOps> ret;
     if(rps.empty())
         return ret;
     if(rps.size() == 1)
     {
-        ret.push_back({rps.front().first, {rps.front().second.first, rps.front().second.second}});
+        ret.push_back(rps.front());
         return ret;
     }
     // Sort
-    auto cmp {[](const RPValue& vl, const RPValue& vr)
+    auto cmp {[](const RPOps& vl, const RPOps& vr)
               {
-                  const auto& l {vl.first};
-                  const auto& r {vr.first};
-                  if(l.X() != r.X())
-                      return l.X() < r.X();
-                  if(l.Y() != r.Y())
-                      return l.Y() < r.Y();
-                  return l.Z() < r.Z();
+                  // Reference point: origin of coordinates
+                  XYZPointF origin {0, 0, 0};
+                  auto distleft {(vl.fRP - origin).R()};
+                  auto distright {(vr.fRP - origin).R()};
+                  return distleft < distright;
               }};
     std::sort(rps.begin(), rps.end(), cmp);
     // Cluster
-    std::vector<std::vector<RPValue>> clusters;
+    std::vector<std::vector<RPOps>> clusters;
     for(auto it = rps.begin();;)
     {
-        auto last {std::adjacent_find(it, rps.end(), [&](const RPValue& l, const RPValue& r)
-                                      { return (l.first - r.first).R() > fRPDistCluster; })};
+        auto last {std::adjacent_find(it, rps.end(), [&](const RPOps& l, const RPOps& r)
+                                      { return (l.fRP - r.fRP).R() > fRPDistCluster; })};
         if(last == rps.end())
         {
             clusters.emplace_back(it, last);
             break;
-            ;
         }
 
         // Get next-to-last iterator
@@ -350,66 +344,85 @@ std::vector<RPCluster> ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vec
         // Prepare for next iteration
         it = gap;
     }
-    // Sort by size of cluster
-    std::sort(clusters.begin(), clusters.end(),
-              [](const std::vector<RPValue>& l, const std::vector<RPValue>& r) { return l.size() > r.size(); });
-
-    // Get mean clusters
+    // Build each element out of the cluster
     for(const auto& cluster : clusters)
     {
-        std::set<int> set {};
-        ActAlgorithm::VAction::XYZPointF mean;
-        for(const auto& [rps, idx] : cluster)
+        ret.push_back(RPOps {});
+        auto& back {ret.back()};
+        for(const auto& element : cluster)
         {
-            mean += ActAlgorithm::VAction::XYZVector {rps};
-            set.insert(idx.first);
-            set.insert(idx.second);
+            back.fRP += XYZVectorF {element.fRP};
+            back.fIdxs.insert(element.fIdxs.begin(), element.fIdxs.end());
         }
-        mean /= cluster.size();
-        ret.push_back({mean, set});
+        // Compute mean and number of rps in cluster
+        back.fRP /= cluster.size();
+        back.fNrp = cluster.size();
     }
-    // Validate once again using distance
-    auto distValid = [this](const RPCluster& cluster)
-    {
-        int count {};
-        for(const auto& idx : cluster.second)
-        {
-            auto it {fTPCData->fClusters.begin() + idx};
-            if(it->GetIsBeamLike())
-                continue;
-            // Sort voxels: ActRoot voxels has a function > and <, work as the cmp built in this function
-            std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
-            // Min and max
-            auto min {it->GetRefToVoxels().front().GetPosition()};
-            auto max {it->GetRefToVoxels().back().GetPosition()};
-            for(auto p : {min, max})
-            {
-                p += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
-                auto dist {(p - cluster.first).R()};
-                if(dist < fRPDistValidate)
-                    count++;
-            }
-        }
-        return count;
-    };
-    // Call to sort
-    std::sort(ret.begin(), ret.end(),
-              [this, &distValid](RPCluster& l, RPCluster& r)
-              {
-                  auto lc {distValid(l)};
-                  auto rc {distValid(r)};
-                  return lc > rc;
-              });
+    // Sort by size of clusters = number of RP that were grouped
+    std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fNrp > r.fNrp; });
+    // Define a best scorer to validate RP in case there is a coincidence in the number of RPs in the cluster
+    auto validate {[this](RPOps& ops)
+                   {
+                       std::vector<double> dists;
+                       for(const auto& idx : ops.fIdxs)
+                       {
+                           auto it {fTPCData->fClusters.begin() + idx};
+                           if(it->GetIsBeamLike())
+                               continue;
+                           // Sort voxels
+                           std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
+                           // Get begin and end of cluster
+                           auto begin {it->GetRefToVoxels().front().GetPosition()};
+                           auto end {it->GetRefToVoxels().back().GetPosition()};
+                           double mindist {1111};
+                           for(auto point : {begin, end})
+                           {
+                               point += XYZVectorF {0.5, 0.5, 0.5};
+                               auto dist {(point - ops.fRP).R()};
+                               if(dist < mindist)
+                                   mindist = dist;
+                           }
+                           dists.push_back(mindist);
+                       }
+                       // Compute mean
+                       ops.fMinDist = (std::accumulate(dists.begin(), dists.end(), 0.0) / dists.size());
+                   }};
+    // Apply lambda to each element
+    std::for_each(ret.begin(), ret.end(), [&validate](RPOps& e) { validate(e); });
+    // Sort based on this distance!
+    std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist; });
+    // And now develop algorithm to extract rp...
+    // 1-> Sort based on number of counts
+    // std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fCounts > r.fCounts; });
+    // // 2-> Check if we're tied
+    // auto best {ret.front()};
+    // auto range {std::equal_range(ret.begin(), ret.end(), best,
+    //                              [](const RPOps& l, const RPOps& r) { return l.fCounts > r.fCounts; })};
+    // auto start {std::distance(ret.begin(), range.first)};
+    // auto end {std::distance(ret.begin(), range.second)};
+    // // 3-> If so, sort tied elements based on lowest distance to RP
+    // if((end - start) > 1) // we're tied!
+    // {
+    //     // Get subrange
+    //     std::vector<RPOps> redef {range.first, range.second};
+    //     // And sort it based on minimum distance
+    //     std::sort(redef.begin(), redef.end(), [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist;
+    //     }); ret = redef;
+    // }
+    // Print info
     if(fIsVerbose)
     {
         std::cout << BOLDYELLOW << "---- FindRP::SortAndCluster ----" << '\n';
-        for(const auto& [rp, set] : ret)
+        for(const auto& e : ret)
         {
-            std::cout << "-> RP : " << rp << " with indexes" << '\n';
-            for(const auto& i : set)
-                std::cout << "    " << i << '\n';
+            std::cout << "-> RP    : " << e.fRP << '\n';
+            for(const auto& idx : e.fIdxs)
+                std::cout << "   " << idx << '\n';
+            std::cout << "   Nrp   : " << e.fNrp << '\n';
+            std::cout << "   Dist  : " << e.fMinDist << '\n';
+            std::cout << "····················" << '\n';
         }
-        std::cout << RESET;
+        std::cout << "------------------------------" << RESET << '\n';
     }
     return ret;
 }
@@ -464,7 +477,7 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     // 4 -> Mask region around RP
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
-        // Skipn in case BL has not broken
+        // Skip BL cluster that has not been broken
         if(it->GetIsBeamLike() && !hasBroken)
             continue;
         auto& refVoxels {it->GetRefToVoxels()};
@@ -481,18 +494,17 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
         // Compare sizes
         auto remainSize {std::distance(refVoxels.begin(), toKeep)};
         // Indeed delete region and refit
-        if(remainSize > fAlgo->GetMinPoints())
+        if(remainSize >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(toKeep, refVoxels.end());
             it->ReFit();
             it->ReFillSets();
             if(fIsVerbose)
-                if(fIsVerbose)
-                {
-                    std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
-                    std::cout << "What: masking region around RP" << '\n';
-                    std::cout << "------------------------------" << RESET << '\n';
-                }
+            {
+                std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
+                std::cout << "What: masking region around RP" << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+            }
         }
     }
 
