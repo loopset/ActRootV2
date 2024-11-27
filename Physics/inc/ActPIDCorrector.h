@@ -11,39 +11,40 @@
 
 namespace ActPhysics
 {
-    class PIDCorrection
-    {
-    private:
-        std::string fName {};
-        double fOffset {-1};
-        double fSlope {-1};
+class PIDCorrection
+{
+private:
+    std::string fName {};
+    double fOffset {-1};
+    double fSlope {-1};
 
-    public:
-        PIDCorrection() = default;
-        PIDCorrection(const std::string& name, double off, double slope);
+public:
+    PIDCorrection() = default;
+    PIDCorrection(const std::string& name, double off, double slope);
 
-        std::string GetName() const { return fName; }
-        void Print() const;
-        double Apply(double q, double spz);
-        void Write(const std::string& file);
-    };
-    class PIDCorrector
-    {
-    private:
-        std::unordered_map<std::string, TH2*> fHistos {};
-        std::unordered_map<std::string, TProfile*> fProfs {};
-        std::string fName {};
-        std::mutex fMutex {};
+    void SetName(const std::string& name) { fName = name; }
+    std::string GetName() const { return fName; }
+    void Print() const;
+    double Apply(double q, double spz);
+    void Write(const std::string& file);
+};
+class PIDCorrector
+{
+private:
+    std::unordered_map<std::string, TH2*> fHistos {};
+    std::unordered_map<std::string, TProfile*> fProfs {};
+    std::string fName {};
+    std::mutex fMutex {};
 
-    public:
-        PIDCorrector(const std::string& name, const std::vector<std::string> keys, TH2* hModel);
+public:
+    PIDCorrector(const std::string& name, const std::vector<std::string> keys, TH2* hModel);
 
-        void FillHisto(const std::string& key, double z, double q, double silE, double minE, double maxE);
-        void GetProfiles();
-        void FitProfiles(double xmin = 0, double xmax = 0, const std::vector<std::string> keys = {});
-        void Draw();
-        PIDCorrection GetCorrection(const std::string& key = "");
-    };
+    void FillHisto(const std::string& key, double z, double q, double silE, double minE, double maxE);
+    void GetProfiles();
+    void FitProfiles(double xmin = 0, double xmax = 0, const std::vector<std::string> keys = {});
+    void Draw();
+    PIDCorrection GetCorrection(const std::string& key = "");
+};
 } // namespace ActPhysics
 
 #endif // !ActPIDCorrector_h

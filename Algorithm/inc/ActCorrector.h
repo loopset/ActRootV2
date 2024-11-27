@@ -11,6 +11,7 @@ namespace ActAlgorithm
 class Corrector : public VFilter
 {
 private:
+    bool fIsEnabled {};
     std::shared_ptr<ActPhysics::PIDCorrection> fPID {};
     double fZOffset {};
     bool fEnableAngle {};
@@ -33,6 +34,6 @@ private:
     void DoZOffset();
     void DoAngle();
 };
-}; // namespace ActCluster
+}; // namespace ActAlgorithm
 
 #endif // !ActCorrector_h

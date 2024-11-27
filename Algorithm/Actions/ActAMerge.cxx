@@ -77,9 +77,9 @@ void ActAlgorithm::Actions::Merge::Run()
             {
                 if(fIsVerbose)
                 {
-                    std::cout << "  <i,j> : <" << i << "," << j << ">" << '\n';
-                    std::cout << "  distance " << dist << " below thresh ? " << std::boolalpha << isBelowThresh << '\n';
-                    std::cout << "  are parallel ? " << std::boolalpha << areParallel << '\n';
+                    std::cout << "-> <i,j> : <" << i << "," << j << ">" << '\n';
+                    std::cout << "   dist : " << dist << " < thresh ? " << std::boolalpha << isBelowThresh << '\n';
+                    std::cout << "   are parallel ? " << std::boolalpha << areParallel << '\n';
                 }
                 // Sum voxels from both cluster
                 std::vector<ActRoot::Voxel> sumVoxels;
@@ -99,8 +99,10 @@ void ActAlgorithm::Actions::Merge::Run()
                 bool improvesFit {newChi2 < fChi2Factor * oldChi2};
 
                 if(fIsVerbose)
-                    std::cout << "   newChi2 < f * oldChi2 (" << i << " " << j << ") ? : " << newChi2 << " < "
-                              << fChi2Factor * oldChi2 << '\n';
+                {
+                    std::cout << "   newChi2 < f * oldChi2 : " << newChi2 << " < " << fChi2Factor * oldChi2 << '\n';
+                    std::cout << "   improvesFit ? " << std::boolalpha << improvesFit << '\n';
+                }
 
                 // Check whether fit is improved: reduces chi2
                 if(improvesFit)
@@ -146,7 +148,7 @@ void ActAlgorithm::Actions::Merge::Run()
     for(const auto& idx : toDelete) // toDelete is sorted in greater order
         clusters.erase(clusters.begin() + idx);
     if(fIsVerbose)
-        std::cout << RESET << '\n';
+        std::cout << "------------------------------" << RESET << '\n';
 }
 void ActAlgorithm::Actions::Merge::Print() const
 {

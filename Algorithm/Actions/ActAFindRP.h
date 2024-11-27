@@ -38,6 +38,9 @@ public:
         std::set<int> fIdxs {}; //!< Indexes of clusters belonging to RP
         double fMinDist {};     //!< Minimum distance of a cluster to this RP
         int fNrp {};            //!< Number of RPs that contributed to this Cluster of RPs
+        int fBLIdx {};          //!< Index of BL cluster this RP belongs to
+
+        void Print() const;
     };
 
 public:
@@ -56,6 +59,7 @@ private:
     void PerformFinerFits();
     bool BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit = true);
     void CylinderCleaning();
+    void MaskAroundRP(const XYZPointF& rp, bool blHasBroken);
     void MaskBeginEnd(const ActAlgorithm::VAction::XYZPointF& rp);
     void FindPreciseRP();
 

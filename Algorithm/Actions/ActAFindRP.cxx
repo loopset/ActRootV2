@@ -20,6 +20,7 @@
 #include <ios>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <numeric>
 #include <utility>
 #include <vector>
@@ -194,6 +195,9 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             // If both are BL, continue
             if(out->GetIsBeamLike() && in->GetIsBeamLike())
                 continue;
+            // Assert one of them is BL
+            if(!(out->GetIsBeamLike() || in->GetIsBeamLike()))
+                continue;
 
             // Compute min distance between both lines
             auto [pA, pB, dist] {ComputeRPIn3D(out->GetLine().GetPoint(), out->GetLine().GetDirection(),
@@ -216,6 +220,11 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
                 rpops.push_back(RPOps {});
                 rpops.back().fRP = rp;
                 rpops.back().fIdxs.insert({i, j});
+                // Find BL idx
+                if(out->GetIsBeamLike())
+                    rpops.back().fBLIdx = i;
+                else
+                    rpops.back().fBLIdx = j;
             }
             else
             {
@@ -302,65 +311,99 @@ bool ActAlgorithm::Actions::FindRP::IsRPValid(const XYZPointF& rp, ActRoot::TPCP
     return isInX && isInY && isInZ;
 }
 
+void ActAlgorithm::Actions::FindRP::RPOps::Print() const
+{
+    std::cout << BOLDYELLOW << "······ RPOps ······" << '\n';
+    std::cout << "-> RP    : " << fRP << '\n';
+    for(const auto& idx : fIdxs)
+        std::cout << "   " << idx << '\n';
+    std::cout << "   BLIdx : " << fBLIdx << '\n';
+    std::cout << "   Nrp   : " << fNrp << '\n';
+    std::cout << "   Dist  : " << fMinDist << '\n';
+    std::cout << "····················" << RESET << '\n';
+}
+
 std::vector<ActAlgorithm::Actions::FindRP::RPOps>
-ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actions::FindRP::RPOps>& rps)
+ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actions::FindRP::RPOps>& inirps)
 {
     std::vector<RPOps> ret;
-    if(rps.empty())
+    if(inirps.empty())
         return ret;
-    if(rps.size() == 1)
+    if(inirps.size() == 1)
     {
-        ret.push_back(rps.front());
+        ret.push_back(inirps.front());
+        ret.back().fNrp = 1;
+        // Find BL
+        int bl {};
+        for(const auto& idx : ret.back().fIdxs)
+        {
+            auto it {fTPCData->fClusters.begin() + idx};
+            if(it->GetIsBeamLike())
+            {
+                bl = idx;
+                break;
+            }
+        }
+        ret.back().fBLIdx = bl;
+        if(fIsVerbose)
+            ret.front().Print();
         return ret;
     }
-    // Sort
-    auto cmp {[](const RPOps& vl, const RPOps& vr)
-              {
-                  // Reference point: origin of coordinates
-                  XYZPointF origin {0, 0, 0};
-                  auto distleft {(vl.fRP - origin).R()};
-                  auto distright {(vr.fRP - origin).R()};
-                  return distleft < distright;
-              }};
-    std::sort(rps.begin(), rps.end(), cmp);
-    // Cluster
-    std::vector<std::vector<RPOps>> clusters;
-    for(auto it = rps.begin();;)
+    // Create map to separate RPs coming from different BLs
+    std::map<int, std::vector<RPOps>> rpsbybl;
+    for(const auto& rp : inirps)
+        rpsbybl[rp.fBLIdx].push_back(rp);
+    // Sort function based on Euclidean distance to origin
+    auto euclideanDist {[](const RPOps& vl, const RPOps& vr)
+                        {
+                            // Reference point: origin of coordinates
+                            XYZPointF origin {0, 0, 0};
+                            auto distleft {(vl.fRP - origin).R()};
+                            auto distright {(vr.fRP - origin).R()};
+                            return distleft < distright;
+                        }};
+    // Cluster for each BL
+    for(auto& [blidx, vrps] : rpsbybl)
     {
-        auto last {std::adjacent_find(it, rps.end(), [&](const RPOps& l, const RPOps& r)
-                                      { return (l.fRP - r.fRP).R() > fRPDistCluster; })};
-        if(last == rps.end())
+        std::sort(vrps.begin(), vrps.end(), euclideanDist);
+        std::vector<std::vector<RPOps>> clusters;
+        for(auto it = vrps.begin();;)
         {
-            clusters.emplace_back(it, last);
-            break;
+            auto last {std::adjacent_find(it, vrps.end(), [&](const RPOps& l, const RPOps& r)
+                                          { return (l.fRP - r.fRP).R() > fRPDistCluster; })};
+            if(last == vrps.end())
+            {
+                clusters.emplace_back(it, last);
+                break;
+            }
+
+            // Get next-to-last iterator
+            auto gap {std::next(last)};
+
+            // Push back and continue
+            clusters.emplace_back(it, gap);
+
+            // Prepare for next iteration
+            it = gap;
         }
-
-        // Get next-to-last iterator
-        auto gap {std::next(last)};
-
-        // Push back and continue
-        clusters.emplace_back(it, gap);
-
-        // Prepare for next iteration
-        it = gap;
-    }
-    // Build each element out of the cluster
-    for(const auto& cluster : clusters)
-    {
-        ret.push_back(RPOps {});
-        auto& back {ret.back()};
-        for(const auto& element : cluster)
+        // Build each element out of the cluster
+        for(const auto& cluster : clusters)
         {
-            back.fRP += XYZVectorF {element.fRP};
-            back.fIdxs.insert(element.fIdxs.begin(), element.fIdxs.end());
+            ret.push_back(RPOps {});
+            auto& back {ret.back()};
+            for(const auto& element : cluster)
+            {
+                back.fRP += XYZVectorF {element.fRP};
+                back.fIdxs.insert(element.fIdxs.begin(), element.fIdxs.end());
+            }
+            // Compute mean and number of rps in cluster
+            back.fRP /= cluster.size();
+            back.fNrp = cluster.size();
+            back.fBLIdx = blidx;
         }
-        // Compute mean and number of rps in cluster
-        back.fRP /= cluster.size();
-        back.fNrp = cluster.size();
     }
-    // Sort by size of clusters = number of RP that were grouped
-    std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fNrp > r.fNrp; });
-    // Define a best scorer to validate RP in case there is a coincidence in the number of RPs in the cluster
+    // Build lambda that picks best RP based on minimum distance
+    // of its tracks to it
     auto validate {[this](RPOps& ops)
                    {
                        std::vector<double> dists;
@@ -391,37 +434,12 @@ ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actio
     std::for_each(ret.begin(), ret.end(), [&validate](RPOps& e) { validate(e); });
     // Sort based on this distance!
     std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist; });
-    // And now develop algorithm to extract rp...
-    // 1-> Sort based on number of counts
-    // std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fCounts > r.fCounts; });
-    // // 2-> Check if we're tied
-    // auto best {ret.front()};
-    // auto range {std::equal_range(ret.begin(), ret.end(), best,
-    //                              [](const RPOps& l, const RPOps& r) { return l.fCounts > r.fCounts; })};
-    // auto start {std::distance(ret.begin(), range.first)};
-    // auto end {std::distance(ret.begin(), range.second)};
-    // // 3-> If so, sort tied elements based on lowest distance to RP
-    // if((end - start) > 1) // we're tied!
-    // {
-    //     // Get subrange
-    //     std::vector<RPOps> redef {range.first, range.second};
-    //     // And sort it based on minimum distance
-    //     std::sort(redef.begin(), redef.end(), [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist;
-    //     }); ret = redef;
-    // }
     // Print info
     if(fIsVerbose)
     {
         std::cout << BOLDYELLOW << "---- FindRP::SortAndCluster ----" << '\n';
         for(const auto& e : ret)
-        {
-            std::cout << "-> RP    : " << e.fRP << '\n';
-            for(const auto& idx : e.fIdxs)
-                std::cout << "   " << idx << '\n';
-            std::cout << "   Nrp   : " << e.fNrp << '\n';
-            std::cout << "   Dist  : " << e.fMinDist << '\n';
-            std::cout << "····················" << '\n';
-        }
+            e.Print();
         std::cout << "------------------------------" << RESET << '\n';
     }
     return ret;
@@ -436,6 +454,9 @@ void ActAlgorithm::Actions::FindRP::DeleteInvalidCluster()
         else
             it++;
     }
+    // Reset index bc we could be deleting clusters
+    for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
+        fTPCData->fClusters[i].SetClusterID(i);
 }
 
 void ActAlgorithm::Actions::FindRP::PerformFinerFits()
@@ -447,66 +468,35 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     // 2-> Break BL starting on RP
     auto hasBroken {BreakBeamToHeavy(rp, fKeepBreakBeam)};
 
-    // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
-    {
-        if(it->GetIsBeamLike())
-        {
-            if(it->GetSizeOfVoxels() <= fBeamLikeMinVoxels)
-            {
-                if(fIsVerbose)
-                {
-                    std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose ----" << '\n';
-                    std::cout << "What: Deleting RP with fVoxels.size() < fBLMinVoxels" << '\n';
-                    std::cout << "-----------------------------" << RESET << '\n';
-                }
-                it = fTPCData->fClusters.erase(it);
-            }
-            else
-                it++;
-        }
-        else
-        {
-            if(it->GetSizeOfVoxels() <= fAlgo->GetMinPoints())
-                it = fTPCData->fClusters.erase(it);
-            else
-                it++;
-        }
-    }
+    // // 3-> Delete clusters with less than ClIMB min point or with fBLMinVoxels if BL
+    // for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
+    // {
+    //     if(it->GetIsBeamLike())
+    //     {
+    //         if(it->GetSizeOfVoxels() <= fBeamLikeMinVoxels)
+    //         {
+    //             if(fIsVerbose)
+    //             {
+    //                 std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose ----" << '\n';
+    //                 std::cout << "What: Deleting RP with fVoxels.size() < fBLMinVoxels" << '\n';
+    //                 std::cout << "-----------------------------" << RESET << '\n';
+    //             }
+    //             it = fTPCData->fClusters.erase(it);
+    //         }
+    //         else
+    //             it++;
+    //     }
+    //     else
+    //     {
+    //         if(it->GetSizeOfVoxels() <= fAlgo->GetMinPoints())
+    //             it = fTPCData->fClusters.erase(it);
+    //         else
+    //             it++;
+    //     }
+    // }
 
     // 4 -> Mask region around RP
-    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
-    {
-        // Skip BL cluster that has not been broken
-        if(it->GetIsBeamLike() && !hasBroken)
-            continue;
-        auto& refVoxels {it->GetRefToVoxels()};
-        auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),
-                                    [&](const ActRoot::Voxel& voxel)
-                                    {
-                                        auto pos {voxel.GetPosition()};
-                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
-                                        bool condX {std::abs(pos.X() - rp.X()) <= fRPMaskXY};
-                                        bool condY {std::abs(pos.Y() - rp.Y()) <= fRPMaskXY};
-                                        bool condZ {std::abs(pos.Z() - rp.Z()) <= fRPMaskZ};
-                                        return !(condX && condY && condZ);
-                                    })};
-        // Compare sizes
-        auto remainSize {std::distance(refVoxels.begin(), toKeep)};
-        // Indeed delete region and refit
-        if(remainSize >= fAlgo->GetMinPoints())
-        {
-            refVoxels.erase(toKeep, refVoxels.end());
-            it->ReFit();
-            it->ReFillSets();
-            if(fIsVerbose)
-            {
-                std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
-                std::cout << "What: masking region around RP" << '\n';
-                std::cout << "------------------------------" << RESET << '\n';
-            }
-        }
-    }
+    MaskAroundRP(rp, hasBroken);
 
     // 5 -> Clean voxels outside cylinder
     if(fEnableCylinder)
@@ -516,27 +506,29 @@ void ActAlgorithm::Actions::FindRP::PerformFinerFits()
     MaskBeginEnd(rp);
 
     // 7 -> Set default fit for BLs
-    if(fEnableRPDefaultBeam)
-    {
-        for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
-        {
-            if(it->GetIsBeamLike())
-            {
-                auto [xmin, xmax] {it->GetXRange()};
-                bool isShort {(xmax - xmin) <= fRPDefaultMinX};
-                if(isShort)
-                {
-                    it->GetRefToLine().SetDirection({1, 0, 0});
-                    if(fIsVerbose)
-                    {
-                        std::cout << BOLDMAGENTA << "---- FindPreciseRP verbose for ID: " << it->GetClusterID() << '\n';
-                        std::cout << "What: short beam : setting (1, 0, 0) direction" << '\n';
-                        std::cout << "------------------------------" << RESET << '\n';
-                    }
-                }
-            }
-        }
-    }
+    // UPDATE: this is now included in BreakToBeam!
+    // if(fEnableRPDefaultBeam)
+    // {
+    //     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+    //     {
+    //         if(it->GetIsBeamLike())
+    //         {
+    //             auto [xmin, xmax] {it->GetXRange()};
+    //             bool isShort {(xmax - xmin) <= fRPDefaultMinX};
+    //             if(isShort)
+    //             {
+    //                 it->GetRefToLine().SetDirection({1, 0, 0});
+    //                 if(fIsVerbose)
+    //                 {
+    //                     std::cout << BOLDMAGENTA << "---- FineRP::DefaultBeam ----" << '\n';
+    //                     std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
+    //                     std::cout << "   Short beam => setting (1, 0, 0) direction" << '\n';
+    //                     std::cout << "------------------------------" << RESET << '\n';
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction::XYZPointF& rp, bool keepSplit)
@@ -589,23 +581,23 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                 }
             }
 
-            // Refit remaining voxels in beam-like if size is kept enough
-            if(refVoxels.size() >= fAlgo->GetMinPoints())
-            {
-                it->ReFit();
-            }
-            else
+            // Check whether to refit or set default beam direction
+            it->ReFit();
+            it->ReFillSets();
+            auto [xmin, xmax] {it->GetXRange()};
+            bool isShort {(xmax - xmin) < fRPDefaultMinX};
+            if(isShort && fEnableRPDefaultBeam)
             {
                 if(fIsVerbose)
                 {
-                    std::cout << BOLDRED << "---- BreakAfterRP ----" << '\n';
-                    std::cout << "-> Remaining beam size is : " << refVoxels.size() << " < " << fAlgo->GetMinPoints()
-                              << '\n';
-                    std::cout << "   Not refitting !" << '\n';
-                    std::cout << "-----------------------------" << RESET << '\n';
+                    std::cout << BOLDMAGENTA << "---- FineRP::BreakBeam ----" << '\n';
+                    std::cout << " -> Cluster #" << it->GetClusterID() << '\n';
+                    std::cout << "   XRange : " << xmax - xmin << '\n';
+                    std::cout << "   is too short ( < " << fRPDefaultMinX << ") => set {1, 0, 0} dir" << '\n';
+                    std::cout << "------------------------------" << RESET << '\n';
                 }
+                it->GetRefToLine().SetDirection({1, 0, 0});
             }
-            it->ReFillSets();
         }
         // Print info
         if(it->GetIsBeamLike() && !isBreakable && fIsVerbose)
@@ -726,6 +718,44 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning()
     }
 }
 
+void ActAlgorithm::Actions::FindRP::MaskAroundRP(const ActAlgorithm::VAction::XYZPointF& rp, bool blHasBroken)
+{
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+    {
+        // Skip BL cluster that has not been broken
+        if(it->GetIsBeamLike() && !blHasBroken)
+            continue;
+        auto& refVoxels {it->GetRefToVoxels()};
+        auto initial {refVoxels.size()};
+        auto toKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                        bool condX {std::abs(pos.X() - rp.X()) <= fRPMaskXY};
+                                        bool condY {std::abs(pos.Y() - rp.Y()) <= fRPMaskXY};
+                                        bool condZ {std::abs(pos.Z() - rp.Z()) <= fRPMaskZ};
+                                        return !(condX && condY && condZ);
+                                    })};
+        // Compare sizes
+        auto remainSize {std::distance(refVoxels.begin(), toKeep)};
+        // Indeed delete region and refit
+        if(remainSize >= fAlgo->GetMinPoints())
+        {
+            refVoxels.erase(toKeep, refVoxels.end());
+            it->ReFit();
+            it->ReFillSets();
+            if(fIsVerbose)
+            {
+                std::cout << BOLDMAGENTA << "---- FineRP::MaskAroundRP ----" << '\n';
+                std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
+                std::cout << "   Masked " << (initial - remainSize) << " voxels" << '\n';
+                std::cout << "------------------------------" << RESET << '\n';
+            }
+        }
+    }
+}
+
 void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XYZPointF& rp)
 {
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
@@ -755,7 +785,7 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
                                auto proj {line.ProjectionPointOnLine(pos)};
                                // delete all points over projInit/end
                                // bc due to ordering and angle, some voxel could have a proj larger than
-                               // the one of the last/firt voxel
+                               // the one of the last/first voxel
                                // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
                                // could be troublesome depending on track angle
                                bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
@@ -772,27 +802,26 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
             if(fIsVerbose)
             {
                 {
-                    std::cout << BOLDYELLOW << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
-                    std::cout << "-> Init : " << init.GetPosition() << '\n';
-                    std::cout << "-> Proj Init : " << projInit << '\n';
-                    std::cout << "-> End : " << end.GetPosition() << '\n';
-                    std::cout << "-> Proj End : " << projEnd << '\n';
-                    std::cout << "-> (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
-                    std::cout << "-> Gravity point : " << it->GetLine().GetPoint() << '\n';
+                    std::cout << BOLDYELLOW << "--- FineRP::MaskBeginEnd ----" << '\n';
+                    std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
+                    std::cout << "   Init : " << init.GetPosition() << '\n';
+                    std::cout << "   Proj Init : " << projInit << '\n';
+                    std::cout << "   End : " << end.GetPosition() << '\n';
+                    std::cout << "   Proj End : " << projEnd << '\n';
+                    std::cout << "   (Old - New) sizes : " << (oldSize - refVoxels.size()) << '\n';
+                    std::cout << "   Gravity point : " << it->GetLine().GetPoint() << '\n';
                     std::cout << "------------------------------" << RESET << '\n';
-                    // it->GetLine().Print();
                 }
             }
             else
             {
                 if(fIsVerbose)
                 {
-                    std::cout << BOLDRED << "--- Masking beg. and end of #" << it->GetClusterID() << " ----" << '\n';
-                    std::cout << "-> Reaming cluster size : " << refVoxels.size() << " < " << fAlgo->GetMinPoints()
-                              << '\n';
-                    std::cout << "   Not erasing nor refitting !" << '\n';
+                    std::cout << BOLDRED << "--- FineRP::MaskBeginEnd  ----" << '\n';
+                    std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
+                    std::cout << "   Remaining size : " << refVoxels.size() << " < " << fAlgo->GetMinPoints() << '\n';
+                    std::cout << "   => Not erasing nor refitting !" << '\n';
                     std::cout << "------------------------------" << RESET << '\n';
-                    // it->GetLine().Print();
                 }
             }
         }
