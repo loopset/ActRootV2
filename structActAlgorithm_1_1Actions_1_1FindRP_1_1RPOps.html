@@ -67,6 +67,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -76,6 +77,11 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="ActAFindRP_8h_source.html">ActAFindRP.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abb86602350c0ef32c8b7cd980c28b336"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#abb86602350c0ef32c8b7cd980c28b336">Print</a> () const</td></tr>
+<tr class="separator:abb86602350c0ef32c8b7cd980c28b336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:acdb3e890353f69cc8ba9b6b6007c6722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#acdb3e890353f69cc8ba9b6b6007c6722">fRP</a> {}</td></tr>
@@ -90,8 +96,62 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aee16e5776f51a20a574878f4740f3383"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#aee16e5776f51a20a574878f4740f3383">fNrp</a> {}</td></tr>
 <tr class="memdesc:aee16e5776f51a20a574878f4740f3383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of RPs that contributed to this Cluster of RPs.  <a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#aee16e5776f51a20a574878f4740f3383">More...</a><br /></td></tr>
 <tr class="separator:aee16e5776f51a20a574878f4740f3383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7692899cff8e59cae3ee974145ee509"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad7692899cff8e59cae3ee974145ee509">fBLIdx</a> {}</td></tr>
+<tr class="memdesc:ad7692899cff8e59cae3ee974145ee509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of BL cluster this RP belongs to.  <a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad7692899cff8e59cae3ee974145ee509">More...</a><br /></td></tr>
+<tr class="separator:ad7692899cff8e59cae3ee974145ee509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abb86602350c0ef32c8b7cd980c28b336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb86602350c0ef32c8b7cd980c28b336">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActAlgorithm::Actions::FindRP::RPOps::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;{</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;······ RPOps ······&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; RP    : &quot;</span> &lt;&lt; <a class="code" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#acdb3e890353f69cc8ba9b6b6007c6722">fRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; idx : <a class="code" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad728bbc7f453d604b78d3a376415d7b3">fIdxs</a>)</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; idx &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;   BLIdx : &quot;</span> &lt;&lt; <a class="code" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad7692899cff8e59cae3ee974145ee509">fBLIdx</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;   Nrp   : &quot;</span> &lt;&lt; <a class="code" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#aee16e5776f51a20a574878f4740f3383">fNrp</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;   Dist  : &quot;</span> &lt;&lt; <a class="code" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#a7f6f99edad04654eab3e5303479759ce">fMinDist</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;····················&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;}</div>
+<div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition:</b> ActColors.h:18</div></div>
+<div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
+<div class="ttc" id="astructActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps_html_a7f6f99edad04654eab3e5303479759ce"><div class="ttname"><a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#a7f6f99edad04654eab3e5303479759ce">ActAlgorithm::Actions::FindRP::RPOps::fMinDist</a></div><div class="ttdeci">double fMinDist</div><div class="ttdoc">Minimum distance of a cluster to this RP.</div><div class="ttdef"><b>Definition:</b> ActAFindRP.h:39</div></div>
+<div class="ttc" id="astructActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps_html_acdb3e890353f69cc8ba9b6b6007c6722"><div class="ttname"><a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#acdb3e890353f69cc8ba9b6b6007c6722">ActAlgorithm::Actions::FindRP::RPOps::fRP</a></div><div class="ttdeci">XYZPointF fRP</div><div class="ttdoc">RP (maybe a mean of RPs after clustering)</div><div class="ttdef"><b>Definition:</b> ActAFindRP.h:37</div></div>
+<div class="ttc" id="astructActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps_html_ad728bbc7f453d604b78d3a376415d7b3"><div class="ttname"><a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad728bbc7f453d604b78d3a376415d7b3">ActAlgorithm::Actions::FindRP::RPOps::fIdxs</a></div><div class="ttdeci">std::set&lt; int &gt; fIdxs</div><div class="ttdoc">Indexes of clusters belonging to RP.</div><div class="ttdef"><b>Definition:</b> ActAFindRP.h:38</div></div>
+<div class="ttc" id="astructActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps_html_ad7692899cff8e59cae3ee974145ee509"><div class="ttname"><a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad7692899cff8e59cae3ee974145ee509">ActAlgorithm::Actions::FindRP::RPOps::fBLIdx</a></div><div class="ttdeci">int fBLIdx</div><div class="ttdoc">Index of BL cluster this RP belongs to.</div><div class="ttdef"><b>Definition:</b> ActAFindRP.h:41</div></div>
+<div class="ttc" id="astructActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps_html_aee16e5776f51a20a574878f4740f3383"><div class="ttname"><a href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#aee16e5776f51a20a574878f4740f3383">ActAlgorithm::Actions::FindRP::RPOps::fNrp</a></div><div class="ttdeci">int fNrp</div><div class="ttdoc">Number of RPs that contributed to this Cluster of RPs.</div><div class="ttdef"><b>Definition:</b> ActAFindRP.h:40</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad7692899cff8e59cae3ee974145ee509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7692899cff8e59cae3ee974145ee509">&#9670;&nbsp;</a></span>fBLIdx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ActAlgorithm::Actions::FindRP::RPOps::fBLIdx {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Index of BL cluster this RP belongs to. </p>
+
+</div>
+</div>
 <a id="ad728bbc7f453d604b78d3a376415d7b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad728bbc7f453d604b78d3a376415d7b3">&#9670;&nbsp;</a></span>fIdxs</h2>
 
@@ -156,8 +216,9 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this struct was generated from the following files:<ul>
 <li>Algorithm/Actions/<a class="el" href="ActAFindRP_8h_source.html">ActAFindRP.h</a></li>
+<li>Algorithm/Actions/<a class="el" href="ActAFindRP_8cxx.html">ActAFindRP.cxx</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

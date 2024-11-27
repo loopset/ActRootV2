@@ -152,6 +152,8 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:adeddbb90c061e8c8f29c4cba07d59dda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">fIsEnabled</a> {}</td></tr>
+<tr class="separator:adeddbb90c061e8c8f29c4cba07d59dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d2333577595c0ce90be8f75bfa1d54a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a> {}</td></tr>
 <tr class="separator:a7d2333577595c0ce90be8f75bfa1d54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c469121b6fafcd1965acdbf34469152"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a> {}</td></tr>
@@ -247,18 +249,18 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// So far, it is hardcoded in this code until we</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// recompute it</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">float</span> theta {};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// First correction</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    theta = <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> + (-2.14353 + 0.0114464 * <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X()) -</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            8.52223E-5 * std::pow(<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X(), 2);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Second correction</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    theta = theta + (-1.58175 + 0.0889058 * theta);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Set</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> = theta;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// So far, it is hardcoded in this code until we</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// recompute it</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">float</span> theta {};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// First correction</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    theta = <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> + (-2.14353 + 0.0114464 * <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X()) -</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            8.52223E-5 * std::pow(<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X(), 2);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Second correction</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    theta = theta + (-1.58175 + 0.0889058 * theta);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Set</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> = theta;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1VFilter_html_a24108ca7e77031095eac4f7a3ae9599b"><div class="ttname"><a href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">ActAlgorithm::VFilter::fMergerData</a></div><div class="ttdeci">ActRoot::MergerData * fMergerData</div><div class="ttdef"><b>Definition:</b> ActVFilter.h:18</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a0dfaf990cf4a54a6f87936b3937e0eaa"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">ActRoot::MergerData::fThetaLight</a></div><div class="ttdeci">float fThetaLight</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:40</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:28</div></div>
@@ -287,12 +289,20 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a> = <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>-&gt;Apply(<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a>, <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X());</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a7d2333577595c0ce90be8f75bfa1d54a"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">ActAlgorithm::Corrector::fPID</a></div><div class="ttdeci">std::shared_ptr&lt; ActPhysics::PIDCorrection &gt; fPID</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:14</div></div>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// PIDCorrection must apply to layer saved in its fName</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// So we have to find it in the MergerData</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">auto</span> layer {<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>-&gt;GetName()};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span>(std::find(<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.begin(), <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.end(), layer) !=</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;           <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.end())</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a> = <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>-&gt;Apply(<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a>, <a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>.X());</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a7d2333577595c0ce90be8f75bfa1d54a"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">ActAlgorithm::Corrector::fPID</a></div><div class="ttdeci">std::shared_ptr&lt; ActPhysics::PIDCorrection &gt; fPID</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:15</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a53bfa0a534b96538a5cd2a75e0521a03"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">ActRoot::MergerData::fQave</a></div><div class="ttdeci">float fQave</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">ActRoot::MergerData::fSilLayers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fSilLayers</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:33</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -318,11 +328,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; p : {&amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">fWP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#afd124952798b59cef4597fe2b53f42e6">fBP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a>})</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        p-&gt;SetZ(p-&gt;Z() + <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a5c469121b6fafcd1965acdbf34469152"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">ActAlgorithm::Corrector::fZOffset</a></div><div class="ttdeci">double fZOffset</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:15</div></div>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; p : {&amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">fWP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#afd124952798b59cef4597fe2b53f42e6">fBP</a>, &amp;<a class="code" href="classActAlgorithm_1_1VFilter.html#a24108ca7e77031095eac4f7a3ae9599b">fMergerData</a>-&gt;<a class="code" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a>})</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        p-&gt;SetZ(p-&gt;Z() + <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a5c469121b6fafcd1965acdbf34469152"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">ActAlgorithm::Corrector::fZOffset</a></div><div class="ttdeci">double fZOffset</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:16</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:29</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_a7e117c8c2c182e788c5672dda8f36e05"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">ActRoot::MergerData::fWP</a></div><div class="ttdeci">XYZPoint fWP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:27</div></div>
 <div class="ttc" id="aclassActRoot_1_1MergerData_html_afd124952798b59cef4597fe2b53f42e6"><div class="ttname"><a href="classActRoot_1_1MergerData.html#afd124952798b59cef4597fe2b53f42e6">ActRoot::MergerData::fBP</a></div><div class="ttdeci">XYZPoint fBP</div><div class="ttdef"><b>Definition:</b> ActMergerData.h:30</div></div>
@@ -353,17 +363,21 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#aa02453b9d2bb4efa7c57662ddf4b7c76">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;++++ Corrector filter ++++&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PIDCorr   : &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>-&gt;GetName() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ZOffset   : &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a> &lt;&lt; <span class="stringliteral">&quot; mm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaCorr ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">fEnableAngle</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;+++++++++++++++++++++++++++&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::cout &lt;&lt; <a class="code" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;++++ Corrector filter ++++&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">fIsEnabled</a>)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PIDCorr   : &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>-&gt;GetName() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ZOffset   : &quot;</span> &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a> &lt;&lt; <span class="stringliteral">&quot; mm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaCorr ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code" href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">fEnableAngle</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;+++++++++++++++++++++++++++&quot;</span> &lt;&lt; <a class="code" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition:</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition:</b> ActColors.h:21</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a0773d6eb7c78f31a2eef2e6896b1e72d"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">ActAlgorithm::Corrector::fEnableAngle</a></div><div class="ttdeci">bool fEnableAngle</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:16</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a0773d6eb7c78f31a2eef2e6896b1e72d"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">ActAlgorithm::Corrector::fEnableAngle</a></div><div class="ttdeci">bool fEnableAngle</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:17</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_adeddbb90c061e8c8f29c4cba07d59dda"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">ActAlgorithm::Corrector::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdef"><b>Definition:</b> ActCorrector.h:14</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -391,7 +405,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#ad733191b939102286d840389f72fd99e">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{}</div>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -425,14 +439,17 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {conf};</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">auto</span> b {parser.<a class="code" href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">GetBlock</a>(<span class="stringliteral">&quot;Corrector&quot;</span>)};</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;PID&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#ad0c4a20ef09bea32bec41eec0327d5fc">ReadPIDCorrector</a>(b-&gt;GetString(<span class="stringliteral">&quot;PID&quot;</span>));</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;ZOffset&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a> = b-&gt;GetDouble(<span class="stringliteral">&quot;ZOffset&quot;</span>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;EnableAngle&quot;</span>))</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">fEnableAngle</a> = b-&gt;GetBool(<span class="stringliteral">&quot;EnableAngle&quot;</span>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_ad0c4a20ef09bea32bec41eec0327d5fc"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#ad0c4a20ef09bea32bec41eec0327d5fc">ActAlgorithm::Corrector::ReadPIDCorrector</a></div><div class="ttdeci">void ReadPIDCorrector(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:28</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">fIsEnabled</a> = b-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">fIsEnabled</a>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;PID&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#ad0c4a20ef09bea32bec41eec0327d5fc">ReadPIDCorrector</a>(b-&gt;GetString(<span class="stringliteral">&quot;PID&quot;</span>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;ZOffset&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152">fZOffset</a> = b-&gt;GetDouble(<span class="stringliteral">&quot;ZOffset&quot;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span>(b-&gt;CheckTokenExists(<span class="stringliteral">&quot;EnableAngle&quot;</span>))</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classActAlgorithm_1_1Corrector.html#a0773d6eb7c78f31a2eef2e6896b1e72d">fEnableAngle</a> = b-&gt;GetBool(<span class="stringliteral">&quot;EnableAngle&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_ad0c4a20ef09bea32bec41eec0327d5fc"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#ad0c4a20ef09bea32bec41eec0327d5fc">ActAlgorithm::Corrector::ReadPIDCorrector</a></div><div class="ttdeci">void ReadPIDCorrector(const std::string &amp;file)</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:31</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition:</b> ActInputParser.h:112</div></div>
 <div class="ttc" id="aclassActRoot_1_1InputParser_html_a171a94bd3f09160982d9402e72176850"><div class="ttname"><a href="classActRoot_1_1InputParser.html#a171a94bd3f09160982d9402e72176850">ActRoot::InputParser::GetBlock</a></div><div class="ttdeci">BlockPtr GetBlock(const std::string &amp;header) const</div><div class="ttdef"><b>Definition:</b> ActInputParser.cxx:321</div></div>
 <div class="ttc" id="aclassActRoot_1_1Options_html_a7bd54eeb620ca48afccde8edcadb6bb6"><div class="ttname"><a href="classActRoot_1_1Options.html#a7bd54eeb620ca48afccde8edcadb6bb6">ActRoot::Options::GetInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Options &gt; GetInstance(int argc=0, char **=nullptr)</div><div class="ttdef"><b>Definition:</b> ActOptions.cxx:29</div></div>
@@ -462,12 +479,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">auto</span> f {std::make_unique&lt;TFile&gt;(file.c_str())};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a> = std::shared_ptr&lt;ActPhysics::PIDCorrection&gt;(f-&gt;Get&lt;<a class="code" href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a>&gt;(<span class="stringliteral">&quot;PIDCorrection&quot;</span>));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Corrector::ReadPIDCorrector: no PIDCorrection found in file &quot;</span> + file);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">auto</span> f {std::make_unique&lt;TFile&gt;(file.c_str())};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a> = std::shared_ptr&lt;ActPhysics::PIDCorrection&gt;(f-&gt;Get&lt;<a class="code" href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a>&gt;(<span class="stringliteral">&quot;PIDCorrection&quot;</span>));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActAlgorithm_1_1Corrector.html#a7d2333577595c0ce90be8f75bfa1d54a">fPID</a>)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Corrector::ReadPIDCorrector: no PIDCorrection found in file &quot;</span> + file);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="ttc" id="aclassActPhysics_1_1PIDCorrection_html"><div class="ttname"><a href="classActPhysics_1_1PIDCorrection.html">ActPhysics::PIDCorrection</a></div><div class="ttdef"><b>Definition:</b> ActPIDCorrector.h:15</div></div>
 </div><!-- fragment -->
 </div>
@@ -496,14 +513,16 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VFilter.html#ab8d45d2eb68ba8294d8399d06da64420">ActAlgorithm::VFilter</a>.</p>
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#aafcc0ff5ccc0063eb23b766410d74963">DoPID</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#a2ad4ad7b6589ed91629c347e8552005b">DoZOffset</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#afd768ddb6c5a7f87049365c1077480ec">DoAngle</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a2ad4ad7b6589ed91629c347e8552005b"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a2ad4ad7b6589ed91629c347e8552005b">ActAlgorithm::Corrector::DoZOffset</a></div><div class="ttdeci">void DoZOffset()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:49</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_aafcc0ff5ccc0063eb23b766410d74963"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#aafcc0ff5ccc0063eb23b766410d74963">ActAlgorithm::Corrector::DoPID</a></div><div class="ttdeci">void DoPID()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:43</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_afd768ddb6c5a7f87049365c1077480ec"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#afd768ddb6c5a7f87049365c1077480ec">ActAlgorithm::Corrector::DoAngle</a></div><div class="ttdeci">void DoAngle()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:55</div></div>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="classActAlgorithm_1_1Corrector.html#adeddbb90c061e8c8f29c4cba07d59dda">fIsEnabled</a>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#aafcc0ff5ccc0063eb23b766410d74963">DoPID</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#a2ad4ad7b6589ed91629c347e8552005b">DoZOffset</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classActAlgorithm_1_1Corrector.html#afd768ddb6c5a7f87049365c1077480ec">DoAngle</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_a2ad4ad7b6589ed91629c347e8552005b"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#a2ad4ad7b6589ed91629c347e8552005b">ActAlgorithm::Corrector::DoZOffset</a></div><div class="ttdeci">void DoZOffset()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:61</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_aafcc0ff5ccc0063eb23b766410d74963"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#aafcc0ff5ccc0063eb23b766410d74963">ActAlgorithm::Corrector::DoPID</a></div><div class="ttdeci">void DoPID()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:48</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Corrector_html_afd768ddb6c5a7f87049365c1077480ec"><div class="ttname"><a href="classActAlgorithm_1_1Corrector.html#afd768ddb6c5a7f87049365c1077480ec">ActAlgorithm::Corrector::DoAngle</a></div><div class="ttdeci">void DoAngle()</div><div class="ttdef"><b>Definition:</b> ActCorrector.cxx:67</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -519,6 +538,28 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">bool ActAlgorithm::Corrector::fEnableAngle {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adeddbb90c061e8c8f29c4cba07d59dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeddbb90c061e8c8f29c4cba07d59dda">&#9670;&nbsp;</a></span>fIsEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActAlgorithm::Corrector::fIsEnabled {}</td>
         </tr>
       </table>
   </td>
