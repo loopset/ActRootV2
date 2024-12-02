@@ -18,7 +18,7 @@ namespace ActRoot
 class Cluster
 {
 public:
-    using XYZPoint = ROOT::Math::XYZPointF;
+    using XYZPointF = ROOT::Math::XYZPointF;
     typedef std::pair<float, float> RangeType;
 
 private:
@@ -90,13 +90,15 @@ public:
     const std::map<int, std::set<int>>& GetXYMap() const { return fXYMap; };
     const std::map<int, std::set<int>>& GetXZMap() const { return fXZMap; };
 
-    XYZPoint GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
-                                     double zmax = -1);
+    XYZPointF GetGravityPointInRegion(double xmin, double xmax, double ymin = -1, double ymax = -1, double zmin = -1,
+                                      double zmax = -1);
 
-    XYZPoint GetGravityPointInXRange(double length); //! Compute grav point given percent of current XRange
+    XYZPointF GetGravityPointInXRange(double length); //! Compute grav point given percent of current XRange
 
     void ReFit();      //! Fit or redo fit of current voxels
     void ReFillSets(); //! Refill sets after an external operation modifies them
+
+    void SortAlongDir();
 
     // Display info function
     void Print() const;

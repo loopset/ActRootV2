@@ -17,14 +17,14 @@
 #include <string>
 #include <vector>
 
-ActPhysics::Line::Line(XYZPoint point, XYZVector direction, float chi)
+ActPhysics::Line::Line(XYZPointF point, XYZVectorF direction, float chi)
     : fPoint(point),
       fDirection(direction),
       fChi2(chi)
 {
 }
 
-ActPhysics::Line::Line(const XYZPoint& p1, const XYZPoint& p2)
+ActPhysics::Line::Line(const XYZPointF& p1, const XYZPointF& p2)
 {
     SetPoint(p1);
     SetDirection(p1, p2);
@@ -42,9 +42,9 @@ void ActPhysics::Line::Scale(float xy, float z)
     fDirection.SetZ(fDirection.Z() * z);
 }
 
-void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp, bool isRecoil)
+void ActPhysics::Line::AlignUsingPoint(const XYZPointF& rp, bool isRecoil)
 {
-    XYZVector dir {};
+    XYZVectorF dir {};
     if(isRecoil)
         dir = fPoint - rp;
     else
@@ -57,7 +57,7 @@ void ActPhysics::Line::AlignUsingPoint(const XYZPoint& rp, bool isRecoil)
     fDirection.SetZ(TMath::Sign(fDirection.Z(), dir.Z()));
 }
 
-double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
+double ActPhysics::Line::DistanceLineToPoint(const XYZPointF& point) const
 {
     auto vec = point - fPoint;
     auto nD = fDirection.Cross(vec);
@@ -66,14 +66,14 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPoint& point) const
     return std::sqrt(dist2);
 }
 
-ActPhysics::Line::XYZPoint ActPhysics::Line::ProjectionPointOnLine(const XYZPoint& point) const
+ActPhysics::Line::XYZPointF ActPhysics::Line::ProjectionPointOnLine(const XYZPointF& point) const
 {
     auto vToPoint {point - fPoint};
     auto vInLine {fDirection * (fDirection.Dot(vToPoint) / fDirection.Mag2())};
     return fPoint + vInLine;
 }
 
-ActPhysics::Line::XYZPoint ActPhysics::Line::MoveToX(float x) const
+ActPhysics::Line::XYZPointF ActPhysics::Line::MoveToX(float x) const
 {
     auto t {(x - fPoint.X()) / fDirection.X()};
     return {x, fPoint.Y() + fDirection.Y() * t, fPoint.Z() + fDirection.Z() * t};
@@ -128,7 +128,7 @@ void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWe
         const auto hitQ = (qWeighted ? voxel.GetCharge() : 1.);
         auto pos = voxel.GetPosition();
         if(correctOffset)
-            pos += XYZVector {0.5, 0.5, 0.5};
+            pos += XYZVectorF {0.5, 0.5, 0.5};
         Q += hitQ;
         Xm += pos.X() * hitQ;
         Ym += pos.Y() * hitQ;
@@ -227,7 +227,7 @@ void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWe
     Yh = ((1. + a * a) * Ym - a * b * Xm + b * Zm) / (1. + a * a + b * b);
     Zh = ((a * a + b * b) * Zm + a * Xm + b * Ym) / (1. + a * a + b * b);
 
-    XYZPoint Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
+    XYZPointF Ph = {static_cast<float>(Xh), static_cast<float>(Yh), static_cast<float>(Zh)}; // second point
     SetDirection(fPoint, Ph);
     fChi2 = std::fabs(dm2); // do not divide by charge!
 }
@@ -276,14 +276,15 @@ void ActPhysics::Line::Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bo
     {
         auto pos {voxel.GetPosition()};
         if(correctOffset)
-            pos += XYZVector {0.5, 0.5, 0.5};
+            pos += XYZVectorF {0.5, 0.5, 0.5};
         dm2 += std::pow(DistanceLineToPoint(pos), 2);
     }
     dm2 /= voxels.size();
     fChi2 = std::sqrt(dm2);
 }
 
-std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX, int maxY, int maxZ, int rebinZ) const
+std::shared_ptr<TPolyLine>
+ActPhysics::Line::GetPolyLine(TString proj, int minX, int maxX, int maxY, int maxZ, int rebinZ) const
 {
     // Check proj key is right
     if(!(proj.Contains("xy") || proj.Contains("xz") || proj.Contains("yz")))
@@ -307,12 +308,12 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::GetPolyLine(TString proj, int maxX,
     auto slopeXZ {slope3DXZ};
 
     // Build vectors
-    int npoints {300};
+    int npoints {30};
     std::vector<double> vx, vy, vz;
     // Set step
-    double x0 {0};
-    double step {1. * static_cast<double>(maxX) / npoints};
-    for(int p = 0; p < npoints; p++)
+    double x0 {(double)minX};
+    double step {(double)(maxX - minX) / npoints};
+    for(int p = 0; p <= npoints; p++)
     {
         auto yval {offsetXY + slopeXY * x0};
         auto zval {offsetXZ + slopeXZ * x0};

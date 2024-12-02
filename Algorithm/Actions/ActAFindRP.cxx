@@ -264,8 +264,8 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 }
 
 std::tuple<ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double>
-ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActPhysics::Line::XYZVector vA,
-                                             ActPhysics::Line::XYZPoint pB, ActPhysics::Line::XYZVector vB)
+ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPointF pA, ActPhysics::Line::XYZVectorF vA,
+                                             ActPhysics::Line::XYZPointF pB, ActPhysics::Line::XYZVectorF vB)
 {
     // Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866
     // 1-> Normalize all directions
@@ -280,7 +280,7 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPoint pA, ActP
     // 3-> Matrices to solve system of equations in Math StackExchange
     TMatrixD left {3, 3}; // 3x3 matrix with double precision
     // Fill left matrix with columns as each ABC vector
-    ActPhysics::Line::XYZVector vecs[3] {vA, -vB, vC};
+    ActPhysics::Line::XYZVectorF vecs[3] {vA, -vB, vC};
     for(int col = 0; col < 3; col++)
     {
         double components[3] {};
@@ -765,8 +765,9 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
         const auto& gp {line.GetPoint()};
         auto& refVoxels {it->GetRefToVoxels()};
         auto oldSize {refVoxels.size()};
-        // Sort them
-        std::sort(refVoxels.begin(), refVoxels.end());
+        // Sort them using direction given by line fit
+        it->SortAlongDir();
+        // std::sort(refVoxels.begin(), refVoxels.end());
         // Set same sign as rp
         it->GetRefToLine().AlignUsingPoint(rp);
         // Get init point
@@ -776,22 +777,24 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
         auto projInit {line.ProjectionPointOnLine(init.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
         auto projEnd {line.ProjectionPointOnLine(end.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};
         // Partition: get iterator to last element to be kept
-        auto itKeep {
-            std::partition(refVoxels.begin(), refVoxels.end(),
-                           [&](const ActRoot::Voxel& voxel)
-                           {
-                               auto pos {voxel.GetPosition()};
-                               pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
-                               auto proj {line.ProjectionPointOnLine(pos)};
-                               // delete all points over projInit/end
-                               // bc due to ordering and angle, some voxel could have a proj larger than
-                               // the one of the last/first voxel
-                               // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
-                               // could be troublesome depending on track angle
-                               bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() < projInit.X())};
-                               bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist || (proj.X() > projEnd.X())};
-                               return !(isInCapInit || isInCapEnd);
-                           })};
+        auto itKeep {std::partition(refVoxels.begin(), refVoxels.end(),
+                                    [&](const ActRoot::Voxel& voxel)
+                                    {
+                                        auto pos {voxel.GetPosition()};
+                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                        auto proj {line.ProjectionPointOnLine(pos)};
+                                        // delete all points over projInit/end
+                                        // bc due to ordering and angle, some voxel could have a proj larger than
+                                        // the one of the last/first voxel
+                                        // TODO: check a better way to mask outling voxels (proj.X() < projInit.X())
+                                        // could be troublesome depending on track angle
+                                        // bool isInCapInit {(proj - projInit).R() <= fRPPivotDist || (proj.X() <
+                                        // projInit.X())}; bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist ||
+                                        // (proj.X() > projEnd.X())};
+                                        bool isInCapInit {(proj - projInit).R() <= fRPPivotDist};
+                                        bool isInCapEnd {(proj - projEnd).R() <= fRPPivotDist};
+                                        return !(isInCapInit || isInCapEnd);
+                                    })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if eneugh voxels remain
         if(newSize >= fAlgo->GetMinPoints())
@@ -885,8 +888,8 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
     }
 }
 
-double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVector& beam,
-                                                      const ActPhysics::Line::XYZVector& recoil)
+double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVectorF& beam,
+                                                      const ActPhysics::Line::XYZVectorF& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();

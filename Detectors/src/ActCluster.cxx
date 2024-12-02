@@ -6,7 +6,9 @@
 
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
+#include "Math/Vector3Dfwd.h"
 
+#include <algorithm>
 #include <ios>
 #include <iostream>
 
@@ -73,7 +75,7 @@ void ActRoot::Cluster::AddVoxel(ActRoot::Voxel&& voxel)
     FillSets(fVoxels.back());
 }
 
-ActRoot::Cluster::XYZPoint
+ActRoot::Cluster::XYZPointF
 ActRoot::Cluster::GetGravityPointInRegion(double xmin, double xmax, double ymin, double ymax, double zmin, double zmax)
 {
     float xsum {};
@@ -103,10 +105,10 @@ ActRoot::Cluster::GetGravityPointInRegion(double xmin, double xmax, double ymin,
     ysum /= count;
     zsum /= count;
 
-    return XYZPoint(xsum, ysum, zsum);
+    return XYZPointF(xsum, ysum, zsum);
 }
 
-ActRoot::Cluster::XYZPoint ActRoot::Cluster::GetGravityPointInXRange(double length)
+ActRoot::Cluster::XYZPointF ActRoot::Cluster::GetGravityPointInXRange(double length)
 {
     auto [xmin, xmax] = GetXRange();
     float xbreak {static_cast<float>(xmin + length)};
@@ -129,7 +131,7 @@ ActRoot::Cluster::XYZPoint ActRoot::Cluster::GetGravityPointInXRange(double leng
     xsum /= count;
     ysum /= count;
     zsum /= count;
-    return XYZPoint(xsum, ysum, zsum);
+    return XYZPointF(xsum, ysum, zsum);
 }
 
 void ActRoot::Cluster::ReFit()
@@ -164,6 +166,20 @@ std::pair<float, float> ActRoot::Cluster::GetZRange() const
         return fZRange;
     else
         return {0, 0};
+}
+
+void ActRoot::Cluster::SortAlongDir()
+{
+    XYZPointF ref {fLine.GetPoint() - 500 * fLine.GetDirection().Unit()};
+    std::sort(
+        fVoxels.begin(), fVoxels.end(),
+        [&](const Voxel& l, const Voxel& r)
+        {
+            // Sort using distance to the reference point
+            auto ld {(fLine.ProjectionPointOnLine(l.GetPosition() + ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}) - ref).R()};
+            auto rd {(fLine.ProjectionPointOnLine(r.GetPosition() + ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}) - ref).R()};
+            return ld < rd;
+        });
 }
 
 void ActRoot::Cluster::Print() const

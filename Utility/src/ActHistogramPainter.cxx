@@ -24,6 +24,7 @@
 #include "TSystem.h"
 #include "TTree.h"
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -326,14 +327,16 @@ void ActRoot::HistogramPainter::DrawPolyLines()
 
     for(const auto& cluster : data->fClusters)
     {
+        int xmin {0};
+        int xmax {fTPC->GetNPADSX()};
         // Pad
-        fLines[0][4].push_back(cluster.GetLine().GetPolyLine("xy", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+        fLines[0][4].push_back(cluster.GetLine().GetPolyLine("xy", xmin, xmax, fTPC->GetNPADSY(),
                                                              fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
         // Side
-        fLines[0][5].push_back(cluster.GetLine().GetPolyLine("xz", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+        fLines[0][5].push_back(cluster.GetLine().GetPolyLine("xz", xmin, xmax, fTPC->GetNPADSY(),
                                                              fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
         // Front
-        fLines[0][6].push_back(cluster.GetLine().GetPolyLine("yz", fTPC->GetNPADSX(), fTPC->GetNPADSY(),
+        fLines[0][6].push_back(cluster.GetLine().GetPolyLine("yz", xmin, xmax, fTPC->GetNPADSY(),
                                                              fTPC->GetNPADSZUNREBIN(), fTPC->GetREBINZ()));
     }
     // Set line parameters
