@@ -351,7 +351,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxel : voxels)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos = voxel.GetPosition();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">double</span> err = line.<a class="code" href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">DistanceLineToPoint</a>(pos);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">double</span> err = line.<a class="code" href="classActPhysics_1_1Line.html#a9e04314cbaacc1626ff876e3c841b4a9">DistanceLineToPoint</a>(pos);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        err *= err;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span>(err &lt; (<a class="code" href="classActAlgorithm_1_1RANSAC.html#a00124665e9d4c773f26d96b0021a0636">fDistThreshold</a> * <a class="code" href="classActAlgorithm_1_1RANSAC.html#a00124665e9d4c773f26d96b0021a0636">fDistThreshold</a>))</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
@@ -371,7 +371,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1RANSAC_html_adb2f823dd7e2bcf043e5c0ff108b8ad5"><div class="ttname"><a href="classActAlgorithm_1_1RANSAC.html#adb2f823dd7e2bcf043e5c0ff108b8ad5">ActAlgorithm::RANSAC::fUseLmeds</a></div><div class="ttdeci">bool fUseLmeds</div><div class="ttdef"><b>Definition:</b> ActRANSAC.h:25</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html_a04ee2a39a2e99782b8816e285c6f203a"><div class="ttname"><a href="classActPhysics_1_1Line.html#a04ee2a39a2e99782b8816e285c6f203a">ActPhysics::Line::SetChi2</a></div><div class="ttdeci">void SetChi2(float chi2)</div><div class="ttdef"><b>Definition:</b> ActLine.h:46</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a3896b73c4d69e8654786c2f2686500dc"><div class="ttname"><a href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">ActPhysics::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPoint &amp;point) const</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:60</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a9e04314cbaacc1626ff876e3c841b4a9"><div class="ttname"><a href="classActPhysics_1_1Line.html#a9e04314cbaacc1626ff876e3c841b4a9">ActPhysics::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPointF &amp;point) const</div><div class="ttdef"><b>Definition:</b> ActLine.cxx:60</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -530,7 +530,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = remain.begin(); it != remain.end(); ++it)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// Compute error</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">double</span> err {line.<a class="code" href="classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc">DistanceLineToPoint</a>(it-&gt;GetPosition())};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">double</span> err {line.<a class="code" href="classActPhysics_1_1Line.html#a9e04314cbaacc1626ff876e3c841b4a9">DistanceLineToPoint</a>(it-&gt;GetPosition())};</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">bool</span> isInLine {(err * err) &lt; (<a class="code" href="classActAlgorithm_1_1RANSAC.html#a00124665e9d4c773f26d96b0021a0636">fDistThreshold</a> * <a class="code" href="classActAlgorithm_1_1RANSAC.html#a00124665e9d4c773f26d96b0021a0636">fDistThreshold</a>)};</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// In line</span></div>

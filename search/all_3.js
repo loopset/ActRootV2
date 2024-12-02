@@ -22,7 +22,7 @@ var searchData=
   ['displacepointtostandardframe_334',['DisplacePointToStandardFrame',['../classActSim_1_1Runner.html#aa0864afbad249ccbfce5e3dd0d3df3a0',1,'ActSim::Runner']]],
   ['displacepointtotgeometryframe_335',['DisplacePointToTGeometryFrame',['../classActSim_1_1Runner.html#a7db04323ce99654cfafb6f5b73bca296',1,'ActSim::Runner']]],
   ['distance_336',['Distance',['../classActAlgorithm_1_1Interval.html#ac1248076f787f5f418d4ee4c021cf079',1,'ActAlgorithm::Interval']]],
-  ['distancelinetopoint_337',['DistanceLineToPoint',['../classActPhysics_1_1Line.html#a3896b73c4d69e8654786c2f2686500dc',1,'ActPhysics::Line']]],
+  ['distancelinetopoint_337',['DistanceLineToPoint',['../classActPhysics_1_1Line.html#a9e04314cbaacc1626ff876e3c841b4a9',1,'ActPhysics::Line']]],
   ['doangle_338',['DoAngle',['../classActAlgorithm_1_1Corrector.html#afd768ddb6c5a7f87049365c1077480ec',1,'ActAlgorithm::Corrector']]],
   ['dodraw_339',['DoDraw',['../classActRoot_1_1EventPainter.html#a9ae37cb82a7dde5e0be2f3fa65e38eab',1,'ActRoot::EventPainter']]],
   ['doexit_340',['DoExit',['../classActRoot_1_1EventPainter.html#af6c94460f4d30c10f93ee4e64f386a29',1,'ActRoot::EventPainter']]],
