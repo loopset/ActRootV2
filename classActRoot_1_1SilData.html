@@ -172,24 +172,24 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, energies] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; layer {specs-&gt;GetLayer(key)};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::set&lt;int, std::greater&lt;int&gt;&gt; toDelete;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = energies.size(); i &lt; size; i++)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">if</span>(!layer.ApplyThreshold(<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key][i], energies[i]))</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                toDelete.insert(i);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">// Delete</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; i : toDelete)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[key].erase(<a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[key].begin() + i);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key].erase(<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key].begin() + i);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, energies] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; layer {specs-&gt;GetLayer(key)};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        std::set&lt;int, std::greater&lt;int&gt;&gt; toDelete;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = energies.size(); i &lt; size; i++)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span>(!layer.ApplyThreshold(<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key][i], energies[i]))</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                toDelete.insert(i);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">// Delete</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; i : toDelete)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[key].erase(<a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>[key].begin() + i);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key].erase(<a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>[key].begin() + i);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_a8678d181f4383c788f83c9a138f9a449"><div class="ttname"><a href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">ActRoot::SilData::fSiE</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; float &gt; &gt; fSiE</div><div class="ttdoc">Calibrated silicon energy.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:23</div></div>
 <div class="ttc" id="aclassActRoot_1_1SilData_html_aa8e83cb4f1be80f058d9b16820a19596"><div class="ttname"><a href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">ActRoot::SilData::fSiN</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; int &gt; &gt; fSiN</div><div class="ttdoc">Silicon number.</div><div class="ttdef"><b>Definition:</b> ActSilData.h:24</div></div>
 </div><!-- fragment -->
@@ -221,10 +221,10 @@ Public Attributes</h2></td></tr>
 <p>Reset stored variables in <a class="el" href="classActRoot_1_1SilData.html" title="A class holding simple Silicon data.">SilData</a>. </p>
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>.clear();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.clear();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>.clear();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.clear();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,12 +242,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::vector&lt;std::string&gt; ret;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [layer, vals] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        ret.push_back(layer);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::vector&lt;std::string&gt; ret;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [layer, vals] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        ret.push_back(layer);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Unordered map is an unsorted container</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// Here we sort by alphanumeric ordering</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::sort(ret.begin(), ret.end());</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -304,17 +307,17 @@ Public Attributes</h2></td></tr>
 <p>Print calibrated silicon data. </p>
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vec] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;==== SilData ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-- Layer &quot;</span> &lt;&lt; key &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; vec.size(); i++)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;SilN = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.at(key).at(i) &lt;&lt; <span class="stringliteral">&quot; Val = &quot;</span> &lt;&lt; vec[i] &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, vec] : <a class="code" href="classActRoot_1_1SilData.html#a8678d181f4383c788f83c9a138f9a449">fSiE</a>)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;==== SilData ====&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-- Layer &quot;</span> &lt;&lt; key &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; vec.size(); i++)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;SilN = &quot;</span> &lt;&lt; <a class="code" href="classActRoot_1_1SilData.html#aa8e83cb4f1be80f058d9b16820a19596">fSiN</a>.at(key).at(i) &lt;&lt; <span class="stringliteral">&quot; Val = &quot;</span> &lt;&lt; vec[i] &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
