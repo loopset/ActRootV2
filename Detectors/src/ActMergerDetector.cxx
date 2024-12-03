@@ -384,6 +384,7 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
             if(it->GetIsBeamLike())
             {
                 fBeamPtr = &(*it);
+                fMergerData->fBeamIdx = std::distance(fTPCData->fClusters.begin(), it);
                 bl++;
             }
             else
@@ -539,6 +540,7 @@ void ActRoot::MergerDetector::LightOrHeavy()
     if(fPars.fIsCal)
     {
         fLightPtr = &(fTPCData->fClusters.front());
+        fMergerData->fLightIdx = 0;
         // Sort and align
         std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
         fLightPtr->GetRefToLine().AlignUsingPoint(fLightPtr->GetRefToVoxels().front().GetPosition(), true);
@@ -548,6 +550,7 @@ void ActRoot::MergerDetector::LightOrHeavy()
     if(!fBeamPtr)
     {
         fLightPtr = &(fTPCData->fClusters.front());
+        fMergerData->fLightIdx = 0;
         // Sort and align
         std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
         fLightPtr->GetRefToLine().AlignUsingPoint(fLightPtr->GetRefToVoxels().front().GetPosition(), true);
@@ -600,9 +603,13 @@ void ActRoot::MergerDetector::LightOrHeavy()
         std::cout << "------------------------------" << RESET << '\n';
     }
     // Set pointers
+    fMergerData->fLightIdx = set.begin()->second;
     fLightPtr = &(*(fTPCData->fClusters.begin() + set.begin()->second));
     if(set.size() > 1)
+    {
+        fMergerData->fHeavyIdx = std::next(set.begin())->second;
         fHeavyPtr = &(*(fTPCData->fClusters.begin() + std::next(set.begin())->second));
+    }
 }
 
 double ActRoot::MergerDetector::TrackLengthFromLightIt(bool scale)

@@ -43,6 +43,9 @@ public:
     float fThetaHeavy {-1};
     float fPhiLight {-1};
     float fQave {-1};
+    int fBeamIdx {-1};
+    int fLightIdx {-1};
+    int fHeavyIdx {-1};
     int fEntry {-1};
     int fRun {-1};
 
