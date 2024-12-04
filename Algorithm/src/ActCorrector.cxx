@@ -54,7 +54,7 @@ void ActAlgorithm::Corrector::DoPID()
         auto layer {fPID->GetName()};
         if(std::find(fMergerData->fSilLayers.begin(), fMergerData->fSilLayers.end(), layer) !=
            fMergerData->fSilLayers.end())
-            fMergerData->fQave = fPID->Apply(fMergerData->fQave, fMergerData->fRP.X());
+            fMergerData->fQave = fPID->Apply(fMergerData->fQave, fMergerData->fSP.Z());
     }
 }
 

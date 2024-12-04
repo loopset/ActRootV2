@@ -170,16 +170,32 @@ std::pair<float, float> ActRoot::Cluster::GetZRange() const
 
 void ActRoot::Cluster::SortAlongDir()
 {
-    XYZPointF ref {fLine.GetPoint() - 500 * fLine.GetDirection().Unit()};
-    std::sort(
-        fVoxels.begin(), fVoxels.end(),
-        [&](const Voxel& l, const Voxel& r)
-        {
-            // Sort using distance to the reference point
-            auto ld {(fLine.ProjectionPointOnLine(l.GetPosition() + ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}) - ref).R()};
-            auto rd {(fLine.ProjectionPointOnLine(r.GetPosition() + ROOT::Math::XYZVectorF {0.5, 0.5, 0.5}) - ref).R()};
-            return ld < rd;
-        });
+    // Not necessary to correcto for {0.5, 0.5, 0.5} offset since
+    // this we are comparing all points and it would be a common factor
+    XYZPointF ref {fLine.GetPoint() - 1000 * fLine.GetDirection().Unit()};
+    std::sort(fVoxels.begin(), fVoxels.end(),
+              [&](const Voxel& l, const Voxel& r)
+              {
+                  // Sort using distance to the reference point
+                  auto ld {(fLine.ProjectionPointOnLine(l.GetPosition()) - ref).R()};
+                  auto rd {(fLine.ProjectionPointOnLine(r.GetPosition()) - ref).R()};
+                  return ld < rd;
+              });
+}
+
+void ActRoot::Cluster::ScaleVoxels(float xy, float z)
+{
+    std::for_each(fVoxels.begin(), fVoxels.end(),
+                  [&](Voxel& v)
+                  {
+                      auto pos {v.GetPosition()};
+                      // In this inner function is mandatory to add offset
+                      // Because we're working with the pad/tb number!
+                      pos += ROOT::Math::XYZVectorF {0.5, 0.5, 0.5};
+                      v.SetPosition({pos.X() * xy, pos.Y() * xy, pos.Z() * z});
+                  });
+    fLine.Scale(xy, z);
+    ReFillSets();
 }
 
 void ActRoot::Cluster::Print() const

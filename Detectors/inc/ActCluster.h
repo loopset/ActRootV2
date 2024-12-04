@@ -99,6 +99,7 @@ public:
     void ReFillSets(); //! Refill sets after an external operation modifies them
 
     void SortAlongDir();
+    void ScaleVoxels(float xy, float z);
 
     // Display info function
     void Print() const;

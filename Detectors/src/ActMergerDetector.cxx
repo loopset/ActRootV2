@@ -8,11 +8,8 @@
 #include "ActLine.h"
 #include "ActMergerData.h"
 #include "ActModularData.h"
-#include "ActModularDetector.h"
-#include "ActMultiStep.h"
 #include "ActOptions.h"
 #include "ActSilData.h"
-#include "ActSilDetector.h"
 #include "ActSilSpecs.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
@@ -787,24 +784,55 @@ void ActRoot::MergerDetector::ComputeQave()
 {
     if(!fLightPtr)
         return;
-    std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
-    // Get min
-    auto front {fLightPtr->GetVoxels().front().GetPosition()};
-    auto back {fLightPtr->GetVoxels().back().GetPosition()};
-    // Scale them
+    // Copy cluster to avoid any modifications to other parts of the algorithm
+    auto cluster {*fLightPtr};
+    // Convert and sort along line
     if(fEnableConversion)
+        cluster.ScaleVoxels(fTPCPars->GetPadSide(), fDriftFactor);
+    cluster.SortAlongDir();
+    // Count distance bc there could be gaps
+    double newdist {};
+    for(int v = 1; v < cluster.GetSizeOfVoxels(); v++)
     {
-        ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
-        ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
+        auto p0 {cluster.GetLine().ProjectionPointOnLine(cluster.GetVoxels()[v - 1].GetPosition())};
+        auto p1 {cluster.GetLine().ProjectionPointOnLine(cluster.GetVoxels()[v].GetPosition())};
+        auto d {(p1 - p0).R()};
+        if(d < 6)
+            newdist += d;
     }
-    // Get projections
-    auto min {fLightPtr->GetLine().ProjectionPointOnLine(front)};
-    auto max {fLightPtr->GetLine().ProjectionPointOnLine(back)};
-    // Convert them to physical points
-    // ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
-    // ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
-    // Dist in mm
-    auto dist {(max - min).R()};
+    auto dist {newdist};
+    // // Legacy version
+    // fLightPtr->SortAlongDir();
+    // // std::sort(fLightPtr->GetRefToVoxels().begin(), fLightPtr->GetRefToVoxels().end());
+    // // Get min
+    // auto front {fLightPtr->GetVoxels().front().GetPosition()};
+    // auto back {fLightPtr->GetVoxels().back().GetPosition()};
+    // // Scale them
+    // if(fEnableConversion)
+    // {
+    //     ScalePoint(front, fTPCPars->GetPadSide(), fDriftFactor, true);
+    //     ScalePoint(back, fTPCPars->GetPadSide(), fDriftFactor, true);
+    // }
+    // // Get projections
+    // auto min {fLightPtr->GetLine().ProjectionPointOnLine(front)};
+    // auto max {fLightPtr->GetLine().ProjectionPointOnLine(back)};
+    // // Convert them to physical points
+    // // ScalePoint(min, fTPCPars->GetPadSide(), fDriftFactor);
+    // // ScalePoint(max, fTPCPars->GetPadSide(), fDriftFactor);
+    // // Dist in mm
+    // auto dist {(max - min).R()};
+    // if(fIsVerbose)
+    // {
+    //     std::cout << "-> ComputeQave" << '\n';
+    //     std::cout << "   NewDist : " << newdist << '\n';
+    //     std::cout << "   NewMin  : " << newmin << '\n';
+    //     std::cout << "   NewMax  : " << newmax << '\n';
+    //     cluster.GetLine().Print();
+    //     std::cout << "   OldDist : " << dist << '\n';
+    //     std::cout << "   OldMin  : " << min << '\n';
+    //     std::cout << "   OldMax  : " << max << '\n';
+    //     fLightPtr->GetLine().Print();
+    // }
     // auto dist {(fMergerData->fRP - fMergerData->fBP).R()};
     // std::cout << "=========================" << '\n';
     // std::cout << "front : " << front << '\n';

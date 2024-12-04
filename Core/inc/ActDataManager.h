@@ -42,6 +42,9 @@ public:
 
     std::shared_ptr<TChain> GetJoinedData() { return GetJoinedData(fMode); };
     std::shared_ptr<TChain> GetJoinedData(ModeType mode);
+    std::shared_ptr<TChain> GetChain() { return GetJoinedData(); };
+    std::shared_ptr<TChain> GetChain(ModeType mode) { return GetJoinedData(mode); }
+
 
     // Getters
     const std::set<int>& GetRunList() const { return fRuns; }
