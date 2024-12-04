@@ -104,6 +104,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a75df90751e1cd4650a3deb532700a425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9af96af3d74d2d926b9c9c6b56b2cd24"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; TChain &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DataManager.html#a9af96af3d74d2d926b9c9c6b56b2cd24">GetJoinedData</a> (<a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93">ModeType</a> mode)</td></tr>
 <tr class="separator:a9af96af3d74d2d926b9c9c6b56b2cd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b0a5e06d93ff50c94e74e9b88ad338"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; TChain &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DataManager.html#ad6b0a5e06d93ff50c94e74e9b88ad338">GetChain</a> ()</td></tr>
+<tr class="separator:ad6b0a5e06d93ff50c94e74e9b88ad338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd871f9eba69c0c59b1a17629205182"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; TChain &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DataManager.html#aacd871f9eba69c0c59b1a17629205182">GetChain</a> (<a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93">ModeType</a> mode)</td></tr>
+<tr class="separator:aacd871f9eba69c0c59b1a17629205182"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a3196839e6b894a9f866f0f992cb681"><td class="memItemLeft" align="right" valign="top">const std::set&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DataManager.html#a8a3196839e6b894a9f866f0f992cb681">GetRunList</a> () const</td></tr>
 <tr class="separator:a8a3196839e6b894a9f866f0f992cb681"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bf04b1b3be6cf6f0c7a86e6df21c267"><td class="memItemLeft" align="right" valign="top">const std::set&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1DataManager.html#a5bf04b1b3be6cf6f0c7a86e6df21c267">GetExcludeList</a> () const</td></tr>
@@ -256,6 +260,60 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="ad6b0a5e06d93ff50c94e74e9b88ad338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6b0a5e06d93ff50c94e74e9b88ad338">&#9670;&nbsp;</a></span>GetChain() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;TChain&gt; ActRoot::DataManager::GetChain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#a75df90751e1cd4650a3deb532700a425">GetJoinedData</a>(); };</div>
+<div class="ttc" id="aclassActRoot_1_1DataManager_html_a75df90751e1cd4650a3deb532700a425"><div class="ttname"><a href="classActRoot_1_1DataManager.html#a75df90751e1cd4650a3deb532700a425">ActRoot::DataManager::GetJoinedData</a></div><div class="ttdeci">std::shared_ptr&lt; TChain &gt; GetJoinedData()</div><div class="ttdef"><b>Definition:</b> ActDataManager.h:43</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aacd871f9eba69c0c59b1a17629205182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd871f9eba69c0c59b1a17629205182">&#9670;&nbsp;</a></span>GetChain() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;TChain&gt; ActRoot::DataManager::GetChain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93">ModeType</a>&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#a75df90751e1cd4650a3deb532700a425">GetJoinedData</a>(mode); }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a5bf04b1b3be6cf6f0c7a86e6df21c267"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5bf04b1b3be6cf6f0c7a86e6df21c267">&#9670;&nbsp;</a></span>GetExcludeList()</h2>
 
@@ -278,7 +336,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#abaea0746836467d893f07571b6a5cf35">fExludeList</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#abaea0746836467d893f07571b6a5cf35">fExludeList</a>; }</div>
 <div class="ttc" id="aclassActRoot_1_1DataManager_html_abaea0746836467d893f07571b6a5cf35"><div class="ttname"><a href="classActRoot_1_1DataManager.html#abaea0746836467d893f07571b6a5cf35">ActRoot::DataManager::fExludeList</a></div><div class="ttdeci">std::set&lt; int &gt; fExludeList</div><div class="ttdef"><b>Definition:</b> ActDataManager.h:23</div></div>
 </div><!-- fragment -->
 </div>
@@ -385,7 +443,6 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#a75df90751e1cd4650a3deb532700a425">GetJoinedData</a>(<a class="code" href="classActRoot_1_1DataManager.html#a079ba89dc5b63fa357ede231a36567a4">fMode</a>); };</div>
-<div class="ttc" id="aclassActRoot_1_1DataManager_html_a75df90751e1cd4650a3deb532700a425"><div class="ttname"><a href="classActRoot_1_1DataManager.html#a75df90751e1cd4650a3deb532700a425">ActRoot::DataManager::GetJoinedData</a></div><div class="ttdeci">std::shared_ptr&lt; TChain &gt; GetJoinedData()</div><div class="ttdef"><b>Definition:</b> ActDataManager.h:43</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -452,7 +509,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#ae61b9dcf8d74c4f82d41adb262ddaab1">fManual</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#ae61b9dcf8d74c4f82d41adb262ddaab1">fManual</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -554,7 +611,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#a2dfac463b2de177fee26e1ac04a68c04">fRuns</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classActRoot_1_1DataManager.html#a2dfac463b2de177fee26e1ac04a68c04">fRuns</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
