@@ -553,6 +553,17 @@ double ActPhysics::Kinematics::ComputeEquivalentBeamEnergy()
     return Teq;
 }
 
+double ActPhysics::Kinematics::ComputeTheta3FromT3(double T3)
+{
+    double p3 {TMath::Sqrt(T3 * (T3 + 2 * fm3))};
+    double p1 {fP1Lab.X()};
+    double num {TMath::Power(fm4 + fEex, 2) - TMath::Power(fm3, 2) + 2 * fPInitialLab.E() * (T3 + fm3) -
+                fPInitialLab.M2()};
+    double denom {2 * p1 * p3};
+    auto costheta {num / denom};
+    return TMath::ACos(costheta);
+}
+
 void ActPhysics::Kinematics::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
     // Specify particles to be read

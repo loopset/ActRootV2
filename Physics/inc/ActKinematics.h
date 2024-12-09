@@ -93,6 +93,7 @@ public:
                               double& retTRecoil, ThreeVector& retPRecoil);
     double ComputeTheoreticalTheta4(double argTheta3LabRads, const std::string& sol = {"pos"});
     double ComputeEquivalentBeamEnergy();
+    double ComputeTheta3FromT3(double T3);
 
     void Print() const;
 
