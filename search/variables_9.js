@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lambda_3092',['lambda',['../classActSim_1_1TheoCrossSection.html#abac40e13918e72c2ca2f3bf5a8d187fd',1,'ActSim::TheoCrossSection']]],
-  ['legendangular_3093',['legendAngular',['../classActSim_1_1TheoCrossSection.html#a9c14f07dfc690285ef05c4ac792a2c3a',1,'ActSim::TheoCrossSection']]],
-  ['legendrecoeffs_3094',['legendreCoeffs',['../classActSim_1_1TheoCrossSection.html#a2ad4ff00ea0149d9d0498adbbdf93e24',1,'ActSim::TheoCrossSection']]]
+  ['lambda_3102',['lambda',['../classActSim_1_1TheoCrossSection.html#abac40e13918e72c2ca2f3bf5a8d187fd',1,'ActSim::TheoCrossSection']]],
+  ['legendangular_3103',['legendAngular',['../classActSim_1_1TheoCrossSection.html#a9c14f07dfc690285ef05c4ac792a2c3a',1,'ActSim::TheoCrossSection']]],
+  ['legendrecoeffs_3104',['legendreCoeffs',['../classActSim_1_1TheoCrossSection.html#a2ad4ff00ea0149d9d0498adbbdf93e24',1,'ActSim::TheoCrossSection']]]
 ];
