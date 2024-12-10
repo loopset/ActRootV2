@@ -25,4 +25,6 @@
 
 #pragma link C++ class ActPhysics::Gas;
 
+#pragma link C++ class ActPhysics::GenCorrection + ;
+
 #endif
