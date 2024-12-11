@@ -1,10 +1,13 @@
 #ifndef ActCorrector_h
 #define ActCorrector_h
 
+#include "ActGenCorrection.h"
 #include "ActPIDCorrector.h"
 #include "ActVFilter.h"
 
 #include <string>
+#include <unordered_map>
+#include <vector>
 
 namespace ActAlgorithm
 {
@@ -14,7 +17,7 @@ private:
     bool fIsEnabled {};
     std::shared_ptr<ActPhysics::PIDCorrection> fPID {};
     double fZOffset {};
-    bool fEnableAngle {};
+    std::unordered_map<std::string, ActPhysics::GenCorrection> fAngle {};
 
 public:
     Corrector() = default;
@@ -30,6 +33,7 @@ public:
 
 private:
     void ReadPIDCorrector(const std::string& file);
+    void ReadAngleCorrectors(const std::vector<std::string>& files);
     void DoPID();
     void DoZOffset();
     void DoAngle();

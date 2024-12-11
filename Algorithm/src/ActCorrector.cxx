@@ -1,6 +1,7 @@
 #include "ActCorrector.h"
 
 #include "ActColors.h"
+#include "ActGenCorrection.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
 #include "ActPIDCorrector.h"
@@ -24,8 +25,8 @@ void ActAlgorithm::Corrector::ReadConfiguration()
         ReadPIDCorrector(b->GetString("PID"));
     if(b->CheckTokenExists("ZOffset", true))
         fZOffset = b->GetDouble("ZOffset");
-    if(b->CheckTokenExists("EnableAngle"))
-        fEnableAngle = b->GetBool("EnableAngle");
+    if(b->CheckTokenExists("Angle", true))
+        ReadAngleCorrectors(b->GetStringVector("Angle"));
 }
 
 void ActAlgorithm::Corrector::ReadPIDCorrector(const std::string& file)
@@ -34,6 +35,16 @@ void ActAlgorithm::Corrector::ReadPIDCorrector(const std::string& file)
     fPID = std::shared_ptr<ActPhysics::PIDCorrection>(f->Get<ActPhysics::PIDCorrection>("PIDCorrection"));
     if(!fPID)
         throw std::runtime_error("Corrector::ReadPIDCorrector: no PIDCorrection found in file " + file);
+}
+
+void ActAlgorithm::Corrector::ReadAngleCorrectors(const std::vector<std::string>& files)
+{
+    for(const auto& file : files)
+    {
+        ActPhysics::GenCorrection corr;
+        corr.Read(file);
+        fAngle[corr.GetName()] = corr;
+    }
 }
 
 void ActAlgorithm::Corrector::Run()
@@ -66,16 +77,28 @@ void ActAlgorithm::Corrector::DoZOffset()
 
 void ActAlgorithm::Corrector::DoAngle()
 {
-    // So far, it is hardcoded in this code until we
-    // recompute it
-    float theta {};
-    // First correction
-    theta = fMergerData->fThetaLight + (-2.14353 + 0.0114464 * fMergerData->fRP.X()) -
-            8.52223E-5 * std::pow(fMergerData->fRP.X(), 2);
-    // Second correction
-    theta = theta + (-1.58175 + 0.0889058 * theta);
-    // Set
-    fMergerData->fThetaLight = theta;
+    if(!fMergerData->fSilLayers.size())
+        return;
+    // Which layer?
+    auto layer {fMergerData->fSilLayers.front()};
+    if(fAngle.count(layer))
+    {
+        auto& corr {fAngle[layer]};
+        // 1-> RP.X() correction
+        auto temp {fMergerData->fThetaLight + corr.Eval(0, fMergerData->fRP.X())};
+        // 2-> Self correction
+        fMergerData->fThetaLight = temp + corr.Eval(1, temp);
+    }
+    // // So far, it is hardcoded in this code until we
+    // // recompute it
+    // float theta {};
+    // // First correction
+    // theta = fMergerData->fThetaLight + (-2.14353 + 0.0114464 * fMergerData->fRP.X()) -
+    //         8.52223E-5 * std::pow(fMergerData->fRP.X(), 2);
+    // // Second correction
+    // theta = theta + (-1.58175 + 0.0889058 * theta);
+    // // Set
+    // fMergerData->fThetaLight = theta;
 }
 
 void ActAlgorithm::Corrector::Print() const
@@ -84,9 +107,14 @@ void ActAlgorithm::Corrector::Print() const
     if(fIsEnabled)
     {
         if(fPID)
-            std::cout << "-> PIDCorr   : " << fPID->GetName() << '\n';
-        std::cout << "-> ZOffset   : " << fZOffset << " mm" << '\n';
-        std::cout << "-> ThetaCorr ? " << std::boolalpha << fEnableAngle << '\n';
+            std::cout << "-> PIDCorr    : " << fPID->GetName() << '\n';
+        std::cout << "-> ZOffset    : " << fZOffset << " mm" << '\n';
+        if(fAngle.size())
+        {
+            std::cout << "-> AngleFuncs : " << '\n';
+            for(const auto& [key, _] : fAngle)
+                std::cout << "    " << key << '\n';
+        }
     }
     std::cout << "+++++++++++++++++++++++++++" << RESET << '\n';
 }
