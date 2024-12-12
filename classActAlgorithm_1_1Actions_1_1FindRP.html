@@ -490,7 +490,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition</b> ActCluster.h:19</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCData_html_ac5886e049a670de028d945b79edd3571"><div class="ttname"><a href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">ActRoot::TPCData::fRPs</a></div><div class="ttdeci">std::vector&lt; XYZPoint &gt; fRPs</div><div class="ttdef"><b>Definition</b> ActTPCData.h:21</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCData_html_adf84fa184a479d60824d87ec02b64b99"><div class="ttname"><a href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">ActRoot::TPCData::fClusters</a></div><div class="ttdeci">std::vector&lt; Cluster &gt; fClusters</div><div class="ttdef"><b>Definition</b> ActTPCData.h:19</div></div>
-<div class="ttc" id="aclassActRoot_1_1Voxel_html"><div class="ttname"><a href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a></div><div class="ttdef"><b>Definition</b> ActVoxel.h:13</div></div>
+<div class="ttc" id="aclassActRoot_1_1Voxel_html"><div class="ttname"><a href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a></div><div class="ttdef"><b>Definition</b> ActVoxel.h:18</div></div>
 <div class="ttc" id="anamespaceActAlgorithm_html_a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f"><div class="ttname"><a href="namespaceActAlgorithm.html#a737351cc7e92ec8e9b7b2d80bf73c960a8266e0532466a710d6ed17547921120f">ActAlgorithm::RegionType::EBeam</a></div><div class="ttdeci">@ EBeam</div></div>
 </div><!-- fragment -->
 </div>
@@ -896,65 +896,65 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  835</span>{</div>
-<div class="line"><span class="lineno">  836</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.size() == 0)</div>
-<div class="line"><span class="lineno">  837</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  838</span>    <span class="comment">// Precise RP is found by intersection of a BL cluster with the track with larger angle</span></div>
-<div class="line"><span class="lineno">  839</span>    <span class="comment">// We sort them in this way using a set</span></div>
-<div class="line"><span class="lineno">  840</span>    <span class="keyword">typedef</span> std::pair&lt;double, ActAlgorithm::VAction::XYZPointF&gt; SetValue;</div>
-<div class="line"><span class="lineno">  841</span>    <span class="keyword">auto</span> lambda {[](<span class="keyword">const</span> SetValue&amp; l, <span class="keyword">const</span> SetValue&amp; r) { <span class="keywordflow">return</span> l.first &gt; r.first; }};</div>
-<div class="line"><span class="lineno">  842</span>    std::set&lt;SetValue, <span class="keyword">decltype</span>(lambda)&gt; set {lambda};</div>
-<div class="line"><span class="lineno">  843</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> out = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); out != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); out++)</div>
-<div class="line"><span class="lineno">  844</span>    {</div>
-<div class="line"><span class="lineno">  845</span>        <span class="comment">// Find a BL cluster</span></div>
-<div class="line"><span class="lineno">  846</span>        <span class="keywordflow">if</span>(out-&gt;GetIsBeamLike())</div>
-<div class="line"><span class="lineno">  847</span>        {</div>
-<div class="line"><span class="lineno">  848</span>            <span class="comment">// Ensure direction of BL is always positive along X</span></div>
-<div class="line"><span class="lineno">  849</span>            <span class="keyword">auto</span>&amp; outLine {out-&gt;GetRefToLine()};</div>
-<div class="line"><span class="lineno">  850</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; oldDir {outLine.GetDirection()};</div>
-<div class="line"><span class="lineno">  851</span>            outLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});</div>
-<div class="line"><span class="lineno">  852</span> </div>
-<div class="line"><span class="lineno">  853</span>            <span class="keywordflow">for</span>(<span class="keyword">auto</span> in = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); in != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); in++)</div>
-<div class="line"><span class="lineno">  854</span>            {</div>
-<div class="line"><span class="lineno">  855</span>                <span class="keywordflow">if</span>(in == out)</div>
-<div class="line"><span class="lineno">  856</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  857</span>                <span class="comment">// Ensure direction signs are defined from preliminary RP</span></div>
-<div class="line"><span class="lineno">  858</span>                in-&gt;GetRefToLine().AlignUsingPoint(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.front());</div>
-<div class="line"><span class="lineno">  859</span>                <span class="comment">// Compute angle theta</span></div>
-<div class="line"><span class="lineno">  860</span>                <span class="keyword">auto</span> theta {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a718915250be9ddbc9d308574dff019b7">GetClusterAngle</a>(out-&gt;GetLine().GetDirection(), in-&gt;GetLine().GetDirection())};</div>
-<div class="line"><span class="lineno">  861</span>                <span class="comment">// Compute RPs</span></div>
-<div class="line"><span class="lineno">  862</span>                <span class="keyword">auto</span> [a, b, dist] {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a28dcc2b99a45fbedaba359ee6e6316a0">ComputeRPIn3D</a>(out-&gt;GetLine().GetPoint(), out-&gt;GetLine().GetDirection(),</div>
-<div class="line"><span class="lineno">  863</span>                                                 in-&gt;GetLine().GetPoint(), in-&gt;GetLine().GetDirection())};</div>
-<div class="line"><span class="lineno">  864</span>                <span class="keywordflow">if</span>(dist &lt; 0) <span class="comment">// just in case lines were parallel</span></div>
-<div class="line"><span class="lineno">  865</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  866</span>                <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">ActAlgorithm::VAction::XYZPointF</a> rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};</div>
-<div class="line"><span class="lineno">  867</span>                <span class="comment">// Check that all points are valid</span></div>
-<div class="line"><span class="lineno">  868</span>                <span class="keywordtype">bool</span> checkA {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(a, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
-<div class="line"><span class="lineno">  869</span>                <span class="keywordtype">bool</span> checkB {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(b, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
-<div class="line"><span class="lineno">  870</span>                <span class="keywordtype">bool</span> checkRP {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(rp, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
-<div class="line"><span class="lineno">  871</span>                <span class="keyword">auto</span> checkPoints {checkA &amp;&amp; checkB &amp;&amp; checkRP};</div>
-<div class="line"><span class="lineno">  872</span>                <span class="comment">// And finally that distance AB is bellow threshold</span></div>
-<div class="line"><span class="lineno">  873</span>                <span class="keywordtype">bool</span> checkDist {dist &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">fRPDistThresh</a>};</div>
-<div class="line"><span class="lineno">  874</span>                <span class="keywordflow">if</span>(checkPoints &amp;&amp; checkDist)</div>
-<div class="line"><span class="lineno">  875</span>                    set.insert({std::abs(theta), rp});</div>
-<div class="line"><span class="lineno">  876</span>            }</div>
-<div class="line"><span class="lineno">  877</span>        }</div>
-<div class="line"><span class="lineno">  878</span>    }</div>
-<div class="line"><span class="lineno">  879</span>    <span class="comment">// Write</span></div>
-<div class="line"><span class="lineno">  880</span>    <span class="keywordflow">if</span>(set.size() &gt; 0)</div>
-<div class="line"><span class="lineno">  881</span>    {</div>
-<div class="line"><span class="lineno">  882</span>        <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.clear();</div>
-<div class="line"><span class="lineno">  883</span>        <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.push_back(set.begin()-&gt;second);</div>
-<div class="line"><span class="lineno">  884</span>    }</div>
-<div class="line"><span class="lineno">  885</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  886</span>    {</div>
-<div class="line"><span class="lineno">  887</span>        ; <span class="comment">// keep preliminary RP just in case this finner method fails</span></div>
-<div class="line"><span class="lineno">  888</span>    }</div>
-<div class="line"><span class="lineno">  889</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  837</span>{</div>
+<div class="line"><span class="lineno">  838</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.size() == 0)</div>
+<div class="line"><span class="lineno">  839</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  840</span>    <span class="comment">// Precise RP is found by intersection of a BL cluster with the track with larger angle</span></div>
+<div class="line"><span class="lineno">  841</span>    <span class="comment">// We sort them in this way using a set</span></div>
+<div class="line"><span class="lineno">  842</span>    <span class="keyword">typedef</span> std::pair&lt;double, ActAlgorithm::VAction::XYZPointF&gt; SetValue;</div>
+<div class="line"><span class="lineno">  843</span>    <span class="keyword">auto</span> lambda {[](<span class="keyword">const</span> SetValue&amp; l, <span class="keyword">const</span> SetValue&amp; r) { <span class="keywordflow">return</span> l.first &gt; r.first; }};</div>
+<div class="line"><span class="lineno">  844</span>    std::set&lt;SetValue, <span class="keyword">decltype</span>(lambda)&gt; set {lambda};</div>
+<div class="line"><span class="lineno">  845</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> out = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); out != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); out++)</div>
+<div class="line"><span class="lineno">  846</span>    {</div>
+<div class="line"><span class="lineno">  847</span>        <span class="comment">// Find a BL cluster</span></div>
+<div class="line"><span class="lineno">  848</span>        <span class="keywordflow">if</span>(out-&gt;GetIsBeamLike())</div>
+<div class="line"><span class="lineno">  849</span>        {</div>
+<div class="line"><span class="lineno">  850</span>            <span class="comment">// Ensure direction of BL is always positive along X</span></div>
+<div class="line"><span class="lineno">  851</span>            <span class="keyword">auto</span>&amp; outLine {out-&gt;GetRefToLine()};</div>
+<div class="line"><span class="lineno">  852</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; oldDir {outLine.GetDirection()};</div>
+<div class="line"><span class="lineno">  853</span>            outLine.SetDirection({std::abs(oldDir.X()), oldDir.Y(), oldDir.Z()});</div>
+<div class="line"><span class="lineno">  854</span> </div>
+<div class="line"><span class="lineno">  855</span>            <span class="keywordflow">for</span>(<span class="keyword">auto</span> in = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); in != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); in++)</div>
+<div class="line"><span class="lineno">  856</span>            {</div>
+<div class="line"><span class="lineno">  857</span>                <span class="keywordflow">if</span>(in == out)</div>
+<div class="line"><span class="lineno">  858</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  859</span>                <span class="comment">// Ensure direction signs are defined from preliminary RP</span></div>
+<div class="line"><span class="lineno">  860</span>                in-&gt;GetRefToLine().AlignUsingPoint(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.front());</div>
+<div class="line"><span class="lineno">  861</span>                <span class="comment">// Compute angle theta</span></div>
+<div class="line"><span class="lineno">  862</span>                <span class="keyword">auto</span> theta {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a718915250be9ddbc9d308574dff019b7">GetClusterAngle</a>(out-&gt;GetLine().GetDirection(), in-&gt;GetLine().GetDirection())};</div>
+<div class="line"><span class="lineno">  863</span>                <span class="comment">// Compute RPs</span></div>
+<div class="line"><span class="lineno">  864</span>                <span class="keyword">auto</span> [a, b, dist] {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a28dcc2b99a45fbedaba359ee6e6316a0">ComputeRPIn3D</a>(out-&gt;GetLine().GetPoint(), out-&gt;GetLine().GetDirection(),</div>
+<div class="line"><span class="lineno">  865</span>                                                 in-&gt;GetLine().GetPoint(), in-&gt;GetLine().GetDirection())};</div>
+<div class="line"><span class="lineno">  866</span>                <span class="keywordflow">if</span>(dist &lt; 0) <span class="comment">// just in case lines were parallel</span></div>
+<div class="line"><span class="lineno">  867</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  868</span>                <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">ActAlgorithm::VAction::XYZPointF</a> rp {(a.X() + b.X()) / 2, (a.Y() + b.Y()) / 2, (a.Z() + b.Z()) / 2};</div>
+<div class="line"><span class="lineno">  869</span>                <span class="comment">// Check that all points are valid</span></div>
+<div class="line"><span class="lineno">  870</span>                <span class="keywordtype">bool</span> checkA {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(a, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
+<div class="line"><span class="lineno">  871</span>                <span class="keywordtype">bool</span> checkB {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(b, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
+<div class="line"><span class="lineno">  872</span>                <span class="keywordtype">bool</span> checkRP {<a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">IsRPValid</a>(rp, <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>)};</div>
+<div class="line"><span class="lineno">  873</span>                <span class="keyword">auto</span> checkPoints {checkA &amp;&amp; checkB &amp;&amp; checkRP};</div>
+<div class="line"><span class="lineno">  874</span>                <span class="comment">// And finally that distance AB is bellow threshold</span></div>
+<div class="line"><span class="lineno">  875</span>                <span class="keywordtype">bool</span> checkDist {dist &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">fRPDistThresh</a>};</div>
+<div class="line"><span class="lineno">  876</span>                <span class="keywordflow">if</span>(checkPoints &amp;&amp; checkDist)</div>
+<div class="line"><span class="lineno">  877</span>                    set.insert({std::abs(theta), rp});</div>
+<div class="line"><span class="lineno">  878</span>            }</div>
+<div class="line"><span class="lineno">  879</span>        }</div>
+<div class="line"><span class="lineno">  880</span>    }</div>
+<div class="line"><span class="lineno">  881</span>    <span class="comment">// Write</span></div>
+<div class="line"><span class="lineno">  882</span>    <span class="keywordflow">if</span>(set.size() &gt; 0)</div>
+<div class="line"><span class="lineno">  883</span>    {</div>
+<div class="line"><span class="lineno">  884</span>        <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.clear();</div>
+<div class="line"><span class="lineno">  885</span>        <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">fRPs</a>.push_back(set.begin()-&gt;second);</div>
+<div class="line"><span class="lineno">  886</span>    }</div>
+<div class="line"><span class="lineno">  887</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  888</span>    {</div>
+<div class="line"><span class="lineno">  889</span>        ; <span class="comment">// keep preliminary RP just in case this finner method fails</span></div>
+<div class="line"><span class="lineno">  890</span>    }</div>
+<div class="line"><span class="lineno">  891</span>}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a15633fe9cb4daae75a5581339d7613a1"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a15633fe9cb4daae75a5581339d7613a1">ActAlgorithm::Actions::FindRP::IsRPValid</a></div><div class="ttdeci">bool IsRPValid(const XYZPointF &amp;rp, ActRoot::TPCParameters *tpc)</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:305</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a262330f67df507b7c3de4ba8942bfe7a"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a">ActAlgorithm::Actions::FindRP::fRPDistThresh</a></div><div class="ttdeci">double fRPDistThresh</div><div class="ttdef"><b>Definition</b> ActAFindRP.h:14</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a28dcc2b99a45fbedaba359ee6e6316a0"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a28dcc2b99a45fbedaba359ee6e6316a0">ActAlgorithm::Actions::FindRP::ComputeRPIn3D</a></div><div class="ttdeci">std::tuple&lt; ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double &gt; ComputeRPIn3D(ActPhysics::Line::XYZPointF pA, ActPhysics::Line::XYZVectorF vA, ActPhysics::Line::XYZPointF pB, ActPhysics::Line::XYZVectorF vB)</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:267</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a718915250be9ddbc9d308574dff019b7"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a718915250be9ddbc9d308574dff019b7">ActAlgorithm::Actions::FindRP::GetClusterAngle</a></div><div class="ttdeci">double GetClusterAngle(const ActPhysics::Line::XYZVectorF &amp;beam, const ActPhysics::Line::XYZVectorF &amp;recoil)</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:891</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a718915250be9ddbc9d308574dff019b7"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a718915250be9ddbc9d308574dff019b7">ActAlgorithm::Actions::FindRP::GetClusterAngle</a></div><div class="ttdeci">double GetClusterAngle(const ActPhysics::Line::XYZVectorF &amp;beam, const ActPhysics::Line::XYZVectorF &amp;recoil)</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:893</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a7352a4edfdef7053a5c5be2b7dea1723"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">ActAlgorithm::VAction::fTPCPars</a></div><div class="ttdeci">ActRoot::TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition</b> ActVAction.h:33</div></div>
 </div><!-- fragment -->
 </div>
@@ -1104,10 +1104,10 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  893</span>{</div>
-<div class="line"><span class="lineno">  894</span>    <span class="keyword">auto</span> dot {beam.Unit().Dot((recoil.Unit()))};</div>
-<div class="line"><span class="lineno">  895</span>    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
-<div class="line"><span class="lineno">  896</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  895</span>{</div>
+<div class="line"><span class="lineno">  896</span>    <span class="keyword">auto</span> dot {beam.Unit().Dot((recoil.Unit()))};</div>
+<div class="line"><span class="lineno">  897</span>    <span class="keywordflow">return</span> TMath::ACos(dot) * TMath::RadToDeg();</div>
+<div class="line"><span class="lineno">  898</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1309,76 +1309,78 @@ Additional Inherited Members</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  760</span>{</div>
 <div class="line"><span class="lineno">  761</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); it++)</div>
 <div class="line"><span class="lineno">  762</span>    {</div>
-<div class="line"><span class="lineno">  763</span>        <span class="comment">// Declare variables</span></div>
-<div class="line"><span class="lineno">  764</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; line {it-&gt;GetLine()};</div>
-<div class="line"><span class="lineno">  765</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; gp {line.GetPoint()};</div>
-<div class="line"><span class="lineno">  766</span>        <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
-<div class="line"><span class="lineno">  767</span>        <span class="keyword">auto</span> oldSize {refVoxels.size()};</div>
-<div class="line"><span class="lineno">  768</span>        <span class="comment">// Sort them using direction given by line fit</span></div>
-<div class="line"><span class="lineno">  769</span>        it-&gt;SortAlongDir();</div>
-<div class="line"><span class="lineno">  770</span>        <span class="comment">// std::sort(refVoxels.begin(), refVoxels.end());</span></div>
-<div class="line"><span class="lineno">  771</span>        <span class="comment">// Set same sign as rp</span></div>
-<div class="line"><span class="lineno">  772</span>        it-&gt;GetRefToLine().AlignUsingPoint(rp);</div>
-<div class="line"><span class="lineno">  773</span>        <span class="comment">// Get init point</span></div>
-<div class="line"><span class="lineno">  774</span>        <span class="keyword">auto</span> init {refVoxels.front()};</div>
-<div class="line"><span class="lineno">  775</span>        <span class="comment">// Get end point</span></div>
-<div class="line"><span class="lineno">  776</span>        <span class="keyword">auto</span> end {refVoxels.back()};</div>
-<div class="line"><span class="lineno">  777</span>        <span class="keyword">auto</span> projInit {line.ProjectionPointOnLine(init.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};</div>
-<div class="line"><span class="lineno">  778</span>        <span class="keyword">auto</span> projEnd {line.ProjectionPointOnLine(end.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};</div>
-<div class="line"><span class="lineno">  779</span>        <span class="comment">// Partition: get iterator to last element to be kept</span></div>
-<div class="line"><span class="lineno">  780</span>        <span class="keyword">auto</span> itKeep {std::partition(refVoxels.begin(), refVoxels.end(),</div>
-<div class="line"><span class="lineno">  781</span>                                    [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><span class="lineno">  782</span>                                    {</div>
-<div class="line"><span class="lineno">  783</span>                                        auto pos {voxel.GetPosition()};</div>
-<div class="line"><span class="lineno">  784</span>                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};</div>
-<div class="line"><span class="lineno">  785</span>                                        <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
-<div class="line"><span class="lineno">  786</span>                                        <span class="comment">// delete all points over projInit/end</span></div>
-<div class="line"><span class="lineno">  787</span>                                        <span class="comment">// bc due to ordering and angle, some voxel could have a proj larger than</span></div>
-<div class="line"><span class="lineno">  788</span>                                        <span class="comment">// the one of the last/first voxel</span></div>
-<div class="line"><span class="lineno">  789</span>                                        <span class="comment">// TODO: check a better way to mask outling voxels (proj.X() &lt; projInit.X())</span></div>
-<div class="line"><span class="lineno">  790</span>                                        <span class="comment">// could be troublesome depending on track angle</span></div>
-<div class="line"><span class="lineno">  791</span>                                        <span class="comment">// bool isInCapInit {(proj - projInit).R() &lt;= fRPPivotDist || (proj.X() &lt;</span></div>
-<div class="line"><span class="lineno">  792</span>                                        <span class="comment">// projInit.X())}; bool isInCapEnd {(proj - projEnd).R() &lt;= fRPPivotDist ||</span></div>
-<div class="line"><span class="lineno">  793</span>                                        <span class="comment">// (proj.X() &gt; projEnd.X())};</span></div>
-<div class="line"><span class="lineno">  794</span>                                        <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a1713c7cfdb04cd22a819d8b6c81a9704">fRPPivotDist</a>};</div>
-<div class="line"><span class="lineno">  795</span>                                        <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a1713c7cfdb04cd22a819d8b6c81a9704">fRPPivotDist</a>};</div>
-<div class="line"><span class="lineno">  796</span>                                        <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
-<div class="line"><span class="lineno">  797</span>                                    })};</div>
-<div class="line"><span class="lineno">  798</span>        <span class="keyword">auto</span> newSize {std::distance(refVoxels.begin(), itKeep)};</div>
-<div class="line"><span class="lineno">  799</span>        <span class="comment">// Refit if eneugh voxels remain</span></div>
-<div class="line"><span class="lineno">  800</span>        <span class="keywordflow">if</span>(newSize &gt;= <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints())</div>
-<div class="line"><span class="lineno">  801</span>        {</div>
-<div class="line"><span class="lineno">  802</span>            refVoxels.erase(itKeep, refVoxels.end());</div>
-<div class="line"><span class="lineno">  803</span>            it-&gt;ReFit();</div>
-<div class="line"><span class="lineno">  804</span>            it-&gt;ReFillSets();</div>
-<div class="line"><span class="lineno">  805</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">  806</span>            {</div>
-<div class="line"><span class="lineno">  807</span>                {</div>
-<div class="line"><span class="lineno">  808</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;--- FineRP::MaskBeginEnd ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  809</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Cluster #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  810</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Init : &quot;</span> &lt;&lt; init.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  811</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Proj Init : &quot;</span> &lt;&lt; projInit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  812</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   End : &quot;</span> &lt;&lt; end.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  813</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Proj End : &quot;</span> &lt;&lt; projEnd &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  814</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   (Old - New) sizes : &quot;</span> &lt;&lt; (oldSize - refVoxels.size()) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  815</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Gravity point : &quot;</span> &lt;&lt; it-&gt;GetLine().GetPoint() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  816</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  817</span>                }</div>
-<div class="line"><span class="lineno">  818</span>            }</div>
-<div class="line"><span class="lineno">  819</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  820</span>            {</div>
-<div class="line"><span class="lineno">  821</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">  822</span>                {</div>
-<div class="line"><span class="lineno">  823</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;--- FineRP::MaskBeginEnd  ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  824</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Cluster #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  825</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Remaining size : &quot;</span> &lt;&lt; refVoxels.size() &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  826</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   =&gt; Not erasing nor refitting !&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  827</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  828</span>                }</div>
-<div class="line"><span class="lineno">  829</span>            }</div>
-<div class="line"><span class="lineno">  830</span>        }</div>
-<div class="line"><span class="lineno">  831</span>    }</div>
-<div class="line"><span class="lineno">  832</span>}</div>
+<div class="line"><span class="lineno">  763</span>        <span class="keywordflow">if</span>(!it-&gt;GetSizeOfVoxels())</div>
+<div class="line"><span class="lineno">  764</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  765</span>        <span class="comment">// Declare variables</span></div>
+<div class="line"><span class="lineno">  766</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; line {it-&gt;GetLine()};</div>
+<div class="line"><span class="lineno">  767</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; gp {line.GetPoint()};</div>
+<div class="line"><span class="lineno">  768</span>        <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
+<div class="line"><span class="lineno">  769</span>        <span class="keyword">auto</span> oldSize {refVoxels.size()};</div>
+<div class="line"><span class="lineno">  770</span>        <span class="comment">// Sort them using direction given by line fit</span></div>
+<div class="line"><span class="lineno">  771</span>        it-&gt;SortAlongDir();</div>
+<div class="line"><span class="lineno">  772</span>        <span class="comment">// std::sort(refVoxels.begin(), refVoxels.end());</span></div>
+<div class="line"><span class="lineno">  773</span>        <span class="comment">// Set same sign as rp</span></div>
+<div class="line"><span class="lineno">  774</span>        it-&gt;GetRefToLine().AlignUsingPoint(rp);</div>
+<div class="line"><span class="lineno">  775</span>        <span class="comment">// Get init point</span></div>
+<div class="line"><span class="lineno">  776</span>        <span class="keyword">auto</span> init {refVoxels.front()};</div>
+<div class="line"><span class="lineno">  777</span>        <span class="comment">// Get end point</span></div>
+<div class="line"><span class="lineno">  778</span>        <span class="keyword">auto</span> end {refVoxels.back()};</div>
+<div class="line"><span class="lineno">  779</span>        <span class="keyword">auto</span> projInit {line.ProjectionPointOnLine(init.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};</div>
+<div class="line"><span class="lineno">  780</span>        <span class="keyword">auto</span> projEnd {line.ProjectionPointOnLine(end.GetPosition() + ROOT::Math::XYZVector {0.5, 0.5, 0.5})};</div>
+<div class="line"><span class="lineno">  781</span>        <span class="comment">// Partition: get iterator to last element to be kept</span></div>
+<div class="line"><span class="lineno">  782</span>        <span class="keyword">auto</span> itKeep {std::partition(refVoxels.begin(), refVoxels.end(),</div>
+<div class="line"><span class="lineno">  783</span>                                    [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><span class="lineno">  784</span>                                    {</div>
+<div class="line"><span class="lineno">  785</span>                                        auto pos {voxel.GetPosition()};</div>
+<div class="line"><span class="lineno">  786</span>                                        pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};</div>
+<div class="line"><span class="lineno">  787</span>                                        <span class="keyword">auto</span> proj {line.ProjectionPointOnLine(pos)};</div>
+<div class="line"><span class="lineno">  788</span>                                        <span class="comment">// delete all points over projInit/end</span></div>
+<div class="line"><span class="lineno">  789</span>                                        <span class="comment">// bc due to ordering and angle, some voxel could have a proj larger than</span></div>
+<div class="line"><span class="lineno">  790</span>                                        <span class="comment">// the one of the last/first voxel</span></div>
+<div class="line"><span class="lineno">  791</span>                                        <span class="comment">// TODO: check a better way to mask outling voxels (proj.X() &lt; projInit.X())</span></div>
+<div class="line"><span class="lineno">  792</span>                                        <span class="comment">// could be troublesome depending on track angle</span></div>
+<div class="line"><span class="lineno">  793</span>                                        <span class="comment">// bool isInCapInit {(proj - projInit).R() &lt;= fRPPivotDist || (proj.X() &lt;</span></div>
+<div class="line"><span class="lineno">  794</span>                                        <span class="comment">// projInit.X())}; bool isInCapEnd {(proj - projEnd).R() &lt;= fRPPivotDist ||</span></div>
+<div class="line"><span class="lineno">  795</span>                                        <span class="comment">// (proj.X() &gt; projEnd.X())};</span></div>
+<div class="line"><span class="lineno">  796</span>                                        <span class="keywordtype">bool</span> isInCapInit {(proj - projInit).R() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a1713c7cfdb04cd22a819d8b6c81a9704">fRPPivotDist</a>};</div>
+<div class="line"><span class="lineno">  797</span>                                        <span class="keywordtype">bool</span> isInCapEnd {(proj - projEnd).R() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a1713c7cfdb04cd22a819d8b6c81a9704">fRPPivotDist</a>};</div>
+<div class="line"><span class="lineno">  798</span>                                        <span class="keywordflow">return</span> !(isInCapInit || isInCapEnd);</div>
+<div class="line"><span class="lineno">  799</span>                                    })};</div>
+<div class="line"><span class="lineno">  800</span>        <span class="keyword">auto</span> newSize {std::distance(refVoxels.begin(), itKeep)};</div>
+<div class="line"><span class="lineno">  801</span>        <span class="comment">// Refit if eneugh voxels remain</span></div>
+<div class="line"><span class="lineno">  802</span>        <span class="keywordflow">if</span>(newSize &gt;= <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints())</div>
+<div class="line"><span class="lineno">  803</span>        {</div>
+<div class="line"><span class="lineno">  804</span>            refVoxels.erase(itKeep, refVoxels.end());</div>
+<div class="line"><span class="lineno">  805</span>            it-&gt;ReFit();</div>
+<div class="line"><span class="lineno">  806</span>            it-&gt;ReFillSets();</div>
+<div class="line"><span class="lineno">  807</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  808</span>            {</div>
+<div class="line"><span class="lineno">  809</span>                {</div>
+<div class="line"><span class="lineno">  810</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;--- FineRP::MaskBeginEnd ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  811</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Cluster #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  812</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Init : &quot;</span> &lt;&lt; init.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  813</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Proj Init : &quot;</span> &lt;&lt; projInit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  814</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   End : &quot;</span> &lt;&lt; end.GetPosition() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  815</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Proj End : &quot;</span> &lt;&lt; projEnd &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  816</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   (Old - New) sizes : &quot;</span> &lt;&lt; (oldSize - refVoxels.size()) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  817</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Gravity point : &quot;</span> &lt;&lt; it-&gt;GetLine().GetPoint() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  818</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  819</span>                }</div>
+<div class="line"><span class="lineno">  820</span>            }</div>
+<div class="line"><span class="lineno">  821</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  822</span>            {</div>
+<div class="line"><span class="lineno">  823</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  824</span>                {</div>
+<div class="line"><span class="lineno">  825</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab912d02c7998c3d47d05f87be4e2c920">BOLDRED</a> &lt;&lt; <span class="stringliteral">&quot;--- FineRP::MaskBeginEnd  ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  826</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Cluster #&quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  827</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   Remaining size : &quot;</span> &lt;&lt; refVoxels.size() &lt;&lt; <span class="stringliteral">&quot; &lt; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  828</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;   =&gt; Not erasing nor refitting !&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  829</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;------------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  830</span>                }</div>
+<div class="line"><span class="lineno">  831</span>            }</div>
+<div class="line"><span class="lineno">  832</span>        }</div>
+<div class="line"><span class="lineno">  833</span>    }</div>
+<div class="line"><span class="lineno">  834</span>}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a1713c7cfdb04cd22a819d8b6c81a9704"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a1713c7cfdb04cd22a819d8b6c81a9704">ActAlgorithm::Actions::FindRP::fRPPivotDist</a></div><div class="ttdeci">double fRPPivotDist</div><div class="ttdoc">Distance to erase Init and End of tracks (if voxels projection on line is too close of.</div><div class="ttdef"><b>Definition</b> ActAFindRP.h:30</div></div>
 </div><!-- fragment -->
 </div>
@@ -1661,7 +1663,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a31750faf6c0d69cb0e16122e8220430b"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a31750faf6c0d69cb0e16122e8220430b">ActAlgorithm::Actions::FindRP::DeleteInvalidCluster</a></div><div class="ttdeci">void DeleteInvalidCluster()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:448</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a70884c8e697ae6868818bd187e180254"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a70884c8e697ae6868818bd187e180254">ActAlgorithm::Actions::FindRP::PerformFinerFits</a></div><div class="ttdeci">void PerformFinerFits()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:462</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_a921cdedeee51fb1bfd6b54260e57ee1b"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#a921cdedeee51fb1bfd6b54260e57ee1b">ActAlgorithm::Actions::FindRP::IsDoable</a></div><div class="ttdeci">bool IsDoable()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:149</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_aa0e29f184ebf93272e1e21410d0dec43"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#aa0e29f184ebf93272e1e21410d0dec43">ActAlgorithm::Actions::FindRP::FindPreciseRP</a></div><div class="ttdeci">void FindPreciseRP()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:834</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_aa0e29f184ebf93272e1e21410d0dec43"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#aa0e29f184ebf93272e1e21410d0dec43">ActAlgorithm::Actions::FindRP::FindPreciseRP</a></div><div class="ttdeci">void FindPreciseRP()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:836</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1FindRP_html_ace2f96e3a54835cafc27baea6033ff93"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93">ActAlgorithm::Actions::FindRP::FindPreliminaryRP</a></div><div class="ttdeci">void FindPreliminaryRP()</div><div class="ttdef"><b>Definition</b> ActAFindRP.cxx:178</div></div>
 </div><!-- fragment -->
 </div>

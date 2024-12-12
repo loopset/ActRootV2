@@ -322,7 +322,7 @@ var searchData=
   ['frpdistthresh_319',['frpdistthresh',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a262330f67df507b7c3de4ba8942bfe7a',1,'ActAlgorithm::Actions::FindRP::fRPDistThresh'],['../classActAlgorithm_1_1MultiStep.html#a60c50a36778ddb7d67502b7b93d7e7be',1,'ActAlgorithm::MultiStep::fRPDistThresh']]],
   ['frpdistvalidate_320',['fRPDistValidate',['../classActAlgorithm_1_1MultiStep.html#ab78b4759e90c2b31b8b9ef821c59f516',1,'ActAlgorithm::MultiStep']]],
   ['frpenablefine_321',['fRPEnableFine',['../classActAlgorithm_1_1MultiRegion.html#a13bb0c29019f1ef2d7e68d0cd37a2f46',1,'ActAlgorithm::MultiRegion']]],
-  ['frpmaskxy_322',['frpmaskxy',['../classActAlgorithm_1_1MultiStep.html#a3497a2646f71f1250fab60f625f2e5e2',1,'ActAlgorithm::MultiStep::fRPMaskXY'],['../classActAlgorithm_1_1Actions_1_1FindRP.html#aca65acb0c47c4cb5fc0031adb8ada5fe',1,'ActAlgorithm::Actions::FindRP::fRPMaskXY']]],
+  ['frpmaskxy_322',['frpmaskxy',['../classActAlgorithm_1_1Actions_1_1FindRP.html#aca65acb0c47c4cb5fc0031adb8ada5fe',1,'ActAlgorithm::Actions::FindRP::fRPMaskXY'],['../classActAlgorithm_1_1MultiStep.html#a3497a2646f71f1250fab60f625f2e5e2',1,'ActAlgorithm::MultiStep::fRPMaskXY']]],
   ['frpmaskz_323',['frpmaskz',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a6e99c899f814d30a9f4cd6c7ca109ead',1,'ActAlgorithm::Actions::FindRP::fRPMaskZ'],['../classActAlgorithm_1_1MultiStep.html#a963b59612cdf5155a8ed32e59c5892af',1,'ActAlgorithm::MultiStep::fRPMaskZ']]],
   ['frpmaxdist_324',['fRPMaxDist',['../classActAlgorithm_1_1MultiRegion.html#a65a9d0269136cd27f9db5572646eeeed',1,'ActAlgorithm::MultiRegion']]],
   ['frpoutsidebeam_325',['fRPOutsideBeam',['../classActAlgorithm_1_1MultiRegion.html#ac251d22a03e7ed00fa1520ed6f4d20ea',1,'ActAlgorithm::MultiRegion']]],
@@ -383,7 +383,7 @@ var searchData=
   ['ftomerge_380',['fToMerge',['../classActRoot_1_1Cluster.html#ab2ccdda22c582f629589d12090b4b914',1,'ActRoot::Cluster']]],
   ['ftopvol_381',['fTopVol',['../classActSim_1_1Geometry.html#aa0220a342637e853c35779eff6d522d1',1,'ActSim::Geometry']]],
   ['ftp_382',['ftp',['../classActRoot_1_1MTExecutor.html#a32a1b1609c55de4acbbaf1bb21575504',1,'ActRoot::MTExecutor']]],
-  ['ftpc_383',['ftpc',['../classActAlgorithm_1_1ClIMB.html#a1368bb743ad8c1d72f692df82c3a3e71',1,'ActAlgorithm::ClIMB::fTPC'],['../classActSim_1_1TrackGenerator.html#a62763e50e39c48a9ad25f0efdd120461',1,'ActSim::TrackGenerator::ftpc'],['../classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee',1,'ActRoot::HistogramPainter::fTPC'],['../classActAlgorithm_1_1VFilter.html#a4d47df43e9fc217279bcae06e1e4ce35',1,'ActAlgorithm::VFilter::fTPC']]],
+  ['ftpc_383',['ftpc',['../classActSim_1_1TrackGenerator.html#a62763e50e39c48a9ad25f0efdd120461',1,'ActSim::TrackGenerator::ftpc'],['../classActRoot_1_1HistogramPainter.html#a57d353b86d87a002376a87a7ee26a6ee',1,'ActRoot::HistogramPainter::fTPC'],['../classActAlgorithm_1_1ClIMB.html#a1368bb743ad8c1d72f692df82c3a3e71',1,'ActAlgorithm::ClIMB::fTPC'],['../classActAlgorithm_1_1VFilter.html#a4d47df43e9fc217279bcae06e1e4ce35',1,'ActAlgorithm::VFilter::fTPC']]],
   ['ftpcclone_384',['fTPCClone',['../classActRoot_1_1InputWrapper.html#adf402479ae38b27e555cf6d67debc99b',1,'ActRoot::InputWrapper']]],
   ['ftpcclone2_385',['fTPCClone2',['../classActRoot_1_1InputWrapper.html#aa53a81b2a9908cb022db7a687f4a235e',1,'ActRoot::InputWrapper']]],
   ['ftpcdata_386',['ftpcdata',['../classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f',1,'ActAlgorithm::VAction::fTPCData'],['../classActRoot_1_1InputWrapper.html#a4e3f7a5a7dd01d7b6a1d58841d379bc6',1,'ActRoot::InputWrapper::fTPCData'],['../classActRoot_1_1MergerDetector.html#a9af16a31218a72ebab41bcc3141356f7',1,'ActRoot::MergerDetector::fTPCData']]],
@@ -418,7 +418,7 @@ var searchData=
   ['fworldpv_415',['fWorldPV',['../classActDetectorConstruction.html#abf5378cc7b1a6b3bdb18b3a14b816212',1,'ActDetectorConstruction']]],
   ['fwp_416',['fWP',['../classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05',1,'ActRoot::MergerData']]],
   ['fwrap_417',['fwrap',['../classActRoot_1_1EventPainter.html#a99b15f4a7911e1a60d7a2fa5c7007915',1,'ActRoot::EventPainter::fWrap'],['../classActRoot_1_1HistogramPainter.html#a8e0a9ce45720162212d0b8a9a1d9307b',1,'ActRoot::HistogramPainter::fWrap']]],
-  ['fx_418',['fx',['../classActRoot_1_1TPCParameters.html#a7568ff882863a1531ad2dc638f8763a6',1,'ActRoot::TPCParameters::fX'],['../classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d',1,'ActAlgorithm::Region::fX']]],
+  ['fx_418',['fx',['../classActAlgorithm_1_1Region.html#a2ed727150b3e42a93e122290e4d3ac6d',1,'ActAlgorithm::Region::fX'],['../classActRoot_1_1TPCParameters.html#a7568ff882863a1531ad2dc638f8763a6',1,'ActRoot::TPCParameters::fX']]],
   ['fxpercent_419',['fXPercent',['../classActAlgorithm_1_1Actions_1_1CleanPileUp.html#a33d677c8715d7ff0adb479f917fc96c6',1,'ActAlgorithm::Actions::CleanPileUp']]],
   ['fxrange_420',['fXRange',['../classActRoot_1_1Cluster.html#a264e5ca155360284b20fee5744c2986b',1,'ActRoot::Cluster']]],
   ['fxymap_421',['fXYMap',['../classActRoot_1_1Cluster.html#a194ea87f47bcac70f614a8894d82b847',1,'ActRoot::Cluster']]],
@@ -429,5 +429,6 @@ var searchData=
   ['fzdirectionthreshold_426',['fzdirectionthreshold',['../classActAlgorithm_1_1Actions_1_1CleanZs.html#a51759f2f5d717eafa36c5c0ca758a558',1,'ActAlgorithm::Actions::CleanZs::fZDirectionThreshold'],['../classActAlgorithm_1_1MultiStep.html#a7ead4a927c85f1df4437be5f09415260',1,'ActAlgorithm::MultiStep::fZDirectionThreshold']]],
   ['fzminspaninplane_427',['fZMinSpanInPlane',['../classActAlgorithm_1_1MultiStep.html#a5db3709961839d75ce044468652d84f8',1,'ActAlgorithm::MultiStep']]],
   ['fzoffset_428',['fzoffset',['../classActAlgorithm_1_1Corrector.html#a5c469121b6fafcd1965acdbf34469152',1,'ActAlgorithm::Corrector::fZOffset'],['../classActRoot_1_1MergerDetector.html#a471ebf1cf840ae98b10d7752d0387383',1,'ActRoot::MergerDetector::fZOffset']]],
-  ['fzrange_429',['fZRange',['../classActRoot_1_1Cluster.html#aab2c517b448ee8268c112fc6a66b14ef',1,'ActRoot::Cluster']]]
+  ['fzrange_429',['fZRange',['../classActRoot_1_1Cluster.html#aab2c517b448ee8268c112fc6a66b14ef',1,'ActRoot::Cluster']]],
+  ['fzs_430',['fZs',['../classActRoot_1_1Voxel.html#a67b72eb0079bb979b7104df3dcd96569',1,'ActRoot::Voxel']]]
 ];
