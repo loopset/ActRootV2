@@ -760,6 +760,8 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
 {
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
+        if(!it->GetSizeOfVoxels())
+            continue;
         // Declare variables
         const auto& line {it->GetLine()};
         const auto& gp {line.GetPoint()};

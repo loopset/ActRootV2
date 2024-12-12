@@ -18,6 +18,7 @@
 #include "TTree.h"
 
 #include <cstddef>
+#include <cstdint>
 #include <exception>
 #include <ios>
 #include <iostream>
@@ -262,8 +263,10 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
 
         // Apply rebinning (if desired)
         int binZ {(int)padz / fPars.GetREBINZ()};
+        uint8_t offset {static_cast<uint8_t>((int)padz - (binZ * fPars.GetREBINZ()))};
         padz = (float)binZ; // store z as binNumber instead of binCenter
         // padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
+        // Store the offset to recover precise value lately
 
         // Build Voxel
         // Apply cut on saturated flag if desired
@@ -278,6 +281,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
             if(fGlobalIndex[global] == 0)
             {
                 fVoxels.push_back({ROOT::Math::XYZPointF {(float)padx, (float)pady, padz}, qcal, coas.hasSaturation});
+                fVoxels.back().AddZ(offset);
                 fGlobalIndex[global] = fVoxels.size() - 1; // map global index to size in fVoxels vector
                 if(fCleanPadMatrix)
                 {
@@ -297,6 +301,7 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
                 {
                     auto idx {fGlobalIndex[global]};
                     fVoxels[idx].SetCharge(fVoxels[idx].GetCharge() + qcal);
+                    fVoxels[idx].AddZ(offset);
                     if(fCleanPadMatrix)
                     {
                         auto global2d {BuildGlobalPadIndex(padx, pady)};
