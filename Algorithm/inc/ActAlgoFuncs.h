@@ -6,6 +6,7 @@
 #include "Math/Point3Dfwd.h"
 #include "Math/Vector3Dfwd.h"
 
+#include <set>
 #include <tuple>
 #include <utility>
 #include <vector>

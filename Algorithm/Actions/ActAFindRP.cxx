@@ -30,6 +30,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
     fIsEnabled = block->GetBool("IsEnabled");
     if(!fIsEnabled)
         return;
+    if(block->CheckTokenExists("UseExtVoxels"))
+        fUseExtVoxels = block->GetBool("UseExtVoxels");
     if(block->CheckTokenExists("BeamLikeParallelF"))
         fBeamLikeParallelF = block->GetDouble("BeamLikeParallelF");
     if(block->CheckTokenExists("BeamLikeXMinThresh"))
@@ -75,6 +77,8 @@ void ActAlgorithm::Actions::FindRP::Run()
 {
     if(!fIsEnabled)
         return;
+    if(fUseExtVoxels)
+        SetExtVoxels();
     DetermineBeamLikes();
     if(!IsDoable())
         return;
@@ -96,6 +100,7 @@ void ActAlgorithm::Actions::FindRP::Print() const
         std::cout << "······························" << RESET << '\n';
         return;
     }
+    std::cout << "  UseExtVoxels       ? " << std::boolalpha << fUseExtVoxels << '\n';
     std::cout << "  BeamLikeParallel   : " << fBeamLikeParallelF << '\n';
     std::cout << "  BeamLikeXMinThresh : " << fBeamLikeXMinThresh << '\n';
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
@@ -116,6 +121,17 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  MinPercentFixBreak : " << fMinPercentFixBreak << '\n';
     std::cout << "  MinXSepBreakBeam   : " << fMinXSepBreakBeam << '\n';
     std::cout << "······························" << RESET << '\n';
+}
+
+void ActAlgorithm::Actions::FindRP::SetExtVoxels()
+{
+    for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
+    {
+        // 1-> Set the flag for future fits
+        it->SetUseExtVoxels(true);
+        // 2-> Refit with that!
+        it->ReFit();
+    }
 }
 
 void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
@@ -240,6 +256,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
             }
         }
     }
+    // proc means [proc]essed RPs
     auto proc {ClusterAndSortRPs(rpops)};
     std::set<int> toKeep {};
     fTPCData->fRPs.clear();
@@ -252,6 +269,7 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
         toKeep = proc.front().fIdxs;
     }
     // This method ensures always a RP vector with size > 1 always!
+    // Finally, set to delete cluster w/o a valid RP
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
     {
         auto it {fTPCData->fClusters.begin() + i};
@@ -545,6 +563,8 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
         if(it->GetIsBeamLike() && isBreakable)
         {
             auto& refVoxels {it->GetRefToVoxels()};
+            // Initial size
+            auto before {refVoxels.size()};
             // Sort them
             std::sort(refVoxels.begin(), refVoxels.end());
             // Partition
@@ -555,48 +575,66 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                                              pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
                                              return (pos.X() < rp.X());
                                          })};
-            // Move
-            std::vector<ActRoot::Voxel> newVoxels;
-            newVoxels.insert(newVoxels.end(), std::make_move_iterator(rpBreak),
-                             std::make_move_iterator(refVoxels.end()));
-            refVoxels.erase(rpBreak, refVoxels.end());
-
-            // Add new cluster if size is enough!
-            if(newVoxels.size() >= fAlgo->GetMinPoints() && keepSplit)
+            // Sizes
+            auto after {std::distance(refVoxels.begin(), rpBreak)};
+            auto newsize {before - after};
+            // If BL has enough voxels remaining
+            if(after >= fAlgo->GetMinPoints())
             {
-                ActRoot::Cluster newCluster {(int)fTPCData->fClusters.size()};
-                newCluster.SetVoxels(std::move(newVoxels));
-                newCluster.ReFit();
-                newCluster.ReFillSets();
-                newCluster.SetIsSplitRP(true);
-                newCluster.SetHasRP(true);
-                newCluster.SetRegionType(RegionType::EBeam);
-                toAppend.push_back(std::move(newCluster));
+                // Move
+                std::vector<ActRoot::Voxel> newVoxels;
+                newVoxels.insert(newVoxels.end(), std::make_move_iterator(rpBreak),
+                                 std::make_move_iterator(refVoxels.end()));
+                refVoxels.erase(rpBreak, refVoxels.end());
 
+                // Add heavy cluster if has minimum size of voxels
+                // and algorithm is configured to keep it
+                if(newsize >= fAlgo->GetMinPoints() && keepSplit)
+                {
+                    ActRoot::Cluster newCluster {(int)fTPCData->fClusters.size()};
+                    newCluster.SetVoxels(std::move(newVoxels));
+                    newCluster.ReFit();
+                    newCluster.ReFillSets();
+                    newCluster.SetIsSplitRP(true);
+                    newCluster.SetHasRP(true);
+                    newCluster.SetRegionType(RegionType::EBeam);
+                    toAppend.push_back(std::move(newCluster));
+
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
+                        std::cout << "-> Added heavy cluster of size : " << newsize << '\n';
+                        std::cout << "-----------------------------" << RESET << '\n';
+                    }
+                }
+                // Check whether to refit or set default beam direction
+                it->ReFit();
+                it->ReFillSets();
+                auto [xmin, xmax] {it->GetXRange()};
+                bool isShort {(xmax - xmin) < fRPDefaultMinX};
+                if(isShort && fEnableRPDefaultBeam)
+                {
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDMAGENTA << "---- FineRP::BreakBeam ----" << '\n';
+                        std::cout << " -> Cluster #" << it->GetClusterID() << '\n';
+                        std::cout << "    XRange : " << xmax - xmin << '\n';
+                        std::cout << "    is too short ( < " << fRPDefaultMinX << ") => set {1, 0, 0} dir" << '\n';
+                        std::cout << "------------------------------" << RESET << '\n';
+                    }
+                    it->GetRefToLine().SetDirection({1, 0, 0});
+                }
+            }
+            else
+            {
                 if(fIsVerbose)
                 {
                     std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
-                    std::cout << "-> Added heavy cluster of size : " << newCluster.GetSizeOfVoxels() << '\n';
+                    std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
+                    std::cout << "   is left with very few voxels : " << after << '\n';
+                    std::cout << "   => Not breaking! : " << '\n';
                     std::cout << "-----------------------------" << RESET << '\n';
                 }
-            }
-
-            // Check whether to refit or set default beam direction
-            it->ReFit();
-            it->ReFillSets();
-            auto [xmin, xmax] {it->GetXRange()};
-            bool isShort {(xmax - xmin) < fRPDefaultMinX};
-            if(isShort && fEnableRPDefaultBeam)
-            {
-                if(fIsVerbose)
-                {
-                    std::cout << BOLDMAGENTA << "---- FineRP::BreakBeam ----" << '\n';
-                    std::cout << " -> Cluster #" << it->GetClusterID() << '\n';
-                    std::cout << "   XRange : " << xmax - xmin << '\n';
-                    std::cout << "   is too short ( < " << fRPDefaultMinX << ") => set {1, 0, 0} dir" << '\n';
-                    std::cout << "------------------------------" << RESET << '\n';
-                }
-                it->GetRefToLine().SetDirection({1, 0, 0});
             }
         }
         // Print info
@@ -644,7 +682,7 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                 if(fIsVerbose)
                 {
                     std::cout << BOLDYELLOW << "---- FindRP::BreakBeamToHeavy ----" << '\n';
-                    std::cout << "  <i,j> : <" << i << "," << j << "> with percent : " << percent << '\n';
+                    std::cout << "  <i,j> : <" << i << "," << j << "> with percent : " << percent << RESET << '\n';
                 }
                 if(aux > percent)
                 {
@@ -760,8 +798,6 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
 {
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
-        if(!it->GetSizeOfVoxels())
-            continue;
         // Declare variables
         const auto& line {it->GetLine()};
         const auto& gp {line.GetPoint()};

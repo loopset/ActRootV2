@@ -1,13 +1,11 @@
 #include "ActOutputData.h"
 
 #include "ActColors.h"
-#include "ActInputData.h"
 #include "ActInputParser.h"
 
 #include "TDirectory.h"
 #include "TFile.h"
 #include "TMacro.h"
-#include "TObject.h"
 #include "TSystem.h"
 #include "TTree.h"
 
@@ -56,7 +54,11 @@ void ActRoot::OutputData::Init(const std::set<int>& runs, bool print)
             std::cout << "  " << filename << RESET << '\n';
         }
         // Init
-        fFiles[run] = std::make_shared<TFile>(filename.c_str(), "recreate"); // RECREATE for output
+        fFiles[run] = std::make_shared<TFile>(filename.c_str(), "recreate", "", 505); // RECREATE for output
+        // INFO: Explanation for compression factor: 505
+        // 5 (new ZTSD algorithm, recommended by ROOT)05(level 5, also recommended in the forum)
+        // ZSTD requires ROOT > 6.20 to work but it creates much more reduced files. The decompression speed
+        // is faster than the ZLIB algorithm used by default (101 option)
         fTrees[run] = std::make_shared<TTree>(fTreeName.c_str(), "An ACTAR TPC tree created with ActRoot");
     }
 }

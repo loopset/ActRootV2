@@ -94,7 +94,7 @@ double ActSim::TrackGenerator::FillCloud(const std::string& which, double T, dou
         auto charge {T - Eit};
         if(charge <= 0)
             break;
-        vector.push_back({(ActRoot::Voxel::XYZPoint)p, static_cast<float>(charge)});
+        vector.push_back({(ActRoot::Voxel::XYZPointF)p, static_cast<float>(charge)});
     }
     return T;
 }

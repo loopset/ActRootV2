@@ -2,6 +2,8 @@
 #define ActAFindRP_h
 #include "ActVAction.h"
 
+#include <set>
+
 namespace ActAlgorithm
 {
 namespace Actions
@@ -9,6 +11,7 @@ namespace Actions
 class FindRP : public VAction
 {
 private:
+    bool fUseExtVoxels {};               //!< Whether to use or not unrebinned Z coordinate in FITS only
     double fBeamLikeXMinThresh {};       // Min value in X that has to be in the cluster to be beam-like
     double fBeamLikeParallelF {};        // Min value for X component
     double fRPDistThresh {};             // Max distance between two lines to form a RP
@@ -52,6 +55,7 @@ public:
 
 private:
     // Major functions of FindRP
+    void SetExtVoxels();
     void DetermineBeamLikes();
     bool IsDoable();
     void FindPreliminaryRP();

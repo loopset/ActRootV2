@@ -4,12 +4,10 @@
 #include "Math/GenVector/Cartesian3D.h"
 #include "Math/GenVector/CoordinateSystemTags.h"
 #include "Math/GenVector/PositionVector3D.h"
-#include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
 
 #include <stdint.h>
 
-#include <cstdint>
 #include <vector>
 
 namespace ActRoot
@@ -17,18 +15,21 @@ namespace ActRoot
 class Voxel
 {
 public:
-    using XYZPoint = ROOT::Math::XYZPointF;
+    using XYZPointF = ROOT::Math::XYZPointF;
+    using FractionalZ = unsigned int;
 
 private:
-    XYZPoint fPosition {-1, -1, -1};
+    XYZPointF fPosition {-1, -1, -1};
+    std::vector<FractionalZ> fZs {};
     float fCharge {-1};
-    std::vector<uint8_t> fZs {};
     bool fIsSaturated {false};
 
 public:
     Voxel() = default;
-    Voxel(const XYZPoint& pos, float charge, bool hasSaturation = false);
-    // Overload equality operators
+    Voxel(const XYZPointF& pos, float charge, bool hasSaturation = false);
+
+    // Overloading of operators
+    // Equality operators
     friend bool operator==(const Voxel& v1, const Voxel& v2)
     {
         auto p1 {v1.GetPositionAs<int>()};
@@ -36,7 +37,7 @@ public:
         return p1 == p2;
     }
     friend bool operator!=(const Voxel& v1, const Voxel& v2) { return !(operator==(v1, v2)); }
-    // Overload comparison operators
+    // Comparison operators
     // We dont do a cast to int here since it will be time-consuming
     // floats are guaranteed to be eq. safe
     friend bool operator<(const Voxel& v1, const Voxel& v2)
@@ -54,14 +55,14 @@ public:
     friend bool operator>=(const Voxel& v1, const Voxel& v2) { return !(operator<(v1, v2)); }
 
     // Setters
-    void SetPosition(const XYZPoint& pos) { fPosition = pos; }
+    void SetPosition(const XYZPointF& pos) { fPosition = pos; }
     void SetCharge(float charge) { fCharge = charge; }
     // void SetID(int id){ fID = id; }
     void SetIsSaturated(bool sat) { fIsSaturated = sat; }
-    void AddZ(float z) { fZs.push_back((uint8_t)z); }
+    void AddZ(FractionalZ z) { fZs.push_back(z); }
 
     // Getters
-    const XYZPoint& GetPosition() const { return fPosition; }
+    const XYZPointF& GetPosition() const { return fPosition; }
     template <typename T>
     ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<T>, ROOT::Math::DefaultCoordinateSystemTag>
     GetPositionAs() const
@@ -69,13 +70,16 @@ public:
         return {static_cast<T>(fPosition.X()), static_cast<T>(fPosition.Y()), static_cast<T>(fPosition.Z())};
     }
     float GetCharge() const { return fCharge; }
-    // int GetID() const { return fID; }
     bool GetIsSaturated() const { return fIsSaturated; }
-    const std::vector<uint8_t>& GetZs() const { return fZs; }
-    std::vector<Voxel> GetBinVoxels(int rebin) const;
+    const std::vector<FractionalZ>& GetZs() const { return fZs; }
+    std::vector<Voxel> GetExtended() const;
 
     // Print
     void Print() const;
+
+    // Static function to operate with fractional part
+    static FractionalZ ExtractDecimalPart(double v);
+    static float RecoverFloat(float integer, FractionalZ decimal);
 };
 } // namespace ActRoot
 #endif // !ActVoxel_h

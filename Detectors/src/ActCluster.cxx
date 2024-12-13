@@ -38,9 +38,6 @@ void ActRoot::Cluster::FillSets(const ActRoot::Voxel& voxel)
     UpdateRange(pos.X(), fXRange);
     UpdateRange(pos.Y(), fYRange);
     UpdateRange(pos.Z(), fZRange);
-    //
-    // fXYMap[(int)pos.X()].insert((int)pos.Y());
-    // fXZMap[(int)pos.X()].insert((int)pos.Z());
 }
 
 void ActRoot::Cluster::FillSets()
@@ -48,18 +45,12 @@ void ActRoot::Cluster::FillSets()
     fXRange = {1111, -1};
     fYRange = {1111, -1};
     fZRange = {1111, -1};
-    //
-    // fXYMap.clear();
-    // fXZMap.clear();
     for(const auto& voxel : fVoxels)
     {
         const auto& pos {voxel.GetPosition()};
         UpdateRange(pos.X(), fXRange);
         UpdateRange(pos.Y(), fYRange);
         UpdateRange(pos.Z(), fZRange);
-        //
-        // fXYMap[(int)pos.X()].insert((int)pos.Y());
-        // fXZMap[(int)pos.X()].insert((int)pos.Z());
     }
 }
 
@@ -136,7 +127,7 @@ ActRoot::Cluster::XYZPointF ActRoot::Cluster::GetGravityPointInXRange(double len
 
 void ActRoot::Cluster::ReFit()
 {
-    fLine.FitVoxels(fVoxels);
+    fLine.FitVoxels(fVoxels, true, true, fUseExtVoxels);
 }
 
 void ActRoot::Cluster::ReFillSets()
@@ -170,7 +161,7 @@ std::pair<float, float> ActRoot::Cluster::GetZRange() const
 
 void ActRoot::Cluster::SortAlongDir()
 {
-    // Not necessary to correcto for {0.5, 0.5, 0.5} offset since
+    // Not necessary to correct for {0.5, 0.5, 0.5} offset since
     // this we are comparing all points and it would be a common factor
     XYZPointF ref {fLine.GetPoint() - 1000 * fLine.GetDirection().Unit()};
     std::sort(fVoxels.begin(), fVoxels.end(),
@@ -188,7 +179,7 @@ void ActRoot::Cluster::ScaleVoxels(float xy, float z)
     std::for_each(fVoxels.begin(), fVoxels.end(),
                   [&](Voxel& v)
                   {
-                      auto pos {v.GetPosition()};
+                      auto pos {v.GetPosition()}; // not extended voxels!
                       // In this inner function is mandatory to add offset
                       // Because we're working with the pad/tb number!
                       pos += ROOT::Math::XYZVectorF {0.5, 0.5, 0.5};

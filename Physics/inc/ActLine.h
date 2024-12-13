@@ -51,14 +51,15 @@ public:
     double DistanceLineToPoint(const XYZPointF& point) const;
     XYZPointF ProjectionPointOnLine(const XYZPointF& point) const;
     XYZPointF MoveToX(float x) const;
-    void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, bool correctOffset = true);
+    void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, bool correctOffset = true,
+                   bool useExt = false);
     std::shared_ptr<TPolyLine> GetPolyLine(TString proj, int minX, int maxX, int maxY, int maxZ, int rebinZ) const;
 
     // Display parameters of line
     void Print() const;
 
 private:
-    void DoFit(const std::vector<ActRoot::Voxel>& points, bool qWeighted, bool correctOffset);
+    void DoFit(const std::vector<ActRoot::Voxel>& points, bool qWeighted, bool correctOffset, bool useExt);
     void Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
                      const std::string& degenerated = "z");
     void Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset);

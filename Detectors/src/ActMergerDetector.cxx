@@ -791,13 +791,14 @@ void ActRoot::MergerDetector::ComputeQave()
         cluster.ScaleVoxels(fTPCPars->GetPadSide(), fDriftFactor);
     cluster.SortAlongDir();
     // Count distance bc there could be gaps
+    double gapThresh {6.5};
     double newdist {};
     for(int v = 1; v < cluster.GetSizeOfVoxels(); v++)
     {
         auto p0 {cluster.GetLine().ProjectionPointOnLine(cluster.GetVoxels()[v - 1].GetPosition())};
         auto p1 {cluster.GetLine().ProjectionPointOnLine(cluster.GetVoxels()[v].GetPosition())};
         auto d {(p1 - p0).R()};
-        if(d < 6)
+        if(d < gapThresh)
             newdist += d;
     }
     auto dist {newdist};

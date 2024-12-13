@@ -330,35 +330,37 @@ void ActAlgorithm::MultiStep::CleanPileup()
 
 std::tuple<ActAlgorithm::MultiStep::XYZPoint, double, double> ActAlgorithm::MultiStep::DetermineBreakPoint(ItType it)
 {
-    const auto& xyMap {it->GetXYMap()};
-    const auto& xzMap {it->GetXZMap()};
-    // Create interval object
-    IntervalMap<int> ivsY;
-    IntervalMap<int> ivsZ;
-    for(const auto& [x, yset] : xyMap)
-    {
-        ivsY.BuildFromSet(x, yset);
-        ivsZ.BuildFromSet(x, xzMap.at(x));
-    }
+    // UPDATE: Dec24 : function not used anymore
+    // const auto& xyMap {it->GetXYMap()};
+    // const auto& xzMap {it->GetXZMap()};
+    // // Create interval object
+    // IntervalMap<int> ivsY;
+    // IntervalMap<int> ivsZ;
+    // for(const auto& [x, yset] : xyMap)
+    // {
+    //     ivsY.BuildFromSet(x, yset);
+    //     ivsZ.BuildFromSet(x, xzMap.at(x));
+    // }
+    // //
+    // // std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
+    // // ivsY.Print();
+    // // std::cout << " ==== Z ==== " << '\n';
+    // // ivsZ.Print();
+    // //
+    // // Ranges
+    // auto [xmin, xmax] {it->GetXRange()};
+    // auto breakY {ivsY.GetKeyAtLength(fBreakLengthThres, 4)};
+    // // std::cout << "X with Y = " << breakY << '\n';
+    // auto widthY {ivsY.GetMeanSizeInRange(xmin, breakY)};
+    // // std::cout << "Width Y = " << widthY << '\n';
+    // // Widths
+    // auto breakZ {ivsZ.GetKeyAtLength(fBreakLengthThres, 4)};
+    // // std::cout << "X with Z = " << breakZ << '\n';
+    // auto widthZ {ivsZ.GetMeanSizeInRange(xmin, breakZ)};
+    // // std::cout << "Width Z = " << widthZ << '\n';
     //
-    // std::cout << BOLDCYAN << " ==== Y ==== " << '\n';
-    // ivsY.Print();
-    // std::cout << " ==== Z ==== " << '\n';
-    // ivsZ.Print();
-    //
-    // Ranges
-    auto [xmin, xmax] {it->GetXRange()};
-    auto breakY {ivsY.GetKeyAtLength(fBreakLengthThres, 4)};
-    // std::cout << "X with Y = " << breakY << '\n';
-    auto widthY {ivsY.GetMeanSizeInRange(xmin, breakY)};
-    // std::cout << "Width Y = " << widthY << '\n';
-    // Widths
-    auto breakZ {ivsZ.GetKeyAtLength(fBreakLengthThres, 4)};
-    // std::cout << "X with Z = " << breakZ << '\n';
-    auto widthZ {ivsZ.GetMeanSizeInRange(xmin, breakZ)};
-    // std::cout << "Width Z = " << widthZ << '\n';
-
-    return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ};
+    // return {XYZPoint(std::min(breakY, breakZ), 0, 0), widthY, widthZ};
+    return {};
 }
 
 void ActAlgorithm::MultiStep::BreakBeamClusters()

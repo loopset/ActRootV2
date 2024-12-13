@@ -6,6 +6,7 @@
 
 #include <ios>
 #include <memory>
+#include <set>
 
 void ActAlgorithm::Actions::Merge::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {

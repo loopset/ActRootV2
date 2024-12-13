@@ -18,7 +18,6 @@
 #include "TTree.h"
 
 #include <cstddef>
-#include <cstdint>
 #include <exception>
 #include <ios>
 #include <iostream>
@@ -261,12 +260,13 @@ void ActRoot::TPCDetector::ReadHits(ReducedData& coas, const int& where)
         float qraw {coas.peakheight[i]};
         float qcal {static_cast<float>(fCalMan->ApplyPadAlignment(where, qraw))};
 
-        // Apply rebinning (if desired)
-        int binZ {(int)padz / fPars.GetREBINZ()};
-        uint8_t offset {static_cast<uint8_t>((int)padz - (binZ * fPars.GetREBINZ()))};
+        // Apply rebinning
+        // Centering in zbin does not modify anything when converting back to int!
+        double zvalue {(double)padz / fPars.GetREBINZ() + 1. / fPars.GetREBINZ() / 2};
+        int binZ {static_cast<int>(zvalue)};
         padz = (float)binZ; // store z as binNumber instead of binCenter
-        // padz = fPars.GetREBINZ() * binZ + ((fPars.GetREBINZ() <= 1) ? 0.0 : (double)fPars.GetREBINZ() / 2);
         // Store the offset to recover precise value lately
+        auto offset {Voxel::ExtractDecimalPart(zvalue)};
 
         // Build Voxel
         // Apply cut on saturated flag if desired

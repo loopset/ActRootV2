@@ -79,12 +79,13 @@ ActPhysics::Line::XYZPointF ActPhysics::Line::MoveToX(float x) const
     return {x, fPoint.Y() + fDirection.Y() * t, fPoint.Z() + fDirection.Z() * t};
 }
 
-void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset)
+void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset,
+                                 bool useExt)
 {
-    DoFit(voxels, qWeighted, correctOffset);
+    DoFit(voxels, qWeighted, correctOffset, useExt);
 }
 
-void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset)
+void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset, bool useExt)
 {
     //------3D Line Regression
     //----- adapted from: http://fr.scribd.com/doc/31477970/Regressions-et-trajectoires-3D
@@ -123,22 +124,45 @@ void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWe
     double rho {};
     double phi {};
 
-    for(const auto& voxel : voxels)
+    for(const auto& outer : voxels)
     {
-        const auto hitQ = (qWeighted ? voxel.GetCharge() : 1.);
-        auto pos = voxel.GetPosition();
-        if(correctOffset)
-            pos += XYZVectorF {0.5, 0.5, 0.5};
-        Q += hitQ;
-        Xm += pos.X() * hitQ;
-        Ym += pos.Y() * hitQ;
-        Zm += pos.Z() * hitQ;
-        Sxx += pos.X() * pos.X() * hitQ;
-        Syy += pos.Y() * pos.Y() * hitQ;
-        Szz += pos.Z() * pos.Z() * hitQ;
-        Sxy += pos.X() * pos.Y() * hitQ;
-        Sxz += pos.X() * pos.Z() * hitQ;
-        Syz += pos.Y() * pos.Z() * hitQ;
+        if(!useExt)
+        {
+            const auto& hitQ = (qWeighted ? outer.GetCharge() : 1.);
+            auto pos {outer.GetPosition()};
+            // Offset is not implicitly corrected if useExt is disabled
+            if(correctOffset)
+                pos += XYZVectorF {0.5, 0.5, 0.5};
+            Q += hitQ;
+            Xm += pos.X() * hitQ;
+            Ym += pos.Y() * hitQ;
+            Zm += pos.Z() * hitQ;
+            Sxx += pos.X() * pos.X() * hitQ;
+            Syy += pos.Y() * pos.Y() * hitQ;
+            Szz += pos.Z() * pos.Z() * hitQ;
+            Sxy += pos.X() * pos.Y() * hitQ;
+            Sxz += pos.X() * pos.Z() * hitQ;
+            Syz += pos.Y() * pos.Z() * hitQ;
+        }
+        else
+        {
+            for(const auto& inner : outer.GetExtended())
+            {
+                const auto& hitQ = (qWeighted ? inner.GetCharge() : 1.);
+                const auto& pos {inner.GetPosition()};
+                // Offset is already corrected in Extended version of a voxel
+                Q += hitQ;
+                Xm += pos.X() * hitQ;
+                Ym += pos.Y() * hitQ;
+                Zm += pos.Z() * hitQ;
+                Sxx += pos.X() * pos.X() * hitQ;
+                Syy += pos.Y() * pos.Y() * hitQ;
+                Szz += pos.Z() * pos.Z() * hitQ;
+                Sxy += pos.X() * pos.Y() * hitQ;
+                Sxz += pos.X() * pos.Z() * hitQ;
+                Syz += pos.Y() * pos.Z() * hitQ;
+            }
+        }
     }
 
     Xm /= Q;
