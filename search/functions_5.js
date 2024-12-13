@@ -19,6 +19,6 @@ var searchData=
   ['findrp_16',['findrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ad9690417e6fbf137c714d55c47c53f53',1,'ActAlgorithm::Actions::FindRP::FindRP()'],['../classActAlgorithm_1_1MultiRegion.html#a8da640628d549abb875f8b0758d2a382',1,'ActAlgorithm::MultiRegion::FindRP()']]],
   ['fit2dfrom3d_17',['Fit2Dfrom3D',['../classActPhysics_1_1Line.html#a17af461f63606d6f97839f63aa777a96',1,'ActPhysics::Line']]],
   ['fitprofiles_18',['FitProfiles',['../classActPhysics_1_1PIDCorrector.html#ac886747a4e99401f48bf970b228af86b',1,'ActPhysics::PIDCorrector']]],
-  ['fitvoxels_19',['FitVoxels',['../classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9',1,'ActPhysics::Line']]],
+  ['fitvoxels_19',['FitVoxels',['../classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6',1,'ActPhysics::Line']]],
   ['fixbreakheavy_20',['FixBreakHeavy',['../classActAlgorithm_1_1MultiRegion.html#ad7a6147f89c9cf5d81fda61afc077167',1,'ActAlgorithm::MultiRegion']]]
 ];

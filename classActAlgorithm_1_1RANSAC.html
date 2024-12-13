@@ -686,7 +686,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="lineno">  162</span>            <span class="comment">// Create copy of line</span></div>
 <div class="line"><span class="lineno">  163</span>            <span class="keyword">auto</span> copy = line;</div>
 <div class="line"><span class="lineno">  164</span>            <span class="comment">// Fit it</span></div>
-<div class="line"><span class="lineno">  165</span>            copy.<a class="code hl_function" href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">FitVoxels</a>(inlierVoxels);</div>
+<div class="line"><span class="lineno">  165</span>            copy.<a class="code hl_function" href="classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6">FitVoxels</a>(inlierVoxels);</div>
 <div class="line"><span class="lineno">  166</span>            <span class="comment">// And push back to vector of clustering results!</span></div>
 <div class="line"><span class="lineno">  167</span>            clusters.push_back(<a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>(clusters.size(), copy, inlierVoxels));</div>
 <div class="line"><span class="lineno">  168</span>        }</div>
@@ -698,9 +698,9 @@ template&lt;typename T &gt; </div>
 <div class="ttc" id="aclassActAlgorithm_1_1RANSAC_html_acbecf4a638d39cd81a8df99181f9ef1b"><div class="ttname"><a href="classActAlgorithm_1_1RANSAC.html#acbecf4a638d39cd81a8df99181f9ef1b">ActAlgorithm::RANSAC::ProcessCloud</a></div><div class="ttdeci">std::vector&lt; ActRoot::Voxel &gt; ProcessCloud(std::vector&lt; ActRoot::Voxel &gt; &amp;remain, const ActPhysics::Line &amp;line)</div><div class="ttdef"><b>Definition</b> ActRANSAC.cxx:73</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1RANSAC_html_acfcd5ed9b719bd4ece97a7a54873c7fc"><div class="ttname"><a href="classActAlgorithm_1_1RANSAC.html#acfcd5ed9b719bd4ece97a7a54873c7fc">ActAlgorithm::RANSAC::SampleLine</a></div><div class="ttdeci">ActPhysics::Line SampleLine(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels)</div><div class="ttdef"><b>Definition</b> ActRANSAC.cxx:112</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html"><div class="ttname"><a href="classActPhysics_1_1Line.html">ActPhysics::Line</a></div><div class="ttdef"><b>Definition</b> ActLine.h:19</div></div>
-<div class="ttc" id="aclassActPhysics_1_1Line_html_a97fdcea6a145a1ce4435ee99dc89b4b9"><div class="ttname"><a href="classActPhysics_1_1Line.html#a97fdcea6a145a1ce4435ee99dc89b4b9">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, bool correctOffset=true)</div><div class="ttdef"><b>Definition</b> ActLine.cxx:82</div></div>
+<div class="ttc" id="aclassActPhysics_1_1Line_html_a9af926d063c469bfd9c8984113a3ccb6"><div class="ttname"><a href="classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6">ActPhysics::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, bool correctOffset=true, bool useExt=false)</div><div class="ttdef"><b>Definition</b> ActLine.cxx:82</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Line_html_aabb767b747c1f7ce6c27e56cd49fb696"><div class="ttname"><a href="classActPhysics_1_1Line.html#aabb767b747c1f7ce6c27e56cd49fb696">ActPhysics::Line::GetChi2</a></div><div class="ttdeci">float GetChi2() const</div><div class="ttdef"><b>Definition</b> ActLine.h:40</div></div>
-<div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition</b> ActCluster.h:19</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition</b> ActCluster.h:17</div></div>
 </div><!-- fragment -->
 </div>
 </div>

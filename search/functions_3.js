@@ -27,7 +27,7 @@ var searchData=
   ['doexit_24',['DoExit',['../classActRoot_1_1EventPainter.html#af6c94460f4d30c10f93ee4e64f386a29',1,'ActRoot::EventPainter']]],
   ['dofill_25',['DoFill',['../classActRoot_1_1EventPainter.html#afde528a82cfc5a3c35760fb4b72f8ba3',1,'ActRoot::EventPainter']]],
   ['dofinerfits_26',['DoFinerFits',['../classActAlgorithm_1_1MultiRegion.html#a04a0cc9bf54d72e5ddbc1bb85c4fc0af',1,'ActAlgorithm::MultiRegion']]],
-  ['dofit_27',['DoFit',['../classActPhysics_1_1Line.html#aadaea51fa436b421d5000d425dd899ab',1,'ActPhysics::Line']]],
+  ['dofit_27',['DoFit',['../classActPhysics_1_1Line.html#a1c670accb09408a5a31aa53bebc3f97b',1,'ActPhysics::Line']]],
   ['dogoto_28',['DoGoTo',['../classActRoot_1_1EventPainter.html#a73457e97c51c4c5ea394e41f9be80bbd',1,'ActRoot::EventPainter']]],
   ['domerge_29',['DoMerge',['../classActRoot_1_1MergerDetector.html#a0b58d54c6bf880e1a403cc8092dad585',1,'ActRoot::MergerDetector']]],
   ['donextevent_30',['DoNextEvent',['../classActRoot_1_1EventPainter.html#a9e88131fa7416136f72d99f272872691',1,'ActRoot::EventPainter']]],

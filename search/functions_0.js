@@ -24,7 +24,7 @@ var searchData=
   ['addsil_21',['AddSil',['../classActPhysics_1_1SilMatrix.html#a72043c2ca042a9f98eecdcdb7ced4d18',1,'ActPhysics::SilMatrix']]],
   ['addtabs_22',['AddTabs',['../classActRoot_1_1EventPainter.html#a885e2232b2ac9e9e353cd565de89704c',1,'ActRoot::EventPainter']]],
   ['addvoxel_23',['addvoxel',['../classActRoot_1_1Cluster.html#aa143cc642be6c7f041c3fb104822845a',1,'ActRoot::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActRoot_1_1Cluster.html#a4fa8a01bb016011bb89aac9134b6b3a7',1,'ActRoot::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
-  ['addz_24',['AddZ',['../classActRoot_1_1Voxel.html#aaf2472d4645236fcfb58e3fe526198e8',1,'ActRoot::Voxel']]],
+  ['addz_24',['AddZ',['../classActRoot_1_1Voxel.html#a4068b0f625c4a71ff760fee33ac524b3',1,'ActRoot::Voxel']]],
   ['alignusingpoint_25',['AlignUsingPoint',['../classActPhysics_1_1Line.html#a4faed979c86b3a36f2b6e84facdbdee9',1,'ActPhysics::Line']]],
   ['apply_26',['apply',['../classActPhysics_1_1GenCorrection.html#aaf220aaa5bc6e3df7dacf2f26d869eb4',1,'ActPhysics::GenCorrection::Apply()'],['../classActPhysics_1_1PIDCorrection.html#a705eb052473c1e73e6ea63c8c99c6c53',1,'ActPhysics::PIDCorrection::Apply()']]],
   ['applycalibration_27',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
