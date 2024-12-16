@@ -77,6 +77,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classActPhysics_1_1SilLayer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ActPhysics::SilLayer Class Reference</div></div>
@@ -97,10 +98,16 @@ Collaboration diagram for ActPhysics::SilLayer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a58093a5193b8b01613dafee27e8b364b" id="r_a58093a5193b8b01613dafee27e8b364b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> = ROOT::Math::XYZPointF</td></tr>
-<tr class="separator:a58093a5193b8b01613dafee27e8b364b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0aaacb68b04c5dba7a42627eeee64aa4" id="r_a0aaacb68b04c5dba7a42627eeee64aa4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> = ROOT::Math::XYZVectorF</td></tr>
-<tr class="separator:a0aaacb68b04c5dba7a42627eeee64aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29001f4d0f10542ab7303e92e00a2043" id="r_a29001f4d0f10542ab7303e92e00a2043"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a29001f4d0f10542ab7303e92e00a2043"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a> = ROOT::Math::PositionVector3D&lt; ROOT::Math::Cartesian3D&lt; T &gt; &gt;</td></tr>
+<tr class="separator:a29001f4d0f10542ab7303e92e00a2043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cbfd98d456548b665e0a8fc1bb60aab" id="r_a8cbfd98d456548b665e0a8fc1bb60aab"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8cbfd98d456548b665e0a8fc1bb60aab"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a> = ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; T &gt; &gt;</td></tr>
+<tr class="separator:a8cbfd98d456548b665e0a8fc1bb60aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a997ec5d97a41a8befee15dd88500f3d0" id="r_a997ec5d97a41a8befee15dd88500f3d0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> = <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; float &gt;</td></tr>
+<tr class="separator:a997ec5d97a41a8befee15dd88500f3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7dc16515faa46bb39ab2976c6a5197" id="r_a7d7dc16515faa46bb39ab2976c6a5197"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">XYZVectorF</a> = <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; float &gt;</td></tr>
+<tr class="separator:a7d7dc16515faa46bb39ab2976c6a5197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -119,16 +126,35 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1cccf49d7ea66bd0e5e51c46de8c6fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefe776957fa876b4e9f915482a9214ad" id="r_aefe776957fa876b4e9f915482a9214ad"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilUnit.html">SilUnit</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#aefe776957fa876b4e9f915482a9214ad">GetUnit</a> () const</td></tr>
 <tr class="separator:aefe776957fa876b4e9f915482a9214ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e475dae4899678284ff71ce167c15c" id="r_a70e475dae4899678284ff71ce167c15c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a70e475dae4899678284ff71ce167c15c">GetPoint</a> () const</td></tr>
-<tr class="separator:a70e475dae4899678284ff71ce167c15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886f7c7de219cbc2504c1d966c1fbefb" id="r_a886f7c7de219cbc2504c1d966c1fbefb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a886f7c7de219cbc2504c1d966c1fbefb">GetNormal</a> () const</td></tr>
-<tr class="separator:a886f7c7de219cbc2504c1d966c1fbefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34c7fa2081ce0004b15fda4681e972f1" id="r_a34c7fa2081ce0004b15fda4681e972f1"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a>, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a34c7fa2081ce0004b15fda4681e972f1">GetSiliconPointOfTrack</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;point, const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp;vector) const</td></tr>
-<tr class="separator:a34c7fa2081ce0004b15fda4681e972f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af991b546c84697a50b5602e00518a5fe" id="r_af991b546c84697a50b5602e00518a5fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#af991b546c84697a50b5602e00518a5fe">GetBoundaryPointOfTrack</a> (<a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *fTPC, const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;point, const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp;vector) const</td></tr>
-<tr class="separator:af991b546c84697a50b5602e00518a5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a056c3dc177019b907ae616fcdba1536d" id="r_a056c3dc177019b907ae616fcdba1536d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a056c3dc177019b907ae616fcdba1536d">MatchesRealPlacement</a> (int i, const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;sp, bool useZ=true) const</td></tr>
-<tr class="separator:a056c3dc177019b907ae616fcdba1536d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac67802fa6a49d23423efda69e5f9d7" id="r_acac67802fa6a49d23423efda69e5f9d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#acac67802fa6a49d23423efda69e5f9d7">GetPoint</a> () const</td></tr>
+<tr class="separator:acac67802fa6a49d23423efda69e5f9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2013cfe82f1bc3ff02741fbb282b1854" id="r_a2013cfe82f1bc3ff02741fbb282b1854"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">XYZVectorF</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a2013cfe82f1bc3ff02741fbb282b1854">GetNormal</a> () const</td></tr>
+<tr class="separator:a2013cfe82f1bc3ff02741fbb282b1854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99f944756052aa8ee6f3e86a364fc2b" id="r_aa99f944756052aa8ee6f3e86a364fc2b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilMatrix.html">SilMatrix</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#aa99f944756052aa8ee6f3e86a364fc2b">GetSilMatrix</a> () const</td></tr>
+<tr class="separator:aa99f944756052aa8ee6f3e86a364fc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada4362fbc6c1a44f9249b8088f64a0ef" id="r_ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ada4362fbc6c1a44f9249b8088f64a0ef">GetSiliconPointOfTrack</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;point, const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;vector, bool scale=false) const</td></tr>
+<tr class="separator:ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a022e9c26933b4545f33f092da0f9d910" id="r_a022e9c26933b4545f33f092da0f9d910"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a022e9c26933b4545f33f092da0f9d910"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a022e9c26933b4545f33f092da0f9d910">GetBoundaryPointOfTrack</a> (<a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *fTPC, const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;point, const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;vector) const</td></tr>
+<tr class="separator:a022e9c26933b4545f33f092da0f9d910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44bd3134c225ff7f7d4471a527b9a94e" id="r_a44bd3134c225ff7f7d4471a527b9a94e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a44bd3134c225ff7f7d4471a527b9a94e"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a44bd3134c225ff7f7d4471a527b9a94e">MatchesRealPlacement</a> (int i, const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;sp, bool useZ=true) const</td></tr>
+<tr class="separator:a44bd3134c225ff7f7d4471a527b9a94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bf76df747456b71c5b23d7c02727b7" id="r_a69bf76df747456b71c5b23d7c02727b7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a69bf76df747456b71c5b23d7c02727b7"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a69bf76df747456b71c5b23d7c02727b7">GetIndexOfMatch</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;p) const</td></tr>
+<tr class="separator:a69bf76df747456b71c5b23d7c02727b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af152c57431e957e86e51209f1410890b" id="r_af152c57431e957e86e51209f1410890b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af152c57431e957e86e51209f1410890b"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">ActPhysics::SilLayer::Point</a>&lt; T &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#af152c57431e957e86e51209f1410890b">GetSiliconPointOfTrack</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;otherPoint, const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;otherVec, bool scale) const</td></tr>
+<tr class="separator:af152c57431e957e86e51209f1410890b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629bb51cbfc42a5a4e8006bec5a62a39" id="r_a629bb51cbfc42a5a4e8006bec5a62a39"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a629bb51cbfc42a5a4e8006bec5a62a39"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">ActPhysics::SilLayer::Point</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a629bb51cbfc42a5a4e8006bec5a62a39">GetBoundaryPointOfTrack</a> (<a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *fTPC, const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;otherPoint, const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;otherVec) const</td></tr>
+<tr class="separator:a629bb51cbfc42a5a4e8006bec5a62a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a971b36e549807f74fe54508048f9f872" id="r_a971b36e549807f74fe54508048f9f872"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilMatrix.html">SilMatrix</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">BuildSilMatrix</a> () const</td></tr>
+<tr class="separator:a971b36e549807f74fe54508048f9f872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -139,39 +165,74 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af9225f62f22f04b1e07d3c6c5ea92e14" id="r_af9225f62f22f04b1e07d3c6c5ea92e14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilUnit.html">SilUnit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a></td></tr>
 <tr class="memdesc:af9225f62f22f04b1e07d3c6c5ea92e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifications of unit silicon.  <br /></td></tr>
 <tr class="separator:af9225f62f22f04b1e07d3c6c5ea92e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af694a64a110c240835169994716f9a40" id="r_af694a64a110c240835169994716f9a40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">fPoint</a></td></tr>
-<tr class="memdesc:af694a64a110c240835169994716f9a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point of layer: basically, contains offset.  <br /></td></tr>
-<tr class="separator:af694a64a110c240835169994716f9a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77db0c2153b2e7814a23e6189b543c4d" id="r_a77db0c2153b2e7814a23e6189b543c4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a></td></tr>
-<tr class="memdesc:a77db0c2153b2e7814a23e6189b543c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal vector of silicon plane.  <br /></td></tr>
-<tr class="separator:a77db0c2153b2e7814a23e6189b543c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac563c8c8780a3145431b361c108c267a" id="r_ac563c8c8780a3145431b361c108c267a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a></td></tr>
+<tr class="memdesc:ac563c8c8780a3145431b361c108c267a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point of layer: basically, contains offset.  <br /></td></tr>
+<tr class="separator:ac563c8c8780a3145431b361c108c267a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9c9331f9db8a109a2fddc738ed83b1d" id="r_ab9c9331f9db8a109a2fddc738ed83b1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">XYZVectorF</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a></td></tr>
+<tr class="memdesc:ab9c9331f9db8a109a2fddc738ed83b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal vector of silicon plane.  <br /></td></tr>
+<tr class="separator:ab9c9331f9db8a109a2fddc738ed83b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a17c0cdeaebbe10897130f22cd416d" id="r_a15a17c0cdeaebbe10897130f22cd416d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilMatrix.html">SilMatrix</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> {}</td></tr>
+<tr class="memdesc:a15a17c0cdeaebbe10897130f22cd416d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to SiliconMatrix.  <br /></td></tr>
+<tr class="separator:a15a17c0cdeaebbe10897130f22cd416d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6fb8cd7730e1c80e79659facca5b9d4" id="r_ac6fb8cd7730e1c80e79659facca5b9d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63">SilSide</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a></td></tr>
 <tr class="memdesc:ac6fb8cd7730e1c80e79659facca5b9d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum to spec side of layer with respect to ACTAR's frame.  <br /></td></tr>
 <tr class="separator:ac6fb8cd7730e1c80e79659facca5b9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a58093a5193b8b01613dafee27e8b364b" name="a58093a5193b8b01613dafee27e8b364b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58093a5193b8b01613dafee27e8b364b">&#9670;&#160;</a></span>XYZPoint</h2>
+<a id="a29001f4d0f10542ab7303e92e00a2043" name="a29001f4d0f10542ab7303e92e00a2043"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29001f4d0f10542ab7303e92e00a2043">&#9670;&#160;</a></span>Point</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">ActPhysics::SilLayer::XYZPoint</a> =  ROOT::Math::XYZPointF</td>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">ActPhysics::SilLayer::Point</a> =  ROOT::Math::PositionVector3D&lt;ROOT::Math::Cartesian3D&lt;T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0aaacb68b04c5dba7a42627eeee64aa4" name="a0aaacb68b04c5dba7a42627eeee64aa4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0aaacb68b04c5dba7a42627eeee64aa4">&#9670;&#160;</a></span>XYZVector</h2>
+<a id="a8cbfd98d456548b665e0a8fc1bb60aab" name="a8cbfd98d456548b665e0a8fc1bb60aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbfd98d456548b665e0a8fc1bb60aab">&#9670;&#160;</a></span>Vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">ActPhysics::SilLayer::Vector</a> =  ROOT::Math::DisplacementVector3D&lt;ROOT::Math::Cartesian3D&lt;T&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a997ec5d97a41a8befee15dd88500f3d0" name="a997ec5d97a41a8befee15dd88500f3d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a997ec5d97a41a8befee15dd88500f3d0">&#9670;&#160;</a></span>XYZPointF</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">ActPhysics::SilLayer::XYZVector</a> =  ROOT::Math::XYZVectorF</td>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">ActPhysics::SilLayer::XYZPointF</a> =  <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt;float&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d7dc16515faa46bb39ab2976c6a5197" name="a7d7dc16515faa46bb39ab2976c6a5197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7dc16515faa46bb39ab2976c6a5197">&#9670;&#160;</a></span>XYZVectorF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">ActPhysics::SilLayer::XYZVectorF</a> =  <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt;float&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -240,21 +301,64 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   68</span>    {</div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx) &lt;= val;</div>
-<div class="line"><span class="lineno">   70</span>    }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ab8e2cc55627f28e011461708ade7fc0d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">ActPhysics::SilLayer::fThresholds</a></div><div class="ttdeci">std::map&lt; int, double &gt; fThresholds</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:52</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>    {</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx) &lt;= val;</div>
+<div class="line"><span class="lineno">   82</span>    }</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ab8e2cc55627f28e011461708ade7fc0d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">ActPhysics::SilLayer::fThresholds</a></div><div class="ttdeci">std::map&lt; int, double &gt; fThresholds</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:63</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="af991b546c84697a50b5602e00518a5fe" name="af991b546c84697a50b5602e00518a5fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af991b546c84697a50b5602e00518a5fe">&#9670;&#160;</a></span>GetBoundaryPointOfTrack()</h2>
+<a id="a971b36e549807f74fe54508048f9f872" name="a971b36e549807f74fe54508048f9f872"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971b36e549807f74fe54508048f9f872">&#9670;&#160;</a></span>BuildSilMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">ActPhysics::SilLayer::XYZPoint</a> ActPhysics::SilLayer::GetBoundaryPointOfTrack </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilMatrix.html">ActPhysics::SilMatrix</a> &gt; ActPhysics::SilLayer::BuildSilMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  181</span>{</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keyword">auto</span> w {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>()};</div>
+<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> h {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>()};</div>
+<div class="line"><span class="lineno">  184</span>    <span class="keyword">auto</span> sm {std::make_shared&lt;SilMatrix&gt;()};</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">  186</span>    {</div>
+<div class="line"><span class="lineno">  187</span>        std::pair x {pair.first - w / 2, pair.first + w / 2};</div>
+<div class="line"><span class="lineno">  188</span>        std::pair y {pair.second - h / 2, pair.second + h / 2};</div>
+<div class="line"><span class="lineno">  189</span>        sm-&gt;AddSil(idx, x, y);</div>
+<div class="line"><span class="lineno">  190</span>    }</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">return</span> sm;</div>
+<div class="line"><span class="lineno">  192</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a4d3d09c815f7f4aead60be1eb005c26a"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">ActPhysics::SilLayer::fPlacements</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; double, double &gt; &gt; fPlacements</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:62</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_af9225f62f22f04b1e07d3c6c5ea92e14"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">ActPhysics::SilLayer::fUnit</a></div><div class="ttdeci">SilUnit fUnit</div><div class="ttdoc">Specifications of unit silicon.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:64</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_a531667696ce892fac6478b7168a6a9f8"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">ActPhysics::SilUnit::GetWidth</a></div><div class="ttdeci">double GetWidth() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:46</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_a6cbd32417c66ed8941a7ab0a017b2c0c"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">ActPhysics::SilUnit::GetHeight</a></div><div class="ttdeci">double GetHeight() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:47</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a629bb51cbfc42a5a4e8006bec5a62a39" name="a629bb51cbfc42a5a4e8006bec5a62a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a629bb51cbfc42a5a4e8006bec5a62a39">&#9670;&#160;</a></span>GetBoundaryPointOfTrack() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">ActPhysics::SilLayer::Point</a>&lt; T &gt; ActPhysics::SilLayer::GetBoundaryPointOfTrack </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *&#160;</td>
           <td class="paramname"><em>fTPC</em>, </td>
@@ -262,13 +366,66 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>otherPoint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>otherVec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  146</span>{</div>
+<div class="line"><span class="lineno">  147</span>    <span class="comment">// Just move point to ACTAR&#39;s flanges</span></div>
+<div class="line"><span class="lineno">  148</span>    Point&lt;T&gt; newPoint {};</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
+<div class="line"><span class="lineno">  150</span>        newPoint = {(T)fTPC-&gt;<a class="code hl_function" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(), 0, 0};</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  152</span>        newPoint = {0, (T)fTPC-&gt;<a class="code hl_function" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>(), 0};</div>
+<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keyword">auto</span> d {((newPoint - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
+<div class="line"><span class="lineno">  155</span>    <span class="keywordflow">return</span> otherPoint + unitVec * d;</div>
+<div class="line"><span class="lineno">  156</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ab9c9331f9db8a109a2fddc738ed83b1d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">ActPhysics::SilLayer::fNormal</a></div><div class="ttdeci">XYZVectorF fNormal</div><div class="ttdoc">Normal vector of silicon plane.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:66</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ac6fb8cd7730e1c80e79659facca5b9d4"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">ActPhysics::SilLayer::fSide</a></div><div class="ttdeci">SilSide fSide</div><div class="ttdoc">Enum to spec side of layer with respect to ACTAR's frame.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:68</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition</b> ActTPCParameters.h:34</div></div>
+<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition</b> ActTPCParameters.h:35</div></div>
+<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">ActPhysics::SilSide::EFront</a></div><div class="ttdeci">@ EFront</div></div>
+<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">ActPhysics::SilSide::EBack</a></div><div class="ttdeci">@ EBack</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a022e9c26933b4545f33f092da0f9d910" name="a022e9c26933b4545f33f092da0f9d910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a022e9c26933b4545f33f092da0f9d910">&#9670;&#160;</a></span>GetBoundaryPointOfTrack() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; ActPhysics::SilLayer::GetBoundaryPointOfTrack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1TPCParameters.html">ActRoot::TPCParameters</a> *&#160;</td>
+          <td class="paramname"><em>fTPC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>point</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>vector</em>&#160;</td>
         </tr>
         <tr>
@@ -278,29 +435,51 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  134</span>{</div>
-<div class="line"><span class="lineno">  135</span>    <span class="comment">// Just move point to ACTAR&#39;s flanges</span></div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_typedef" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> newPoint {};</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
-<div class="line"><span class="lineno">  138</span>        newPoint = {(float)fTPC-&gt;<a class="code hl_function" href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">GetNPADSX</a>(), 0, 0};</div>
-<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  140</span>        newPoint = {0, (float)fTPC-&gt;<a class="code hl_function" href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">GetNPADSY</a>(), 0};</div>
-<div class="line"><span class="lineno">  141</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> d {((newPoint - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>))};</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> otherPoint + unitVec * d;</div>
-<div class="line"><span class="lineno">  144</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a58093a5193b8b01613dafee27e8b364b"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">ActPhysics::SilLayer::XYZPoint</a></div><div class="ttdeci">ROOT::Math::XYZPointF XYZPoint</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:47</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a77db0c2153b2e7814a23e6189b543c4d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">ActPhysics::SilLayer::fNormal</a></div><div class="ttdeci">XYZVector fNormal</div><div class="ttdoc">Normal vector of silicon plane.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:55</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ac6fb8cd7730e1c80e79659facca5b9d4"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">ActPhysics::SilLayer::fSide</a></div><div class="ttdeci">SilSide fSide</div><div class="ttdoc">Enum to spec side of layer with respect to ACTAR's frame.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:56</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_a884d632cf9c9592ca0303b2a183e04e5"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#a884d632cf9c9592ca0303b2a183e04e5">ActRoot::TPCParameters::GetNPADSX</a></div><div class="ttdeci">int GetNPADSX() const</div><div class="ttdef"><b>Definition</b> ActTPCParameters.h:34</div></div>
-<div class="ttc" id="aclassActRoot_1_1TPCParameters_html_ab05369c9e3a0b0b56a3f00c0e4a6cd7f"><div class="ttname"><a href="classActRoot_1_1TPCParameters.html#ab05369c9e3a0b0b56a3f00c0e4a6cd7f">ActRoot::TPCParameters::GetNPADSY</a></div><div class="ttdeci">int GetNPADSY() const</div><div class="ttdef"><b>Definition</b> ActTPCParameters.h:35</div></div>
-<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">ActPhysics::SilSide::EFront</a></div><div class="ttdeci">@ EFront</div></div>
-<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">ActPhysics::SilSide::EBack</a></div><div class="ttdeci">@ EBack</div></div>
+
+</div>
+</div>
+<a id="a69bf76df747456b71c5b23d7c02727b7" name="a69bf76df747456b71c5b23d7c02727b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69bf76df747456b71c5b23d7c02727b7">&#9670;&#160;</a></span>GetIndexOfMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template int ActPhysics::SilLayer::GetIndexOfMatch </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  196</span>{</div>
+<div class="line"><span class="lineno">  197</span>    <span class="keywordtype">int</span> idx {-1};</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [i, g] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetGraphs())</div>
+<div class="line"><span class="lineno">  199</span>    {</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordtype">double</span> xy {};</div>
+<div class="line"><span class="lineno">  201</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>)</div>
+<div class="line"><span class="lineno">  202</span>            xy = p.X();</div>
+<div class="line"><span class="lineno">  203</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  204</span>            xy = p.Y();</div>
+<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">if</span>(g-&gt;IsInside(xy, p.Z()))</div>
+<div class="line"><span class="lineno">  206</span>        {</div>
+<div class="line"><span class="lineno">  207</span>            idx = i;</div>
+<div class="line"><span class="lineno">  208</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  209</span>        }</div>
+<div class="line"><span class="lineno">  210</span>    }</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">return</span> idx;</div>
+<div class="line"><span class="lineno">  212</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a15a17c0cdeaebbe10897130f22cd416d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">ActPhysics::SilLayer::fMatrix</a></div><div class="ttdeci">std::shared_ptr&lt; SilMatrix &gt; fMatrix</div><div class="ttdoc">Pointer to SiliconMatrix.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:67</div></div>
+<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">ActPhysics::SilSide::ELeft</a></div><div class="ttdeci">@ ELeft</div></div>
+<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">ActPhysics::SilSide::ERight</a></div><div class="ttdeci">@ ERight</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a886f7c7de219cbc2504c1d966c1fbefb" name="a886f7c7de219cbc2504c1d966c1fbefb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a886f7c7de219cbc2504c1d966c1fbefb">&#9670;&#160;</a></span>GetNormal()</h2>
+<a id="a2013cfe82f1bc3ff02741fbb282b1854" name="a2013cfe82f1bc3ff02741fbb282b1854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2013cfe82f1bc3ff02741fbb282b1854">&#9670;&#160;</a></span>GetNormal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +488,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp; ActPhysics::SilLayer::GetNormal </td>
+          <td class="memname">const <a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">XYZVectorF</a> &amp; ActPhysics::SilLayer::GetNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -321,7 +500,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   73</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -347,13 +526,12 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   64</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>; }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a4d3d09c815f7f4aead60be1eb005c26a"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">ActPhysics::SilLayer::fPlacements</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; double, double &gt; &gt; fPlacements</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:51</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a70e475dae4899678284ff71ce167c15c" name="a70e475dae4899678284ff71ce167c15c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70e475dae4899678284ff71ce167c15c">&#9670;&#160;</a></span>GetPoint()</h2>
+<a id="acac67802fa6a49d23423efda69e5f9d7" name="acac67802fa6a49d23423efda69e5f9d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac67802fa6a49d23423efda69e5f9d7">&#9670;&#160;</a></span>GetPoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -362,7 +540,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp; ActPhysics::SilLayer::GetPoint </td>
+          <td class="memname">const <a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> &amp; ActPhysics::SilLayer::GetPoint </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -374,28 +552,36 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   72</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">fPoint</a>; }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_af694a64a110c240835169994716f9a40"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">ActPhysics::SilLayer::fPoint</a></div><div class="ttdeci">XYZPoint fPoint</div><div class="ttdoc">Point of layer: basically, contains offset.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:54</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a>; }</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ac563c8c8780a3145431b361c108c267a"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">ActPhysics::SilLayer::fPoint</a></div><div class="ttdeci">XYZPointF fPoint</div><div class="ttdoc">Point of layer: basically, contains offset.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:65</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a34c7fa2081ce0004b15fda4681e972f1" name="a34c7fa2081ce0004b15fda4681e972f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34c7fa2081ce0004b15fda4681e972f1">&#9670;&#160;</a></span>GetSiliconPointOfTrack()</h2>
+<a id="af152c57431e957e86e51209f1410890b" name="af152c57431e957e86e51209f1410890b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af152c57431e957e86e51209f1410890b">&#9670;&#160;</a></span>GetSiliconPointOfTrack() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">ActPhysics::SilLayer::XYZPoint</a>, bool &gt; ActPhysics::SilLayer::GetSiliconPointOfTrack </td>
+          <td class="memname">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">ActPhysics::SilLayer::Point</a>&lt; T &gt;, bool &gt; ActPhysics::SilLayer::GetSiliconPointOfTrack </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;&#160;</td>
-          <td class="paramname"><em>point</em>, </td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>otherPoint</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> &amp;&#160;</td>
-          <td class="paramname"><em>vector</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>otherVec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>scale</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -404,12 +590,81 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  124</span>{</div>
-<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keyword">auto</span> d {((<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">fPoint</a> - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>))};</div>
-<div class="line"><span class="lineno">  127</span>    <span class="keywordtype">bool</span> isOk {(d &gt; 0) ? <span class="keyword">true</span> : false};</div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">return</span> std::make_pair(otherPoint + unitVec * d, isOk);</div>
-<div class="line"><span class="lineno">  129</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
+<div class="line"><span class="lineno">  129</span>    Point&lt;T&gt; ref {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a>};</div>
+<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">if</span>(scale)</div>
+<div class="line"><span class="lineno">  131</span>    {</div>
+<div class="line"><span class="lineno">  132</span>        <span class="comment">// Convert XY to mm</span></div>
+<div class="line"><span class="lineno">  133</span>        ref.SetX(ref.X() * 2.);</div>
+<div class="line"><span class="lineno">  134</span>        ref.SetY(ref.Y() * 2.);</div>
+<div class="line"><span class="lineno">  135</span>    }</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span> d {((ref - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keywordtype">bool</span> isOk {(d &gt; 0) ? <span class="keyword">true</span> : false};</div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">return</span> std::make_pair(otherPoint + unitVec * d, isOk);</div>
+<div class="line"><span class="lineno">  140</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ada4362fbc6c1a44f9249b8088f64a0ef" name="ada4362fbc6c1a44f9249b8088f64a0ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4362fbc6c1a44f9249b8088f64a0ef">&#9670;&#160;</a></span>GetSiliconPointOfTrack() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt;, bool &gt; ActPhysics::SilLayer::GetSiliconPointOfTrack </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa99f944756052aa8ee6f3e86a364fc2b" name="aa99f944756052aa8ee6f3e86a364fc2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99f944756052aa8ee6f3e86a364fc2b">&#9670;&#160;</a></span>GetSilMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classActPhysics_1_1SilMatrix.html">SilMatrix</a> &gt; ActPhysics::SilLayer::GetSilMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   86</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -435,7 +690,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   65</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -461,19 +716,20 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   71</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>; }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_af9225f62f22f04b1e07d3c6c5ea92e14"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">ActPhysics::SilLayer::fUnit</a></div><div class="ttdeci">SilUnit fUnit</div><div class="ttdoc">Specifications of unit silicon.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:53</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a056c3dc177019b907ae616fcdba1536d" name="a056c3dc177019b907ae616fcdba1536d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a056c3dc177019b907ae616fcdba1536d">&#9670;&#160;</a></span>MatchesRealPlacement()</h2>
+<a id="a44bd3134c225ff7f7d4471a527b9a94e" name="a44bd3134c225ff7f7d4471a527b9a94e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44bd3134c225ff7f7d4471a527b9a94e">&#9670;&#160;</a></span>MatchesRealPlacement()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool ActPhysics::SilLayer::MatchesRealPlacement </td>
+          <td class="memname">template bool ActPhysics::SilLayer::MatchesRealPlacement </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em>, </td>
@@ -481,7 +737,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>sp</em>, </td>
         </tr>
         <tr>
@@ -497,26 +753,24 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
-<div class="line"><span class="lineno">  149</span>    <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.at(i)};</div>
-<div class="line"><span class="lineno">  150</span>    <span class="keyword">auto</span> xyMin {xy - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2};</div>
-<div class="line"><span class="lineno">  151</span>    <span class="keyword">auto</span> xyMax {xy + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2};</div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> zMin {z - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2};</div>
-<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> zMax {z + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2};</div>
-<div class="line"><span class="lineno">  154</span>    <span class="comment">// Por XY plane we have to determine whether it is along X or Y!</span></div>
-<div class="line"><span class="lineno">  155</span>    <span class="keywordtype">double</span> plane {};</div>
-<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
-<div class="line"><span class="lineno">  157</span>        plane = sp.Y();</div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  159</span>        plane = sp.X();</div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordtype">bool</span> condXY {xyMin &lt;= plane &amp;&amp; plane &lt;= xyMax};</div>
-<div class="line"><span class="lineno">  161</span>    <span class="keywordtype">bool</span> condZ {<span class="keyword">true</span>};</div>
-<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">if</span>(useZ)</div>
-<div class="line"><span class="lineno">  163</span>        condZ = zMin &lt;= sp.Z() &amp;&amp; sp.Z() &lt;= zMax;</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">return</span> condXY &amp;&amp; condZ;</div>
-<div class="line"><span class="lineno">  165</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_a531667696ce892fac6478b7168a6a9f8"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">ActPhysics::SilUnit::GetWidth</a></div><div class="ttdeci">double GetWidth() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:39</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_a6cbd32417c66ed8941a7ab0a017b2c0c"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">ActPhysics::SilUnit::GetHeight</a></div><div class="ttdeci">double GetHeight() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:40</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  161</span>{</div>
+<div class="line"><span class="lineno">  162</span>    <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.at(i)};</div>
+<div class="line"><span class="lineno">  163</span>    <span class="keyword">auto</span> xyMin {xy - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2};</div>
+<div class="line"><span class="lineno">  164</span>    <span class="keyword">auto</span> xyMax {xy + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2};</div>
+<div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> zMin {z - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2};</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> zMax {z + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2};</div>
+<div class="line"><span class="lineno">  167</span>    <span class="comment">// Por XY plane we have to determine whether it is along X or Y!</span></div>
+<div class="line"><span class="lineno">  168</span>    <span class="keywordtype">double</span> plane {};</div>
+<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
+<div class="line"><span class="lineno">  170</span>        plane = sp.Y();</div>
+<div class="line"><span class="lineno">  171</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  172</span>        plane = sp.X();</div>
+<div class="line"><span class="lineno">  173</span>    <span class="keywordtype">bool</span> condXY {xyMin &lt;= plane &amp;&amp; plane &lt;= xyMax};</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keywordtype">bool</span> condZ {<span class="keyword">true</span>};</div>
+<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">if</span>(useZ)</div>
+<div class="line"><span class="lineno">  176</span>        condZ = zMin &lt;= sp.Z() &amp;&amp; sp.Z() &lt;= zMax;</div>
+<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">return</span> condXY &amp;&amp; condZ;</div>
+<div class="line"><span class="lineno">  178</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -534,19 +788,19 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   23</span>{</div>
-<div class="line"><span class="lineno">   24</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   25</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; idx : &lt;X || Y, Z&gt; [mm] ; thresh [MeV]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">   27</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; idx &lt;&lt; <span class="stringliteral">&quot; : &lt;&quot;</span> &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; pair.second &lt;&lt; <span class="stringliteral">&quot;&gt; ; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx)</div>
-<div class="line"><span class="lineno">   28</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   29</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Point  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">fPoint</a> &lt;&lt; <span class="stringliteral">&quot; [pads]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   30</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Normal : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   31</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Unit   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">Print</a>();</div>
-<div class="line"><span class="lineno">   33</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   34</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_ad8d16901c805a683145f700189735c65"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">ActPhysics::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:13</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
+<div class="line"><span class="lineno">   25</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   26</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; idx : &lt;X || Y, Z&gt; [mm] ; thresh [MeV]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">   28</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; idx &lt;&lt; <span class="stringliteral">&quot; : &lt;&quot;</span> &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; pair.second &lt;&lt; <span class="stringliteral">&quot;&gt; ; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx)</div>
+<div class="line"><span class="lineno">   29</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   30</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Point  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> &lt;&lt; <span class="stringliteral">&quot; [pads]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   31</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Normal : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   32</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Unit   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">Print</a>();</div>
+<div class="line"><span class="lineno">   34</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_ad8d16901c805a683145f700189735c65"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">ActPhysics::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:14</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -565,87 +819,88 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    std::vector&lt;std::string&gt; unitKeys {<span class="stringliteral">&quot;Height&quot;</span>, <span class="stringliteral">&quot;Width&quot;</span>, <span class="stringliteral">&quot;Thickness&quot;</span>};</div>
-<div class="line"><span class="lineno">   51</span>    std::vector&lt;double&gt; unitVals(unitKeys.size());</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; unitKeys.size(); i++)</div>
-<div class="line"><span class="lineno">   53</span>    {</div>
-<div class="line"><span class="lineno">   54</span>        block-&gt;CheckTokenExists(unitKeys[i]);</div>
-<div class="line"><span class="lineno">   55</span>        unitVals[i] = block-&gt;GetDouble(unitKeys[i]);</div>
-<div class="line"><span class="lineno">   56</span>    }</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a> = SilUnit {unitVals[0], unitVals[1], unitVals[2]};</div>
-<div class="line"><span class="lineno">   58</span>    <span class="comment">// Get placements</span></div>
-<div class="line"><span class="lineno">   59</span>    <span class="keyword">auto</span> placements {block-&gt;GetMappedValuesVectorOf&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;i&quot;</span>)};</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, vals] : placements)</div>
-<div class="line"><span class="lineno">   61</span>    {</div>
-<div class="line"><span class="lineno">   62</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {vals[0], vals[1]};</div>
-<div class="line"><span class="lineno">   63</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = 0.;</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
-<div class="line"><span class="lineno">   65</span>    <span class="comment">// Add offset and normal vector</span></div>
-<div class="line"><span class="lineno">   66</span>    <span class="comment">// 1-&gt; Point aka offset</span></div>
-<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Point&quot;</span>))</div>
-<div class="line"><span class="lineno">   68</span>    {</div>
-<div class="line"><span class="lineno">   69</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Point&quot;</span>)};</div>
-<div class="line"><span class="lineno">   70</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af694a64a110c240835169994716f9a40">fPoint</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
-<div class="line"><span class="lineno">   71</span>    }</div>
-<div class="line"><span class="lineno">   72</span>    <span class="comment">// 2-&gt; Plane normal</span></div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Normal&quot;</span>))</div>
-<div class="line"><span class="lineno">   74</span>    {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Normal&quot;</span>)};</div>
-<div class="line"><span class="lineno">   76</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
-<div class="line"><span class="lineno">   77</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a> = <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a77db0c2153b2e7814a23e6189b543c4d">fNormal</a>.Unit(); <span class="comment">// store as normal!</span></div>
-<div class="line"><span class="lineno">   78</span>    }</div>
-<div class="line"><span class="lineno">   79</span>    <span class="comment">// 3-&gt; Thresholds</span></div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;CommomThresh&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><span class="lineno">   81</span>    {</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keyword">auto</span> thresh {block-&gt;GetDouble(<span class="stringliteral">&quot;CommomThresh&quot;</span>)};</div>
-<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">   84</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = thresh;</div>
-<div class="line"><span class="lineno">   85</span>    }</div>
-<div class="line"><span class="lineno">   86</span>    <span class="comment">// Set thresholds</span></div>
-<div class="line"><span class="lineno">   87</span>    <span class="keyword">auto</span> threshs {block-&gt;GetMappedValuesAs&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;t&quot;</span>)};</div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span>(threshs.size() &gt; 0)</div>
-<div class="line"><span class="lineno">   89</span>    {</div>
-<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">   91</span>        {</div>
-<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   93</span>            {</div>
-<div class="line"><span class="lineno">   94</span>                <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = threshs.at(idx);</div>
-<div class="line"><span class="lineno">   95</span>            }</div>
-<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><span class="lineno">   97</span>            {</div>
-<div class="line"><span class="lineno">   98</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;While reading independent threshs, missing t command for idx : &quot;</span> +</div>
-<div class="line"><span class="lineno">   99</span>                                         std::to_string(idx));</div>
-<div class="line"><span class="lineno">  100</span>            }</div>
-<div class="line"><span class="lineno">  101</span>        }</div>
-<div class="line"><span class="lineno">  102</span>    }</div>
-<div class="line"><span class="lineno">  103</span>    <span class="comment">// 4-&gt; Sil side to be stored as enum</span></div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Side&quot;</span>))</div>
-<div class="line"><span class="lineno">  105</span>    {</div>
-<div class="line"><span class="lineno">  106</span>        <span class="keyword">auto</span> str {block-&gt;GetString(<span class="stringliteral">&quot;Side&quot;</span>)};</div>
-<div class="line"><span class="lineno">  107</span>        str = <a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(str);</div>
-<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;left&quot;</span>)</div>
-<div class="line"><span class="lineno">  109</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a>;</div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;right&quot;</span>)</div>
-<div class="line"><span class="lineno">  111</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>;</div>
-<div class="line"><span class="lineno">  112</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;front&quot;</span>)</div>
-<div class="line"><span class="lineno">  113</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>;</div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;back&quot;</span>)</div>
-<div class="line"><span class="lineno">  115</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a>;</div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Side spec : &quot;</span> + str +</div>
-<div class="line"><span class="lineno">  118</span>                                     <span class="stringliteral">&quot; could not be interpreted in terms of left, right, front or back!&quot;</span>);</div>
-<div class="line"><span class="lineno">  119</span>    }</div>
-<div class="line"><span class="lineno">  120</span>}</div>
-<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">ActPhysics::SilSide::ELeft</a></div><div class="ttdeci">@ ELeft</div></div>
-<div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">ActPhysics::SilSide::ERight</a></div><div class="ttdeci">@ ERight</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>{</div>
+<div class="line"><span class="lineno">   51</span>    std::vector&lt;std::string&gt; unitKeys {<span class="stringliteral">&quot;Height&quot;</span>, <span class="stringliteral">&quot;Width&quot;</span>, <span class="stringliteral">&quot;Thickness&quot;</span>};</div>
+<div class="line"><span class="lineno">   52</span>    std::vector&lt;double&gt; unitVals(unitKeys.size());</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; unitKeys.size(); i++)</div>
+<div class="line"><span class="lineno">   54</span>    {</div>
+<div class="line"><span class="lineno">   55</span>        block-&gt;CheckTokenExists(unitKeys[i]);</div>
+<div class="line"><span class="lineno">   56</span>        unitVals[i] = block-&gt;GetDouble(unitKeys[i]);</div>
+<div class="line"><span class="lineno">   57</span>    }</div>
+<div class="line"><span class="lineno">   58</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a> = SilUnit {unitVals[0], unitVals[1], unitVals[2]};</div>
+<div class="line"><span class="lineno">   59</span>    <span class="comment">// Get placements</span></div>
+<div class="line"><span class="lineno">   60</span>    <span class="keyword">auto</span> placements {block-&gt;GetMappedValuesVectorOf&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;i&quot;</span>)};</div>
+<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, vals] : placements)</div>
+<div class="line"><span class="lineno">   62</span>    {</div>
+<div class="line"><span class="lineno">   63</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {vals[0], vals[1]};</div>
+<div class="line"><span class="lineno">   64</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = 0.;</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
+<div class="line"><span class="lineno">   66</span>    <span class="comment">// Add offset and normal vector</span></div>
+<div class="line"><span class="lineno">   67</span>    <span class="comment">// 1-&gt; Point aka offset</span></div>
+<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Point&quot;</span>))</div>
+<div class="line"><span class="lineno">   69</span>    {</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Point&quot;</span>)};</div>
+<div class="line"><span class="lineno">   71</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment">// 2-&gt; Plane normal</span></div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Normal&quot;</span>))</div>
+<div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Normal&quot;</span>)};</div>
+<div class="line"><span class="lineno">   77</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
+<div class="line"><span class="lineno">   78</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>.Unit(); <span class="comment">// store as normal!</span></div>
+<div class="line"><span class="lineno">   79</span>    }</div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// 3-&gt; Thresholds</span></div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;CommomThresh&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        <span class="keyword">auto</span> thresh {block-&gt;GetDouble(<span class="stringliteral">&quot;CommomThresh&quot;</span>)};</div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">   85</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = thresh;</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span>    <span class="comment">// Set thresholds</span></div>
+<div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> threshs {block-&gt;GetMappedValuesAs&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;t&quot;</span>)};</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">if</span>(threshs.size() &gt; 0)</div>
+<div class="line"><span class="lineno">   90</span>    {</div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">   92</span>        {</div>
+<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   94</span>            {</div>
+<div class="line"><span class="lineno">   95</span>                <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = threshs.at(idx);</div>
+<div class="line"><span class="lineno">   96</span>            }</div>
+<div class="line"><span class="lineno">   97</span>            <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
+<div class="line"><span class="lineno">   98</span>            {</div>
+<div class="line"><span class="lineno">   99</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;While reading independent threshs, missing t command for idx : &quot;</span> +</div>
+<div class="line"><span class="lineno">  100</span>                                         std::to_string(idx));</div>
+<div class="line"><span class="lineno">  101</span>            }</div>
+<div class="line"><span class="lineno">  102</span>        }</div>
+<div class="line"><span class="lineno">  103</span>    }</div>
+<div class="line"><span class="lineno">  104</span>    <span class="comment">// 4-&gt; Sil side to be stored as enum</span></div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Side&quot;</span>))</div>
+<div class="line"><span class="lineno">  106</span>    {</div>
+<div class="line"><span class="lineno">  107</span>        <span class="keyword">auto</span> str {block-&gt;GetString(<span class="stringliteral">&quot;Side&quot;</span>)};</div>
+<div class="line"><span class="lineno">  108</span>        str = <a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(str);</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;left&quot;</span>)</div>
+<div class="line"><span class="lineno">  110</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a>;</div>
+<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;right&quot;</span>)</div>
+<div class="line"><span class="lineno">  112</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>;</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;front&quot;</span>)</div>
+<div class="line"><span class="lineno">  114</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>;</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;back&quot;</span>)</div>
+<div class="line"><span class="lineno">  116</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a>;</div>
+<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Side spec : &quot;</span> + str +</div>
+<div class="line"><span class="lineno">  119</span>                                     <span class="stringliteral">&quot; could not be interpreted in terms of left, right, front or back!&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
+<div class="line"><span class="lineno">  121</span>    <span class="comment">// 5-&gt; Build the silicon matrix with the info gathered here</span></div>
+<div class="line"><span class="lineno">  122</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> = <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">BuildSilMatrix</a>();</div>
+<div class="line"><span class="lineno">  123</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a971b36e549807f74fe54508048f9f872"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">ActPhysics::SilLayer::BuildSilMatrix</a></div><div class="ttdeci">std::shared_ptr&lt; SilMatrix &gt; BuildSilMatrix() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:180</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:18</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a77db0c2153b2e7814a23e6189b543c4d" name="a77db0c2153b2e7814a23e6189b543c4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77db0c2153b2e7814a23e6189b543c4d">&#9670;&#160;</a></span>fNormal</h2>
+<a id="a15a17c0cdeaebbe10897130f22cd416d" name="a15a17c0cdeaebbe10897130f22cd416d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15a17c0cdeaebbe10897130f22cd416d">&#9670;&#160;</a></span>fMatrix</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -654,7 +909,32 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a0aaacb68b04c5dba7a42627eeee64aa4">XYZVector</a> ActPhysics::SilLayer::fNormal</td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classActPhysics_1_1SilMatrix.html">SilMatrix</a>&gt; ActPhysics::SilLayer::fMatrix {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to SiliconMatrix. </p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>{}; </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab9c9331f9db8a109a2fddc738ed83b1d" name="ab9c9331f9db8a109a2fddc738ed83b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9c9331f9db8a109a2fddc738ed83b1d">&#9670;&#160;</a></span>fNormal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a7d7dc16515faa46bb39ab2976c6a5197">XYZVectorF</a> ActPhysics::SilLayer::fNormal</td>
         </tr>
       </table>
   </td>
@@ -690,8 +970,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="af694a64a110c240835169994716f9a40" name="af694a64a110c240835169994716f9a40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af694a64a110c240835169994716f9a40">&#9670;&#160;</a></span>fPoint</h2>
+<a id="ac563c8c8780a3145431b361c108c267a" name="ac563c8c8780a3145431b361c108c267a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac563c8c8780a3145431b361c108c267a">&#9670;&#160;</a></span>fPoint</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -700,7 +980,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a58093a5193b8b01613dafee27e8b364b">XYZPoint</a> ActPhysics::SilLayer::fPoint</td>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> ActPhysics::SilLayer::fPoint</td>
         </tr>
       </table>
   </td>

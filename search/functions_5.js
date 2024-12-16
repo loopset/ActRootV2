@@ -14,11 +14,12 @@ var searchData=
   ['finalclean_11',['FinalClean',['../classActAlgorithm_1_1MultiRegion.html#a7cc773087157d820307770d93ef958e1',1,'ActAlgorithm::MultiRegion']]],
   ['findboundarypoint_12',['FindBoundaryPoint',['../classActSim_1_1Geometry.html#a889b6e4f7a59ae652eedcc20e672de6c',1,'ActSim::Geometry']]],
   ['findfinerp_13',['FindFineRP',['../classActAlgorithm_1_1MultiRegion.html#a79fcad0133557890e3045e3a0bfbbcfe',1,'ActAlgorithm::MultiRegion']]],
-  ['findpreciserp_14',['findpreciserp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#aa0e29f184ebf93272e1e21410d0dec43',1,'ActAlgorithm::Actions::FindRP::FindPreciseRP()'],['../classActAlgorithm_1_1MultiStep.html#a7db1e52eaaea07f38f07e65d7d27313a',1,'ActAlgorithm::MultiStep::FindPreciseRP()']]],
-  ['findpreliminaryrp_15',['findpreliminaryrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93',1,'ActAlgorithm::Actions::FindRP::FindPreliminaryRP()'],['../classActAlgorithm_1_1MultiStep.html#a94b0ab39d0f50a85d48b81aea9fd46fe',1,'ActAlgorithm::MultiStep::FindPreliminaryRP()']]],
-  ['findrp_16',['findrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ad9690417e6fbf137c714d55c47c53f53',1,'ActAlgorithm::Actions::FindRP::FindRP()'],['../classActAlgorithm_1_1MultiRegion.html#a8da640628d549abb875f8b0758d2a382',1,'ActAlgorithm::MultiRegion::FindRP()']]],
-  ['fit2dfrom3d_17',['Fit2Dfrom3D',['../classActPhysics_1_1Line.html#a17af461f63606d6f97839f63aa777a96',1,'ActPhysics::Line']]],
-  ['fitprofiles_18',['FitProfiles',['../classActPhysics_1_1PIDCorrector.html#ac886747a4e99401f48bf970b228af86b',1,'ActPhysics::PIDCorrector']]],
-  ['fitvoxels_19',['FitVoxels',['../classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6',1,'ActPhysics::Line']]],
-  ['fixbreakheavy_20',['FixBreakHeavy',['../classActAlgorithm_1_1MultiRegion.html#ad7a6147f89c9cf5d81fda61afc077167',1,'ActAlgorithm::MultiRegion']]]
+  ['findlayerandidx_14',['FindLayerAndIdx',['../classActPhysics_1_1SilSpecs.html#a378f5ce2a2f25fa9a9c7f0734f506950',1,'ActPhysics::SilSpecs']]],
+  ['findpreciserp_15',['findpreciserp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#aa0e29f184ebf93272e1e21410d0dec43',1,'ActAlgorithm::Actions::FindRP::FindPreciseRP()'],['../classActAlgorithm_1_1MultiStep.html#a7db1e52eaaea07f38f07e65d7d27313a',1,'ActAlgorithm::MultiStep::FindPreciseRP()']]],
+  ['findpreliminaryrp_16',['findpreliminaryrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93',1,'ActAlgorithm::Actions::FindRP::FindPreliminaryRP()'],['../classActAlgorithm_1_1MultiStep.html#a94b0ab39d0f50a85d48b81aea9fd46fe',1,'ActAlgorithm::MultiStep::FindPreliminaryRP()']]],
+  ['findrp_17',['findrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ad9690417e6fbf137c714d55c47c53f53',1,'ActAlgorithm::Actions::FindRP::FindRP()'],['../classActAlgorithm_1_1MultiRegion.html#a8da640628d549abb875f8b0758d2a382',1,'ActAlgorithm::MultiRegion::FindRP()']]],
+  ['fit2dfrom3d_18',['Fit2Dfrom3D',['../classActPhysics_1_1Line.html#a17af461f63606d6f97839f63aa777a96',1,'ActPhysics::Line']]],
+  ['fitprofiles_19',['FitProfiles',['../classActPhysics_1_1PIDCorrector.html#ac886747a4e99401f48bf970b228af86b',1,'ActPhysics::PIDCorrector']]],
+  ['fitvoxels_20',['FitVoxels',['../classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6',1,'ActPhysics::Line']]],
+  ['fixbreakheavy_21',['FixBreakHeavy',['../classActAlgorithm_1_1MultiRegion.html#ad7a6147f89c9cf5d81fda61afc077167',1,'ActAlgorithm::MultiRegion']]]
 ];

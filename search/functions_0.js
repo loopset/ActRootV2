@@ -21,7 +21,7 @@ var searchData=
   ['addpoint_18',['AddPoint',['../classActPhysics_1_1SilMatrix.html#ae69e45f6140bf27ac1928d0bd25b8123',1,'ActPhysics::SilMatrix']]],
   ['addrecoil_19',['AddRecoil',['../classActSim_1_1TrackGenerator.html#aca75be5bc30ceb79a5147e7ba0e28d74',1,'ActSim::TrackGenerator']]],
   ['addregion_20',['AddRegion',['../classActAlgorithm_1_1MultiRegion.html#ae0995a5dca6a1818b14f12e93be80bdf',1,'ActAlgorithm::MultiRegion']]],
-  ['addsil_21',['AddSil',['../classActPhysics_1_1SilMatrix.html#a72043c2ca042a9f98eecdcdb7ced4d18',1,'ActPhysics::SilMatrix']]],
+  ['addsil_21',['addsil',['../classActPhysics_1_1SilMatrix.html#abc4a5ab52bff2a592603d2dacacb9a22',1,'ActPhysics::SilMatrix::AddSil(int idx, TCutG *g)'],['../classActPhysics_1_1SilMatrix.html#a72043c2ca042a9f98eecdcdb7ced4d18',1,'ActPhysics::SilMatrix::AddSil(int idx, const std::pair&lt; double, double &gt; &amp;x, const std::pair&lt; double, double &gt; &amp;y)']]],
   ['addtabs_22',['AddTabs',['../classActRoot_1_1EventPainter.html#a885e2232b2ac9e9e353cd565de89704c',1,'ActRoot::EventPainter']]],
   ['addvoxel_23',['addvoxel',['../classActRoot_1_1Cluster.html#aa143cc642be6c7f041c3fb104822845a',1,'ActRoot::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActRoot_1_1Cluster.html#a4fa8a01bb016011bb89aac9134b6b3a7',1,'ActRoot::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
   ['addz_24',['AddZ',['../classActRoot_1_1Voxel.html#a4068b0f625c4a71ff760fee33ac524b3',1,'ActRoot::Voxel']]],
