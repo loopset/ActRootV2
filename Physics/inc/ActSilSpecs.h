@@ -2,8 +2,14 @@
 #define ActSilSpecs
 
 #include "ActInputParser.h"
+#include "ActSilMatrix.h"
 #include "ActTPCDetector.h"
 
+#include "ROOT/RVersion.hxx"
+
+#include "Math/GenVector/Cartesian3D.h"
+#include "Math/GenVector/DisplacementVector3D.h"
+#include "Math/GenVector/PositionVector3D.h"
 #include "Math/Point3D.h"
 #include "Math/Point3Dfwd.h"
 #include "Math/Vector3D.h"
@@ -12,6 +18,7 @@
 #include <memory.h>
 
 #include <map>
+#include <memory>
 #include <string>
 
 namespace ActPhysics
@@ -44,16 +51,21 @@ public:
 class SilLayer
 {
 public:
-    using XYZPoint = ROOT::Math::XYZPointF;
-    using XYZVector = ROOT::Math::XYZVectorF;
+    template <typename T>
+    using Point = ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<T>>;
+    template <typename T>
+    using Vector = ROOT::Math::DisplacementVector3D<ROOT::Math::Cartesian3D<T>>;
+    using XYZPointF = Point<float>;
+    using XYZVectorF = Vector<float>;
 
 private:
     std::map<int, std::pair<double, double>> fPlacements;
     std::map<int, double> fThresholds;
-    SilUnit fUnit;     //!< Specifications of unit silicon
-    XYZPoint fPoint;   //!< Point of layer: basically, contains offset
-    XYZVector fNormal; //!< Normal vector of silicon plane
-    SilSide fSide;     //!< Enum to spec side of layer with respect to ACTAR's frame
+    SilUnit fUnit;                         //!< Specifications of unit silicon
+    XYZPointF fPoint;                      //!< Point of layer: basically, contains offset
+    XYZVectorF fNormal;                    //!< Normal vector of silicon plane
+    std::shared_ptr<SilMatrix> fMatrix {}; //!< Pointer to SiliconMatrix
+    SilSide fSide;                         //!< Enum to spec side of layer with respect to ACTAR's frame
 
 public:
     SilLayer() = default;
@@ -69,18 +81,33 @@ public:
         return fThresholds.at(idx) <= val;
     }
     const SilUnit& GetUnit() const { return fUnit; }
-    const XYZPoint& GetPoint() const { return fPoint; }
-    const XYZVector& GetNormal() const { return fNormal; }
+    const XYZPointF& GetPoint() const { return fPoint; }
+    const XYZVectorF& GetNormal() const { return fNormal; }
+    std::shared_ptr<SilMatrix> GetSilMatrix() const { return fMatrix; }
 
-    // Other functions of interest
-    std::pair<XYZPoint, bool> GetSiliconPointOfTrack(const XYZPoint& point, const XYZVector& vector) const;
-    XYZPoint
-    GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const XYZPoint& point, const XYZVector& vector) const;
-    bool MatchesRealPlacement(int i, const XYZPoint& sp, bool useZ = true) const;
+    // Operations
+    template <typename T>
+    std::pair<Point<T>, bool>
+    GetSiliconPointOfTrack(const Point<T>& point, const Vector<T>& vector, bool scale = false) const;
+    template <typename T>
+    Point<T>
+    GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<T>& point, const Vector<T>& vector) const;
+    template <typename T>
+    bool MatchesRealPlacement(int i, const Point<T>& sp, bool useZ = true) const;
+    template <typename T>
+    int GetIndexOfMatch(const Point<T>& p) const;
+
+private:
+    std::shared_ptr<SilMatrix> BuildSilMatrix() const;
 };
 
 class SilSpecs
 {
+public:
+    typedef ROOT::Math::XYZPoint XYZPoint;
+    typedef ROOT::Math::XYZVector XYZVector;
+    typedef std::pair<std::string, int> LayerIdxRet;
+
 private:
     std::unordered_map<std::string, SilLayer> fLayers;
 
@@ -90,6 +117,8 @@ public:
 
     bool CheckLayersExists(const std::string& name) const { return fLayers.count(name); }
     const SilLayer& GetLayer(const std::string& name) { return fLayers[name]; };
+    LayerIdxRet FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
+    void EraseLayer(const std::string& name);
 };
 } // namespace ActPhysics
 

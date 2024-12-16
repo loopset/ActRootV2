@@ -25,6 +25,7 @@ public:
     SilMatrix(const std::string& name) : fName(name) {}
 
     void AddSil(int idx, const std::pair<double, double>& x, const std::pair<double, double>& y);
+    void AddSil(int idx, TCutG* g) { fMatrix[idx] = g; }
     bool IsInside(int idx, double x, double y);
     std::optional<int> IsInside(double x, double y);
     bool IsInMatrix(int idx) const { return fMatrix.count(idx); }
@@ -34,6 +35,7 @@ public:
     std::string GetName() const { return fName; }
     std::set<int> GetSilIndexes() const;
     const TCutG* GetSil(int idx) const { return fMatrix.at(idx); }
+    const std::map<int, TCutG*> GetGraphs() const { return fMatrix; }
 
     void Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
     void MoveZTo(double ztarget, const std::set<int>& idxs);
@@ -43,6 +45,8 @@ public:
     void Write(const std::string& file);
 
     void Print() const;
+
+    SilMatrix* Clone() const;
 
 private:
     void InitGraph(int idx);

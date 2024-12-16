@@ -118,6 +118,10 @@ void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
         {
             g->SetPointY(p, g->GetPointY(p) + diff);
         }
+        // Modify text also
+        auto* text {(TLatex*)g->GetListOfFunctions()->FindObject("Text")};
+        if(text)
+            text->SetY(text->GetY() + diff);
     }
 }
 
@@ -180,4 +184,17 @@ void ActPhysics::SilMatrix::Erase(int idx)
         delete fMatrix[idx];
         fMatrix.erase(it);
     }
+}
+
+ActPhysics::SilMatrix* ActPhysics::SilMatrix::Clone() const
+{
+    auto* sm {new SilMatrix};
+    sm->SetName(fName);
+    for(const auto& [idx, g] : fMatrix)
+    {
+        auto* cl {(TCutG*)g->Clone()};
+        cl->GetListOfFunctions()->Clear();
+        sm->AddSil(idx, cl);
+    }
+    return sm;
 }

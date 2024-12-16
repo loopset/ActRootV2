@@ -2,6 +2,7 @@
 
 #include "ActColors.h"
 #include "ActInputParser.h"
+#include "ActSilMatrix.h"
 
 #include <exception>
 #include <iostream>
@@ -117,34 +118,46 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
             throw std::runtime_error("Side spec : " + str +
                                      " could not be interpreted in terms of left, right, front or back!");
     }
+    // 5-> Build the silicon matrix with the info gathered here
+    fMatrix = BuildSilMatrix();
 }
 
-std::pair<ActPhysics::SilLayer::XYZPoint, bool>
-ActPhysics::SilLayer::GetSiliconPointOfTrack(const XYZPoint& otherPoint, const XYZVector& otherVec) const
+template <typename T>
+std::pair<ActPhysics::SilLayer::Point<T>, bool>
+ActPhysics::SilLayer::GetSiliconPointOfTrack(const Point<T>& otherPoint, const Vector<T>& otherVec, bool scale) const
 {
+    Point<T> ref {fPoint};
+    if(scale)
+    {
+        // Convert XY to mm
+        ref.SetX(ref.X() * 2.);
+        ref.SetY(ref.Y() * 2.);
+    }
     auto unitVec {otherVec.Unit()};
-    auto d {((fPoint - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
+    auto d {((ref - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
     bool isOk {(d > 0) ? true : false};
     return std::make_pair(otherPoint + unitVec * d, isOk);
 }
 
-ActPhysics::SilLayer::XYZPoint ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC,
-                                                                             const XYZPoint& otherPoint,
-                                                                             const XYZVector& otherVec) const
+template <typename T>
+ActPhysics::SilLayer::Point<T>
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<T>& otherPoint,
+                                              const Vector<T>& otherVec) const
 {
     // Just move point to ACTAR's flanges
-    XYZPoint newPoint {};
+    Point<T> newPoint {};
     if(fSide == SilSide::EBack || fSide == SilSide::EFront)
-        newPoint = {(float)fTPC->GetNPADSX(), 0, 0};
+        newPoint = {(T)fTPC->GetNPADSX(), 0, 0};
     else
-        newPoint = {0, (float)fTPC->GetNPADSY(), 0};
+        newPoint = {0, (T)fTPC->GetNPADSY(), 0};
     auto unitVec {otherVec.Unit()};
     auto d {((newPoint - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
     return otherPoint + unitVec * d;
 }
 
 
-bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const XYZPoint& sp, bool useZ) const
+template <typename T>
+bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<T>& sp, bool useZ) const
 {
     auto [xy, z] {fPlacements.at(i)};
     auto xyMin {xy - fUnit.GetWidth() / 2};
@@ -164,6 +177,40 @@ bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const XYZPoint& sp, bool 
     return condXY && condZ;
 }
 
+std::shared_ptr<ActPhysics::SilMatrix> ActPhysics::SilLayer::BuildSilMatrix() const
+{
+    auto w {fUnit.GetWidth()};
+    auto h {fUnit.GetHeight()};
+    auto sm {std::make_shared<SilMatrix>()};
+    for(const auto& [idx, pair] : fPlacements)
+    {
+        std::pair x {pair.first - w / 2, pair.first + w / 2};
+        std::pair y {pair.second - h / 2, pair.second + h / 2};
+        sm->AddSil(idx, x, y);
+    }
+    return sm;
+}
+
+template <typename T>
+int ActPhysics::SilLayer::GetIndexOfMatch(const Point<T>& p) const
+{
+    int idx {-1};
+    for(const auto& [i, g] : fMatrix->GetGraphs())
+    {
+        double xy {};
+        if(fSide == SilSide::ELeft || fSide == SilSide::ERight)
+            xy = p.X();
+        else
+            xy = p.Y();
+        if(g->IsInside(xy, p.Z()))
+        {
+            idx = i;
+            break;
+        }
+    }
+    return idx;
+}
+
 void ActPhysics::SilSpecs::ReadFile(const std::string& file)
 {
     ActRoot::InputParser parser {file};
@@ -174,3 +221,53 @@ void ActPhysics::SilSpecs::ReadFile(const std::string& file)
         fLayers[name] = layer;
     }
 }
+
+ActPhysics::SilSpecs::LayerIdxRet
+ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose)
+{
+    LayerIdxRet ret;
+    for(const auto& [name, layer] : fLayers)
+    {
+        // Find silicon point for this layer
+        auto [sp, _] {layer.GetSiliconPointOfTrack(p, v, true)};
+        // And see if it matches with any silicon
+        auto idx {layer.GetIndexOfMatch(sp)};
+        if(verbose)
+        {
+            std::cout << "-> Layer : " << name << '\n';
+            std::cout << "   SP    : " << sp << '\n';
+            std::cout << "   Idx   : " << idx << '\n';
+        }
+        if(idx != -1)
+            return {name, idx};
+    }
+    return {"", -1};
+}
+
+void ActPhysics::SilSpecs::EraseLayer(const std::string& name)
+{
+    auto it {fLayers.find(name)};
+    if(it != fLayers.end())
+        fLayers.erase(it);
+}
+
+// Explicit instantiations
+template std::pair<ActPhysics::SilLayer::Point<float>, bool>
+ActPhysics::SilLayer::GetSiliconPointOfTrack(const Point<float>& point, const Vector<float>& vector,
+                                             bool scale = false) const;
+template std::pair<ActPhysics::SilLayer::Point<double>, bool>
+ActPhysics::SilLayer::GetSiliconPointOfTrack(const Point<double>& point, const Vector<double>& vector,
+                                             bool scale = false) const;
+///////////////////////////////////
+template ActPhysics::SilLayer::Point<float>
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<float>& point,
+                                              const Vector<float>& vector) const;
+template ActPhysics::SilLayer::Point<double>
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<double>& point,
+                                              const Vector<double>& vector) const;
+////////////////////////////////////
+template bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<float>& sp, bool useZ = true) const;
+template bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<double>& sp, bool useZ = true) const;
+////////////////////////////////////
+template int ActPhysics::SilLayer::GetIndexOfMatch(const Point<float>& p) const;
+template int ActPhysics::SilLayer::GetIndexOfMatch(const Point<double>& p) const;
