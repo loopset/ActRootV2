@@ -6,6 +6,9 @@ namespace ActRoot
 class VData
 {
 public:
+    VData() = default;
+    virtual ~VData() = default;
+
     virtual void Clear() = 0;
     virtual void Print() const = 0;
 
