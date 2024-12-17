@@ -10,9 +10,6 @@
 // add link for namespace
 #pragma link C++ namespace ActRoot;
 
-// Thomas' legacy data structures
-#pragma link C++ class ReducedData + ;
-#pragma link C++ class MEventReduced + ;
 
 // type definitions
 #pragma link C++ enum ActRoot::DetectorType + ;

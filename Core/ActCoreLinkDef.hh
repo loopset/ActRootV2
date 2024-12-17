@@ -45,5 +45,8 @@
 // base type shared among all sublibraries
 #pragma link C++ class ActRoot::Voxel + ;
 
+// Thomas' legacy data structures
+#pragma link C++ class ReducedData + ;
+#pragma link C++ class MEventReduced + ;
 
 #endif
