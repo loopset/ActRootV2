@@ -770,9 +770,10 @@ void ActRoot::MergerDetector::ComputeOtherPoints()
     // Boundary point: light track at ACTAR's flanges
     // but only if SP could be computed
     if(!fPars.fIsL1)
-        fMergerData->fBP = fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
-                               .GetBoundaryPointOfTrack(fTPCPars, fLightPtr->GetLine().GetPoint(),
-                                                        fLightPtr->GetLine().GetDirection().Unit());
+        fMergerData->fBP =
+            fSilSpecs->GetLayer(fMergerData->fSilLayers.front())
+                .GetBoundaryPointOfTrack(fTPCPars->GetNPADSX(), fTPCPars->GetNPADSY(), fLightPtr->GetLine().GetPoint(),
+                                         fLightPtr->GetLine().GetDirection().Unit());
     // Window point: beam entrance point at X = 0 from fit parameters
     if(fBeamPtr != nullptr)
         fMergerData->fWP = fBeamPtr->GetLine().MoveToX(0);

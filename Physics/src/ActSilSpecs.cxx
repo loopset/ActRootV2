@@ -3,7 +3,6 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
-#include "ActTPCParameters.h"
 #include "ActUtils.h"
 
 #include <exception>
@@ -144,15 +143,15 @@ ActPhysics::SilLayer::GetSiliconPointOfTrack(const Point<T>& otherPoint, const V
 
 template <typename T>
 ActPhysics::SilLayer::Point<T>
-ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<T>& otherPoint,
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(int padx, int pady, const Point<T>& otherPoint,
                                               const Vector<T>& otherVec) const
 {
     // Just move point to ACTAR's flanges
     Point<T> newPoint {};
     if(fSide == SilSide::EBack || fSide == SilSide::EFront)
-        newPoint = {(T)fTPC->GetNPADSX(), 0, 0};
+        newPoint = {(T)padx, 0, 0};
     else
-        newPoint = {0, (T)fTPC->GetNPADSY(), 0};
+        newPoint = {0, (T)pady, 0};
     auto unitVec {otherVec.Unit()};
     auto d {((newPoint - otherPoint).Dot(fNormal)) / (unitVec.Dot(fNormal))};
     return otherPoint + unitVec * d;
@@ -263,10 +262,10 @@ ActPhysics::SilLayer::GetSiliconPointOfTrack(const Point<double>& point, const V
                                              bool scale = false) const;
 ///////////////////////////////////
 template ActPhysics::SilLayer::Point<float>
-ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<float>& point,
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(int padx, int pady, const Point<float>& point,
                                               const Vector<float>& vector) const;
 template ActPhysics::SilLayer::Point<double>
-ActPhysics::SilLayer::GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<double>& point,
+ActPhysics::SilLayer::GetBoundaryPointOfTrack(int padx, int pady, const Point<double>& point,
                                               const Vector<double>& vector) const;
 ////////////////////////////////////
 template bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<float>& sp, bool useZ = true) const;

@@ -18,12 +18,6 @@
 #include <memory>
 #include <string>
 
-// forward declaration
-namespace ActRoot
-{
-class TPCParameters;
-}
-
 namespace ActPhysics
 {
 enum class SilSide
@@ -93,8 +87,7 @@ public:
     std::pair<Point<T>, bool>
     GetSiliconPointOfTrack(const Point<T>& point, const Vector<T>& vector, bool scale = false) const;
     template <typename T>
-    Point<T>
-    GetBoundaryPointOfTrack(ActRoot::TPCParameters* fTPC, const Point<T>& point, const Vector<T>& vector) const;
+    Point<T> GetBoundaryPointOfTrack(int padx, int pady, const Point<T>& point, const Vector<T>& vector) const;
     template <typename T>
     bool MatchesRealPlacement(int i, const Point<T>& sp, bool useZ = true) const;
     template <typename T>
