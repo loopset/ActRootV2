@@ -33,13 +33,14 @@ var searchData=
   ['_7ereduceddata_30',['~ReducedData',['../classReducedData.html#aa9de17c98b737ba295e2bedcea75e52e',1,'ReducedData']]],
   ['_7esilassembly_31',['~SilAssembly',['../structActSim_1_1SilAssembly.html#a3c91298b47f5651b144abe80da236a84',1,'ActSim::SilAssembly']]],
   ['_7esildetector_32',['~SilDetector',['../classActRoot_1_1SilDetector.html#adc57cbc4ecc5db2a740b79403cf0ab05',1,'ActRoot::SilDetector']]],
-  ['_7esilunit_33',['~SilUnit',['../structActSim_1_1SilUnit.html#a375b0f4029cf7d21e7dbd164be5cfde7',1,'ActSim::SilUnit']]],
-  ['_7etheocrosssection_34',['~TheoCrossSection',['../classActSim_1_1TheoCrossSection.html#abb4d49cb74092f9333df815da4d88ea9',1,'ActSim::TheoCrossSection']]],
-  ['_7ethread_5fpool_35',['~thread_pool',['../classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998',1,'BS::thread_pool']]],
-  ['_7etpcdetector_36',['~TPCDetector',['../classActRoot_1_1TPCDetector.html#a49d09970f7089c78035b77bac6ecc459',1,'ActRoot::TPCDetector']]],
-  ['_7evaction_37',['~VAction',['../classActAlgorithm_1_1VAction.html#af5013e023c2f0c484173a0c71873907c',1,'ActAlgorithm::VAction']]],
-  ['_7evcluster_38',['~VCluster',['../classActAlgorithm_1_1VCluster.html#a431b788bf4319c130a9eca25a6d8191c',1,'ActAlgorithm::VCluster']]],
-  ['_7evdetector_39',['~VDetector',['../classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6',1,'ActRoot::VDetector']]],
-  ['_7evfilter_40',['~VFilter',['../classActAlgorithm_1_1VFilter.html#a5d5b483f8cee9492cb5e8604fbe425f0',1,'ActAlgorithm::VFilter']]],
-  ['_7evparameters_41',['~VParameters',['../classActRoot_1_1VParameters.html#a2e2bf93ae8d75f7ff8f6ab483a82e51b',1,'ActRoot::VParameters']]]
+  ['_7esilmatrix_33',['~SilMatrix',['../classActPhysics_1_1SilMatrix.html#a29902bfe938555759f7132d41805ee84',1,'ActPhysics::SilMatrix']]],
+  ['_7esilunit_34',['~SilUnit',['../structActSim_1_1SilUnit.html#a375b0f4029cf7d21e7dbd164be5cfde7',1,'ActSim::SilUnit']]],
+  ['_7etheocrosssection_35',['~TheoCrossSection',['../classActSim_1_1TheoCrossSection.html#abb4d49cb74092f9333df815da4d88ea9',1,'ActSim::TheoCrossSection']]],
+  ['_7ethread_5fpool_36',['~thread_pool',['../classBS_1_1thread__pool.html#a1f7cc32367d0d0c020bf103782506998',1,'BS::thread_pool']]],
+  ['_7etpcdetector_37',['~TPCDetector',['../classActRoot_1_1TPCDetector.html#a49d09970f7089c78035b77bac6ecc459',1,'ActRoot::TPCDetector']]],
+  ['_7evaction_38',['~VAction',['../classActAlgorithm_1_1VAction.html#af5013e023c2f0c484173a0c71873907c',1,'ActAlgorithm::VAction']]],
+  ['_7evcluster_39',['~VCluster',['../classActAlgorithm_1_1VCluster.html#a431b788bf4319c130a9eca25a6d8191c',1,'ActAlgorithm::VCluster']]],
+  ['_7evdetector_40',['~VDetector',['../classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6',1,'ActRoot::VDetector']]],
+  ['_7evfilter_41',['~VFilter',['../classActAlgorithm_1_1VFilter.html#a5d5b483f8cee9492cb5e8604fbe425f0',1,'ActAlgorithm::VFilter']]],
+  ['_7evparameters_42',['~VParameters',['../classActRoot_1_1VParameters.html#a2e2bf93ae8d75f7ff8f6ab483a82e51b',1,'ActRoot::VParameters']]]
 ];

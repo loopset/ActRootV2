@@ -177,7 +177,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -204,8 +204,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   35</span>{ <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a> = name; };</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad68e77f4fbc8bbe14d00ebbb48cee857"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">ActRoot::InputBlock::fBlockName</a></div><div class="ttdeci">std::string fBlockName</div><div class="ttdef"><b>Definition</b> ActInputParser.h:28</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{ <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a> = name; };</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad68e77f4fbc8bbe14d00ebbb48cee857"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">ActRoot::InputBlock::fBlockName</a></div><div class="ttdeci">std::string fBlockName</div><div class="ttdef"><b>Definition</b> ActInputParser.h:26</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -231,7 +231,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   36</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -251,19 +251,19 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
-<div class="line"><span class="lineno">   75</span>    <span class="keyword">auto</span> token {<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">GetToken</a>(line)};</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span>(token.length() == 0) <span class="comment">// is a continuation of the .back() token; append to it</span></div>
-<div class="line"><span class="lineno">   77</span>    {</div>
-<div class="line"><span class="lineno">   78</span>        <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">GetValues</a>(line, <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.back(), <span class="keyword">false</span>); <span class="comment">// false bc this new line does not have Token= listed</span></div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   80</span>    }</div>
-<div class="line"><span class="lineno">   81</span>    <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.push_back(token);</div>
-<div class="line"><span class="lineno">   82</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">GetValues</a>(line, token);</div>
-<div class="line"><span class="lineno">   83</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4aac1fc1cdd78a9cfbaa34cac5c40a81"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock::fTokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fTokens</div><div class="ttdef"><b>Definition</b> ActInputParser.h:30</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a8fcd3c36c6f51e66ce5f5d0540bc63ed"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">ActRoot::InputBlock::GetToken</a></div><div class="ttdeci">std::string GetToken(const std::string &amp;line)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:37</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aefd420cacbf18fefc613aa98f140172f"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">ActRoot::InputBlock::GetValues</a></div><div class="ttdeci">void GetValues(const std::string &amp;line, const std::string &amp;token, bool findTokenSeparator=true)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:46</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>    <span class="keyword">auto</span> token {<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">GetToken</a>(line)};</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span>(token.length() == 0) <span class="comment">// is a continuation of the .back() token; append to it</span></div>
+<div class="line"><span class="lineno">   57</span>    {</div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">GetValues</a>(line, <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.back(), <span class="keyword">false</span>); <span class="comment">// false bc this new line does not have Token= listed</span></div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   60</span>    }</div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>.push_back(token);</div>
+<div class="line"><span class="lineno">   62</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">GetValues</a>(line, token);</div>
+<div class="line"><span class="lineno">   63</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4aac1fc1cdd78a9cfbaa34cac5c40a81"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">ActRoot::InputBlock::fTokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fTokens</div><div class="ttdef"><b>Definition</b> ActInputParser.h:28</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a8fcd3c36c6f51e66ce5f5d0540bc63ed"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed">ActRoot::InputBlock::GetToken</a></div><div class="ttdeci">std::string GetToken(const std::string &amp;line)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:17</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aefd420cacbf18fefc613aa98f140172f"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aefd420cacbf18fefc613aa98f140172f">ActRoot::InputBlock::GetValues</a></div><div class="ttdeci">void GetValues(const std::string &amp;line, const std::string &amp;token, bool findTokenSeparator=true)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:26</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -292,13 +292,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   86</span>{</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordtype">bool</span> exists {<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>.count(token))};</div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span>(!exists &amp;&amp; !soft)</div>
-<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::CheckTokenExists(): Token &quot;</span> + token + <span class="stringliteral">&quot; does not exist in InputBlock&quot;</span>);</div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> exists;</div>
-<div class="line"><span class="lineno">   91</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a1587321fc4e5cffcbb3e1d5699d63b5b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">ActRoot::InputBlock::fValues</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; fValues</div><div class="ttdef"><b>Definition</b> ActInputParser.h:31</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   66</span>{</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordtype">bool</span> exists {<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>.count(token))};</div>
+<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span>(!exists &amp;&amp; !soft)</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::CheckTokenExists(): Token &quot;</span> + token + <span class="stringliteral">&quot; does not exist in InputBlock&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span> exists;</div>
+<div class="line"><span class="lineno">   71</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a1587321fc4e5cffcbb3e1d5699d63b5b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">ActRoot::InputBlock::fValues</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; fValues</div><div class="ttdef"><b>Definition</b> ActInputParser.h:29</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -335,12 +335,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  237</span>{</div>
-<div class="line"><span class="lineno">  238</span>    std::vector&lt;int&gt; ret;</div>
-<div class="line"><span class="lineno">  239</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = begin + 1; i &lt;= end; i++)</div>
-<div class="line"><span class="lineno">  240</span>        ret.push_back(i);</div>
-<div class="line"><span class="lineno">  241</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  242</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  217</span>{</div>
+<div class="line"><span class="lineno">  218</span>    std::vector&lt;int&gt; ret;</div>
+<div class="line"><span class="lineno">  219</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = begin + 1; i &lt;= end; i++)</div>
+<div class="line"><span class="lineno">  220</span>        ret.push_back(i);</div>
+<div class="line"><span class="lineno">  221</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  222</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -366,7 +366,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,7 +392,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   37</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857">fBlockName</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -411,15 +411,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  164</span>{</div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
-<div class="line"><span class="lineno">  167</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
-<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">StringToBool</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
-<div class="line"><span class="lineno">  169</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a914cb4d982e63d891ccc3bbafd476e07"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">ActRoot::InputBlock::CheckTokenExists</a></div><div class="ttdeci">bool CheckTokenExists(const std::string &amp;token, bool soft=false)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:85</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aaec889265bb47c67c943747a109b1e21"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">ActRoot::InputBlock::StringToBool</a></div><div class="ttdeci">bool StringToBool(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:143</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad1706e1df2b3bc946489ddeb4a1078f7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">ActRoot::InputBlock::IsVector</a></div><div class="ttdeci">bool IsVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:93</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>{</div>
+<div class="line"><span class="lineno">  145</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><span class="lineno">  147</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">StringToBool</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
+<div class="line"><span class="lineno">  149</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a914cb4d982e63d891ccc3bbafd476e07"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">ActRoot::InputBlock::CheckTokenExists</a></div><div class="ttdeci">bool CheckTokenExists(const std::string &amp;token, bool soft=false)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:65</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aaec889265bb47c67c943747a109b1e21"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">ActRoot::InputBlock::StringToBool</a></div><div class="ttdeci">bool StringToBool(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:123</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ad1706e1df2b3bc946489ddeb4a1078f7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">ActRoot::InputBlock::IsVector</a></div><div class="ttdeci">bool IsVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:73</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -438,13 +438,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  219</span>{</div>
-<div class="line"><span class="lineno">  220</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  221</span>    std::vector&lt;bool&gt; ret {};</div>
-<div class="line"><span class="lineno">  222</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
-<div class="line"><span class="lineno">  223</span>        ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">StringToBool</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]));</div>
-<div class="line"><span class="lineno">  224</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  225</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  199</span>{</div>
+<div class="line"><span class="lineno">  200</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  201</span>    std::vector&lt;bool&gt; ret {};</div>
+<div class="line"><span class="lineno">  202</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
+<div class="line"><span class="lineno">  203</span>        ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21">StringToBool</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]));</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  205</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -463,13 +463,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  172</span>{</div>
-<div class="line"><span class="lineno">  173</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
-<div class="line"><span class="lineno">  175</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
-<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">StringToDouble</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
-<div class="line"><span class="lineno">  177</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a969034cb269cf621b6eb7ef899231abd"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">ActRoot::InputBlock::StringToDouble</a></div><div class="ttdeci">double StringToDouble(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:128</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  152</span>{</div>
+<div class="line"><span class="lineno">  153</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><span class="lineno">  155</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">StringToDouble</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
+<div class="line"><span class="lineno">  157</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a969034cb269cf621b6eb7ef899231abd"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">ActRoot::InputBlock::StringToDouble</a></div><div class="ttdeci">double StringToDouble(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:108</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -488,13 +488,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  228</span>{</div>
-<div class="line"><span class="lineno">  229</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  230</span>    std::vector&lt;double&gt; ret {};</div>
-<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
-<div class="line"><span class="lineno">  232</span>        ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">StringToDouble</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]));</div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  234</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  208</span>{</div>
+<div class="line"><span class="lineno">  209</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  210</span>    std::vector&lt;double&gt; ret {};</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
+<div class="line"><span class="lineno">  212</span>        ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd">StringToDouble</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]));</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  214</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -513,13 +513,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  156</span>{</div>
-<div class="line"><span class="lineno">  157</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
-<div class="line"><span class="lineno">  159</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
-<div class="line"><span class="lineno">  161</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4f8b7ba536bd390b0c9b5657d950756e"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">ActRoot::InputBlock::StringToInt</a></div><div class="ttdeci">int StringToInt(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:113</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>{</div>
+<div class="line"><span class="lineno">  137</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><span class="lineno">  139</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><span class="lineno">  140</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front());</div>
+<div class="line"><span class="lineno">  141</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a4f8b7ba536bd390b0c9b5657d950756e"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">ActRoot::InputBlock::StringToInt</a></div><div class="ttdeci">int StringToInt(const std::string &amp;val)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:93</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -538,38 +538,38 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  186</span>{</div>
-<div class="line"><span class="lineno">  187</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  188</span>    std::vector&lt;int&gt; ret {};</div>
-<div class="line"><span class="lineno">  189</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
-<div class="line"><span class="lineno">  190</span>    {</div>
-<div class="line"><span class="lineno">  191</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; val {<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]};</div>
-<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">if</span>(val != <a class="code hl_variable" href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a>)</div>
-<div class="line"><span class="lineno">  193</span>            ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(val));</div>
-<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">if</span>(val == <a class="code hl_variable" href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a>)</div>
-<div class="line"><span class="lineno">  195</span>        {</div>
-<div class="line"><span class="lineno">  196</span>            <span class="comment">// Begin is previous value</span></div>
-<div class="line"><span class="lineno">  197</span>            <span class="comment">// End is next value</span></div>
-<div class="line"><span class="lineno">  198</span>            <span class="keywordtype">int</span> end {};</div>
-<div class="line"><span class="lineno">  199</span>            <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  200</span>            {</div>
-<div class="line"><span class="lineno">  201</span>                end = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].at(v + 1));</div>
-<div class="line"><span class="lineno">  202</span>            }</div>
-<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">catch</span>(std::out_of_range&amp; e)</div>
-<div class="line"><span class="lineno">  204</span>            {</div>
-<div class="line"><span class="lineno">  205</span>                <span class="keywordflow">throw</span> std::out_of_range(</div>
-<div class="line"><span class="lineno">  206</span>                    <span class="stringliteral">&quot;InputBlock::GetIntVector(): ... expansion requires next [BEGIN, END] elements to be present&quot;</span>);</div>
-<div class="line"><span class="lineno">  207</span>            }</div>
-<div class="line"><span class="lineno">  208</span>            <span class="keyword">auto</span> expansion {<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ExpandInt</a>(ret.back(), end)};</div>
-<div class="line"><span class="lineno">  209</span>            <span class="comment">// Insert</span></div>
-<div class="line"><span class="lineno">  210</span>            ret.insert(ret.end(), expansion.begin(), expansion.end());</div>
-<div class="line"><span class="lineno">  211</span>            <span class="comment">// End is already in ret, skip next iteration</span></div>
-<div class="line"><span class="lineno">  212</span>            v += 1;</div>
-<div class="line"><span class="lineno">  213</span>        }</div>
-<div class="line"><span class="lineno">  214</span>    }</div>
-<div class="line"><span class="lineno">  215</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  216</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7b5503a95cd9739bb30291e233d48e4c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ActRoot::InputBlock::ExpandInt</a></div><div class="ttdeci">std::vector&lt; int &gt; ExpandInt(int begin, int end)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:236</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
+<div class="line"><span class="lineno">  167</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  168</span>    std::vector&lt;int&gt; ret {};</div>
+<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> v = 0; v &lt; <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size(); v++)</div>
+<div class="line"><span class="lineno">  170</span>    {</div>
+<div class="line"><span class="lineno">  171</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; val {<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token][v]};</div>
+<div class="line"><span class="lineno">  172</span>        <span class="keywordflow">if</span>(val != <a class="code hl_variable" href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a>)</div>
+<div class="line"><span class="lineno">  173</span>            ret.push_back(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(val));</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span>(val == <a class="code hl_variable" href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a>)</div>
+<div class="line"><span class="lineno">  175</span>        {</div>
+<div class="line"><span class="lineno">  176</span>            <span class="comment">// Begin is previous value</span></div>
+<div class="line"><span class="lineno">  177</span>            <span class="comment">// End is next value</span></div>
+<div class="line"><span class="lineno">  178</span>            <span class="keywordtype">int</span> end {};</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  180</span>            {</div>
+<div class="line"><span class="lineno">  181</span>                end = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e">StringToInt</a>(<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].at(v + 1));</div>
+<div class="line"><span class="lineno">  182</span>            }</div>
+<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">catch</span>(std::out_of_range&amp; e)</div>
+<div class="line"><span class="lineno">  184</span>            {</div>
+<div class="line"><span class="lineno">  185</span>                <span class="keywordflow">throw</span> std::out_of_range(</div>
+<div class="line"><span class="lineno">  186</span>                    <span class="stringliteral">&quot;InputBlock::GetIntVector(): ... expansion requires next [BEGIN, END] elements to be present&quot;</span>);</div>
+<div class="line"><span class="lineno">  187</span>            }</div>
+<div class="line"><span class="lineno">  188</span>            <span class="keyword">auto</span> expansion {<a class="code hl_function" href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ExpandInt</a>(ret.back(), end)};</div>
+<div class="line"><span class="lineno">  189</span>            <span class="comment">// Insert</span></div>
+<div class="line"><span class="lineno">  190</span>            ret.insert(ret.end(), expansion.begin(), expansion.end());</div>
+<div class="line"><span class="lineno">  191</span>            <span class="comment">// End is already in ret, skip next iteration</span></div>
+<div class="line"><span class="lineno">  192</span>            v += 1;</div>
+<div class="line"><span class="lineno">  193</span>        }</div>
+<div class="line"><span class="lineno">  194</span>    }</div>
+<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  196</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7b5503a95cd9739bb30291e233d48e4c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7b5503a95cd9739bb30291e233d48e4c">ActRoot::InputBlock::ExpandInt</a></div><div class="ttdeci">std::vector&lt; int &gt; ExpandInt(int begin, int end)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:216</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a65076a6acd149336692ce0dc76f5a051"><div class="ttname"><a href="namespaceActRoot.html#a65076a6acd149336692ce0dc76f5a051">ActRoot::kExpandValue</a></div><div class="ttdeci">const std::string kExpandValue</div><div class="ttdef"><b>Definition</b> ActInputParser.h:21</div></div>
 </div><!-- fragment -->
 </div>
@@ -599,31 +599,31 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   53</span>    {</div>
-<div class="line"><span class="lineno">   54</span>        std::map&lt;int, T&gt; ret;</div>
-<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; token : <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>)</div>
-<div class="line"><span class="lineno">   56</span>        {</div>
-<div class="line"><span class="lineno">   57</span>            <span class="comment">// Only keys that start with command</span></div>
-<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">if</span>(!(token.rfind(command, 0) == 0))</div>
-<div class="line"><span class="lineno">   59</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">   60</span>            <span class="keyword">auto</span> idx {std::stoi(token.substr(command.length()))};</div>
-<div class="line"><span class="lineno">   61</span>            <span class="comment">// Type specialization</span></div>
-<div class="line"><span class="lineno">   62</span>            T value {};</div>
-<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, int&gt;)</div>
-<div class="line"><span class="lineno">   64</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a7748641bbd41896f084000cd4ee4ae77">GetInt</a>(token);</div>
-<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, double&gt;)</div>
-<div class="line"><span class="lineno">   66</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aa1e857aaa0ce62a387ed6ebe4778389c">GetDouble</a>(token);</div>
-<div class="line"><span class="lineno">   67</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, std::string&gt;)</div>
-<div class="line"><span class="lineno">   68</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aef758d3abcb471f39760fbae4f93b324">GetString</a>(token);</div>
-<div class="line"><span class="lineno">   69</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   70</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;T = int OR double in GetMappedValuesAs&quot;</span>);</div>
-<div class="line"><span class="lineno">   71</span>            ret[idx] = value;</div>
-<div class="line"><span class="lineno">   72</span>        }</div>
-<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7748641bbd41896f084000cd4ee4ae77"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7748641bbd41896f084000cd4ee4ae77">ActRoot::InputBlock::GetInt</a></div><div class="ttdeci">int GetInt(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:155</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aa1e857aaa0ce62a387ed6ebe4778389c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aa1e857aaa0ce62a387ed6ebe4778389c">ActRoot::InputBlock::GetDouble</a></div><div class="ttdeci">double GetDouble(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:171</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aef758d3abcb471f39760fbae4f93b324"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aef758d3abcb471f39760fbae4f93b324">ActRoot::InputBlock::GetString</a></div><div class="ttdeci">std::string GetString(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:105</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>    {</div>
+<div class="line"><span class="lineno">   52</span>        std::map&lt;int, T&gt; ret;</div>
+<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; token : <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>)</div>
+<div class="line"><span class="lineno">   54</span>        {</div>
+<div class="line"><span class="lineno">   55</span>            <span class="comment">// Only keys that start with command</span></div>
+<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">if</span>(!(token.rfind(command, 0) == 0))</div>
+<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   58</span>            <span class="keyword">auto</span> idx {std::stoi(token.substr(command.length()))};</div>
+<div class="line"><span class="lineno">   59</span>            <span class="comment">// Type specialization</span></div>
+<div class="line"><span class="lineno">   60</span>            T value {};</div>
+<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, int&gt;)</div>
+<div class="line"><span class="lineno">   62</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a7748641bbd41896f084000cd4ee4ae77">GetInt</a>(token);</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, double&gt;)</div>
+<div class="line"><span class="lineno">   64</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aa1e857aaa0ce62a387ed6ebe4778389c">GetDouble</a>(token);</div>
+<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, std::string&gt;)</div>
+<div class="line"><span class="lineno">   66</span>                value = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#aef758d3abcb471f39760fbae4f93b324">GetString</a>(token);</div>
+<div class="line"><span class="lineno">   67</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   68</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;T = int OR double in GetMappedValuesAs&quot;</span>);</div>
+<div class="line"><span class="lineno">   69</span>            ret[idx] = value;</div>
+<div class="line"><span class="lineno">   70</span>        }</div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a7748641bbd41896f084000cd4ee4ae77"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a7748641bbd41896f084000cd4ee4ae77">ActRoot::InputBlock::GetInt</a></div><div class="ttdeci">int GetInt(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:135</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aa1e857aaa0ce62a387ed6ebe4778389c"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aa1e857aaa0ce62a387ed6ebe4778389c">ActRoot::InputBlock::GetDouble</a></div><div class="ttdeci">double GetDouble(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:151</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_aef758d3abcb471f39760fbae4f93b324"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#aef758d3abcb471f39760fbae4f93b324">ActRoot::InputBlock::GetString</a></div><div class="ttdeci">std::string GetString(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:85</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -652,31 +652,31 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   77</span>    {</div>
-<div class="line"><span class="lineno">   78</span>        std::map&lt;int, std::vector&lt;T&gt;&gt; ret;</div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; token : <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>)</div>
-<div class="line"><span class="lineno">   80</span>        {</div>
-<div class="line"><span class="lineno">   81</span>            <span class="comment">// Only keys that start with command</span></div>
-<div class="line"><span class="lineno">   82</span>            <span class="keywordflow">if</span>(!(token.rfind(command, 0) == 0))</div>
-<div class="line"><span class="lineno">   83</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">   84</span>            <span class="keyword">auto</span> idx {std::stoi(token.substr(command.length()))};</div>
-<div class="line"><span class="lineno">   85</span>            <span class="comment">// Type specialization</span></div>
-<div class="line"><span class="lineno">   86</span>            std::vector&lt;T&gt; values {};</div>
-<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, int&gt;)</div>
-<div class="line"><span class="lineno">   88</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a80bec0960697d0c6328db2800ef70aa7">GetIntVector</a>(token);</div>
-<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, double&gt;)</div>
-<div class="line"><span class="lineno">   90</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#ac99bdc981c8ea8493736870e557dc269">GetDoubleVector</a>(token);</div>
-<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, std::string&gt;)</div>
-<div class="line"><span class="lineno">   92</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a695432c832b49d9bfe58ce4b57ee821b">GetStringVector</a>(token);</div>
-<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   94</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;T = int OR double in GetMappedValuesAs&quot;</span>);</div>
-<div class="line"><span class="lineno">   95</span>            ret[idx] = values;</div>
-<div class="line"><span class="lineno">   96</span>        }</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">   98</span>    }</div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a695432c832b49d9bfe58ce4b57ee821b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a695432c832b49d9bfe58ce4b57ee821b">ActRoot::InputBlock::GetStringVector</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetStringVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:179</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a80bec0960697d0c6328db2800ef70aa7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a80bec0960697d0c6328db2800ef70aa7">ActRoot::InputBlock::GetIntVector</a></div><div class="ttdeci">std::vector&lt; int &gt; GetIntVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:185</div></div>
-<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ac99bdc981c8ea8493736870e557dc269"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ac99bdc981c8ea8493736870e557dc269">ActRoot::InputBlock::GetDoubleVector</a></div><div class="ttdeci">std::vector&lt; double &gt; GetDoubleVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:227</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        std::map&lt;int, std::vector&lt;T&gt;&gt; ret;</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; token : <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>)</div>
+<div class="line"><span class="lineno">   78</span>        {</div>
+<div class="line"><span class="lineno">   79</span>            <span class="comment">// Only keys that start with command</span></div>
+<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">if</span>(!(token.rfind(command, 0) == 0))</div>
+<div class="line"><span class="lineno">   81</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   82</span>            <span class="keyword">auto</span> idx {std::stoi(token.substr(command.length()))};</div>
+<div class="line"><span class="lineno">   83</span>            <span class="comment">// Type specialization</span></div>
+<div class="line"><span class="lineno">   84</span>            std::vector&lt;T&gt; values {};</div>
+<div class="line"><span class="lineno">   85</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, int&gt;)</div>
+<div class="line"><span class="lineno">   86</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a80bec0960697d0c6328db2800ef70aa7">GetIntVector</a>(token);</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, double&gt;)</div>
+<div class="line"><span class="lineno">   88</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#ac99bdc981c8ea8493736870e557dc269">GetDoubleVector</a>(token);</div>
+<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_same_v&lt;T, std::string&gt;)</div>
+<div class="line"><span class="lineno">   90</span>                values = <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a695432c832b49d9bfe58ce4b57ee821b">GetStringVector</a>(token);</div>
+<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   92</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;T = int OR double in GetMappedValuesAs&quot;</span>);</div>
+<div class="line"><span class="lineno">   93</span>            ret[idx] = values;</div>
+<div class="line"><span class="lineno">   94</span>        }</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">   96</span>    }</div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a695432c832b49d9bfe58ce4b57ee821b"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a695432c832b49d9bfe58ce4b57ee821b">ActRoot::InputBlock::GetStringVector</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetStringVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:159</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_a80bec0960697d0c6328db2800ef70aa7"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#a80bec0960697d0c6328db2800ef70aa7">ActRoot::InputBlock::GetIntVector</a></div><div class="ttdeci">std::vector&lt; int &gt; GetIntVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:165</div></div>
+<div class="ttc" id="aclassActRoot_1_1InputBlock_html_ac99bdc981c8ea8493736870e557dc269"><div class="ttname"><a href="classActRoot_1_1InputBlock.html#ac99bdc981c8ea8493736870e557dc269">ActRoot::InputBlock::GetDoubleVector</a></div><div class="ttdeci">std::vector&lt; double &gt; GetDoubleVector(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:207</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -695,12 +695,12 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
-<div class="line"><span class="lineno">  107</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
-<div class="line"><span class="lineno">  109</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
-<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front();</div>
-<div class="line"><span class="lineno">  111</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>{</div>
+<div class="line"><span class="lineno">   87</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActRoot_1_1InputBlock.html#ad1706e1df2b3bc946489ddeb4a1078f7">IsVector</a>(token))</div>
+<div class="line"><span class="lineno">   89</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Token &quot;</span> + token + <span class="stringliteral">&quot; really is a vector&quot;</span>;</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].front();</div>
+<div class="line"><span class="lineno">   91</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -719,10 +719,10 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
-<div class="line"><span class="lineno">  181</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
-<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token];</div>
-<div class="line"><span class="lineno">  183</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  160</span>{</div>
+<div class="line"><span class="lineno">  161</span>    <a class="code hl_function" href="classActRoot_1_1InputBlock.html#a914cb4d982e63d891ccc3bbafd476e07">CheckTokenExists</a>(token);</div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token];</div>
+<div class="line"><span class="lineno">  163</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -749,13 +749,13 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
-<div class="line"><span class="lineno">   39</span>    <span class="comment">// Find separator</span></div>
-<div class="line"><span class="lineno">   40</span>    <span class="keyword">auto</span> pos {line.find(<a class="code hl_variable" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>)};</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">if</span>(pos == line.npos) <span class="comment">// if not found, likely it is a continuation of a previous token -&gt; return empty token</span></div>
-<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">return</span> line.substr(0, pos);</div>
-<div class="line"><span class="lineno">   44</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
+<div class="line"><span class="lineno">   19</span>    <span class="comment">// Find separator</span></div>
+<div class="line"><span class="lineno">   20</span>    <span class="keyword">auto</span> pos {line.find(<a class="code hl_variable" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>)};</div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">if</span>(pos == line.npos) <span class="comment">// if not found, likely it is a continuation of a previous token -&gt; return empty token</span></div>
+<div class="line"><span class="lineno">   22</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">return</span> line.substr(0, pos);</div>
+<div class="line"><span class="lineno">   24</span>}</div>
 <div class="ttc" id="anamespaceActRoot_html_a65a3472de3360771c3f8a49e0aa3d4e4"><div class="ttname"><a href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a></div><div class="ttdeci">const std::string kTokenSeparator</div><div class="ttdef"><b>Definition</b> ActInputParser.h:16</div></div>
 </div><!-- fragment -->
 </div>
@@ -782,7 +782,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   50</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a4aac1fc1cdd78a9cfbaa34cac5c40a81">fTokens</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -825,32 +825,32 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
-<div class="line"><span class="lineno">   48</span>    <span class="comment">// Find separator if exists</span></div>
-<div class="line"><span class="lineno">   49</span>    std::string values {};</div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">if</span>(!findTokenSeparator)</div>
-<div class="line"><span class="lineno">   51</span>    {</div>
-<div class="line"><span class="lineno">   52</span>        values = line;</div>
-<div class="line"><span class="lineno">   53</span>    }</div>
-<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   55</span>    {</div>
-<div class="line"><span class="lineno">   56</span>        <span class="keyword">auto</span> pos = line.find(<a class="code hl_variable" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>);</div>
-<div class="line"><span class="lineno">   57</span>        values = line.substr(pos + 1);</div>
-<div class="line"><span class="lineno">   58</span>    }</div>
-<div class="line"><span class="lineno">   59</span>    <span class="comment">// split by value separator</span></div>
-<div class="line"><span class="lineno">   60</span>    std::size_t previous {0};</div>
-<div class="line"><span class="lineno">   61</span>    std::size_t actual {};</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">while</span>((actual = values.find_first_of(<a class="code hl_variable" href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a>, previous)) != std::string::npos)</div>
-<div class="line"><span class="lineno">   63</span>    {</div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">if</span>(actual &gt; previous)</div>
-<div class="line"><span class="lineno">   65</span>            <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous, actual - previous)));</div>
-<div class="line"><span class="lineno">   66</span>        previous = actual + 1;</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
-<div class="line"><span class="lineno">   68</span>    <span class="comment">// push the rest of the line to the vector</span></div>
-<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">if</span>(previous &lt; values.length())</div>
-<div class="line"><span class="lineno">   70</span>        <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous)));</div>
-<div class="line"><span class="lineno">   71</span>}</div>
-<div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition</b> ActInputParser.cxx:18</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
+<div class="line"><span class="lineno">   28</span>    <span class="comment">// Find separator if exists</span></div>
+<div class="line"><span class="lineno">   29</span>    std::string values {};</div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">if</span>(!findTokenSeparator)</div>
+<div class="line"><span class="lineno">   31</span>    {</div>
+<div class="line"><span class="lineno">   32</span>        values = line;</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
+<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   35</span>    {</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keyword">auto</span> pos = line.find(<a class="code hl_variable" href="namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4">ActRoot::kTokenSeparator</a>);</div>
+<div class="line"><span class="lineno">   37</span>        values = line.substr(pos + 1);</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
+<div class="line"><span class="lineno">   39</span>    <span class="comment">// split by value separator</span></div>
+<div class="line"><span class="lineno">   40</span>    std::size_t previous {0};</div>
+<div class="line"><span class="lineno">   41</span>    std::size_t actual {};</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">while</span>((actual = values.find_first_of(<a class="code hl_variable" href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a>, previous)) != std::string::npos)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">if</span>(actual &gt; previous)</div>
+<div class="line"><span class="lineno">   45</span>            <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous, actual - previous)));</div>
+<div class="line"><span class="lineno">   46</span>        previous = actual + 1;</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+<div class="line"><span class="lineno">   48</span>    <span class="comment">// push the rest of the line to the vector</span></div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">if</span>(previous &lt; values.length())</div>
+<div class="line"><span class="lineno">   50</span>        <a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].push_back(<a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a>(values.substr(previous)));</div>
+<div class="line"><span class="lineno">   51</span>}</div>
+<div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition</b> ActUtils.cxx:21</div></div>
 <div class="ttc" id="anamespaceActRoot_html_ab1c6226ed232700245490060aa918465"><div class="ttname"><a href="namespaceActRoot.html#ab1c6226ed232700245490060aa918465">ActRoot::kValueSeparator</a></div><div class="ttdeci">const std::string kValueSeparator</div><div class="ttdef"><b>Definition</b> ActInputParser.h:17</div></div>
 </div><!-- fragment -->
 </div>
@@ -878,15 +878,15 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> size {<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size()};</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span>(size == 0)</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::IsVector(): Token &quot;</span> + token + <span class="stringliteral">&quot; has empty data&quot;</span>);</div>
-<div class="line"><span class="lineno">   98</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(size == 1)</div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  102</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keyword">auto</span> size {<a class="code hl_variable" href="classActRoot_1_1InputBlock.html#a1587321fc4e5cffcbb3e1d5699d63b5b">fValues</a>[token].size()};</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span>(size == 0)</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::IsVector(): Token &quot;</span> + token + <span class="stringliteral">&quot; has empty data&quot;</span>);</div>
+<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(size == 1)</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   82</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -913,16 +913,16 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  144</span>{</div>
-<div class="line"><span class="lineno">  145</span>    <span class="keywordtype">bool</span> ret {};</div>
-<div class="line"><span class="lineno">  146</span>    TString aux {val};</div>
-<div class="line"><span class="lineno">  147</span>    aux.ToLower();</div>
-<div class="line"><span class="lineno">  148</span>    std::string lower {aux};</div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span>(lower != <span class="stringliteral">&quot;true&quot;</span> &amp;&amp; lower != <span class="stringliteral">&quot;false&quot;</span>)</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::StringToBool(): Could not convert to bool value &quot;</span> + val);</div>
-<div class="line"><span class="lineno">  151</span>    std::istringstream(lower) &gt;&gt; std::boolalpha &gt;&gt; ret;</div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  153</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  124</span>{</div>
+<div class="line"><span class="lineno">  125</span>    <span class="keywordtype">bool</span> ret {};</div>
+<div class="line"><span class="lineno">  126</span>    TString aux {val};</div>
+<div class="line"><span class="lineno">  127</span>    aux.ToLower();</div>
+<div class="line"><span class="lineno">  128</span>    std::string lower {aux};</div>
+<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">if</span>(lower != <span class="stringliteral">&quot;true&quot;</span> &amp;&amp; lower != <span class="stringliteral">&quot;false&quot;</span>)</div>
+<div class="line"><span class="lineno">  130</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;InputBlock::StringToBool(): Could not convert to bool value &quot;</span> + val);</div>
+<div class="line"><span class="lineno">  131</span>    std::istringstream(lower) &gt;&gt; std::boolalpha &gt;&gt; ret;</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  133</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -949,19 +949,19 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
-<div class="line"><span class="lineno">  130</span>    <span class="keywordtype">double</span> ret {};</div>
-<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  132</span>    {</div>
-<div class="line"><span class="lineno">  133</span>        ret = std::stod(val);</div>
-<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  135</span>    }</div>
-<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><span class="lineno">  137</span>    {</div>
-<div class="line"><span class="lineno">  138</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not convert to double value &quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">throw</span> std::runtime_error(e.what());</div>
-<div class="line"><span class="lineno">  140</span>    }</div>
-<div class="line"><span class="lineno">  141</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  109</span>{</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordtype">double</span> ret {};</div>
+<div class="line"><span class="lineno">  111</span>    <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  112</span>    {</div>
+<div class="line"><span class="lineno">  113</span>        ret = std::stod(val);</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  115</span>    }</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
+<div class="line"><span class="lineno">  117</span>    {</div>
+<div class="line"><span class="lineno">  118</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not convert to double value &quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">throw</span> std::runtime_error(e.what());</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
+<div class="line"><span class="lineno">  121</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -988,19 +988,19 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  114</span>{</div>
-<div class="line"><span class="lineno">  115</span>    <span class="keywordtype">int</span> ret {};</div>
-<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  117</span>    {</div>
-<div class="line"><span class="lineno">  118</span>        ret = std::stoi(val);</div>
-<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">  120</span>    }</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><span class="lineno">  122</span>    {</div>
-<div class="line"><span class="lineno">  123</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not convert to int value &quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">throw</span> std::runtime_error(e.what());</div>
-<div class="line"><span class="lineno">  125</span>    }</div>
-<div class="line"><span class="lineno">  126</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordtype">int</span> ret {};</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   97</span>    {</div>
+<div class="line"><span class="lineno">   98</span>        ret = std::stoi(val);</div>
+<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  100</span>    }</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
+<div class="line"><span class="lineno">  102</span>    {</div>
+<div class="line"><span class="lineno">  103</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Could not convert to int value &quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">throw</span> std::runtime_error(e.what());</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
+<div class="line"><span class="lineno">  106</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

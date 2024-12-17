@@ -193,8 +193,6 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1a7feeae410edc8907da636b49b8f62a" id="r_a1a7feeae410edc8907da636b49b8f62a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a> (std::string line)</td></tr>
-<tr class="separator:a1a7feeae410edc8907da636b49b8f62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79aa8144922aad33d16df5ccda898bd1" id="r_a79aa8144922aad33d16df5ccda898bd1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a79aa8144922aad33d16df5ccda898bd1">IsEqZero</a> (int val)</td></tr>
 <tr class="separator:a79aa8144922aad33d16df5ccda898bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a413d9bd9865ff23f81694b6897d93dc4" id="r_a413d9bd9865ff23f81694b6897d93dc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a413d9bd9865ff23f81694b6897d93dc4">IsEqZero</a> (float val)</td></tr>
@@ -207,6 +205,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a14452d5027ba6d14fac1f72fa80b8ecc" id="r_a14452d5027ba6d14fac1f72fa80b8ecc"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:a14452d5027ba6d14fac1f72fa80b8ecc"><td class="memTemplItemLeft" align="right" valign="top">ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; T &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a14452d5027ba6d14fac1f72fa80b8ecc">CastXYZVector</a> (const ROOT::Math::DisplacementVector3D&lt; ROOT::Math::Cartesian3D&lt; U &gt;, ROOT::Math::DefaultCoordinateSystemTag &gt; &amp;v)</td></tr>
 <tr class="separator:a14452d5027ba6d14fac1f72fa80b8ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a7feeae410edc8907da636b49b8f62a" id="r_a1a7feeae410edc8907da636b49b8f62a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">StripSpaces</a> (std::string line)</td></tr>
+<tr class="separator:a1a7feeae410edc8907da636b49b8f62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9a314900950aac390a78b5df913e9ba" id="r_aa9a314900950aac390a78b5df913e9ba"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#aa9a314900950aac390a78b5df913e9ba">ToLower</a> (std::string str)</td></tr>
+<tr class="separator:aa9a314900950aac390a78b5df913e9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -361,9 +363,9 @@ template&lt;typename T , typename U &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   29</span>{</div>
-<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">return</span> {(T)p.X(), (T)p.Y(), (T)p.Z()};</div>
-<div class="line"><span class="lineno">   31</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>{</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">return</span> {(T)p.X(), (T)p.Y(), (T)p.Z()};</div>
+<div class="line"><span class="lineno">   33</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,10 +394,10 @@ template&lt;typename T , typename U &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   37</span>{</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">return</span> {(T)v.X(), (T)v.Y(), (T)v.Z()};</div>
-<div class="line"><span class="lineno">   40</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">return</span> {(T)v.X(), (T)v.Y(), (T)v.Z()};</div>
+<div class="line"><span class="lineno">   42</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -414,10 +416,10 @@ template&lt;typename T , typename U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">return</span> val * val &lt;= <a class="code hl_variable" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a> * <a class="code hl_variable" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a>;</div>
-<div class="line"><span class="lineno">   16</span>}</div>
-<div class="ttc" id="anamespaceActRoot_html_adc42cdbe4350e1f2b3a778146328d018"><div class="ttname"><a href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">ActRoot::kDoubleEps</a></div><div class="ttdeci">constexpr double kDoubleEps</div><div class="ttdef"><b>Definition</b> ActUtils.h:20</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
+<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">return</span> val * val &lt;= <a class="code hl_variable" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a> * <a class="code hl_variable" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a>;</div>
+<div class="line"><span class="lineno">   19</span>}</div>
+<div class="ttc" id="anamespaceActRoot_html_adc42cdbe4350e1f2b3a778146328d018"><div class="ttname"><a href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">ActRoot::kDoubleEps</a></div><div class="ttdeci">constexpr double kDoubleEps</div><div class="ttdef"><b>Definition</b> ActUtils.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -436,10 +438,10 @@ template&lt;typename T , typename U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
-<div class="line"><span class="lineno">   10</span>    <span class="keywordflow">return</span> val * val &lt;= <a class="code hl_variable" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a> * <a class="code hl_variable" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a>;</div>
-<div class="line"><span class="lineno">   11</span>}</div>
-<div class="ttc" id="anamespaceActRoot_html_a588d04230a19b5278f49475ae41da81f"><div class="ttname"><a href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">ActRoot::kFloatEps</a></div><div class="ttdeci">constexpr float kFloatEps</div><div class="ttdef"><b>Definition</b> ActUtils.h:19</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>{</div>
+<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">return</span> val * val &lt;= <a class="code hl_variable" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a> * <a class="code hl_variable" href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">kFloatEps</a>;</div>
+<div class="line"><span class="lineno">   14</span>}</div>
+<div class="ttc" id="anamespaceActRoot_html_a588d04230a19b5278f49475ae41da81f"><div class="ttname"><a href="namespaceActRoot.html#a588d04230a19b5278f49475ae41da81f">ActRoot::kFloatEps</a></div><div class="ttdeci">constexpr float kFloatEps</div><div class="ttdef"><b>Definition</b> ActUtils.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -458,9 +460,9 @@ template&lt;typename T , typename U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">    4</span>{</div>
-<div class="line"><span class="lineno">    5</span>    <span class="keywordflow">return</span> val == 0;</div>
-<div class="line"><span class="lineno">    6</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">    7</span>{</div>
+<div class="line"><span class="lineno">    8</span>    <span class="keywordflow">return</span> val == 0;</div>
+<div class="line"><span class="lineno">    9</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -479,23 +481,45 @@ template&lt;typename T , typename U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{</div>
-<div class="line"><span class="lineno">   20</span>    <span class="comment">// Remove preceding spaces</span></div>
-<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">while</span>(*line.begin() == <span class="charliteral">&#39; &#39;</span>)</div>
-<div class="line"><span class="lineno">   22</span>        line = line.substr(1, line.length());</div>
-<div class="line"><span class="lineno">   23</span>    <span class="comment">// Remove trailing spaces</span></div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span>(line.length() &gt; 0)</div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">while</span>(*line.rbegin() == <span class="charliteral">&#39; &#39;</span>)</div>
-<div class="line"><span class="lineno">   26</span>            line = line.substr(0, line.length() - 1);</div>
-<div class="line"><span class="lineno">   27</span>    <span class="comment">// Remove preceding tabs</span></div>
-<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">while</span>(*line.begin() == <span class="charliteral">&#39;\t&#39;</span>)</div>
-<div class="line"><span class="lineno">   29</span>        line = line.substr(1, line.length());</div>
-<div class="line"><span class="lineno">   30</span>    <span class="comment">// Remove trailing tabs</span></div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span>(line.length() &gt; 0)</div>
-<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">while</span>(*line.rbegin() == <span class="charliteral">&#39;\t&#39;</span>)</div>
-<div class="line"><span class="lineno">   33</span>            line = line.substr(0, line.length() - 1);</div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">return</span> line;</div>
-<div class="line"><span class="lineno">   35</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
+<div class="line"><span class="lineno">   23</span>    <span class="comment">// Remove preceding spaces</span></div>
+<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">while</span>(*line.begin() == <span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><span class="lineno">   25</span>        line = line.substr(1, line.length());</div>
+<div class="line"><span class="lineno">   26</span>    <span class="comment">// Remove trailing spaces</span></div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span>(line.length() &gt; 0)</div>
+<div class="line"><span class="lineno">   28</span>        <span class="keywordflow">while</span>(*line.rbegin() == <span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><span class="lineno">   29</span>            line = line.substr(0, line.length() - 1);</div>
+<div class="line"><span class="lineno">   30</span>    <span class="comment">// Remove preceding tabs</span></div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">while</span>(*line.begin() == <span class="charliteral">&#39;\t&#39;</span>)</div>
+<div class="line"><span class="lineno">   32</span>        line = line.substr(1, line.length());</div>
+<div class="line"><span class="lineno">   33</span>    <span class="comment">// Remove trailing tabs</span></div>
+<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span>(line.length() &gt; 0)</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">while</span>(*line.rbegin() == <span class="charliteral">&#39;\t&#39;</span>)</div>
+<div class="line"><span class="lineno">   36</span>            line = line.substr(0, line.length() - 1);</div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> line;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa9a314900950aac390a78b5df913e9ba" name="aa9a314900950aac390a78b5df913e9ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9a314900950aac390a78b5df913e9ba">&#9670;&#160;</a></span>ToLower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ActRoot::ToLower </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{</div>
+<div class="line"><span class="lineno">   42</span>    std::transform(str.begin(), str.end(), str.begin(), [](<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c) { return std::tolower(c); });</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">return</span> str;</div>
+<div class="line"><span class="lineno">   44</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -564,7 +588,7 @@ template&lt;typename T , typename U &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   20</span>{0.0001};</div>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{0.0001};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -602,7 +626,7 @@ template&lt;typename T , typename U &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{0.0001f};</div>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{0.0001f};</div>
 </div><!-- fragment -->
 </div>
 </div>

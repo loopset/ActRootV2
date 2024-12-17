@@ -91,8 +91,8 @@ Public Types</h2></td></tr>
 <tr class="separator:ab48da80b29e3d66aeb5189ac81b88b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a768df240f277747d16e5449d0d6236c4" id="r_a768df240f277747d16e5449d0d6236c4"><td class="memItemLeft" align="right" valign="top">typedef ROOT::Math::XYZVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a768df240f277747d16e5449d0d6236c4">XYZVector</a></td></tr>
 <tr class="separator:a768df240f277747d16e5449d0d6236c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd9712edcce3f0af4f63dddd92d8355" id="r_a7dd9712edcce3f0af4f63dddd92d8355"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">LayerIdxRet</a></td></tr>
-<tr class="separator:a7dd9712edcce3f0af4f63dddd92d8355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691007528da78c02f582d852c1ffc33c" id="r_a691007528da78c02f582d852c1ffc33c"><td class="memItemLeft" align="right" valign="top">typedef std::tuple&lt; std::string, int, <a class="el" href="classActPhysics_1_1SilSpecs.html#ab48da80b29e3d66aeb5189ac81b88b39">XYZPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">SearchRet</a></td></tr>
+<tr class="separator:a691007528da78c02f582d852c1ffc33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,8 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a29edc06fa84b3cf9ce8a6f155a8dd96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a584bd47275d7c77dbb0102b6b86b0232" id="r_a584bd47275d7c77dbb0102b6b86b0232"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classActPhysics_1_1SilLayer.html">SilLayer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a584bd47275d7c77dbb0102b6b86b0232">GetLayer</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a584bd47275d7c77dbb0102b6b86b0232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a378f5ce2a2f25fa9a9c7f0734f506950" id="r_a378f5ce2a2f25fa9a9c7f0734f506950"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">LayerIdxRet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a378f5ce2a2f25fa9a9c7f0734f506950">FindLayerAndIdx</a> (const <a class="el" href="classActPhysics_1_1SilSpecs.html#ab48da80b29e3d66aeb5189ac81b88b39">XYZPoint</a> &amp;p, const <a class="el" href="classActPhysics_1_1SilSpecs.html#a768df240f277747d16e5449d0d6236c4">XYZVector</a> &amp;v, bool verbose=false)</td></tr>
-<tr class="separator:a378f5ce2a2f25fa9a9c7f0734f506950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a083bb3c0fc28ec7f4b0f407ffbcfe5f5" id="r_a083bb3c0fc28ec7f4b0f407ffbcfe5f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">SearchRet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a083bb3c0fc28ec7f4b0f407ffbcfe5f5">FindLayerAndIdx</a> (const <a class="el" href="classActPhysics_1_1SilSpecs.html#ab48da80b29e3d66aeb5189ac81b88b39">XYZPoint</a> &amp;p, const <a class="el" href="classActPhysics_1_1SilSpecs.html#a768df240f277747d16e5449d0d6236c4">XYZVector</a> &amp;v, bool verbose=false)</td></tr>
+<tr class="separator:a083bb3c0fc28ec7f4b0f407ffbcfe5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e32ccd7f3872fe8cade66c69fe333ec" id="r_a0e32ccd7f3872fe8cade66c69fe333ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilSpecs.html#a0e32ccd7f3872fe8cade66c69fe333ec">EraseLayer</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a0e32ccd7f3872fe8cade66c69fe333ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -115,14 +115,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1ed9df47761219dcc5c71eb92c2dc18c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a7dd9712edcce3f0af4f63dddd92d8355" name="a7dd9712edcce3f0af4f63dddd92d8355"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dd9712edcce3f0af4f63dddd92d8355">&#9670;&#160;</a></span>LayerIdxRet</h2>
+<a id="a691007528da78c02f582d852c1ffc33c" name="a691007528da78c02f582d852c1ffc33c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a691007528da78c02f582d852c1ffc33c">&#9670;&#160;</a></span>SearchRet</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::pair&lt;std::string, int&gt; <a class="el" href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">ActPhysics::SilSpecs::LayerIdxRet</a></td>
+          <td class="memname">typedef std::tuple&lt;std::string, int, <a class="el" href="classActPhysics_1_1SilSpecs.html#ab48da80b29e3d66aeb5189ac81b88b39">XYZPoint</a>&gt; <a class="el" href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">ActPhysics::SilSpecs::SearchRet</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -181,8 +181,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  118</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.count(name); }</div>
-<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:112</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.count(name); }</div>
+<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a1ed9df47761219dcc5c71eb92c2dc18c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">ActPhysics::SilSpecs::fLayers</a></div><div class="ttdeci">std::unordered_map&lt; std::string, SilLayer &gt; fLayers</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:115</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -201,22 +201,22 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  248</span>{</div>
-<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> it {<a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.find(name)};</div>
-<div class="line"><span class="lineno">  250</span>    <span class="keywordflow">if</span>(it != <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.end())</div>
-<div class="line"><span class="lineno">  251</span>        <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.erase(it);</div>
-<div class="line"><span class="lineno">  252</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  251</span>{</div>
+<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> it {<a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.find(name)};</div>
+<div class="line"><span class="lineno">  253</span>    <span class="keywordflow">if</span>(it != <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.end())</div>
+<div class="line"><span class="lineno">  254</span>        <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>.erase(it);</div>
+<div class="line"><span class="lineno">  255</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a378f5ce2a2f25fa9a9c7f0734f506950" name="a378f5ce2a2f25fa9a9c7f0734f506950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a378f5ce2a2f25fa9a9c7f0734f506950">&#9670;&#160;</a></span>FindLayerAndIdx()</h2>
+<a id="a083bb3c0fc28ec7f4b0f407ffbcfe5f5" name="a083bb3c0fc28ec7f4b0f407ffbcfe5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a083bb3c0fc28ec7f4b0f407ffbcfe5f5">&#9670;&#160;</a></span>FindLayerAndIdx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">ActPhysics::SilSpecs::LayerIdxRet</a> ActPhysics::SilSpecs::FindLayerAndIdx </td>
+          <td class="memname"><a class="el" href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">ActPhysics::SilSpecs::SearchRet</a> ActPhysics::SilSpecs::FindLayerAndIdx </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilSpecs.html#ab48da80b29e3d66aeb5189ac81b88b39">XYZPoint</a> &amp;&#160;</td>
           <td class="paramname"><em>p</em>, </td>
@@ -240,26 +240,26 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  227</span>{</div>
-<div class="line"><span class="lineno">  228</span>    <a class="code hl_typedef" href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">LayerIdxRet</a> ret;</div>
-<div class="line"><span class="lineno">  229</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, layer] : <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>)</div>
-<div class="line"><span class="lineno">  230</span>    {</div>
-<div class="line"><span class="lineno">  231</span>        <span class="comment">// Find silicon point for this layer</span></div>
-<div class="line"><span class="lineno">  232</span>        <span class="keyword">auto</span> [sp, _] {layer.GetSiliconPointOfTrack(p, v, <span class="keyword">true</span>)};</div>
-<div class="line"><span class="lineno">  233</span>        <span class="comment">// And see if it matches with any silicon</span></div>
-<div class="line"><span class="lineno">  234</span>        <span class="keyword">auto</span> idx {layer.GetIndexOfMatch(sp)};</div>
-<div class="line"><span class="lineno">  235</span>        <span class="keywordflow">if</span>(verbose)</div>
-<div class="line"><span class="lineno">  236</span>        {</div>
-<div class="line"><span class="lineno">  237</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Layer : &quot;</span> &lt;&lt; name &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  238</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   SP    : &quot;</span> &lt;&lt; sp &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  239</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Idx   : &quot;</span> &lt;&lt; idx &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  240</span>        }</div>
-<div class="line"><span class="lineno">  241</span>        <span class="keywordflow">if</span>(idx != -1)</div>
-<div class="line"><span class="lineno">  242</span>            <span class="keywordflow">return</span> {name, idx};</div>
-<div class="line"><span class="lineno">  243</span>    }</div>
-<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;&quot;</span>, -1};</div>
-<div class="line"><span class="lineno">  245</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a7dd9712edcce3f0af4f63dddd92d8355"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a7dd9712edcce3f0af4f63dddd92d8355">ActPhysics::SilSpecs::LayerIdxRet</a></div><div class="ttdeci">std::pair&lt; std::string, int &gt; LayerIdxRet</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:109</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  230</span>{</div>
+<div class="line"><span class="lineno">  231</span>    <a class="code hl_typedef" href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">SearchRet</a> ret;</div>
+<div class="line"><span class="lineno">  232</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, layer] : <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>)</div>
+<div class="line"><span class="lineno">  233</span>    {</div>
+<div class="line"><span class="lineno">  234</span>        <span class="comment">// Find silicon point for this layer</span></div>
+<div class="line"><span class="lineno">  235</span>        <span class="keyword">auto</span> [sp, _] {layer.GetSiliconPointOfTrack(p, v, <span class="keyword">true</span>)};</div>
+<div class="line"><span class="lineno">  236</span>        <span class="comment">// And see if it matches with any silicon</span></div>
+<div class="line"><span class="lineno">  237</span>        <span class="keyword">auto</span> idx {layer.GetIndexOfMatch(sp)};</div>
+<div class="line"><span class="lineno">  238</span>        <span class="keywordflow">if</span>(verbose)</div>
+<div class="line"><span class="lineno">  239</span>        {</div>
+<div class="line"><span class="lineno">  240</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Layer : &quot;</span> &lt;&lt; name &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  241</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   SP    : &quot;</span> &lt;&lt; sp &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  242</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Idx   : &quot;</span> &lt;&lt; idx &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  243</span>        }</div>
+<div class="line"><span class="lineno">  244</span>        <span class="keywordflow">if</span>(idx != -1)</div>
+<div class="line"><span class="lineno">  245</span>            <span class="keywordflow">return</span> {name, idx, sp};</div>
+<div class="line"><span class="lineno">  246</span>    }</div>
+<div class="line"><span class="lineno">  247</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;&quot;</span>, -1, {-1, -1, -1}};</div>
+<div class="line"><span class="lineno">  248</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilSpecs_html_a691007528da78c02f582d852c1ffc33c"><div class="ttname"><a href="classActPhysics_1_1SilSpecs.html#a691007528da78c02f582d852c1ffc33c">ActPhysics::SilSpecs::SearchRet</a></div><div class="ttdeci">std::tuple&lt; std::string, int, XYZPoint &gt; SearchRet</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:112</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,7 +286,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  119</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; };</div>
+<div class="fragment"><div class="line"><span class="lineno">  122</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name]; };</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -304,16 +304,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
-<div class="line"><span class="lineno">   39</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;++++++++ SilGeo ++++++++&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, layer] : <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>)</div>
-<div class="line"><span class="lineno">   41</span>    {</div>
-<div class="line"><span class="lineno">   42</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Layer : &quot;</span> &lt;&lt; name &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   43</span>        layer.Print();</div>
-<div class="line"><span class="lineno">   44</span>        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   45</span>    }</div>
-<div class="line"><span class="lineno">   46</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a>;</div>
-<div class="line"><span class="lineno">   47</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{</div>
+<div class="line"><span class="lineno">   41</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;++++++++ SilGeo ++++++++&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, layer] : <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Layer : &quot;</span> &lt;&lt; name &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   45</span>        layer.Print();</div>
+<div class="line"><span class="lineno">   46</span>        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+<div class="line"><span class="lineno">   48</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a>;</div>
+<div class="line"><span class="lineno">   49</span>}</div>
 <div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition</b> ActColors.h:18</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
 </div><!-- fragment -->
@@ -334,16 +334,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  215</span>{</div>
-<div class="line"><span class="lineno">  216</span>    <a class="code hl_class" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
-<div class="line"><span class="lineno">  217</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; name : parser.GetBlockHeaders())</div>
-<div class="line"><span class="lineno">  218</span>    {</div>
-<div class="line"><span class="lineno">  219</span>        SilLayer layer;</div>
-<div class="line"><span class="lineno">  220</span>        layer.ReadConfiguration(parser.GetBlock(name));</div>
-<div class="line"><span class="lineno">  221</span>        <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name] = layer;</div>
-<div class="line"><span class="lineno">  222</span>    }</div>
-<div class="line"><span class="lineno">  223</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition</b> ActInputParser.h:112</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  218</span>{</div>
+<div class="line"><span class="lineno">  219</span>    <a class="code hl_class" href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a> parser {file};</div>
+<div class="line"><span class="lineno">  220</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; name : parser.GetBlockHeaders())</div>
+<div class="line"><span class="lineno">  221</span>    {</div>
+<div class="line"><span class="lineno">  222</span>        SilLayer layer;</div>
+<div class="line"><span class="lineno">  223</span>        layer.ReadConfiguration(parser.GetBlock(name));</div>
+<div class="line"><span class="lineno">  224</span>        <a class="code hl_variable" href="classActPhysics_1_1SilSpecs.html#a1ed9df47761219dcc5c71eb92c2dc18c">fLayers</a>[name] = layer;</div>
+<div class="line"><span class="lineno">  225</span>    }</div>
+<div class="line"><span class="lineno">  226</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1InputParser_html"><div class="ttname"><a href="classActRoot_1_1InputParser.html">ActRoot::InputParser</a></div><div class="ttdef"><b>Definition</b> ActInputParser.h:110</div></div>
 </div><!-- fragment -->
 </div>
 </div>
