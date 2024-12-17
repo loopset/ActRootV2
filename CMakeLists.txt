@@ -17,7 +17,7 @@ set(CMAKE_INSTALL_MESSAGE LAZY) # print only updates of installed files
 option(BUILD_GEANT4 "Build ActGeant4 library" OFF) #disabled by default
 #ROOT
 # Gui component is of paramount importance to Event viewers
-find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS Gui MathCore Physics GenVector)
+find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS Gui MathCore MathMore Physics GenVector Geom)
 if(BUILD_GEANT4)
     find_package(Geant4 CONFIG REQUIRED ui_all vis_all)
 endif()
