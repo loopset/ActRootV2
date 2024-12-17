@@ -1,1 +1,1 @@
-add_actlibrary(NAME ActSimulation LINK)
+add_actlibrary(NAME ActSimulation LINK ActPhysics)
