@@ -27,15 +27,6 @@
 // detector manager
 #pragma link C++ class ActRoot::DetectorManager;
 
-
-// data for detectors
-#pragma link C++ class ActRoot::Voxel + ;
-#pragma link C++ class ActRoot::Line + ;
-#pragma link C++ class ActRoot::Region + ;
-#pragma link C++ class ActRoot::Cluster + ;
-
-// parameters
-
 // input iterators and wrapper
 #pragma link C++ class ActRoot::InputIterator;
 #pragma link C++ class ActRoot::InputWrapper;

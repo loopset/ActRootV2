@@ -1,1 +1,1 @@
-add_actlibrary(NAME ActDetectors LINK ActCore)
+add_actlibrary(NAME ActDetectors LINK ActAlgorithm)
