@@ -8,5 +8,5 @@ var searchData=
   ['tpcparameters_5',['tpcparameters',['../classActRoot_1_1TPCParameters.html#a0fbae38d08b83eb4aa4b2dbc83daaf63',1,'ActRoot::TPCParameters::TPCParameters()=default'],['../classActRoot_1_1TPCParameters.html#a95d4a752fc0689ce2cb34e3150015f29',1,'ActRoot::TPCParameters::TPCParameters(const std::string &amp;type)']]],
   ['trackgenerator_6',['trackgenerator',['../classActSim_1_1TrackGenerator.html#a6f7b169fd715f9c742900f8fd5d425ad',1,'ActSim::TrackGenerator::TrackGenerator()=default'],['../classActSim_1_1TrackGenerator.html#aa1daa8f84827699de4f757257a201b04',1,'ActSim::TrackGenerator::TrackGenerator(ActPhysics::SRIM *srim, ActRoot::TPCParameters *tpc, ActPhysics::Gas *gas)']]],
   ['tracklengthfromlightit_7',['TrackLengthFromLightIt',['../classActRoot_1_1MergerDetector.html#acbb2bf362d53e9d20f138eb90937d7d9',1,'ActRoot::MergerDetector']]],
-  ['treatsaturationline_8',['TreatSaturationLine',['../classActPhysics_1_1Line.html#ad7d3720d2f55d7ed22d8c0e7db5541dd',1,'ActPhysics::Line']]]
+  ['treatsaturationline_8',['TreatSaturationLine',['../classActRoot_1_1Line.html#a588e36cb5464dd9c2355dcef93a92c92',1,'ActRoot::Line']]]
 ];

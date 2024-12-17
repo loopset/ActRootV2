@@ -86,7 +86,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class managing all calibrations (NO LONGER a singleton)  <a href="classActRoot_1_1CalibrationManager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Cluster.html">Cluster</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic class containing Line + Collection of voxels belonging to the cluster.  <a href="classActRoot_1_1Cluster.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic class containing <a class="el" href="classActRoot_1_1Line.html">Line</a> + Collection of voxels belonging to the cluster.  <a href="classActRoot_1_1Cluster.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1CutsManager.html">CutsManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,6 +110,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1InputWrapper.html">InputWrapper</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Line.html">Line</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html">MergerData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerDetector.html">MergerDetector</a></td></tr>
@@ -131,6 +133,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Options.html">Options</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1OutputData.html">OutputData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1Region.html">Region</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1SilData.html">SilData</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class holding simple Silicon data.  <a href="classActRoot_1_1SilData.html#details">More...</a><br /></td></tr>
@@ -190,6 +194,12 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a73e55379eb4b32006ebd666053febf93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37c91f77ba1226dc418e8f8428c3fdb6" id="r_a37c91f77ba1226dc418e8f8428c3fdb6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">RegionType</a> { <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f">EBeam</a>
+, <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf">ELight</a>
+, <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367">EHeavy</a>
+, <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a9902d58435e8208bf6fd67278632145e">ENone</a>
+ }</td></tr>
+<tr class="separator:a37c91f77ba1226dc418e8f8428c3fdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -209,6 +219,8 @@ Functions</h2></td></tr>
 <tr class="separator:a1a7feeae410edc8907da636b49b8f62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9a314900950aac390a78b5df913e9ba" id="r_aa9a314900950aac390a78b5df913e9ba"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#aa9a314900950aac390a78b5df913e9ba">ToLower</a> (std::string str)</td></tr>
 <tr class="separator:aa9a314900950aac390a78b5df913e9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12cdf2e9d3d69787406e43407bb688b" id="r_af12cdf2e9d3d69787406e43407bb688b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#af12cdf2e9d3d69787406e43407bb688b">RegionTypeAsStr</a> (<a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">RegionType</a> type)</td></tr>
+<tr class="separator:af12cdf2e9d3d69787406e43407bb688b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -228,6 +240,8 @@ Variables</h2></td></tr>
 <tr class="separator:a588d04230a19b5278f49475ae41da81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc42cdbe4350e1f2b3a778146328d018" id="r_adc42cdbe4350e1f2b3a778146328d018"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#adc42cdbe4350e1f2b3a778146328d018">kDoubleEps</a> {0.0001}</td></tr>
 <tr class="separator:adc42cdbe4350e1f2b3a778146328d018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad92edf0b076c3f8983e4d761c8e05165" id="r_ad92edf0b076c3f8983e4d761c8e05165"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">RegionType</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActRoot.html#ad92edf0b076c3f8983e4d761c8e05165">kRegionTypeAsStr</a></td></tr>
+<tr class="separator:ad92edf0b076c3f8983e4d761c8e05165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a68d199cc2990311709795d0ded060fc2" name="a68d199cc2990311709795d0ded060fc2"></a>
@@ -276,11 +290,12 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">    8</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ESilicons</a>,</div>
 <div class="line"><span class="lineno">    9</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">EModular</a>,</div>
 <div class="line"><span class="lineno">   10</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">EMerger</a>,</div>
-<div class="line"><span class="lineno">   11</span>    ENone</div>
+<div class="line"><span class="lineno">   11</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a9902d58435e8208bf6fd67278632145e">ENone</a></div>
 <div class="line"><span class="lineno">   12</span>};</div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a3e80ccae48fde6e2f22188846239d6aa">ActRoot::DetectorType::EMerger</a></div><div class="ttdeci">@ EMerger</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a58f33cfe2eef58fba1a19a7ca321688b">ActRoot::DetectorType::EActar</a></div><div class="ttdeci">@ EActar</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a6bb6729187fb8f8db85cb1203f59cfc7">ActRoot::DetectorType::EModular</a></div><div class="ttdeci">@ EModular</div></div>
+<div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6a9902d58435e8208bf6fd67278632145e"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a9902d58435e8208bf6fd67278632145e">ActRoot::DetectorType::ENone</a></div><div class="ttdeci">@ ENone</div></div>
 <div class="ttc" id="anamespaceActRoot_html_af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e"><div class="ttname"><a href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6adc9348cf55c85acd2dbbf4ece381967e">ActRoot::DetectorType::ESilicons</a></div><div class="ttdeci">@ ESilicons</div></div>
 </div><!-- fragment -->
 </div>
@@ -324,7 +339,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   21</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2">ECorrect</a>,     <span class="comment">// !&lt; Exec filter after merger</span></div>
 <div class="line"><span class="lineno">   22</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff">EGui</a>,         <span class="comment">// !&lt; For GUI in actplot</span></div>
 <div class="line"><span class="lineno">   23</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a1df5ae1c04081b4a4956f1422d54f01c">ESimu</a>,        <span class="comment">// !&lt; Simulation mode</span></div>
-<div class="line"><span class="lineno">   24</span>    ENone         <span class="comment">// !&lt; Default value</span></div>
+<div class="line"><span class="lineno">   24</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a9902d58435e8208bf6fd67278632145e">ENone</a>         <span class="comment">// !&lt; Default value</span></div>
 <div class="line"><span class="lineno">   25</span>};</div>
 <div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a0bd92a405a921016633cfc1a8f7a0eff">ActRoot::ModeType::EGui</a></div><div class="ttdeci">@ EGui</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a1df5ae1c04081b4a4956f1422d54f01c"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a1df5ae1c04081b4a4956f1422d54f01c">ActRoot::ModeType::ESimu</a></div><div class="ttdeci">@ ESimu</div></div>
@@ -334,6 +349,43 @@ Variables</h2></td></tr>
 <div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93a713957d24b124bb2d69d67e296fc8d10">ActRoot::ModeType::EFilter</a></div><div class="ttdeci">@ EFilter</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ad2012f1c78b6db7c336231c1d0083bf2">ActRoot::ModeType::ECorrect</a></div><div class="ttdeci">@ ECorrect</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a73e55379eb4b32006ebd666053febf93ae7c0caf2504271327a85879f45dcd78a"><div class="ttname"><a href="namespaceActRoot.html#a73e55379eb4b32006ebd666053febf93ae7c0caf2504271327a85879f45dcd78a">ActRoot::ModeType::EReadSilMod</a></div><div class="ttdeci">@ EReadSilMod</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a37c91f77ba1226dc418e8f8428c3fdb6" name="a37c91f77ba1226dc418e8f8428c3fdb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c91f77ba1226dc418e8f8428c3fdb6">&#9670;&#160;</a></span>RegionType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">ActRoot::RegionType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f" name="a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f"></a>EBeam&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf" name="a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf"></a>ELight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367" name="a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367"></a>EHeavy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a37c91f77ba1226dc418e8f8428c3fdb6a9902d58435e8208bf6fd67278632145e" name="a37c91f77ba1226dc418e8f8428c3fdb6a9902d58435e8208bf6fd67278632145e"></a>ENone&#160;</td><td class="fielddoc"></td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
+<div class="line"><span class="lineno">   17</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f">EBeam</a>,</div>
+<div class="line"><span class="lineno">   18</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf">ELight</a>,</div>
+<div class="line"><span class="lineno">   19</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367">EHeavy</a>,</div>
+<div class="line"><span class="lineno">   20</span>    <a class="code hl_enumvalue" href="namespaceActRoot.html#af4fc5584270a087d7c0483fe83951ce6a9902d58435e8208bf6fd67278632145e">ENone</a></div>
+<div class="line"><span class="lineno">   21</span>};</div>
+<div class="ttc" id="anamespaceActRoot_html_a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f"><div class="ttname"><a href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8266e0532466a710d6ed17547921120f">ActRoot::RegionType::EBeam</a></div><div class="ttdeci">@ EBeam</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367"><div class="ttname"><a href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a8385ccbd27d378d7b28c2bc9d1a9a367">ActRoot::RegionType::EHeavy</a></div><div class="ttdeci">@ EHeavy</div></div>
+<div class="ttc" id="anamespaceActRoot_html_a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf"><div class="ttname"><a href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6a9172c78110a6f2bf474131fdcb9cb3cf">ActRoot::RegionType::ELight</a></div><div class="ttdeci">@ ELight</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -463,6 +515,38 @@ template&lt;typename T , typename U &gt; </div>
 <div class="fragment"><div class="line"><span class="lineno">    7</span>{</div>
 <div class="line"><span class="lineno">    8</span>    <span class="keywordflow">return</span> val == 0;</div>
 <div class="line"><span class="lineno">    9</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af12cdf2e9d3d69787406e43407bb688b" name="af12cdf2e9d3d69787406e43407bb688b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12cdf2e9d3d69787406e43407bb688b">&#9670;&#160;</a></span>RegionTypeAsStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ActRoot::RegionTypeAsStr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">RegionType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   29</span>{</div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">if</span>(<span class="keyword">auto</span> it {<a class="code hl_variable" href="namespaceActRoot.html#ad92edf0b076c3f8983e4d761c8e05165">kRegionTypeAsStr</a>.find(type)}; it != kRegionTypeAsStr.end())</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   33</span>}</div>
+<div class="ttc" id="anamespaceActRoot_html_ad92edf0b076c3f8983e4d761c8e05165"><div class="ttname"><a href="namespaceActRoot.html#ad92edf0b076c3f8983e4d761c8e05165">ActRoot::kRegionTypeAsStr</a></div><div class="ttdeci">const std::unordered_map&lt; RegionType, std::string &gt; kRegionTypeAsStr</div><div class="ttdef"><b>Definition</b> ActRegion.h:23</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -627,6 +711,36 @@ template&lt;typename T , typename U &gt; </div>
 </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   21</span>{0.0001f};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad92edf0b076c3f8983e4d761c8e05165" name="ad92edf0b076c3f8983e4d761c8e05165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad92edf0b076c3f8983e4d761c8e05165">&#9670;&#160;</a></span>kRegionTypeAsStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::unordered_map&lt;<a class="el" href="namespaceActRoot.html#a37c91f77ba1226dc418e8f8428c3fdb6">RegionType</a>, std::string&gt; ActRoot::kRegionTypeAsStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{{RegionType::EBeam, <span class="stringliteral">&quot;Beam&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::ELight, <span class="stringliteral">&quot;Light&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::EHeavy, <span class="stringliteral">&quot;Heavy&quot;</span>},</div>
+<div class="line">                                                                           {RegionType::ENone, <span class="stringliteral">&quot;None&quot;</span>}}</div>
+</div><!-- fragment --><div class="fragment"><div class="line"><span class="lineno">   23</span>                                                                      {{RegionType::EBeam, <span class="stringliteral">&quot;Beam&quot;</span>},</div>
+<div class="line"><span class="lineno">   24</span>                                                                           {RegionType::ELight, <span class="stringliteral">&quot;Light&quot;</span>},</div>
+<div class="line"><span class="lineno">   25</span>                                                                           {RegionType::EHeavy, <span class="stringliteral">&quot;Heavy&quot;</span>},</div>
+<div class="line"><span class="lineno">   26</span>                                                                           {RegionType::ENone, <span class="stringliteral">&quot;None&quot;</span>}};</div>
 </div><!-- fragment -->
 </div>
 </div>

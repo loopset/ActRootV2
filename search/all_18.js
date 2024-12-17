@@ -20,7 +20,7 @@ var searchData=
   ['_7einputiterator_17',['~InputIterator',['../classActRoot_1_1InputIterator.html#a4b1cdd59178f20e52217a42be6d24331',1,'ActRoot::InputIterator']]],
   ['_7einputwrapper_18',['~InputWrapper',['../classActRoot_1_1InputWrapper.html#aea8f2b0aa3d1477bc8f91fa69778d367',1,'ActRoot::InputWrapper']]],
   ['_7ekinematics_19',['~Kinematics',['../classActPhysics_1_1Kinematics.html#a105558334d4d6b9f73df422375471753',1,'ActPhysics::Kinematics']]],
-  ['_7eline_20',['~Line',['../classActPhysics_1_1Line.html#aa45be49cab814a7714e08b1984d3108d',1,'ActPhysics::Line']]],
+  ['_7eline_20',['~Line',['../classActRoot_1_1Line.html#a90063c3ff0c61d81b6e1dd9f0422bb27',1,'ActRoot::Line']]],
   ['_7emergerdetector_21',['~MergerDetector',['../classActRoot_1_1MergerDetector.html#aa3bf9463689001d63a690a103970808b',1,'ActRoot::MergerDetector']]],
   ['_7emeventreduced_22',['~MEventReduced',['../classMEventReduced.html#a26bfe4d3fae963fb0196f5c3ee1e3454',1,'MEventReduced']]],
   ['_7emodulardetector_23',['~ModularDetector',['../classActRoot_1_1ModularDetector.html#a5a6d5d47661a3bcbdf43d3730fabf7da',1,'ActRoot::ModularDetector']]],

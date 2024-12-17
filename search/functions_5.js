@@ -4,7 +4,7 @@ var searchData=
   ['fill2d_1',['Fill2D',['../classActSim_1_1TrackGenerator.html#a828086e4209a8b391d138c66cafbe363',1,'ActSim::TrackGenerator']]],
   ['fillcloud_2',['FillCloud',['../classActSim_1_1TrackGenerator.html#a9d8246836bd9d08aefee41e4ea0cac19',1,'ActSim::TrackGenerator']]],
   ['fillclusterhistos_3',['FillClusterHistos',['../classActRoot_1_1HistogramPainter.html#a9749ee7e9f28680923794e29d24236ac',1,'ActRoot::HistogramPainter']]],
-  ['fillgraph_4',['FillGraph',['../classActAlgorithm_1_1Region.html#aa316e9fb30d39cc8fcaaffc88cfe4a40',1,'ActAlgorithm::Region']]],
+  ['fillgraph_4',['FillGraph',['../classActRoot_1_1Region.html#a8d56d7a5b43a53a82652fafb687458ee',1,'ActRoot::Region']]],
   ['fillhisto_5',['FillHisto',['../classActPhysics_1_1PIDCorrector.html#ab2af62597f1912d0dd0dedceb6645d69',1,'ActPhysics::PIDCorrector']]],
   ['fillmatrix_6',['FillMatrix',['../classActAlgorithm_1_1ClIMB.html#aca01cae5582598632ccef724585237c1',1,'ActAlgorithm::ClIMB']]],
   ['fillmevent_7',['FillMEvent',['../classActSim_1_1TrackGenerator.html#ac9083eb0a1d6a7b3d4b06761c3c22677',1,'ActSim::TrackGenerator']]],
@@ -18,8 +18,8 @@ var searchData=
   ['findpreciserp_15',['findpreciserp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#aa0e29f184ebf93272e1e21410d0dec43',1,'ActAlgorithm::Actions::FindRP::FindPreciseRP()'],['../classActAlgorithm_1_1MultiStep.html#a7db1e52eaaea07f38f07e65d7d27313a',1,'ActAlgorithm::MultiStep::FindPreciseRP()']]],
   ['findpreliminaryrp_16',['findpreliminaryrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93',1,'ActAlgorithm::Actions::FindRP::FindPreliminaryRP()'],['../classActAlgorithm_1_1MultiStep.html#a94b0ab39d0f50a85d48b81aea9fd46fe',1,'ActAlgorithm::MultiStep::FindPreliminaryRP()']]],
   ['findrp_17',['findrp',['../classActAlgorithm_1_1Actions_1_1FindRP.html#ad9690417e6fbf137c714d55c47c53f53',1,'ActAlgorithm::Actions::FindRP::FindRP()'],['../classActAlgorithm_1_1MultiRegion.html#a8da640628d549abb875f8b0758d2a382',1,'ActAlgorithm::MultiRegion::FindRP()']]],
-  ['fit2dfrom3d_18',['Fit2Dfrom3D',['../classActPhysics_1_1Line.html#a17af461f63606d6f97839f63aa777a96',1,'ActPhysics::Line']]],
+  ['fit2dfrom3d_18',['Fit2Dfrom3D',['../classActRoot_1_1Line.html#a1879078c7495a5ea940319b6b0248e98',1,'ActRoot::Line']]],
   ['fitprofiles_19',['FitProfiles',['../classActPhysics_1_1PIDCorrector.html#ac886747a4e99401f48bf970b228af86b',1,'ActPhysics::PIDCorrector']]],
-  ['fitvoxels_20',['FitVoxels',['../classActPhysics_1_1Line.html#a9af926d063c469bfd9c8984113a3ccb6',1,'ActPhysics::Line']]],
+  ['fitvoxels_20',['FitVoxels',['../classActRoot_1_1Line.html#aea85c9740051811e365afc37d511f1bc',1,'ActRoot::Line']]],
   ['fixbreakheavy_21',['FixBreakHeavy',['../classActAlgorithm_1_1MultiRegion.html#ad7a6147f89c9cf5d81fda61afc077167',1,'ActAlgorithm::MultiRegion']]]
 ];

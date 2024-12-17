@@ -13,7 +13,7 @@ var searchData=
   ['kmevtogev_10',['kMeVToGeV',['../namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941',1,'ActPhysics::Constants']]],
   ['knmass_11',['knMass',['../namespaceActPhysics_1_1Constants.html#ae930a4a8c842f20f7ece45fc24a8d55b',1,'ActPhysics::Constants']]],
   ['kpmass_12',['kpMass',['../namespaceActPhysics_1_1Constants.html#afbe77d3a00bc7a28eb94709bb7f3cbfe',1,'ActPhysics::Constants']]],
-  ['kregiontypeasstr_13',['kRegionTypeAsStr',['../namespaceActAlgorithm.html#a632776ec2c852a1b3d5d5721a838f4b6',1,'ActAlgorithm']]],
+  ['kregiontypeasstr_13',['kRegionTypeAsStr',['../namespaceActRoot.html#ad92edf0b076c3f8983e4d761c8e05165',1,'ActRoot']]],
   ['ktokenseparator_14',['kTokenSeparator',['../namespaceActRoot.html#a65a3472de3360771c3f8a49e0aa3d4e4',1,'ActRoot']]],
   ['kvalueseparator_15',['kValueSeparator',['../namespaceActRoot.html#ab1c6226ed232700245490060aa918465',1,'ActRoot']]]
 ];
