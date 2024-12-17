@@ -1,4 +1,4 @@
-add_actlibrary(NAME ActUtility LINK ActCore)
+add_actlibrary(NAME ActUtility LINK ActDetectors)
 
 #1-> actroot executable
 add_executable(actroot exec/actroot.cxx)
