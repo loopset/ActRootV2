@@ -40,7 +40,8 @@ var searchData=
   ['_7etpcdetector_37',['~TPCDetector',['../classActRoot_1_1TPCDetector.html#a49d09970f7089c78035b77bac6ecc459',1,'ActRoot::TPCDetector']]],
   ['_7evaction_38',['~VAction',['../classActAlgorithm_1_1VAction.html#af5013e023c2f0c484173a0c71873907c',1,'ActAlgorithm::VAction']]],
   ['_7evcluster_39',['~VCluster',['../classActAlgorithm_1_1VCluster.html#a431b788bf4319c130a9eca25a6d8191c',1,'ActAlgorithm::VCluster']]],
-  ['_7evdetector_40',['~VDetector',['../classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6',1,'ActRoot::VDetector']]],
-  ['_7evfilter_41',['~VFilter',['../classActAlgorithm_1_1VFilter.html#a5d5b483f8cee9492cb5e8604fbe425f0',1,'ActAlgorithm::VFilter']]],
-  ['_7evparameters_42',['~VParameters',['../classActRoot_1_1VParameters.html#a2e2bf93ae8d75f7ff8f6ab483a82e51b',1,'ActRoot::VParameters']]]
+  ['_7evdata_40',['~VData',['../classActRoot_1_1VData.html#a897afb3266fd8d3f35082c67dc73dd12',1,'ActRoot::VData']]],
+  ['_7evdetector_41',['~VDetector',['../classActRoot_1_1VDetector.html#a35753133618b1a4c52f829200b70a8c6',1,'ActRoot::VDetector']]],
+  ['_7evfilter_42',['~VFilter',['../classActAlgorithm_1_1VFilter.html#a5d5b483f8cee9492cb5e8604fbe425f0',1,'ActAlgorithm::VFilter']]],
+  ['_7evparameters_43',['~VParameters',['../classActRoot_1_1VParameters.html#a2e2bf93ae8d75f7ff8f6ab483a82e51b',1,'ActRoot::VParameters']]]
 ];

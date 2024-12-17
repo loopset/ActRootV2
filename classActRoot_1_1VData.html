@@ -101,6 +101,10 @@ Inheritance diagram for ActRoot::VData:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af9e86fb142efc859f402ef9a10ab8b30" id="r_af9e86fb142efc859f402ef9a10ab8b30"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#af9e86fb142efc859f402ef9a10ab8b30">VData</a> ()=default</td></tr>
+<tr class="separator:af9e86fb142efc859f402ef9a10ab8b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897afb3266fd8d3f35082c67dc73dd12" id="r_a897afb3266fd8d3f35082c67dc73dd12"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#a897afb3266fd8d3f35082c67dc73dd12">~VData</a> ()=default</td></tr>
+<tr class="separator:a897afb3266fd8d3f35082c67dc73dd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0659fcff76514d19d7db26e3bff12f" id="r_abe0659fcff76514d19d7db26e3bff12f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">Clear</a> ()=0</td></tr>
 <tr class="separator:abe0659fcff76514d19d7db26e3bff12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e6de266b00ca7c3ec235502fcbe8462" id="r_a6e6de266b00ca7c3ec235502fcbe8462"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">Print</a> () const =0</td></tr>
@@ -109,6 +113,57 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abb937724975ad16554767e2d2357e774"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#abb937724975ad16554767e2d2357e774">CastAs</a> ()</td></tr>
 <tr class="separator:abb937724975ad16554767e2d2357e774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af9e86fb142efc859f402ef9a10ab8b30" name="af9e86fb142efc859f402ef9a10ab8b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e86fb142efc859f402ef9a10ab8b30">&#9670;&#160;</a></span>VData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActRoot::VData::VData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a897afb3266fd8d3f35082c67dc73dd12" name="a897afb3266fd8d3f35082c67dc73dd12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897afb3266fd8d3f35082c67dc73dd12">&#9670;&#160;</a></span>~VData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ActRoot::VData::~VData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="abb937724975ad16554767e2d2357e774" name="abb937724975ad16554767e2d2357e774"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb937724975ad16554767e2d2357e774">&#9670;&#160;</a></span>CastAs()</h2>
@@ -134,9 +189,9 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   19</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
