@@ -22,7 +22,6 @@
 #pragma link C++ class ActRoot::InputData;
 #pragma link C++ class ActRoot::OutputData;
 
-
 // options manager
 #pragma link C++ class ActRoot::Options;
 
@@ -32,6 +31,19 @@
 
 // calibration manager
 #pragma link C++ class ActRoot::CalibrationManager;
+
+// Base classes
+// virtual detector
+#pragma link C++ class ActRoot::VDetector + ;
+
+// virtual data
+#pragma link C++ class ActRoot::VData + ;
+
+// virtual parameters
+#pragma link C++ class ActRoot::VParameters + ;
+
+// base type shared among all sublibraries
+#pragma link C++ class ActRoot::Voxel + ;
 
 
 #endif

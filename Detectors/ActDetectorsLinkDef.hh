@@ -18,9 +18,6 @@
 #pragma link C++ enum ActRoot::DetectorType + ;
 #pragma link C++ enum ActRoot::ModeType + ;
 
-// virtual detector
-#pragma link C++ class ActRoot::VDetector + ;
-
 // detectors
 #pragma link C++ class ActRoot::TPCDetector + ;
 #pragma link C++ class ActRoot::SilDetector;
@@ -30,20 +27,12 @@
 // detector manager
 #pragma link C++ class ActRoot::DetectorManager;
 
-
-// virtual data
-#pragma link C++ class ActRoot::VData + ;
-
 // data for detectors
-#pragma link C++ class ActRoot::Voxel + ;
 #pragma link C++ class ActRoot::Cluster + ;
 #pragma link C++ class ActRoot::TPCData + ;
 #pragma link C++ class ActRoot::SilData + ;
 #pragma link C++ class ActRoot::ModularData + ;
 #pragma link C++ class ActRoot::MergerData + ;
-
-// virtual parameters
-#pragma link C++ class ActRoot::VParameters + ;
 
 // parameters
 #pragma link C++ class ActRoot::TPCParameters + ;

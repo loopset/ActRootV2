@@ -20,6 +20,12 @@
 #include <utility>
 #include <vector>
 
+ActPhysics::SilMatrix::~SilMatrix()
+{
+    for(auto& [i, g] : fMatrix)
+        delete g;
+}
+
 void ActPhysics::SilMatrix::AddSil(int idx, const std::pair<double, double>& x, const std::pair<double, double>& y)
 {
     if(!fMatrix.count(idx))
@@ -125,7 +131,7 @@ void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
     }
 }
 
-void ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel)
+TMultiGraph* ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel)
 {
     auto mg {new TMultiGraph()};
     mg->SetTitle(TString::Format("Sil matrix %s;%s;%s", fName.c_str(), xlabel.c_str(), ylabel.c_str()));
@@ -143,6 +149,7 @@ void ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std
         mg->Draw("alf plc pfc");
     else
         mg->Draw("lf plc pfc");
+    return mg;
 }
 
 void ActPhysics::SilMatrix::Write(const std::string& file)
@@ -197,4 +204,10 @@ ActPhysics::SilMatrix* ActPhysics::SilMatrix::Clone() const
         sm->AddSil(idx, cl);
     }
     return sm;
+}
+
+TMultiGraph* ActPhysics::SilMatrix::DrawClone(bool same)
+{
+    auto* sm {this->Clone()};
+    return sm->Draw(same);
 }

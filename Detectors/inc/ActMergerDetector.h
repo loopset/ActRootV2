@@ -10,6 +10,7 @@
 #include "ActTPCData.h"
 #include "ActVData.h"
 #include "ActVDetector.h"
+#include "ActVFilter.h"
 #include "ActVParameters.h"
 
 #include "TStopwatch.h"

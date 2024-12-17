@@ -3,6 +3,8 @@
 
 #include "Math/GenVector/DisplacementVector3D.h"
 
+#include <string>
+
 namespace ActRoot
 {
 // Templated functions are not added to
@@ -40,5 +42,9 @@ CastXYZVector(
 }
 
 
+// String utility functions
+std::string StripSpaces(std::string line);
+
+std::string ToLower(std::string str);
 } // namespace ActRoot
 #endif // !ActUtils_h

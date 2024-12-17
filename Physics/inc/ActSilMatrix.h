@@ -4,6 +4,7 @@
 #include "RtypesCore.h"
 
 #include "TCutG.h"
+#include "TMultiGraph.h"
 
 #include <map>
 #include <optional>
@@ -23,6 +24,7 @@ private:
 public:
     SilMatrix() = default;
     SilMatrix(const std::string& name) : fName(name) {}
+    ~SilMatrix();
 
     void AddSil(int idx, const std::pair<double, double>& x, const std::pair<double, double>& y);
     void AddSil(int idx, TCutG* g) { fMatrix[idx] = g; }
@@ -37,7 +39,7 @@ public:
     const TCutG* GetSil(int idx) const { return fMatrix.at(idx); }
     const std::map<int, TCutG*> GetGraphs() const { return fMatrix; }
 
-    void Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
+    TMultiGraph* Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
     void MoveZTo(double ztarget, const std::set<int>& idxs);
     void Erase(int idx);
 
@@ -47,6 +49,7 @@ public:
     void Print() const;
 
     SilMatrix* Clone() const;
+    TMultiGraph* DrawClone(bool same = true);
 
 private:
     void InitGraph(int idx);

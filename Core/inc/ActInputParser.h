@@ -20,8 +20,6 @@ const std::string kBlockOpening {"["};
 const std::string kBlockClosing {"]"};
 const std::string kExpandValue {"..."};
 
-std::string StripSpaces(std::string line);
-
 class InputBlock
 {
 private:

@@ -3,9 +3,6 @@
 
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
-#include "ActTPCDetector.h"
-
-#include "ROOT/RVersion.hxx"
 
 #include "Math/GenVector/Cartesian3D.h"
 #include "Math/GenVector/DisplacementVector3D.h"
@@ -20,6 +17,12 @@
 #include <map>
 #include <memory>
 #include <string>
+
+// forward declaration
+namespace ActRoot
+{
+class TPCParameters;
+}
 
 namespace ActPhysics
 {
@@ -106,7 +109,7 @@ class SilSpecs
 public:
     typedef ROOT::Math::XYZPoint XYZPoint;
     typedef ROOT::Math::XYZVector XYZVector;
-    typedef std::pair<std::string, int> LayerIdxRet;
+    typedef std::tuple<std::string, int, XYZPoint> SearchRet;
 
 private:
     std::unordered_map<std::string, SilLayer> fLayers;
@@ -117,7 +120,7 @@ public:
 
     bool CheckLayersExists(const std::string& name) const { return fLayers.count(name); }
     const SilLayer& GetLayer(const std::string& name) { return fLayers[name]; };
-    LayerIdxRet FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
+    SearchRet FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
     void EraseLayer(const std::string& name);
 };
 } // namespace ActPhysics

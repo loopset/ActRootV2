@@ -3,6 +3,8 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
+#include "ActTPCParameters.h"
+#include "ActUtils.h"
 
 #include <exception>
 #include <iostream>
@@ -106,6 +108,7 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
     {
         auto str {block->GetString("Side")};
         str = ActRoot::StripSpaces(str);
+        str = ActRoot::ToLower(str);
         if(str == "left")
             fSide = SilSide::ELeft;
         else if(str == "right")
@@ -222,10 +225,10 @@ void ActPhysics::SilSpecs::ReadFile(const std::string& file)
     }
 }
 
-ActPhysics::SilSpecs::LayerIdxRet
+ActPhysics::SilSpecs::SearchRet
 ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose)
 {
-    LayerIdxRet ret;
+    SearchRet ret;
     for(const auto& [name, layer] : fLayers)
     {
         // Find silicon point for this layer
@@ -239,9 +242,9 @@ ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, boo
             std::cout << "   Idx   : " << idx << '\n';
         }
         if(idx != -1)
-            return {name, idx};
+            return {name, idx, sp};
     }
-    return {"", -1};
+    return {"", -1, {-1, -1, -1}};
 }
 
 void ActPhysics::SilSpecs::EraseLayer(const std::string& name)
