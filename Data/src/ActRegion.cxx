@@ -5,17 +5,17 @@
 #include <iostream>
 
 
-void ActAlgorithm::Region::Print() const
+void ActRoot::Region::Print() const
 {
     std::cout << "X  [" << fX.first << ", " << fX.second << "], Y [" << fY.first << ", " << fY.second << "]" << '\n';
 }
 
-bool ActAlgorithm::Region::IsInside(const ROOT::Math::XYZPointF& p) const
+bool ActRoot::Region::IsInside(const ROOT::Math::XYZPointF& p) const
 {
     return (fX.first <= p.X() && p.X() < fX.second) && (fY.first <= p.Y() && p.Y() < fY.second);
 }
 
-bool ActAlgorithm::Region::IsInside(const RangePair& x, const RangePair& y) const
+bool ActRoot::Region::IsInside(const RangePair& x, const RangePair& y) const
 {
 
     bool condX {(fX.first <= x.first && x.first < fX.second) && (fX.first <= x.second && x.second < fX.second)};
@@ -23,12 +23,12 @@ bool ActAlgorithm::Region::IsInside(const RangePair& x, const RangePair& y) cons
     return condX && condY;
 }
 
-ActAlgorithm::Region::RegionPair ActAlgorithm::Region::GetCentre() const
+ActRoot::Region::RegionPair ActRoot::Region::GetCentre() const
 {
     return {(fX.first + fX.second) / 2, (fY.first + fY.second) / 2};
 }
 
-void ActAlgorithm::Region::FillGraph(TGraph* g, TString proj, double minZ, double maxZ) const
+void ActRoot::Region::FillGraph(TGraph* g, TString proj, double minZ, double maxZ) const
 {
     proj.ToLower();
     if(proj == "xy")

@@ -10,7 +10,7 @@
 #include <utility>
 
 
-namespace ActAlgorithm
+namespace ActRoot
 {
 enum class RegionType
 {
@@ -61,6 +61,6 @@ public:
 
     void FillGraph(TGraph* g, TString proj, double minZ = 0, double maxZ = 0) const;
 };
-} // namespace ActAlgorithm
+} // namespace ActRoot
 
 #endif // !ActRegion_h

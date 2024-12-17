@@ -11,8 +11,6 @@
 #pragma link C++ class ActPhysics::Kinematics;
 #pragma link C++ class ActPhysics::SRIM;
 
-#pragma link C++ class ActPhysics::Line + ;
-
 #pragma link C++ enum class ActPhysics::SilSide + ;
 #pragma link C++ class ActPhysics::SilUnit;
 #pragma link C++ class ActPhysics::SilLayer;

@@ -32,21 +32,5 @@
 // calibration manager
 #pragma link C++ class ActRoot::CalibrationManager;
 
-// Base classes
-// virtual detector
-#pragma link C++ class ActRoot::VDetector + ;
-
-// virtual data
-#pragma link C++ class ActRoot::VData + ;
-
-// virtual parameters
-#pragma link C++ class ActRoot::VParameters + ;
-
-// base type shared among all sublibraries
-#pragma link C++ class ActRoot::Voxel + ;
-
-// Thomas' legacy data structures
-#pragma link C++ class ReducedData + ;
-#pragma link C++ class MEventReduced + ;
 
 #endif

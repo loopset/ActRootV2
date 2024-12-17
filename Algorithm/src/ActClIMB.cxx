@@ -4,7 +4,7 @@
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
-#include "ActTPCDetector.h"
+#include "ActTPCParameters.h"
 #include "ActVCluster.h"
 #include "ActVoxel.h"
 

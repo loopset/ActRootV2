@@ -11,7 +11,7 @@
 #pragma link C++ namespace ActAlgorithm;
 
 // Enum class
-#pragma link C++ enum ActAlgorithm::RegionType + ;
+#pragma link C++ enum ActRoot::RegionType + ;
 
 // Cluster algorithms
 #pragma link C++ class ActAlgorithm::VCluster;
@@ -23,8 +23,6 @@
 #pragma link C++ class ActAlgorithm::Interval < float> + ;
 #pragma link C++ class ActAlgorithm::IntervalMap < int> + ;
 #pragma link C++ class ActAlgorithm::IntervalMap < float> + ;
-
-#pragma link C++ class ActAlgorithm::Region + ;
 
 // Filter algorithms
 #pragma link C++ class ActAlgorithm::VFilter;

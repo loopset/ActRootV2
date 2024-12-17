@@ -46,9 +46,9 @@ public:
     void PrintReports() const override;
 
 private:
-    int GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line);
-    std::vector<ActRoot::Voxel> ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActPhysics::Line& line);
-    ActPhysics::Line SampleLine(const std::vector<ActRoot::Voxel>& voxels);
+    int GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActRoot::Line& line);
+    std::vector<ActRoot::Voxel> ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActRoot::Line& line);
+    ActRoot::Line SampleLine(const std::vector<ActRoot::Voxel>& voxels);
     template <typename T>
     inline bool IsInVector(T val, const std::vector<T>& vec)
     {

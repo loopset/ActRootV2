@@ -21,7 +21,7 @@ public:
 
 private:
     // Line with fit parameters
-    ActPhysics::Line fLine {};
+    ActRoot::Line fLine {};
     // Voxels belonging to clusters
     std::vector<ActRoot::Voxel> fVoxels {};
     // Ranges of each dimension
@@ -36,19 +36,19 @@ private:
     bool fIsBreak {false};
     bool fIsSplit {false};
     bool fHasRP {false};
-    ActAlgorithm::RegionType fRegion {ActAlgorithm::RegionType::ENone};
+    ActRoot::RegionType fRegion {ActRoot::RegionType::ENone};
     // Parameter that is not saved to file to control extended fit
     bool fUseExtVoxels {false}; //!
 
 public:
     Cluster() = default;
     Cluster(int id);
-    Cluster(int id, const ActPhysics::Line& line, const std::vector<ActRoot::Voxel>& voxels);
+    Cluster(int id, const ActRoot::Line& line, const std::vector<ActRoot::Voxel>& voxels);
     ~Cluster() = default;
 
     // Getters
-    const ActPhysics::Line& GetLine() const { return fLine; }
-    ActPhysics::Line& GetRefToLine() { return fLine; } // non-const: allows to change inner variable
+    const ActRoot::Line& GetLine() const { return fLine; }
+    ActRoot::Line& GetRefToLine() { return fLine; } // non-const: allows to change inner variable
     const std::vector<ActRoot::Voxel>& GetVoxels() const { return fVoxels; }
     std::vector<ActRoot::Voxel>& GetRefToVoxels() { return fVoxels; } // non-const: allows to change inner variable
     std::vector<ActRoot::Voxel>* GetPtrToVoxels() { return &fVoxels; }
@@ -60,12 +60,12 @@ public:
     bool GetToDelete() const { return fToDelete; }
     bool GetIsBreakBeam() const { return fIsBreak; }
     bool GetIsSplitRP() const { return fIsSplit; }
-    ActAlgorithm::RegionType GetRegionType() const { return fRegion; }
+    ActRoot::RegionType GetRegionType() const { return fRegion; }
     bool GetHasRP() const { return fHasRP; }
     bool GetUseExtVoxels() const { return fUseExtVoxels; }
 
     // Setters
-    void SetLine(const ActPhysics::Line& line) { fLine = line; }
+    void SetLine(const ActRoot::Line& line) { fLine = line; }
     void SetVoxels(const std::vector<ActRoot::Voxel>& voxels) { fVoxels = voxels; }
     void SetVoxels(std::vector<ActRoot::Voxel>&& voxels) { fVoxels = std::move(voxels); }
     void SetClusterID(int id) { fClusterID = id; }
@@ -75,7 +75,7 @@ public:
     void SetToDelete(bool toDelete) { fToDelete = toDelete; }
     void SetIsBreakBeam(bool hasValidRP) { fIsBreak = hasValidRP; }
     void SetIsSplitRP(bool split) { fIsSplit = split; }
-    void SetRegionType(ActAlgorithm::RegionType type) { fRegion = type; }
+    void SetRegionType(ActRoot::RegionType type) { fRegion = type; }
     void SetHasRP(bool has) { fHasRP = has; }
     void SetUseExtVoxels(bool use) { fUseExtVoxels = use; }
 

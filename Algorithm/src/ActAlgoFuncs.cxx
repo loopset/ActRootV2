@@ -3,7 +3,7 @@
 #include "ActCluster.h"
 #include "ActColors.h"
 #include "ActRegion.h"
-#include "ActTPCDetector.h"
+#include "ActTPCParameters.h"
 #include "ActUtils.h"
 #include "ActVoxel.h"
 
@@ -137,7 +137,7 @@ void ActAlgorithm::MergeSimilarClusters(std::vector<ActRoot::Cluster>* clusters,
                 // Add j
                 sumVoxels.insert(sumVoxels.end(), jit->GetPtrToVoxels()->begin(), jit->GetPtrToVoxels()->end());
                 // And get fit of summed voxels
-                ActPhysics::Line sumLine {};
+                ActRoot::Line sumLine {};
                 sumLine.FitVoxels(sumVoxels);
                 // Compare Chi2
                 auto newChi2 {sumLine.GetChi2()};
@@ -337,7 +337,7 @@ void ActAlgorithm::BreakBeamToHeavy(std::vector<ActRoot::Cluster>* clusters, con
                 newCluster.ReFillSets();
                 newCluster.SetIsSplitRP(true);
                 newCluster.SetHasRP(true);
-                newCluster.SetRegionType(RegionType::EBeam);
+                newCluster.SetRegionType(ActRoot::RegionType::EBeam);
                 toAppend.push_back(std::move(newCluster));
 
                 if(isVerbose)

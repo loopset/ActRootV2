@@ -69,14 +69,14 @@ private:
 
     // Auxiliary functions
     std::tuple<ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double>
-    ComputeRPIn3D(ActPhysics::Line::XYZPointF pA, ActPhysics::Line::XYZVectorF vA, ActPhysics::Line::XYZPointF pB,
-                  ActPhysics::Line::XYZVectorF vB);
+    ComputeRPIn3D(ActRoot::Line::XYZPointF pA, ActRoot::Line::XYZVectorF vA, ActRoot::Line::XYZPointF pB,
+                  ActRoot::Line::XYZVectorF vB);
 
     bool IsRPValid(const XYZPointF& rp, ActRoot::TPCParameters* tpc);
 
     std::vector<RPOps> ClusterAndSortRPs(std::vector<RPOps>& rps);
 
-    double GetClusterAngle(const ActPhysics::Line::XYZVectorF& beam, const ActPhysics::Line::XYZVectorF& recoil);
+    double GetClusterAngle(const ActRoot::Line::XYZVectorF& beam, const ActRoot::Line::XYZVectorF& recoil);
 };
 } // namespace Actions
 } // namespace ActAlgorithm

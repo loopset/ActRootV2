@@ -43,7 +43,7 @@ void ActAlgorithm::RANSAC::ReadConfiguration()
         fUseLmeds = rb->GetBool("UseLmeds");
 }
 
-int ActAlgorithm::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActPhysics::Line& line)
+int ActAlgorithm::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels, ActRoot::Line& line)
 {
     int ninliers {};
     std::vector<double> verrors;
@@ -70,7 +70,7 @@ int ActAlgorithm::RANSAC::GetNInliers(const std::vector<ActRoot::Voxel>& voxels,
 }
 
 std::vector<ActRoot::Voxel>
-ActAlgorithm::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActPhysics::Line& line)
+ActAlgorithm::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const ActRoot::Line& line)
 {
     std::vector<ActRoot::Voxel> ret {};
     // clear cloud according to line: delete from it voxel belonging to this line
@@ -109,7 +109,7 @@ ActAlgorithm::RANSAC::ProcessCloud(std::vector<ActRoot::Voxel>& remain, const Ac
     return ret;
 }
 
-ActPhysics::Line ActAlgorithm::RANSAC::SampleLine(const std::vector<ActRoot::Voxel>& voxels)
+ActRoot::Line ActAlgorithm::RANSAC::SampleLine(const std::vector<ActRoot::Voxel>& voxels)
 {
     // Sample two points uniformly
     std::vector<int> idxs;
@@ -124,7 +124,7 @@ ActPhysics::Line ActAlgorithm::RANSAC::SampleLine(const std::vector<ActRoot::Vox
         }
     }
     // Build Line
-    return ActPhysics::Line(picked[0].GetPosition(), picked[1].GetPosition());
+    return ActRoot::Line(picked[0].GetPosition(), picked[1].GetPosition());
 }
 
 ActAlgorithm::VCluster::ClusterRet ActAlgorithm::RANSAC::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
@@ -137,8 +137,8 @@ ActAlgorithm::VCluster::ClusterRet ActAlgorithm::RANSAC::Run(const std::vector<A
         return {};
     }
     // Build set to compare lines
-    auto lambdaCompare = [](const ActPhysics::Line& a, const ActPhysics::Line& b) { return a.GetChi2() < b.GetChi2(); };
-    std::set<ActPhysics::Line, decltype(lambdaCompare)> sortedLines(lambdaCompare);
+    auto lambdaCompare = [](const ActRoot::Line& a, const ActRoot::Line& b) { return a.GetChi2() < b.GetChi2(); };
+    std::set<ActRoot::Line, decltype(lambdaCompare)> sortedLines(lambdaCompare);
     // 1-> Run for fIterations
     for(int i = 0; i < fIterations; i++)
     {

@@ -282,8 +282,8 @@ void ActAlgorithm::Actions::FindRP::FindPreliminaryRP()
 }
 
 std::tuple<ActAlgorithm::VAction::XYZPointF, ActAlgorithm::VAction::XYZPointF, double>
-ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPointF pA, ActPhysics::Line::XYZVectorF vA,
-                                             ActPhysics::Line::XYZPointF pB, ActPhysics::Line::XYZVectorF vB)
+ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActRoot::Line::XYZPointF pA, ActRoot::Line::XYZVectorF vA,
+                                             ActRoot::Line::XYZPointF pB, ActRoot::Line::XYZVectorF vB)
 {
     // Using https://math.stackexchange.com/questions/1993953/closest-points-between-two-lines/3334866#3334866
     // 1-> Normalize all directions
@@ -298,7 +298,7 @@ ActAlgorithm::Actions::FindRP::ComputeRPIn3D(ActPhysics::Line::XYZPointF pA, Act
     // 3-> Matrices to solve system of equations in Math StackExchange
     TMatrixD left {3, 3}; // 3x3 matrix with double precision
     // Fill left matrix with columns as each ABC vector
-    ActPhysics::Line::XYZVectorF vecs[3] {vA, -vB, vC};
+    ActRoot::Line::XYZVectorF vecs[3] {vA, -vB, vC};
     for(int col = 0; col < 3; col++)
     {
         double components[3] {};
@@ -597,7 +597,7 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                     newCluster.ReFillSets();
                     newCluster.SetIsSplitRP(true);
                     newCluster.SetHasRP(true);
-                    newCluster.SetRegionType(RegionType::EBeam);
+                    newCluster.SetRegionType(ActRoot::RegionType::EBeam);
                     toAppend.push_back(std::move(newCluster));
 
                     if(fIsVerbose)
@@ -926,8 +926,8 @@ void ActAlgorithm::Actions::FindRP::FindPreciseRP()
     }
 }
 
-double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActPhysics::Line::XYZVectorF& beam,
-                                                      const ActPhysics::Line::XYZVectorF& recoil)
+double ActAlgorithm::Actions::FindRP::GetClusterAngle(const ActRoot::Line::XYZVectorF& beam,
+                                                      const ActRoot::Line::XYZVectorF& recoil)
 {
     auto dot {beam.Unit().Dot((recoil.Unit()))};
     return TMath::ACos(dot) * TMath::RadToDeg();

@@ -90,7 +90,7 @@ void ActAlgorithm::Actions::Merge::Run()
                 // Add j
                 sumVoxels.insert(sumVoxels.end(), jit->GetPtrToVoxels()->begin(), jit->GetPtrToVoxels()->end());
                 // And get fit of summed voxels
-                ActPhysics::Line sumLine {};
+                ActRoot::Line sumLine {};
                 sumLine.FitVoxels(sumVoxels);
                 // Compare Chi2
                 auto newChi2 {sumLine.GetChi2()};

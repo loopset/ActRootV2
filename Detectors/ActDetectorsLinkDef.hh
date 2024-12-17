@@ -10,10 +10,13 @@
 // add link for namespace
 #pragma link C++ namespace ActRoot;
 
-
 // type definitions
 #pragma link C++ enum ActRoot::DetectorType + ;
 #pragma link C++ enum ActRoot::ModeType + ;
+
+// Base classes
+// virtual detector
+#pragma link C++ class ActRoot::VDetector + ;
 
 // detectors
 #pragma link C++ class ActRoot::TPCDetector + ;
@@ -24,18 +27,14 @@
 // detector manager
 #pragma link C++ class ActRoot::DetectorManager;
 
+
 // data for detectors
+#pragma link C++ class ActRoot::Voxel + ;
+#pragma link C++ class ActRoot::Line + ;
+#pragma link C++ class ActRoot::Region + ;
 #pragma link C++ class ActRoot::Cluster + ;
-#pragma link C++ class ActRoot::TPCData + ;
-#pragma link C++ class ActRoot::SilData + ;
-#pragma link C++ class ActRoot::ModularData + ;
-#pragma link C++ class ActRoot::MergerData + ;
 
 // parameters
-#pragma link C++ class ActRoot::TPCParameters + ;
-#pragma link C++ class ActRoot::SilParameters + ;
-#pragma link C++ class ActRoot::ModularParameters + ;
-#pragma link C++ class ActRoot::MergerParameters + ;
 
 // input iterators and wrapper
 #pragma link C++ class ActRoot::InputIterator;

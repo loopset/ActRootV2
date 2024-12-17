@@ -22,7 +22,7 @@ public:
     typedef std::vector<std::vector<ActRoot::Voxel>> BrokenVoxels;
 
 private:
-    std::unordered_map<RegionType, Region> fRegions;
+    std::unordered_map<ActRoot::RegionType, ActRoot::Region> fRegions;
 
     // Parameters of algorithm
     bool fIsEnabled {};
@@ -78,14 +78,14 @@ public:
 
 
     // Getters
-    const std::unordered_map<RegionType, Region> GetRegions() const { return fRegions; }
+    const std::unordered_map<ActRoot::RegionType, ActRoot::Region> GetRegions() const { return fRegions; }
 
 private:
     void AddRegion(unsigned int i, const std::vector<double>& vec);
     void CheckRegions();
     void BreakIntoRegions();
-    RegionType AssignRangeToRegion(ClusterIt it);
-    RegionType AssignVoxelToRegion(const ActRoot::Voxel& v);
+    ActRoot::RegionType AssignRangeToRegion(ClusterIt it);
+    ActRoot::RegionType AssignVoxelToRegion(const ActRoot::Voxel& v);
     bool BreakCluster(ClusterIt it, BrokenVoxels& broken);
     void ProcessNotBeam(BrokenVoxels& broken);
     void MergeClusters();

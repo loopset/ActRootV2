@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-namespace ActPhysics
+namespace ActRoot
 {
 class Line
 {

@@ -41,14 +41,6 @@
 #include <utility>
 #include <vector>
 
-void ActRoot::MergerParameters::Print() const
-{
-    std::cout << BOLDYELLOW << ":::: MergerParameters ::::" << '\n';
-    std::cout << "-> UseRP ? " << std::boolalpha << fUseRP << '\n';
-    std::cout << "-> IsL1  ? " << std::boolalpha << fIsL1 << '\n';
-    std::cout << "-> IsCal ? " << std::boolalpha << fIsCal << '\n';
-    std::cout << "::::::::::::::::::::::::::::::" << RESET << '\n';
-}
 
 ActRoot::MergerDetector::MergerDetector()
 {
@@ -879,7 +871,7 @@ void ActRoot::MergerDetector::ComputeQProfile()
     // Safe check: align again using reference point
     fLightPtr->GetRefToLine().AlignUsingPoint(ref, true);
     // Declare line to use, bc it depends on 3D or 2D mode
-    ActPhysics::Line line {fLightPtr->GetLine()};
+    ActRoot::Line line {fLightPtr->GetLine()};
     // Save in 3D before setting 2D (if so)
     ref3D = ref;
     if(f2DProfile)

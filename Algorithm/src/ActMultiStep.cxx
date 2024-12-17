@@ -621,7 +621,7 @@ void ActAlgorithm::MultiStep::MergeSimilarTracks()
     //         // 3-> Check if fits improves
     //         if(isBelowThresh && areParallel)
     //         {
-    //             ActPhysics::Line aux {};
+    //             ActRoot::Line aux {};
     //             auto outVoxels {out->GetVoxels()};
     //             auto inVoxels {in->GetVoxels()};
     //             outVoxels.reserve(outVoxels.size() + inVoxels.size());

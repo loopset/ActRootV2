@@ -6,8 +6,8 @@
 #include "ActInputParser.h"
 #include "ActOptions.h"
 #include "ActRegion.h"
-#include "ActVoxel.h"
 #include "ActTPCData.h"
+#include "ActVoxel.h"
 
 #include <algorithm>
 #include <cstdlib>
@@ -31,15 +31,15 @@ void ActAlgorithm::MultiRegion::AddRegion(unsigned int r, const std::vector<doub
     if(vec.size() != 4)
         throw std::runtime_error("MultiRegion::AddRegion(): vec in config file for idx " + std::to_string(r) +
                                  " has size != 4 required for 2D");
-    RegionType type;
+    ActRoot::RegionType type;
     if(r == 0)
-        type = RegionType::EBeam;
+        type = ActRoot::RegionType::EBeam;
     else if(r == 1)
-        type = RegionType::ELight;
+        type = ActRoot::RegionType::ELight;
     else if(r == 2)
-        type = RegionType::EHeavy;
+        type = ActRoot::RegionType::EHeavy;
     else
-        type = RegionType::ENone;
+        type = ActRoot::RegionType::ENone;
     fRegions[type] = {vec[0], vec[1], vec[2], vec[3]};
 }
 
@@ -144,7 +144,7 @@ void ActAlgorithm::MultiRegion::CheckRegions()
 {
     bool beam {};
     for(const auto& [name, r] : fRegions)
-        if(name == RegionType::EBeam)
+        if(name == ActRoot::RegionType::EBeam)
             beam = true;
     if(!beam)
         throw std::runtime_error("MultiRegion::CheckRegions(): algorithm does not work without a Beam region set. Add "
@@ -201,7 +201,7 @@ void ActAlgorithm::MultiRegion::Run()
     ResetID();
 }
 
-ActAlgorithm::RegionType ActAlgorithm::MultiRegion::AssignRangeToRegion(ClusterIt it)
+ActRoot::RegionType ActAlgorithm::MultiRegion::AssignRangeToRegion(ClusterIt it)
 {
     for(const auto& [name, r] : fRegions)
     {
@@ -210,24 +210,24 @@ ActAlgorithm::RegionType ActAlgorithm::MultiRegion::AssignRangeToRegion(ClusterI
         if(r.IsInside(x, y))
             return name;
     }
-    return RegionType::ENone;
+    return ActRoot::RegionType::ENone;
 }
 
-ActAlgorithm::RegionType ActAlgorithm::MultiRegion::AssignVoxelToRegion(const ActRoot::Voxel& v)
+ActRoot::RegionType ActAlgorithm::MultiRegion::AssignVoxelToRegion(const ActRoot::Voxel& v)
 {
     for(const auto& [name, r] : fRegions)
     {
         if(r.IsInside(v.GetPosition()))
             return name;
     }
-    return RegionType::ENone;
+    return ActRoot::RegionType::ENone;
 }
 
 void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken)
 {
     fClocks[2].Start(false);
     // Auxiliar structure
-    std::vector<std::unordered_map<RegionType, std::vector<ActRoot::Voxel>>> aux;
+    std::vector<std::unordered_map<ActRoot::RegionType, std::vector<ActRoot::Voxel>>> aux;
     // 1-> Run for each voxel
     for(const auto& cluster : broken)
     {
@@ -266,9 +266,9 @@ void ActAlgorithm::MultiRegion::ProcessNotBeam(BrokenVoxels& broken)
 bool ActAlgorithm::MultiRegion::BreakCluster(ClusterIt it, BrokenVoxels& broken)
 {
     fClocks[1].Start(false);
-    it->SetRegionType(RegionType::EBeam);
+    it->SetRegionType(ActRoot::RegionType::EBeam);
     // 1-> Attempt to break the beam region
-    if(auto r {fRegions.find(RegionType::EBeam)}; r != fRegions.end())
+    if(auto r {fRegions.find(ActRoot::RegionType::EBeam)}; r != fRegions.end())
     {
         if(fIsVerbose)
         {
@@ -311,7 +311,7 @@ void ActAlgorithm::MultiRegion::BreakIntoRegions()
         // Attempt to assign region based on cluster ranges
         auto r {AssignRangeToRegion(it)};
         // If found, save and continue
-        if(r != RegionType::ENone)
+        if(r != ActRoot::RegionType::ENone)
         {
             it->SetRegionType(r);
             continue;
@@ -357,8 +357,8 @@ void ActAlgorithm::MultiRegion::FindRP()
     {
         std::cout << BOLDGREEN << "---- FindRP verbose ----" << '\n';
         for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
-            std::cout << "   cluster #" << it->GetClusterID() << " at region : " << RegionTypeAsStr(it->GetRegionType())
-                      << '\n';
+            std::cout << "   cluster #" << it->GetClusterID()
+                      << " at region : " << ActRoot::RegionTypeAsStr(it->GetRegionType()) << '\n';
     }
     // Init RP strucuture
     RPVector rps;
@@ -374,8 +374,8 @@ void ActAlgorithm::MultiRegion::FindRP()
             // Assert one of them is BL
             if(!(iit->GetIsBeamLike() || jit->GetIsBeamLike()))
                 continue;
-            if(fRPOutsideBeam &&
-               (iit->GetRegionType() == RegionType::EBeam && jit->GetRegionType() == RegionType::EBeam))
+            if(fRPOutsideBeam && (iit->GetRegionType() == ActRoot::RegionType::EBeam &&
+                                  jit->GetRegionType() == ActRoot::RegionType::EBeam))
                 continue;
             // Compute RP
             auto [pA, pB, dist] {ComputeRPIn3D(iit->GetLine().GetPoint(), iit->GetLine().GetDirection(),
@@ -470,7 +470,7 @@ void ActAlgorithm::MultiRegion::MarkBeamLikes()
     for(auto it = fData->fClusters.begin(); it != fData->fClusters.end(); it++)
     {
         // Check if in Beam region
-        if(it->GetRegionType() == RegionType::EBeam)
+        if(it->GetRegionType() == ActRoot::RegionType::EBeam)
         {
             // Beam-like criteria :
             // -> beamDirection.X() parallel to X
@@ -754,7 +754,7 @@ void ActAlgorithm::MultiRegion::FixBreakHeavy()
         if(!it->GetIsBeamLike())
         {
             its.push_back(it);
-            if(it->GetRegionType() == RegionType::EBeam)
+            if(it->GetRegionType() == ActRoot::RegionType::EBeam)
             {
                 treat = true;
                 toDel = it;
@@ -812,7 +812,7 @@ void ActAlgorithm::MultiRegion::Print() const
     {
         for(const auto& [type, r] : fRegions)
         {
-            std::cout << "-> Region : " << RegionTypeAsStr(type) << '\n';
+            std::cout << "-> Region : " << ActRoot::RegionTypeAsStr(type) << '\n';
             std::cout << "   ";
             r.Print();
         }

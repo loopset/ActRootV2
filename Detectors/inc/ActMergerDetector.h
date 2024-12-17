@@ -4,6 +4,7 @@
 #include "ActCluster.h"
 #include "ActInputParser.h"
 #include "ActMergerData.h"
+#include "ActMergerParameters.h"
 #include "ActModularData.h"
 #include "ActSilData.h"
 #include "ActSilSpecs.h"
@@ -11,7 +12,6 @@
 #include "ActVData.h"
 #include "ActVDetector.h"
 #include "ActVFilter.h"
-#include "ActVParameters.h"
 
 #include "TStopwatch.h"
 #include "TTree.h"
@@ -33,17 +33,6 @@ namespace ActRoot
 class TPCParameters;
 class SilParameters;
 class ModularParameters;
-
-class MergerParameters : public VParameters
-{
-public:
-    // Just flags setting event-by-event merger settings
-    bool fUseRP {};
-    bool fIsL1 {};
-    bool fIsCal {};
-
-    void Print() const override;
-};
 
 class MergerDetector : public VDetector
 {

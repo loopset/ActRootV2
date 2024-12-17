@@ -17,20 +17,20 @@
 #include <string>
 #include <vector>
 
-ActPhysics::Line::Line(XYZPointF point, XYZVectorF direction, float chi)
+ActRoot::Line::Line(XYZPointF point, XYZVectorF direction, float chi)
     : fPoint(point),
       fDirection(direction),
       fChi2(chi)
 {
 }
 
-ActPhysics::Line::Line(const XYZPointF& p1, const XYZPointF& p2)
+ActRoot::Line::Line(const XYZPointF& p1, const XYZPointF& p2)
 {
     SetPoint(p1);
     SetDirection(p1, p2);
 }
 
-void ActPhysics::Line::Scale(float xy, float z)
+void ActRoot::Line::Scale(float xy, float z)
 {
     // Point
     fPoint.SetX(fPoint.X() * xy);
@@ -42,7 +42,7 @@ void ActPhysics::Line::Scale(float xy, float z)
     fDirection.SetZ(fDirection.Z() * z);
 }
 
-void ActPhysics::Line::AlignUsingPoint(const XYZPointF& rp, bool isRecoil)
+void ActRoot::Line::AlignUsingPoint(const XYZPointF& rp, bool isRecoil)
 {
     XYZVectorF dir {};
     if(isRecoil)
@@ -57,7 +57,7 @@ void ActPhysics::Line::AlignUsingPoint(const XYZPointF& rp, bool isRecoil)
     fDirection.SetZ(TMath::Sign(fDirection.Z(), dir.Z()));
 }
 
-double ActPhysics::Line::DistanceLineToPoint(const XYZPointF& point) const
+double ActRoot::Line::DistanceLineToPoint(const XYZPointF& point) const
 {
     auto vec = point - fPoint;
     auto nD = fDirection.Cross(vec);
@@ -66,26 +66,26 @@ double ActPhysics::Line::DistanceLineToPoint(const XYZPointF& point) const
     return std::sqrt(dist2);
 }
 
-ActPhysics::Line::XYZPointF ActPhysics::Line::ProjectionPointOnLine(const XYZPointF& point) const
+ActRoot::Line::XYZPointF ActRoot::Line::ProjectionPointOnLine(const XYZPointF& point) const
 {
     auto vToPoint {point - fPoint};
     auto vInLine {fDirection * (fDirection.Dot(vToPoint) / fDirection.Mag2())};
     return fPoint + vInLine;
 }
 
-ActPhysics::Line::XYZPointF ActPhysics::Line::MoveToX(float x) const
+ActRoot::Line::XYZPointF ActRoot::Line::MoveToX(float x) const
 {
     auto t {(x - fPoint.X()) / fDirection.X()};
     return {x, fPoint.Y() + fDirection.Y() * t, fPoint.Z() + fDirection.Z() * t};
 }
 
-void ActPhysics::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset,
+void ActRoot::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset,
                                  bool useExt)
 {
     DoFit(voxels, qWeighted, correctOffset, useExt);
 }
 
-void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset, bool useExt)
+void ActRoot::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset, bool useExt)
 {
     //------3D Line Regression
     //----- adapted from: http://fr.scribd.com/doc/31477970/Regressions-et-trajectoires-3D
@@ -256,7 +256,7 @@ void ActPhysics::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWe
     fChi2 = std::fabs(dm2); // do not divide by charge!
 }
 
-void ActPhysics::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
+void ActRoot::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
                                    const std::string& degenerated)
 {
     // Based on: https://stackoverflow.com/questions/11449617/how-to-fit-the-2d-scatter-data-with-a-line-with-c
@@ -289,7 +289,7 @@ void ActPhysics::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj,
         fDirection = {1, (float)-m, 0};
 }
 
-void ActPhysics::Line::Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset)
+void ActRoot::Line::Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset)
 {
     // Check fit is good
     if(std::isnan(fDirection.Z()))
@@ -308,7 +308,7 @@ void ActPhysics::Line::Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bo
 }
 
 std::shared_ptr<TPolyLine>
-ActPhysics::Line::GetPolyLine(TString proj, int minX, int maxX, int maxY, int maxZ, int rebinZ) const
+ActRoot::Line::GetPolyLine(TString proj, int minX, int maxX, int maxY, int maxZ, int rebinZ) const
 {
     // Check proj key is right
     if(!(proj.Contains("xy") || proj.Contains("xz") || proj.Contains("yz")))
@@ -379,7 +379,7 @@ ActPhysics::Line::GetPolyLine(TString proj, int minX, int maxX, int maxY, int ma
         return std::make_shared<TPolyLine>(vy.size(), &(vy[0]), &(vz[0]));
 }
 
-std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, int maxZ, int rebinZ) const
+std::shared_ptr<TPolyLine> ActRoot::Line::TreatSaturationLine(TString proj, int maxZ, int rebinZ) const
 {
     // So for this line the slope is 0 in both X and Y
     int npoints {300};
@@ -410,7 +410,7 @@ std::shared_ptr<TPolyLine> ActPhysics::Line::TreatSaturationLine(TString proj, i
     return ret;
 }
 
-void ActPhysics::Line::Print() const
+void ActRoot::Line::Print() const
 {
     std::cout << BOLDGREEN << "---- Line parameters ----" << '\n';
     std::cout << "-> Point      : " << fPoint << '\n';
