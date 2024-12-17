@@ -25,6 +25,7 @@
 #pragma link C++ class ActRoot::VData + ;
 #pragma link C++ class ActRoot::Voxel + ;
 #pragma link C++ class ActRoot::Region + ;
+#pragma link C++ class ActRoot::Line + ;
 #pragma link C++ class ActRoot::Cluster + ;
 #pragma link C++ class ActRoot::TPCData + ;
 #pragma link C++ class ActRoot::SilData + ;
