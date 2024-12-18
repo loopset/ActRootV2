@@ -5,6 +5,7 @@
 #include "ActSilMatrix.h"
 #include "ActUtils.h"
 
+#include <cmath>
 #include <exception>
 #include <iostream>
 #include <memory>
@@ -30,6 +31,7 @@ void ActPhysics::SilLayer::Print() const
                   << '\n';
     std::cout << "-> Point  : " << fPoint << " [pads]" << '\n';
     std::cout << "-> Normal : " << fNormal << '\n';
+    std::cout << "-> PadIdx : " << fPadIdx << '\n';
     std::cout << "-> Unit   : " << '\n';
     fUnit.Print();
     std::cout << "--------------------" << '\n';
@@ -120,7 +122,10 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
             throw std::runtime_error("Side spec : " + str +
                                      " could not be interpreted in terms of left, right, front or back!");
     }
-    // 5-> Build the silicon matrix with the info gathered here
+    // 5-> Read pad index
+    if(block->CheckTokenExists("PadIdx", true))
+        fPadIdx = block->GetInt("PadIdx");
+    // 6-> Build the silicon matrix with the info gathered here
     fMatrix = BuildSilMatrix();
 }
 
@@ -190,6 +195,7 @@ std::shared_ptr<ActPhysics::SilMatrix> ActPhysics::SilLayer::BuildSilMatrix() co
         std::pair y {pair.second - h / 2, pair.second + h / 2};
         sm->AddSil(idx, x, y);
     }
+    sm->SetPadIdx(fPadIdx);
     return sm;
 }
 
@@ -213,6 +219,34 @@ int ActPhysics::SilLayer::GetIndexOfMatch(const Point<T>& p) const
     return idx;
 }
 
+void ActPhysics::SilLayer::UpdatePlacementsFromMatrix()
+{
+    fPlacements.clear();
+    for(const auto& [idx, _] : fMatrix->GetGraphs())
+    {
+        auto [xy, z] {fMatrix->GetCentre(idx)};
+        fPlacements[idx] = {xy, z};
+    }
+}
+
+void ActPhysics::SilLayer::ReplaceWithMatrix(ActPhysics::SilMatrix* sm)
+{
+    fMatrix.reset();
+    fMatrix = std::shared_ptr<SilMatrix>(sm->Clone());
+    UpdatePlacementsFromMatrix();
+}
+
+void ActPhysics::SilLayer::MoveZTo(double z, const std::set<int>& idxs)
+{
+    fMatrix->MoveZTo(z, idxs);
+    UpdatePlacementsFromMatrix();
+}
+
+double ActPhysics::SilLayer::MeanZ(const std::set<int>& idxs)
+{
+    return fMatrix->GetMeanZ(idxs);
+}
+
 void ActPhysics::SilSpecs::ReadFile(const std::string& file)
 {
     ActRoot::InputParser parser {file};
@@ -221,13 +255,14 @@ void ActPhysics::SilSpecs::ReadFile(const std::string& file)
         SilLayer layer;
         layer.ReadConfiguration(parser.GetBlock(name));
         fLayers[name] = layer;
+        fLayers[name].GetSilMatrix()->SetName(name);
     }
 }
 
-ActPhysics::SilSpecs::SearchRet
+ActPhysics::SilSpecs::SearchTuple
 ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose)
 {
-    SearchRet ret;
+    SearchTuple ret;
     for(const auto& [name, layer] : fLayers)
     {
         // Find silicon point for this layer
@@ -246,11 +281,30 @@ ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, boo
     return {"", -1, {-1, -1, -1}};
 }
 
+ActPhysics::SilSpecs::SearchPair
+ActPhysics::SilSpecs::FindSPInLayer(const std::string& name, const XYZPoint& p, const XYZVector& v)
+{
+    if(fLayers.count(name))
+    {
+        auto [sp, _] {fLayers[name].GetSiliconPointOfTrack(p, v, true)};
+        auto idx {fLayers[name].GetIndexOfMatch(sp)};
+        return {idx, sp};
+    }
+    else
+        throw std::invalid_argument("SilSpecs::FindSPInLayer: received wrong layer name");
+}
+
 void ActPhysics::SilSpecs::EraseLayer(const std::string& name)
 {
     auto it {fLayers.find(name)};
     if(it != fLayers.end())
         fLayers.erase(it);
+}
+
+void ActPhysics::SilSpecs::ReplaceWithMatrix(const std::string& name, SilMatrix* sm)
+{
+    if(fLayers.count(name))
+        fLayers[name].ReplaceWithMatrix(sm);
 }
 
 // Explicit instantiations

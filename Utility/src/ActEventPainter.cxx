@@ -20,6 +20,7 @@
 
 #include "GuiTypes.h"
 
+#include <iostream>
 #include <vector>
 
 ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, unsigned int height)
@@ -46,6 +47,11 @@ ActRoot::EventPainter::EventPainter(const TGWindow* window, unsigned int width, 
 
 ActRoot::EventPainter::~EventPainter()
 {
+    // Toggle editor if show
+    // before deleting canvas and other buttons to avoid issues with layout
+    for(auto& c : fCanvas)
+        if(c->GetShowEditor())
+            c->ToggleEditor();
     // Clean buttons
     for(auto& tb : fTextButtons)
     {

@@ -17,6 +17,7 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <unordered_map>
 
 namespace ActPhysics
 {
@@ -63,10 +64,12 @@ private:
     XYZVectorF fNormal;                    //!< Normal vector of silicon plane
     std::shared_ptr<SilMatrix> fMatrix {}; //!< Pointer to SiliconMatrix
     SilSide fSide;                         //!< Enum to spec side of layer with respect to ACTAR's frame
+    int fPadIdx {1};                       //!< In HistogramPainter, index of pad for this layer
 
 public:
     SilLayer() = default;
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block);
+    void ReplaceWithMatrix(SilMatrix* sm);
     void Print() const;
 
     // Getters and setters
@@ -81,6 +84,7 @@ public:
     const XYZPointF& GetPoint() const { return fPoint; }
     const XYZVectorF& GetNormal() const { return fNormal; }
     std::shared_ptr<SilMatrix> GetSilMatrix() const { return fMatrix; }
+    int GetPadIdx() const { return fPadIdx; }
 
     // Operations
     template <typename T>
@@ -93,6 +97,11 @@ public:
     template <typename T>
     int GetIndexOfMatch(const Point<T>& p) const;
 
+    // Miscellanea
+    void UpdatePlacementsFromMatrix();
+    void MoveZTo(double z, const std::set<int>& idxs);
+    double MeanZ(const std::set<int>& idxs);
+
 private:
     std::shared_ptr<SilMatrix> BuildSilMatrix() const;
 };
@@ -100,21 +109,27 @@ private:
 class SilSpecs
 {
 public:
-    typedef ROOT::Math::XYZPoint XYZPoint;
-    typedef ROOT::Math::XYZVector XYZVector;
-    typedef std::tuple<std::string, int, XYZPoint> SearchRet;
+    using LayerMap = std::unordered_map<std::string, SilLayer>;
+    using XYZPoint = ROOT::Math::XYZPoint;
+    using XYZVector = ROOT::Math::XYZVector;
+    using SearchTuple = std::tuple<std::string, int, XYZPoint>;
+    using SearchPair = std::pair<int, XYZPoint>;
 
 private:
-    std::unordered_map<std::string, SilLayer> fLayers;
+    LayerMap fLayers;
 
 public:
     void ReadFile(const std::string& file);
+    void ReplaceWithMatrix(const std::string& name, SilMatrix* sm);
     void Print() const;
 
+    SilLayer& GetLayer(const std::string& name) { return fLayers[name]; };
+    const LayerMap& GetLayers() const { return fLayers; }
     bool CheckLayersExists(const std::string& name) const { return fLayers.count(name); }
-    const SilLayer& GetLayer(const std::string& name) { return fLayers[name]; };
-    SearchRet FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
     void EraseLayer(const std::string& name);
+    // Search SP operations (useful for simulation)
+    SearchTuple FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
+    SearchPair FindSPInLayer(const std::string& name, const XYZPoint& p, const XYZVector& v);
 };
 } // namespace ActPhysics
 

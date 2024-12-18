@@ -8,6 +8,7 @@
 #include "ActMultiRegion.h"
 #include "ActOptions.h"
 #include "ActSilDetector.h"
+#include "ActSilMatrix.h"
 #include "ActTPCData.h"
 #include "ActTPCDetector.h"
 
@@ -18,13 +19,13 @@
 #include "TGraph.h"
 #include "TH1.h"
 #include "TH2.h"
+#include "TPaveText.h"
 #include "TPolyMarker.h"
 #include "TString.h"
 #include "TStyle.h"
 #include "TSystem.h"
 #include "TTree.h"
 
-#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -62,7 +63,7 @@ void ActRoot::HistogramPainter::Init()
 {
     // Check TCanvas
     if(fCanvas->size() < 2)
-        throw std::runtime_error("HistogramPainter::Init(): fCanvas has not correct size for E796");
+        throw std::runtime_error("HistogramPainter::Init(): fCanvas has not minimum size of 2 for having 2 tabs");
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // TPC
     fCanvas->at(0)->Divide(3, 2);
@@ -88,48 +89,7 @@ void ActRoot::HistogramPainter::Init()
                                            fTPC->GetNPADSY(), fTPC->GetNPADSZ(), 0, fTPC->GetNPADSZUNREBIN());
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Silicons
-    fSilMap = {
-        {"l0", {{1, 3}, {2, 3}, {3, 3}, {1, 2}, {2, 2}, {3, 2}, {1, 1}, {2, 1}, {3, 1}}},
-        {"f0",
-         {{1, 4},
-          {2, 4},
-          {3, 4},
-          {1, 3},
-          {3, 3}, // missing central silicon
-          {1, 2},
-          {2, 2},
-          {3, 2},
-          {1, 1},
-          {2, 1},
-          {3, 1}}},
-        {"f1",
-         {{1, 4},
-          {2, 4},
-          {3, 4},
-          {1, 3},
-          {3, 3}, // missing central silicon
-          {1, 2},
-          {2, 2},
-          {3, 2},
-          {1, 1},
-          {2, 1},
-          {3, 1}}},
-    };
     fCanvas->at(1)->Divide(3, 2);
-    // Left
-    fHist2D[1][1] = std::make_shared<TH2F>("hL0", "L0;Col;Row", 3, 0.5, 3.5, 3, 0.5, 3.5);
-    // Front L0
-    fHist2D[1][5] = std::make_shared<TH2F>("hF0", "F0;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
-    // Front L1
-    fHist2D[1][6] = std::make_shared<TH2F>("hF1", "F1;Col;Row", 3, 0.5, 3.5, 4, 0.5, 4.5);
-    for(auto& [_, h] : fHist2D[1])
-    {
-        // Style for TEXT option
-        h->SetMarkerColor(kRed);
-        h->SetMarkerSize(1.8);
-    }
-    // For number of decimals
-    gStyle->SetPaintTextFormat(".2f MeV");
 
     // Set stats options
     for(auto& [c, map] : fHist2D)
@@ -217,16 +177,41 @@ void ActRoot::HistogramPainter::FillClusterHistos()
     }
 }
 
-void ActRoot::HistogramPainter::FillSilHisto(int pad, const std::string& layer)
+void ActRoot::HistogramPainter::FillSilMatrices()
 {
     if(!fWrap->GetSilData())
         return;
-    auto E {fWrap->GetSilData()->fSiE[layer]};
-    auto N {fWrap->GetSilData()->fSiN[layer]};
-    for(int hit = 0, sizeE = E.size(); hit < sizeE; hit++)
+    auto data {fWrap->GetSilData()};
+    // For each matrix
+    for(auto& [name, matrix] : fSilMatrices)
     {
-        auto bins {fSilMap[layer][N[hit]]};
-        fHist2D[1][pad]->Fill(bins.first, bins.second, E[hit]);
+        // Build energies
+        std::map<int, double> energies;
+        if(data->fSiE.count(name))
+        {
+            for(int i = 0; i < data->fSiE[name].size(); i++)
+                energies[data->fSiN[name][i]] = data->fSiE[name][i];
+        }
+        // For each graph
+        for(auto& [idx, f] : matrix->GetGraphs())
+        {
+            f->GetListOfFunctions()->Clear();
+            // Add new text
+            auto [xy, z] {matrix->GetCentre(idx)};
+            auto w {matrix->GetWidth(idx) * 0.3};
+            auto h {matrix->GetHeight(idx) * 0.4};
+            auto* text {new TPaveText {xy - w / 2, z - h / 2, xy + w / 2, z + h / 2}};
+            text->AddText(TString::Format("%d", idx));
+            if(energies.count(idx))
+            {
+                auto* entry = text->AddText(TString::Format("%.2f MeV", energies.at(idx)));
+                text->SetTextSize(0.05);
+                entry->SetTextColor(46);
+            }
+            text->SetBorderSize(0);
+            text->SetFillStyle(0);
+            f->GetListOfFunctions()->Add(text);
+        }
     }
 }
 
@@ -236,13 +221,8 @@ void ActRoot::HistogramPainter::Fill()
     FillVoxelsHisto();
     FillClusterHistos();
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    // Sil histograms
-    // 1-> Left
-    FillSilHisto(1, "l0");
-    // 2-> Front 0
-    FillSilHisto(5, "f0");
-    // 3-> Front 1
-    FillSilHisto(6, "f1");
+    // Sil matrices
+    FillSilMatrices();
 }
 //
 void ActRoot::HistogramPainter::Draw()
@@ -271,6 +251,7 @@ void ActRoot::HistogramPainter::Draw()
     DrawRegions();
     DrawPolyLines();
     DrawPolyMarkers();
+    DrawSilMatrices();
     DrawProjections();
 
     // Update all after drawing poly things
@@ -393,6 +374,17 @@ void ActRoot::HistogramPainter::DrawPolyMarkers()
     }
 }
 
+void ActRoot::HistogramPainter::DrawSilMatrices()
+{
+    // These are always drawn in the second canvas
+    for(const auto& [name, matrix] : fSilMatrices)
+    {
+        auto idx {matrix->GetPadIdx()};
+        fCanvas->at(1)->cd(idx);
+        matrix->DrawForPainter();
+    }
+}
+
 void ActRoot::HistogramPainter::DrawProjections()
 {
     auto merger {fDetMan->GetDetectorAs<MergerDetector>()};
@@ -438,6 +430,16 @@ void ActRoot::HistogramPainter::InitRegionGraphs()
                 g->SetFillColor(kGray + 1);
             }
         }
+    }
+}
+
+void ActRoot::HistogramPainter::InitSiliconMatrices()
+{
+    auto specs {fDetMan->GetDetectorAs<MergerDetector>()->GetSilSpecs()};
+    for(const auto& [name, layer] : specs->GetLayers())
+    {
+        fSilMatrices[name] = std::shared_ptr<ActPhysics::SilMatrix>(layer.GetSilMatrix()->Clone());
+        fSilMatrices[name]->CreateMultiGraphForPainter();
     }
 }
 

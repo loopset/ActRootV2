@@ -17,8 +17,10 @@ namespace ActPhysics
 class SilMatrix
 {
 private:
+    TMultiGraph* fMulti {};
     std::string fName {};
-    std::map<int, TCutG*> fMatrix;
+    std::map<int, TCutG*> fMatrix {};
+    int fPadIdx {};
     bool fIsStyleSet {};
 
 public:
@@ -34,13 +36,19 @@ public:
 
     void SetSyle(bool enableLabel = true, Style_t ls = kSolid, Width_t lw = 2, Style_t fs = 0);
     void SetName(const std::string& name) { fName = name; }
+    void SetPadIdx(int idx) { fPadIdx = idx; }
     std::string GetName() const { return fName; }
     std::set<int> GetSilIndexes() const;
     const TCutG* GetSil(int idx) const { return fMatrix.at(idx); }
-    const std::map<int, TCutG*> GetGraphs() const { return fMatrix; }
+    const std::map<int, TCutG*>& GetGraphs() const { return fMatrix; }
+    std::pair<double, double> GetCentre(int idx) const;
+    double GetWidth(int idx) const;
+    double GetHeight(int idx) const;
+    int GetPadIdx() const { return fPadIdx; }
 
     TMultiGraph* Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
     void MoveZTo(double ztarget, const std::set<int>& idxs);
+    double GetMeanZ(const std::set<int>& idxs);
     void Erase(int idx);
 
     void Read(const std::string& file);
@@ -50,6 +58,10 @@ public:
 
     SilMatrix* Clone() const;
     TMultiGraph* DrawClone(bool same = true);
+
+    // Funtions to be used in HistogramPainter
+    void DrawForPainter();
+    void CreateMultiGraphForPainter();
 
 private:
     void InitGraph(int idx);

@@ -3,8 +3,7 @@
 
 #include "ActDetectorManager.h"
 #include "ActInputIterator.h"
-#include "ActSilDetector.h"
-#include "ActTPCDetector.h"
+#include "ActSilMatrix.h"
 
 #include "TCanvas.h"
 #include "TGraph.h"
@@ -16,8 +15,6 @@
 #include <map>
 #include <memory>
 #include <string>
-#include <unordered_map>
-#include <utility>
 #include <vector>
 
 namespace ActRoot
@@ -31,6 +28,7 @@ public:
     using LineMap = std::map<int, std::vector<std::shared_ptr<TPolyLine>>>;
     using MarkerMap = std::map<int, std::vector<std::shared_ptr<TPolyMarker>>>;
     using GraphMap = std::map<int, std::vector<std::shared_ptr<TGraph>>>;
+    using SiliconMap = std::map<std::string, std::shared_ptr<ActPhysics::SilMatrix>>;
 
 private:
     // Canvases, from EventPainter
@@ -48,17 +46,14 @@ private:
     std::map<int, LineMap> fLines;
     std::map<int, MarkerMap> fMarkers;
     std::map<int, std::shared_ptr<TH2F>> fHistTpc;
-    std::map<int, std::shared_ptr<TH2F>> fHistSil;
     std::map<int, std::vector<std::shared_ptr<TPolyLine>>> fPolyTpc;
     std::map<int, std::shared_ptr<TPolyMarker>> fMarkerTpc;
     std::map<int, GraphMap> fGraphs;
+    SiliconMap fSilMatrices;
 
     // Parameters of detectors
     TPCParameters* fTPC {};
     SilParameters* fSil {};
-
-    // Silicon map
-    std::unordered_map<std::string, std::vector<std::pair<int, int>>> fSilMap;
 
     // Store settings read in config file
     bool fShowHistStats {false};
@@ -83,6 +78,7 @@ public:
     {
         fDetMan = detman;
         InitRegionGraphs();
+        InitSiliconMatrices();
     }
 
     // TCanvas
@@ -100,12 +96,14 @@ public:
 private:
     void SetPalette(const std::string& name, bool reverse = false);
     void FillVoxelsHisto();
-    void FillSilHisto(int pad, const std::string& layer);
+    void FillSilMatrices();
     void FillClusterHistos();
     void InitRegionGraphs();
+    void InitSiliconMatrices();
     void DrawRegions();
     void DrawPolyLines();
     void DrawPolyMarkers();
+    void DrawSilMatrices();
     void DrawProjections();
     void AttachBinToCluster(std::shared_ptr<TH2F> h, double x, double y, int clusterID);
 };

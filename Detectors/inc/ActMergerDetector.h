@@ -178,6 +178,10 @@ public:
     // Getter of status
     bool GetIsEnabled() const { return fIsEnabled; }
 
+
+    // Getter of sil specs
+    std::shared_ptr<ActPhysics::SilSpecs> GetSilSpecs() const { return fSilSpecs; }
+
 private:
     void InitCorrector();
     void InitClocks();

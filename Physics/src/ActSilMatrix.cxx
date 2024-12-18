@@ -10,9 +10,11 @@
 #include "TMultiGraph.h"
 #include "TString.h"
 
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <memory>
+#include <numeric>
 #include <optional>
 #include <set>
 #include <stdexcept>
@@ -22,6 +24,13 @@
 
 ActPhysics::SilMatrix::~SilMatrix()
 {
+    if(fMulti)
+    {
+        // If MultiGraph has been generated, deleting it
+        // will automatically delete the TGraphs cause it owns them
+        delete fMulti;
+        return;
+    }
     for(auto& [i, g] : fMatrix)
         delete g;
 }
@@ -32,7 +41,7 @@ void ActPhysics::SilMatrix::AddSil(int idx, const std::pair<double, double>& x, 
         InitGraph(idx);
     // 1-> xlow, ylow
     AddPoint(idx, x.first, y.first);
-    // 2-> xlow,map .h to hpp in nvim lsp yup
+    // 2-> xlow,yup
     AddPoint(idx, x.first, y.second);
     // 3-> xup, yup
     AddPoint(idx, x.second, y.second);
@@ -51,6 +60,7 @@ void ActPhysics::SilMatrix::InitGraph(int idx)
 {
     fMatrix[idx] = new TCutG {};
     fMatrix[idx]->SetTitle(TString::Format("Surface matrix for sil %d", idx));
+    fMatrix[idx]->GetListOfFunctions()->SetOwner(); // list owns objects
 }
 
 bool ActPhysics::SilMatrix::IsInside(int idx, double x, double y)
@@ -131,10 +141,31 @@ void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
     }
 }
 
+double ActPhysics::SilMatrix::GetMeanZ(const std::set<int>& idxs)
+{
+    std::vector<double> zs;
+    for(const auto& idx : idxs)
+    {
+        if(fMatrix.count(idx))
+        {
+            double xy {};
+            double z {};
+            fMatrix[idx]->Center(xy, z);
+            zs.push_back(z);
+        }
+    }
+    return std::accumulate(zs.begin(), zs.end(), 0.) / zs.size();
+}
+
 TMultiGraph* ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, const std::string& ylabel)
 {
-    auto mg {new TMultiGraph()};
-    mg->SetTitle(TString::Format("Sil matrix %s;%s;%s", fName.c_str(), xlabel.c_str(), ylabel.c_str()));
+    if(fMulti)
+    {
+        delete fMulti;
+        fMulti = nullptr;
+    }
+    fMulti = new TMultiGraph;
+    fMulti->SetTitle(TString::Format("Sil matrix %s;%s;%s", fName.c_str(), xlabel.c_str(), ylabel.c_str()));
 
     // If style was not set by user, set default
     if(!fIsStyleSet)
@@ -142,14 +173,14 @@ TMultiGraph* ActPhysics::SilMatrix::Draw(bool same, const std::string& xlabel, c
 
     // Add to multigraph
     for(auto& [i, g] : fMatrix)
-        mg->Add(g, "lf");
+        fMulti->Add(g, "lf");
 
     // Draw
     if(!same)
-        mg->Draw("alf plc pfc");
+        fMulti->Draw("alf plc pfc");
     else
-        mg->Draw("lf plc pfc");
-    return mg;
+        fMulti->Draw("lf plc pfc");
+    return fMulti;
 }
 
 void ActPhysics::SilMatrix::Write(const std::string& file)
@@ -197,6 +228,7 @@ ActPhysics::SilMatrix* ActPhysics::SilMatrix::Clone() const
 {
     auto* sm {new SilMatrix};
     sm->SetName(fName);
+    sm->SetPadIdx(fPadIdx);
     for(const auto& [idx, g] : fMatrix)
     {
         auto* cl {(TCutG*)g->Clone()};
@@ -210,4 +242,61 @@ TMultiGraph* ActPhysics::SilMatrix::DrawClone(bool same)
 {
     auto* sm {this->Clone()};
     return sm->Draw(same);
+}
+
+std::pair<double, double> ActPhysics::SilMatrix::GetCentre(int idx) const
+{
+    std::pair<double, double> ret {-1, -1};
+    if(fMatrix.count(idx))
+    {
+        auto& g {fMatrix.at(idx)};
+        double xy {};
+        double z {};
+        g->Center(xy, z);
+        ret = {xy, z};
+    }
+    return ret;
+}
+
+double ActPhysics::SilMatrix::GetWidth(int idx) const
+{
+    double ret {-1};
+    if(fMatrix.count(idx))
+    {
+        auto& g {fMatrix.at(idx)};
+        ret = std::abs(g->GetPointX(0) - g->GetPointX(3));
+    }
+    return ret;
+}
+
+double ActPhysics::SilMatrix::GetHeight(int idx) const
+{
+    double ret {-1};
+    if(fMatrix.count(idx))
+    {
+        auto& g {fMatrix.at(idx)};
+        ret = std::abs(g->GetPointY(0) - g->GetPointY(1));
+    }
+    return ret;
+}
+
+void ActPhysics::SilMatrix::CreateMultiGraphForPainter()
+{
+    if(fMulti)
+    {
+        delete fMulti;
+        fMulti = nullptr;
+    }
+    fMulti = new TMultiGraph;
+    fMulti->SetTitle(TString::Format("%s;X or Y [mm];Z [mm]", fName.c_str()));
+    // Set style for painter: no index
+    SetSyle();
+    // Add to multigraph
+    for(auto& [i, g] : fMatrix)
+        fMulti->Add(g, "lf");
+}
+
+void ActPhysics::SilMatrix::DrawForPainter()
+{
+    fMulti->Draw("al plc pfc");
 }
