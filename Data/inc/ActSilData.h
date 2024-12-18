@@ -2,6 +2,7 @@
 #define ActSilData_h
 
 #include "ActVData.h"
+#include "Rtypes.h"
 
 #include <memory>
 #include <string>
@@ -30,6 +31,8 @@ public:
 
     void Clear() override;       //!< Reset stored variables in SilData
     void Print() const override; //!< Print calibrated silicon data
+
+    ClassDefOverride(SilData, 1);
 };
 } // namespace ActRoot
 

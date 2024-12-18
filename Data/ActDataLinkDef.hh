@@ -32,4 +32,13 @@
 #pragma link C++ class ActRoot::ModularData + ;
 #pragma link C++ class ActRoot::MergerData + ;
 
+// Schema evolution for ActPhysics::Line to ActRoot::Line
+#pragma read \
+        sourceClass="ActPhysics::Line" \
+        source="ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<float>,ROOT::Math::DefaultCoordinateSystemTag> fSigmas; ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<float>,ROOT::Math::DefaultCoordinateSystemTag> fPoint; ROOT::Math::DisplacementVector3D<ROOT::Math::Cartesian3D<float>,ROOT::Math::DefaultCoordinateSystemTag> fDirection; float fChi2" \
+        targetClass="ActRoot::Line"\
+        target="fSigmas, fPoint, fDirection, fChi2" \
+        include="Math/Point3D.h,Math/Vector3D.h" \
+        code="{fSigmas = onfile.fSigmas; fPoint = onfile.fPoint; fDirection = onfile.fDirection; fChi2 = onfile.fChi2;}";
+
 #endif

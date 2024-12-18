@@ -3,6 +3,8 @@
 
 #include "ActVData.h"
 
+#include "Rtypes.h"
+
 #include "TH1.h"
 
 #include "Math/Point3D.h"
@@ -51,6 +53,8 @@ public:
 
     void Clear() override;
     void Print() const override;
+
+    ClassDefOverride(MergerData, 1);
 };
 } // namespace ActRoot
 

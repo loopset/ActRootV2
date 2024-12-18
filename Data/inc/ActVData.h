@@ -1,6 +1,6 @@
 #ifndef ActVData_h
 #define ActVData_h
-
+#include "Rtypes.h"
 namespace ActRoot
 {
 class VData
@@ -17,6 +17,7 @@ public:
     {
         return dynamic_cast<T*>(this);
     }
+    ClassDef(VData, 1);
 };
 } // namespace ActRoot
 

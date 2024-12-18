@@ -1,6 +1,8 @@
 #ifndef ActRegion_h
 #define ActRegion_h
 
+#include "Rtypes.h"
+
 #include "TGraph.h"
 
 #include "Math/Point3Dfwd.h"
@@ -60,6 +62,8 @@ public:
     RegionPair GetCentre() const;
 
     void FillGraph(TGraph* g, TString proj, double minZ = 0, double maxZ = 0) const;
+
+    ClassDef(Region, 1);
 };
 } // namespace ActRoot
 

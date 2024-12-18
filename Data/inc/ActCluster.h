@@ -5,6 +5,8 @@
 #include "ActRegion.h"
 #include "ActVoxel.h"
 
+#include "Rtypes.h"
+
 #include "Math/Point3Dfwd.h"
 
 #include <utility>
@@ -107,6 +109,8 @@ private:
     void UpdateRange(float val, RangeType& range);
     void FillSets(const ActRoot::Voxel& voxel);
     void FillSets();
+
+    ClassDef(Cluster, 1);
 };
 
 } // namespace ActRoot

@@ -1,6 +1,8 @@
 #ifndef ActVoxel_h
 #define ActVoxel_h
 
+#include "Rtypes.h"
+
 #include "Math/GenVector/Cartesian3D.h"
 #include "Math/GenVector/CoordinateSystemTags.h"
 #include "Math/GenVector/PositionVector3D.h"
@@ -80,6 +82,8 @@ public:
     // Static function to operate with fractional part
     static FractionalZ ExtractDecimalPart(double v);
     static float RecoverFloat(float integer, FractionalZ decimal);
+
+    ClassDef(Voxel, 1);
 };
 } // namespace ActRoot
 #endif // !ActVoxel_h

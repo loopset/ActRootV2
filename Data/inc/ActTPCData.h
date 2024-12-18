@@ -5,6 +5,8 @@
 #include "ActVData.h"
 #include "ActVoxel.h"
 
+#include "Rtypes.h"
+
 #include "Math/Point3D.h"
 
 #include <vector>
@@ -23,6 +25,8 @@ public:
 public:
     void Clear() override;
     void Print() const override;
+
+    ClassDefOverride(TPCData, 1);
 };
 } // namespace ActRoot
 

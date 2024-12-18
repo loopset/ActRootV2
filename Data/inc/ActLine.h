@@ -3,6 +3,8 @@
 
 #include "ActVoxel.h"
 
+#include "Rtypes.h"
+
 #include "TPolyLine.h"
 #include "TString.h"
 
@@ -65,8 +67,10 @@ private:
     void Chi2Dfrom3D(const std::vector<ActRoot::Voxel>& voxels, bool correctOffset);
     inline bool IsInRange(double val, double min, double max) const { return (min <= val) && (val <= max); }
     std::shared_ptr<TPolyLine> TreatSaturationLine(TString proj, int maxZ, int rebinZ) const;
+
+    ClassDef(Line, 1);
 };
-} // namespace ActPhysics
+} // namespace ActRoot
 
 
 #endif

@@ -16,10 +16,10 @@
 
 // Base classes
 // virtual detector
-#pragma link C++ class ActRoot::VDetector + ;
+#pragma link C++ class ActRoot::VDetector;
 
 // detectors
-#pragma link C++ class ActRoot::TPCDetector + ;
+#pragma link C++ class ActRoot::TPCDetector;
 #pragma link C++ class ActRoot::SilDetector;
 #pragma link C++ class ActRoot::ModularDetector;
 #pragma link C++ class ActRoot::MergerDetector;
