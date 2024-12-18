@@ -76,9 +76,10 @@ var searchData=
   ['corrector_73',['corrector',['../classActAlgorithm_1_1Corrector.html#a2a8d6cdd5363f90e11bf0340459cf5af',1,'ActAlgorithm::Corrector::Corrector()'],['../classActAlgorithm_1_1Corrector.html',1,'ActAlgorithm::Corrector']]],
   ['correctzoffset_74',['CorrectZOffset',['../classActRoot_1_1MergerDetector.html#ad6251631a0777c2917266666760c500c',1,'ActRoot::MergerDetector']]],
   ['create_5fthreads_75',['create_threads',['../classBS_1_1thread__pool.html#a1bc52c5ed9a0d1d867585e492b4c99a2',1,'BS::thread_pool']]],
-  ['crosssection_76',['CrossSection',['../classActSim_1_1CrossSection.html',1,'ActSim']]],
-  ['current_5fms_77',['current_ms',['../classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b',1,'BS::timer']]],
-  ['cutsmanager_78',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]],
-  ['cyan_79',['CYAN',['../ActColors_8h.html#ad243f93c16bc4c1d3e0a13b84421d760',1,'ActColors.h']]],
-  ['cylindercleaning_80',['cylindercleaning',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a2c7ad50e0303e5f965122fc06c2ce9b8',1,'ActAlgorithm::Actions::FindRP::CylinderCleaning()'],['../namespaceActAlgorithm.html#ae54e3641a506c2c53d97c128dbc51b45',1,'ActAlgorithm::CylinderCleaning()']]]
+  ['createmultigraphforpainter_76',['CreateMultiGraphForPainter',['../classActPhysics_1_1SilMatrix.html#afbc505fed749d2c6df1386c6d268b5a6',1,'ActPhysics::SilMatrix']]],
+  ['crosssection_77',['CrossSection',['../classActSim_1_1CrossSection.html',1,'ActSim']]],
+  ['current_5fms_78',['current_ms',['../classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b',1,'BS::timer']]],
+  ['cutsmanager_79',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]],
+  ['cyan_80',['CYAN',['../ActColors_8h.html#ad243f93c16bc4c1d3e0a13b84421d760',1,'ActColors.h']]],
+  ['cylindercleaning_81',['cylindercleaning',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a2c7ad50e0303e5f965122fc06c2ce9b8',1,'ActAlgorithm::Actions::FindRP::CylinderCleaning()'],['../namespaceActAlgorithm.html#ae54e3641a506c2c53d97c128dbc51b45',1,'ActAlgorithm::CylinderCleaning()']]]
 ];
