@@ -9,5 +9,6 @@ var searchData=
   ['climb_6',['ClIMB',['../classActAlgorithm_1_1ClIMB.html',1,'ActAlgorithm']]],
   ['cluster_7',['Cluster',['../classActRoot_1_1Cluster.html',1,'ActRoot']]],
   ['corrector_8',['Corrector',['../classActAlgorithm_1_1Corrector.html',1,'ActAlgorithm']]],
-  ['cutsmanager_9',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]]
+  ['crosssection_9',['CrossSection',['../classActSim_1_1CrossSection.html',1,'ActSim']]],
+  ['cutsmanager_10',['CutsManager',['../classActRoot_1_1CutsManager.html',1,'ActRoot']]]
 ];
