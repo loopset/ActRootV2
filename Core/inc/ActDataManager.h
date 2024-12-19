@@ -32,6 +32,7 @@ public:
     void ReadDataFile(const std::string& file);
 
     // Main methods
+    void SetRuns(int low, int up);
     InputData GetInput() { return GetInput(fMode); }
     InputData GetInput(ModeType mode);
     InputData GetInputForThread(const std::set<int>& runs);

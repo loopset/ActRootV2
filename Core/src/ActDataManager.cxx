@@ -44,14 +44,29 @@ void ActRoot::DataManager::ParseManagerBlock(ActRoot::BlockPtr block)
     if(block->CheckTokenExists("Exclude", true))
     {
         auto exclude {block->GetIntVector("Exclude")};
-        std::set<int> excludeSet {exclude.begin(), exclude.end()};
-        for(const int& run : excludeSet)
+        fExludeList.insert(exclude.begin(), exclude.end());
+        for(const int& run : fExludeList)
             if(auto it {fRuns.find(run)}; it != fRuns.end())
                 fRuns.erase(it);
     }
     // 3
     if(block->CheckTokenExists("Manual", true))
         fManual = block->GetString("Manual");
+}
+
+void ActRoot::DataManager::SetRuns(int low, int up)
+{
+    // Clean file runs list
+    fRuns.clear();
+    // Generate
+    for(int i = low; i <= up; i++)
+    {
+        // Check if is in excluded list
+        if(fExludeList.find(i) != fExludeList.end())
+            continue;
+        else
+            fRuns.insert(i);
+    }
 }
 
 ActRoot::BlockPtr ActRoot::DataManager::CheckAndGet(const std::string& name)
