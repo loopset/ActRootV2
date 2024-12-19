@@ -231,7 +231,7 @@ var searchData=
   ['gettoken_228',['GetToken',['../classActRoot_1_1InputBlock.html#a8fcd3c36c6f51e66ce5f5d0540bc63ed',1,'ActRoot::InputBlock']]],
   ['gettokens_229',['GetTokens',['../classActRoot_1_1InputBlock.html#ad14fdef641ba59def8217f2c580a72ca',1,'ActRoot::InputBlock']]],
   ['gettomerge_230',['GetToMerge',['../classActRoot_1_1Cluster.html#ad978ae4e393dfa8b5505eb1c41fa20e5',1,'ActRoot::Cluster']]],
-  ['gettotalxscm_231',['GetTotalXScm',['../classActSim_1_1CrossSection.html#a6bfee85208d877e596012e6e3293fd99',1,'ActSim::CrossSection']]],
+  ['gettotalxscm2_231',['GetTotalXScm2',['../classActSim_1_1CrossSection.html#aa5cb37df8697bf2055b97f97b4aa2da2',1,'ActSim::CrossSection']]],
   ['gettotalxsmbarn_232',['GetTotalXSmbarn',['../classActSim_1_1CrossSection.html#a7c17da201dc161a87f221ba611771a43',1,'ActSim::CrossSection']]],
   ['gettpcdata_233',['gettpcdata',['../classActAlgorithm_1_1VAction.html#a03941a4934d2ee481252a188fafcb4c3',1,'ActAlgorithm::VAction::GetTPCData()'],['../classActAlgorithm_1_1VFilter.html#ae130396a2d4570e80ad7593100465c3a',1,'ActAlgorithm::VFilter::GetTPCData()'],['../classActRoot_1_1InputWrapper.html#ade5cee60eed075f0d977098f342d6370',1,'ActRoot::InputWrapper::GetTPCData() const']]],
   ['gettpcdataclone_234',['GetTPCDataClone',['../classActRoot_1_1InputWrapper.html#ac32231922d5f7f8449fcb3a6e06b92fd',1,'ActRoot::InputWrapper']]],

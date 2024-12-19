@@ -128,7 +128,7 @@ var searchData=
   ['stringtobool_125',['StringToBool',['../classActRoot_1_1InputBlock.html#aaec889265bb47c67c943747a109b1e21',1,'ActRoot::InputBlock']]],
   ['stringtodouble_126',['StringToDouble',['../classActRoot_1_1InputBlock.html#a969034cb269cf621b6eb7ef899231abd',1,'ActRoot::InputBlock']]],
   ['stringtoint_127',['StringToInt',['../classActRoot_1_1InputBlock.html#a4f8b7ba536bd390b0c9b5657d950756e',1,'ActRoot::InputBlock']]],
-  ['stripspaces_128',['stripspaces',['../namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a',1,'ActRoot::StripSpaces()'],['../classActSim_1_1CrossSection.html#a33a9c83de06fba96aa4ad7fbd7a8007a',1,'ActSim::CrossSection::StripSpaces()']]],
+  ['stripspaces_128',['StripSpaces',['../namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a',1,'ActRoot']]],
   ['stripwhitespaces_129',['StripWhitespaces',['../classActPhysics_1_1Particle.html#a9153388d8d6fdfbe2d19581b6e729364',1,'ActPhysics::Particle']]],
   ['submit_5fblocks_130',['submit_blocks',['../classBS_1_1thread__pool.html#a033e5571c8aa1649085b36544c73732a',1,'BS::thread_pool']]],
   ['submit_5floop_131',['submit_loop',['../classBS_1_1thread__pool.html#afef540eeab722bfc80c9c75924b2b563',1,'BS::thread_pool']]],
