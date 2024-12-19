@@ -115,11 +115,11 @@ double ActSim::Runner::EnergyBeforeGas(double Esil, double trackLengthInMM, cons
 }
 
 std::pair<ActSim::Runner::XYZPoint, ActSim::Runner::XYZPoint>
-ActSim::Runner::SampleVertex(double meanY, double sigmaY, double meanZ, double sigmaZ, TH3F* histBeam)
+ActSim::Runner::SampleVertex(double lengthX, double meanY, double sigmaY, double meanZ, double sigmaZ, TH3F* histBeam)
 {
     // X is always common for both manners
     double Xstart {0};
-    double Xrp {fRand->Uniform() * fgeo->GetDriftParameters().X * 2 * 10.};
+    double Xrp {fRand->Uniform() * lengthX};
     // Y depends completely on the method of calculation
     double Ystart {-1};
     double Yrp {-1};
