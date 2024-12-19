@@ -25,4 +25,8 @@
 // Track generator
 #pragma link C++ class ActSim::TrackGenerator;
 
+// Cross section sampler
+#pragma link C++ class ActSim::CrossSection;
+
+
 #endif

@@ -16,21 +16,19 @@ private:
     std::vector<double> fY {};
     std::vector<double> fY_AngleGraph {};
     double fStep {};
-    bool fIsAngle {};
     double fTotalXS {};
     TSpline3* fCDF {};
-    TSpline3* fCDFGraph {};
-    TSpline3* fTheoXS {};
+    TGraph* fTheoXSGraph {};
+    bool fIsAngle {};
 
 public:
-    std::string StripSpaces(std::string line);
     void ReadData(const std::string& file, const bool isAngle);
     double xsIntervalcm(const TString& file, double minAngle, double maxAngle);
     void DrawCDF() const;
     double Sample(const double angle);
     void DrawTheo();
     double GetTotalXSmbarn() { return fTotalXS; }
-    double GetTotalXScm() const { return fTotalXS * 1e-27; }
+    double GetTotalXScm2() const { return fTotalXS * 1e-27; }
 
 private:
 };
