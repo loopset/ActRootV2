@@ -2,7 +2,7 @@ var searchData=
 [
   ['sample_0',['Sample',['../classActSim_1_1CrossSection.html#af9a932dc8b164bcae4796d037be3cba3',1,'ActSim::CrossSection']]],
   ['sampleline_1',['SampleLine',['../classActAlgorithm_1_1RANSAC.html#a90ebae948dc812d30a1e5a38afb89aff',1,'ActAlgorithm::RANSAC']]],
-  ['samplevertex_2',['SampleVertex',['../classActSim_1_1Runner.html#a809f9c559a4cfd2dcf7a144c68d11c19',1,'ActSim::Runner']]],
+  ['samplevertex_2',['SampleVertex',['../classActSim_1_1Runner.html#a53b47e1a79be0a4ed93cd1ba4269a85e',1,'ActSim::Runner']]],
   ['samplexs_3',['SampleXS',['../classActSim_1_1TheoCrossSection.html#a26fa9d633d423fb874fd60e2f309fe58',1,'ActSim::TheoCrossSection']]],
   ['scale_4',['Scale',['../classActRoot_1_1Line.html#a3cd434c01053803c5c8aa937d698c855',1,'ActRoot::Line']]],
   ['scalepoint_5',['ScalePoint',['../classActRoot_1_1MergerDetector.html#a94a7f6139467885b95ac5345483bc57c',1,'ActRoot::MergerDetector']]],
