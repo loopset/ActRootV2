@@ -53,6 +53,7 @@ public:
     double DistanceLineToPoint(const XYZPointF& point) const;
     XYZPointF ProjectionPointOnLine(const XYZPointF& point) const;
     XYZPointF MoveToX(float x) const;
+    XYZPointF MoveToY(float y) const;
     void FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted = true, bool correctOffset = true,
                    bool useExt = false);
     std::shared_ptr<TPolyLine> GetPolyLine(TString proj, int minX, int maxX, int maxY, int maxZ, int rebinZ) const;

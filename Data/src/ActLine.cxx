@@ -17,10 +17,7 @@
 #include <string>
 #include <vector>
 
-ActRoot::Line::Line(XYZPointF point, XYZVectorF direction, float chi)
-    : fPoint(point),
-      fDirection(direction),
-      fChi2(chi)
+ActRoot::Line::Line(XYZPointF point, XYZVectorF direction, float chi) : fPoint(point), fDirection(direction), fChi2(chi)
 {
 }
 
@@ -79,8 +76,14 @@ ActRoot::Line::XYZPointF ActRoot::Line::MoveToX(float x) const
     return {x, fPoint.Y() + fDirection.Y() * t, fPoint.Z() + fDirection.Z() * t};
 }
 
+ActRoot::Line::XYZPointF ActRoot::Line::MoveToY(float y) const
+{
+    auto t {(y - fPoint.Y()) / fDirection.Y()};
+    return {fPoint.X() + fDirection.X() * t, y, fPoint.Z() + fDirection.Z() * t};
+}
+
 void ActRoot::Line::FitVoxels(const std::vector<ActRoot::Voxel>& voxels, bool qWeighted, bool correctOffset,
-                                 bool useExt)
+                              bool useExt)
 {
     DoFit(voxels, qWeighted, correctOffset, useExt);
 }
@@ -257,7 +260,7 @@ void ActRoot::Line::DoFit(const std::vector<ActRoot::Voxel>& voxels, bool qWeigh
 }
 
 void ActRoot::Line::Fit2Dfrom3D(double Mi, double Mj, double Sii, double Sjj, double Sij, double w,
-                                   const std::string& degenerated)
+                                const std::string& degenerated)
 {
     // Based on: https://stackoverflow.com/questions/11449617/how-to-fit-the-2d-scatter-data-with-a-line-with-c
     // and in:

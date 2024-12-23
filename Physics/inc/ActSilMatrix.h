@@ -17,7 +17,7 @@ namespace ActPhysics
 class SilMatrix
 {
 private:
-    TMultiGraph* fMulti {};
+    TMultiGraph* fMulti {}; //!
     std::string fName {};
     std::map<int, TCutG*> fMatrix {};
     int fPadIdx {};
@@ -53,6 +53,7 @@ public:
 
     void Read(const std::string& file);
     void Write(const std::string& file);
+    void Write();
 
     void Print() const;
 

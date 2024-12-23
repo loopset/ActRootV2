@@ -189,6 +189,11 @@ void ActPhysics::SilMatrix::Write(const std::string& file)
     fout->WriteObject(this, "silMatrix");
 }
 
+void ActPhysics::SilMatrix::Write()
+{
+    gFile->WriteObject(this, fName.c_str());
+}
+
 void ActPhysics::SilMatrix::Read(const std::string& file)
 {
     auto fin {std::make_unique<TFile>(file.c_str())};
