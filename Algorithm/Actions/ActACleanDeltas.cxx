@@ -2,7 +2,8 @@
 
 #include "ActColors.h"
 #include "ActTPCData.h"
-#include "ActTPCParameters.h"
+
+#include <ios>
 
 void ActAlgorithm::Actions::CleanDeltas::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
@@ -13,6 +14,8 @@ void ActAlgorithm::Actions::CleanDeltas::ReadConfiguration(std::shared_ptr<ActRo
         fDeltaChi2Threshold = block->GetDouble("DeltaChi2Threshold");
     if(block->CheckTokenExists("DeltaMaxVoxeles"))
         fDeltaMaxVoxels = block->GetDouble("DeltaMaxVoxeles");
+    if(block->CheckTokenExists("UseExtVoxels"))
+        fUseExtVoxels = block->GetBool("UseExtVoxels");
 }
 
 void ActAlgorithm::Actions::CleanDeltas::Run()
@@ -21,6 +24,9 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
         return;
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
+        if(fUseExtVoxels)
+            if(!it->GetUseExtVoxels())
+                it->SetUseExtVoxels(true);
         // 1-> Check whether cluster has a large Chi2
         bool hasLargeChi {it->GetLine().GetChi2() > fDeltaChi2Threshold};
         // 2-> Check if less voxeles than delta electron limits
@@ -52,8 +58,9 @@ void ActAlgorithm::Actions::CleanDeltas::Print() const
         std::cout << "······························" << RESET << '\n';
         return;
     }
-    std::cout << "  Chi2Thresh         : " << fDeltaChi2Threshold << '\n';
-    std::cout << "  MaxVoxeles         : " << fDeltaMaxVoxels << '\n';
+    std::cout << "  Chi2Thresh   : " << fDeltaChi2Threshold << '\n';
+    std::cout << "  MaxVoxels    : " << fDeltaMaxVoxels << '\n';
+    std::cout << "  UseExtVoxels ? " << std::boolalpha << fUseExtVoxels << '\n';
 
     std::cout << "······························" << RESET << '\n';
 }

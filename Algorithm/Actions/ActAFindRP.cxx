@@ -127,10 +127,11 @@ void ActAlgorithm::Actions::FindRP::SetExtVoxels()
 {
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end(); it++)
     {
-        // 1-> Set the flag for future fits
-        it->SetUseExtVoxels(true);
-        // 2-> Refit with that!
-        it->ReFit();
+        // Set if it was not already set before
+        // The set method implicitly executes the ReFit
+        // To update the line parameters with the extended voxel content
+        if(!it->GetUseExtVoxels())
+            it->SetUseExtVoxels(true);
     }
 }
 
@@ -593,7 +594,11 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                 {
                     ActRoot::Cluster newCluster {(int)fTPCData->fClusters.size()};
                     newCluster.SetVoxels(std::move(newVoxels));
-                    newCluster.ReFit();
+                    // Propagate ExtVoxels to new cluster
+                    if(fUseExtVoxels)
+                        newCluster.SetUseExtVoxels(true); // implicitly executes ReFit()
+                    else
+                        newCluster.ReFit();
                     newCluster.ReFillSets();
                     newCluster.SetIsSplitRP(true);
                     newCluster.SetHasRP(true);

@@ -79,7 +79,7 @@ public:
     void SetIsSplitRP(bool split) { fIsSplit = split; }
     void SetRegionType(ActRoot::RegionType type) { fRegion = type; }
     void SetHasRP(bool has) { fHasRP = has; }
-    void SetUseExtVoxels(bool use) { fUseExtVoxels = use; }
+    void SetUseExtVoxels(bool use);
 
     // Adders of voxels
     void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back

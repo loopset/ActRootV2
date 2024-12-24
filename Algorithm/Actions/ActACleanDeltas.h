@@ -9,8 +9,9 @@ namespace Actions
 class CleanDeltas : public VAction
 {
 private:
-    double fDeltaChi2Threshold {}; // Chi2 threshold (bad fit)
-    double fDeltaMaxVoxels {};     // Max amount of voxeles for a delta e- trace
+    double fDeltaChi2Threshold {}; //!< Chi2 threshold (bad fit)
+    double fDeltaMaxVoxels {};     //!< Max amount of voxeles for a delta e- trace
+    bool fUseExtVoxels {false};    //!< Whether to use extended voxel content to determine finer chi2
 
 public:
     CleanDeltas() : VAction("CleanDeltas") {}

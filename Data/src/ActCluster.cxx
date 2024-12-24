@@ -125,6 +125,13 @@ ActRoot::Cluster::XYZPointF ActRoot::Cluster::GetGravityPointInXRange(double len
     return XYZPointF(xsum, ysum, zsum);
 }
 
+void ActRoot::Cluster::SetUseExtVoxels(bool use)
+{
+    fUseExtVoxels = use;
+    // Implicitly execute ReFit when this flag is changed
+    ReFit();
+}
+
 void ActRoot::Cluster::ReFit()
 {
     fLine.FitVoxels(fVoxels, true, true, fUseExtVoxels);
@@ -207,5 +214,6 @@ void ActRoot::Cluster::Print() const
     std::cout << "-> IsToDelete  ? " << std::boolalpha << fToDelete << '\n';
     std::cout << "-> RegionType  : " << ActRoot::RegionTypeAsStr(fRegion) << '\n';
     std::cout << "-> HasRP       ? " << std::boolalpha << fHasRP << '\n';
+    std::cout << "-> UseExt      ? " << std::boolalpha << fUseExtVoxels << '\n';
     std::cout << "...................." << RESET << '\n';
 }
