@@ -118,6 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6fe8f48864e1ca108d8a866a86ff683a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c7611f5c98e818a2dead8f17f429c5b" id="r_a8c7611f5c98e818a2dead8f17f429c5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a8c7611f5c98e818a2dead8f17f429c5b">Print</a> () const override</td></tr>
 <tr class="separator:a8c7611f5c98e818a2dead8f17f429c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a143315f13728c6b8b12a72e82ea6553d" id="r_a143315f13728c6b8b12a72e82ea6553d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a143315f13728c6b8b12a72e82ea6553d">Stream</a> (std::ostream &amp;streamer) const</td></tr>
+<tr class="separator:a143315f13728c6b8b12a72e82ea6553d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a291780ae00a3d83a6356766f83b8db2a" id="r_a291780ae00a3d83a6356766f83b8db2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1MergerData.html#a291780ae00a3d83a6356766f83b8db2a">ClassDefOverride</a> (<a class="el" href="classActRoot_1_1MergerData.html">MergerData</a>, 1)</td></tr>
 <tr class="separator:a291780ae00a3d83a6356766f83b8db2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActRoot_1_1VData"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActRoot_1_1VData')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActRoot_1_1VData.html">ActRoot::VData</a></td></tr>
@@ -268,16 +270,16 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
-<div class="line"><span class="lineno">    9</span>    <span class="comment">// Reset but still keep run and entry number</span></div>
-<div class="line"><span class="lineno">   10</span>    <span class="keyword">auto</span> run {<a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a>};</div>
-<div class="line"><span class="lineno">   11</span>    <span class="keyword">auto</span> entry {<a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a>};</div>
-<div class="line"><span class="lineno">   12</span>    *<span class="keyword">this</span> = MergerData {};</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a> = run;</div>
-<div class="line"><span class="lineno">   14</span>    <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a> = entry;</div>
-<div class="line"><span class="lineno">   15</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae059249bb08da1af62454f780c312870"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">ActRoot::MergerData::fRun</a></div><div class="ttdeci">int fRun</div><div class="ttdef"><b>Definition</b> ActMergerData.h:52</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae85251a9da31626e19dcdd25ad521405"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">ActRoot::MergerData::fEntry</a></div><div class="ttdeci">int fEntry</div><div class="ttdef"><b>Definition</b> ActMergerData.h:51</div></div>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
+<div class="line"><span class="lineno">   10</span>    <span class="comment">// Reset but still keep run and entry number</span></div>
+<div class="line"><span class="lineno">   11</span>    <span class="keyword">auto</span> run {<a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a>};</div>
+<div class="line"><span class="lineno">   12</span>    <span class="keyword">auto</span> entry {<a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a>};</div>
+<div class="line"><span class="lineno">   13</span>    *<span class="keyword">this</span> = MergerData {};</div>
+<div class="line"><span class="lineno">   14</span>    <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a> = run;</div>
+<div class="line"><span class="lineno">   15</span>    <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a> = entry;</div>
+<div class="line"><span class="lineno">   16</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae059249bb08da1af62454f780c312870"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">ActRoot::MergerData::fRun</a></div><div class="ttdeci">int fRun</div><div class="ttdef"><b>Definition</b> ActMergerData.h:53</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae85251a9da31626e19dcdd25ad521405"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">ActRoot::MergerData::fEntry</a></div><div class="ttdeci">int fEntry</div><div class="ttdef"><b>Definition</b> ActMergerData.h:52</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -305,48 +307,69 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">ActRoot::VData</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
-<div class="line"><span class="lineno">   19</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;:::: MergerData ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   20</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; WP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">fWP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   21</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; RP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   22</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; SP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   23</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BSP    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#aa28022b8769eca32204162f6f2687969">fBSP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   24</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BraggP : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">fBraggP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   25</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Silicons : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.size(); i++)</div>
-<div class="line"><span class="lineno">   27</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   layer : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>[i] &lt;&lt; <span class="stringliteral">&quot; idx : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">fSilNs</a>[i] &lt;&lt; <span class="stringliteral">&quot; E : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">fSilEs</a>[i] &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   28</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaBeam   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a21baab5617a493d87b7625e5e44cfc1a">fThetaBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   29</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaBeamZ  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad5857d6cdf1a03e232624f7ed7fafdca">fThetaBeamZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   30</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PhiBeamY    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a46f5ef0b67b6a9bb15e26d31d7465cdc">fPhiBeamY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   31</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaLight  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   32</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaDebug  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae7983582f8e5519bc1784226ba15b35e">fThetaDebug</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   33</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaLegacy : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad11ab4d459c61d3acde186ae0d827d74">fThetaLegacy</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   34</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaHeavy  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae2da728a66533d1a9020e36211fb19be">fThetaHeavy</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   35</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Phi         : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">fPhiLight</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   36</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Qave        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   37</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; TL          : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#aa6558ea22ea006ef19655078fc08db05">fTrackLength</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   38</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   39</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>{</div>
+<div class="line"><span class="lineno">   20</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;:::: MergerData ::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   21</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; WP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">fWP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   22</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; RP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">fRP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   23</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; SP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">fSP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   24</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BSP    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#aa28022b8769eca32204162f6f2687969">fBSP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   25</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; BraggP : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">fBraggP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   26</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Silicons : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>.size(); i++)</div>
+<div class="line"><span class="lineno">   28</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   layer : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">fSilLayers</a>[i] &lt;&lt; <span class="stringliteral">&quot; idx : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">fSilNs</a>[i] &lt;&lt; <span class="stringliteral">&quot; E : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">fSilEs</a>[i] &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   29</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaBeam   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a21baab5617a493d87b7625e5e44cfc1a">fThetaBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   30</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaBeamZ  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad5857d6cdf1a03e232624f7ed7fafdca">fThetaBeamZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   31</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PhiBeamY    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a46f5ef0b67b6a9bb15e26d31d7465cdc">fPhiBeamY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   32</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaLight  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">fThetaLight</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   33</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaDebug  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae7983582f8e5519bc1784226ba15b35e">fThetaDebug</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   34</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaLegacy : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad11ab4d459c61d3acde186ae0d827d74">fThetaLegacy</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   35</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; ThetaHeavy  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae2da728a66533d1a9020e36211fb19be">fThetaHeavy</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   36</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Phi         : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">fPhiLight</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   37</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Qave        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">fQave</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   38</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; TL          : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#aa6558ea22ea006ef19655078fc08db05">fTrackLength</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   39</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;::::::::::::::::::::&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   40</span>}</div>
 <div class="ttc" id="aActColors_8h_html_a4a6c893a1703c33ede7d702fe5f97c91"><div class="ttname"><a href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a></div><div class="ttdeci">#define BOLDGREEN</div><div class="ttdef"><b>Definition</b> ActColors.h:17</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a0dfaf990cf4a54a6f87936b3937e0eaa"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">ActRoot::MergerData::fThetaLight</a></div><div class="ttdeci">float fThetaLight</div><div class="ttdef"><b>Definition</b> ActMergerData.h:42</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a21baab5617a493d87b7625e5e44cfc1a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a21baab5617a493d87b7625e5e44cfc1a">ActRoot::MergerData::fThetaBeam</a></div><div class="ttdeci">float fThetaBeam</div><div class="ttdef"><b>Definition</b> ActMergerData.h:39</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a46f5ef0b67b6a9bb15e26d31d7465cdc"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a46f5ef0b67b6a9bb15e26d31d7465cdc">ActRoot::MergerData::fPhiBeamY</a></div><div class="ttdeci">float fPhiBeamY</div><div class="ttdef"><b>Definition</b> ActMergerData.h:41</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a53bfa0a534b96538a5cd2a75e0521a03"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">ActRoot::MergerData::fQave</a></div><div class="ttdeci">float fQave</div><div class="ttdef"><b>Definition</b> ActMergerData.h:47</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a69d2f2398710d273fead1b4aef3d41ba"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">ActRoot::MergerData::fSilNs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilNs</div><div class="ttdef"><b>Definition</b> ActMergerData.h:37</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">ActRoot::MergerData::fSilLayers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fSilLayers</div><div class="ttdef"><b>Definition</b> ActMergerData.h:35</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:31</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7e117c8c2c182e788c5672dda8f36e05"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">ActRoot::MergerData::fWP</a></div><div class="ttdeci">XYZPoint fWP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:29</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_aa28022b8769eca32204162f6f2687969"><div class="ttname"><a href="classActRoot_1_1MergerData.html#aa28022b8769eca32204162f6f2687969">ActRoot::MergerData::fBSP</a></div><div class="ttdeci">XYZPoint fBSP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:33</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_aa6558ea22ea006ef19655078fc08db05"><div class="ttname"><a href="classActRoot_1_1MergerData.html#aa6558ea22ea006ef19655078fc08db05">ActRoot::MergerData::fTrackLength</a></div><div class="ttdeci">float fTrackLength</div><div class="ttdef"><b>Definition</b> ActMergerData.h:38</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ab830ef6910752dc0e9a902692e82cb4b"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">ActRoot::MergerData::fBraggP</a></div><div class="ttdeci">XYZPoint fBraggP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:34</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:30</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad11ab4d459c61d3acde186ae0d827d74"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad11ab4d459c61d3acde186ae0d827d74">ActRoot::MergerData::fThetaLegacy</a></div><div class="ttdeci">float fThetaLegacy</div><div class="ttdef"><b>Definition</b> ActMergerData.h:44</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad5857d6cdf1a03e232624f7ed7fafdca"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad5857d6cdf1a03e232624f7ed7fafdca">ActRoot::MergerData::fThetaBeamZ</a></div><div class="ttdeci">float fThetaBeamZ</div><div class="ttdef"><b>Definition</b> ActMergerData.h:40</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad90fbcf69e0c38713ff134e88ac6d4cd"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">ActRoot::MergerData::fPhiLight</a></div><div class="ttdeci">float fPhiLight</div><div class="ttdef"><b>Definition</b> ActMergerData.h:46</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ada67cf8c69c1579243a0d01627e22fa6"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">ActRoot::MergerData::fSilEs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilEs</div><div class="ttdef"><b>Definition</b> ActMergerData.h:36</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae2da728a66533d1a9020e36211fb19be"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae2da728a66533d1a9020e36211fb19be">ActRoot::MergerData::fThetaHeavy</a></div><div class="ttdeci">float fThetaHeavy</div><div class="ttdef"><b>Definition</b> ActMergerData.h:45</div></div>
-<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae7983582f8e5519bc1784226ba15b35e"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae7983582f8e5519bc1784226ba15b35e">ActRoot::MergerData::fThetaDebug</a></div><div class="ttdeci">float fThetaDebug</div><div class="ttdef"><b>Definition</b> ActMergerData.h:43</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a0dfaf990cf4a54a6f87936b3937e0eaa"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a0dfaf990cf4a54a6f87936b3937e0eaa">ActRoot::MergerData::fThetaLight</a></div><div class="ttdeci">float fThetaLight</div><div class="ttdef"><b>Definition</b> ActMergerData.h:43</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a21baab5617a493d87b7625e5e44cfc1a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a21baab5617a493d87b7625e5e44cfc1a">ActRoot::MergerData::fThetaBeam</a></div><div class="ttdeci">float fThetaBeam</div><div class="ttdef"><b>Definition</b> ActMergerData.h:40</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a46f5ef0b67b6a9bb15e26d31d7465cdc"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a46f5ef0b67b6a9bb15e26d31d7465cdc">ActRoot::MergerData::fPhiBeamY</a></div><div class="ttdeci">float fPhiBeamY</div><div class="ttdef"><b>Definition</b> ActMergerData.h:42</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a53bfa0a534b96538a5cd2a75e0521a03"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">ActRoot::MergerData::fQave</a></div><div class="ttdeci">float fQave</div><div class="ttdef"><b>Definition</b> ActMergerData.h:48</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a69d2f2398710d273fead1b4aef3d41ba"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a69d2f2398710d273fead1b4aef3d41ba">ActRoot::MergerData::fSilNs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilNs</div><div class="ttdef"><b>Definition</b> ActMergerData.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7b0aa0dbd3e1c59fa7c4ec9d62445bb4"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7b0aa0dbd3e1c59fa7c4ec9d62445bb4">ActRoot::MergerData::fSilLayers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; fSilLayers</div><div class="ttdef"><b>Definition</b> ActMergerData.h:36</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7cb4507403b40049537bec8a6bd7668a"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7cb4507403b40049537bec8a6bd7668a">ActRoot::MergerData::fSP</a></div><div class="ttdeci">XYZPoint fSP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:32</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_a7e117c8c2c182e788c5672dda8f36e05"><div class="ttname"><a href="classActRoot_1_1MergerData.html#a7e117c8c2c182e788c5672dda8f36e05">ActRoot::MergerData::fWP</a></div><div class="ttdeci">XYZPoint fWP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:30</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_aa28022b8769eca32204162f6f2687969"><div class="ttname"><a href="classActRoot_1_1MergerData.html#aa28022b8769eca32204162f6f2687969">ActRoot::MergerData::fBSP</a></div><div class="ttdeci">XYZPoint fBSP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:34</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_aa6558ea22ea006ef19655078fc08db05"><div class="ttname"><a href="classActRoot_1_1MergerData.html#aa6558ea22ea006ef19655078fc08db05">ActRoot::MergerData::fTrackLength</a></div><div class="ttdeci">float fTrackLength</div><div class="ttdef"><b>Definition</b> ActMergerData.h:39</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ab830ef6910752dc0e9a902692e82cb4b"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ab830ef6910752dc0e9a902692e82cb4b">ActRoot::MergerData::fBraggP</a></div><div class="ttdeci">XYZPoint fBraggP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:35</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_abcad18a948b4335d59369824943cc770"><div class="ttname"><a href="classActRoot_1_1MergerData.html#abcad18a948b4335d59369824943cc770">ActRoot::MergerData::fRP</a></div><div class="ttdeci">XYZPoint fRP</div><div class="ttdef"><b>Definition</b> ActMergerData.h:31</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad11ab4d459c61d3acde186ae0d827d74"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad11ab4d459c61d3acde186ae0d827d74">ActRoot::MergerData::fThetaLegacy</a></div><div class="ttdeci">float fThetaLegacy</div><div class="ttdef"><b>Definition</b> ActMergerData.h:45</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad5857d6cdf1a03e232624f7ed7fafdca"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad5857d6cdf1a03e232624f7ed7fafdca">ActRoot::MergerData::fThetaBeamZ</a></div><div class="ttdeci">float fThetaBeamZ</div><div class="ttdef"><b>Definition</b> ActMergerData.h:41</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ad90fbcf69e0c38713ff134e88ac6d4cd"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ad90fbcf69e0c38713ff134e88ac6d4cd">ActRoot::MergerData::fPhiLight</a></div><div class="ttdeci">float fPhiLight</div><div class="ttdef"><b>Definition</b> ActMergerData.h:47</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ada67cf8c69c1579243a0d01627e22fa6"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ada67cf8c69c1579243a0d01627e22fa6">ActRoot::MergerData::fSilEs</a></div><div class="ttdeci">std::vector&lt; float &gt; fSilEs</div><div class="ttdef"><b>Definition</b> ActMergerData.h:37</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae2da728a66533d1a9020e36211fb19be"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae2da728a66533d1a9020e36211fb19be">ActRoot::MergerData::fThetaHeavy</a></div><div class="ttdeci">float fThetaHeavy</div><div class="ttdef"><b>Definition</b> ActMergerData.h:46</div></div>
+<div class="ttc" id="aclassActRoot_1_1MergerData_html_ae7983582f8e5519bc1784226ba15b35e"><div class="ttname"><a href="classActRoot_1_1MergerData.html#ae7983582f8e5519bc1784226ba15b35e">ActRoot::MergerData::fThetaDebug</a></div><div class="ttdeci">float fThetaDebug</div><div class="ttdef"><b>Definition</b> ActMergerData.h:44</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a143315f13728c6b8b12a72e82ea6553d" name="a143315f13728c6b8b12a72e82ea6553d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a143315f13728c6b8b12a72e82ea6553d">&#9670;&#160;</a></span>Stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActRoot::MergerData::Stream </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>streamer</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   43</span>{</div>
+<div class="line"><span class="lineno">   44</span>    streamer &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">fRun</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1MergerData.html#ae85251a9da31626e19dcdd25ad521405">fEntry</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   45</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -362,7 +385,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   48</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -377,7 +400,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{-1, -1, -1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{-1, -1, -1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,7 +415,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{-1, -1, -1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{-1, -1, -1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -407,7 +430,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   33</span>{-1, -1, -1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>{-1, -1, -1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -422,7 +445,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   51</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -437,7 +460,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   50</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -452,7 +475,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -467,7 +490,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   41</span>{-1};   <span class="comment">// emittance angle along Y</span></div>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>{-1};   <span class="comment">// emittance angle along Y</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -482,7 +505,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   46</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -497,7 +520,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   47</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -512,7 +535,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   28</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -527,7 +550,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   27</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -542,7 +565,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{-1, -1, -1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>{-1, -1, -1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -557,7 +580,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   52</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -572,7 +595,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   36</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   37</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -587,7 +610,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   35</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -602,7 +625,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   37</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   38</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -617,7 +640,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   31</span>{-1, -1, -1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>{-1, -1, -1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -632,7 +655,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -647,7 +670,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   40</span>{-1}; <span class="comment">// emittance angle along Z</span></div>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{-1}; <span class="comment">// emittance angle along Z</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -662,7 +685,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   43</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -677,7 +700,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   45</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -692,7 +715,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   44</span>{-1}; <span class="comment">// this is just fThetaLight but will not be corrected in CorrDetector</span></div>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>{-1}; <span class="comment">// this is just fThetaLight but will not be corrected in CorrDetector</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -707,7 +730,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   42</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   43</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -722,7 +745,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   38</span>{-1};</div>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{-1};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -737,7 +760,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   29</span>{-1, -1, -1}; <span class="comment">// window point aka entrance point</span></div>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>{-1, -1, -1}; <span class="comment">// window point aka entrance point</span></div>
 </div><!-- fragment -->
 </div>
 </div>
