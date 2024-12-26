@@ -3,6 +3,7 @@
 #include "ActColors.h"
 
 #include <iostream>
+#include <ostream>
 
 void ActRoot::MergerData::Clear()
 {
@@ -36,4 +37,9 @@ void ActRoot::MergerData::Print() const
     std::cout << "-> Qave        : " << fQave << '\n';
     std::cout << "-> TL          : " << fTrackLength << '\n';
     std::cout << "::::::::::::::::::::" << RESET << '\n';
+}
+
+void ActRoot::MergerData::Stream(std::ostream& streamer) const
+{
+    streamer << fRun << " " << fEntry << '\n';
 }

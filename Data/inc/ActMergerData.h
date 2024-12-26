@@ -12,6 +12,7 @@
 #include "Math/Vector3D.h"
 #include "Math/Vector3Dfwd.h"
 
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -53,6 +54,7 @@ public:
 
     void Clear() override;
     void Print() const override;
+    void Stream(std::ostream& streamer) const;
 
     ClassDefOverride(MergerData, 1);
 };
