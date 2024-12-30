@@ -179,7 +179,7 @@ void ActRoot::TPCDetector::ClearEventData()
 
 void ActRoot::TPCDetector::ClearEventFilter()
 {
-    // Not needed because we are reading directly from ttree
+    fData->ClearFilter();
 }
 
 void ActRoot::TPCDetector::BuildEventData(int run, int entry)

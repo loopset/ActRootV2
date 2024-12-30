@@ -134,6 +134,11 @@ void ActRoot::Cluster::SetUseExtVoxels(bool use)
 
 void ActRoot::Cluster::ReFit()
 {
+    // fIsDefault means that the cluster's line direction has been set manually
+    // and therefore we shouldn't fit it again in order to not modify that "default" direction
+    // only used when the BL cluster is too short and a default {1, 0, 0} beam direction is set
+    if(fIsDefault)
+        return;
     fLine.FitVoxels(fVoxels, true, true, fUseExtVoxels);
 }
 
@@ -215,5 +220,6 @@ void ActRoot::Cluster::Print() const
     std::cout << "-> RegionType  : " << ActRoot::RegionTypeAsStr(fRegion) << '\n';
     std::cout << "-> HasRP       ? " << std::boolalpha << fHasRP << '\n';
     std::cout << "-> UseExt      ? " << std::boolalpha << fUseExtVoxels << '\n';
+    std::cout << "-> IsDefault   ? " << std::boolalpha << fIsDefault << '\n';
     std::cout << "...................." << RESET << '\n';
 }

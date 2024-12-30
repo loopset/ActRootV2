@@ -17,7 +17,6 @@ private:
     double fRPDistThresh {};             // Max distance between two lines to form a RP
     double fRPDistCluster {};            // Max distance to cluster RPs
     bool fEnableDeleteInvalidCluster {}; // Bool to enable the function DeleteInvalidCluster
-    double fBeamLikeMinVoxels {};        // Min voxels for BL particles
     double fRPMaskXY {};                 // Distance to aply the mask in XY
     double fRPMaskZ {};                  // Distance to aply the mask in Z
     bool fEnableRPDefaultBeam {};        // Enable set direction to short BLs tracks as (1,0,0)
@@ -25,6 +24,7 @@ private:
     bool fEnableFineRP {};
     bool fKeepBreakBeam {};      //!< Keep heavy-like cluster after breaking beam starting on RP
     double fMinXSepBreakBeam {}; //!< Min separation preRP.X() to BeamLike.Xend() to separete heavy track
+    int fMinVoxelsBreakBeam {};  //!< Min number of voxel in BL cluster to break it
     bool fEnableFixBreakBeam {};
     double fMaxVoxelsFixBreak {};  //!< Max voxels to enable fix voxel routine
     double fMinPercentFixBreak {}; //!< Min percent of voxels inside the bigger one to fix

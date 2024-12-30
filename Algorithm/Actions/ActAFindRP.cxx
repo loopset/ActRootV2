@@ -42,8 +42,6 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fRPDistCluster = block->GetDouble("RPDistCluster");
     if(block->CheckTokenExists("EnableDeleteInvalidCluster"))
         fEnableDeleteInvalidCluster = block->GetBool("EnableDeleteInvalidCluster");
-    if(block->CheckTokenExists("BeamLikeMinVoxels"))
-        fBeamLikeMinVoxels = block->GetDouble("BeamLikeMinVoxels");
     if(block->CheckTokenExists("RPMaskXY"))
         fRPMaskXY = block->GetDouble("RPMaskXY");
     if(block->CheckTokenExists("RPMaskZ"))
@@ -71,6 +69,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fMinPercentFixBreak = block->GetDouble("MinPercentFixBreak");
     if(block->CheckTokenExists("MinXSepBreakBeam"))
         fMinXSepBreakBeam = block->GetDouble("MinXSepBreakBeam");
+    if(block->CheckTokenExists("MinVoxelsBreakBeam"))
+        fMinVoxelsBreakBeam = block->GetInt("MinVoxelsBreakBeam");
 }
 
 void ActAlgorithm::Actions::FindRP::Run()
@@ -106,20 +106,20 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
     std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
     std::cout << "  EnableDelInvalid   ? " << std::boolalpha << fEnableDeleteInvalidCluster << '\n';
-    std::cout << "  BeamLikeMinVoxels  : " << fBeamLikeMinVoxels << '\n';
-    std::cout << "  RPMaskXY           : " << fRPMaskXY << '\n';
-    std::cout << "  RPMaskZ            : " << fRPMaskZ << '\n';
-    std::cout << "  EnableCylinder     ? " << std::boolalpha << fEnableCylinder << '\n';
-    std::cout << "  CylinderR          : " << fCylinderR << '\n';
-    std::cout << "  RPPivotDist        : " << fRPPivotDist << '\n';
-    std::cout << "  EnableDefaultBeam  ? " << std::boolalpha << fEnableRPDefaultBeam << '\n';
-    std::cout << "  RPDefaultMinX      : " << fRPDefaultMinX << '\n';
     std::cout << "  EnableFineRP       ? " << std::boolalpha << fEnableFineRP << '\n';
-    std::cout << "  EnabbleKeepBreak   ? " << std::boolalpha << fKeepBreakBeam << '\n';
+    std::cout << "  MinXSepBreakBeam   : " << fMinXSepBreakBeam << '\n';
+    std::cout << "  MinVoxelsBreak     : " << fMinVoxelsBreakBeam << '\n';
+    std::cout << "  EnableKeepBreak    ? " << std::boolalpha << fKeepBreakBeam << '\n';
     std::cout << "  EnableFixBreak     ? " << std::boolalpha << fEnableFixBreakBeam << '\n';
     std::cout << "  MaxVoxelsFixBreak  : " << fMaxVoxelsFixBreak << '\n';
     std::cout << "  MinPercentFixBreak : " << fMinPercentFixBreak << '\n';
-    std::cout << "  MinXSepBreakBeam   : " << fMinXSepBreakBeam << '\n';
+    std::cout << "  EnableDefaultBeam  ? " << std::boolalpha << fEnableRPDefaultBeam << '\n';
+    std::cout << "  RPDefaultMinX      : " << fRPDefaultMinX << '\n';
+    std::cout << "  EnableCylinder     ? " << std::boolalpha << fEnableCylinder << '\n';
+    std::cout << "  CylinderR          : " << fCylinderR << '\n';
+    std::cout << "  RPMaskXY           : " << fRPMaskXY << '\n';
+    std::cout << "  RPMaskZ            : " << fRPMaskZ << '\n';
+    std::cout << "  RPPivotDist        : " << fRPPivotDist << '\n';
     std::cout << "······························" << RESET << '\n';
 }
 
@@ -580,7 +580,7 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
             auto after {std::distance(refVoxels.begin(), rpBreak)};
             auto newsize {before - after};
             // If BL has enough voxels remaining
-            if(after >= fAlgo->GetMinPoints())
+            if(after >= fMinVoxelsBreakBeam)
             {
                 // Move
                 std::vector<ActRoot::Voxel> newVoxels;
@@ -612,22 +612,31 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                         std::cout << "-----------------------------" << RESET << '\n';
                     }
                 }
-                // Check whether to refit or set default beam direction
                 it->ReFit();
                 it->ReFillSets();
                 auto [xmin, xmax] {it->GetXRange()};
-                bool isShort {(xmax - xmin) < fRPDefaultMinX};
+                bool isShort {(xmax - xmin) <= fRPDefaultMinX};
+                // Check if default beam is enabled
                 if(isShort && fEnableRPDefaultBeam)
                 {
                     if(fIsVerbose)
                     {
-                        std::cout << BOLDMAGENTA << "---- FineRP::BreakBeam ----" << '\n';
+                        std::cout << BOLDRED << "---- FineRP::BreakBeam ----" << '\n';
                         std::cout << " -> Cluster #" << it->GetClusterID() << '\n';
                         std::cout << "    XRange : " << xmax - xmin << '\n';
-                        std::cout << "    is too short ( < " << fRPDefaultMinX << ") => set {1, 0, 0} dir" << '\n';
+                        std::cout << "    is too short (" << (xmax - xmin) << " < " << fRPDefaultMinX
+                                  << ") => set {1, 0, 0} dir" << '\n';
                         std::cout << "------------------------------" << RESET << '\n';
                     }
+                    // Compute beam in Y and Z to set the point of the BL cluster as a compromise
+                    // in resolution between the fit and the PreliminaryRP
+                    auto& line {it->GetLine()};
+                    auto& rp {fTPCData->fRPs.front()};
+                    XYZPointF p {line.GetPoint().X(), 0.5f * (line.GetPoint().Y() + rp.Y()),
+                                 0.5f * (line.GetPoint().Z() + rp.Z())};
+                    it->GetRefToLine().SetPoint(p);
                     it->GetRefToLine().SetDirection({1, 0, 0});
+                    it->SetIsDefault(true);
                 }
             }
             else
@@ -636,7 +645,7 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                 {
                     std::cout << BOLDMAGENTA << "---- BreakAfterRP ----" << '\n';
                     std::cout << "-> Cluster #" << it->GetClusterID() << '\n';
-                    std::cout << "   is left with very few voxels : " << after << '\n';
+                    std::cout << "   is left with very few voxels : " << after << " < " << fMinVoxelsBreakBeam << '\n';
                     std::cout << "   => Not breaking! : " << '\n';
                     std::cout << "-----------------------------" << RESET << '\n';
                 }
@@ -745,7 +754,7 @@ void ActAlgorithm::Actions::FindRP::CylinderCleaning()
                                     })};
         // if enough voxels remain
         auto remain {std::distance(refVoxels.begin(), itKeep)};
-        if(remain >= fAlgo->GetMinPoints())
+        if((oldSize != remain) && remain >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();
@@ -783,7 +792,7 @@ void ActAlgorithm::Actions::FindRP::MaskAroundRP(const ActAlgorithm::VAction::XY
         // Compare sizes
         auto remainSize {std::distance(refVoxels.begin(), toKeep)};
         // Indeed delete region and refit
-        if(remainSize >= fAlgo->GetMinPoints())
+        if((initial != remainSize) && remainSize >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(toKeep, refVoxels.end());
             it->ReFit();
@@ -840,7 +849,7 @@ void ActAlgorithm::Actions::FindRP::MaskBeginEnd(const ActAlgorithm::VAction::XY
                                     })};
         auto newSize {std::distance(refVoxels.begin(), itKeep)};
         // Refit if eneugh voxels remain
-        if(newSize >= fAlgo->GetMinPoints())
+        if((oldSize != newSize) && newSize >= fAlgo->GetMinPoints())
         {
             refVoxels.erase(itKeep, refVoxels.end());
             it->ReFit();

@@ -9,6 +9,20 @@ void ActRoot::TPCData::Clear()
     fRPs.clear();
 }
 
+void ActRoot::TPCData::ClearFilter()
+{
+    // WARNING: This function must set to default values variables
+    // that are not written to disk, otherwise UNDEFINED BEAHAVIOUR arises
+    // Useful only for Filter tasks, hence the name
+    // As of December 24, it is only needed for TPCData in
+    // UseExtVoxels and IsDefault Cluster members
+    for(auto it = fClusters.begin(); it != fClusters.end(); it++)
+    {
+        it->SetUseExtVoxels(false); // values must follow default ones in class def
+        it->SetIsDefault(false);
+    }
+}
+
 void ActRoot::TPCData::Print() const
 {
     std::cout << "==== TPCData ====" << '\n';

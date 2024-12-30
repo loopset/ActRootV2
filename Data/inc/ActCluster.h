@@ -39,8 +39,9 @@ private:
     bool fIsSplit {false};
     bool fHasRP {false};
     ActRoot::RegionType fRegion {ActRoot::RegionType::ENone};
-    // Parameter that is not saved to file to control extended fit
+    // Parameters not saved to TTree file
     bool fUseExtVoxels {false}; //!
+    bool fIsDefault {false};    //!
 
 public:
     Cluster() = default;
@@ -65,6 +66,7 @@ public:
     ActRoot::RegionType GetRegionType() const { return fRegion; }
     bool GetHasRP() const { return fHasRP; }
     bool GetUseExtVoxels() const { return fUseExtVoxels; }
+    bool GetIsDefault() const { return fIsDefault; }
 
     // Setters
     void SetLine(const ActRoot::Line& line) { fLine = line; }
@@ -80,6 +82,7 @@ public:
     void SetRegionType(ActRoot::RegionType type) { fRegion = type; }
     void SetHasRP(bool has) { fHasRP = has; }
     void SetUseExtVoxels(bool use);
+    void SetIsDefault(bool isDef) { fIsDefault = isDef; }
 
     // Adders of voxels
     void AddVoxel(const ActRoot::Voxel& voxel); //! By copy in push_back

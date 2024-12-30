@@ -997,6 +997,7 @@ double ActRoot::MergerDetector::GetRangeFromProfile(TH1F* h, bool smooth)
 void ActRoot::MergerDetector::ClearEventFilter()
 {
     // Not needed because we are reading directly from ttree
+    fMergerData->ClearFilter();
 }
 
 void ActRoot::MergerDetector::ClearEventData()

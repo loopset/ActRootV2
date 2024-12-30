@@ -24,6 +24,7 @@ public:
 
 public:
     void Clear() override;
+    void ClearFilter() override;
     void Print() const override;
 
     ClassDefOverride(TPCData, 1);
