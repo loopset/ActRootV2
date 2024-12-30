@@ -107,6 +107,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a897afb3266fd8d3f35082c67dc73dd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0659fcff76514d19d7db26e3bff12f" id="r_abe0659fcff76514d19d7db26e3bff12f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#abe0659fcff76514d19d7db26e3bff12f">Clear</a> ()=0</td></tr>
 <tr class="separator:abe0659fcff76514d19d7db26e3bff12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef0f0395034a0f5f12f05a67fbfbe36b" id="r_aef0f0395034a0f5f12f05a67fbfbe36b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#aef0f0395034a0f5f12f05a67fbfbe36b">ClearFilter</a> ()</td></tr>
+<tr class="separator:aef0f0395034a0f5f12f05a67fbfbe36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e6de266b00ca7c3ec235502fcbe8462" id="r_a6e6de266b00ca7c3ec235502fcbe8462"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1VData.html#a6e6de266b00ca7c3ec235502fcbe8462">Print</a> () const =0</td></tr>
 <tr class="separator:a6e6de266b00ca7c3ec235502fcbe8462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb937724975ad16554767e2d2357e774" id="r_abb937724975ad16554767e2d2357e774"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
@@ -191,9 +193,9 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
-<div class="line"><span class="lineno">   18</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   19</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,6 +252,34 @@ template&lt;typename T &gt; </div>
 
 <p>Implemented in <a class="el" href="classActRoot_1_1MergerData.html#a6fe8f48864e1ca108d8a866a86ff683a">ActRoot::MergerData</a>, <a class="el" href="classActRoot_1_1ModularData.html#a7190e1377bd4f014ba84aa132a5a4c4d">ActRoot::ModularData</a>, <a class="el" href="classActRoot_1_1SilData.html#a048f4c6460699bf0f68cfc882cb38159">ActRoot::SilData</a>, and <a class="el" href="classActRoot_1_1TPCData.html#a8029f651021f0b934b7299c7f49df32a">ActRoot::TPCData</a>.</p>
 
+</div>
+</div>
+<a id="aef0f0395034a0f5f12f05a67fbfbe36b" name="aef0f0395034a0f5f12f05a67fbfbe36b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0f0395034a0f5f12f05a67fbfbe36b">&#9670;&#160;</a></span>ClearFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ActRoot::VData::ClearFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classActRoot_1_1TPCData.html#a830465982592549667f1528b3bf9520c">ActRoot::TPCData</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>{}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6e6de266b00ca7c3ec235502fcbe8462" name="a6e6de266b00ca7c3ec235502fcbe8462"></a>
