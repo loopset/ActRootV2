@@ -12,7 +12,9 @@
 
 #include "BS_thread_pool.h"
 
+#include <iomanip>
 #include <iostream>
+#include <ostream>
 #include <string>
 #include <utility>
 #include <vector>
@@ -70,10 +72,21 @@ void ActRoot::MTExecutor::ComputeRunsPerThread()
         if(IsThreadEmpty(t))
             continue;
         std::cout << "Thread " << t << '\n';
+        int count {};
+        int w {5};
+        int s {1};
+        int ncols {4};
         for(auto& run : fRunsPerThread[t])
         {
-            std::cout << "-> Run " << run << '\n';
+            std::cout << std::setw(w) << run << std::string(s, ' ');
+            count++;
+            // Display as columns
+            if(count % ncols == 0)
+                std::cout << '\n';
         }
+        // Close last column
+        if(count % ncols != 0)
+            std::cout << '\n';
         std::cout << "------------------------" << '\n';
     }
     std::cout << RESET;

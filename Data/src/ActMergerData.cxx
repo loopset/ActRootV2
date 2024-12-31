@@ -7,12 +7,14 @@
 
 void ActRoot::MergerData::Clear()
 {
-    // Reset but still keep run and entry number
+    // Reset but still keep run, entry number and flag
     auto run {fRun};
     auto entry {fEntry};
+    auto flag {fFlag};
     *this = MergerData {};
     fRun = run;
     fEntry = entry;
+    fFlag = flag;
 }
 
 void ActRoot::MergerData::Print() const
@@ -36,6 +38,7 @@ void ActRoot::MergerData::Print() const
     std::cout << "-> Phi         : " << fPhiLight << '\n';
     std::cout << "-> Qave        : " << fQave << '\n';
     std::cout << "-> TL          : " << fTrackLength << '\n';
+    std::cout << "-> Flag        : " << fFlag << '\n';
     std::cout << "::::::::::::::::::::" << RESET << '\n';
 }
 

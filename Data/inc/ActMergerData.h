@@ -21,21 +21,22 @@ namespace ActRoot
 class MergerData : public VData
 {
 public:
-    using XYZPoint = ROOT::Math::XYZPointF;
-    using XYZVector = ROOT::Math::XYZVectorF;
+    using XYZPointF = ROOT::Math::XYZPointF;
+    using XYZVectorF = ROOT::Math::XYZVectorF;
 
 public:
     TH1F fQprojX {};
     TH1F fQProf {};
-    XYZPoint fWP {-1, -1, -1}; // window point aka entrance point
-    XYZPoint fRP {-1, -1, -1};
-    XYZPoint fSP {-1, -1, -1};
-    XYZPoint fBP {-1, -1, -1};
-    XYZPoint fBSP {-1, -1, -1};
-    XYZPoint fBraggP {-1, -1, -1};
+    XYZPointF fWP {-1, -1, -1}; // window point aka entrance point
+    XYZPointF fRP {-1, -1, -1};
+    XYZPointF fSP {-1, -1, -1};
+    XYZPointF fBP {-1, -1, -1};
+    XYZPointF fBSP {-1, -1, -1};
+    XYZPointF fBraggP {-1, -1, -1};
     std::vector<std::string> fSilLayers {};
     std::vector<float> fSilEs {};
     std::vector<float> fSilNs {};
+    std::string fFlag {}; //!< Describes at which point the merger stopped
     float fTrackLength {-1};
     float fThetaBeam {-1};
     float fThetaBeamZ {-1}; // emittance angle along Z

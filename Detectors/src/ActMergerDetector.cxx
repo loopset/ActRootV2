@@ -258,6 +258,7 @@ void ActRoot::MergerDetector::DoMerge()
         if(fIsVerbose)
             std::cout << BOLDRED << "  Event is not doable, skipping" << RESET << '\n';
         fMergerData->Clear();
+        // INFO: fFlag is written within IsDoable function
         return;
     }
 
@@ -269,8 +270,9 @@ void ActRoot::MergerDetector::DoMerge()
     LightOrHeavy();
     fClocks[1].Stop();
 
-    // 2.1-> Compute BSP here?
-    ComputeXProfile();
+    // 2.1-> Compute BSP from a X profile
+    if(fEnableQProfile)
+        ComputeXProfile();
 
     // 3-> Compute SP and BP
     fClocks[2].Start(false);
@@ -284,13 +286,15 @@ void ActRoot::MergerDetector::DoMerge()
         if(fIsVerbose)
             std::cout << BOLDRED << "MergerDetector::Run(): SP is not OK, skipping event" << RESET << '\n';
         fMergerData->Clear();
+        fMergerData->fFlag = "SP not ok";
         return;
     }
     ComputeOtherPoints();
 
-    // 3.1-> Qave and charge profile computations
     fClocks[6].Start(false);
+    // 3.1-> Qave
     ComputeQave();
+    // 3.2 -> QProfile that computes BraggPoint
     if(fEnableQProfile)
         ComputeQProfile();
     fClocks[6].Stop();
@@ -314,6 +318,7 @@ void ActRoot::MergerDetector::DoMerge()
         if(!isMatch)
         {
             fMergerData->Clear();
+            fMergerData->fFlag = "SP not matched";
             return;
         }
     }
@@ -322,6 +327,8 @@ void ActRoot::MergerDetector::DoMerge()
     fClocks[5].Start(false);
     ComputeAngles();
     fClocks[5].Stop();
+    // 7-> Everything went fine!
+    fMergerData->fFlag = "ok";
 }
 
 void ActRoot::MergerDetector::BuildEventData(int run, int entry)
@@ -340,6 +347,8 @@ bool ActRoot::MergerDetector::IsDoable()
     else
     {
         auto condB {GateSilMult()};
+        if(!condB)
+            fMergerData->fFlag = "not Sil mult";
         return condB;
     }
 }
@@ -410,6 +419,17 @@ bool ActRoot::MergerDetector::GateGATCONFandTrackMult()
         std::cout << " -> HasRP        ? " << std::boolalpha << hasRP << '\n';
         // fPars.Print();
     }
+    // Set flag
+    if(!isInGat)
+        fMergerData->fFlag = "not in GATCONF";
+    else if(!hasBL)
+        fMergerData->fFlag = "no Beam-like";
+    else if(!hasMult)
+        fMergerData->fFlag = "no track mult";
+    else if(!hasMult)
+        fMergerData->fFlag = "no RP";
+    else
+        ;
     return isInGat && hasBL && hasMult && hasRP;
 }
 
@@ -1036,17 +1056,15 @@ void ActRoot::MergerDetector::Print() const
             std::cout << "-> MatchUseZ     ? " << std::boolalpha << fMatchUseZ << '\n';
             std::cout << "-> MatchZOffset  : " << fZOffset << '\n';
         }
+        std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
         if(fEnableQProfile)
         {
-            std::cout << "-> EnableQProf   ? " << std::boolalpha << fEnableQProfile << '\n';
             std::cout << "-> 2DProfile     ? " << std::boolalpha << f2DProfile << '\n';
             std::cout << "-> EnableRootFind? " << std::boolalpha << fEnableRootFind << '\n';
         }
+        std::cout << "-> DefaultBeam   ? " << std::boolalpha << fEnableDefaultBeam << '\n';
         if(fEnableDefaultBeam)
-        {
-            std::cout << "-> DefaultBeam   ? " << std::boolalpha << fEnableDefaultBeam << '\n';
             std::cout << "-> DefaultMinX   : " << std::boolalpha << fDefaultBeamXThresh << '\n';
-        }
     }
     // fSilSpecs->Print();
     std::cout << "::::::::::::::::::::::::" << RESET << '\n';
