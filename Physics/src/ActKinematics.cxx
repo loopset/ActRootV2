@@ -7,8 +7,10 @@
 #include "Rtypes.h"
 
 #include "TAttLine.h"
+#include "TCanvas.h"
 #include "TGraph.h"
 #include "TMathBase.h"
+#include "TString.h"
 #include <TMath.h>
 
 #include <Math/GenVector/BoostX.h>
@@ -27,6 +29,7 @@
 
 ActPhysics::Kinematics::Kinematics(const std::string& reaction)
 {
+    fReactionStr = reaction;
     ConstructFromStr(reaction);
 }
 
@@ -59,6 +62,8 @@ ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2,
     // 4
     fp4 = Particle(p4);
     fm4 = fp4.GetMass();
+    // Reaction string
+    fReactionStr = TString::Format("%s(%s,%s)@ %.2f | %.2f", p1.c_str(), p2.c_str(), p3.c_str(), T1, Eex).Data();
     // Init
     Init();
 }
@@ -81,6 +86,10 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
     fm3 = fp3.GetMass();
     // 4
     fm4 = fp4.GetMass();
+    // Reaction string
+    fReactionStr = TString::Format("%s(%s,%s)@ %.2f | %.2f", p1.GetName().c_str(), p2.GetName().c_str(),
+                                   p3.GetName().c_str(), T1, Eex)
+                       .Data();
     // Init class
     Init();
 }
@@ -104,6 +113,8 @@ ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2,
     fm3 = fp3.GetMass();
     fm4 = fp4.GetMass();
 
+    // Reaction string
+    fReactionStr = TString::Format("%s(%s,%s)@ %.2f | %.2f", p1.c_str(), p2.c_str(), p3.c_str(), T1, Eex).Data();
     // Init class
     Init();
 }
@@ -126,6 +137,10 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
     fm3 = fp3.GetMass();
     fm4 = fp4.GetMass();
 
+    // Reaction string
+    fReactionStr = TString::Format("%s(%s,%s)@ %.2f | %.2f", p1.GetName().c_str(), p2.GetName().c_str(),
+                                   p3.GetName().c_str(), T1, Eex)
+                       .Data();
     // Init class
     Init();
 }
@@ -459,7 +474,9 @@ void ActPhysics::Kinematics::Reset()
 TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELineStyle style)
 {
     auto* ret {new TGraph};
-    ret->SetTitle(";#theta_{Lab} [#circ];E_{3} [MeV]");
+    auto name {fp3.GetName()};
+    ret->SetTitle(TString::Format("%s;%s #theta_{3, Lab} [#circ];%s E_{3, Lab} [MeV]", fReactionStr.c_str(),
+                                  name.c_str(), name.c_str()));
     ret->SetLineWidth(2);
     ret->SetLineColor(color);
     ret->SetLineStyle(style);
@@ -478,7 +495,9 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELi
 TGraph* ActPhysics::Kinematics::GetKinematicLine4(double step, EColor color, ELineStyle style)
 {
     auto* ret {new TGraph};
-    ret->SetTitle(";#theta_{Lab} [#circ];E_{4} [MeV]");
+    auto name {fp4.GetName()};
+    ret->SetTitle(TString::Format("%s;%s #theta_{4, Lab} [#circ];%s E_{4, Lab} [MeV]", fReactionStr.c_str(),
+                                  name.c_str(), name.c_str()));
     ret->SetLineWidth(2);
     ret->SetLineColor(color);
     ret->SetLineStyle(style);
@@ -496,7 +515,10 @@ TGraph* ActPhysics::Kinematics::GetKinematicLine4(double step, EColor color, ELi
 TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELineStyle style)
 {
     auto* ret {new TGraph};
-    ret->SetTitle(";#theta_{3} [#circ];#theta_{4} [#circ]");
+    auto n3 {fp3.GetName()};
+    auto n4 {fp4.GetName()};
+    ret->SetTitle(TString::Format("%s;%s #theta_{3, Lab} [#circ];%s #theta_{4, Lab} [MeV]", fReactionStr.c_str(),
+                                  n3.c_str(), n4.c_str()));
     ret->SetLineWidth(2);
     ret->SetLineColor(color);
     ret->SetLineStyle(style);
@@ -514,7 +536,9 @@ TGraph* ActPhysics::Kinematics::GetTheta3vs4Line(double step, EColor color, ELin
 TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor color, ELineStyle style)
 {
     auto* ret {new TGraph};
-    ret->SetTitle(";#theta_{3, CM} [#circ];#theta_{3, Lab} [#circ]");
+    auto name {fp3.GetName()};
+    ret->SetTitle(TString::Format("%s;%s #theta_{3, CM} [#circ];%s #theta_{3, Lab} [#circ]", fReactionStr.c_str(),
+                                  name.c_str(), name.c_str()));
     ret->SetLineWidth(2);
     ret->SetLineColor(color);
     ret->SetLineStyle(style);
@@ -526,6 +550,22 @@ TGraph* ActPhysics::Kinematics::GetThetaLabvsThetaCMLine(double step, EColor col
             ret->SetPoint(ret->GetN(), thetaCM, thetaLab);
     }
     return ret;
+}
+
+void ActPhysics::Kinematics::Draw()
+{
+    static int cIdx {};
+    auto* c {new TCanvas {TString::Format("cKin%d", cIdx),
+                          TString::Format("Kinematic canvas for %s", fReactionStr.c_str())}};
+    c->DivideSquare(4);
+    c->cd(1);
+    GetKinematicLine3()->Draw("al");
+    c->cd(2);
+    GetKinematicLine4()->Draw("al");
+    c->cd(3);
+    GetTheta3vs4Line()->Draw("al");
+    c->cd(4);
+    GetThetaLabvsThetaCMLine()->Draw("al");
 }
 
 const ActPhysics::Particle& ActPhysics::Kinematics::GetParticle(unsigned int i) const

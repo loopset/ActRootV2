@@ -65,6 +65,7 @@ private:
     std::shared_ptr<SilMatrix> fMatrix {}; //!< Pointer to SiliconMatrix
     SilSide fSide;                         //!< Enum to spec side of layer with respect to ACTAR's frame
     int fPadIdx {1};                       //!< In HistogramPainter, index of pad for this layer
+    bool fEnableMatch {true};              //!< Whether to enable or not match of SP coordinates (default = true)
 
 public:
     SilLayer() = default;

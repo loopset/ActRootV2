@@ -125,7 +125,11 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
     // 5-> Read pad index
     if(block->CheckTokenExists("PadIdx", true))
         fPadIdx = block->GetInt("PadIdx");
-    // 6-> Build the silicon matrix with the info gathered here
+    // 6-> Enable match
+    if(block->CheckTokenExists("EnableMatch", true))
+        fEnableMatch = block->GetBool("EnableMatch");
+
+    // 7-> Build the silicon matrix with the info gathered here
     fMatrix = BuildSilMatrix();
 }
 
@@ -166,6 +170,8 @@ ActPhysics::SilLayer::GetBoundaryPointOfTrack(int padx, int pady, const Point<T>
 template <typename T>
 bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<T>& sp, bool useZ) const
 {
+    if(!fEnableMatch) // if match is disabled, validate all events
+        return true;
     auto [xy, z] {fPlacements.at(i)};
     auto xyMin {xy - fUnit.GetWidth() / 2};
     auto xyMax {xy + fUnit.GetWidth() / 2};

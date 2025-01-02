@@ -26,6 +26,7 @@ public:
     using LorentzBoostX = ROOT::Math::BoostX;
 
 private:
+    std::string fReactionStr {}; //!< Holds std::string of reaction passed to construct class
     ActPhysics::Particle fp1 {};
     ActPhysics::Particle fp2 {};
     ActPhysics::Particle fp3 {};
@@ -96,6 +97,8 @@ public:
     double ComputeTheta3FromT3(double T3);
 
     void Print() const;
+
+    void Draw();
 
     void Reset();
 
