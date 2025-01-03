@@ -141,8 +141,10 @@ $(function() {
 <li>fClusterClock&#160;:&#160;<a class="el" href="classActRoot_1_1TPCDetector.html#a6e8adebde843123e711657a905fef9ba">ActRoot::TPCDetector</a></li>
 <li>fClusterID&#160;:&#160;<a class="el" href="classActRoot_1_1Cluster.html#aef5a6d9264959bfe43ea2221c41fd9f8">ActRoot::Cluster</a></li>
 <li>fClusters&#160;:&#160;<a class="el" href="classActAlgorithm_1_1MultiStep.html#a47d75b13279da97af223d8b6305fc3cf">ActAlgorithm::MultiStep</a>, <a class="el" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">ActRoot::TPCData</a></li>
-<li>fCurrentEntry&#160;:&#160;<a class="el" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">ActRoot::InputIterator</a></li>
-<li>fCurrentRun&#160;:&#160;<a class="el" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">ActRoot::InputIterator</a></li>
+<li>fCompletedThreads&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">ActRoot::ProgressBar</a></li>
+<li>fCoutThread&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">ActRoot::ProgressBar</a></li>
+<li>fCurrentEntry&#160;:&#160;<a class="el" href="classActRoot_1_1InputIterator.html#a08b32fa43564e75f15ee0b1fe807735d">ActRoot::InputIterator</a>, <a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadStatus.html#a9ee7cab75ab8504b55dfc088a08d06c6">ActRoot::ProgressBar::ThreadStatus</a></li>
+<li>fCurrentRun&#160;:&#160;<a class="el" href="classActRoot_1_1InputIterator.html#a72825156e772a1d9cf92f74953506b96">ActRoot::InputIterator</a>, <a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadStatus.html#a12657ce861925a6d9a9246acfb31cc00">ActRoot::ProgressBar::ThreadStatus</a></li>
 <li>fCuts&#160;:&#160;<a class="el" href="classActRoot_1_1CutsManager.html#a87fa8b0c2c10462874a5c7e794f8b342">ActRoot::CutsManager&lt; T &gt;</a></li>
 <li>fCylinderR&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a19a4a9e70e21acd55cc48d11281c3e14">ActAlgorithm::Actions::FindRP</a></li>
 <li>fCylinderRadius&#160;:&#160;<a class="el" href="classActAlgorithm_1_1MultiStep.html#abe38811ddeca8cad2a0965c25df7730d">ActAlgorithm::MultiStep</a></li>
@@ -189,7 +191,7 @@ $(function() {
 <li>fEnableFinalClean&#160;:&#160;<a class="el" href="classActAlgorithm_1_1MultiRegion.html#a62a9d096c891ba37fef539a72f9376f4">ActAlgorithm::MultiRegion</a></li>
 <li>fEnableFineRP&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a59520931fa242d045139c3fb3ecfa4be">ActAlgorithm::Actions::FindRP</a>, <a class="el" href="classActAlgorithm_1_1MultiStep.html#a588e40912d46bcaba0908d224ca7de38">ActAlgorithm::MultiStep</a></li>
 <li>fEnableFixBreakBeam&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#a2532a5ed986bbf3b8451c95903e7805e">ActAlgorithm::Actions::FindRP</a></li>
-<li>fEnableMatch&#160;:&#160;<a class="el" href="classActPhysics_1_1SilLayer.html#ac3d0b6060d8238409e46cb7c57feb5d4">ActPhysics::SilLayer</a>, <a class="el" href="classActRoot_1_1MergerDetector.html#ae30eab9276811b7f26671bdf83bcac78">ActRoot::MergerDetector</a></li>
+<li>fEnableMatch&#160;:&#160;<a class="el" href="classActRoot_1_1MergerDetector.html#ae30eab9276811b7f26671bdf83bcac78">ActRoot::MergerDetector</a></li>
 <li>fEnableMerge&#160;:&#160;<a class="el" href="classActAlgorithm_1_1MultiRegion.html#ab723e68714da1618b2676cc0ef7d6b3f">ActAlgorithm::MultiRegion</a>, <a class="el" href="classActAlgorithm_1_1MultiStep.html#aa66ac76adb12e1b31a5e6588972fb123">ActAlgorithm::MultiStep</a></li>
 <li>fEnableQProfile&#160;:&#160;<a class="el" href="classActRoot_1_1MergerDetector.html#a46e3333f52ab3d32b48fa63a134934d5">ActRoot::MergerDetector</a></li>
 <li>fEnableRootFind&#160;:&#160;<a class="el" href="classActRoot_1_1MergerDetector.html#a02194017cf4b6f1d7a9d51ddebe7262b">ActRoot::MergerDetector</a></li>
@@ -260,6 +262,7 @@ $(function() {
 <li>FindPreliminaryRP()&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ace2f96e3a54835cafc27baea6033ff93">ActAlgorithm::Actions::FindRP</a>, <a class="el" href="classActAlgorithm_1_1MultiStep.html#a94b0ab39d0f50a85d48b81aea9fd46fe">ActAlgorithm::MultiStep</a></li>
 <li>FindRP()&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Actions_1_1FindRP.html#ad9690417e6fbf137c714d55c47c53f53">ActAlgorithm::Actions::FindRP</a>, <a class="el" href="classActAlgorithm_1_1MultiRegion.html#a8da640628d549abb875f8b0758d2a382">ActAlgorithm::MultiRegion</a></li>
 <li>FindSPInLayer()&#160;:&#160;<a class="el" href="classActPhysics_1_1SilSpecs.html#ab46c4e16e838e9d3b8789ba4c7136c2b">ActPhysics::SilSpecs</a></li>
+<li>fInfo&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">ActRoot::ProgressBar</a></li>
 <li>fInput&#160;:&#160;<a class="el" href="classActRoot_1_1InputWrapper.html#a48b6bf5db5de9d0b7ac9c5a589341e8e">ActRoot::InputWrapper</a></li>
 <li>fInstance&#160;:&#160;<a class="el" href="classActRoot_1_1Options.html#a115c05371e6a1d792bf22a499ead3a22">ActRoot::Options</a></li>
 <li>fInverse&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#a484b4f93a77f644e3eb99731890971af">ActPhysics::Kinematics</a></li>
@@ -316,6 +319,7 @@ $(function() {
 <li>fManual&#160;:&#160;<a class="el" href="classActRoot_1_1DataManager.html#ae61b9dcf8d74c4f82d41adb262ddaab1">ActRoot::DataManager</a>, <a class="el" href="classActRoot_1_1InputIterator.html#a51d376fe4b2bbb24938b3315d1a9432e">ActRoot::InputIterator</a></li>
 <li>fManualEntries&#160;:&#160;<a class="el" href="classActRoot_1_1InputData.html#aebf4e03e5fecfd2b8db38bbaf6c1b363">ActRoot::InputData</a></li>
 <li>fMap&#160;:&#160;<a class="el" href="classActAlgorithm_1_1IntervalMap.html#a7a62c18aad7938ff2e79abbf05b8836d">ActAlgorithm::IntervalMap&lt; T &gt;</a>, <a class="el" href="classActAlgorithm_1_1MultiAction.html#aea993b1801c738d7dfd6eda17576e637">ActAlgorithm::MultiAction</a></li>
+<li>fMargin&#160;:&#160;<a class="el" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">ActPhysics::SilLayer</a></li>
 <li>fMarkers&#160;:&#160;<a class="el" href="classActRoot_1_1HistogramPainter.html#a3d8d70df13def10ccd5bd3a294ceba5e">ActRoot::HistogramPainter</a></li>
 <li>fMarkerTpc&#160;:&#160;<a class="el" href="classActRoot_1_1HistogramPainter.html#ada094b3914a064a75e3ca5f1727742f3">ActRoot::HistogramPainter</a></li>
 <li>fMass&#160;:&#160;<a class="el" href="classActPhysics_1_1Particle.html#ab9426cc4c7a71d8e721537b4aa2ddd70">ActPhysics::Particle</a></li>
@@ -355,6 +359,7 @@ $(function() {
 <li>fNB_ASAD&#160;:&#160;<a class="el" href="classActRoot_1_1TPCParameters.html#ac17caec59aeb56dc3165cdad8a1b4c7b">ActRoot::TPCParameters</a></li>
 <li>fNB_CHANNEL&#160;:&#160;<a class="el" href="classActRoot_1_1TPCParameters.html#a763154932e1ddd66a9419e6574852d20">ActRoot::TPCParameters</a></li>
 <li>fNB_COBO&#160;:&#160;<a class="el" href="classActRoot_1_1TPCParameters.html#ae925d00d49dee4fdd6b20a666a3f4ab7">ActRoot::TPCParameters</a></li>
+<li>fNEntries&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadInfo.html#adaeca90deef1851e3c778b313ecec4e8">ActRoot::ProgressBar::ThreadInfo</a></li>
 <li>fneutronPS&#160;:&#160;<a class="el" href="classActSim_1_1KinematicGenerator.html#aa8f5e7dad80035f306f002d7e20a153b">ActSim::KinematicGenerator</a></li>
 <li>fNoneMaterial&#160;:&#160;<a class="el" href="classActSim_1_1Geometry.html#a093c269586743409cc0b581a07fe1696">ActSim::Geometry</a></li>
 <li>fNoneMedium&#160;:&#160;<a class="el" href="classActSim_1_1Geometry.html#a377c4a0fb5d6a062df335d97a9a54527">ActSim::Geometry</a></li>
@@ -365,6 +370,8 @@ $(function() {
 <li>fNPADSZ&#160;:&#160;<a class="el" href="classActRoot_1_1TPCParameters.html#a13eb69175918f2858c749c6309ac51a7">ActRoot::TPCParameters</a></li>
 <li>fNPointsToSample&#160;:&#160;<a class="el" href="classActAlgorithm_1_1RANSAC.html#aa14ca6a79f1a8928eb2a38529098fa21">ActAlgorithm::RANSAC</a></li>
 <li>fNrp&#160;:&#160;<a class="el" href="structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#aee16e5776f51a20a574878f4740f3383">ActAlgorithm::Actions::FindRP::RPOps</a></li>
+<li>fNRuns&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadInfo.html#a3c523af14c10b7bdd578d51c1f3f4d27">ActRoot::ProgressBar::ThreadInfo</a></li>
+<li>fNThreads&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">ActRoot::ProgressBar</a></li>
 <li>fOffset&#160;:&#160;<a class="el" href="classActPhysics_1_1PIDCorrection.html#a65921e126a357ef3ebc4fcd5f523f668">ActPhysics::PIDCorrection</a>, <a class="el" href="structActSim_1_1SilAssembly.html#a2a791eb3257712d9ead479942f5d81be">ActSim::SilAssembly</a></li>
 <li>FourVector&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#aed6a25141646eb13078f13d1cb1d5e9b">ActPhysics::Kinematics</a></li>
 <li>fp1&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#a304fb989f40ae0be52a57cbe396fb115">ActPhysics::Kinematics</a></li>
@@ -386,7 +393,8 @@ $(function() {
 <li>fParticleGun&#160;:&#160;<a class="el" href="classActPrimaryGenerator.html#a841602fc13e4d43ec6a68eefd375d9b0">ActPrimaryGenerator</a></li>
 <li>fPath&#160;:&#160;<a class="el" href="classActRoot_1_1OutputData.html#a0c6c864db9aa0c52c24af6a29d475571">ActRoot::OutputData</a></li>
 <li>fPaths&#160;:&#160;<a class="el" href="classActRoot_1_1InputData.html#a2f07a6b725cc6c51f72ab6f696d63099">ActRoot::InputData</a></li>
-<li>fPercentPrint&#160;:&#160;<a class="el" href="classActRoot_1_1MTExecutor.html#a5a6977996f82e23188c620be3a82c8a0">ActRoot::MTExecutor</a></li>
+<li>fPercent&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadStatus.html#a7ea5fdde445a6592134ec4407e1f04f6">ActRoot::ProgressBar::ThreadStatus</a></li>
+<li>fPercentUpdate&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">ActRoot::ProgressBar</a></li>
 <li>fPhi3Lab&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#af8b93f76064011eee15f3b4426fa5dc8">ActPhysics::Kinematics</a></li>
 <li>fPhi4Lab&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#abaa9b87116c17213e85921424ec85368">ActPhysics::Kinematics</a></li>
 <li>fPhiBeamY&#160;:&#160;<a class="el" href="classActRoot_1_1MergerData.html#a46f5ef0b67b6a9bb15e26d31d7465cdc">ActRoot::MergerData</a></li>
@@ -403,7 +411,7 @@ $(function() {
 <li>fPolyTpc&#160;:&#160;<a class="el" href="classActRoot_1_1HistogramPainter.html#aada84b932bd25ed70922a28a66c97235">ActRoot::HistogramPainter</a></li>
 <li>fPosition&#160;:&#160;<a class="el" href="classActRoot_1_1Voxel.html#a6c6290f84a2483f275d2e4a8647211ec">ActRoot::Voxel</a></li>
 <li>fProfs&#160;:&#160;<a class="el" href="classActPhysics_1_1PIDCorrector.html#a3e2ab6dbee85e75212e569c8b6d20b9d">ActPhysics::PIDCorrector</a></li>
-<li>fProgress&#160;:&#160;<a class="el" href="classActRoot_1_1MTExecutor.html#adc7d26dbfe96d4b7ead882509e5f51ec">ActRoot::MTExecutor</a></li>
+<li>fProgBar&#160;:&#160;<a class="el" href="classActRoot_1_1MTExecutor.html#aa00cfe724b12c15682f0fb7b34c773f6">ActRoot::MTExecutor</a></li>
 <li>fProjDir&#160;:&#160;<a class="el" href="classActRoot_1_1Options.html#af0c0fb1cfd101bc0faba89867d136024">ActRoot::Options</a></li>
 <li>fprotonPS&#160;:&#160;<a class="el" href="classActSim_1_1KinematicGenerator.html#adfb86e7eef1053edfdfa41bc658cf5ed">ActSim::KinematicGenerator</a></li>
 <li>fQave&#160;:&#160;<a class="el" href="classActRoot_1_1MergerData.html#a53bfa0a534b96538a5cd2a75e0521a03">ActRoot::MergerData</a></li>
@@ -435,6 +443,7 @@ $(function() {
 <li>fRPs&#160;:&#160;<a class="el" href="classActAlgorithm_1_1MultiStep.html#a8b27985a8497cadb5993e1beabec1682">ActAlgorithm::MultiStep</a>, <a class="el" href="classActRoot_1_1TPCData.html#ac5886e049a670de028d945b79edd3571">ActRoot::TPCData</a></li>
 <li>fRun&#160;:&#160;<a class="el" href="classActRoot_1_1MergerData.html#ae059249bb08da1af62454f780c312870">ActRoot::MergerData</a></li>
 <li>fRunButton&#160;:&#160;<a class="el" href="classActRoot_1_1EventPainter.html#a1fefa81acb691311b2753f3c60661745">ActRoot::EventPainter</a></li>
+<li>fRunCount&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadStatus.html#a7d002577cadae062bb71f3e84a564840">ActRoot::ProgressBar::ThreadStatus</a></li>
 <li>fRuns&#160;:&#160;<a class="el" href="classActRoot_1_1DataManager.html#a2dfac463b2de177fee26e1ac04a68c04">ActRoot::DataManager</a>, <a class="el" href="classActRoot_1_1InputData.html#a598c39e2276dee9a1047b73510f5c107">ActRoot::InputData</a>, <a class="el" href="classActRoot_1_1OutputData.html#a1019fb3eae26deea637d5b9f22ae2196">ActRoot::OutputData</a></li>
 <li>fRunsPerThread&#160;:&#160;<a class="el" href="classActRoot_1_1MTExecutor.html#af1eafd25f382127ddf2dec8779544740">ActRoot::MTExecutor</a></li>
 <li>fSamplingFreq&#160;:&#160;<a class="el" href="classActSim_1_1TrackGenerator.html#aa26c1c1a138a65b5086ffb74abe6f0a9">ActSim::TrackGenerator</a></li>
@@ -465,7 +474,8 @@ $(function() {
 <li>fsrim&#160;:&#160;<a class="el" href="classActSim_1_1Runner.html#a698e33770e59fedd4699600396333a13">ActSim::Runner</a>, <a class="el" href="classActSim_1_1TrackGenerator.html#aef3ad58301928cd906532b888b87bd38">ActSim::TrackGenerator</a></li>
 <li>fStart&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Interval.html#ad5380f4057196f3e91ba183fdc181581">ActAlgorithm::Interval&lt; T &gt;</a></li>
 <li>fStartTime&#160;:&#160;<a class="el" href="classActSim_1_1TrackGenerator.html#ab3a9acd284dc5d62f878206be438fa34">ActSim::TrackGenerator</a></li>
-<li>fStep&#160;:&#160;<a class="el" href="classActSim_1_1CrossSection.html#a5adb83ae6f1d12769e4c6f0c0ad99b33">ActSim::CrossSection</a></li>
+<li>fStatus&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">ActRoot::ProgressBar</a></li>
+<li>fStep&#160;:&#160;<a class="el" href="classActRoot_1_1ProgressBar_1_1ThreadInfo.html#ae1e87c4fd32e905a08e6fbf4314f3a37">ActRoot::ProgressBar::ThreadInfo</a>, <a class="el" href="classActSim_1_1CrossSection.html#a5adb83ae6f1d12769e4c6f0c0ad99b33">ActSim::CrossSection</a></li>
 <li>fStop&#160;:&#160;<a class="el" href="classActAlgorithm_1_1Interval.html#a39e77d4ea3b83e90ba752926b226f5c2">ActAlgorithm::Interval&lt; T &gt;</a></li>
 <li>fT1Lab&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#aa5d2f27777217d6b8b3172641f62f0b9">ActPhysics::Kinematics</a></li>
 <li>fT3Lab&#160;:&#160;<a class="el" href="classActPhysics_1_1Kinematics.html#aed738cb2342966d6ae12f7a8d58503b9">ActPhysics::Kinematics</a></li>

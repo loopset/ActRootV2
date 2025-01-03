@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['wait_0',['wait',['../classBS_1_1multi__future.html#a05073ed8d37b939c9440ac8789b69ba7',1,'BS::multi_future::wait()'],['../classBS_1_1thread__pool.html#a9e8a0b066d078da097665ffadc475ae0',1,'BS::thread_pool::wait()'],['../classBS_1_1signaller.html#adb2dd6afcc82eb015cd26dff9247f763',1,'BS::signaller::wait()']]],
-  ['wait_5ffor_1',['wait_for',['../classBS_1_1multi__future.html#a381744c63b88eee1df425b5ce7b5e904',1,'BS::multi_future::wait_for()'],['../classBS_1_1thread__pool.html#afc8a4000155ecd7513b39093daaafc1d',1,'BS::thread_pool::wait_for()']]],
-  ['wait_5funtil_2',['wait_until',['../classBS_1_1multi__future.html#ad7e095316d61714456281cb3d30325a1',1,'BS::multi_future::wait_until()'],['../classBS_1_1thread__pool.html#a467e8c017965228950dacdbc73f0ae9c',1,'BS::thread_pool::wait_until(const std::chrono::time_point&lt; C, D &gt; &amp;timeout_time)']]],
-  ['worker_3',['worker',['../classBS_1_1thread__pool.html#a0449c4a34e857dc9f6fce504278bf9af',1,'BS::thread_pool']]],
-  ['write_4',['write',['../classActPhysics_1_1GenCorrection.html#a7f166f7d70f47f5bae7d3a3cb21787fb',1,'ActPhysics::GenCorrection::Write()'],['../classActPhysics_1_1PIDCorrection.html#a96d3a956a29ebb5f7903a495ea80fec3',1,'ActPhysics::PIDCorrection::Write()'],['../classActPhysics_1_1SilMatrix.html#abb120a3e2d58fb243434c2738e9184a5',1,'ActPhysics::SilMatrix::Write(const std::string &amp;file)'],['../classActPhysics_1_1SilMatrix.html#a83a429412ecceacf21fdd51a4a103933',1,'ActPhysics::SilMatrix::Write()']]],
-  ['writegeometry_5',['WriteGeometry',['../classActSim_1_1Geometry.html#a3d3aca94f12412b0f97439b19357cd47',1,'ActSim::Geometry']]],
-  ['writemetadata_6',['WriteMetadata',['../classActRoot_1_1OutputData.html#ade1e383735a4583483d74783264702d7',1,'ActRoot::OutputData']]]
+  ['vaction_0',['VAction',['../classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba',1,'ActAlgorithm::VAction']]],
+  ['valid_1',['valid',['../classBS_1_1multi__future.html#a39a5321e6be74bf09cb03514bf7cd42b',1,'BS::multi_future']]],
+  ['vcluster_2',['vcluster',['../classActAlgorithm_1_1VCluster.html#ad6c0730b6348053c81432567d90712e9',1,'ActAlgorithm::VCluster::VCluster()=default'],['../classActAlgorithm_1_1VCluster.html#af91b488c55ba990896a4d7d89d5e9afa',1,'ActAlgorithm::VCluster::VCluster(int minPoints)']]],
+  ['vdata_3',['VData',['../classActRoot_1_1VData.html#af9e86fb142efc859f402ef9a10ab8b30',1,'ActRoot::VData']]],
+  ['vdetector_4',['VDetector',['../classActRoot_1_1VDetector.html#a7f90fa1f9c6769b51ae6ddfe4ec03e37',1,'ActRoot::VDetector']]],
+  ['vfilter_5',['VFilter',['../classActAlgorithm_1_1VFilter.html#a41e5915ec5daa3dc74a2bfe0bc8d1f05',1,'ActAlgorithm::VFilter']]],
+  ['voxel_6',['voxel',['../classActRoot_1_1Voxel.html#a8d13a75dd95a1e43a933c4a43636fa75',1,'ActRoot::Voxel::Voxel()=default'],['../classActRoot_1_1Voxel.html#a2c98b3798619548117d1812682236fc0',1,'ActRoot::Voxel::Voxel(const XYZPointF &amp;pos, float charge, bool hasSaturation=false)']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_0',['Z',['../classActRoot_1_1TPCParameters.html#a962d3bf49eaf8474a5839c74e742dde2',1,'ActRoot::TPCParameters']]]
+  ['y_0',['Y',['../classActRoot_1_1TPCParameters.html#a02377c3ce67331a1f3979f6944cb5f49',1,'ActRoot::TPCParameters']]]
 ];
