@@ -31,6 +31,7 @@ void ActPhysics::SilLayer::Print() const
                   << '\n';
     std::cout << "-> Point  : " << fPoint << " [pads]" << '\n';
     std::cout << "-> Normal : " << fNormal << '\n';
+    std::cout << "-> Margin : " << fMargin << " mm" << '\n';
     std::cout << "-> PadIdx : " << fPadIdx << '\n';
     std::cout << "-> Unit   : " << '\n';
     fUnit.Print();
@@ -125,9 +126,9 @@ void ActPhysics::SilLayer::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock
     // 5-> Read pad index
     if(block->CheckTokenExists("PadIdx", true))
         fPadIdx = block->GetInt("PadIdx");
-    // 6-> Enable match
-    if(block->CheckTokenExists("EnableMatch", true))
-        fEnableMatch = block->GetBool("EnableMatch");
+    // 6-> Margin to match
+    if(block->CheckTokenExists("MatchMargin", true))
+        fMargin = block->GetDouble("MatchMargin");
 
     // 7-> Build the silicon matrix with the info gathered here
     fMatrix = BuildSilMatrix();
@@ -170,13 +171,11 @@ ActPhysics::SilLayer::GetBoundaryPointOfTrack(int padx, int pady, const Point<T>
 template <typename T>
 bool ActPhysics::SilLayer::MatchesRealPlacement(int i, const Point<T>& sp, bool useZ) const
 {
-    if(!fEnableMatch) // if match is disabled, validate all events
-        return true;
     auto [xy, z] {fPlacements.at(i)};
-    auto xyMin {xy - fUnit.GetWidth() / 2};
-    auto xyMax {xy + fUnit.GetWidth() / 2};
-    auto zMin {z - fUnit.GetHeight() / 2};
-    auto zMax {z + fUnit.GetHeight() / 2};
+    auto xyMin {xy - fUnit.GetWidth() / 2 - fMargin};
+    auto xyMax {xy + fUnit.GetWidth() / 2 + fMargin};
+    auto zMin {z - fUnit.GetHeight() / 2 - fMargin};
+    auto zMax {z + fUnit.GetHeight() / 2 + fMargin};
     // Por XY plane we have to determine whether it is along X or Y!
     double plane {};
     if(fSide == SilSide::EBack || fSide == SilSide::EFront)

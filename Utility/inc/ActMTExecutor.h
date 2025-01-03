@@ -3,6 +3,7 @@
 
 #include "ActDataManager.h"
 #include "ActDetectorManager.h"
+#include "ActProgressBar.h"
 
 #include "BS_thread_pool.h"
 #include "BS_thread_pool_utils.h"
@@ -10,7 +11,6 @@
 #include <set>
 #include <string>
 #include <thread>
-#include <utility>
 #include <vector>
 
 namespace ActRoot
@@ -29,9 +29,8 @@ private:
     std::vector<DetectorManager> fDetMans;
     // List of runs per worker
     std::vector<std::set<int>> fRunsPerThread;
-    // For print progress, miscellanea
-    std::vector<std::pair<double, double>> fProgress;
-    double fPercentPrint {10};
+    // Progress bar
+    ProgressBar fProgBar;
 
 public:
     MTExecutor(int nthreads = 1.5 * std::thread::hardware_concurrency());
@@ -42,8 +41,6 @@ public:
 private:
     void ComputeRunsPerThread();
     bool IsThreadEmpty(int t);
-    void StepProgress(int thread, double total);
-    void PrintProgress(int thread, int run, double current, double total);
 };
 } // namespace ActRoot
 

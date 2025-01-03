@@ -5,6 +5,7 @@
 #include "ActInputData.h"
 #include "ActOptions.h"
 #include "ActOutputData.h"
+#include "ActProgressBar.h"
 
 #include "TFile.h"
 #include "TROOT.h"
@@ -16,13 +17,9 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-#include <utility>
 #include <vector>
 
-ActRoot::MTExecutor::MTExecutor(int nthreads)
-    : ftp(BS::thread_pool(nthreads)),
-      fRunsPerThread(nthreads),
-      fProgress(nthreads)
+ActRoot::MTExecutor::MTExecutor(int nthreads) : ftp(BS::thread_pool(nthreads)), fRunsPerThread(nthreads), fProgBar()
 {
     // Mandatory to be very cautious with concurrency
     ROOT::EnableThreadSafety();
@@ -50,6 +47,8 @@ void ActRoot::MTExecutor::SetDetectorConfig(const std::string& detfile, const st
     // Print
     std::cout << BOLDYELLOW << "Pool size : " << fRunsPerThread.size() << " but DetMan size : " << fDetMans.size()
               << RESET << '\n';
+    // Init Progress bar (referred as monitor later)
+    fProgBar.SetNThreads(fDetMans.size());
 }
 
 void ActRoot::MTExecutor::ComputeRunsPerThread()
@@ -97,32 +96,12 @@ bool ActRoot::MTExecutor::IsThreadEmpty(int t)
     return fRunsPerThread.at(t).size() == 0;
 }
 
-void ActRoot::MTExecutor::StepProgress(int thread, double total)
-{
-    double step {total / (100. / fPercentPrint)};
-    fProgress[thread] = {step, step};
-}
-
-void ActRoot::MTExecutor::PrintProgress(int thread, int run, double current, double total)
-{
-    static bool style {false};
-    if(current >= fProgress[thread].second)
-    {
-        auto percent {static_cast<int>(100 * current / total)};
-        ftpcout.print("\r", "                                             ",
-                      BS::synced_stream::flush); // to avoid garbage in cout, since \r does not clean previous line
-        ftpcout.print("\r", BOLDGREEN, "Run ", run, " -> ", std::string(percent / fPercentPrint, (style) ? '|' : '#'),
-                      percent, "%", RESET, BS::synced_stream::flush);
-        fProgress[thread].second += fProgress[thread].first;
-        style = !style;
-    }
-}
-
 void ActRoot::MTExecutor::BuildEvent()
 {
     // Build lambda for each worker
     auto build = [this](unsigned int thread)
     {
+        unsigned int count {1};
         for(const auto& run : fRunsPerThread[thread])
         {
             // Init in/out data
@@ -132,26 +111,32 @@ void ActRoot::MTExecutor::BuildEvent()
             fDetMans[thread].InitInput(input.GetTree(run));
             fDetMans[thread].InitOutput(output.GetTree(run));
             auto nentries {input.GetNEntries(run)};
-            StepProgress(thread, nentries);
+            fProgBar.SetThreadInfo(thread, nentries, fRunsPerThread[thread].size());
             // Run for each entry!
             for(int entry = 0; entry < nentries; entry++)
             {
                 input.GetEntry(run, entry);
                 fDetMans[thread].BuildEvent(run, entry);
                 output.Fill(run);
-                PrintProgress(thread, run, entry + 1, nentries);
+                fProgBar.SetThreadStatus(thread, entry, nentries, run, count);
             }
             output.Close(run);
             input.Close(run);
+            count++;
         }
+        fProgBar.IncrementCompleted(); // increase inner atomic telling monitor that task ended
     };
     // Add a global timer
     TStopwatch timer {};
     timer.Start();
+    // Start monitor
+    fProgBar.Init();
     // Parallelize loop
     ftp.detach_sequence(0, (int)fDetMans.size(), build);
     // Wait for tasks to finish
     ftp.wait();
+    // End monitor thread once tasks have finished
+    fProgBar.Join();
     // Finish execution by couting elapased time
     timer.Stop();
     std::cout << std::endl;

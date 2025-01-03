@@ -10,11 +10,12 @@
 #pragma link C++ nestedtypedef;
 
 // cuts manager
-#pragma link C++ class ActRoot::CutsManager <int>;
-#pragma link C++ class ActRoot::CutsManager <string>;
+#pragma link C++ class ActRoot::CutsManager < int>;
+#pragma link C++ class ActRoot::CutsManager < string>;
 
 // multithreading
 #pragma link C++ class ActRoot::MTExecutor;
+#pragma link C++ class ActRoot::ProgressBar;
 
 // ActRoot's GUI
 #pragma link C++ class ActRoot::EventPainter;
