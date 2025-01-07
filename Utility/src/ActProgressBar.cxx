@@ -80,6 +80,6 @@ void ActRoot::ProgressBar::Display()
             break;
 
         // Printing interval
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Update interval
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Update interval
     }
 }

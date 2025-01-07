@@ -19,9 +19,9 @@
 #include <string>
 #include <utility>
 
-ActSim::Runner::Runner(ActPhysics::SRIM* srim) : fsrim(srim), fRand(dynamic_cast<TRandom3*>(gRandom)) {}
+ActSim::Runner::Runner(ActPhysics::SRIM* srim) : fsrim(srim), fRand(gRandom) {}
 
-ActSim::Runner::Runner(ActPhysics::SRIM* sri, Geometry* geo, TRandom3* rand, double silSigma)
+ActSim::Runner::Runner(ActPhysics::SRIM* sri, Geometry* geo, TRandom* rand, double silSigma)
     : fsrim(sri),
       fgeo(geo),
       fRand(rand)
@@ -60,7 +60,7 @@ std::pair<double, double> ActSim::Runner::EnergyAfterSilicons(double T3EnteringS
     {
         double RLeftWithStraggling {};
         if(enableStraggling)
-            RLeftWithStraggling = ApplyStragglingInMaterialToRLeft(RIni, RLeft, silString);
+            RLeftWithStraggling = fsrim->SlowWithStraggling(silString, T3EnteringSil, silWidth);
         else
             RLeftWithStraggling = RLeft; // no straggling
 
@@ -102,8 +102,8 @@ double ActSim::Runner::EnergyAfterGas(double TIni, double distance, const std::s
         return fsrim->EvalInverse(gasKey, RLeft);
     else
     {
-        auto RLeftWithStraggling {ApplyStragglingInMaterialToRLeft(RIni, RLeft, gasKey)};
-        return fsrim->EvalInverse(gasKey, RLeftWithStraggling);
+        // auto RLeftWithStraggling {ApplyStragglingInMaterialToRLeft(RIni, RLeft, gasKey)};
+        return fsrim->SlowWithStraggling(gasKey, TIni, distance);
     }
 }
 
