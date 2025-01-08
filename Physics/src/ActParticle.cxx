@@ -138,3 +138,9 @@ double ActPhysics::Particle::GetSpX(unsigned int X) const
     Particle P(fZ - X, fA - X);
     return P.GetMass() + X * Constants::kpMass - fMass;
 }
+
+double ActPhysics::Particle::GetBE() const
+{
+    return fZ * Constants::kpMass + (fA - fZ) * Constants::knMass + fZ * Constants::keMass -
+           fA * Constants::kamuToMeVC2 - fMassExcess;
+}

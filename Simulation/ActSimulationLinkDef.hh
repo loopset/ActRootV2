@@ -15,6 +15,7 @@
 
 //Generators
 #pragma link C++ class ActSim::KinematicGenerator;
+#pragma link C++ class ActSim::DecayGenerator;
 
 //Runner
 #pragma link C++ class ActSim::Runner;

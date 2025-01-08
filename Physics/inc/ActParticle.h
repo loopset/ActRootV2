@@ -28,8 +28,11 @@ public:
     const std::string& GetName() const { return fName; }
     int GetA() const { return fA; }
     int GetZ() const { return fZ; }
+    int GetN() const { return fA - fZ; }
     double GetMass() const { return fMass; }                         //!< Return mass in MeV / c2 units
     double GetAMU() const { return fMass / Constants::kamuToMeVC2; } //!< Return mass in amu units
+    double GetBE() const;                                            //!< Return binding energy
+    double GetMassExcess() const { return fMassExcess; }
     double GetSn() const { return GetSnX(1); }
     double GetS2n() const { return GetSnX(2); }
     double GetSp() const { return GetSpX(1); }
