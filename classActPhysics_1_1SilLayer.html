@@ -136,6 +136,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa99f944756052aa8ee6f3e86a364fc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae634a78b881c239a0f322ba4af1e88f2" id="r_ae634a78b881c239a0f322ba4af1e88f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ae634a78b881c239a0f322ba4af1e88f2">GetPadIdx</a> () const</td></tr>
 <tr class="separator:ae634a78b881c239a0f322ba4af1e88f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65aeb5cd6daf4cfb20e6e5876d868fbe" id="r_a65aeb5cd6daf4cfb20e6e5876d868fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#a65aeb5cd6daf4cfb20e6e5876d868fbe">SetPoint</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> &amp;pInPads)</td></tr>
+<tr class="separator:a65aeb5cd6daf4cfb20e6e5876d868fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada4362fbc6c1a44f9249b8088f64a0ef" id="r_ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilLayer.html#ada4362fbc6c1a44f9249b8088f64a0ef">GetSiliconPointOfTrack</a> (const <a class="el" href="classActPhysics_1_1SilLayer.html#a29001f4d0f10542ab7303e92e00a2043">Point</a>&lt; T &gt; &amp;point, const <a class="el" href="classActPhysics_1_1SilLayer.html#a8cbfd98d456548b665e0a8fc1bb60aab">Vector</a>&lt; T &gt; &amp;vector, bool scale=false) const</td></tr>
 <tr class="separator:ada4362fbc6c1a44f9249b8088f64a0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1039,6 +1041,33 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="lineno">  241</span>    <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">UpdatePlacementsFromMatrix</a>();</div>
 <div class="line"><span class="lineno">  242</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_ae60e3ff27871c13943dbd9926318d12e"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#ae60e3ff27871c13943dbd9926318d12e">ActPhysics::SilMatrix::Clone</a></div><div class="ttdeci">SilMatrix * Clone() const</div><div class="ttdef"><b>Definition</b> ActSilMatrix.cxx:232</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a65aeb5cd6daf4cfb20e6e5876d868fbe" name="a65aeb5cd6daf4cfb20e6e5876d868fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65aeb5cd6daf4cfb20e6e5876d868fbe">&#9670;&#160;</a></span>SetPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActPhysics::SilLayer::SetPoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActPhysics_1_1SilLayer.html#a997ec5d97a41a8befee15dd88500f3d0">XYZPointF</a> &amp;&#160;</td>
+          <td class="paramname"><em>pInPads</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   90</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> = pInPads; }</div>
 </div><!-- fragment -->
 </div>
 </div>

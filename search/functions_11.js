@@ -80,7 +80,7 @@ var searchData=
   ['setpadidx_77',['SetPadIdx',['../classActPhysics_1_1SilMatrix.html#a5547ec72fa3eb4199670c40f5b1f8ca5',1,'ActPhysics::SilMatrix']]],
   ['setpalette_78',['SetPalette',['../classActRoot_1_1HistogramPainter.html#a3f7b88f2a45fef889a0ae2165e338aaa',1,'ActRoot::HistogramPainter']]],
   ['setparameters_79',['SetParameters',['../classActRoot_1_1MergerDetector.html#abd47c70bf4e4889c43c82fd01b74b7d8',1,'ActRoot::MergerDetector']]],
-  ['setpoint_80',['SetPoint',['../classActRoot_1_1Line.html#a8750471ebe1e7bfafbae52610b416f72',1,'ActRoot::Line']]],
+  ['setpoint_80',['setpoint',['../classActRoot_1_1Line.html#a8750471ebe1e7bfafbae52610b416f72',1,'ActRoot::Line::SetPoint()'],['../classActPhysics_1_1SilLayer.html#a65aeb5cd6daf4cfb20e6e5876d868fbe',1,'ActPhysics::SilLayer::SetPoint()']]],
   ['setposition_81',['SetPosition',['../classActRoot_1_1Voxel.html#abdff780b0e20ab2d3db20d182c1f2433',1,'ActRoot::Voxel']]],
   ['setrebinz_82',['SetREBINZ',['../classActRoot_1_1TPCParameters.html#a1e802bd3dcb5435247fef0da647c82a9',1,'ActRoot::TPCParameters']]],
   ['setrecoil3labkinematics_83',['SetRecoil3LabKinematics',['../classActPhysics_1_1Kinematics.html#a073aac152ad296f574e751561ece9f15',1,'ActPhysics::Kinematics']]],
