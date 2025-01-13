@@ -86,6 +86,8 @@ public:
     const XYZVectorF& GetNormal() const { return fNormal; }
     std::shared_ptr<SilMatrix> GetSilMatrix() const { return fMatrix; }
     int GetPadIdx() const { return fPadIdx; }
+    ////
+    void SetPoint(const XYZPointF& pInPads) { fPoint = pInPads; }
 
     // Operations
     template <typename T>
