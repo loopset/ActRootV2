@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sample_0',['Sample',['../classActSim_1_1CrossSection.html#af9a932dc8b164bcae4796d037be3cba3',1,'ActSim::CrossSection']]],
+  ['sample_0',['sample',['../classActSim_1_1CrossSection.html#a5dde3d6a79de70af2d458bc7ba75d6ac',1,'ActSim::CrossSection::Sample(double r)'],['../classActSim_1_1CrossSection.html#adbb2e6d0be34694ac1dfec76d5d85d2f',1,'ActSim::CrossSection::Sample()']]],
   ['sampleline_1',['SampleLine',['../classActAlgorithm_1_1RANSAC.html#a90ebae948dc812d30a1e5a38afb89aff',1,'ActAlgorithm::RANSAC']]],
   ['samplevertex_2',['SampleVertex',['../classActSim_1_1Runner.html#a53b47e1a79be0a4ed93cd1ba4269a85e',1,'ActSim::Runner']]],
   ['samplexs_3',['SampleXS',['../classActSim_1_1TheoCrossSection.html#a26fa9d633d423fb874fd60e2f309fe58',1,'ActSim::TheoCrossSection']]],

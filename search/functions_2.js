@@ -57,7 +57,7 @@ var searchData=
   ['computetheta3fromt3_54',['ComputeTheta3FromT3',['../classActPhysics_1_1Kinematics.html#ad166e7a1015d43dec85e4b399403ff4c',1,'ActPhysics::Kinematics']]],
   ['computexprofile_55',['ComputeXProfile',['../classActRoot_1_1MergerDetector.html#aac4b85677e4ddc9744d0d3abcf1b334b',1,'ActRoot::MergerDetector']]],
   ['computexsatenergy_56',['ComputeXSAtEnergy',['../classActSim_1_1TheoCrossSection.html#aef582bf656a3f0c9d29c4b533fc359e9',1,'ActSim::TheoCrossSection']]],
-  ['construct_57',['construct',['../classActSim_1_1Geometry.html#a6c76acaa9337a03c1031227f8200d715',1,'ActSim::Geometry::Construct()'],['../classActSilDetector.html#a0a4ed48b518039867b70e7400f97f2f8',1,'ActSilDetector::Construct()'],['../classActDetectorConstruction.html#ac3ac3810622876e54525c7cc7497cd60',1,'ActDetectorConstruction::Construct()'],['../classActDriftDetector.html#a3e3c4fa7baba553065e5c2b50a8fa2a6',1,'ActDriftDetector::Construct()']]],
+  ['construct_57',['construct',['../classActSim_1_1Geometry.html#a6c76acaa9337a03c1031227f8200d715',1,'ActSim::Geometry::Construct()'],['../classActDetectorConstruction.html#ac3ac3810622876e54525c7cc7497cd60',1,'ActDetectorConstruction::Construct()'],['../classActDriftDetector.html#a3e3c4fa7baba553065e5c2b50a8fa2a6',1,'ActDriftDetector::Construct()'],['../classActSilDetector.html#a0a4ed48b518039867b70e7400f97f2f8',1,'ActSilDetector::Construct()']]],
   ['constructaction_58',['ConstructAction',['../classActAlgorithm_1_1MultiAction.html#a80804110d0e2067014adcccb801567d2',1,'ActAlgorithm::MultiAction']]],
   ['constructdriftchamber_59',['ConstructDriftChamber',['../classActDriftDetector.html#a9db738b30e754c53579326fc226b1826',1,'ActDriftDetector']]],
   ['constructfromstr_60',['ConstructFromStr',['../classActPhysics_1_1Kinematics.html#adf36177508f4b500b098ddf5930a6e6c',1,'ActPhysics::Kinematics']]],
@@ -71,6 +71,7 @@ var searchData=
   ['correctzoffset_68',['CorrectZOffset',['../classActRoot_1_1MergerDetector.html#ad6251631a0777c2917266666760c500c',1,'ActRoot::MergerDetector']]],
   ['create_5fthreads_69',['create_threads',['../classBS_1_1thread__pool.html#a1bc52c5ed9a0d1d867585e492b4c99a2',1,'BS::thread_pool']]],
   ['createmultigraphforpainter_70',['CreateMultiGraphForPainter',['../classActPhysics_1_1SilMatrix.html#afbc505fed749d2c6df1386c6d268b5a6',1,'ActPhysics::SilMatrix']]],
-  ['current_5fms_71',['current_ms',['../classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b',1,'BS::timer']]],
-  ['cylindercleaning_72',['cylindercleaning',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a2c7ad50e0303e5f965122fc06c2ce9b8',1,'ActAlgorithm::Actions::FindRP::CylinderCleaning()'],['../namespaceActAlgorithm.html#ae54e3641a506c2c53d97c128dbc51b45',1,'ActAlgorithm::CylinderCleaning()']]]
+  ['crosssection_71',['CrossSection',['../classActSim_1_1CrossSection.html#af8ec0e9e7d6a4445929ce5e3febac425',1,'ActSim::CrossSection']]],
+  ['current_5fms_72',['current_ms',['../classBS_1_1timer.html#ae1f5174463b91c37c9d331a8bf7fb74b',1,'BS::timer']]],
+  ['cylindercleaning_73',['cylindercleaning',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a2c7ad50e0303e5f965122fc06c2ce9b8',1,'ActAlgorithm::Actions::FindRP::CylinderCleaning()'],['../namespaceActAlgorithm.html#ae54e3641a506c2c53d97c128dbc51b45',1,'ActAlgorithm::CylinderCleaning()']]]
 ];
