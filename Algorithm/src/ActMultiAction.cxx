@@ -6,13 +6,13 @@
 #include "ActACleanDeltas.h"
 #include "ActACleanPileUp.h"
 #include "ActACleanZs.h"
+#include "ActAFindRP.h"
 #include "ActAMerge.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
 #include "ActVCluster.h"
-#include "ActAFindRP.h"
 
 #include <memory>
 #include <stdexcept>

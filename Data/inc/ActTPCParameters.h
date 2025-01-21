@@ -29,6 +29,7 @@ public:
     TPCParameters(const std::string& type);
     // Setters
     void SetREBINZ(int rebin);
+    void SetNPADSZ(int npadsz) { fNPADSZ = npadsz; }
     // Getters
     double GetPadSide() const { return fPadSide; }
     int GetNPADSX() const { return fNPADSX; }

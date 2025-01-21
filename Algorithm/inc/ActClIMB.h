@@ -1,7 +1,6 @@
 #ifndef ActClIMB_h
 #define ActClIMB_h
 
-#include "ActCluster.h"
 #include "ActVCluster.h"
 #include "ActVoxel.h"
 

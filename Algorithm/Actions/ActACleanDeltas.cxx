@@ -3,19 +3,28 @@
 #include "ActColors.h"
 #include "ActTPCData.h"
 
+#include <cstdlib>
 #include <ios>
+#include <iterator>
+#include <set>
 
 void ActAlgorithm::Actions::CleanDeltas::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block)
 {
     fIsEnabled = block->GetBool("IsEnabled");
     if(!fIsEnabled)
         return;
-    if(block->CheckTokenExists("DeltaChi2Threshold"))
-        fDeltaChi2Threshold = block->GetDouble("DeltaChi2Threshold");
-    if(block->CheckTokenExists("DeltaMaxVoxeles"))
-        fDeltaMaxVoxels = block->GetDouble("DeltaMaxVoxeles");
+    if(block->CheckTokenExists("Chi2Thresh"))
+        fChi2Thresh = block->GetDouble("Chi2Thresh");
+    if(block->CheckTokenExists("MaxVoxels"))
+        fMaxVoxels = block->GetDouble("MaxVoxels");
     if(block->CheckTokenExists("UseExtVoxels"))
         fUseExtVoxels = block->GetBool("UseExtVoxels");
+    if(block->CheckTokenExists("SigmaGap"))
+        fSigmaGap = block->GetDouble("SigmaGap");
+    if(block->CheckTokenExists("CylinderR"))
+        fCylinderR = block->GetDouble("CylinderR");
+    if(block->CheckTokenExists("UseCylinder"))
+        fUseCylinder = block->GetBool("UseCylinder");
 }
 
 void ActAlgorithm::Actions::CleanDeltas::Run()
@@ -28,21 +37,97 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
             if(!it->GetUseExtVoxels())
                 it->SetUseExtVoxels(true);
         // 1-> Check whether cluster has a large Chi2
-        bool hasLargeChi {it->GetLine().GetChi2() > fDeltaChi2Threshold};
+        auto chi2 {it->GetLine().GetChi2()};
+        bool hasLargeChi {chi2 > fChi2Thresh};
         // 2-> Check if less voxeles than delta electron limits
-        bool isSmall {it->GetSizeOfVoxels() <= fDeltaMaxVoxels};
+        bool isSmall {it->GetSizeOfVoxels() <= fMaxVoxels};
         // 3-> Check if after all there are clusters with Chi2 = -1
-        bool isBadFit {it->GetLine().GetChi2() == -1};
-        if(hasLargeChi || isSmall || isBadFit)
+        bool isBadFit {chi2 == -1};
+        // If it is too small or bad fit, erase it now
+        if(isSmall || isBadFit)
         {
             if(fIsVerbose)
             {
-                std::cout << BOLDCYAN << "---- CleanDeltas verbose ----" << '\n';
-                std::cout << "Chi2 : " << it->GetLine().GetChi2() << '\n';
-                std::cout << "SizeVoxels: " << it->GetSizeOfVoxels() << '\n';
-                std::cout << "-------------------" << RESET << '\n';
+                std::cout << BOLDCYAN << "---- CleanDeltas ----" << '\n';
+                std::cout << " Small sized cluster: " << it->GetSizeOfVoxels() << '\n';
+                std::cout << RESET << '\n';
             }
             it = fTPCData->fClusters.erase(it);
+        }
+        else if(hasLargeChi)
+        {
+            // Determine whether it has a predominat direction
+            auto sigmas {it->GetLine().GetSigmas()};
+            std::set<float, std::greater<>> set {sigmas.X(), sigmas.Y(), sigmas.Z()};
+            // Maximum sigma
+            auto max {*set.begin()};
+            // Next-to-maximum sigma
+            auto ntmax {*std::next(set.begin())};
+            // Difference in sigma
+            auto diff {std::abs(max - ntmax)};
+            if(diff >= fSigmaGap && fUseCylinder) // is linear and use cylinder cleaning
+            {
+                auto& voxels {it->GetRefToVoxels()};
+                auto oldSize {voxels.size()};
+                auto itKeep {std::partition(voxels.begin(), voxels.end(),
+                                            [&](const ActRoot::Voxel& voxel)
+                                            {
+                                                auto pos {voxel.GetPosition()};
+                                                pos += ROOT::Math::XYZVector {0.5, 0.5, 0.5};
+                                                auto dist {it->GetLine().DistanceLineToPoint(pos)};
+                                                return dist <= fCylinderR;
+                                            })};
+                // if enough voxels remain
+                auto remain {std::distance(voxels.begin(), itKeep)};
+                if((oldSize != remain) && remain >= fAlgo->GetMinPoints())
+                {
+                    voxels.erase(itKeep, voxels.end());
+                    it->ReFit();
+                    it->ReFillSets();
+                }
+                // Recheck chi2 condition
+                auto againHasLarcheChi2 {it->GetLine().GetChi2() > fChi2Thresh};
+                if(againHasLarcheChi2)
+                {
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDCYAN << "---- CleanDeltas ----" << '\n';
+                        std::cout << " Large chi2 after cylinder" << '\n';
+                        std::cout << "  New chi2    : " << it->GetLine().GetChi2() << '\n';
+                        std::cout << "  Old chi2    : " << chi2 << '\n';
+                        std::cout << "  Diff sigma  : " << diff << '\n';
+                        std::cout << "  Diff voxels : " << oldSize - remain << '\n';
+                        std::cout << RESET << '\n';
+                    }
+                    it = fTPCData->fClusters.erase(it);
+                }
+                else
+                {
+                    if(fIsVerbose)
+                    {
+                        std::cout << BOLDCYAN << "---- CleanDeltas ----" << '\n';
+                        std::cout << " Recovered after cylinder!" << '\n';
+                        std::cout << "  New chi2    : " << it->GetLine().GetChi2() << '\n';
+                        std::cout << "  Old chi2    : " << chi2 << '\n';
+                        std::cout << "  Diff sigma  : " << diff << '\n';
+                        std::cout << "  Diff voxels : " << oldSize - remain << '\n';
+                        std::cout << RESET << '\n';
+                    }
+                    it++;
+                }
+            }
+            else
+            {
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDCYAN << "---- CleanDeltas ----" << '\n';
+                    std::cout << " Large chi2: " << it->GetLine().GetChi2() << '\n';
+                    if(fUseCylinder)
+                        std::cout << "   Diff sigma : " << diff << '\n';
+                    std::cout << RESET << '\n';
+                }
+                it = fTPCData->fClusters.erase(it);
+            }
         }
         else
             it++;
@@ -58,9 +143,15 @@ void ActAlgorithm::Actions::CleanDeltas::Print() const
         std::cout << "······························" << RESET << '\n';
         return;
     }
-    std::cout << "  Chi2Thresh   : " << fDeltaChi2Threshold << '\n';
-    std::cout << "  MaxVoxels    : " << fDeltaMaxVoxels << '\n';
+    std::cout << "  Chi2Thresh   : " << fChi2Thresh << '\n';
+    std::cout << "  MaxVoxels    : " << fMaxVoxels << '\n';
     std::cout << "  UseExtVoxels ? " << std::boolalpha << fUseExtVoxels << '\n';
+    std::cout << "  UseCylinder  ? " << std::boolalpha << fUseCylinder << '\n';
+    if(fUseCylinder)
+    {
+        std::cout << "  SigmaGap     : " << fSigmaGap << '\n';
+        std::cout << "  CylinderR    : " << fCylinderR << '\n';
+    }
 
     std::cout << "······························" << RESET << '\n';
 }
