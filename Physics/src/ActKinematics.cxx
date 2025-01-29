@@ -8,7 +8,8 @@
 
 #include "TAttLine.h"
 #include "TCanvas.h"
-#include "TGraph.h"
+#include "TF1.h"
+#include "TGraphErrors.h"
 #include "TMathBase.h"
 #include "TString.h"
 #include <TMath.h>
@@ -631,4 +632,59 @@ void ActPhysics::Kinematics::ReadConfiguration(const std::string& file)
     ActRoot::InputParser parser {file};
     auto block {parser.GetBlock("Kinematics")};
     ReadConfiguration(block);
+}
+
+TGraphErrors* ActPhysics::Kinematics::TransfromCMCrossSectionToLab(TGraphErrors* gcm)
+{
+    // Get CM vs Lab line
+    auto* gangles {GetThetaLabvsThetaCMLine()};
+    // Set ranges for
+    double labmax {180}; // deg
+    double cmmax {180};
+    // But if we are in inverse kinematics, that graph is bivaluated in the lab frame
+    // and therefore we must cut in the maximum to pick only one region. Default is [0, max]
+    // But this could depend on the reaction. This is adapted for (p,d) or (d,t) reactions
+    if(fInverse)
+    {
+        // Locate maximum
+        auto it {TMath::LocMax(gangles->GetN(), gangles->GetY())};
+        // And set values, with a safe radius to avoid divergencies in the xs (mainly due to the derivative)!
+        labmax = gangles->GetPointY(it) - 1;
+        cmmax = gangles->GetPointX(it) - 1;
+    }
+
+    // Compute jacobian of transformation CM / Lab
+    auto gder {std::make_unique<TGraphErrors>()};
+    for(int p = 0; p < gangles->GetN(); p++)
+    {
+        auto cm {gangles->GetPointX(p)};
+        auto lab {gangles->GetPointY(p)};
+        if(cm < cmmax)
+        {
+            // X axis = cos(lab)
+            // Y axis = cos(cm)
+            gder->AddPoint(TMath::Cos(lab * TMath::DegToRad()), TMath::Cos(cm * TMath::DegToRad()));
+        }
+    }
+    // And declare function!
+    auto fder {
+        std::make_unique<TF1>("fder", [&](double* x, double* p) { return gder->Eval(x[0], nullptr, "S"); }, -1, 1, 0)};
+    // And transform cross-section!
+    // Using same binning as theoretical xs
+    auto* glab {new TGraphErrors};
+    glab->SetTitle(";#theta_{Lab} [#circ];d#sigma / d#Omega [mb/sr]");
+    double step {TMath::Abs(gcm->GetPointX(1) - gcm->GetPointX(0))};
+    for(double lab = 0; lab <= labmax; lab += step)
+    {
+        auto coslab {TMath::Cos(lab * TMath::DegToRad())};
+        auto coscm {gder->Eval(coslab)};
+        auto cm {TMath::ACos(coscm) *
+                 TMath::RadToDeg()}; // too complicated but done this way to avoid creating another graph
+        auto jacobian {fder->Derivative(coslab)};
+        auto xscm {gcm->Eval(cm, nullptr, "S")};
+        glab->AddPoint(lab, xscm * jacobian);
+    }
+    // Delete non self managed pointer
+    delete gangles;
+    return glab;
 }

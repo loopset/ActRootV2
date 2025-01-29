@@ -1,6 +1,8 @@
 #ifndef ActSilMatrix_h
 #define ActSilMatrix_h
 
+#include "ActUtils.h"
+
 #include "RtypesCore.h"
 
 #include "TCutG.h"
@@ -48,6 +50,7 @@ public:
 
     TMultiGraph* Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
     void MoveZTo(double ztarget, const std::set<int>& idxs);
+    void MoveXYTo(double xRef, const std::pair<double, double>& yzCentre, double xTarget);
     double GetMeanZ(const std::set<int>& idxs);
     void Erase(int idx);
 

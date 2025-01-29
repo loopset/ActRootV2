@@ -141,6 +141,32 @@ void ActPhysics::SilMatrix::MoveZTo(double ztarget, const std::set<int>& idxs)
     }
 }
 
+void ActPhysics::SilMatrix::MoveXYTo(double xRef, const std::pair<double, double>& yzCentre, double xTarget)
+{
+    // Silicon matrix is obtained at a given distance from the origin
+    // This function allows scalling and moving that distance
+    // by simply using triangle equivalence
+    auto scale {xTarget / xRef};
+    for(auto& [idx, g] : fMatrix)
+    {
+        for(int i = 0, size = g->GetN(); i < size; i++)
+        {
+            auto y {g->GetPointX(i)};
+            auto z {g->GetPointY(i)};
+            // But reference is not the origin but the given pair!
+            auto diffy {y - yzCentre.first};
+            auto diffz {z - yzCentre.second};
+            // And we scale THAT DIFFERENCE
+            auto scaledy {diffy * scale};
+            auto scaledz {diffz * scale};
+            // And set new points
+            // Y = Y + (scaledDiffY - diffY);
+            g->SetPointX(i, y + (scaledy - diffy));
+            g->SetPointY(i, z + (scaledz - diffz));
+        }
+    }
+}
+
 double ActPhysics::SilMatrix::GetMeanZ(const std::set<int>& idxs)
 {
     std::vector<double> zs;

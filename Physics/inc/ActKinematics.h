@@ -7,7 +7,6 @@
 #include "Rtypes.h"
 
 #include "TAttLine.h"
-#include "TGraph.h"
 
 #include <Math/GenVector/BoostX.h>
 #include <Math/Vector3Dfwd.h>
@@ -15,6 +14,10 @@
 #include <memory>
 #include <string>
 #include <tuple>
+
+// Forward declarations
+class TGraph;
+class TGraphErrors;
 
 namespace ActPhysics
 {
@@ -106,6 +109,7 @@ public:
     TGraph* GetKinematicLine4(double step = 0.1, EColor color = kBlue, ELineStyle style = kSolid);
     TGraph* GetTheta3vs4Line(double step = 0.1, EColor color = kBlue, ELineStyle style = kSolid);
     TGraph* GetThetaLabvsThetaCMLine(double step = 0.1, EColor color = kMagenta, ELineStyle style = kSolid);
+    TGraphErrors* TransfromCMCrossSectionToLab(TGraphErrors* gcm);
 
     // Setters
     void SetBeamEnergy(double T1);
