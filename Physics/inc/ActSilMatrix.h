@@ -41,7 +41,7 @@ public:
     void SetPadIdx(int idx) { fPadIdx = idx; }
     std::string GetName() const { return fName; }
     std::set<int> GetSilIndexes() const;
-    const TCutG* GetSil(int idx) const { return fMatrix.at(idx); }
+    TCutG* GetSil(int idx) const { return fMatrix.at(idx); }
     const std::map<int, TCutG*>& GetGraphs() const { return fMatrix; }
     std::pair<double, double> GetCentre(int idx) const;
     double GetWidth(int idx) const;
