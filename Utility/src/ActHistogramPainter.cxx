@@ -51,6 +51,8 @@ void ActRoot::HistogramPainter::ReadConfiguration()
         SetPalette(hb->GetString("Palette"));
     if(hb->CheckTokenExists("ShowStats", true))
         fShowHistStats = hb->GetBool("ShowStats");
+    if(hb->CheckTokenExists("ColZ", true))
+        fColZ = hb->GetBool("ColZ");
 }
 
 void ActRoot::HistogramPainter::SendParameters(ActRoot::DetectorManager* detman)
@@ -233,9 +235,9 @@ void ActRoot::HistogramPainter::Draw()
         {
             fCanvas->at(c)->cd(p);
             if(c == 0)
-                h->Draw("colz");
+                h->Draw(fColZ ? "colz" : "col");
             else if(c == 1)
-                h->Draw("col text");
+                h->Draw(fColZ ? "colz" : "col");
             else
                 h->Draw("scat");
         }
@@ -398,7 +400,7 @@ void ActRoot::HistogramPainter::DrawProjections()
         data->fQprojX.Draw("hist");
         // Draw also pad plane in 2nd tab
         fCanvas->at(1)->cd(4);
-        fHist2D[0][4]->Draw("colz");
+        fHist2D[0][4]->Draw(fColZ ? "col" : "colz");
     }
 }
 

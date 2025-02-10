@@ -57,6 +57,7 @@ private:
 
     // Store settings read in config file
     bool fShowHistStats {false};
+    bool fColZ {true};
 
 public:
     HistogramPainter();
