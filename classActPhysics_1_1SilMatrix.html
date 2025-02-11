@@ -125,6 +125,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ace6299e9b7089b49b691d288f532e9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8630629a46ccc8816ad76c957a6b843" id="r_ab8630629a46ccc8816ad76c957a6b843"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ab8630629a46ccc8816ad76c957a6b843">GetPadIdx</a> () const</td></tr>
 <tr class="separator:ab8630629a46ccc8816ad76c957a6b843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2411ef18957e6906011051a7de2abd" id="r_a9e2411ef18957e6906011051a7de2abd"><td class="memItemLeft" align="right" valign="top">TMultiGraph *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a9e2411ef18957e6906011051a7de2abd">GetMulti</a> () const</td></tr>
+<tr class="separator:a9e2411ef18957e6906011051a7de2abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f3da0def79b4f58cee6d47e04fdda98" id="r_a6f3da0def79b4f58cee6d47e04fdda98"><td class="memItemLeft" align="right" valign="top">TMultiGraph *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#a6f3da0def79b4f58cee6d47e04fdda98">Draw</a> (bool same=true, const std::string &amp;xlabel=&quot;Y [mm]&quot;, const std::string &amp;ylabel=&quot;Z [mm]&quot;)</td></tr>
 <tr class="separator:a6f3da0def79b4f58cee6d47e04fdda98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad68637cd586673c967eb223f02350be4" id="r_ad68637cd586673c967eb223f02350be4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActPhysics_1_1SilMatrix.html#ad68637cd586673c967eb223f02350be4">MoveZTo</a> (double ztarget, const std::set&lt; int &gt; &amp;idxs)</td></tr>
@@ -221,8 +223,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   30</span>: <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>(name) {}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_ab89b36833e7789c9b776fe36802cbe42"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">ActPhysics::SilMatrix::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:23</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>: <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>(name) {}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_ab89b36833e7789c9b776fe36802cbe42"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">ActPhysics::SilMatrix::fName</a></div><div class="ttdeci">std::string fName</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -251,8 +253,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   34</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; [i, g] : <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>)</div>
 <div class="line"><span class="lineno">   35</span>        delete g;</div>
 <div class="line"><span class="lineno">   36</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a2ecf95931af39bf10260784373a0897b"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">ActPhysics::SilMatrix::fMatrix</a></div><div class="ttdeci">std::map&lt; int, TCutG * &gt; fMatrix</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:24</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a404b470e178acdc03ecb93ec3eeba165"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a404b470e178acdc03ecb93ec3eeba165">ActPhysics::SilMatrix::fMulti</a></div><div class="ttdeci">TMultiGraph * fMulti</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:22</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a2ecf95931af39bf10260784373a0897b"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">ActPhysics::SilMatrix::fMatrix</a></div><div class="ttdeci">std::map&lt; int, TCutG * &gt; fMatrix</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:23</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a404b470e178acdc03ecb93ec3eeba165"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a404b470e178acdc03ecb93ec3eeba165">ActPhysics::SilMatrix::fMulti</a></div><div class="ttdeci">TMultiGraph * fMulti</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -385,7 +387,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>[idx] = g; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>[idx] = g; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -416,7 +418,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  269</span>    <span class="keywordflow">return</span> sm;</div>
 <div class="line"><span class="lineno">  270</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a55bddae4ff4adaf31a34a5671e6b18ce"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a55bddae4ff4adaf31a34a5671e6b18ce">ActPhysics::SilMatrix::SilMatrix</a></div><div class="ttdeci">SilMatrix()=default</div></div>
-<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a8e44d16902735db27198d93df583e01c"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">ActPhysics::SilMatrix::fPadIdx</a></div><div class="ttdeci">int fPadIdx</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:25</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_a8e44d16902735db27198d93df583e01c"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">ActPhysics::SilMatrix::fPadIdx</a></div><div class="ttdeci">int fPadIdx</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -507,7 +509,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  208</span>        <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a404b470e178acdc03ecb93ec3eeba165">fMulti</a>-&gt;Draw(<span class="stringliteral">&quot;lf plc pfc&quot;</span>);</div>
 <div class="line"><span class="lineno">  209</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a404b470e178acdc03ecb93ec3eeba165">fMulti</a>;</div>
 <div class="line"><span class="lineno">  210</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_aaaf0dae108f63176fb1411a73a1f188f"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#aaaf0dae108f63176fb1411a73a1f188f">ActPhysics::SilMatrix::fIsStyleSet</a></div><div class="ttdeci">bool fIsStyleSet</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:26</div></div>
+<div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_aaaf0dae108f63176fb1411a73a1f188f"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#aaaf0dae108f63176fb1411a73a1f188f">ActPhysics::SilMatrix::fIsStyleSet</a></div><div class="ttdeci">bool fIsStyleSet</div><div class="ttdef"><b>Definition</b> ActSilMatrix.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -633,7 +635,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   45</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -696,6 +698,32 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a9e2411ef18957e6906011051a7de2abd" name="a9e2411ef18957e6906011051a7de2abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2411ef18957e6906011051a7de2abd">&#9670;&#160;</a></span>GetMulti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMultiGraph * ActPhysics::SilMatrix::GetMulti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a404b470e178acdc03ecb93ec3eeba165">fMulti</a>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ae6f7f3be939b4f8289dc5edfad4c0821" name="ae6f7f3be939b4f8289dc5edfad4c0821"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6f7f3be939b4f8289dc5edfad4c0821">&#9670;&#160;</a></span>GetName()</h2>
 
@@ -718,7 +746,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   42</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -744,7 +772,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">fPadIdx</a>; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">fPadIdx</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -771,7 +799,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   44</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.at(idx); }</div>
+<div class="fragment"><div class="line"><span class="lineno">   43</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.at(idx); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -879,7 +907,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   37</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.count(idx); }</div>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a2ecf95931af39bf10260784373a0897b">fMatrix</a>.count(idx); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1155,7 +1183,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   40</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a> = name; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#ab89b36833e7789c9b776fe36802cbe42">fName</a> = name; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1182,7 +1210,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   41</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">fPadIdx</a> = idx; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{ <a class="code hl_variable" href="classActPhysics_1_1SilMatrix.html#a8e44d16902735db27198d93df583e01c">fPadIdx</a> = idx; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1308,7 +1336,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   26</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1331,7 +1359,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   24</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1354,7 +1382,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{}; </div>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{}; </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1377,7 +1405,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   23</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1400,7 +1428,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   25</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>

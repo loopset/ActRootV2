@@ -48,13 +48,14 @@ var searchData=
   ['drawcut_45',['DrawCut',['../classActRoot_1_1CutsManager.html#ad5e924565d009969029cfb93339aef09',1,'ActRoot::CutsManager']]],
   ['drawfiles_46',['DrawFiles',['../classActSim_1_1TheoCrossSection.html#ae5624e16fc6ef27bef2662a693fe49e7',1,'ActSim::TheoCrossSection']]],
   ['drawforpainter_47',['DrawForPainter',['../classActPhysics_1_1SilMatrix.html#abf59ce09719d9ca6e18fab9234513693',1,'ActPhysics::SilMatrix']]],
-  ['drawpolylines_48',['DrawPolyLines',['../classActRoot_1_1HistogramPainter.html#ab0eb6e6ab4dab412e5bf3215301c7128',1,'ActRoot::HistogramPainter']]],
-  ['drawpolymarkers_49',['DrawPolyMarkers',['../classActRoot_1_1HistogramPainter.html#adb04e85e3c51c5c3be6f376a34a8a111',1,'ActRoot::HistogramPainter']]],
-  ['drawprojections_50',['DrawProjections',['../classActRoot_1_1HistogramPainter.html#ada6dbd3dc78f3153c33c2802ae101b00',1,'ActRoot::HistogramPainter']]],
-  ['drawregions_51',['DrawRegions',['../classActRoot_1_1HistogramPainter.html#a7ca3dd4f12c7a3de303a655b1d18f59c',1,'ActRoot::HistogramPainter']]],
-  ['drawscattering_52',['DrawScattering',['../classActSim_1_1TheoCrossSection.html#a85b44872910eee79de20012812de8051',1,'ActSim::TheoCrossSection']]],
-  ['drawsilmatrices_53',['DrawSilMatrices',['../classActRoot_1_1HistogramPainter.html#a933f9444a9d406e9d8fa7806cfbeae80',1,'ActRoot::HistogramPainter']]],
-  ['drawtheo_54',['DrawTheo',['../classActSim_1_1CrossSection.html#a0384f9bb0d51f1a59e3b412aa6d2a247',1,'ActSim::CrossSection']]],
-  ['drawxs_55',['DrawXS',['../classActSim_1_1TheoCrossSection.html#a5c875564d11ef2eaca5632f6d5759dd0',1,'ActSim::TheoCrossSection']]],
-  ['driftchamber_56',['driftchamber',['../structActSim_1_1DriftChamber.html#a338c91a09dd1010586061fffd8fad322',1,'ActSim::DriftChamber::DriftChamber()=default'],['../structActSim_1_1DriftChamber.html#a882976f09f159248a59818ce8b815178',1,'ActSim::DriftChamber::DriftChamber(double x, double y, double z)']]]
+  ['drawgeo_48',['DrawGeo',['../classActPhysics_1_1SilSpecs.html#a442acf7913d9acbfa944685d0c871678',1,'ActPhysics::SilSpecs']]],
+  ['drawpolylines_49',['DrawPolyLines',['../classActRoot_1_1HistogramPainter.html#ab0eb6e6ab4dab412e5bf3215301c7128',1,'ActRoot::HistogramPainter']]],
+  ['drawpolymarkers_50',['DrawPolyMarkers',['../classActRoot_1_1HistogramPainter.html#adb04e85e3c51c5c3be6f376a34a8a111',1,'ActRoot::HistogramPainter']]],
+  ['drawprojections_51',['DrawProjections',['../classActRoot_1_1HistogramPainter.html#ada6dbd3dc78f3153c33c2802ae101b00',1,'ActRoot::HistogramPainter']]],
+  ['drawregions_52',['DrawRegions',['../classActRoot_1_1HistogramPainter.html#a7ca3dd4f12c7a3de303a655b1d18f59c',1,'ActRoot::HistogramPainter']]],
+  ['drawscattering_53',['DrawScattering',['../classActSim_1_1TheoCrossSection.html#a85b44872910eee79de20012812de8051',1,'ActSim::TheoCrossSection']]],
+  ['drawsilmatrices_54',['DrawSilMatrices',['../classActRoot_1_1HistogramPainter.html#a933f9444a9d406e9d8fa7806cfbeae80',1,'ActRoot::HistogramPainter']]],
+  ['drawtheo_55',['DrawTheo',['../classActSim_1_1CrossSection.html#a0384f9bb0d51f1a59e3b412aa6d2a247',1,'ActSim::CrossSection']]],
+  ['drawxs_56',['DrawXS',['../classActSim_1_1TheoCrossSection.html#a5c875564d11ef2eaca5632f6d5759dd0',1,'ActSim::TheoCrossSection']]],
+  ['driftchamber_57',['driftchamber',['../structActSim_1_1DriftChamber.html#a338c91a09dd1010586061fffd8fad322',1,'ActSim::DriftChamber::DriftChamber()=default'],['../structActSim_1_1DriftChamber.html#a882976f09f159248a59818ce8b815178',1,'ActSim::DriftChamber::DriftChamber(double x, double y, double z)']]]
 ];
