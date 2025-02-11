@@ -4,6 +4,8 @@
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
 
+#include "TVirtualPad.h"
+
 #include "Math/GenVector/Cartesian3D.h"
 #include "Math/GenVector/DisplacementVector3D.h"
 #include "Math/GenVector/PositionVector3D.h"
@@ -84,6 +86,7 @@ public:
     const SilUnit& GetUnit() const { return fUnit; }
     const XYZPointF& GetPoint() const { return fPoint; }
     const XYZVectorF& GetNormal() const { return fNormal; }
+    const SilSide& GetSilSide() const { return fSide; }
     std::shared_ptr<SilMatrix> GetSilMatrix() const { return fMatrix; }
     int GetPadIdx() const { return fPadIdx; }
     ////
@@ -133,6 +136,8 @@ public:
     // Search SP operations (useful for simulation)
     SearchTuple FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, bool verbose = false);
     SearchPair FindSPInLayer(const std::string& name, const XYZPoint& p, const XYZVector& v);
+    // Drawing functions
+    TVirtualPad* DrawGeo(double zoffset = 0, bool withActar = true);
 };
 } // namespace ActPhysics
 

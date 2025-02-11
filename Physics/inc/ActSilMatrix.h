@@ -1,7 +1,6 @@
 #ifndef ActSilMatrix_h
 #define ActSilMatrix_h
 
-#include "ActUtils.h"
 
 #include "RtypesCore.h"
 
@@ -47,6 +46,7 @@ public:
     double GetWidth(int idx) const;
     double GetHeight(int idx) const;
     int GetPadIdx() const { return fPadIdx; }
+    TMultiGraph* GetMulti() const { return fMulti; }
 
     TMultiGraph* Draw(bool same = true, const std::string& xlabel = "Y [mm]", const std::string& ylabel = "Z [mm]");
     void MoveZTo(double ztarget, const std::set<int>& idxs);

@@ -4,6 +4,12 @@
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
 #include "ActUtils.h"
+#include "Rtypes.h"
+
+#include "TCanvas.h"
+#include "TH3.h"
+#include "TPolyLine3D.h"
+#include "TVirtualPad.h"
 
 #include <cmath>
 #include <exception>
@@ -11,7 +17,9 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <utility>
+#include <vector>
 
 void ActPhysics::SilUnit::Print() const
 {
@@ -310,6 +318,84 @@ void ActPhysics::SilSpecs::ReplaceWithMatrix(const std::string& name, SilMatrix*
 {
     if(fLayers.count(name))
         fLayers[name].ReplaceWithMatrix(sm);
+}
+
+TVirtualPad* ActPhysics::SilSpecs::DrawGeo(double zoffset, bool withActar)
+{
+    // Colors
+    std::vector<int> colors {kBlue + 2,  kOrange + 1, kCyan + 2, kMagenta - 3,
+                             kGreen + 3, kYellow + 2, kBlack,    kGray + 1};
+    std::unordered_map<std::string, std::vector<TPolyLine3D*>> polys;
+    int nl {};
+    for(const auto& [name, layer] : fLayers)
+    {
+        const auto& unit {layer.GetUnit()};
+        auto point {layer.GetPoint()};
+        // Convert to mm
+        point *= 2;
+        const auto& side {layer.GetSilSide()};
+        for(const auto& [idx, g] : layer.GetSilMatrix()->GetGraphs())
+        {
+            // Instantiate polyline
+            auto* poly {new TPolyLine3D};
+            for(int i = 0; i < g->GetN(); i++)
+            {
+                auto a {g->GetPointX(i)};
+                auto b {g->GetPointY(i)};
+                if(side == SilSide::EBack || side == SilSide::EFront)
+                    poly->SetNextPoint(point.X(), a, b + zoffset);
+                else
+                    poly->SetNextPoint(a, point.Y(), b + zoffset);
+            }
+            // Add Thickness
+            for(int i = 0; i < g->GetN(); i++)
+            {
+                auto a {g->GetPointX(i)};
+                auto b {g->GetPointY(i)};
+                if(side == SilSide::EBack || side == SilSide::EFront)
+                    poly->SetNextPoint(point.X() + unit.GetThickness(), a, b + zoffset);
+                else
+                    poly->SetNextPoint(a, point.Y() + unit.GetThickness(), b + zoffset);
+            }
+            // Set style options
+            poly->SetLineWidth(2);
+            if(nl < colors.size())
+                poly->SetLineColor(colors[nl]);
+            polys[name].push_back(poly);
+        }
+        nl++;
+    }
+
+    // Create a histo3d to serve as view
+    auto* h3d {new TH3I {"h3D", "Geometry view;X [mm];Y [mm];Z [mm]", 50, 0, 450, 50, 0, 450, 50, 0, 300}};
+    h3d->SetStats(false);
+
+    // Canvas
+    auto* c {new TCanvas {"cSilSpecs", "Geomtry drawing"}};
+    h3d->Draw();
+    // And draw polylines
+    for(const auto& [name, vec] : polys)
+        for(const auto& poly : vec)
+            poly->Draw("same");
+    // If ACTAR (prototype not available) is requested
+    if(withActar)
+    {
+        std::vector<std::vector<double>> points {{0, 0, 0},   {256, 0, 0},   {256, 256, 0},   {0, 256, 0},
+                                                 {0, 0, 256}, {256, 0, 256}, {256, 256, 256}, {0, 256, 256}};
+        std::vector<std::pair<int, int>> edges {{0, 1}, {1, 2}, {2, 3}, {3, 0}, {4, 5}, {5, 6},
+                                                {6, 7}, {7, 4}, {0, 4}, {1, 5}, {2, 6}, {3, 7}};
+        for(auto& [a, b] : edges)
+        {
+            double x[2] = {points[a][0], points[b][0]};
+            double y[2] = {points[a][1], points[b][1]};
+            double z[2] = {points[a][2], points[b][2]};
+            auto* edge = new TPolyLine3D(2, x, y, z);
+            edge->SetLineColor(kAzure + 10);
+            edge->SetLineWidth(2);
+            edge->Draw();
+        }
+    }
+    return c;
 }
 
 // Explicit instantiations
