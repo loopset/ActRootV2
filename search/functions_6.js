@@ -118,7 +118,7 @@ var searchData=
   ['getkinematicline3_115',['GetKinematicLine3',['../classActPhysics_1_1Kinematics.html#a5aa6fa2909099290323f1809200e573c',1,'ActPhysics::Kinematics']]],
   ['getkinematicline4_116',['GetKinematicLine4',['../classActPhysics_1_1Kinematics.html#ab07cfaa06836c962c3cc3dd03b1760ff',1,'ActPhysics::Kinematics']]],
   ['getlayer_117',['GetLayer',['../classActPhysics_1_1SilSpecs.html#a856553ee256dcdf8e63010a73dc1c83e',1,'ActPhysics::SilSpecs']]],
-  ['getlayers_118',['getlayers',['../classActRoot_1_1SilData.html#ad4460bf038273cb13b5b2f49772b5e17',1,'ActRoot::SilData::GetLayers()'],['../classActPhysics_1_1SilSpecs.html#a51e517c9ef04886938ca65ca5e0a8124',1,'ActPhysics::SilSpecs::GetLayers()']]],
+  ['getlayers_118',['getlayers',['../classActRoot_1_1SilData.html#ad4460bf038273cb13b5b2f49772b5e17',1,'ActRoot::SilData::GetLayers()'],['../classActPhysics_1_1SilSpecs.html#a81d2801d2b801e934aeee3785836797e',1,'ActPhysics::SilSpecs::GetLayers()']]],
   ['getline_119',['GetLine',['../classActRoot_1_1Cluster.html#ac06c9b99e630b7d25a3d4cf96335f31e',1,'ActRoot::Cluster']]],
   ['getlistofkeys_120',['GetListOfKeys',['../classActRoot_1_1CutsManager.html#a98842cac246a5b1ef19c1af9e8ee2917',1,'ActRoot::CutsManager']]],
   ['getlorentzvector_121',['getlorentzvector',['../classActSim_1_1DecayGenerator.html#a2eb1c2b7208a610b6c15ae89912d956a',1,'ActSim::DecayGenerator::GetLorentzVector()'],['../classActSim_1_1KinematicGenerator.html#afab451edf294f4bcdec1e801701c9994',1,'ActSim::KinematicGenerator::GetLorentzVector()']]],
