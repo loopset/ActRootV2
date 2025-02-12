@@ -130,7 +130,7 @@ public:
     void Print() const;
 
     SilLayer& GetLayer(const std::string& name) { return fLayers[name]; };
-    const LayerMap& GetLayers() const { return fLayers; }
+    LayerMap& GetLayers() { return fLayers; }
     bool CheckLayersExists(const std::string& name) const { return fLayers.count(name); }
     void EraseLayer(const std::string& name);
     // Search SP operations (useful for simulation)
