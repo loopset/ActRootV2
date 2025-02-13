@@ -87,6 +87,8 @@ public:
 
     double EvalInitialEnergy(const std::string& material, double Tafter, double thickness, double angleInRad = 0);
 
+    double TravelledDistance(const std::string& material, double Tini, double Tafter);
+
     bool CheckKeyIsStored(const std::string& key);
 
     // Methods to read from file! Header is [SRIM]

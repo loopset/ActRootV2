@@ -329,6 +329,15 @@ ActPhysics::SRIM::EvalInitialEnergy(const std::string& material, double Tafter, 
     return EvalInverse(material, RIni);
 }
 
+double ActPhysics::SRIM::TravelledDistance(const std::string& material, double Tini, double Tafter)
+{
+    // Range at init point
+    auto Rini {EvalRange(material, Tini)};
+    // Range at end point
+    auto Rafter {EvalRange(material, Tini)};
+    return (Rini - Rafter);
+}
+
 bool ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
 {
     return std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end();

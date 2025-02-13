@@ -40,7 +40,7 @@ ActPhysics::Kinematics::Kinematics(double m1, double m2, double m3, double m4, d
       fm3(m3),
       fm4(m4),
       fT1Lab(T1),
-      fEex(Eex)
+      fEx(Eex)
 {
     Init();
 }
@@ -48,7 +48,7 @@ ActPhysics::Kinematics::Kinematics(double m1, double m2, double m3, double m4, d
 ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2, const std::string& p3,
                                    const std::string& p4, double T1, double Eex)
     : fT1Lab(T1),
-      fEex(Eex)
+      fEx(Eex)
 {
     // Init particles
     // 1
@@ -76,7 +76,7 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
       fp3(p3),
       fp4(p4),
       fT1Lab(T1),
-      fEex(Eex)
+      fEx(Eex)
 {
     // Set masses manually from particles
     // 1
@@ -101,7 +101,7 @@ ActPhysics::Kinematics::Kinematics(const std::string& p1, const std::string& p2,
       fp2(p2),
       fp3(p3),
       fT1Lab(T1),
-      fEex(Eex)
+      fEx(Eex)
 {
     // Automatically compute Particle 4
     auto zIn {fp1.GetZ() + fp2.GetZ()};
@@ -125,7 +125,7 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
       fp2(p2),
       fp3(p3),
       fT1Lab(T1),
-      fEex(Eex)
+      fEx(Eex)
 {
     // Automatically compute Particle 4
     auto zIn {fp1.GetZ() + fp2.GetZ()};
@@ -206,7 +206,7 @@ void ActPhysics::Kinematics::Init()
     if((betaVector.Y() != 0.) || (betaVector.Z() != 0.))
     {
         throw std::runtime_error(
-            "Kinematics::Init(): Error -> Boost includes non-null Y and Z values -> This class only works with boost "
+            "Kinematics::Init(): Boost includes non-null Y and Z values -> This class only works with boost "
             "along X axis, as ACTAR TPC standard reference frame");
     }
     fBoostTransformation.SetBeta(betaVector.X());
@@ -224,14 +224,14 @@ void ActPhysics::Kinematics::SetBeamEnergy(double T1)
 
 void ActPhysics::Kinematics::SetEx(double Ex)
 {
-    fEex = Ex;
+    fEx = Ex;
     Init();
 }
 
 void ActPhysics::Kinematics::SetBeamEnergyAndEx(double T1, double Ex)
 {
     fT1Lab = T1;
-    fEex = Ex;
+    fEx = Ex;
     Init();
 }
 
@@ -263,7 +263,7 @@ void ActPhysics::Kinematics::SetRecoil3LabKinematics()
 void ActPhysics::Kinematics::SetRecoil4LabKinematics()
 {
     fP4Lab = {fBoostTransformation.Inverse()(fP4CM)};
-    fT4Lab = fP4Lab.E() - (fm4 + fEex);
+    fT4Lab = fP4Lab.E() - (fm4 + fEx);
     fTheta4Lab = GetThetaFromVector(fP4Lab);
     fPhi4Lab = GetPhiFromVector(fP4Lab);
 }
@@ -277,7 +277,7 @@ void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double 
     fThetaCM = thetaCMRads;
     fPhiCM = phiCMRads;
     // Compute kinematics in CM for 3rd particle
-    double E3CM {0.5 * (fEcm * fEcm + fm3 * fm3 - (fm4 + fEex) * (fm4 + fEex)) / fEcm};
+    double E3CM {0.5 * (fEcm * fEcm + fm3 * fm3 - (fm4 + fEx) * (fm4 + fEx)) / fEcm};
     double p3CM {TMath::Sqrt(E3CM * E3CM - fm3 * fm3)};
     fP3CM = {p3CM * TMath::Cos(fThetaCM), p3CM * TMath::Sin(fThetaCM) * TMath::Sin(fPhiCM),
              p3CM * TMath::Sin(fThetaCM) * TMath::Cos(fPhiCM), E3CM};
@@ -349,12 +349,12 @@ double ActPhysics::Kinematics::ReconstructBeamEnergyFromLabKinematics(double arg
 void ActPhysics::Kinematics::ComputeQValue()
 {
     // does not depend on T1 beam!
-    fQvalue = (fm1 + fm2 - fm3 - (fm4 + fEex));
+    fQvalue = (fm1 + fm2 - fm3 - (fm4 + fEx));
 }
 
 double ActPhysics::Kinematics::GetT1Thresh() const
 {
-    return -fQvalue * (fm1 + fm2 + fm3 + (fm4 + fEex)) / (2.0 * fm2);
+    return -fQvalue * (fm1 + fm2 + fm3 + (fm4 + fEx)) / (2.0 * fm2);
 }
 
 void ActPhysics::Kinematics::CheckQValue()
@@ -407,7 +407,7 @@ double ActPhysics::Kinematics::ReconstructTheta3CMFromLab(double TLab, double th
 
 double ActPhysics::Kinematics::ComputeTheoreticalT3(double argTheta3LabRads, const std::string& sol)
 {
-    double A {(TMath::Power(fEcm, 2) + fm3 * fm3 - (fm4 + fEex) * (fm4 + fEex)) / (2.0 * fGamma * fEcm)};
+    double A {(TMath::Power(fEcm, 2) + fm3 * fm3 - (fm4 + fEx) * (fm4 + fEx)) / (2.0 * fGamma * fEcm)};
     double B {TMath::Abs(fBeta) * TMath::Cos(argTheta3LabRads)};
     double Delta {A * A * B * B - B * B * fm3 * fm3 * (1.0 - B * B)};
     if(Delta < 0)
@@ -469,7 +469,7 @@ double ActPhysics::Kinematics::ComputeMissingMass(double argT3, double argTheta3
 
 void ActPhysics::Kinematics::Reset()
 {
-    *this = Kinematics(fm1, fm2, fm3, fm4, fT1Lab, fEex);
+    *this = Kinematics(fm1, fm2, fm3, fm4, fT1Lab, fEx);
 }
 
 TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELineStyle style)
@@ -589,8 +589,7 @@ double ActPhysics::Kinematics::ComputeEquivalentBeamEnergy()
     // the excitation energy corresponds to the 3rd particle:
     // d (1) + 20O (2) -> 19O (3) + t (4)
     // Assuming particle 3 at rest
-    double Teq {(TMath::Power(fEcm, 2) - TMath::Power(fm3 + fEex, 2) - TMath::Power(fm4, 2)) / (2 * (fm3 + fEex)) -
-                fm4};
+    double Teq {(TMath::Power(fEcm, 2) - TMath::Power(fm3 + fEx, 2) - TMath::Power(fm4, 2)) / (2 * (fm3 + fEx)) - fm4};
     return Teq;
 }
 
@@ -598,7 +597,7 @@ double ActPhysics::Kinematics::ComputeTheta3FromT3(double T3)
 {
     double p3 {TMath::Sqrt(T3 * (T3 + 2 * fm3))};
     double p1 {fP1Lab.X()};
-    double num {TMath::Power(fm4 + fEex, 2) - TMath::Power(fm3, 2) + 2 * fPInitialLab.E() * (T3 + fm3) -
+    double num {TMath::Power(fm4 + fEx, 2) - TMath::Power(fm3, 2) + 2 * fPInitialLab.E() * (T3 + fm3) -
                 fPInitialLab.M2()};
     double denom {2 * p1 * p3};
     auto costheta {num / denom};
