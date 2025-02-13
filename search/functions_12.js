@@ -9,5 +9,6 @@ var searchData=
   ['trackgenerator_6',['trackgenerator',['../classActSim_1_1TrackGenerator.html#a6f7b169fd715f9c742900f8fd5d425ad',1,'ActSim::TrackGenerator::TrackGenerator()=default'],['../classActSim_1_1TrackGenerator.html#aa1daa8f84827699de4f757257a201b04',1,'ActSim::TrackGenerator::TrackGenerator(ActPhysics::SRIM *srim, ActRoot::TPCParameters *tpc, ActPhysics::Gas *gas)']]],
   ['tracklengthfromlightit_7',['TrackLengthFromLightIt',['../classActRoot_1_1MergerDetector.html#acbb2bf362d53e9d20f138eb90937d7d9',1,'ActRoot::MergerDetector']]],
   ['transfromcmcrosssectiontolab_8',['TransfromCMCrossSectionToLab',['../classActPhysics_1_1Kinematics.html#aeb6365b108d1d1041c654306c2964af7',1,'ActPhysics::Kinematics']]],
-  ['treatsaturationline_9',['TreatSaturationLine',['../classActRoot_1_1Line.html#a588e36cb5464dd9c2355dcef93a92c92',1,'ActRoot::Line']]]
+  ['travelleddistance_9',['TravelledDistance',['../classActPhysics_1_1SRIM.html#a45d193f8f1332ebe0c86c02484b57f70',1,'ActPhysics::SRIM']]],
+  ['treatsaturationline_10',['TreatSaturationLine',['../classActRoot_1_1Line.html#a588e36cb5464dd9c2355dcef93a92c92',1,'ActRoot::Line']]]
 ];
