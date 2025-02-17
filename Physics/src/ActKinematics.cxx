@@ -283,6 +283,9 @@ void ActPhysics::Kinematics::ComputeRecoilKinematics(double thetaCMRads, double 
              p3CM * TMath::Sin(fThetaCM) * TMath::Cos(fPhiCM), E3CM};
     // And now for 4th particle
     fP4CM = fPInitialCM - fP3CM;
+    // Revert thetaCM
+    if(fInverse)
+        fThetaCM = TMath::Pi() - fThetaCM;
     // And now back to Lab
     SetRecoil3LabKinematics();
     SetRecoil4LabKinematics();
