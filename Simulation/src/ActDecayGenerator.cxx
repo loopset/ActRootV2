@@ -70,11 +70,13 @@ void ActSim::DecayGenerator::Print() const
     std::cout << std::fixed << std::setprecision(2);
     std::cout << BOLDCYAN;
     std::cout << "::::: DecayGenerator :::::" << '\n';
-    std::cout << "-> Particle   : " << fParticle.GetName() << '\n';
-    std::cout << "    mass - be : " << fParticle.GetMass() << " MeV/c2" << '\n';
-    std::cout << "    mass      : " << fInitialMass << " MeV/c2" << '\n';
+    std::cout << "-> Particle : " << fParticle.GetName() << '\n';
+    std::cout << "    Mass    : " << fParticle.GetMass() << " MeV/c2" << '\n';
+    std::cout << "    BE      : " << fParticle.GetBE() << " MeV" << '\n';
+    std::cout << "    Ex      : " << fParticle.GetEx() << " MeV" << '\n';
     std::cout << "-> To " << fProducts.size() << " products : " << '\n';
     for(const auto& p : fProducts)
-        std::cout << "    " << p.GetName() << " and mass : " << p.GetMass() << " MeV/c2" << '\n';
+        std::cout << "    " << p.GetName() << ", Mass : " << p.GetMass() << " MeV/c2, Ex : " << p.GetEx() << " MeV"
+                  << '\n';
     std::cout << RESET << std::endl;
 }
