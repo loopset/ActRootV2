@@ -137,9 +137,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a002e9a13fe5bf94f707f741e49bb4356" id="r_a002e9a13fe5bf94f707f741e49bb4356"><td class="memItemLeft" align="right" valign="top">TGenPhaseSpace&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a> {}</td></tr>
 <tr class="memdesc:a002e9a13fe5bf94f707f741e49bb4356"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROOT's generator.  <br /></td></tr>
 <tr class="separator:a002e9a13fe5bf94f707f741e49bb4356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ad440c7e618f5f191a36cd96354b065" id="r_a6ad440c7e618f5f191a36cd96354b065"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActSim_1_1DecayGenerator.html#a6ad440c7e618f5f191a36cd96354b065">fEx</a> {}</td></tr>
-<tr class="memdesc:a6ad440c7e618f5f191a36cd96354b065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Excitation energy of initial particle.  <br /></td></tr>
-<tr class="separator:a6ad440c7e618f5f191a36cd96354b065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3dd7fb716a12c985ae23cb9d7bf4699d" name="a3dd7fb716a12c985ae23cb9d7bf4699d"></a>
@@ -202,14 +199,14 @@ template&lt;typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   27</span>                                                          : <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>(part)</div>
-<div class="line"><span class="lineno">   28</span>    {</div>
-<div class="line"><span class="lineno">   29</span>        <a class="code hl_function" href="classActSim_1_1DecayGenerator.html#aa1e96c9f68232b6b58a503a16ee4a7f8">ComputeInitialMass</a>();</div>
-<div class="line"><span class="lineno">   30</span>        <span class="comment">// Populate fProducs using C++17 fold expressions</span></div>
-<div class="line"><span class="lineno">   31</span>        <span class="comment">// string literals are inferred as const char[], hence we must call std::string() ctor before pushing back</span></div>
-<div class="line"><span class="lineno">   32</span>        (<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>.push_back(std::string(std::forward&lt;Args&gt;(args))), ...);</div>
-<div class="line"><span class="lineno">   33</span>        <a class="code hl_function" href="classActSim_1_1DecayGenerator.html#a10c80da8200cb33cf2a07baf89692b80">ComputeFinalMasses</a>();</div>
-<div class="line"><span class="lineno">   34</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>                                                          : <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>(part)</div>
+<div class="line"><span class="lineno">   27</span>    {</div>
+<div class="line"><span class="lineno">   28</span>        <a class="code hl_function" href="classActSim_1_1DecayGenerator.html#aa1e96c9f68232b6b58a503a16ee4a7f8">ComputeInitialMass</a>();</div>
+<div class="line"><span class="lineno">   29</span>        <span class="comment">// Populate fProducs using C++17 fold expressions</span></div>
+<div class="line"><span class="lineno">   30</span>        <span class="comment">// string literals are inferred as const char[], hence we must call std::string() ctor before pushing back</span></div>
+<div class="line"><span class="lineno">   31</span>        (<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>.push_back(std::string(std::forward&lt;Args&gt;(args))), ...);</div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_function" href="classActSim_1_1DecayGenerator.html#a10c80da8200cb33cf2a07baf89692b80">ComputeFinalMasses</a>();</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 <div class="ttc" id="aclassActSim_1_1DecayGenerator_html_a10c80da8200cb33cf2a07baf89692b80"><div class="ttname"><a href="classActSim_1_1DecayGenerator.html#a10c80da8200cb33cf2a07baf89692b80">ActSim::DecayGenerator::ComputeFinalMasses</a></div><div class="ttdeci">void ComputeFinalMasses()</div><div class="ttdef"><b>Definition</b> ActDecayGenerator.cxx:29</div></div>
 <div class="ttc" id="aclassActSim_1_1DecayGenerator_html_a78eb9b4916464d5edade681a3d059dbc"><div class="ttname"><a href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">ActSim::DecayGenerator::fParticle</a></div><div class="ttdeci">ActPhysics::Particle fParticle</div><div class="ttdoc">Initial system.</div><div class="ttdef"><b>Definition</b> ActDecayGenerator.h:17</div></div>
 <div class="ttc" id="aclassActSim_1_1DecayGenerator_html_aa1e96c9f68232b6b58a503a16ee4a7f8"><div class="ttname"><a href="classActSim_1_1DecayGenerator.html#aa1e96c9f68232b6b58a503a16ee4a7f8">ActSim::DecayGenerator::ComputeInitialMass</a></div><div class="ttdeci">void ComputeInitialMass()</div><div class="ttdef"><b>Definition</b> ActDecayGenerator.cxx:13</div></div>
@@ -442,31 +439,6 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6ad440c7e618f5f191a36cd96354b065" name="a6ad440c7e618f5f191a36cd96354b065"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ad440c7e618f5f191a36cd96354b065">&#9670;&#160;</a></span>fEx</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double ActSim::DecayGenerator::fEx {}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Excitation energy of initial particle. </p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{};                    </div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="ad05e6eff7bbec8c84fd3aae49a71c2e7" name="ad05e6eff7bbec8c84fd3aae49a71c2e7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad05e6eff7bbec8c84fd3aae49a71c2e7">&#9670;&#160;</a></span>fFinalMasses</h2>
 
