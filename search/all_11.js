@@ -46,7 +46,7 @@ var searchData=
   ['setdriftsizex_43',['SetDriftSizeX',['../classActDriftDetector.html#a7693deb63e8e22db7c57139876866c58',1,'ActDriftDetector']]],
   ['setdriftsizey_44',['SetDriftSizeY',['../classActDriftDetector.html#a1674f0fe90d2be613deec764426101e4',1,'ActDriftDetector']]],
   ['setdriftsizez_45',['SetDriftSizeZ',['../classActDriftDetector.html#a6e7ad29c6e89423b57e4c7c6cedfacec',1,'ActDriftDetector']]],
-  ['setex_46',['SetEx',['../classActPhysics_1_1Kinematics.html#a0d7b50845a2c3fb5d8b5bd057b6e6c2e',1,'ActPhysics::Kinematics']]],
+  ['setex_46',['setex',['../classActPhysics_1_1Kinematics.html#a0d7b50845a2c3fb5d8b5bd057b6e6c2e',1,'ActPhysics::Kinematics::SetEx()'],['../classActPhysics_1_1Particle.html#ad40d09be34b3be5d71f60e866f7d271c',1,'ActPhysics::Particle::SetEx()']]],
   ['setexcitationenergy_47',['SetExcitationEnergy',['../classActSim_1_1KinematicGenerator.html#a8a8cf6365707e63448b02a8519df0a19',1,'ActSim::KinematicGenerator']]],
   ['setextvoxels_48',['SetExtVoxels',['../classActAlgorithm_1_1Actions_1_1FindRP.html#a1a212005215fcde2ab8ace816be0aea6',1,'ActAlgorithm::Actions::FindRP']]],
   ['setgasmaterial_49',['SetGasMaterial',['../classActDriftDetector.html#a7ef117111253df86455c0917b0898d56',1,'ActDriftDetector']]],
