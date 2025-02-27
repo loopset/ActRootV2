@@ -119,6 +119,8 @@ void ActPhysics::Particle::Print() const
     std::cout << "-> A    = " << fA << '\n';
     std::cout << "-> Z    = " << fZ << '\n';
     std::cout << "-> Mass = " << fMass << " MeV / c2" << '\n';
+    if(fEx > 0)
+        std::cout << "-> Ex   = " << fEx << " MeV" << '\n';
 }
 
 std::string ActPhysics::Particle::StripWhitespaces(std::string str)
@@ -142,5 +144,5 @@ double ActPhysics::Particle::GetSpX(unsigned int X) const
 double ActPhysics::Particle::GetBE() const
 {
     return fZ * Constants::kpMass + (fA - fZ) * Constants::knMass + fZ * Constants::keMass -
-           fA * Constants::kamuToMeVC2 - fMassExcess;
+           fA * Constants::kamuToMeVC2 - fMassExcess - fEx; // have to substract manually fEx
 }
