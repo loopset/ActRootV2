@@ -19,7 +19,6 @@ private:
     std::vector<ActPhysics::Particle> fProducts {}; //!< Product particles
     std::vector<double> fFinalMasses; //!< Masses of final products (to avoid repetition). No Ex considered so far
     TGenPhaseSpace fGen {};           //!< ROOT's generator
-    double fEx {};                    //!< Excitation energy of initial particle
 
 public:
     DecayGenerator() = default;
