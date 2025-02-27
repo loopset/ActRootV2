@@ -78,6 +78,9 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
       fT1Lab(T1),
       fEx(Eex)
 {
+    // Ensure all particles are in g.s. Ex is set separately in the kinematics class
+    for(auto p : {&fp1, &fp2, &fp3, &fp4})
+        p->SetEx(0);
     // Set masses manually from particles
     // 1
     fm1 = fp1.GetMass();
@@ -127,6 +130,10 @@ ActPhysics::Kinematics::Kinematics(const Particle& p1, const Particle& p2, const
       fT1Lab(T1),
       fEx(Eex)
 {
+    // Ensure all particles are in g.s. Ex is set separately in the kinematics class
+    for(auto p : {&fp1, &fp2, &fp3})
+        p->SetEx(0);
+
     // Automatically compute Particle 4
     auto zIn {fp1.GetZ() + fp2.GetZ()};
     auto aIn {fp1.GetA() + fp2.GetA()};
@@ -472,7 +479,7 @@ double ActPhysics::Kinematics::ComputeMissingMass(double argT3, double argTheta3
 
 void ActPhysics::Kinematics::Reset()
 {
-    *this = Kinematics(fm1, fm2, fm3, fm4, fT1Lab, fEx);
+    *this = Kinematics(fp1, fp2, fp3, fp4, fT1Lab, fEx);
 }
 
 TGraph* ActPhysics::Kinematics::GetKinematicLine3(double step, EColor color, ELineStyle style)
