@@ -85,42 +85,44 @@ $(function() {
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;ios&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ActDecayGenerator.cxx:</div>
 <div class="dyncontent">
 <div class="center"><img src="ActDecayGenerator_8cxx__incl.png" border="0" usemap="#aSimulation_2src_2ActDecayGenerator_8cxx" alt=""/></div>
 <map name="aSimulation_2src_2ActDecayGenerator_8cxx" id="aSimulation_2src_2ActDecayGenerator_8cxx">
-<area shape="rect" title=" " alt="" coords="417,5,689,31"/>
-<area shape="rect" href="ActDecayGenerator_8h.html" title=" " alt="" coords="313,79,473,104"/>
-<area shape="poly" title=" " alt="" coords="529,33,433,75,431,71,527,28"/>
-<area shape="rect" href="ActParticle_8h.html" title=" " alt="" coords="71,152,174,177"/>
-<area shape="poly" title=" " alt="" coords="489,33,400,53,302,81,222,114,156,148,154,143,220,110,300,76,398,48,488,28"/>
-<area shape="rect" href="ActConstants_8h.html" title=" " alt="" coords="5,225,125,251"/>
-<area shape="poly" title=" " alt="" coords="455,33,344,50,224,76,169,92,122,110,84,131,61,154,55,167,53,182,58,212,53,213,48,182,50,166,56,150,81,127,119,105,168,87,223,71,343,45,454,28"/>
-<area shape="rect" title=" " alt="" coords="703,152,833,177"/>
-<area shape="poly" title=" " alt="" coords="548,32,533,67,532,86,538,102,557,112,596,124,695,147,694,152,594,129,555,117,534,106,526,86,528,65,543,30"/>
-<area shape="rect" href="ActColors_8h.html" title=" " alt="" coords="548,79,644,104"/>
-<area shape="poly" title=" " alt="" coords="563,30,584,66,580,68,558,32"/>
-<area shape="rect" title=" " alt="" coords="669,79,731,104"/>
-<area shape="poly" title=" " alt="" coords="578,28,665,70,663,75,576,33"/>
-<area shape="rect" title=" " alt="" coords="755,79,797,104"/>
-<area shape="poly" title=" " alt="" coords="592,28,743,76,741,81,591,33"/>
-<area shape="rect" title=" " alt="" coords="821,79,901,104"/>
-<area shape="poly" title=" " alt="" coords="603,28,809,75,808,80,602,33"/>
-<area shape="poly" title=" " alt="" coords="351,107,180,151,179,146,349,101"/>
-<area shape="rect" title=" " alt="" coords="165,225,224,251"/>
-<area shape="poly" title=" " alt="" coords="336,107,285,124,261,138,239,154,217,183,204,213,199,211,213,180,235,150,258,133,283,120,334,102"/>
-<area shape="rect" title=" " alt="" coords="249,152,396,177"/>
-<area shape="poly" title=" " alt="" coords="384,106,346,144,342,140,380,102"/>
-<area shape="poly" title=" " alt="" coords="454,101,695,147,694,152,453,107"/>
-<area shape="rect" title=" " alt="" coords="421,152,507,177"/>
-<area shape="poly" title=" " alt="" coords="407,102,445,140,441,144,403,106"/>
-<area shape="rect" title=" " alt="" coords="531,152,591,177"/>
-<area shape="poly" title=" " alt="" coords="421,102,522,144,520,149,419,106"/>
-<area shape="rect" title=" " alt="" coords="615,152,678,177"/>
-<area shape="poly" title=" " alt="" coords="435,101,603,148,601,153,433,107"/>
-<area shape="poly" title=" " alt="" coords="115,179,85,216,81,213,111,176"/>
-<area shape="poly" title=" " alt="" coords="136,176,175,214,171,218,133,180"/>
+<area shape="rect" title=" " alt="" coords="703,5,975,31"/>
+<area shape="rect" href="ActDecayGenerator_8h.html" title=" " alt="" coords="365,79,525,104"/>
+<area shape="poly" title=" " alt="" coords="776,33,522,79,522,74,775,28"/>
+<area shape="rect" href="ActParticle_8h.html" title=" " alt="" coords="5,152,108,177"/>
+<area shape="poly" title=" " alt="" coords="703,33,535,52,353,81,217,115,104,150,102,145,215,110,352,76,535,46,703,28"/>
+<area shape="rect" href="ActConstants_8h.html" title=" " alt="" coords="402,225,522,251"/>
+<area shape="poly" title=" " alt="" coords="827,33,804,54,782,80,767,108,760,132,751,156,730,179,684,207,634,224,583,235,536,239,535,234,582,229,632,219,682,202,727,175,747,153,755,131,762,106,777,77,801,50,823,29"/>
+<area shape="rect" title=" " alt="" coords="586,152,717,177"/>
+<area shape="poly" title=" " alt="" coords="816,33,778,54,737,81,701,112,672,144,668,140,697,109,734,77,775,49,814,28"/>
+<area shape="rect" href="ActColors_8h.html" title=" " alt="" coords="791,79,887,104"/>
+<area shape="poly" title=" " alt="" coords="842,31,842,65,837,65,837,31"/>
+<area shape="rect" title=" " alt="" coords="912,79,975,104"/>
+<area shape="poly" title=" " alt="" coords="858,28,916,68,913,73,855,33"/>
+<area shape="rect" title=" " alt="" coords="999,79,1040,104"/>
+<area shape="poly" title=" " alt="" coords="869,28,987,74,985,79,867,33"/>
+<area shape="rect" title=" " alt="" coords="1065,79,1145,104"/>
+<area shape="poly" title=" " alt="" coords="883,28,1052,73,1050,78,881,33"/>
+<area shape="rect" title=" " alt="" coords="1169,79,1243,104"/>
+<area shape="poly" title=" " alt="" coords="905,28,1156,76,1155,81,904,33"/>
+<area shape="poly" title=" " alt="" coords="383,107,122,154,121,149,382,101"/>
+<area shape="rect" title=" " alt="" coords="133,152,279,177"/>
+<area shape="poly" title=" " alt="" coords="407,107,259,151,257,145,406,101"/>
+<area shape="poly" title=" " alt="" coords="479,101,606,145,604,150,477,107"/>
+<area shape="rect" title=" " alt="" coords="304,152,391,177"/>
+<area shape="poly" title=" " alt="" coords="431,106,376,146,373,141,427,102"/>
+<area shape="rect" title=" " alt="" coords="415,152,475,177"/>
+<area shape="poly" title=" " alt="" coords="447,104,447,138,442,138,442,104"/>
+<area shape="rect" title=" " alt="" coords="499,152,561,177"/>
+<area shape="poly" title=" " alt="" coords="460,102,507,141,504,145,457,106"/>
+<area shape="poly" title=" " alt="" coords="108,172,121,175,389,221,388,227,120,180,108,178"/>
+<area shape="rect" title=" " alt="" coords="27,225,86,251"/>
+<area shape="poly" title=" " alt="" coords="59,178,59,212,54,212,54,178"/>
 </map>
 </div>
 </div></div><!-- contents -->
