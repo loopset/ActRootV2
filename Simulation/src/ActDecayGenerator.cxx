@@ -9,6 +9,7 @@
 #include <cmath>
 #include <ios>
 #include <iostream>
+#include <numeric>
 
 void ActSim::DecayGenerator::ComputeInitialMass()
 {
@@ -30,7 +31,18 @@ void ActSim::DecayGenerator::ComputeFinalMasses()
 {
     fFinalMasses.clear();
     for(const auto& p : fProducts)
-        fFinalMasses.push_back(p.GetMass() * ActPhysics::Constants::kMeVToGeV); // no excitation is considered so far
+        fFinalMasses.push_back(p.GetMass() * ActPhysics::Constants::kMeVToGeV); // Ex considered in particle's mass
+}
+
+void ActSim::DecayGenerator::Check()
+{
+    // Check decay is possible
+    auto sumFinal {std::reduce(fFinalMasses.begin(), fFinalMasses.end(), 0.)};
+    if(fInitialMass * ActPhysics::Constants::kMeVToGeV < sumFinal)
+    {
+        std::cout << BOLDRED << "DecayGenerator:Check(): sum(finalMasses) > initialMass" << '\n';
+        std::cout << "  TGenPhaseSpace will return NaNs. Check your particles' Exs" << RESET << '\n';
+    }
 }
 
 void ActSim::DecayGenerator::SetDecay(double T, double thetalab, double philab)

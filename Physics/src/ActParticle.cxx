@@ -31,7 +31,7 @@ void ActPhysics::Particle::ParseFile(int Z, int A, const std::string& file)
     // Streamer
     std::ifstream streamer {filename};
     if(!streamer)
-        throw std::runtime_error("Mass database file " + filename + " could not be opened");
+        throw std::runtime_error("Particle(): Mass database file " + filename + " could not be opened");
     // Parse
     std::string line, zstr, astr, istr;
     while(std::getline(streamer, line))
@@ -74,7 +74,7 @@ void ActPhysics::Particle::ParseFile(const std::string& particle, const std::str
     // Streamer
     std::ifstream streamer {filename};
     if(!streamer)
-        throw std::runtime_error("Mass database file " + filename + " could not be opened");
+        throw std::runtime_error("Particle(): Mass database file " + filename + " could not be opened");
     // Parse
     std::string line, name, istr;
     while(std::getline(streamer, line))
@@ -109,18 +109,22 @@ void ActPhysics::Particle::Extract(const std::string& line)
     // 4-> Mass excess
     auto massexcess {line.substr(18, 13)};
     fMassExcess = std::stod(massexcess) * 1.e-3; // keV to MeV
-    // Build mass
+    // Build mass of gs at the moment of reading the database file
     fMass = fA * Constants::kamuToMeVC2 + fMassExcess - fZ * Constants::keMass;
+    fGSMass = fMass;
 }
 
 void ActPhysics::Particle::Print() const
 {
     std::cout << "======== Particle: " << fName << " =========" << '\n';
-    std::cout << "-> A    = " << fA << '\n';
-    std::cout << "-> Z    = " << fZ << '\n';
-    std::cout << "-> Mass = " << fMass << " MeV / c2" << '\n';
+    std::cout << "-> A      : " << fA << '\n';
+    std::cout << "-> Z      : " << fZ << '\n';
+    std::cout << "-> Mass   : " << fMass << " MeV / c2" << '\n';
     if(fEx > 0)
-        std::cout << "-> Ex   = " << fEx << " MeV" << '\n';
+    {
+        std::cout << "-> GSMass : " << fGSMass << " MeV / c2" << '\n';
+        std::cout << "-> Ex     : " << fEx << " MeV" << '\n';
+    }
 }
 
 std::string ActPhysics::Particle::StripWhitespaces(std::string str)

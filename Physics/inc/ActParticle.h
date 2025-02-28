@@ -12,7 +12,8 @@ class Particle
 private:
     std::string fName {};  //!< Name in database of the particle
     double fMassExcess {}; //!< Mass excess in MeV/c2
-    double fMass {};       //!< Mass in MeV/c2 for ground state
+    double fMass {};       //!< Mass in MeV/c2 = fGSMass + fEx
+    double fGSMass {};     //!< Ground-state mass in MeV/c2
     double fEx {};         //!< Excitation energy. Not read from table, only settable through SetEx method
     int fA {};             //!< Masic number
     int fZ {};             //!< Charge of the particle
@@ -29,7 +30,7 @@ public:
     void SetEx(double Ex)
     {
         fEx = Ex;
-        fMass += fEx;
+        fMass = fGSMass + fEx;
     }
 
     // Getters
@@ -37,9 +38,11 @@ public:
     int GetA() const { return fA; }
     int GetZ() const { return fZ; }
     int GetN() const { return fA - fZ; }
-    double GetMass() const { return fMass; }                         //!< Return mass in MeV / c2 units
-    double GetAMU() const { return fMass / Constants::kamuToMeVC2; } //!< Return mass in amu units
-    double GetBE() const;                                            //!< Return binding energy. If BE < 0 is unbound
+    double GetGSMass() const { return fGSMass; }                             //!< GS mass. Ensures Ex = 0 always
+    double GetGSMassAMU() const { return fGSMass * Constants::kamuToMeVC2; } //!< GS mass in amu
+    double GetMass() const { return fMass; }                                 //!< Return mass in MeV / c2 units
+    double GetAMU() const { return fMass / Constants::kamuToMeVC2; }         //!< Return mass in amu units
+    double GetBE() const; //!< Return binding energy. If BE < 0 is unbound
     double GetMassExcess() const { return fMassExcess; }
     double GetSn() const { return GetSnX(1); }
     double GetS2n() const { return GetSnX(2); }

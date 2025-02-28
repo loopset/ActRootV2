@@ -6,7 +6,6 @@
 #include "TLorentzVector.h"
 
 #include <stdexcept>
-#include <string>
 #include <utility>
 #include <vector>
 namespace ActSim
@@ -16,7 +15,7 @@ class DecayGenerator
 private:
     // Store particles
     ActPhysics::Particle fParticle {};              //!< Initial system
-    double fInitialMass {};                         //!< Mass of initial system WITHOUT binding energy
+    double fInitialMass {};                         //!< Mass of initial system
     std::vector<ActPhysics::Particle> fProducts {}; //!< Product particles
     std::vector<double> fFinalMasses; //!< Masses of final products (to avoid repetition). Ex considered in the masses
     TGenPhaseSpace fGen {};           //!< ROOT's generator
@@ -45,6 +44,7 @@ public:
             ...); // This is a C++17 fold expression to unpack variadic arguments "args"
         ComputeInitialMass();
         ComputeFinalMasses();
+        Check();
     }
     void SetDecay(double T, double thetaLab, double philab);
     double Generate();
@@ -56,6 +56,7 @@ public:
 private:
     void ComputeInitialMass();
     void ComputeFinalMasses();
+    void Check();
 };
 } // namespace ActSim
 #endif
