@@ -44,7 +44,7 @@ public:
             ...); // This is a C++17 fold expression to unpack variadic arguments "args"
         ComputeInitialMass();
         ComputeFinalMasses();
-        Check();
+        CheckQvalue();
     }
     void SetDecay(double T, double thetaLab, double philab);
     double Generate();
@@ -56,7 +56,7 @@ public:
 private:
     void ComputeInitialMass();
     void ComputeFinalMasses();
-    void Check();
+    void CheckQvalue();
 };
 } // namespace ActSim
 #endif

@@ -13,18 +13,7 @@
 
 void ActSim::DecayGenerator::ComputeInitialMass()
 {
-    // Initial mass should be higher than the decay products, otherwise TGenPhase space would
-    // fail to simulate the decay since the energy is not conserved. We define the initial mass
-    // as the direct sum of the mass components
-    // The difference between this direct sum and the actual mass of the particle is the
-    // BINDING ENERGY, which will be shared among all products and is added here ARTIFICIALLY
-    fInitialMass = 0;
-    // Add Z protons
-    fInitialMass += fParticle.GetZ() * ActPhysics::Constants::kpMass;
-    // Add N = A - Z neutrons
-    fInitialMass += fParticle.GetN() * ActPhysics::Constants::knMass;
-    // Add binding energy
-    fInitialMass += fParticle.GetBE();
+    fInitialMass = fParticle.GetMass();
 }
 
 void ActSim::DecayGenerator::ComputeFinalMasses()
@@ -34,9 +23,11 @@ void ActSim::DecayGenerator::ComputeFinalMasses()
         fFinalMasses.push_back(p.GetMass() * ActPhysics::Constants::kMeVToGeV); // Ex considered in particle's mass
 }
 
-void ActSim::DecayGenerator::Check()
+void ActSim::DecayGenerator::CheckQvalue()
 {
-    // Check decay is possible
+    // Devay is possible if Q <= 0
+    // Otherwise, like for a d -> p + n, you must force an Ex
+    // equivalent to the binding energy
     auto sumFinal {std::reduce(fFinalMasses.begin(), fFinalMasses.end(), 0.)};
     if(fInitialMass * ActPhysics::Constants::kMeVToGeV < sumFinal)
     {
