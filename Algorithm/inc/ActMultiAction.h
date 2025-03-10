@@ -5,6 +5,8 @@
 #include "ActVCluster.h"
 #include "ActVFilter.h"
 
+#include "TStopwatch.h"
+
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -26,8 +28,10 @@ public:
     typedef std::unordered_map<std::string, Ptr (*)()> MapActions;
 
 private:
-    MapActions fMap {};           // know actions to instantiate
-    std::vector<Ptr> fActions {}; // Actions by order in file
+    MapActions fMap {};           //!< Known actions to instantiate
+    std::vector<Ptr> fActions {}; //!< Actions by order in file
+
+    TStopwatch fTimer {}; //!< To control time spent in executing the actions
 
 public:
     MultiAction();

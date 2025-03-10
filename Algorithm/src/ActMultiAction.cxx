@@ -8,12 +8,14 @@
 #include "ActACleanZs.h"
 #include "ActAFindRP.h"
 #include "ActAMerge.h"
+#include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
 #include "ActTPCData.h"
 #include "ActTPCParameters.h"
 #include "ActVCluster.h"
 
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -84,11 +86,13 @@ void ActAlgorithm::MultiAction::ReadConfiguration()
 
 void ActAlgorithm::MultiAction::Run()
 {
+    fTimer.Start(false);
     for(auto& action : fActions)
     {
         action->Run();
         ResetClusterID();
     }
+    fTimer.Stop();
 }
 
 void ActAlgorithm::MultiAction::Print() const
@@ -97,7 +101,12 @@ void ActAlgorithm::MultiAction::Print() const
         action->Print();
 }
 
-void ActAlgorithm::MultiAction::PrintReports() const {}
+void ActAlgorithm::MultiAction::PrintReports() const
+{
+    std::cout << BOLDYELLOW << "···· MultiAction time report ····" << '\n';
+    fTimer.Print();
+    std::cout << "······························" << RESET << '\n';
+}
 
 void ActAlgorithm::MultiAction::ResetClusterID()
 {
