@@ -57,6 +57,7 @@ public:
     ActPhysics::Kinematics* GetBinaryKinematics() { return &fKin; }
     double Generate();
     TLorentzVector* GetLorentzVector(unsigned int idx);
+    int GetNt() const { return fGen.GetNt(); }
     void Print() const;
 
 private:
