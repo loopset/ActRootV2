@@ -339,8 +339,13 @@ template&lt;typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   55</span>{</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.Generate();</div>
-<div class="line"><span class="lineno">   57</span>}</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keyword">auto</span> w {<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.Generate()};</div>
+<div class="line"><span class="lineno">   57</span>    <span class="comment">// Scale to MeV all products</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0, size = <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.GetNt(); i &lt; size; i++)</div>
+<div class="line"><span class="lineno">   59</span>        *<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.GetDecay(i) *= 1. / <a class="code hl_variable" href="namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941">ActPhysics::Constants::kMeVToGeV</a>;</div>
+<div class="line"><span class="lineno">   60</span>    <span class="comment">// Return weight</span></div>
+<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">return</span> w;</div>
+<div class="line"><span class="lineno">   62</span>}</div>
 <div class="ttc" id="aclassActSim_1_1DecayGenerator_html_a002e9a13fe5bf94f707f741e49bb4356"><div class="ttname"><a href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">ActSim::DecayGenerator::fGen</a></div><div class="ttdeci">TGenPhaseSpace fGen</div><div class="ttdoc">ROOT's generator.</div><div class="ttdef"><b>Definition</b> ActDecayGenerator.h:21</div></div>
 </div><!-- fragment -->
 </div>
@@ -360,9 +365,9 @@ template&lt;typename... Args&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   67</span>{</div>
-<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#ad05e6eff7bbec8c84fd3aae49a71c2e7">fFinalMasses</a>[idx] / <a class="code hl_variable" href="namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941">ActPhysics::Constants::kMeVToGeV</a>;</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>{</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#ad05e6eff7bbec8c84fd3aae49a71c2e7">fFinalMasses</a>[idx] / <a class="code hl_variable" href="namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941">ActPhysics::Constants::kMeVToGeV</a>;</div>
+<div class="line"><span class="lineno">   73</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -381,11 +386,10 @@ template&lt;typename... Args&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   60</span>{</div>
-<div class="line"><span class="lineno">   61</span>    <span class="keyword">auto</span>* ret {<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.GetDecay(idx)};</div>
-<div class="line"><span class="lineno">   62</span>    *ret *= 1.0 / <a class="code hl_variable" href="namespaceActPhysics_1_1Constants.html#aa0416063fcb65b9de55da01eeb71b941">ActPhysics::Constants::kMeVToGeV</a>;</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><span class="lineno">   64</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>{</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keyword">auto</span>* ret {<a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a002e9a13fe5bf94f707f741e49bb4356">fGen</a>.GetDecay(idx)};</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">   68</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -403,20 +407,20 @@ template&lt;typename... Args&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
-<div class="line"><span class="lineno">   73</span>    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);</div>
-<div class="line"><span class="lineno">   74</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a>;</div>
-<div class="line"><span class="lineno">   75</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;::::: DecayGenerator :::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   76</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Particle : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a574a66b50c296b8abcd302451f31d382">GetName</a>() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   77</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    Mass    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a50444b520c562653c8d529c8ccd56fe8">GetMass</a>() &lt;&lt; <span class="stringliteral">&quot; MeV/c2&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   78</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    BE      : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a1098b40a4b3b10be5511ef89c3758ca4">GetBE</a>() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   79</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    Ex      : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#adf2282a6ba645b9ed7777321c5202334">GetEx</a>() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   80</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; To &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>.size() &lt;&lt; <span class="stringliteral">&quot; products : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>)</div>
-<div class="line"><span class="lineno">   82</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;    &quot;</span> &lt;&lt; p.GetName() &lt;&lt; <span class="stringliteral">&quot;, Mass : &quot;</span> &lt;&lt; p.GetMass() &lt;&lt; <span class="stringliteral">&quot; MeV/c2, Ex : &quot;</span> &lt;&lt; p.GetEx() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span></div>
-<div class="line"><span class="lineno">   83</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   84</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   85</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
+<div class="line"><span class="lineno">   77</span>    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);</div>
+<div class="line"><span class="lineno">   78</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a>;</div>
+<div class="line"><span class="lineno">   79</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;::::: DecayGenerator :::::&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   80</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Particle : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a574a66b50c296b8abcd302451f31d382">GetName</a>() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   81</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    Mass    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a50444b520c562653c8d529c8ccd56fe8">GetMass</a>() &lt;&lt; <span class="stringliteral">&quot; MeV/c2&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   82</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    BE      : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#a1098b40a4b3b10be5511ef89c3758ca4">GetBE</a>() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   83</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;    Ex      : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#a78eb9b4916464d5edade681a3d059dbc">fParticle</a>.<a class="code hl_function" href="classActPhysics_1_1Particle.html#adf2282a6ba645b9ed7777321c5202334">GetEx</a>() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   84</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; To &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>.size() &lt;&lt; <span class="stringliteral">&quot; products : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : <a class="code hl_variable" href="classActSim_1_1DecayGenerator.html#add1229a80259ecc4aca9d66a612489c5">fProducts</a>)</div>
+<div class="line"><span class="lineno">   86</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;    &quot;</span> &lt;&lt; p.GetName() &lt;&lt; <span class="stringliteral">&quot;, Mass : &quot;</span> &lt;&lt; p.GetMass() &lt;&lt; <span class="stringliteral">&quot; MeV/c2, Ex : &quot;</span> &lt;&lt; p.GetEx() &lt;&lt; <span class="stringliteral">&quot; MeV&quot;</span></div>
+<div class="line"><span class="lineno">   87</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   88</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   89</span>}</div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition</b> ActColors.h:21</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html_a1098b40a4b3b10be5511ef89c3758ca4"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a1098b40a4b3b10be5511ef89c3758ca4">ActPhysics::Particle::GetBE</a></div><div class="ttdeci">double GetBE() const</div><div class="ttdoc">Return binding energy. If BE &lt; 0 is unbound.</div><div class="ttdef"><b>Definition</b> ActParticle.cxx:148</div></div>
 <div class="ttc" id="aclassActPhysics_1_1Particle_html_a574a66b50c296b8abcd302451f31d382"><div class="ttname"><a href="classActPhysics_1_1Particle.html#a574a66b50c296b8abcd302451f31d382">ActPhysics::Particle::GetName</a></div><div class="ttdeci">const std::string &amp; GetName() const</div><div class="ttdef"><b>Definition</b> ActParticle.h:37</div></div>
