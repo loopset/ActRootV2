@@ -53,13 +53,17 @@ void ActSim::DecayGenerator::SetDecay(double T, double thetalab, double philab)
 
 double ActSim::DecayGenerator::Generate()
 {
-    return fGen.Generate();
+    auto w {fGen.Generate()};
+    // Scale to MeV all products
+    for(int i = 0, size = fGen.GetNt(); i < size; i++)
+        *fGen.GetDecay(i) *= 1. / ActPhysics::Constants::kMeVToGeV;
+    // Return weight
+    return w;
 }
 
 TLorentzVector* ActSim::DecayGenerator::GetLorentzVector(unsigned int idx)
 {
     auto* ret {fGen.GetDecay(idx)};
-    *ret *= 1.0 / ActPhysics::Constants::kMeVToGeV;
     return ret;
 }
 

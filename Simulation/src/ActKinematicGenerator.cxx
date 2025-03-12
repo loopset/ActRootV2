@@ -116,13 +116,17 @@ std::vector<double> ActSim::KinematicGenerator::GetFinalState()
 
 double ActSim::KinematicGenerator::Generate()
 {
-    return fGen.Generate();
+    auto w {fGen.Generate()};
+    // Scale to MeV all recoils
+    for(int i = 0, size = fGen.GetNt(); i < size; i++)
+        *fGen.GetDecay(i) *= 1. / ActPhysics::Constants::kMeVToGeV;
+    // Return weight
+    return w;
 }
 
 TLorentzVector* ActSim::KinematicGenerator::GetLorentzVector(unsigned int idx)
 {
     auto* ret {fGen.GetDecay(idx)};
-    *ret *= 1.0 / ActPhysics::Constants::kMeVToGeV;
     return ret;
 }
 
