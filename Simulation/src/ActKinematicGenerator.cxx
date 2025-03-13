@@ -6,7 +6,6 @@
 #include "ActParticle.h"
 
 #include "TGenPhaseSpace.h"
-#include "TList.h"
 #include "TLorentzVector.h"
 
 #include <iostream>
@@ -88,6 +87,14 @@ TLorentzVector ActSim::KinematicGenerator::GetInitialState()
     //  that is, out X direction in SimKinematics
     auto lorentz {TLorentzVector(init.Z(), init.Y(), init.X(), init.E())};
     lorentz *= ActPhysics::Constants::kMeVToGeV;
+    // Save betas also. Computation is the same as in TGenPhase::SetDecay()
+    if(lorentz.Beta())
+    {
+        auto w {lorentz.Beta() / lorentz.Rho()};
+        fBeta[0] = lorentz(0) * w;
+        fBeta[1] = lorentz(1) * w;
+        fBeta[2] = lorentz(2) * w;
+    }
     // lorentz.Print();
     return lorentz;
 }

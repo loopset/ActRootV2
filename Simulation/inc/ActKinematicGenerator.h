@@ -6,6 +6,7 @@
 
 #include "TGenPhaseSpace.h"
 #include "TLorentzVector.h"
+#include "TVector3.h"
 
 #include <string>
 #include <vector>
@@ -19,10 +20,11 @@ namespace ActSim
 class KinematicGenerator
 {
 private:
-    ActPhysics::Kinematics fKin;
-    TGenPhaseSpace fGen;
-    std::vector<ActPhysics::Particle> fBinParts;
-    ActPhysics::Particle fHeavyPart;
+    ActPhysics::Kinematics fKin; //!< Save always the binary kinematics
+    TGenPhaseSpace fGen;         //!< Phase space generator
+    TVector3 fBeta {-1, -1, -1}; //!< Store also betas of decaying particles, as calculated in TGenPhaseSpace
+    std::vector<ActPhysics::Particle> fBinParts; //!< Vector with outgoing particle definitions
+    ActPhysics::Particle fHeavyPart;             //!< Automatically computed heavy particle
     int fneutronPS;
     int fprotonPS;
     // store passed values as members
@@ -57,6 +59,7 @@ public:
     ActPhysics::Kinematics* GetBinaryKinematics() { return &fKin; }
     double Generate();
     TLorentzVector* GetLorentzVector(unsigned int idx);
+    TVector3* GetBeta() { return &fBeta; }
     int GetNt() const { return fGen.GetNt(); }
     void Print() const;
 
