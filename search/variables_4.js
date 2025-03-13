@@ -25,7 +25,7 @@ var searchData=
   ['fbeamwindowz_22',['fbeamwindowz',['../classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967',1,'ActAlgorithm::Actions::BreakChi2::fBeamWindowZ'],['../classActAlgorithm_1_1MultiStep.html#a5a4e5a62c52827d2e48cb81bf7ad90a4',1,'ActAlgorithm::MultiStep::fBeamWindowZ']]],
   ['fbegin_23',['fBegin',['../classActRoot_1_1OutputData.html#a6351c760ff05649c3b60d1e0c73d0bc7',1,'ActRoot::OutputData']]],
   ['fbegins_24',['fBegins',['../classActRoot_1_1InputData.html#a51517caf08586d5ee2f660ee8b38e97b',1,'ActRoot::InputData']]],
-  ['fbeta_25',['fBeta',['../classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80',1,'ActPhysics::Kinematics']]],
+  ['fbeta_25',['fbeta',['../classActPhysics_1_1Kinematics.html#a5d649f4fa30e7405ec00a1372c512d80',1,'ActPhysics::Kinematics::fBeta'],['../classActSim_1_1KinematicGenerator.html#a6799482d5f39db1dae7e2e429d2fb5ad',1,'ActSim::KinematicGenerator::fBeta']]],
   ['fbinparts_26',['fBinParts',['../classActSim_1_1KinematicGenerator.html#ac427f25e8a47653b3aca080c96fcf6bd',1,'ActSim::KinematicGenerator']]],
   ['fblidx_27',['fBLIdx',['../structActAlgorithm_1_1Actions_1_1FindRP_1_1RPOps.html#ad7692899cff8e59cae3ee974145ee509',1,'ActAlgorithm::Actions::FindRP::RPOps']]],
   ['fblockname_28',['fBlockName',['../classActRoot_1_1InputBlock.html#ad68e77f4fbc8bbe14d00ebbb48cee857',1,'ActRoot::InputBlock']]],
