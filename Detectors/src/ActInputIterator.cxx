@@ -226,6 +226,11 @@ ActRoot::InputWrapper::~InputWrapper()
 void ActRoot::InputWrapper::GetEntry(int run, int entry)
 {
     fInput->GetEntry(run, entry);
+    // Reset not read from file class members
+    std::vector<VData*> datas {fTPCData, fSilData, fModularData, fMergerData};
+    for(auto* data : datas)
+        if(data)
+            data->ClearFilter();
     if(fTPCData && fTPCClone)
         *fTPCClone = *fTPCData;
 }
