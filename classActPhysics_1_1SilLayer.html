@@ -350,19 +350,19 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  201</span>{</div>
-<div class="line"><span class="lineno">  202</span>    <span class="keyword">auto</span> w {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>()};</div>
-<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> h {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>()};</div>
-<div class="line"><span class="lineno">  204</span>    <span class="keyword">auto</span> sm {std::make_shared&lt;SilMatrix&gt;()};</div>
-<div class="line"><span class="lineno">  205</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">  206</span>    {</div>
-<div class="line"><span class="lineno">  207</span>        std::pair x {pair.first - w / 2, pair.first + w / 2};</div>
-<div class="line"><span class="lineno">  208</span>        std::pair y {pair.second - h / 2, pair.second + h / 2};</div>
-<div class="line"><span class="lineno">  209</span>        sm-&gt;AddSil(idx, x, y);</div>
-<div class="line"><span class="lineno">  210</span>    }</div>
-<div class="line"><span class="lineno">  211</span>    sm-&gt;SetPadIdx(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a>);</div>
-<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">return</span> sm;</div>
-<div class="line"><span class="lineno">  213</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  202</span>{</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> w {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>()};</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keyword">auto</span> h {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>()};</div>
+<div class="line"><span class="lineno">  205</span>    <span class="keyword">auto</span> sm {std::make_shared&lt;SilMatrix&gt;()};</div>
+<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">  207</span>    {</div>
+<div class="line"><span class="lineno">  208</span>        std::pair x {pair.first - w / 2, pair.first + w / 2};</div>
+<div class="line"><span class="lineno">  209</span>        std::pair y {pair.second - h / 2, pair.second + h / 2};</div>
+<div class="line"><span class="lineno">  210</span>        sm-&gt;AddSil(idx, x, y);</div>
+<div class="line"><span class="lineno">  211</span>    }</div>
+<div class="line"><span class="lineno">  212</span>    sm-&gt;SetPadIdx(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a>);</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keywordflow">return</span> sm;</div>
+<div class="line"><span class="lineno">  214</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a00f946e6889ae9c93681ad6d3f70a498"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">ActPhysics::SilLayer::fPadIdx</a></div><div class="ttdeci">int fPadIdx</div><div class="ttdoc">In HistogramPainter, index of pad for this layer.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:70</div></div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a4d3d09c815f7f4aead60be1eb005c26a"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">ActPhysics::SilLayer::fPlacements</a></div><div class="ttdeci">std::map&lt; int, std::pair&lt; double, double &gt; &gt; fPlacements</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:62</div></div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_af9225f62f22f04b1e07d3c6c5ea92e14"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">ActPhysics::SilLayer::fUnit</a></div><div class="ttdeci">SilUnit fUnit</div><div class="ttdoc">Specifications of unit silicon.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:64</div></div>
@@ -410,17 +410,17 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
-<div class="line"><span class="lineno">  167</span>    <span class="comment">// Just move point to ACTAR&#39;s flanges</span></div>
-<div class="line"><span class="lineno">  168</span>    Point&lt;T&gt; newPoint {};</div>
-<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
-<div class="line"><span class="lineno">  170</span>        newPoint = {(T)padx, 0, 0};</div>
-<div class="line"><span class="lineno">  171</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  172</span>        newPoint = {0, (T)pady, 0};</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
-<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> d {((newPoint - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">return</span> otherPoint + unitVec * d;</div>
-<div class="line"><span class="lineno">  176</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  167</span>{</div>
+<div class="line"><span class="lineno">  168</span>    <span class="comment">// Just move point to ACTAR&#39;s flanges</span></div>
+<div class="line"><span class="lineno">  169</span>    Point&lt;T&gt; newPoint {};</div>
+<div class="line"><span class="lineno">  170</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
+<div class="line"><span class="lineno">  171</span>        newPoint = {(T)padx, 0, 0};</div>
+<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  173</span>        newPoint = {0, (T)pady, 0};</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
+<div class="line"><span class="lineno">  175</span>    <span class="keyword">auto</span> d {((newPoint - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
+<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">return</span> otherPoint + unitVec * d;</div>
+<div class="line"><span class="lineno">  177</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ab9c9331f9db8a109a2fddc738ed83b1d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">ActPhysics::SilLayer::fNormal</a></div><div class="ttdeci">XYZVectorF fNormal</div><div class="ttdoc">Normal vector of silicon plane.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:66</div></div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ac6fb8cd7730e1c80e79659facca5b9d4"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">ActPhysics::SilLayer::fSide</a></div><div class="ttdeci">SilSide fSide</div><div class="ttdoc">Enum to spec side of layer with respect to ACTAR's frame.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:69</div></div>
 <div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">ActPhysics::SilSide::EFront</a></div><div class="ttdeci">@ EFront</div></div>
@@ -487,23 +487,23 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  217</span>{</div>
-<div class="line"><span class="lineno">  218</span>    <span class="keywordtype">int</span> idx {-1};</div>
-<div class="line"><span class="lineno">  219</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [i, g] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetGraphs())</div>
-<div class="line"><span class="lineno">  220</span>    {</div>
-<div class="line"><span class="lineno">  221</span>        <span class="keywordtype">double</span> xy {};</div>
-<div class="line"><span class="lineno">  222</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>)</div>
-<div class="line"><span class="lineno">  223</span>            xy = p.X();</div>
-<div class="line"><span class="lineno">  224</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  225</span>            xy = p.Y();</div>
-<div class="line"><span class="lineno">  226</span>        <span class="keywordflow">if</span>(g-&gt;IsInside(xy, p.Z()))</div>
-<div class="line"><span class="lineno">  227</span>        {</div>
-<div class="line"><span class="lineno">  228</span>            idx = i;</div>
-<div class="line"><span class="lineno">  229</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  230</span>        }</div>
-<div class="line"><span class="lineno">  231</span>    }</div>
-<div class="line"><span class="lineno">  232</span>    <span class="keywordflow">return</span> idx;</div>
-<div class="line"><span class="lineno">  233</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  218</span>{</div>
+<div class="line"><span class="lineno">  219</span>    <span class="keywordtype">int</span> idx {-1};</div>
+<div class="line"><span class="lineno">  220</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [i, g] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetGraphs())</div>
+<div class="line"><span class="lineno">  221</span>    {</div>
+<div class="line"><span class="lineno">  222</span>        <span class="keywordtype">double</span> xy {};</div>
+<div class="line"><span class="lineno">  223</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>)</div>
+<div class="line"><span class="lineno">  224</span>            xy = p.X();</div>
+<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  226</span>            xy = p.Y();</div>
+<div class="line"><span class="lineno">  227</span>        <span class="keywordflow">if</span>(g-&gt;IsInside(xy, p.Z()))</div>
+<div class="line"><span class="lineno">  228</span>        {</div>
+<div class="line"><span class="lineno">  229</span>            idx = i;</div>
+<div class="line"><span class="lineno">  230</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  231</span>        }</div>
+<div class="line"><span class="lineno">  232</span>    }</div>
+<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">return</span> idx;</div>
+<div class="line"><span class="lineno">  234</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a15a17c0cdeaebbe10897130f22cd416d"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">ActPhysics::SilLayer::fMatrix</a></div><div class="ttdeci">std::shared_ptr&lt; SilMatrix &gt; fMatrix</div><div class="ttdoc">Pointer to SiliconMatrix.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:68</div></div>
 <div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">ActPhysics::SilSide::ELeft</a></div><div class="ttdeci">@ ELeft</div></div>
 <div class="ttc" id="anamespaceActPhysics_html_aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d"><div class="ttname"><a href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">ActPhysics::SilSide::ERight</a></div><div class="ttdeci">@ ERight</div></div>
@@ -648,19 +648,19 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
-<div class="line"><span class="lineno">  149</span>    Point&lt;T&gt; ref {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a>};</div>
-<div class="line"><span class="lineno">  150</span>    <span class="keywordflow">if</span>(scale)</div>
-<div class="line"><span class="lineno">  151</span>    {</div>
-<div class="line"><span class="lineno">  152</span>        <span class="comment">// Convert XY to mm</span></div>
-<div class="line"><span class="lineno">  153</span>        ref.SetX(ref.X() * 2.);</div>
-<div class="line"><span class="lineno">  154</span>        ref.SetY(ref.Y() * 2.);</div>
-<div class="line"><span class="lineno">  155</span>    }</div>
-<div class="line"><span class="lineno">  156</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
-<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> d {((ref - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordtype">bool</span> isOk {(d &gt; 0) ? <span class="keyword">true</span> : false};</div>
-<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">return</span> std::make_pair(otherPoint + unitVec * d, isOk);</div>
-<div class="line"><span class="lineno">  160</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>{</div>
+<div class="line"><span class="lineno">  150</span>    Point&lt;T&gt; ref {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a>};</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">if</span>(scale)</div>
+<div class="line"><span class="lineno">  152</span>    {</div>
+<div class="line"><span class="lineno">  153</span>        <span class="comment">// Convert XY to mm</span></div>
+<div class="line"><span class="lineno">  154</span>        ref.SetX(ref.X() * 2.);</div>
+<div class="line"><span class="lineno">  155</span>        ref.SetY(ref.Y() * 2.);</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> unitVec {otherVec.Unit()};</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keyword">auto</span> d {((ref - otherPoint).Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>)) / (unitVec.Dot(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>))};</div>
+<div class="line"><span class="lineno">  159</span>    <span class="keywordtype">bool</span> isOk {(d &gt; 0) ? <span class="keyword">true</span> : false};</div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">return</span> std::make_pair(otherPoint + unitVec * d, isOk);</div>
+<div class="line"><span class="lineno">  161</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -837,24 +837,24 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  181</span>{</div>
-<div class="line"><span class="lineno">  182</span>    <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.at(i)};</div>
-<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> xyMin {xy - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2 - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
-<div class="line"><span class="lineno">  184</span>    <span class="keyword">auto</span> xyMax {xy + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2 + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
-<div class="line"><span class="lineno">  185</span>    <span class="keyword">auto</span> zMin {z - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2 - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
-<div class="line"><span class="lineno">  186</span>    <span class="keyword">auto</span> zMax {z + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2 + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
-<div class="line"><span class="lineno">  187</span>    <span class="comment">// Por XY plane we have to determine whether it is along X or Y!</span></div>
-<div class="line"><span class="lineno">  188</span>    <span class="keywordtype">double</span> plane {};</div>
-<div class="line"><span class="lineno">  189</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
-<div class="line"><span class="lineno">  190</span>        plane = sp.Y();</div>
-<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  192</span>        plane = sp.X();</div>
-<div class="line"><span class="lineno">  193</span>    <span class="keywordtype">bool</span> condXY {xyMin &lt;= plane &amp;&amp; plane &lt;= xyMax};</div>
-<div class="line"><span class="lineno">  194</span>    <span class="keywordtype">bool</span> condZ {<span class="keyword">true</span>};</div>
-<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">if</span>(useZ)</div>
-<div class="line"><span class="lineno">  196</span>        condZ = zMin &lt;= sp.Z() &amp;&amp; sp.Z() &lt;= zMax;</div>
-<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">return</span> condXY &amp;&amp; condZ;</div>
-<div class="line"><span class="lineno">  198</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  182</span>{</div>
+<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.at(i)};</div>
+<div class="line"><span class="lineno">  184</span>    <span class="keyword">auto</span> xyMin {xy - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2 - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keyword">auto</span> xyMax {xy + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a531667696ce892fac6478b7168a6a9f8">GetWidth</a>() / 2 + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
+<div class="line"><span class="lineno">  186</span>    <span class="keyword">auto</span> zMin {z - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2 - <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
+<div class="line"><span class="lineno">  187</span>    <span class="keyword">auto</span> zMax {z + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#a6cbd32417c66ed8941a7ab0a017b2c0c">GetHeight</a>() / 2 + <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a>};</div>
+<div class="line"><span class="lineno">  188</span>    <span class="comment">// Por XY plane we have to determine whether it is along X or Y!</span></div>
+<div class="line"><span class="lineno">  189</span>    <span class="keywordtype">double</span> plane {};</div>
+<div class="line"><span class="lineno">  190</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a> || <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> == <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>)</div>
+<div class="line"><span class="lineno">  191</span>        plane = sp.Y();</div>
+<div class="line"><span class="lineno">  192</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  193</span>        plane = sp.X();</div>
+<div class="line"><span class="lineno">  194</span>    <span class="keywordtype">bool</span> condXY {xyMin &lt;= plane &amp;&amp; plane &lt;= xyMax};</div>
+<div class="line"><span class="lineno">  195</span>    <span class="keywordtype">bool</span> condZ {<span class="keyword">true</span>};</div>
+<div class="line"><span class="lineno">  196</span>    <span class="keywordflow">if</span>(useZ)</div>
+<div class="line"><span class="lineno">  197</span>        condZ = zMin &lt;= sp.Z() &amp;&amp; sp.Z() &lt;= zMax;</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">return</span> condXY &amp;&amp; condZ;</div>
+<div class="line"><span class="lineno">  199</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilLayer_html_ab76989690865650c5575b4b305a8fb50"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">ActPhysics::SilLayer::fMargin</a></div><div class="ttdeci">double fMargin</div><div class="ttdoc">Margin in mm to validate or not SP in MatchesRealPlacement function.</div><div class="ttdef"><b>Definition</b> ActSilSpecs.h:67</div></div>
 </div><!-- fragment -->
 </div>
@@ -874,9 +874,9 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  259</span>{</div>
-<div class="line"><span class="lineno">  260</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetMeanZ(idxs);</div>
-<div class="line"><span class="lineno">  261</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  260</span>{</div>
+<div class="line"><span class="lineno">  261</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetMeanZ(idxs);</div>
+<div class="line"><span class="lineno">  262</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -905,11 +905,11 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  253</span>{</div>
-<div class="line"><span class="lineno">  254</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;MoveZTo(z, idxs);</div>
-<div class="line"><span class="lineno">  255</span>    <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">UpdatePlacementsFromMatrix</a>();</div>
-<div class="line"><span class="lineno">  256</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a5d2dc5ecf4f56e812dbb836aa02f5221"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">ActPhysics::SilLayer::UpdatePlacementsFromMatrix</a></div><div class="ttdeci">void UpdatePlacementsFromMatrix()</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:235</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  254</span>{</div>
+<div class="line"><span class="lineno">  255</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;MoveZTo(z, idxs);</div>
+<div class="line"><span class="lineno">  256</span>    <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">UpdatePlacementsFromMatrix</a>();</div>
+<div class="line"><span class="lineno">  257</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a5d2dc5ecf4f56e812dbb836aa02f5221"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">ActPhysics::SilLayer::UpdatePlacementsFromMatrix</a></div><div class="ttdeci">void UpdatePlacementsFromMatrix()</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:236</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -927,21 +927,21 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{</div>
-<div class="line"><span class="lineno">   35</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   36</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; idx : &lt;X || Y, Z&gt; [mm] ; thresh [MeV]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">   38</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; idx &lt;&lt; <span class="stringliteral">&quot; : &lt;&quot;</span> &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; pair.second &lt;&lt; <span class="stringliteral">&quot;&gt; ; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx)</div>
-<div class="line"><span class="lineno">   39</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   40</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Point  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> &lt;&lt; <span class="stringliteral">&quot; [pads]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   41</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Normal : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   42</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Margin : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a> &lt;&lt; <span class="stringliteral">&quot; mm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   43</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PadIdx : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   44</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Unit   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   45</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">Print</a>();</div>
-<div class="line"><span class="lineno">   46</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   47</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_ad8d16901c805a683145f700189735c65"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">ActPhysics::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:24</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
+<div class="line"><span class="lineno">   36</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   37</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; idx : &lt;X || Y, Z&gt; [mm] ; thresh [MeV]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, pair] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">   39</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   &quot;</span> &lt;&lt; idx &lt;&lt; <span class="stringliteral">&quot; : &lt;&quot;</span> &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; pair.second &lt;&lt; <span class="stringliteral">&quot;&gt; ; &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>.at(idx)</div>
+<div class="line"><span class="lineno">   40</span>                  &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   41</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Point  : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> &lt;&lt; <span class="stringliteral">&quot; [pads]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   42</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Normal : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   43</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Margin : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a> &lt;&lt; <span class="stringliteral">&quot; mm&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   44</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; PadIdx : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   45</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;-&gt; Unit   : &quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   46</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a>.<a class="code hl_function" href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">Print</a>();</div>
+<div class="line"><span class="lineno">   47</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   48</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilUnit_html_ad8d16901c805a683145f700189735c65"><div class="ttname"><a href="classActPhysics_1_1SilUnit.html#ad8d16901c805a683145f700189735c65">ActPhysics::SilUnit::Print</a></div><div class="ttdeci">void Print() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -960,89 +960,89 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   62</span>{</div>
-<div class="line"><span class="lineno">   63</span>    std::vector&lt;std::string&gt; unitKeys {<span class="stringliteral">&quot;Height&quot;</span>, <span class="stringliteral">&quot;Width&quot;</span>, <span class="stringliteral">&quot;Thickness&quot;</span>};</div>
-<div class="line"><span class="lineno">   64</span>    std::vector&lt;double&gt; unitVals(unitKeys.size());</div>
-<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; unitKeys.size(); i++)</div>
-<div class="line"><span class="lineno">   66</span>    {</div>
-<div class="line"><span class="lineno">   67</span>        block-&gt;CheckTokenExists(unitKeys[i]);</div>
-<div class="line"><span class="lineno">   68</span>        unitVals[i] = block-&gt;GetDouble(unitKeys[i]);</div>
-<div class="line"><span class="lineno">   69</span>    }</div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a> = SilUnit {unitVals[0], unitVals[1], unitVals[2]};</div>
-<div class="line"><span class="lineno">   71</span>    <span class="comment">// Get placements</span></div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> placements {block-&gt;GetMappedValuesVectorOf&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;i&quot;</span>)};</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, vals] : placements)</div>
-<div class="line"><span class="lineno">   74</span>    {</div>
-<div class="line"><span class="lineno">   75</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {vals[0], vals[1]};</div>
-<div class="line"><span class="lineno">   76</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = 0.;</div>
-<div class="line"><span class="lineno">   77</span>    }</div>
-<div class="line"><span class="lineno">   78</span>    <span class="comment">// Add offset and normal vector</span></div>
-<div class="line"><span class="lineno">   79</span>    <span class="comment">// 1-&gt; Point aka offset</span></div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Point&quot;</span>))</div>
-<div class="line"><span class="lineno">   81</span>    {</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Point&quot;</span>)};</div>
-<div class="line"><span class="lineno">   83</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span>    <span class="comment">// 2-&gt; Plane normal</span></div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Normal&quot;</span>))</div>
-<div class="line"><span class="lineno">   87</span>    {</div>
-<div class="line"><span class="lineno">   88</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Normal&quot;</span>)};</div>
-<div class="line"><span class="lineno">   89</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
-<div class="line"><span class="lineno">   90</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>.Unit(); <span class="comment">// store as normal!</span></div>
-<div class="line"><span class="lineno">   91</span>    }</div>
-<div class="line"><span class="lineno">   92</span>    <span class="comment">// 3-&gt; Thresholds</span></div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;CommomThresh&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><span class="lineno">   94</span>    {</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keyword">auto</span> thresh {block-&gt;GetDouble(<span class="stringliteral">&quot;CommomThresh&quot;</span>)};</div>
-<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">   97</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = thresh;</div>
-<div class="line"><span class="lineno">   98</span>    }</div>
-<div class="line"><span class="lineno">   99</span>    <span class="comment">// Set thresholds</span></div>
-<div class="line"><span class="lineno">  100</span>    <span class="keyword">auto</span> threshs {block-&gt;GetMappedValuesAs&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;t&quot;</span>)};</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span>(threshs.size() &gt; 0)</div>
-<div class="line"><span class="lineno">  102</span>    {</div>
-<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
-<div class="line"><span class="lineno">  104</span>        {</div>
-<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  106</span>            {</div>
-<div class="line"><span class="lineno">  107</span>                <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = threshs.at(idx);</div>
-<div class="line"><span class="lineno">  108</span>            }</div>
-<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
-<div class="line"><span class="lineno">  110</span>            {</div>
-<div class="line"><span class="lineno">  111</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;While reading independent threshs, missing t command for idx : &quot;</span> +</div>
-<div class="line"><span class="lineno">  112</span>                                         std::to_string(idx));</div>
-<div class="line"><span class="lineno">  113</span>            }</div>
-<div class="line"><span class="lineno">  114</span>        }</div>
-<div class="line"><span class="lineno">  115</span>    }</div>
-<div class="line"><span class="lineno">  116</span>    <span class="comment">// 4-&gt; Sil side to be stored as enum</span></div>
-<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Side&quot;</span>))</div>
-<div class="line"><span class="lineno">  118</span>    {</div>
-<div class="line"><span class="lineno">  119</span>        <span class="keyword">auto</span> str {block-&gt;GetString(<span class="stringliteral">&quot;Side&quot;</span>)};</div>
-<div class="line"><span class="lineno">  120</span>        str = <a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(str);</div>
-<div class="line"><span class="lineno">  121</span>        str = <a class="code hl_function" href="namespaceActRoot.html#aa9a314900950aac390a78b5df913e9ba">ActRoot::ToLower</a>(str);</div>
-<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;left&quot;</span>)</div>
-<div class="line"><span class="lineno">  123</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a>;</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;right&quot;</span>)</div>
-<div class="line"><span class="lineno">  125</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>;</div>
-<div class="line"><span class="lineno">  126</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;front&quot;</span>)</div>
-<div class="line"><span class="lineno">  127</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>;</div>
-<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;back&quot;</span>)</div>
-<div class="line"><span class="lineno">  129</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a>;</div>
-<div class="line"><span class="lineno">  130</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  131</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Side spec : &quot;</span> + str +</div>
-<div class="line"><span class="lineno">  132</span>                                     <span class="stringliteral">&quot; could not be interpreted in terms of left, right, front or back!&quot;</span>);</div>
-<div class="line"><span class="lineno">  133</span>    }</div>
-<div class="line"><span class="lineno">  134</span>    <span class="comment">// 5-&gt; Read pad index</span></div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;PadIdx&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><span class="lineno">  136</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a> = block-&gt;GetInt(<span class="stringliteral">&quot;PadIdx&quot;</span>);</div>
-<div class="line"><span class="lineno">  137</span>    <span class="comment">// 6-&gt; Margin to match</span></div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;MatchMargin&quot;</span>, <span class="keyword">true</span>))</div>
-<div class="line"><span class="lineno">  139</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;MatchMargin&quot;</span>);</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <span class="comment">// 7-&gt; Build the silicon matrix with the info gathered here</span></div>
-<div class="line"><span class="lineno">  142</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> = <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">BuildSilMatrix</a>();</div>
-<div class="line"><span class="lineno">  143</span>}</div>
-<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a971b36e549807f74fe54508048f9f872"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">ActPhysics::SilLayer::BuildSilMatrix</a></div><div class="ttdeci">std::shared_ptr&lt; SilMatrix &gt; BuildSilMatrix() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:200</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
+<div class="line"><span class="lineno">   64</span>    std::vector&lt;std::string&gt; unitKeys {<span class="stringliteral">&quot;Height&quot;</span>, <span class="stringliteral">&quot;Width&quot;</span>, <span class="stringliteral">&quot;Thickness&quot;</span>};</div>
+<div class="line"><span class="lineno">   65</span>    std::vector&lt;double&gt; unitVals(unitKeys.size());</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; unitKeys.size(); i++)</div>
+<div class="line"><span class="lineno">   67</span>    {</div>
+<div class="line"><span class="lineno">   68</span>        block-&gt;CheckTokenExists(unitKeys[i]);</div>
+<div class="line"><span class="lineno">   69</span>        unitVals[i] = block-&gt;GetDouble(unitKeys[i]);</div>
+<div class="line"><span class="lineno">   70</span>    }</div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#af9225f62f22f04b1e07d3c6c5ea92e14">fUnit</a> = SilUnit {unitVals[0], unitVals[1], unitVals[2]};</div>
+<div class="line"><span class="lineno">   72</span>    <span class="comment">// Get placements</span></div>
+<div class="line"><span class="lineno">   73</span>    <span class="keyword">auto</span> placements {block-&gt;GetMappedValuesVectorOf&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;i&quot;</span>)};</div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, vals] : placements)</div>
+<div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {vals[0], vals[1]};</div>
+<div class="line"><span class="lineno">   77</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = 0.;</div>
+<div class="line"><span class="lineno">   78</span>    }</div>
+<div class="line"><span class="lineno">   79</span>    <span class="comment">// Add offset and normal vector</span></div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// 1-&gt; Point aka offset</span></div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Point&quot;</span>))</div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Point&quot;</span>)};</div>
+<div class="line"><span class="lineno">   84</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac563c8c8780a3145431b361c108c267a">fPoint</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
+<div class="line"><span class="lineno">   85</span>    }</div>
+<div class="line"><span class="lineno">   86</span>    <span class="comment">// 2-&gt; Plane normal</span></div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Normal&quot;</span>))</div>
+<div class="line"><span class="lineno">   88</span>    {</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keyword">auto</span> aux {block-&gt;GetDoubleVector(<span class="stringliteral">&quot;Normal&quot;</span>)};</div>
+<div class="line"><span class="lineno">   90</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = {(float)aux[0], (<span class="keywordtype">float</span>)aux[1], (float)aux[2]};</div>
+<div class="line"><span class="lineno">   91</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a> = <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab9c9331f9db8a109a2fddc738ed83b1d">fNormal</a>.Unit(); <span class="comment">// store as normal!</span></div>
+<div class="line"><span class="lineno">   92</span>    }</div>
+<div class="line"><span class="lineno">   93</span>    <span class="comment">// 3-&gt; Thresholds</span></div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;CommomThresh&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><span class="lineno">   95</span>    {</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keyword">auto</span> thresh {block-&gt;GetDouble(<span class="stringliteral">&quot;CommomThresh&quot;</span>)};</div>
+<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">   98</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = thresh;</div>
+<div class="line"><span class="lineno">   99</span>    }</div>
+<div class="line"><span class="lineno">  100</span>    <span class="comment">// Set thresholds</span></div>
+<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> threshs {block-&gt;GetMappedValuesAs&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;t&quot;</span>)};</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span>(threshs.size() &gt; 0)</div>
+<div class="line"><span class="lineno">  103</span>    {</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>)</div>
+<div class="line"><span class="lineno">  105</span>        {</div>
+<div class="line"><span class="lineno">  106</span>            <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  107</span>            {</div>
+<div class="line"><span class="lineno">  108</span>                <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab8e2cc55627f28e011461708ade7fc0d">fThresholds</a>[idx] = threshs.at(idx);</div>
+<div class="line"><span class="lineno">  109</span>            }</div>
+<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
+<div class="line"><span class="lineno">  111</span>            {</div>
+<div class="line"><span class="lineno">  112</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;While reading independent threshs, missing t command for idx : &quot;</span> +</div>
+<div class="line"><span class="lineno">  113</span>                                         std::to_string(idx));</div>
+<div class="line"><span class="lineno">  114</span>            }</div>
+<div class="line"><span class="lineno">  115</span>        }</div>
+<div class="line"><span class="lineno">  116</span>    }</div>
+<div class="line"><span class="lineno">  117</span>    <span class="comment">// 4-&gt; Sil side to be stored as enum</span></div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Side&quot;</span>))</div>
+<div class="line"><span class="lineno">  119</span>    {</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keyword">auto</span> str {block-&gt;GetString(<span class="stringliteral">&quot;Side&quot;</span>)};</div>
+<div class="line"><span class="lineno">  121</span>        str = <a class="code hl_function" href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a>(str);</div>
+<div class="line"><span class="lineno">  122</span>        str = <a class="code hl_function" href="namespaceActRoot.html#aa9a314900950aac390a78b5df913e9ba">ActRoot::ToLower</a>(str);</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;left&quot;</span>)</div>
+<div class="line"><span class="lineno">  124</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a0a27629fcac6106d6a297bcab62d9a24">SilSide::ELeft</a>;</div>
+<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;right&quot;</span>)</div>
+<div class="line"><span class="lineno">  126</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63af03ba013ad80a2582f02bed85671152d">SilSide::ERight</a>;</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;front&quot;</span>)</div>
+<div class="line"><span class="lineno">  128</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63a435245b8cfdc1c17ecd208c99ce57cdb">SilSide::EFront</a>;</div>
+<div class="line"><span class="lineno">  129</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(str == <span class="stringliteral">&quot;back&quot;</span>)</div>
+<div class="line"><span class="lineno">  130</span>            <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ac6fb8cd7730e1c80e79659facca5b9d4">fSide</a> = <a class="code hl_enumvalue" href="namespaceActPhysics.html#aae79ce30204c19eaf9af09eac80cba63ab47df04b23840572bc8632f4924857fd">SilSide::EBack</a>;</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  132</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Side spec : &quot;</span> + str +</div>
+<div class="line"><span class="lineno">  133</span>                                     <span class="stringliteral">&quot; could not be interpreted in terms of left, right, front or back!&quot;</span>);</div>
+<div class="line"><span class="lineno">  134</span>    }</div>
+<div class="line"><span class="lineno">  135</span>    <span class="comment">// 5-&gt; Read pad index</span></div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;PadIdx&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><span class="lineno">  137</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a00f946e6889ae9c93681ad6d3f70a498">fPadIdx</a> = block-&gt;GetInt(<span class="stringliteral">&quot;PadIdx&quot;</span>);</div>
+<div class="line"><span class="lineno">  138</span>    <span class="comment">// 6-&gt; Margin to match</span></div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;MatchMargin&quot;</span>, <span class="keyword">true</span>))</div>
+<div class="line"><span class="lineno">  140</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#ab76989690865650c5575b4b305a8fb50">fMargin</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;MatchMargin&quot;</span>);</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    <span class="comment">// 7-&gt; Build the silicon matrix with the info gathered here</span></div>
+<div class="line"><span class="lineno">  143</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> = <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">BuildSilMatrix</a>();</div>
+<div class="line"><span class="lineno">  144</span>}</div>
+<div class="ttc" id="aclassActPhysics_1_1SilLayer_html_a971b36e549807f74fe54508048f9f872"><div class="ttname"><a href="classActPhysics_1_1SilLayer.html#a971b36e549807f74fe54508048f9f872">ActPhysics::SilLayer::BuildSilMatrix</a></div><div class="ttdeci">std::shared_ptr&lt; SilMatrix &gt; BuildSilMatrix() const</div><div class="ttdef"><b>Definition</b> ActSilSpecs.cxx:201</div></div>
 <div class="ttc" id="anamespaceActRoot_html_a1a7feeae410edc8907da636b49b8f62a"><div class="ttname"><a href="namespaceActRoot.html#a1a7feeae410edc8907da636b49b8f62a">ActRoot::StripSpaces</a></div><div class="ttdeci">std::string StripSpaces(std::string line)</div><div class="ttdef"><b>Definition</b> ActUtils.cxx:21</div></div>
 <div class="ttc" id="anamespaceActRoot_html_aa9a314900950aac390a78b5df913e9ba"><div class="ttname"><a href="namespaceActRoot.html#aa9a314900950aac390a78b5df913e9ba">ActRoot::ToLower</a></div><div class="ttdeci">std::string ToLower(std::string str)</div><div class="ttdef"><b>Definition</b> ActUtils.cxx:40</div></div>
 </div><!-- fragment -->
@@ -1063,11 +1063,11 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  246</span>{</div>
-<div class="line"><span class="lineno">  247</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>.reset();</div>
-<div class="line"><span class="lineno">  248</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> = std::shared_ptr&lt;SilMatrix&gt;(sm-&gt;<a class="code hl_function" href="classActPhysics_1_1SilMatrix.html#ae60e3ff27871c13943dbd9926318d12e">Clone</a>());</div>
-<div class="line"><span class="lineno">  249</span>    <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">UpdatePlacementsFromMatrix</a>();</div>
-<div class="line"><span class="lineno">  250</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  247</span>{</div>
+<div class="line"><span class="lineno">  248</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>.reset();</div>
+<div class="line"><span class="lineno">  249</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a> = std::shared_ptr&lt;SilMatrix&gt;(sm-&gt;<a class="code hl_function" href="classActPhysics_1_1SilMatrix.html#ae60e3ff27871c13943dbd9926318d12e">Clone</a>());</div>
+<div class="line"><span class="lineno">  250</span>    <a class="code hl_function" href="classActPhysics_1_1SilLayer.html#a5d2dc5ecf4f56e812dbb836aa02f5221">UpdatePlacementsFromMatrix</a>();</div>
+<div class="line"><span class="lineno">  251</span>}</div>
 <div class="ttc" id="aclassActPhysics_1_1SilMatrix_html_ae60e3ff27871c13943dbd9926318d12e"><div class="ttname"><a href="classActPhysics_1_1SilMatrix.html#ae60e3ff27871c13943dbd9926318d12e">ActPhysics::SilMatrix::Clone</a></div><div class="ttdeci">SilMatrix * Clone() const</div><div class="ttdef"><b>Definition</b> ActSilMatrix.cxx:258</div></div>
 </div><!-- fragment -->
 </div>
@@ -1113,14 +1113,14 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  236</span>{</div>
-<div class="line"><span class="lineno">  237</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.clear();</div>
-<div class="line"><span class="lineno">  238</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetGraphs())</div>
-<div class="line"><span class="lineno">  239</span>    {</div>
-<div class="line"><span class="lineno">  240</span>        <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetCentre(idx)};</div>
-<div class="line"><span class="lineno">  241</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {xy, z};</div>
-<div class="line"><span class="lineno">  242</span>    }</div>
-<div class="line"><span class="lineno">  243</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  237</span>{</div>
+<div class="line"><span class="lineno">  238</span>    <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>.clear();</div>
+<div class="line"><span class="lineno">  239</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [idx, _] : <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetGraphs())</div>
+<div class="line"><span class="lineno">  240</span>    {</div>
+<div class="line"><span class="lineno">  241</span>        <span class="keyword">auto</span> [xy, z] {<a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a15a17c0cdeaebbe10897130f22cd416d">fMatrix</a>-&gt;GetCentre(idx)};</div>
+<div class="line"><span class="lineno">  242</span>        <a class="code hl_variable" href="classActPhysics_1_1SilLayer.html#a4d3d09c815f7f4aead60be1eb005c26a">fPlacements</a>[idx] = {xy, z};</div>
+<div class="line"><span class="lineno">  243</span>    }</div>
+<div class="line"><span class="lineno">  244</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
