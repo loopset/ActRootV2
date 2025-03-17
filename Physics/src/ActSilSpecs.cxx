@@ -4,6 +4,7 @@
 #include "ActInputParser.h"
 #include "ActSilMatrix.h"
 #include "ActUtils.h"
+
 #include "Rtypes.h"
 
 #include "TCanvas.h"
@@ -279,7 +280,16 @@ ActPhysics::SilSpecs::FindLayerAndIdx(const XYZPoint& p, const XYZVector& v, boo
     for(const auto& [name, layer] : fLayers)
     {
         // Find silicon point for this layer
-        auto [sp, _] {layer.GetSiliconPointOfTrack(p, v, true)};
+        auto [sp, ok] {layer.GetSiliconPointOfTrack(p, v, true)};
+        if(!ok) // for simulation: force propagation along + sign
+        {
+            if(verbose)
+            {
+                std::cout << "-> Layer : " << name << '\n';
+                std::cout << "   Not ok propagated" << '\n';
+            }
+            continue;
+        }
         // And see if it matches with any silicon
         auto idx {layer.GetIndexOfMatch(sp)};
         if(verbose)
@@ -299,7 +309,9 @@ ActPhysics::SilSpecs::FindSPInLayer(const std::string& name, const XYZPoint& p, 
 {
     if(fLayers.count(name))
     {
-        auto [sp, _] {fLayers[name].GetSiliconPointOfTrack(p, v, true)};
+        auto [sp, ok] {fLayers[name].GetSiliconPointOfTrack(p, v, true)};
+        if(!ok) // for simulation: force propagation along + sign
+            return {-1, {}};
         auto idx {fLayers[name].GetIndexOfMatch(sp)};
         return {idx, sp};
     }
