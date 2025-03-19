@@ -125,6 +125,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aef18bd028bb1c6affc10f4ba7bb0b2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3a5d9cc07be0e2395394656a939ef60" id="r_aa3a5d9cc07be0e2395394656a939ef60"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">fPercentUpdate</a> {10}</td></tr>
 <tr class="separator:aa3a5d9cc07be0e2395394656a939ef60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a9c7e486803cfeb7d692096328f1c7f" id="r_a4a9c7e486803cfeb7d692096328f1c7f"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ProgressBar.html#a4a9c7e486803cfeb7d692096328f1c7f">fMutex</a> {}</td></tr>
+<tr class="separator:a4a9c7e486803cfeb7d692096328f1c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a261709e31043ea0f43b18e101db092cb" id="r_a261709e31043ea0f43b18e101db092cb"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ProgressBar.html#a261709e31043ea0f43b18e101db092cb">fCV</a> {}</td></tr>
+<tr class="separator:a261709e31043ea0f43b18e101db092cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3168fa4a754c23fd2f81ec83212e4895" id="r_a3168fa4a754c23fd2f81ec83212e4895"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActRoot_1_1ProgressBar.html#a3168fa4a754c23fd2f81ec83212e4895">fUpdated</a> {false}</td></tr>
+<tr class="separator:a3168fa4a754c23fd2f81ec83212e4895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad642e8b0010c00b6bf0df77d5072b983" name="ad642e8b0010c00b6bf0df77d5072b983"></a>
@@ -167,46 +173,54 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   52</span>{</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">while</span>(<span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno">   54</span>    {</div>
-<div class="line"><span class="lineno">   55</span>        <span class="comment">// Print progress bars for each thread</span></div>
-<div class="line"><span class="lineno">   56</span>        <span class="comment">// 1-&gt; Go up NThread lines</span></div>
-<div class="line"><span class="lineno">   57</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\033[&quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a> &lt;&lt; <span class="stringliteral">&quot;A&quot;</span>;</div>
-<div class="line"><span class="lineno">   58</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>; i++)</div>
-<div class="line"><span class="lineno">   59</span>        {</div>
-<div class="line"><span class="lineno">   60</span>            <span class="comment">// 2-&gt; Clear line</span></div>
-<div class="line"><span class="lineno">   61</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\033[K&quot;</span>;</div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordtype">int</span> bar_width = 50;</div>
-<div class="line"><span class="lineno">   63</span>            <span class="keywordtype">int</span> pos = bar_width * <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fPercent;</div>
-<div class="line"><span class="lineno">   64</span>            std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; std::setw(3) &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : Run &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fCurrentRun &lt;&lt; <span class="stringliteral">&quot; [&quot;</span>;</div>
-<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; bar_width; j++)</div>
-<div class="line"><span class="lineno">   66</span>            {</div>
-<div class="line"><span class="lineno">   67</span>                <span class="keywordflow">if</span>(j &lt; pos)</div>
-<div class="line"><span class="lineno">   68</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;=&quot;</span>;</div>
-<div class="line"><span class="lineno">   69</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(j == pos)</div>
-<div class="line"><span class="lineno">   70</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
-<div class="line"><span class="lineno">   71</span>                <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   72</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><span class="lineno">   73</span>            }</div>
-<div class="line"><span class="lineno">   74</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;] &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fRunCount &lt;&lt; <span class="stringliteral">&quot; of &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[i].fNRuns &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   75</span>            std::cout &lt;&lt; std::flush;</div>
-<div class="line"><span class="lineno">   76</span>        }</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>        <span class="comment">// Check if all threads are done</span></div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">fCompletedThreads</a> == <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>)</div>
-<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>        <span class="comment">// Printing interval</span></div>
-<div class="line"><span class="lineno">   83</span>        std::this_thread::sleep_for(std::chrono::milliseconds(500)); <span class="comment">// Update interval</span></div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
+<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">while</span>(<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">   60</span>    {</div>
+<div class="line"><span class="lineno">   61</span>        <span class="comment">// Use a condition variable to wake display function only when the lambda condition is met</span></div>
+<div class="line"><span class="lineno">   62</span>        <span class="comment">// after notifying</span></div>
+<div class="line"><span class="lineno">   63</span>        std::unique_lock&lt;std::mutex&gt; lock {<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a4a9c7e486803cfeb7d692096328f1c7f">fMutex</a>};</div>
+<div class="line"><span class="lineno">   64</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a261709e31043ea0f43b18e101db092cb">fCV</a>.wait(lock, [&amp;] { <span class="keywordflow">return</span> <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3168fa4a754c23fd2f81ec83212e4895">fUpdated</a> || (<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">fCompletedThreads</a> == <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>); });</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>        <span class="comment">// Print progress bars for each thread</span></div>
+<div class="line"><span class="lineno">   67</span>        <span class="comment">// 1-&gt; Go up NThread lines</span></div>
+<div class="line"><span class="lineno">   68</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\033[&quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a> &lt;&lt; <span class="stringliteral">&quot;A&quot;</span>;</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>; i++)</div>
+<div class="line"><span class="lineno">   70</span>        {</div>
+<div class="line"><span class="lineno">   71</span>            <span class="comment">// 2-&gt; Clear line</span></div>
+<div class="line"><span class="lineno">   72</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\033[K&quot;</span>;</div>
+<div class="line"><span class="lineno">   73</span>            <span class="keywordtype">int</span> bar_width = 50;</div>
+<div class="line"><span class="lineno">   74</span>            <span class="keywordtype">int</span> pos = bar_width * <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fPercent;</div>
+<div class="line"><span class="lineno">   75</span>            std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; std::setw(3) &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : Run &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fCurrentRun &lt;&lt; <span class="stringliteral">&quot; [&quot;</span>;</div>
+<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; bar_width; j++)</div>
+<div class="line"><span class="lineno">   77</span>            {</div>
+<div class="line"><span class="lineno">   78</span>                <span class="keywordflow">if</span>(j &lt; pos)</div>
+<div class="line"><span class="lineno">   79</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;=&quot;</span>;</div>
+<div class="line"><span class="lineno">   80</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span>(j == pos)</div>
+<div class="line"><span class="lineno">   81</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
+<div class="line"><span class="lineno">   82</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   83</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><span class="lineno">   84</span>            }</div>
+<div class="line"><span class="lineno">   85</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;] &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[i].fRunCount &lt;&lt; <span class="stringliteral">&quot; of &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[i].fNRuns &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   86</span>            std::cout &lt;&lt; std::flush;</div>
+<div class="line"><span class="lineno">   87</span>        }</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>        <span class="comment">// Reset fUpdated</span></div>
+<div class="line"><span class="lineno">   90</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3168fa4a754c23fd2f81ec83212e4895">fUpdated</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>        <span class="comment">// If reached end</span></div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">fCompletedThreads</a> == <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>)</div>
+<div class="line"><span class="lineno">   94</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   95</span>    }</div>
+<div class="line"><span class="lineno">   96</span>}</div>
 <div class="ttc" id="aActColors_8h_html_a4a6c893a1703c33ede7d702fe5f97c91"><div class="ttname"><a href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a></div><div class="ttdeci">#define BOLDGREEN</div><div class="ttdef"><b>Definition</b> ActColors.h:17</div></div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a0b3d60d4d9d5d07cb02b89bc3a96b9ec"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">ActRoot::ProgressBar::fInfo</a></div><div class="ttdeci">std::vector&lt; ThreadInfo &gt; fInfo</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:30</div></div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a267696987d549028d16294ffee2a023b"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">ActRoot::ProgressBar::fStatus</a></div><div class="ttdeci">std::vector&lt; ThreadStatus &gt; fStatus</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:31</div></div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_ac0e0646b00467b047f2590010a434dff"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">ActRoot::ProgressBar::fNThreads</a></div><div class="ttdeci">unsigned int fNThreads</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:33</div></div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_aef18bd028bb1c6affc10f4ba7bb0b2ac"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">ActRoot::ProgressBar::fCompletedThreads</a></div><div class="ttdeci">std::atomic&lt; unsigned int &gt; fCompletedThreads</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:34</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a0b3d60d4d9d5d07cb02b89bc3a96b9ec"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">ActRoot::ProgressBar::fInfo</a></div><div class="ttdeci">std::vector&lt; ThreadInfo &gt; fInfo</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:32</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a261709e31043ea0f43b18e101db092cb"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a261709e31043ea0f43b18e101db092cb">ActRoot::ProgressBar::fCV</a></div><div class="ttdeci">std::condition_variable fCV</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:39</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a267696987d549028d16294ffee2a023b"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">ActRoot::ProgressBar::fStatus</a></div><div class="ttdeci">std::vector&lt; ThreadStatus &gt; fStatus</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:33</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a3168fa4a754c23fd2f81ec83212e4895"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a3168fa4a754c23fd2f81ec83212e4895">ActRoot::ProgressBar::fUpdated</a></div><div class="ttdeci">bool fUpdated</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:40</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a4a9c7e486803cfeb7d692096328f1c7f"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a4a9c7e486803cfeb7d692096328f1c7f">ActRoot::ProgressBar::fMutex</a></div><div class="ttdeci">std::mutex fMutex</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:38</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_ac0e0646b00467b047f2590010a434dff"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">ActRoot::ProgressBar::fNThreads</a></div><div class="ttdeci">unsigned int fNThreads</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:35</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_aef18bd028bb1c6affc10f4ba7bb0b2ac"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">ActRoot::ProgressBar::fCompletedThreads</a></div><div class="ttdeci">std::atomic&lt; unsigned int &gt; fCompletedThreads</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,7 +246,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   45</span>{ <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">fCompletedThreads</a>++; }</div>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>    {</div>
+<div class="line"><span class="lineno">   52</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aef18bd028bb1c6affc10f4ba7bb0b2ac">fCompletedThreads</a>++;</div>
+<div class="line"><span class="lineno">   53</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a261709e31043ea0f43b18e101db092cb">fCV</a>.notify_one();</div>
+<div class="line"><span class="lineno">   54</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,16 +267,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
-<div class="line"><span class="lineno">   18</span>    std::cout.flush();</div>
-<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>; i++)</div>
-<div class="line"><span class="lineno">   20</span>        std::cout &lt;&lt; i &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   21</span>    std::cout &lt;&lt; std::flush; <span class="comment">// flush always to ensure output is written to terminal</span></div>
-<div class="line"><span class="lineno">   22</span>    <span class="comment">// Init separate thread to monitor progress</span></div>
-<div class="line"><span class="lineno">   23</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">fCoutThread</a> = std::thread(&amp;<a class="code hl_function" href="classActRoot_1_1ProgressBar.html#a65d9d8124d2f453157cb6e042bfd4be9">ActRoot::ProgressBar::Display</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   24</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a3bb2ead27df20c882941844961555f42"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">ActRoot::ProgressBar::fCoutThread</a></div><div class="ttdeci">std::thread fCoutThread</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:32</div></div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a65d9d8124d2f453157cb6e042bfd4be9"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a65d9d8124d2f453157cb6e042bfd4be9">ActRoot::ProgressBar::Display</a></div><div class="ttdeci">void Display()</div><div class="ttdef"><b>Definition</b> ActProgressBar.cxx:51</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
+<div class="line"><span class="lineno">   19</span>    std::cout.flush();</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a>; i++)</div>
+<div class="line"><span class="lineno">   21</span>        std::cout &lt;&lt; i &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   22</span>    std::cout &lt;&lt; std::flush; <span class="comment">// flush always to ensure output is written to terminal</span></div>
+<div class="line"><span class="lineno">   23</span>    <span class="comment">// Init separate thread to monitor progress</span></div>
+<div class="line"><span class="lineno">   24</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">fCoutThread</a> = std::thread(&amp;<a class="code hl_function" href="classActRoot_1_1ProgressBar.html#a65d9d8124d2f453157cb6e042bfd4be9">ActRoot::ProgressBar::Display</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   25</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a3bb2ead27df20c882941844961555f42"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">ActRoot::ProgressBar::fCoutThread</a></div><div class="ttdeci">std::thread fCoutThread</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:34</div></div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_a65d9d8124d2f453157cb6e042bfd4be9"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#a65d9d8124d2f453157cb6e042bfd4be9">ActRoot::ProgressBar::Display</a></div><div class="ttdeci">void Display()</div><div class="ttdef"><b>Definition</b> ActProgressBar.cxx:57</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -277,9 +294,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
-<div class="line"><span class="lineno">   28</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">fCoutThread</a>.join();</div>
-<div class="line"><span class="lineno">   29</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
+<div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3bb2ead27df20c882941844961555f42">fCoutThread</a>.join();</div>
+<div class="line"><span class="lineno">   30</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -298,11 +315,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
-<div class="line"><span class="lineno">   11</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a> = nthreads;</div>
-<div class="line"><span class="lineno">   12</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>.resize(nthreads);</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>.resize(nthreads);</div>
-<div class="line"><span class="lineno">   14</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   11</span>{</div>
+<div class="line"><span class="lineno">   12</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#ac0e0646b00467b047f2590010a434dff">fNThreads</a> = nthreads;</div>
+<div class="line"><span class="lineno">   13</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>.resize(nthreads);</div>
+<div class="line"><span class="lineno">   14</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>.resize(nthreads);</div>
+<div class="line"><span class="lineno">   15</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -337,14 +354,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{</div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNEntries = nentries;</div>
-<div class="line"><span class="lineno">   34</span>    <span class="comment">// Compute step to update run info</span></div>
-<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fStep = nentries / (100. / <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">fPercentUpdate</a>);</div>
-<div class="line"><span class="lineno">   36</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNRuns = nruns;</div>
-<div class="line"><span class="lineno">   37</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread] = {}; <span class="comment">// reset current status</span></div>
-<div class="line"><span class="lineno">   38</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_aa3a5d9cc07be0e2395394656a939ef60"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">ActRoot::ProgressBar::fPercentUpdate</a></div><div class="ttdeci">double fPercentUpdate</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:35</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
+<div class="line"><span class="lineno">   34</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNEntries = nentries;</div>
+<div class="line"><span class="lineno">   35</span>    <span class="comment">// Compute step to update run info</span></div>
+<div class="line"><span class="lineno">   36</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fStep = nentries / (100. / <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">fPercentUpdate</a>);</div>
+<div class="line"><span class="lineno">   37</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNRuns = nruns;</div>
+<div class="line"><span class="lineno">   38</span>    <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread] = {}; <span class="comment">// reset current status</span></div>
+<div class="line"><span class="lineno">   39</span>}</div>
+<div class="ttc" id="aclassActRoot_1_1ProgressBar_html_aa3a5d9cc07be0e2395394656a939ef60"><div class="ttname"><a href="classActRoot_1_1ProgressBar.html#aa3a5d9cc07be0e2395394656a939ef60">ActRoot::ProgressBar::fPercentUpdate</a></div><div class="ttdeci">double fPercentUpdate</div><div class="ttdef"><b>Definition</b> ActProgressBar.h:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -391,15 +408,20 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   41</span>{</div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">if</span>(entry &gt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry)</div>
-<div class="line"><span class="lineno">   43</span>    {</div>
-<div class="line"><span class="lineno">   44</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry += <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fStep;</div>
-<div class="line"><span class="lineno">   45</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fPercent = (double)<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry / <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNEntries;</div>
-<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentRun = run;</div>
-<div class="line"><span class="lineno">   47</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fRunCount = count;</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
-<div class="line"><span class="lineno">   49</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>{</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">if</span>(entry &gt; <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry)</div>
+<div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry += <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fStep;</div>
+<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fPercent = (double)<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentEntry / <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a0b3d60d4d9d5d07cb02b89bc3a96b9ec">fInfo</a>[thread].fNEntries;</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fCurrentRun = run;</div>
+<div class="line"><span class="lineno">   48</span>        <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a267696987d549028d16294ffee2a023b">fStatus</a>[thread].fRunCount = count;</div>
+<div class="line"><span class="lineno">   49</span>        {</div>
+<div class="line"><span class="lineno">   50</span>            std::lock_guard&lt;std::mutex&gt; lock {<a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a4a9c7e486803cfeb7d692096328f1c7f">fMutex</a>};</div>
+<div class="line"><span class="lineno">   51</span>            <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a3168fa4a754c23fd2f81ec83212e4895">fUpdated</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   52</span>            <a class="code hl_variable" href="classActRoot_1_1ProgressBar.html#a261709e31043ea0f43b18e101db092cb">fCV</a>.notify_one();</div>
+<div class="line"><span class="lineno">   53</span>        }</div>
+<div class="line"><span class="lineno">   54</span>    }</div>
+<div class="line"><span class="lineno">   55</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -423,7 +445,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -446,7 +468,30 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a261709e31043ea0f43b18e101db092cb" name="a261709e31043ea0f43b18e101db092cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a261709e31043ea0f43b18e101db092cb">&#9670;&#160;</a></span>fCV</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable ActRoot::ProgressBar::fCV {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -469,7 +514,30 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4a9c7e486803cfeb7d692096328f1c7f" name="a4a9c7e486803cfeb7d692096328f1c7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a9c7e486803cfeb7d692096328f1c7f">&#9670;&#160;</a></span>fMutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex ActRoot::ProgressBar::fMutex {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   38</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -492,7 +560,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   33</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -515,7 +583,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   35</span>{10};</div>
+<div class="fragment"><div class="line"><span class="lineno">   37</span>{10};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -538,7 +606,30 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   31</span>{};</div>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3168fa4a754c23fd2f81ec83212e4895" name="a3168fa4a754c23fd2f81ec83212e4895"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3168fa4a754c23fd2f81ec83212e4895">&#9670;&#160;</a></span>fUpdated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActRoot::ProgressBar::fUpdated {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{<span class="keyword">false</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>

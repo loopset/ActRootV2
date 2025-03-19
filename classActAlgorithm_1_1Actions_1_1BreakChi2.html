@@ -153,6 +153,8 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ae673ba56e458072b16f0f916a7a7d91c" id="r_ae673ba56e458072b16f0f916a7a7d91c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ManualIsInBeam</a> (const <a class="el" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> &amp;pos, const <a class="el" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> &amp;gravity, double scale=1.)</td></tr>
 <tr class="separator:ae673ba56e458072b16f0f916a7a7d91c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0c96678a2aaea095a70187a2e6ae8da" id="r_af0c96678a2aaea095a70187a2e6ae8da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#af0c96678a2aaea095a70187a2e6ae8da">AutoIsInBeam</a> (const <a class="el" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> &amp;pos, <a class="el" href="classActRoot_1_1Line.html">ActRoot::Line</a> *line)</td></tr>
+<tr class="separator:af0c96678a2aaea095a70187a2e6ae8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86dce65ca3d66d1858abba29223a1b5d" id="r_a86dce65ca3d66d1858abba29223a1b5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a86dce65ca3d66d1858abba29223a1b5d">BreakMultiTrack</a> ()</td></tr>
 <tr class="separator:a86dce65ca3d66d1858abba29223a1b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -167,8 +169,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a55090cb039295010f4b7da07172db8aa" id="r_a55090cb039295010f4b7da07172db8aa"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a> {}</td></tr>
 <tr class="memdesc:a55090cb039295010f4b7da07172db8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size in X in which find the breaking point from the Xmin.  <br /></td></tr>
 <tr class="separator:a55090cb039295010f4b7da07172db8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a0ddbe0b66eb992b377d8dbee26785" id="r_a37a0ddbe0b66eb992b377d8dbee26785"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a37a0ddbe0b66eb992b377d8dbee26785">fMaxDistGP</a> {}</td></tr>
+<tr class="separator:a37a0ddbe0b66eb992b377d8dbee26785"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c70521d2eb287c0322c684476b457f7" id="r_a5c70521d2eb287c0322c684476b457f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a> {}</td></tr>
-<tr class="memdesc:a5c70521d2eb287c0322c684476b457f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width Y around gravity point to mask not-beam voxels.  <br /></td></tr>
+<tr class="memdesc:a5c70521d2eb287c0322c684476b457f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max accepted projected distance on fit to compute gravity point.  <br /></td></tr>
 <tr class="separator:a5c70521d2eb287c0322c684476b457f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d951b503faade92978b25229f5c1967" id="r_a2d951b503faade92978b25229f5c1967"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a> {}</td></tr>
 <tr class="memdesc:a2d951b503faade92978b25229f5c1967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width Z around gravity point to mask not-beam voxels.  <br /></td></tr>
@@ -185,6 +189,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:add5a0c4ff6fde16f824648caf2eaf1bf" id="r_add5a0c4ff6fde16f824648caf2eaf1bf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a> {}</td></tr>
 <tr class="memdesc:add5a0c4ff6fde16f824648caf2eaf1bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Beam window scaling factor to be used in this second part.  <br /></td></tr>
 <tr class="separator:add5a0c4ff6fde16f824648caf2eaf1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6862452195ce83d3cd1c1b3cf5a6474e" id="r_a6862452195ce83d3cd1c1b3cf5a6474e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6862452195ce83d3cd1c1b3cf5a6474e">fChi2Difference</a> {}</td></tr>
+<tr class="memdesc:a6862452195ce83d3cd1c1b3cf5a6474e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum allowed chi2 diff between q-weighted and not q-weighted.  <br /></td></tr>
+<tr class="separator:a6862452195ce83d3cd1c1b3cf5a6474e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -234,12 +241,57 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   28</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;BreakChi2&quot;</span>) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;BreakChi2&quot;</span>) {}</div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2f668f17900dee55342988c465510aba"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">ActAlgorithm::VAction::VAction</a></div><div class="ttdeci">VAction(const std::string &amp;actionID=&quot;Base&quot;)</div><div class="ttdef"><b>Definition</b> ActVAction.cxx:7</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af0c96678a2aaea095a70187a2e6ae8da" name="af0c96678a2aaea095a70187a2e6ae8da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0c96678a2aaea095a70187a2e6ae8da">&#9670;&#160;</a></span>AutoIsInBeam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ActAlgorithm::Actions::BreakChi2::AutoIsInBeam </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActRoot_1_1Line.html">ActRoot::Line</a> *&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  340</span>{</div>
+<div class="line"><span class="lineno">  341</span>    <span class="keyword">auto</span> dist {line-&gt;<a class="code hl_function" href="classActRoot_1_1Line.html#a580355eb976854b3ca1f09f268d02d88">DistanceLineToPoint</a>(pos)};</div>
+<div class="line"><span class="lineno">  342</span>    <span class="keywordflow">if</span>(dist &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a>)</div>
+<div class="line"><span class="lineno">  343</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  344</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  345</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  346</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a5c70521d2eb287c0322c684476b457f7"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">ActAlgorithm::Actions::BreakChi2::fBeamWindowY</a></div><div class="ttdeci">double fBeamWindowY</div><div class="ttdoc">Max accepted projected distance on fit to compute gravity point.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:24</div></div>
+<div class="ttc" id="aclassActRoot_1_1Line_html_a580355eb976854b3ca1f09f268d02d88"><div class="ttname"><a href="classActRoot_1_1Line.html#a580355eb976854b3ca1f09f268d02d88">ActRoot::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPointF &amp;point) const</div><div class="ttdef"><b>Definition</b> ActLine.cxx:57</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a86dce65ca3d66d1858abba29223a1b5d" name="a86dce65ca3d66d1858abba29223a1b5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a86dce65ca3d66d1858abba29223a1b5d">&#9670;&#160;</a></span>BreakMultiTrack()</h2>
 
@@ -262,106 +314,106 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  137</span>{</div>
-<div class="line"><span class="lineno">  138</span>    std::vector&lt;ActRoot::Cluster&gt; toAppend {};</div>
-<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
-<div class="line"><span class="lineno">  140</span>    {</div>
-<div class="line"><span class="lineno">  141</span>        <span class="comment">// 1-&gt; Check whether cluster needs breaking</span></div>
-<div class="line"><span class="lineno">  142</span>        <span class="keywordtype">bool</span> isBadFit {it-&gt;GetLine().GetChi2() &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a>};</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span>(!isBadFit)</div>
-<div class="line"><span class="lineno">  144</span>        {</div>
-<div class="line"><span class="lineno">  145</span>            it++;</div>
-<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  147</span>        }</div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  149</span>        {</div>
-<div class="line"><span class="lineno">  150</span>            <span class="comment">// Get ref to voxels</span></div>
-<div class="line"><span class="lineno">  151</span>            <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
-<div class="line"><span class="lineno">  152</span>            <span class="comment">// Identify GP and window scale</span></div>
-<div class="line"><span class="lineno">  153</span>            <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> gravity {};</div>
-<div class="line"><span class="lineno">  154</span>            <span class="keywordtype">double</span> scale {};</div>
-<div class="line"><span class="lineno">  155</span>            <span class="keywordflow">if</span>(it-&gt;GetIsBreakBeam()) <span class="comment">// comes after running the first part of the action</span></div>
-<div class="line"><span class="lineno">  156</span>            {</div>
-<div class="line"><span class="lineno">  157</span>                <span class="keywordflow">for</span>(<span class="keyword">auto</span> in = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); in != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); in++)</div>
-<div class="line"><span class="lineno">  158</span>                    <span class="keywordflow">if</span>(in-&gt;GetIsBeamLike())</div>
-<div class="line"><span class="lineno">  159</span>                        gravity = in-&gt;GetGravityPointInXRange(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a>);</div>
-<div class="line"><span class="lineno">  160</span>                scale = <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a>;</div>
-<div class="line"><span class="lineno">  161</span>            }</div>
-<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">else</span> <span class="comment">// not broken from beam</span></div>
-<div class="line"><span class="lineno">  163</span>            {</div>
-<div class="line"><span class="lineno">  164</span>                gravity = it-&gt;GetLine().GetPoint(); <span class="comment">// use fit&#39;s gravity point</span></div>
-<div class="line"><span class="lineno">  165</span>                scale = 1;</div>
-<div class="line"><span class="lineno">  166</span>            }</div>
-<div class="line"><span class="lineno">  167</span>            <span class="comment">// Partition to move to newVoxels</span></div>
-<div class="line"><span class="lineno">  168</span>            <span class="keyword">auto</span> toCluster {std::partition(refVoxels.begin(), refVoxels.end(),</div>
-<div class="line"><span class="lineno">  169</span>                                           [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><span class="lineno">  170</span>                                           {</div>
-<div class="line"><span class="lineno">  171</span>                                               auto pos {voxel.GetPosition()};</div>
-<div class="line"><span class="lineno">  172</span>                                               pos += <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#a67d8b9731cf70019129fca53a088202b">XYZVectorF</a> {0.5, 0.5, 0.5};</div>
-<div class="line"><span class="lineno">  173</span>                                               <span class="keywordflow">return</span> <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ManualIsInBeam</a>(pos, gravity, scale);</div>
-<div class="line"><span class="lineno">  174</span>                                           })};</div>
-<div class="line"><span class="lineno">  175</span>            <span class="keyword">auto</span> inBeamSize {std::distance(refVoxels.begin(), toCluster)};</div>
-<div class="line"><span class="lineno">  176</span>            <span class="keywordflow">if</span>(inBeamSize &gt; 0)</div>
-<div class="line"><span class="lineno">  177</span>            {</div>
-<div class="line"><span class="lineno">  178</span>                std::vector&lt;ActRoot::Voxel&gt; newVoxels;</div>
-<div class="line"><span class="lineno">  179</span>                newVoxels.insert(newVoxels.end(), std::make_move_iterator(toCluster),</div>
-<div class="line"><span class="lineno">  180</span>                                 std::make_move_iterator(refVoxels.end()));</div>
-<div class="line"><span class="lineno">  181</span>                refVoxels.erase(toCluster, refVoxels.end());</div>
-<div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>                <span class="comment">// Reprocess</span></div>
-<div class="line"><span class="lineno">  184</span>                std::vector&lt;ActRoot::Cluster&gt; newClusters;</div>
-<div class="line"><span class="lineno">  185</span>                std::vector&lt;ActRoot::Voxel&gt; noise;</div>
-<div class="line"><span class="lineno">  186</span>                std::tie(newClusters, noise) = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;Run(newVoxels);</div>
-<div class="line"><span class="lineno">  187</span>                <span class="comment">// Set not to merge these new ones</span></div>
-<div class="line"><span class="lineno">  188</span>                <span class="comment">// for(auto&amp; ncl : newClusters)</span></div>
-<div class="line"><span class="lineno">  189</span>                <span class="comment">//     ncl.SetToMerge(false);</span></div>
-<div class="line"><span class="lineno">  190</span>                toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),</div>
-<div class="line"><span class="lineno">  191</span>                                std::make_move_iterator(newClusters.end()));</div>
-<div class="line"><span class="lineno">  192</span> </div>
-<div class="line"><span class="lineno">  193</span>                <span class="comment">// Delete current cluster</span></div>
-<div class="line"><span class="lineno">  194</span>                it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.erase(it);</div>
-<div class="line"><span class="lineno">  195</span>                <span class="comment">// Verbose info</span></div>
-<div class="line"><span class="lineno">  196</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">  197</span>                {</div>
-<div class="line"><span class="lineno">  198</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakTrack verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span></div>
-<div class="line"><span class="lineno">  199</span>                              &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  200</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Gravity point     : &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  201</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;IsFromBreakBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; it-&gt;GetIsBreakBeam() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  202</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;inBeamSize        : &quot;</span> &lt;&lt; inBeamSize &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  203</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;N of new clusters : &quot;</span> &lt;&lt; newClusters.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  204</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  205</span>                }</div>
-<div class="line"><span class="lineno">  206</span>            }</div>
-<div class="line"><span class="lineno">  207</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  208</span>            {</div>
-<div class="line"><span class="lineno">  209</span>                <span class="comment">// Do nothing; chi2 is really high and it will be deleted later in another action</span></div>
-<div class="line"><span class="lineno">  210</span>                <span class="comment">// Just in case, set flat not to merge</span></div>
-<div class="line"><span class="lineno">  211</span>                it-&gt;SetToMerge(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  212</span>                it++;</div>
-<div class="line"><span class="lineno">  213</span>                <span class="comment">// Verbose info</span></div>
-<div class="line"><span class="lineno">  214</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">  215</span>                {</div>
-<div class="line"><span class="lineno">  216</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakTrack verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span></div>
-<div class="line"><span class="lineno">  217</span>                              &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  218</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Gravity point     : &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  219</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;IsFromBreakBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; it-&gt;GetIsBreakBeam() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  220</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Skipping event bc there no voxels inside BeamRegion!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  221</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  222</span>                }</div>
-<div class="line"><span class="lineno">  223</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  224</span>            }</div>
-<div class="line"><span class="lineno">  225</span>        }</div>
-<div class="line"><span class="lineno">  226</span>    }</div>
-<div class="line"><span class="lineno">  227</span>    <span class="comment">// Write to vector of clusters</span></div>
-<div class="line"><span class="lineno">  228</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.insert(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(), std::make_move_iterator(toAppend.begin()),</div>
-<div class="line"><span class="lineno">  229</span>                               std::make_move_iterator(toAppend.end()));</div>
-<div class="line"><span class="lineno">  230</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  209</span>{</div>
+<div class="line"><span class="lineno">  210</span>    std::vector&lt;ActRoot::Cluster&gt; toAppend {};</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
+<div class="line"><span class="lineno">  212</span>    {</div>
+<div class="line"><span class="lineno">  213</span>        <span class="comment">// 1-&gt; Check whether cluster needs breaking</span></div>
+<div class="line"><span class="lineno">  214</span>        <span class="keywordtype">bool</span> isBadFit {it-&gt;GetLine().GetChi2() &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a>};</div>
+<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">if</span>(!isBadFit)</div>
+<div class="line"><span class="lineno">  216</span>        {</div>
+<div class="line"><span class="lineno">  217</span>            it++;</div>
+<div class="line"><span class="lineno">  218</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  219</span>        }</div>
+<div class="line"><span class="lineno">  220</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  221</span>        {</div>
+<div class="line"><span class="lineno">  222</span>            <span class="comment">// Get ref to voxels</span></div>
+<div class="line"><span class="lineno">  223</span>            <span class="keyword">auto</span>&amp; refVoxels {it-&gt;GetRefToVoxels()};</div>
+<div class="line"><span class="lineno">  224</span>            <span class="comment">// Identify GP and window scale</span></div>
+<div class="line"><span class="lineno">  225</span>            <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> gravity {};</div>
+<div class="line"><span class="lineno">  226</span>            <span class="keywordtype">double</span> scale {};</div>
+<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">if</span>(it-&gt;GetIsBreakBeam()) <span class="comment">// comes after running the first part of the action</span></div>
+<div class="line"><span class="lineno">  228</span>            {</div>
+<div class="line"><span class="lineno">  229</span>                <span class="keywordflow">for</span>(<span class="keyword">auto</span> in = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); in != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(); in++)</div>
+<div class="line"><span class="lineno">  230</span>                    <span class="keywordflow">if</span>(in-&gt;GetIsBeamLike())</div>
+<div class="line"><span class="lineno">  231</span>                        gravity = in-&gt;GetGravityPointInXRange(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a>);</div>
+<div class="line"><span class="lineno">  232</span>                scale = <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a>;</div>
+<div class="line"><span class="lineno">  233</span>            }</div>
+<div class="line"><span class="lineno">  234</span>            <span class="keywordflow">else</span> <span class="comment">// not broken from beam</span></div>
+<div class="line"><span class="lineno">  235</span>            {</div>
+<div class="line"><span class="lineno">  236</span>                gravity = it-&gt;GetLine().GetPoint(); <span class="comment">// use fit&#39;s gravity point</span></div>
+<div class="line"><span class="lineno">  237</span>                scale = 1;</div>
+<div class="line"><span class="lineno">  238</span>            }</div>
+<div class="line"><span class="lineno">  239</span>            <span class="comment">// Partition to move to newVoxels</span></div>
+<div class="line"><span class="lineno">  240</span>            <span class="keyword">auto</span> toCluster {std::partition(refVoxels.begin(), refVoxels.end(),</div>
+<div class="line"><span class="lineno">  241</span>                                           [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><span class="lineno">  242</span>                                           {</div>
+<div class="line"><span class="lineno">  243</span>                                               auto pos {voxel.GetPosition()};</div>
+<div class="line"><span class="lineno">  244</span>                                               pos += <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#a67d8b9731cf70019129fca53a088202b">XYZVectorF</a> {0.5, 0.5, 0.5};</div>
+<div class="line"><span class="lineno">  245</span>                                               <span class="keywordflow">return</span> <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ManualIsInBeam</a>(pos, gravity, scale);</div>
+<div class="line"><span class="lineno">  246</span>                                           })};</div>
+<div class="line"><span class="lineno">  247</span>            <span class="keyword">auto</span> inBeamSize {std::distance(refVoxels.begin(), toCluster)};</div>
+<div class="line"><span class="lineno">  248</span>            <span class="keywordflow">if</span>(inBeamSize &gt; 0)</div>
+<div class="line"><span class="lineno">  249</span>            {</div>
+<div class="line"><span class="lineno">  250</span>                std::vector&lt;ActRoot::Voxel&gt; newVoxels;</div>
+<div class="line"><span class="lineno">  251</span>                newVoxels.insert(newVoxels.end(), std::make_move_iterator(toCluster),</div>
+<div class="line"><span class="lineno">  252</span>                                 std::make_move_iterator(refVoxels.end()));</div>
+<div class="line"><span class="lineno">  253</span>                refVoxels.erase(toCluster, refVoxels.end());</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>                <span class="comment">// Reprocess</span></div>
+<div class="line"><span class="lineno">  256</span>                std::vector&lt;ActRoot::Cluster&gt; newClusters;</div>
+<div class="line"><span class="lineno">  257</span>                std::vector&lt;ActRoot::Voxel&gt; noise;</div>
+<div class="line"><span class="lineno">  258</span>                std::tie(newClusters, noise) = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;Run(newVoxels);</div>
+<div class="line"><span class="lineno">  259</span>                <span class="comment">// Set not to merge these new ones</span></div>
+<div class="line"><span class="lineno">  260</span>                <span class="comment">// for(auto&amp; ncl : newClusters)</span></div>
+<div class="line"><span class="lineno">  261</span>                <span class="comment">//     ncl.SetToMerge(false);</span></div>
+<div class="line"><span class="lineno">  262</span>                toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),</div>
+<div class="line"><span class="lineno">  263</span>                                std::make_move_iterator(newClusters.end()));</div>
+<div class="line"><span class="lineno">  264</span> </div>
+<div class="line"><span class="lineno">  265</span>                <span class="comment">// Delete current cluster</span></div>
+<div class="line"><span class="lineno">  266</span>                it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.erase(it);</div>
+<div class="line"><span class="lineno">  267</span>                <span class="comment">// Verbose info</span></div>
+<div class="line"><span class="lineno">  268</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  269</span>                {</div>
+<div class="line"><span class="lineno">  270</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakTrack verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span></div>
+<div class="line"><span class="lineno">  271</span>                              &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  272</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Gravity point     : &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  273</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;IsFromBreakBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; it-&gt;GetIsBreakBeam() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  274</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;inBeamSize        : &quot;</span> &lt;&lt; inBeamSize &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  275</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;N of new clusters : &quot;</span> &lt;&lt; newClusters.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  276</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  277</span>                }</div>
+<div class="line"><span class="lineno">  278</span>            }</div>
+<div class="line"><span class="lineno">  279</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  280</span>            {</div>
+<div class="line"><span class="lineno">  281</span>                <span class="comment">// Do nothing; chi2 is really high and it will be deleted later in another action</span></div>
+<div class="line"><span class="lineno">  282</span>                <span class="comment">// Just in case, set flat not to merge</span></div>
+<div class="line"><span class="lineno">  283</span>                it-&gt;SetToMerge(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  284</span>                it++;</div>
+<div class="line"><span class="lineno">  285</span>                <span class="comment">// Verbose info</span></div>
+<div class="line"><span class="lineno">  286</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  287</span>                {</div>
+<div class="line"><span class="lineno">  288</span>                    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakTrack verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span></div>
+<div class="line"><span class="lineno">  289</span>                              &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  290</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Gravity point     : &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  291</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;IsFromBreakBeam   ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; it-&gt;GetIsBreakBeam() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  292</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Skipping event bc there no voxels inside BeamRegion!&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  293</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  294</span>                }</div>
+<div class="line"><span class="lineno">  295</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  296</span>            }</div>
+<div class="line"><span class="lineno">  297</span>        }</div>
+<div class="line"><span class="lineno">  298</span>    }</div>
+<div class="line"><span class="lineno">  299</span>    <span class="comment">// Write to vector of clusters</span></div>
+<div class="line"><span class="lineno">  300</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.insert(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(), std::make_move_iterator(toAppend.begin()),</div>
+<div class="line"><span class="lineno">  301</span>                               std::make_move_iterator(toAppend.end()));</div>
+<div class="line"><span class="lineno">  302</span>}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition</b> ActColors.h:21</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a4ab2b1882919beef52fc9eb805e5f7ac"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">ActAlgorithm::Actions::BreakChi2::fTrackChi2Thresh</a></div><div class="ttdeci">double fTrackChi2Thresh</div><div class="ttdoc">Different Chi2Thresh to be used in this second part.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:21</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a55090cb039295010f4b7da07172db8aa"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">ActAlgorithm::Actions::BreakChi2::fLengthXToBreak</a></div><div class="ttdeci">double fLengthXToBreak</div><div class="ttdoc">Size in X in which find the breaking point from the Xmin.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:16</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_add5a0c4ff6fde16f824648caf2eaf1bf"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">ActAlgorithm::Actions::BreakChi2::fBeamWindowScale</a></div><div class="ttdeci">double fBeamWindowScale</div><div class="ttdoc">Beam window scaling factor to be used in this second part.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:22</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_ae673ba56e458072b16f0f916a7a7d91c"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ActAlgorithm::Actions::BreakChi2::ManualIsInBeam</a></div><div class="ttdeci">bool ManualIsInBeam(const XYZPointF &amp;pos, const XYZPointF &amp;gravity, double scale=1.)</div><div class="ttdef"><b>Definition</b> ActABreakChi2.cxx:258</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a4ab2b1882919beef52fc9eb805e5f7ac"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">ActAlgorithm::Actions::BreakChi2::fTrackChi2Thresh</a></div><div class="ttdeci">double fTrackChi2Thresh</div><div class="ttdoc">Different Chi2Thresh to be used in this second part.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:28</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a55090cb039295010f4b7da07172db8aa"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">ActAlgorithm::Actions::BreakChi2::fLengthXToBreak</a></div><div class="ttdeci">double fLengthXToBreak</div><div class="ttdoc">Size in X in which find the breaking point from the Xmin.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:22</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_add5a0c4ff6fde16f824648caf2eaf1bf"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">ActAlgorithm::Actions::BreakChi2::fBeamWindowScale</a></div><div class="ttdeci">double fBeamWindowScale</div><div class="ttdoc">Beam window scaling factor to be used in this second part.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:29</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_ae673ba56e458072b16f0f916a7a7d91c"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ActAlgorithm::Actions::BreakChi2::ManualIsInBeam</a></div><div class="ttdeci">bool ManualIsInBeam(const XYZPointF &amp;pos, const XYZPointF &amp;gravity, double scale=1.)</div><div class="ttdef"><b>Definition</b> ActABreakChi2.cxx:332</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a07fee27dcb3da2c28d912278dc290f53"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">ActAlgorithm::VAction::fIsVerbose</a></div><div class="ttdeci">bool fIsVerbose</div><div class="ttdef"><b>Definition</b> ActVAction.h:37</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a3d5819d729d7746c2a9eb70883abc438"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">ActAlgorithm::VAction::fAlgo</a></div><div class="ttdeci">std::shared_ptr&lt; ActAlgorithm::VCluster &gt; fAlgo</div><div class="ttdef"><b>Definition</b> ActVAction.h:34</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a67d8b9731cf70019129fca53a088202b"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a67d8b9731cf70019129fca53a088202b">ActAlgorithm::VAction::XYZVectorF</a></div><div class="ttdeci">ROOT::Math::XYZVectorF XYZVectorF</div><div class="ttdef"><b>Definition</b> ActVAction.h:25</div></div>
@@ -411,13 +463,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  259</span>{</div>
-<div class="line"><span class="lineno">  260</span>    <span class="keywordtype">bool</span> condY {(gravity.Y() - scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a>) &lt; pos.Y() &amp;&amp; pos.Y() &lt; (gravity.Y() + scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a>)};</div>
-<div class="line"><span class="lineno">  261</span>    <span class="keywordtype">bool</span> condZ {(gravity.Z() - scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a>) &lt; pos.Z() &amp;&amp; pos.Z() &lt; (gravity.Z() + scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a>)};</div>
-<div class="line"><span class="lineno">  262</span>    <span class="keywordflow">return</span> condY &amp;&amp; condZ;</div>
-<div class="line"><span class="lineno">  263</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a2d951b503faade92978b25229f5c1967"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">ActAlgorithm::Actions::BreakChi2::fBeamWindowZ</a></div><div class="ttdeci">double fBeamWindowZ</div><div class="ttdoc">Width Z around gravity point to mask not-beam voxels.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:18</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a5c70521d2eb287c0322c684476b457f7"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">ActAlgorithm::Actions::BreakChi2::fBeamWindowY</a></div><div class="ttdeci">double fBeamWindowY</div><div class="ttdoc">Width Y around gravity point to mask not-beam voxels.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:17</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  333</span>{</div>
+<div class="line"><span class="lineno">  334</span>    <span class="keywordtype">bool</span> condY {(gravity.Y() - scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a>) &lt; pos.Y() &amp;&amp; pos.Y() &lt; (gravity.Y() + scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a>)};</div>
+<div class="line"><span class="lineno">  335</span>    <span class="keywordtype">bool</span> condZ {(gravity.Z() - scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a>) &lt; pos.Z() &amp;&amp; pos.Z() &lt; (gravity.Z() + scale * <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a>)};</div>
+<div class="line"><span class="lineno">  336</span>    <span class="keywordflow">return</span> condY &amp;&amp; condZ;</div>
+<div class="line"><span class="lineno">  337</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a2d951b503faade92978b25229f5c1967"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">ActAlgorithm::Actions::BreakChi2::fBeamWindowZ</a></div><div class="ttdeci">double fBeamWindowZ</div><div class="ttdoc">Width Z around gravity point to mask not-beam voxels.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:25</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -445,34 +496,38 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a376e68966cbc0e74bbbab6f5d10afcdc">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>{</div>
-<div class="line"><span class="lineno">  234</span>    <span class="comment">// This function just prints the current parameters of the action</span></div>
-<div class="line"><span class="lineno">  235</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  236</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">  237</span>    {</div>
-<div class="line"><span class="lineno">  238</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  239</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  240</span>    }</div>
-<div class="line"><span class="lineno">  241</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  ClusterAlgoPtr    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  242</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Chi2Thresh        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  243</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  MinXRange         : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  244</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  LengthXToBreak    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  245</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowY       : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  246</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowZ       : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  247</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  DoClusterNotBeam  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  248</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  DoBreakMultiTracks? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  249</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a>)</div>
-<div class="line"><span class="lineno">  250</span>    {</div>
-<div class="line"><span class="lineno">  251</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  TrackChi2Thresh   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  252</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowScale   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  253</span>    }</div>
-<div class="line"><span class="lineno">  254</span> </div>
-<div class="line"><span class="lineno">  255</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  256</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a0500f6700db9950e3a02bd3ec3470143"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">ActAlgorithm::Actions::BreakChi2::fDoBreakMultiTracks</a></div><div class="ttdeci">bool fDoBreakMultiTracks</div><div class="ttdoc">Whether to run or not the second part: breaking the multi-tracks events.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:20</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a0c1a07e78ba08744582e43e17bb57352"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">ActAlgorithm::Actions::BreakChi2::fChi2Thresh</a></div><div class="ttdeci">double fChi2Thresh</div><div class="ttdoc">Min Chi2 to treat cluster (bin units)</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:14</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a6e0fbb4d4fc4f23b3c28d0337a7d2043"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">ActAlgorithm::Actions::BreakChi2::fDoClusterNotBeam</a></div><div class="ttdeci">bool fDoClusterNotBeam</div><div class="ttdoc">Whether to recluster or not not-beam voxels after separating them.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:19</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_aedbe123b0bb0a382d5ab2e3fd8a7963d"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">ActAlgorithm::Actions::BreakChi2::fMinXRange</a></div><div class="ttdeci">double fMinXRange</div><div class="ttdoc">Min range along X (pad units) to treat cluster.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:15</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  305</span>{</div>
+<div class="line"><span class="lineno">  306</span>    <span class="comment">// This function just prints the current parameters of the action</span></div>
+<div class="line"><span class="lineno">  307</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  308</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">  309</span>    {</div>
+<div class="line"><span class="lineno">  310</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  311</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  312</span>    }</div>
+<div class="line"><span class="lineno">  313</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  ClusterAlgoPtr    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  314</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Chi2Thresh        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  315</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Chi2Diff          : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6862452195ce83d3cd1c1b3cf5a6474e">fChi2Difference</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  316</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  MinXRange         : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  317</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  LengthXToBreak    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  318</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  MaxDistAutoGP     : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a37a0ddbe0b66eb992b377d8dbee26785">fMaxDistGP</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  319</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowY       : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  320</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowZ       : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  321</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  DoClusterNotBeam  ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  322</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  DoBreakMultiTracks? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  323</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a>)</div>
+<div class="line"><span class="lineno">  324</span>    {</div>
+<div class="line"><span class="lineno">  325</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  TrackChi2Thresh   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  326</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  BeamWindowScale   : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  327</span>    }</div>
+<div class="line"><span class="lineno">  328</span> </div>
+<div class="line"><span class="lineno">  329</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  330</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a0500f6700db9950e3a02bd3ec3470143"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">ActAlgorithm::Actions::BreakChi2::fDoBreakMultiTracks</a></div><div class="ttdeci">bool fDoBreakMultiTracks</div><div class="ttdoc">Whether to run or not the second part: breaking the multi-tracks events.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:27</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a0c1a07e78ba08744582e43e17bb57352"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">ActAlgorithm::Actions::BreakChi2::fChi2Thresh</a></div><div class="ttdeci">double fChi2Thresh</div><div class="ttdoc">Min Chi2 to treat cluster (bin units)</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:20</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a37a0ddbe0b66eb992b377d8dbee26785"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a37a0ddbe0b66eb992b377d8dbee26785">ActAlgorithm::Actions::BreakChi2::fMaxDistGP</a></div><div class="ttdeci">double fMaxDistGP</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:23</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a6862452195ce83d3cd1c1b3cf5a6474e"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6862452195ce83d3cd1c1b3cf5a6474e">ActAlgorithm::Actions::BreakChi2::fChi2Difference</a></div><div class="ttdeci">double fChi2Difference</div><div class="ttdoc">Maximum allowed chi2 diff between q-weighted and not q-weighted.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:30</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a6e0fbb4d4fc4f23b3c28d0337a7d2043"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">ActAlgorithm::Actions::BreakChi2::fDoClusterNotBeam</a></div><div class="ttdeci">bool fDoClusterNotBeam</div><div class="ttdoc">Whether to recluster or not not-beam voxels after separating them.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:26</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_aedbe123b0bb0a382d5ab2e3fd8a7963d"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">ActAlgorithm::Actions::BreakChi2::fMinXRange</a></div><div class="ttdeci">double fMinXRange</div><div class="ttdoc">Min range along X (pad units) to treat cluster.</div><div class="ttdef"><b>Definition</b> ActABreakChi2.h:21</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2a299818265c1afa62ef5e9917ecb3b5"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">ActAlgorithm::VAction::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdef"><b>Definition</b> ActVAction.h:36</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_abc573631cdaa8b4e3d34aacc0fdaf22c"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">ActAlgorithm::VAction::GetActionID</a></div><div class="ttdeci">const std::string &amp; GetActionID() const</div><div class="ttdef"><b>Definition</b> ActVAction.h:51</div></div>
 </div><!-- fragment -->
@@ -503,32 +558,36 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a6132baf4ee0100109bb6ecb51baec70f">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    <span class="comment">// Always read first the IsEnabled parameter (inherited from VAction)</span></div>
-<div class="line"><span class="lineno">   14</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a> = block-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   16</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   17</span>    <span class="comment">// And then proceed reading the rest of parameters</span></div>
-<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Chi2Thresh&quot;</span>))</div>
-<div class="line"><span class="lineno">   19</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;Chi2Thresh&quot;</span>);</div>
-<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;MinXRange&quot;</span>))</div>
-<div class="line"><span class="lineno">   21</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;MinXRange&quot;</span>);</div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;LengthXToBreak&quot;</span>))</div>
-<div class="line"><span class="lineno">   23</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;LengthXToBreak&quot;</span>);</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowY&quot;</span>))</div>
-<div class="line"><span class="lineno">   25</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowY&quot;</span>);</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>))</div>
-<div class="line"><span class="lineno">   27</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>);</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;DoClusterNotBeam&quot;</span>))</div>
-<div class="line"><span class="lineno">   29</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a> = block-&gt;GetBool(<span class="stringliteral">&quot;DoClusterNotBeam&quot;</span>);</div>
-<div class="line"><span class="lineno">   30</span>    <span class="comment">// Inner part to break multitrack events</span></div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;DoBreakMultiTracks&quot;</span>))</div>
-<div class="line"><span class="lineno">   32</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a> = block-&gt;GetBool(<span class="stringliteral">&quot;DoBreakMultiTracks&quot;</span>);</div>
-<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;TrackChi2Thresh&quot;</span>))</div>
-<div class="line"><span class="lineno">   34</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;TrackChi2Thresh&quot;</span>);</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowScale&quot;</span>))</div>
-<div class="line"><span class="lineno">   36</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowScale&quot;</span>);</div>
-<div class="line"><span class="lineno">   37</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>{</div>
+<div class="line"><span class="lineno">   16</span>    <span class="comment">// Always read first the IsEnabled parameter (inherited from VAction)</span></div>
+<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a> = block-&gt;GetBool(<span class="stringliteral">&quot;IsEnabled&quot;</span>);</div>
+<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   20</span>    <span class="comment">// And then proceed reading the rest of parameters</span></div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Chi2Thresh&quot;</span>))</div>
+<div class="line"><span class="lineno">   22</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;Chi2Thresh&quot;</span>);</div>
+<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;MinXRange&quot;</span>))</div>
+<div class="line"><span class="lineno">   24</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;MinXRange&quot;</span>);</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;LengthXToBreak&quot;</span>))</div>
+<div class="line"><span class="lineno">   26</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;LengthXToBreak&quot;</span>);</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;MaxDistGP&quot;</span>))</div>
+<div class="line"><span class="lineno">   28</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a37a0ddbe0b66eb992b377d8dbee26785">fMaxDistGP</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;MaxDistGP&quot;</span>);</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowY&quot;</span>))</div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a5c70521d2eb287c0322c684476b457f7">fBeamWindowY</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowY&quot;</span>);</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>))</div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a2d951b503faade92978b25229f5c1967">fBeamWindowZ</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowZ&quot;</span>);</div>
+<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;DoClusterNotBeam&quot;</span>))</div>
+<div class="line"><span class="lineno">   34</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a> = block-&gt;GetBool(<span class="stringliteral">&quot;DoClusterNotBeam&quot;</span>);</div>
+<div class="line"><span class="lineno">   35</span>    <span class="comment">// Inner part to break multitrack events</span></div>
+<div class="line"><span class="lineno">   36</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;DoBreakMultiTracks&quot;</span>))</div>
+<div class="line"><span class="lineno">   37</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a> = block-&gt;GetBool(<span class="stringliteral">&quot;DoBreakMultiTracks&quot;</span>);</div>
+<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;TrackChi2Thresh&quot;</span>))</div>
+<div class="line"><span class="lineno">   39</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a4ab2b1882919beef52fc9eb805e5f7ac">fTrackChi2Thresh</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;TrackChi2Thresh&quot;</span>);</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;BeamWindowScale&quot;</span>))</div>
+<div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#add5a0c4ff6fde16f824648caf2eaf1bf">fBeamWindowScale</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;BeamWindowScale&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">if</span>(block-&gt;CheckTokenExists(<span class="stringliteral">&quot;Chi2Difference&quot;</span>))</div>
+<div class="line"><span class="lineno">   43</span>        <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6862452195ce83d3cd1c1b3cf5a6474e">fChi2Difference</a> = block-&gt;GetDouble(<span class="stringliteral">&quot;Chi2Difference&quot;</span>);</div>
+<div class="line"><span class="lineno">   44</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -556,103 +615,172 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a03261405a5648594cf8b515c74024990">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   40</span>{</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   43</span>    std::vector&lt;ActRoot::Cluster&gt; toAppend {};</div>
-<div class="line"><span class="lineno">   44</span>    <span class="comment">// Pointer to cluster vector</span></div>
-<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
-<div class="line"><span class="lineno">   46</span>    {</div>
-<div class="line"><span class="lineno">   47</span>        <span class="comment">// 1-&gt; Check whether we meet conditions to execute this</span></div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordtype">bool</span> isBadFit {it-&gt;GetLine().GetChi2() &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a>};</div>
-<div class="line"><span class="lineno">   49</span>        <span class="keyword">auto</span> [xmin, xmax] {it-&gt;GetXRange()};</div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordtype">bool</span> hasMinXExtent {(xmax - xmin) &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a>};</div>
-<div class="line"><span class="lineno">   51</span>        <span class="keyword">auto</span> isBreakable {isBadFit &amp;&amp; hasMinXExtent};</div>
-<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span>(!isBreakable)</div>
-<div class="line"><span class="lineno">   53</span>        {</div>
-<div class="line"><span class="lineno">   54</span>            it++;</div>
-<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">   56</span>        }</div>
-<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   58</span>        {</div>
-<div class="line"><span class="lineno">   59</span>            <span class="comment">// 2-&gt; Compute gravity point in the range</span></div>
-<div class="line"><span class="lineno">   60</span>            <span class="comment">// [xmin, xmin + fLengthXToBreak]</span></div>
-<div class="line"><span class="lineno">   61</span>            <span class="keyword">auto</span> gravity {it-&gt;GetGravityPointInXRange(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a>)};</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>            <span class="comment">// 3-&gt;Modify original cluster: move non-beam voxels outside to</span></div>
-<div class="line"><span class="lineno">   64</span>            <span class="comment">//  be clusterized independently</span></div>
-<div class="line"><span class="lineno">   65</span>            <span class="keyword">auto</span>&amp; refToVoxels {it-&gt;GetRefToVoxels()};</div>
-<div class="line"><span class="lineno">   66</span>            <span class="keyword">auto</span> initSize {refToVoxels.size()};</div>
-<div class="line"><span class="lineno">   67</span>            <span class="keyword">auto</span> toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),</div>
-<div class="line"><span class="lineno">   68</span>                                        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
-<div class="line"><span class="lineno">   69</span>                                        {</div>
-<div class="line"><span class="lineno">   70</span>                                            auto pos {voxel.GetPosition()};</div>
-<div class="line"><span class="lineno">   71</span>                                            pos += <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#a67d8b9731cf70019129fca53a088202b">XYZVectorF</a> {0.5, 0.5, 0.5};</div>
-<div class="line"><span class="lineno">   72</span>                                            <span class="comment">// must move to centre of bin aka voxel</span></div>
-<div class="line"><span class="lineno">   73</span>                                            <span class="keywordflow">return</span> <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ManualIsInBeam</a>(pos, gravity);</div>
-<div class="line"><span class="lineno">   74</span>                                        })};</div>
-<div class="line"><span class="lineno">   75</span>            <span class="comment">// Create vector to move to</span></div>
-<div class="line"><span class="lineno">   76</span>            std::vector&lt;ActRoot::Voxel&gt; notBeam {};</div>
-<div class="line"><span class="lineno">   77</span>            notBeam.insert(notBeam.end(), std::make_move_iterator(toMove), std::make_move_iterator(refToVoxels.end()));</div>
-<div class="line"><span class="lineno">   78</span>            refToVoxels.erase(toMove, refToVoxels.end());</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">   81</span>            {</div>
-<div class="line"><span class="lineno">   82</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;---- &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID()</div>
-<div class="line"><span class="lineno">   83</span>                          &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   84</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Chi2          = &quot;</span> &lt;&lt; it-&gt;GetLine().GetChi2() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   85</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;isBadFit      = &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; isBadFit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   86</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;XExtent       = [&quot;</span> &lt;&lt; xmin &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; xmax &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   87</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;hasMinXExtent ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; hasMinXExtent &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   88</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Gravity        = &quot;</span> &lt;&lt; gravity &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   89</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Init clusters  = &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   90</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Init size beam = &quot;</span> &lt;&lt; initSize &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   91</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Remaining beam = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   92</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Not beam       = &quot;</span> &lt;&lt; notBeam.size() &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   93</span>            }</div>
-<div class="line"><span class="lineno">   94</span>            <span class="comment">// Check if it satisfies minimum voxel requirement to be clusterized again</span></div>
-<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">if</span>(refToVoxels.size() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints())</div>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   49</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   50</span>    std::vector&lt;ActRoot::Cluster&gt; toAppend {};</div>
+<div class="line"><span class="lineno">   51</span>    <span class="comment">// Pointer to cluster vector</span></div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.begin(); it != <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end();)</div>
+<div class="line"><span class="lineno">   53</span>    {</div>
+<div class="line"><span class="lineno">   54</span>        <span class="comment">// 1-&gt; Check whether we meet conditions to execute this</span></div>
+<div class="line"><span class="lineno">   55</span>        <span class="comment">// Chi2 using q-weighted fit</span></div>
+<div class="line"><span class="lineno">   56</span>        <span class="keyword">auto</span> chiqw {it-&gt;GetLine().GetChi2()};</div>
+<div class="line"><span class="lineno">   57</span>        <span class="comment">// Chi2 DISABLING q-weighting</span></div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_class" href="classActRoot_1_1Line.html">ActRoot::Line</a> aux {};</div>
+<div class="line"><span class="lineno">   59</span>        aux.<a class="code hl_function" href="classActRoot_1_1Line.html#aea85c9740051811e365afc37d511f1bc">FitVoxels</a>(it-&gt;GetVoxels(), <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keyword">auto</span> chinqw {aux.GetChi2()};</div>
+<div class="line"><span class="lineno">   61</span>        <span class="comment">// By default select Chi2 from q-weighted fit</span></div>
+<div class="line"><span class="lineno">   62</span>        <span class="keyword">auto</span> chi {chiqw};</div>
+<div class="line"><span class="lineno">   63</span>        <span class="comment">// But if a major difference is seen, use the largest</span></div>
+<div class="line"><span class="lineno">   64</span>        <span class="comment">// (usually chiNotQQeighted &gt; chiQWeighted)</span></div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">if</span>(std::abs(chiqw - chinqw) &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6862452195ce83d3cd1c1b3cf5a6474e">fChi2Difference</a>)</div>
+<div class="line"><span class="lineno">   66</span>        {</div>
+<div class="line"><span class="lineno">   67</span>            chi = std::max(chiqw, chinqw);</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">   69</span>            {</div>
+<div class="line"><span class="lineno">   70</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;---- &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID()</div>
+<div class="line"><span class="lineno">   71</span>                          &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   72</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  Chi2 qw     : &quot;</span> &lt;&lt; chiqw &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   73</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  Chi2 nqw    : &quot;</span> &lt;&lt; chinqw &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   74</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  Actual chi2 : &quot;</span> &lt;&lt; chi &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   75</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   76</span>            }</div>
+<div class="line"><span class="lineno">   77</span>        }</div>
+<div class="line"><span class="lineno">   78</span>        <span class="comment">// And actually use that value to determine breakability</span></div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordtype">bool</span> isBadFit {chi &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0c1a07e78ba08744582e43e17bb57352">fChi2Thresh</a>};</div>
+<div class="line"><span class="lineno">   80</span>        <span class="keyword">auto</span> [xmin, xmax] {it-&gt;GetXRange()};</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordtype">bool</span> hasMinXExtent {(xmax - xmin) &gt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#aedbe123b0bb0a382d5ab2e3fd8a7963d">fMinXRange</a>};</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keyword">auto</span> isBreakable {isBadFit &amp;&amp; hasMinXExtent};</div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">if</span>(!isBreakable)</div>
+<div class="line"><span class="lineno">   84</span>        {</div>
+<div class="line"><span class="lineno">   85</span>            it++;</div>
+<div class="line"><span class="lineno">   86</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   87</span>        }</div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   89</span>        {</div>
+<div class="line"><span class="lineno">   90</span>            <span class="comment">// Determination of gravity point</span></div>
+<div class="line"><span class="lineno">   91</span>            <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#af209c25ffee4d2186cfb4e7bc0336e79">XYZPointF</a> manuGP {};</div>
+<div class="line"><span class="lineno">   92</span>            <span class="keywordtype">bool</span> isAuto {};</div>
+<div class="line"><span class="lineno">   93</span>            <span class="comment">// Try to do it automatically</span></div>
+<div class="line"><span class="lineno">   94</span>            std::vector&lt;ActRoot::Voxel&gt; autovoxels {};</div>
+<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; v : it-&gt;GetVoxels())</div>
 <div class="line"><span class="lineno">   96</span>            {</div>
-<div class="line"><span class="lineno">   97</span>                <span class="comment">// Delete remaining beam-like cluster</span></div>
-<div class="line"><span class="lineno">   98</span>                it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.erase(it);</div>
-<div class="line"><span class="lineno">   99</span>            }</div>
-<div class="line"><span class="lineno">  100</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  101</span>            {</div>
-<div class="line"><span class="lineno">  102</span>                <span class="comment">// Reprocess</span></div>
-<div class="line"><span class="lineno">  103</span>                it-&gt;ReFit();</div>
-<div class="line"><span class="lineno">  104</span>                <span class="comment">// Reset ranges</span></div>
-<div class="line"><span class="lineno">  105</span>                it-&gt;ReFillSets();</div>
-<div class="line"><span class="lineno">  106</span>                <span class="comment">// Set it is beam-like</span></div>
-<div class="line"><span class="lineno">  107</span>                it-&gt;SetBeamLike(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  108</span>                <span class="comment">// And of course, add to iterator</span></div>
-<div class="line"><span class="lineno">  109</span>                it++;</div>
-<div class="line"><span class="lineno">  110</span>            }</div>
-<div class="line"><span class="lineno">  111</span>            <span class="comment">// 4-&gt; Run cluster algorithm again in the not beam voxels</span></div>
-<div class="line"><span class="lineno">  112</span>            std::vector&lt;ActRoot::Cluster&gt; newClusters;</div>
-<div class="line"><span class="lineno">  113</span>            std::vector&lt;ActRoot::Voxel&gt; noise;</div>
-<div class="line"><span class="lineno">  114</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a>)</div>
-<div class="line"><span class="lineno">  115</span>                std::tie(newClusters, noise) = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;Run(notBeam);</div>
-<div class="line"><span class="lineno">  116</span>            <span class="comment">// Set flag accordingly</span></div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; cl : newClusters)</div>
-<div class="line"><span class="lineno">  118</span>                cl.SetIsBreakBeam(true);</div>
-<div class="line"><span class="lineno">  119</span>            <span class="comment">// Move to vector</span></div>
-<div class="line"><span class="lineno">  120</span>            toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),</div>
-<div class="line"><span class="lineno">  121</span>                            std::make_move_iterator(newClusters.end()));</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
-<div class="line"><span class="lineno">  123</span>            {</div>
-<div class="line"><span class="lineno">  124</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;New clusters   = &quot;</span> &lt;&lt; newClusters.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  125</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  126</span>            }</div>
-<div class="line"><span class="lineno">  127</span>        }</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
-<div class="line"><span class="lineno">  129</span>    <span class="comment">// Append clusters to original TPCData</span></div>
-<div class="line"><span class="lineno">  130</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.insert(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(), std::make_move_iterator(toAppend.begin()),</div>
-<div class="line"><span class="lineno">  131</span>                               std::make_move_iterator(toAppend.end()));</div>
-<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a>)</div>
-<div class="line"><span class="lineno">  133</span>        <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a86dce65ca3d66d1858abba29223a1b5d">BreakMultiTrack</a>();</div>
-<div class="line"><span class="lineno">  134</span>}</div>
+<div class="line"><span class="lineno">   97</span>                <span class="keyword">auto</span> dist {it-&gt;GetLine().DistanceLineToPoint(v.GetPosition())};</div>
+<div class="line"><span class="lineno">   98</span>                <span class="keywordflow">if</span>(dist &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a37a0ddbe0b66eb992b377d8dbee26785">fMaxDistGP</a>)</div>
+<div class="line"><span class="lineno">   99</span>                    autovoxels.push_back(v);</div>
+<div class="line"><span class="lineno">  100</span>            }</div>
+<div class="line"><span class="lineno">  101</span>            <a class="code hl_class" href="classActRoot_1_1Line.html">ActRoot::Line</a> autoline {};</div>
+<div class="line"><span class="lineno">  102</span>            <span class="keywordflow">if</span>(autovoxels.size() &lt; 2) <span class="comment">// manual in this case</span></div>
+<div class="line"><span class="lineno">  103</span>            {</div>
+<div class="line"><span class="lineno">  104</span>                manuGP = it-&gt;GetGravityPointInXRange(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a55090cb039295010f4b7da07172db8aa">fLengthXToBreak</a>);</div>
+<div class="line"><span class="lineno">  105</span>            }</div>
+<div class="line"><span class="lineno">  106</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  107</span>            {</div>
+<div class="line"><span class="lineno">  108</span>                autoline.<a class="code hl_function" href="classActRoot_1_1Line.html#aea85c9740051811e365afc37d511f1bc">FitVoxels</a>(autovoxels);</div>
+<div class="line"><span class="lineno">  109</span>                <span class="comment">// And set default direction just in case</span></div>
+<div class="line"><span class="lineno">  110</span>                autoline.SetDirection({1, 0, 0});</div>
+<div class="line"><span class="lineno">  111</span>                isAuto = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  112</span>            }</div>
+<div class="line"><span class="lineno">  113</span>            <span class="comment">// // 2-&gt; Compute gravity point in the range</span></div>
+<div class="line"><span class="lineno">  114</span>            <span class="comment">// // [xmin, xmin + fLengthXToBreak]</span></div>
+<div class="line"><span class="lineno">  115</span>            <span class="comment">// auto gravity {it-&gt;GetGravityPointInXRange(fLengthXToBreak)};</span></div>
+<div class="line"><span class="lineno">  116</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  117</span>            {</div>
+<div class="line"><span class="lineno">  118</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a> &lt;&lt; <span class="stringliteral">&quot;---- BreakChi2 gravity point  for &quot;</span> &lt;&lt; it-&gt;GetClusterID() &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span></div>
+<div class="line"><span class="lineno">  119</span>                          &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  120</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  isAuto ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; isAuto &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  121</span>                <span class="keywordflow">if</span>(isAuto)</div>
+<div class="line"><span class="lineno">  122</span>                {</div>
+<div class="line"><span class="lineno">  123</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;  With &quot;</span> &lt;&lt; autovoxels.size() &lt;&lt; <span class="stringliteral">&quot; voxels&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  124</span>                    autoline.Print();</div>
+<div class="line"><span class="lineno">  125</span>                }</div>
+<div class="line"><span class="lineno">  126</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  127</span>                {</div>
+<div class="line"><span class="lineno">  128</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;  ManualGP : &quot;</span> &lt;&lt; manuGP &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  129</span>                }</div>
+<div class="line"><span class="lineno">  130</span>            }</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>            <span class="comment">// 3-&gt;Modify original cluster: move non-beam voxels outside to</span></div>
+<div class="line"><span class="lineno">  133</span>            <span class="comment">//  be clusterized independently</span></div>
+<div class="line"><span class="lineno">  134</span>            <span class="keyword">auto</span>&amp; refToVoxels {it-&gt;GetRefToVoxels()};</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keyword">auto</span> initSize {refToVoxels.size()};</div>
+<div class="line"><span class="lineno">  136</span>            <span class="keyword">auto</span> toMove {std::partition(refToVoxels.begin(), refToVoxels.end(),</div>
+<div class="line"><span class="lineno">  137</span>                                        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Voxel.html">ActRoot::Voxel</a>&amp; voxel)</div>
+<div class="line"><span class="lineno">  138</span>                                        {</div>
+<div class="line"><span class="lineno">  139</span>                                            auto pos {voxel.GetPosition()};</div>
+<div class="line"><span class="lineno">  140</span>                                            pos += <a class="code hl_typedef" href="classActAlgorithm_1_1VAction.html#a67d8b9731cf70019129fca53a088202b">XYZVectorF</a> {0.5, 0.5, 0.5};</div>
+<div class="line"><span class="lineno">  141</span>                                            <span class="comment">// must move to centre of bin aka voxel</span></div>
+<div class="line"><span class="lineno">  142</span>                                            <span class="keywordflow">if</span>(isAuto)</div>
+<div class="line"><span class="lineno">  143</span>                                                <span class="keywordflow">return</span> <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#af0c96678a2aaea095a70187a2e6ae8da">AutoIsInBeam</a>(pos, &amp;autoline);</div>
+<div class="line"><span class="lineno">  144</span>                                            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  145</span>                                                <span class="keywordflow">return</span> <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#ae673ba56e458072b16f0f916a7a7d91c">ManualIsInBeam</a>(pos, manuGP);</div>
+<div class="line"><span class="lineno">  146</span>                                        })};</div>
+<div class="line"><span class="lineno">  147</span>            <span class="comment">// Create vector to move to</span></div>
+<div class="line"><span class="lineno">  148</span>            std::vector&lt;ActRoot::Voxel&gt; notBeam {};</div>
+<div class="line"><span class="lineno">  149</span>            notBeam.insert(notBeam.end(), std::make_move_iterator(toMove), std::make_move_iterator(refToVoxels.end()));</div>
+<div class="line"><span class="lineno">  150</span>            refToVoxels.erase(toMove, refToVoxels.end());</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  153</span>            {</div>
+<div class="line"><span class="lineno">  154</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;---- &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; verbose for ID : &quot;</span> &lt;&lt; it-&gt;GetClusterID()</div>
+<div class="line"><span class="lineno">  155</span>                          &lt;&lt; <span class="stringliteral">&quot; ----&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  156</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Chi2          = &quot;</span> &lt;&lt; it-&gt;GetLine().GetChi2() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  157</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;isBadFit      = &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; isBadFit &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  158</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;XExtent       = [&quot;</span> &lt;&lt; xmin &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; xmax &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  159</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;hasMinXExtent ? &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; hasMinXExtent &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  160</span>                <span class="comment">// std::cout &lt;&lt; &quot;Gravity        = &quot; &lt;&lt; gravity &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"><span class="lineno">  161</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Init clusters  = &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  162</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Init size beam = &quot;</span> &lt;&lt; initSize &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  163</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Remaining beam = &quot;</span> &lt;&lt; refToVoxels.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  164</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;Not beam       = &quot;</span> &lt;&lt; notBeam.size() &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  165</span>            }</div>
+<div class="line"><span class="lineno">  166</span>            <span class="comment">// Check if it satisfies minimum voxel requirement to be clusterized again</span></div>
+<div class="line"><span class="lineno">  167</span>            <span class="keywordflow">if</span>(refToVoxels.size() &lt;= <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;GetMinPoints())</div>
+<div class="line"><span class="lineno">  168</span>            {</div>
+<div class="line"><span class="lineno">  169</span>                <span class="comment">// Delete remaining beam-like cluster</span></div>
+<div class="line"><span class="lineno">  170</span>                it = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.erase(it);</div>
+<div class="line"><span class="lineno">  171</span>            }</div>
+<div class="line"><span class="lineno">  172</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  173</span>            {</div>
+<div class="line"><span class="lineno">  174</span>                <span class="comment">// Reprocess</span></div>
+<div class="line"><span class="lineno">  175</span>                it-&gt;ReFit();</div>
+<div class="line"><span class="lineno">  176</span>                <span class="comment">// Reset ranges</span></div>
+<div class="line"><span class="lineno">  177</span>                it-&gt;ReFillSets();</div>
+<div class="line"><span class="lineno">  178</span>                <span class="comment">// Set it is beam-like</span></div>
+<div class="line"><span class="lineno">  179</span>                it-&gt;SetBeamLike(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  180</span>                <span class="comment">// And of course, add to iterator</span></div>
+<div class="line"><span class="lineno">  181</span>                it++;</div>
+<div class="line"><span class="lineno">  182</span>            }</div>
+<div class="line"><span class="lineno">  183</span>            <span class="comment">// 4-&gt; Run cluster algorithm again in the not beam voxels</span></div>
+<div class="line"><span class="lineno">  184</span>            std::vector&lt;ActRoot::Cluster&gt; newClusters;</div>
+<div class="line"><span class="lineno">  185</span>            std::vector&lt;ActRoot::Voxel&gt; noise;</div>
+<div class="line"><span class="lineno">  186</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a6e0fbb4d4fc4f23b3c28d0337a7d2043">fDoClusterNotBeam</a>)</div>
+<div class="line"><span class="lineno">  187</span>                std::tie(newClusters, noise) = <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a3d5819d729d7746c2a9eb70883abc438">fAlgo</a>-&gt;Run(notBeam);</div>
+<div class="line"><span class="lineno">  188</span>            <span class="comment">// Set flag accordingly</span></div>
+<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; cl : newClusters)</div>
+<div class="line"><span class="lineno">  190</span>                cl.SetIsBreakBeam(true);</div>
+<div class="line"><span class="lineno">  191</span>            <span class="comment">// Move to vector</span></div>
+<div class="line"><span class="lineno">  192</span>            toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),</div>
+<div class="line"><span class="lineno">  193</span>                            std::make_move_iterator(newClusters.end()));</div>
+<div class="line"><span class="lineno">  194</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a07fee27dcb3da2c28d912278dc290f53">fIsVerbose</a>)</div>
+<div class="line"><span class="lineno">  195</span>            {</div>
+<div class="line"><span class="lineno">  196</span>                std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a> &lt;&lt; <span class="stringliteral">&quot;New clusters   = &quot;</span> &lt;&lt; newClusters.size() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  197</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;-------------------&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  198</span>            }</div>
+<div class="line"><span class="lineno">  199</span>        }</div>
+<div class="line"><span class="lineno">  200</span>    }</div>
+<div class="line"><span class="lineno">  201</span>    <span class="comment">// Append clusters to original TPCData</span></div>
+<div class="line"><span class="lineno">  202</span>    <a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.insert(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>.end(), std::make_move_iterator(toAppend.begin()),</div>
+<div class="line"><span class="lineno">  203</span>                               std::make_move_iterator(toAppend.end()));</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a0500f6700db9950e3a02bd3ec3470143">fDoBreakMultiTracks</a>)</div>
+<div class="line"><span class="lineno">  205</span>        <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a86dce65ca3d66d1858abba29223a1b5d">BreakMultiTrack</a>();</div>
+<div class="line"><span class="lineno">  206</span>}</div>
 <div class="ttc" id="aActColors_8h_html_a4a6c893a1703c33ede7d702fe5f97c91"><div class="ttname"><a href="ActColors_8h.html#a4a6c893a1703c33ede7d702fe5f97c91">BOLDGREEN</a></div><div class="ttdeci">#define BOLDGREEN</div><div class="ttdef"><b>Definition</b> ActColors.h:17</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a86dce65ca3d66d1858abba29223a1b5d"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a86dce65ca3d66d1858abba29223a1b5d">ActAlgorithm::Actions::BreakChi2::BreakMultiTrack</a></div><div class="ttdeci">void BreakMultiTrack()</div><div class="ttdef"><b>Definition</b> ActABreakChi2.cxx:136</div></div>
+<div class="ttc" id="aActColors_8h_html_a8cec79108dfc3c61e8e32d390ec28b26"><div class="ttname"><a href="ActColors_8h.html#a8cec79108dfc3c61e8e32d390ec28b26">BOLDYELLOW</a></div><div class="ttdeci">#define BOLDYELLOW</div><div class="ttdef"><b>Definition</b> ActColors.h:18</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_a86dce65ca3d66d1858abba29223a1b5d"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#a86dce65ca3d66d1858abba29223a1b5d">ActAlgorithm::Actions::BreakChi2::BreakMultiTrack</a></div><div class="ttdeci">void BreakMultiTrack()</div><div class="ttdef"><b>Definition</b> ActABreakChi2.cxx:208</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1BreakChi2_html_af0c96678a2aaea095a70187a2e6ae8da"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1BreakChi2.html#af0c96678a2aaea095a70187a2e6ae8da">ActAlgorithm::Actions::BreakChi2::AutoIsInBeam</a></div><div class="ttdeci">bool AutoIsInBeam(const XYZPointF &amp;pos, ActRoot::Line *line)</div><div class="ttdef"><b>Definition</b> ActABreakChi2.cxx:339</div></div>
+<div class="ttc" id="aclassActRoot_1_1Line_html"><div class="ttname"><a href="classActRoot_1_1Line.html">ActRoot::Line</a></div><div class="ttdef"><b>Definition</b> ActLine.h:21</div></div>
+<div class="ttc" id="aclassActRoot_1_1Line_html_aea85c9740051811e365afc37d511f1bc"><div class="ttname"><a href="classActRoot_1_1Line.html#aea85c9740051811e365afc37d511f1bc">ActRoot::Line::FitVoxels</a></div><div class="ttdeci">void FitVoxels(const std::vector&lt; ActRoot::Voxel &gt; &amp;voxels, bool qWeighted=true, bool correctOffset=true, bool useExt=false)</div><div class="ttdef"><b>Definition</b> ActLine.cxx:85</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -678,7 +806,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Beam window scaling factor to be used in this second part. </p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{};  </div>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>{};  </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -702,8 +830,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Width Y around gravity point to mask not-beam voxels. </p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>{};      </div>
+<p>Max accepted projected distance on fit to compute gravity point. </p>
+<p>Width Y around gravity point to mask not-beam voxels </p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{};      </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -728,7 +857,32 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Width Z around gravity point to mask not-beam voxels. </p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>{};      </div>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{};      </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6862452195ce83d3cd1c1b3cf5a6474e" name="a6862452195ce83d3cd1c1b3cf5a6474e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6862452195ce83d3cd1c1b3cf5a6474e">&#9670;&#160;</a></span>fChi2Difference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActAlgorithm::Actions::BreakChi2::fChi2Difference {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum allowed chi2 diff between q-weighted and not q-weighted. </p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>{};   </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -753,7 +907,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Min Chi2 to treat cluster (bin units) </p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>{};       </div>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>{};       </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -778,7 +932,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Whether to run or not the second part: breaking the multi-tracks events. </p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>{}; </div>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{}; </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -803,7 +957,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Whether to recluster or not not-beam voxels after separating them. </p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{};   </div>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>{};   </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -828,7 +982,30 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Size in X in which find the breaking point from the Xmin. </p>
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{};   </div>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{};   </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a37a0ddbe0b66eb992b377d8dbee26785" name="a37a0ddbe0b66eb992b377d8dbee26785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a0ddbe0b66eb992b377d8dbee26785">&#9670;&#160;</a></span>fMaxDistGP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ActAlgorithm::Actions::BreakChi2::fMaxDistGP {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{};        </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -853,7 +1030,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Min range along X (pad units) to treat cluster. </p>
-<div class="fragment"><div class="line"><span class="lineno">   15</span>{};        </div>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{};        </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -878,7 +1055,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Different Chi2Thresh to be used in this second part. </p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{};  </div>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>{};  </div>
 </div><!-- fragment -->
 </div>
 </div>
