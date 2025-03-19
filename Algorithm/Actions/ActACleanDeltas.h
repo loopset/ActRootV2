@@ -2,6 +2,12 @@
 #define ActACleanDeltas_h
 #include "ActVAction.h"
 
+// forward declarations
+namespace ActRoot
+{
+class Cluster;
+}
+
 namespace ActAlgorithm
 {
 namespace Actions
@@ -22,6 +28,9 @@ public:
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
     void Run() override;
     void Print() const override;
+
+private:
+    std::pair<double, double> ComputeLongTransSigmas(ActRoot::Cluster* cluster);
 };
 } // namespace Actions
 } // namespace ActAlgorithm

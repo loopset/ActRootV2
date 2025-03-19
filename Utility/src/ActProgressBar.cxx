@@ -4,6 +4,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <mutex>
 #include <thread>
 
 void ActRoot::ProgressBar::SetNThreads(unsigned int nthreads)
@@ -45,6 +46,11 @@ void ActRoot::ProgressBar::SetThreadStatus(unsigned int thread, int entry, int n
         fStatus[thread].fPercent = (double)fStatus[thread].fCurrentEntry / fInfo[thread].fNEntries;
         fStatus[thread].fCurrentRun = run;
         fStatus[thread].fRunCount = count;
+        {
+            std::lock_guard<std::mutex> lock {fMutex};
+            fUpdated = true;
+            fCV.notify_one();
+        }
     }
 }
 
@@ -52,6 +58,11 @@ void ActRoot::ProgressBar::Display()
 {
     while(true)
     {
+        // Use a condition variable to wake display function only when the lambda condition is met
+        // after notifying
+        std::unique_lock<std::mutex> lock {fMutex};
+        fCV.wait(lock, [&] { return fUpdated || (fCompletedThreads == fNThreads); });
+
         // Print progress bars for each thread
         // 1-> Go up NThread lines
         std::cout << "\033[" << fNThreads << "A";
@@ -75,11 +86,11 @@ void ActRoot::ProgressBar::Display()
             std::cout << std::flush;
         }
 
-        // Check if all threads are done
+        // Reset fUpdated
+        fUpdated = false;
+
+        // If reached end
         if(fCompletedThreads == fNThreads)
             break;
-
-        // Printing interval
-        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Update interval
     }
 }

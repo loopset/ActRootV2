@@ -1,10 +1,12 @@
 #include "ActACleanDeltas.h"
 
+#include "ActCluster.h"
 #include "ActColors.h"
 #include "ActTPCData.h"
 
 #include <cstdlib>
 #include <ios>
+#include <iostream>
 #include <iterator>
 #include <set>
 
@@ -56,6 +58,9 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
         }
         else if(hasLargeChi)
         {
+            // Compute longitudinal and transversal sizes of clusters
+            auto [lon, trans] {ComputeLongTransSigmas(&(*it))};
+            auto ratio {lon / trans};
             // Determine whether it has a predominat direction
             auto sigmas {it->GetLine().GetSigmas()};
             std::set<float, std::greater<>> set {sigmas.X(), sigmas.Y(), sigmas.Z()};
@@ -66,6 +71,7 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
             // Difference in sigma
             auto diff {std::abs(max - ntmax)};
             if(diff >= fSigmaGap && fUseCylinder) // is linear and use cylinder cleaning
+            // if(ratio >= fSigmaGap && fUseCylinder) // is linear and use cylinder cleaning
             {
                 auto& voxels {it->GetRefToVoxels()};
                 auto oldSize {voxels.size()};
@@ -95,6 +101,9 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
                         std::cout << " Large chi2 after cylinder" << '\n';
                         std::cout << "  New chi2    : " << it->GetLine().GetChi2() << '\n';
                         std::cout << "  Old chi2    : " << chi2 << '\n';
+                        // std::cout << "  Long size   : " << lon << '\n';
+                        // std::cout << "  Trans size  : " << trans << '\n';
+                        // std::cout << "  Ratio       : " << ratio << '\n';
                         std::cout << "  Diff sigma  : " << diff << '\n';
                         std::cout << "  Diff voxels : " << oldSize - remain << '\n';
                         std::cout << RESET << '\n';
@@ -109,6 +118,9 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
                         std::cout << " Recovered after cylinder!" << '\n';
                         std::cout << "  New chi2    : " << it->GetLine().GetChi2() << '\n';
                         std::cout << "  Old chi2    : " << chi2 << '\n';
+                        // std::cout << "  Long size   : " << lon << '\n';
+                        // std::cout << "  Trans size  : " << trans << '\n';
+                        // std::cout << "  Ratio       : " << ratio << '\n';
                         std::cout << "  Diff sigma  : " << diff << '\n';
                         std::cout << "  Diff voxels : " << oldSize - remain << '\n';
                         std::cout << RESET << '\n';
@@ -123,7 +135,12 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
                     std::cout << BOLDCYAN << "---- CleanDeltas ----" << '\n';
                     std::cout << " Large chi2: " << it->GetLine().GetChi2() << '\n';
                     if(fUseCylinder)
+                    {
+                        // std::cout << "  Long size   : " << lon << '\n';
+                        // std::cout << "  Trans size  : " << trans << '\n';
+                        // std::cout << "  Ratio       : " << ratio << '\n';
                         std::cout << "   Diff sigma : " << diff << '\n';
+                    }
                     std::cout << RESET << '\n';
                 }
                 it = fTPCData->fClusters.erase(it);
@@ -132,6 +149,22 @@ void ActAlgorithm::Actions::CleanDeltas::Run()
         else
             it++;
     }
+}
+
+std::pair<double, double> ActAlgorithm::Actions::CleanDeltas::ComputeLongTransSigmas(ActRoot::Cluster* cluster)
+{
+    // Longitudinal is extracted from sorting in distance
+    cluster->SortAlongDir();
+    auto lon {(cluster->GetVoxels().front().GetPosition() - cluster->GetVoxels().back().GetPosition()).R()};
+    // Transversal is the maximum perp dist to fit
+    double trans {-1111};
+    for(const auto& v : cluster->GetVoxels())
+    {
+        auto dist {cluster->GetLine().DistanceLineToPoint(v.GetPosition())};
+        if(dist > trans)
+            trans = dist;
+    }
+    return {lon, trans};
 }
 
 void ActAlgorithm::Actions::CleanDeltas::Print() const

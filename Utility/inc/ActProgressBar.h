@@ -2,6 +2,8 @@
 #define ActProgressBar_h
 
 #include <atomic>
+#include <condition_variable>
+#include <mutex>
 #include <thread>
 #include <vector>
 
@@ -33,6 +35,9 @@ private:
     unsigned int fNThreads {};
     std::atomic<unsigned int> fCompletedThreads {};
     double fPercentUpdate {10};
+    std::mutex fMutex {};
+    std::condition_variable fCV {};
+    bool fUpdated {false};
 
 public:
     ProgressBar() = default;
@@ -42,7 +47,11 @@ public:
     void SetThreadInfo(unsigned int thread, unsigned int nentries, int nruns);
     void SetThreadStatus(unsigned int thread, int entry, int nentries, int run, unsigned int count);
     void Display();
-    void IncrementCompleted() { fCompletedThreads++; }
+    void IncrementCompleted()
+    {
+        fCompletedThreads++;
+        fCV.notify_one();
+    }
     void Join();
 };
 } // namespace ActRoot
