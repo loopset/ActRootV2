@@ -9,6 +9,7 @@ var searchData=
   ['silparameters_6',['SilParameters',['../classActRoot_1_1SilParameters.html',1,'ActRoot']]],
   ['silspecs_7',['SilSpecs',['../classActPhysics_1_1SilSpecs.html',1,'ActPhysics']]],
   ['silunit_8',['silunit',['../classActPhysics_1_1SilUnit.html',1,'ActPhysics::SilUnit'],['../structActSim_1_1SilUnit.html',1,'ActSim::SilUnit']]],
-  ['srim_9',['SRIM',['../classActPhysics_1_1SRIM.html',1,'ActPhysics']]],
-  ['synced_5fstream_10',['synced_stream',['../classBS_1_1synced__stream.html',1,'BS']]]
+  ['split_9',['Split',['../classActAlgorithm_1_1Actions_1_1Split.html',1,'ActAlgorithm::Actions']]],
+  ['srim_10',['SRIM',['../classActPhysics_1_1SRIM.html',1,'ActPhysics']]],
+  ['synced_5fstream_11',['synced_stream',['../classBS_1_1synced__stream.html',1,'BS']]]
 ];
