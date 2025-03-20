@@ -24,8 +24,6 @@ void ActAlgorithm::Actions::BreakChi2::ReadConfiguration(std::shared_ptr<ActRoot
         fMinXRange = block->GetDouble("MinXRange");
     if(block->CheckTokenExists("LengthXToBreak"))
         fLengthXToBreak = block->GetDouble("LengthXToBreak");
-    if(block->CheckTokenExists("MaxDistGP"))
-        fMaxDistGP = block->GetDouble("MaxDistGP");
     if(block->CheckTokenExists("BeamWindowY"))
         fBeamWindowY = block->GetDouble("BeamWindowY");
     if(block->CheckTokenExists("BeamWindowZ"))
@@ -39,8 +37,6 @@ void ActAlgorithm::Actions::BreakChi2::ReadConfiguration(std::shared_ptr<ActRoot
         fTrackChi2Thresh = block->GetDouble("TrackChi2Thresh");
     if(block->CheckTokenExists("BeamWindowScale"))
         fBeamWindowScale = block->GetDouble("BeamWindowScale");
-    if(block->CheckTokenExists("Chi2Difference"))
-        fChi2Difference = block->GetDouble("Chi2Difference");
 }
 
 void ActAlgorithm::Actions::BreakChi2::Run()
@@ -51,32 +47,32 @@ void ActAlgorithm::Actions::BreakChi2::Run()
     // Pointer to cluster vector
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
-        // 1-> Check whether we meet conditions to execute this
-        // Chi2 using q-weighted fit
-        auto chiqw {it->GetLine().GetChi2()};
-        // Chi2 DISABLING q-weighting
-        ActRoot::Line aux {};
-        aux.FitVoxels(it->GetVoxels(), false);
-        auto chinqw {aux.GetChi2()};
-        // By default select Chi2 from q-weighted fit
-        auto chi {chiqw};
-        // But if a major difference is seen, use the largest
-        // (usually chiNotQQeighted > chiQWeighted)
-        if(std::abs(chiqw - chinqw) > fChi2Difference)
-        {
-            chi = std::max(chiqw, chinqw);
-            if(fIsVerbose)
-            {
-                std::cout << BOLDGREEN << "---- " << GetActionID() << " verbose for ID : " << it->GetClusterID()
-                          << " ----" << '\n';
-                std::cout << "  Chi2 qw     : " << chiqw << '\n';
-                std::cout << "  Chi2 nqw    : " << chinqw << '\n';
-                std::cout << "  Actual chi2 : " << chi << '\n';
-                std::cout << RESET << '\n';
-            }
-        }
+        // // 1-> Check whether we meet conditions to execute this
+        // // Chi2 using q-weighted fit
+        // auto chiqw {it->GetLine().GetChi2()};
+        // // Chi2 DISABLING q-weighting
+        // ActRoot::Line aux {};
+        // aux.FitVoxels(it->GetVoxels(), false);
+        // auto chinqw {aux.GetChi2()};
+        // // By default select Chi2 from q-weighted fit
+        // auto chi {chiqw};
+        // // But if a major difference is seen, use the largest
+        // // (usually chiNotQQeighted > chiQWeighted)
+        // if(std::abs(chiqw - chinqw) > fChi2Difference)
+        // {
+        //     chi = std::max(chiqw, chinqw);
+        //     if(fIsVerbose)
+        //     {
+        //         std::cout << BOLDGREEN << "---- " << GetActionID() << " verbose for ID : " << it->GetClusterID()
+        //                   << " ----" << '\n';
+        //         std::cout << "  Chi2 qw     : " << chiqw << '\n';
+        //         std::cout << "  Chi2 nqw    : " << chinqw << '\n';
+        //         std::cout << "  Actual chi2 : " << chi << '\n';
+        //         std::cout << RESET << '\n';
+        //     }
+        // }
         // And actually use that value to determine breakability
-        bool isBadFit {chi > fChi2Thresh};
+        bool isBadFit {it->GetLine().GetChi2() > fChi2Thresh};
         auto [xmin, xmax] {it->GetXRange()};
         bool hasMinXExtent {(xmax - xmin) > fMinXRange};
         auto isBreakable {isBadFit && hasMinXExtent};
@@ -87,48 +83,50 @@ void ActAlgorithm::Actions::BreakChi2::Run()
         }
         else
         {
-            // Determination of gravity point
-            XYZPointF manuGP {};
-            bool isAuto {};
-            // Try to do it automatically
-            std::vector<ActRoot::Voxel> autovoxels {};
-            for(const auto& v : it->GetVoxels())
-            {
-                auto dist {it->GetLine().DistanceLineToPoint(v.GetPosition())};
-                if(dist < fMaxDistGP)
-                    autovoxels.push_back(v);
-            }
-            ActRoot::Line autoline {};
-            if(autovoxels.size() < 2) // manual in this case
-            {
-                manuGP = it->GetGravityPointInXRange(fLengthXToBreak);
-            }
-            else
-            {
-                autoline.FitVoxels(autovoxels);
-                // And set default direction just in case
-                autoline.SetDirection({1, 0, 0});
-                isAuto = true;
-            }
-            // // 2-> Compute gravity point in the range
-            // // [xmin, xmin + fLengthXToBreak]
-            // auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
-            if(fIsVerbose)
-            {
-                std::cout << BOLDYELLOW << "---- BreakChi2 gravity point  for " << it->GetClusterID() << " ----"
-                          << '\n';
-                std::cout << "  isAuto ? " << std::boolalpha << isAuto << '\n';
-                if(isAuto)
-                {
-                    std::cout << "  With " << autovoxels.size() << " voxels" << '\n';
-                    autoline.Print();
-                }
-                else
-                {
-                    std::cout << "  ManualGP : " << manuGP << RESET << '\n';
-                }
-            }
+            // // Determination of gravity point
+            // XYZPointF manuGP {};
+            // bool isAuto {};
+            // // Try to do it automatically
+            // std::vector<ActRoot::Voxel> autovoxels {};
+            // for(const auto& v : it->GetVoxels())
+            // {
+            //     auto dist {it->GetLine().DistanceLineToPoint(v.GetPosition())};
+            //     if(dist < fMaxDistGP)
+            //         autovoxels.push_back(v);
+            // }
+            // ActRoot::Line autoline {};
+            // if(autovoxels.size() < 2) // manual in this case
+            // {
+            //     manuGP = it->GetGravityPointInXRange(fLengthXToBreak);
+            // }
+            // else
+            // {
+            //     autoline.FitVoxels(autovoxels);
+            //     // And set default direction just in case
+            //     autoline.SetDirection({1, 0, 0});
+            //     isAuto = true;
+            // }
+            // // // 2-> Compute gravity point in the range
+            // // // [xmin, xmin + fLengthXToBreak]
+            // // auto gravity {it->GetGravityPointInXRange(fLengthXToBreak)};
+            // if(fIsVerbose)
+            // {
+            //     std::cout << BOLDYELLOW << "---- BreakChi2 gravity point  for " << it->GetClusterID() << " ----"
+            //               << '\n';
+            //     std::cout << "  isAuto ? " << std::boolalpha << isAuto << '\n';
+            //     if(isAuto)
+            //     {
+            //         std::cout << "  With " << autovoxels.size() << " voxels" << '\n';
+            //         autoline.Print();
+            //     }
+            //     else
+            //     {
+            //         std::cout << "  ManualGP : " << manuGP << RESET << '\n';
+            //     }
+            // }
 
+            // Determine gravity point
+            auto gp {it->GetGravityPointInXRange(fLengthXToBreak)};
             // 3->Modify original cluster: move non-beam voxels outside to
             //  be clusterized independently
             auto& refToVoxels {it->GetRefToVoxels()};
@@ -138,11 +136,12 @@ void ActAlgorithm::Actions::BreakChi2::Run()
                                         {
                                             auto pos {voxel.GetPosition()};
                                             pos += XYZVectorF {0.5, 0.5, 0.5};
+                                            return ManualIsInBeam(pos, gp);
                                             // must move to centre of bin aka voxel
-                                            if(isAuto)
-                                                return AutoIsInBeam(pos, &autoline);
-                                            else
-                                                return ManualIsInBeam(pos, manuGP);
+                                            // if(isAuto)
+                                            //     return AutoIsInBeam(pos, &autoline);
+                                            // else
+                                            //     return ManualIsInBeam(pos, manuGP);
                                         })};
             // Create vector to move to
             std::vector<ActRoot::Voxel> notBeam {};
@@ -312,10 +311,10 @@ void ActAlgorithm::Actions::BreakChi2::Print() const
     }
     std::cout << "  ClusterAlgoPtr    : " << fAlgo << '\n';
     std::cout << "  Chi2Thresh        : " << fChi2Thresh << '\n';
-    std::cout << "  Chi2Diff          : " << fChi2Difference << '\n';
+    // std::cout << "  Chi2Diff          : " << fChi2Difference << '\n';
     std::cout << "  MinXRange         : " << fMinXRange << '\n';
     std::cout << "  LengthXToBreak    : " << fLengthXToBreak << '\n';
-    std::cout << "  MaxDistAutoGP     : " << fMaxDistGP << '\n';
+    // std::cout << "  MaxDistAutoGP     : " << fMaxDistGP << '\n';
     std::cout << "  BeamWindowY       : " << fBeamWindowY << '\n';
     std::cout << "  BeamWindowZ       : " << fBeamWindowZ << '\n';
     std::cout << "  DoClusterNotBeam  ? " << std::boolalpha << fDoClusterNotBeam << '\n';
@@ -336,11 +335,11 @@ bool ActAlgorithm::Actions::BreakChi2::ManualIsInBeam(const XYZPointF& pos, cons
     return condY && condZ;
 }
 
-bool ActAlgorithm::Actions::BreakChi2::AutoIsInBeam(const XYZPointF& pos, ActRoot::Line* line)
-{
-    auto dist {line->DistanceLineToPoint(pos)};
-    if(dist <= fBeamWindowY)
-        return true;
-    else
-        return false;
-}
+// bool ActAlgorithm::Actions::BreakChi2::AutoIsInBeam(const XYZPointF& pos, ActRoot::Line* line)
+// {
+//     auto dist {line->DistanceLineToPoint(pos)};
+//     if(dist <= fBeamWindowY)
+//         return true;
+//     else
+//         return false;
+// }
