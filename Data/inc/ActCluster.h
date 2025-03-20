@@ -8,6 +8,7 @@
 #include "Rtypes.h"
 
 #include "Math/Point3Dfwd.h"
+#include "Math/Vector3Dfwd.h"
 
 #include <utility>
 #include <vector>
@@ -19,6 +20,7 @@ class Cluster
 {
 public:
     using XYZPointF = ROOT::Math::XYZPointF;
+    using XYZVectorF = ROOT::Math::XYZVectorF;
     typedef std::pair<float, float> RangeType;
 
 private:
@@ -102,6 +104,7 @@ public:
     void ReFit();      //! Fit or redo fit of current voxels
     void ReFillSets(); //! Refill sets after an external operation modifies them
 
+    void SortAlongDir(const XYZVectorF& dir);
     void SortAlongDir();
     void ScaleVoxels(float xy, float z);
 

@@ -1,10 +1,13 @@
 #include "ActABreakChi2.h"
 
+#include "ActCluster.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActLine.h"
 #include "ActTPCData.h"
 #include "ActVoxel.h"
+
+#include "TMath.h"
 
 #include <ios>
 #include <iostream>
@@ -37,6 +40,28 @@ void ActAlgorithm::Actions::BreakChi2::ReadConfiguration(std::shared_ptr<ActRoot
         fTrackChi2Thresh = block->GetDouble("TrackChi2Thresh");
     if(block->CheckTokenExists("BeamWindowScale"))
         fBeamWindowScale = block->GetDouble("BeamWindowScale");
+    // Fixing chi2
+    if(block->CheckTokenExists("FixMaxAngle"))
+        fFixMaxAngle = block->GetDouble("FixMaxAngle");
+    if(block->CheckTokenExists("FixMinXRange"))
+        fFixMinXRange = block->GetDouble("FixMinXRange");
+    if(block->CheckTokenExists("FixChi2Diff"))
+        fFixChi2Diff = block->GetDouble("FixChi2Diff");
+}
+
+bool ActAlgorithm::Actions::BreakChi2::IsFixable(ActRoot::Cluster* cluster)
+{
+    // Cluster to be fixed must be "beam-like"
+    // This function intends to correct clusters that are not broken
+    // due to a small chi2, coming from a charge-weighted fit
+    auto dot {cluster->GetLine().GetDirection().Unit().Dot(XYZVectorF {1, 0, 0})};
+    auto angle {TMath::ACos(dot)};
+    bool isParallell {TMath::Abs(angle) <= fFixMaxAngle * TMath::DegToRad()};
+    auto [xmin, xmax] {cluster->GetXRange()};
+    bool hasXPercent {(xmax - xmin) > fFixMinXRange};
+    if(isParallell && hasXPercent)
+        return true;
+    return false;
 }
 
 void ActAlgorithm::Actions::BreakChi2::Run()
@@ -47,32 +72,33 @@ void ActAlgorithm::Actions::BreakChi2::Run()
     // Pointer to cluster vector
     for(auto it = fTPCData->fClusters.begin(); it != fTPCData->fClusters.end();)
     {
-        // // 1-> Check whether we meet conditions to execute this
-        // // Chi2 using q-weighted fit
-        // auto chiqw {it->GetLine().GetChi2()};
-        // // Chi2 DISABLING q-weighting
-        // ActRoot::Line aux {};
-        // aux.FitVoxels(it->GetVoxels(), false);
-        // auto chinqw {aux.GetChi2()};
-        // // By default select Chi2 from q-weighted fit
-        // auto chi {chiqw};
-        // // But if a major difference is seen, use the largest
-        // // (usually chiNotQQeighted > chiQWeighted)
-        // if(std::abs(chiqw - chinqw) > fChi2Difference)
-        // {
-        //     chi = std::max(chiqw, chinqw);
-        //     if(fIsVerbose)
-        //     {
-        //         std::cout << BOLDGREEN << "---- " << GetActionID() << " verbose for ID : " << it->GetClusterID()
-        //                   << " ----" << '\n';
-        //         std::cout << "  Chi2 qw     : " << chiqw << '\n';
-        //         std::cout << "  Chi2 nqw    : " << chinqw << '\n';
-        //         std::cout << "  Actual chi2 : " << chi << '\n';
-        //         std::cout << RESET << '\n';
-        //     }
-        // }
-        // And actually use that value to determine breakability
-        bool isBadFit {it->GetLine().GetChi2() > fChi2Thresh};
+        // 0-> Check whether cluster can be fixed
+        auto fixable {IsFixable(&(*it))};
+        float chi {it->GetLine().GetChi2()};
+        if(fixable)
+        {
+            // Chi2 DISABLING q-weighting
+            ActRoot::Line aux {};
+            aux.FitVoxels(it->GetVoxels(), false);
+            auto unweight {aux.GetChi2()};
+            // And if difference is larger than passed threshold
+            if(TMath::Abs(unweight - chi) >= fFixChi2Diff)
+            {
+                // Use this!
+                chi = unweight;
+                if(fIsVerbose)
+                {
+                    std::cout << BOLDGREEN << "---- " << GetActionID() << " verbose for ID : " << it->GetClusterID()
+                              << " ----" << '\n';
+                    std::cout << "-> Fixing Chi2 :" << '\n';
+                    std::cout << "  Q-chi2       : " << it->GetLine().GetChi2() << '\n';
+                    std::cout << "  Not Q-chi2   : " << unweight << '\n';
+                    std::cout << RESET << '\n';
+                }
+            }
+        }
+        // 1-> Check whether we meet conditions to execute this
+        bool isBadFit {chi > fChi2Thresh};
         auto [xmin, xmax] {it->GetXRange()};
         bool hasMinXExtent {(xmax - xmin) > fMinXRange};
         auto isBreakable {isBadFit && hasMinXExtent};
@@ -200,6 +226,9 @@ void ActAlgorithm::Actions::BreakChi2::Run()
     // Append clusters to original TPCData
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
+    // Reset clusterID
+    for(int i = 0; i < fTPCData->fClusters.size(); i++)
+        fTPCData->fClusters[i].SetClusterID(i);
     if(fDoBreakMultiTracks)
         BreakMultiTrack();
 }
@@ -221,7 +250,7 @@ void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
             // Get ref to voxels
             auto& refVoxels {it->GetRefToVoxels()};
             // Identify GP and window scale
-            XYZPointF gravity {};
+            XYZPointF gravity {-1, -1, -1};
             double scale {};
             if(it->GetIsBreakBeam()) // comes after running the first part of the action
             {
@@ -229,6 +258,15 @@ void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
                     if(in->GetIsBeamLike())
                         gravity = in->GetGravityPointInXRange(fLengthXToBreak);
                 scale = fBeamWindowScale;
+                // If it doesnt success
+                // WARNING: this is temporary and should be addressed in other way
+                // because it comes from an activation of BreakChi2 in a cluster that is not beam like
+                // Pending of major update of this algorithm
+                if(gravity.X() == -1)
+                {
+                    gravity = it->GetLine().GetPoint();
+                    scale = 1;
+                }
             }
             else // not broken from beam
             {
@@ -260,9 +298,6 @@ void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
                 //     ncl.SetToMerge(false);
                 toAppend.insert(toAppend.end(), std::make_move_iterator(newClusters.begin()),
                                 std::make_move_iterator(newClusters.end()));
-
-                // Delete current cluster
-                it = fTPCData->fClusters.erase(it);
                 // Verbose info
                 if(fIsVerbose)
                 {
@@ -274,13 +309,14 @@ void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
                     std::cout << "N of new clusters : " << newClusters.size() << '\n';
                     std::cout << "-------------------------" << RESET << '\n';
                 }
+                // Delete current cluster
+                it = fTPCData->fClusters.erase(it);
             }
             else
             {
                 // Do nothing; chi2 is really high and it will be deleted later in another action
                 // Just in case, set flat not to merge
                 it->SetToMerge(false);
-                it++;
                 // Verbose info
                 if(fIsVerbose)
                 {
@@ -291,6 +327,7 @@ void ActAlgorithm::Actions::BreakChi2::BreakMultiTrack()
                     std::cout << "Skipping event bc there no voxels inside BeamRegion!" << '\n';
                     std::cout << "-------------------------" << RESET << '\n';
                 }
+                it++;
                 continue;
             }
         }
@@ -311,9 +348,11 @@ void ActAlgorithm::Actions::BreakChi2::Print() const
     }
     std::cout << "  ClusterAlgoPtr    : " << fAlgo << '\n';
     std::cout << "  Chi2Thresh        : " << fChi2Thresh << '\n';
-    // std::cout << "  Chi2Diff          : " << fChi2Difference << '\n';
     std::cout << "  MinXRange         : " << fMinXRange << '\n';
     std::cout << "  LengthXToBreak    : " << fLengthXToBreak << '\n';
+    std::cout << "  FixMaxAngle       : " << fFixMaxAngle << '\n';
+    std::cout << "  FixMinXRange      : " << fFixMinXRange << '\n';
+    std::cout << "  FixChi2Diff       : " << fFixChi2Diff << '\n';
     // std::cout << "  MaxDistAutoGP     : " << fMaxDistGP << '\n';
     std::cout << "  BeamWindowY       : " << fBeamWindowY << '\n';
     std::cout << "  BeamWindowZ       : " << fBeamWindowZ << '\n';

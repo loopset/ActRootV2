@@ -11,16 +11,21 @@ namespace Actions
 class FindRP : public VAction
 {
 private:
-    bool fUseExtVoxels {};               //!< Whether to use or not unrebinned Z coordinate in FITS only
-    double fBeamLikeXMinThresh {};       // Min value in X that has to be in the cluster to be beam-like
-    double fBeamLikeParallelF {};        // Min value for X component
-    double fRPDistThresh {};             // Max distance between two lines to form a RP
-    double fRPDistCluster {};            // Max distance to cluster RPs
-    bool fEnableDeleteInvalidCluster {}; // Bool to enable the function DeleteInvalidCluster
-    double fRPMaskXY {};                 // Distance to aply the mask in XY
-    double fRPMaskZ {};                  // Distance to aply the mask in Z
-    bool fEnableRPDefaultBeam {};        // Enable set direction to short BLs tracks as (1,0,0)
-    double fRPDefaultMinX {};            // Parameter that determines if a BL track is short in x
+    // General settings
+    bool fUseExtVoxels {}; //!< Whether to use or not unrebinned Z coordinate in FITS only
+    // Beam like determination
+    double fBeamLikeXMinThresh {}; //!< Min value in X that has to be in the cluster to be beam-like
+    double fBeamLikeParallelF {};  //!< Min value for X component
+    // Preliminary RP treatment
+    double fRPDistThresh {};             //!< Max distance between two lines to form a RP
+    double fRPDistCluster {};            //!< Max distance to cluster RPs
+    double fRPDistToggleSort {};         //!< Max RPOps::fMinDist to switch to RPOps::fMinTL sorting
+    bool fEnableDeleteInvalidCluster {}; //!< Bool to enable the function DeleteInvalidCluster
+    // Fine analysis
+    double fRPMaskXY {};          //!< Distance to aply the mask in XY
+    double fRPMaskZ {};           //!< Distance to aply the mask in Z
+    bool fEnableRPDefaultBeam {}; //!< Enable set direction to short BLs tracks as (1,0,0)
+    double fRPDefaultMinX {};     //!< Parameter that determines if a BL track is short in x
     bool fEnableFineRP {};
     bool fKeepBreakBeam {};      //!< Keep heavy-like cluster after breaking beam starting on RP
     double fMinXSepBreakBeam {}; //!< Min separation preRP.X() to BeamLike.Xend() to separete heavy track
@@ -40,6 +45,7 @@ public:
         XYZPointF fRP {};       //!< RP (maybe a mean of RPs after clustering)
         std::set<int> fIdxs {}; //!< Indexes of clusters belonging to RP
         double fMinDist {};     //!< Minimum distance of a cluster to this RP
+        double fMinTL {};       //!< Min preliminary track length of not BL tracks in the cluster
         int fNrp {};            //!< Number of RPs that contributed to this Cluster of RPs
         int fBLIdx {};          //!< Index of BL cluster this RP belongs to
 

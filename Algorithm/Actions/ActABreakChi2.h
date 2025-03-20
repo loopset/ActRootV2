@@ -6,7 +6,7 @@
 // forward declarations
 namespace ActRoot
 {
-class Line;
+class Cluster;
 }
 
 namespace ActAlgorithm
@@ -27,7 +27,9 @@ private:
     bool fDoBreakMultiTracks {}; //!< Whether to run or not the second part: breaking the multi-tracks events
     double fTrackChi2Thresh {};  //!< Different Chi2Thresh to be used in this second part
     double fBeamWindowScale {};  //!< Beam window scaling factor to be used in this second part
-    // double fChi2Difference {};   //!< Maximum allowed chi2 diff between q-weighted and not q-weighted
+    double fFixMaxAngle {};      //!< Max angle accepted for a cluster that will be fixed
+    double fFixMinXRange {};     //!< Min XRange percent to fix this cluster
+    double fFixChi2Diff {};      //!< Maximum allowed chi2 diff between q-weighted and not q-weighted
 
 
 public:
@@ -41,6 +43,8 @@ public:
 
 private:
     // Inner functions of the class
+    bool IsFixable(ActRoot::Cluster* cluster); //!< Function to break chi2 long cluster whose chi2 is really low due to
+                                               //!< the charge weighting
     bool ManualIsInBeam(const XYZPointF& pos, const XYZPointF& gravity, double scale = 1.);
     // bool AutoIsInBeam(const XYZPointF& pos, ActRoot::Line* line);
     void BreakMultiTrack();

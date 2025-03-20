@@ -1,6 +1,7 @@
 #include "ActCluster.h"
 
 #include "ActColors.h"
+#include "ActLine.h"
 #include "ActRegion.h"
 #include "ActVoxel.h"
 
@@ -173,15 +174,23 @@ std::pair<float, float> ActRoot::Cluster::GetZRange() const
 
 void ActRoot::Cluster::SortAlongDir()
 {
+    SortAlongDir(fLine.GetDirection());
+}
+
+void ActRoot::Cluster::SortAlongDir(const XYZVectorF& dir)
+{
     // Not necessary to correct for {0.5, 0.5, 0.5} offset since
     // this we are comparing all points and it would be a common factor
-    XYZPointF ref {fLine.GetPoint() - 1000 * fLine.GetDirection().Unit()};
+    XYZPointF ref {fLine.GetPoint() - 1000 * dir.Unit()};
+    // Auxiliary line since we can use an arbitrary direction
+    // But gravity point remains the same!!
+    ActRoot::Line line {fLine.GetPoint(), dir, -1};
     std::sort(fVoxels.begin(), fVoxels.end(),
               [&](const Voxel& l, const Voxel& r)
               {
                   // Sort using distance to the reference point
-                  auto ld {(fLine.ProjectionPointOnLine(l.GetPosition()) - ref).R()};
-                  auto rd {(fLine.ProjectionPointOnLine(r.GetPosition()) - ref).R()};
+                  auto ld {(line.ProjectionPointOnLine(l.GetPosition()) - ref).R()};
+                  auto rd {(line.ProjectionPointOnLine(r.GetPosition()) - ref).R()};
                   return ld < rd;
               });
 }

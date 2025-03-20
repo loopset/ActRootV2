@@ -40,6 +40,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         fRPDistThresh = block->GetDouble("RPDistThresh");
     if(block->CheckTokenExists("RPDistCluster"))
         fRPDistCluster = block->GetDouble("RPDistCluster");
+    if(block->CheckTokenExists("RPDistToggleSort"))
+        fRPDistToggleSort = block->GetDouble("RPDistToggleSort");
     if(block->CheckTokenExists("EnableDeleteInvalidCluster"))
         fEnableDeleteInvalidCluster = block->GetBool("EnableDeleteInvalidCluster");
     if(block->CheckTokenExists("RPMaskXY"))
@@ -105,6 +107,7 @@ void ActAlgorithm::Actions::FindRP::Print() const
     std::cout << "  BeamLikeXMinThresh : " << fBeamLikeXMinThresh << '\n';
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
     std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
+    std::cout << "  RPDistToggle       : " << fRPDistToggleSort << '\n';
     std::cout << "  EnableDelInvalid   ? " << std::boolalpha << fEnableDeleteInvalidCluster << '\n';
     std::cout << "  EnableFineRP       ? " << std::boolalpha << fEnableFineRP << '\n';
     std::cout << "  MinXSepBreakBeam   : " << fMinXSepBreakBeam << '\n';
@@ -338,7 +341,9 @@ void ActAlgorithm::Actions::FindRP::RPOps::Print() const
         std::cout << "   " << idx << '\n';
     std::cout << "   BLIdx : " << fBLIdx << '\n';
     std::cout << "   Nrp   : " << fNrp << '\n';
+    std::cout << "   Size  : " << fIdxs.size() << '\n';
     std::cout << "   Dist  : " << fMinDist << '\n';
+    std::cout << "   MinTL : " << fMinTL << '\n';
     std::cout << "····················" << RESET << '\n';
 }
 
@@ -346,8 +351,10 @@ std::vector<ActAlgorithm::Actions::FindRP::RPOps>
 ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actions::FindRP::RPOps>& inirps)
 {
     std::vector<RPOps> ret;
+    // No reaction point
     if(inirps.empty())
         return ret;
+    // Only one RP: direct calculation
     if(inirps.size() == 1)
     {
         ret.push_back(inirps.front());
@@ -368,6 +375,8 @@ ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actio
             ret.front().Print();
         return ret;
     }
+    //////////////////////////////////////////////////////////////
+    // Several RPs require more work
     // Create map to separate RPs coming from different BLs
     std::map<int, std::vector<RPOps>> rpsbybl;
     for(const auto& rp : inirps)
@@ -421,44 +430,106 @@ ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actio
             back.fBLIdx = blidx;
         }
     }
-    // Build lambda that picks best RP based on minimum distance
-    // of its tracks to it
-    auto validate {[this](RPOps& ops)
-                   {
-                       std::vector<double> dists;
-                       for(const auto& idx : ops.fIdxs)
-                       {
-                           auto it {fTPCData->fClusters.begin() + idx};
-                           if(it->GetIsBeamLike())
-                               continue;
-                           // Sort voxels
-                           std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
-                           // Get begin and end of cluster
-                           auto begin {it->GetRefToVoxels().front().GetPosition()};
-                           auto end {it->GetRefToVoxels().back().GetPosition()};
-                           double mindist {1111};
-                           for(auto point : {begin, end})
-                           {
-                               point += XYZVectorF {0.5, 0.5, 0.5};
-                               auto dist {(point - ops.fRP).R()};
-                               if(dist < mindist)
-                                   mindist = dist;
-                           }
-                           dists.push_back(mindist);
-                       }
-                       // Compute mean
-                       ops.fMinDist = (std::accumulate(dists.begin(), dists.end(), 0.0) / dists.size());
-                   }};
-    // Apply lambda to each element
-    std::for_each(ret.begin(), ret.end(), [&validate](RPOps& e) { validate(e); });
-    // Sort based on this distance!
-    std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist; });
+    // Sort by number of tracks in RP
+    std::sort(ret.begin(), ret.end(), [](const RPOps& l, const RPOps& r) { return l.fIdxs.size() > r.fIdxs.size(); });
+    // Search for tie: adjacent_find returns first iterator of a pair (it, it +1) that evals to true
+    auto tie {std::adjacent_find(ret.begin(), ret.end(),
+                                 [](const RPOps& l, const RPOps& r) { return l.fIdxs.size() == r.fIdxs.size(); })};
+    if(tie != ret.begin() ||
+       tie == ret.end()) // Tie is not first element or no ties at all found -> Continue without more analysis
+    {
+        ;
+    }
+    else
+    {
+        // Find range of tie
+        auto begin {ret.begin()}; // for sure it is at begin
+        // Find last element of tie
+        auto value {begin->fIdxs.size()};
+        // Find last element of the tie using reverse iterators
+        auto it {std::find_if(ret.rbegin(), ret.rend(), [&](const RPOps& ops) { return ops.fIdxs.size() == value; })};
+        auto idx {std::distance(it, ret.rend())}; // watch out for reverse iterators!!
+        auto end {ret.begin() + idx};
+        if(fIsVerbose)
+        {
+            std::cout << "Tied elements :" << '\n';
+            std::for_each(begin, end, [](const auto& ops) { ops.Print(); });
+        }
+
+        // Compute min track length
+        auto minTL {[this](RPOps& ops)
+                    {
+                        std::vector<double> tls {};
+                        for(const auto& idx : ops.fIdxs)
+                        {
+                            auto it {fTPCData->fClusters.begin() + idx};
+                            if(it->GetIsBeamLike())
+                                continue;
+                            // Sort based on fit
+                            it->SortAlongDir();
+                            auto begin {it->GetVoxels().front().GetPosition()};
+                            auto end {it->GetRefToVoxels().back().GetPosition()};
+                            // Push this preliminary track length
+                            auto tl {(begin - end).R()};
+                            tls.push_back(tl);
+                        }
+                        // And get minimum track length
+                        ops.fMinTL = *(std::min_element(tls.begin(), tls.end()));
+                    }};
+        // And minimum distance to RP
+        auto minDist {[this](RPOps& ops)
+                      {
+                          std::vector<double> dists;
+                          for(const auto& idx : ops.fIdxs)
+                          {
+                              auto it {fTPCData->fClusters.begin() + idx};
+                              if(it->GetIsBeamLike())
+                                  continue;
+                              // Sort voxels
+                              std::sort(it->GetRefToVoxels().begin(), it->GetRefToVoxels().end());
+                              // Get begin and end of cluster
+                              auto begin {it->GetRefToVoxels().front().GetPosition()};
+                              auto end {it->GetRefToVoxels().back().GetPosition()};
+                              double mindist {1111};
+                              for(auto point : {begin, end})
+                              {
+                                  point += XYZVectorF {0.5, 0.5, 0.5};
+                                  auto dist {(point - ops.fRP).R()};
+                                  if(dist < mindist)
+                                      mindist = dist;
+                              }
+                              dists.push_back(mindist);
+                          }
+                          // Compute mean
+                          ops.fMinDist = (std::accumulate(dists.begin(), dists.end(), 0.0) / dists.size());
+                      }};
+        std::for_each(begin, end,
+                      [&minTL, &minDist](RPOps& ops)
+                      {
+                          minTL(ops);
+                          minDist(ops);
+                      });
+        // And now sort!
+        // 1-> If any of the RPs has a fMinDist < Threshold, sort by min dist
+        bool hasMinDist {std::any_of(begin, end, [&](const RPOps& ops) { return ops.fMinDist < fRPDistToggleSort; })};
+        if(hasMinDist)
+        {
+            std::sort(begin, end, [](const RPOps& l, const RPOps& r) { return l.fMinDist < r.fMinDist; });
+        }
+        // 2-> Else, sort my promoting RPOps with largest smaller track
+        else
+        {
+            std::sort(begin, end, [](const RPOps& l, const RPOps& r) { return l.fMinTL > r.fMinTL; });
+        }
+    }
     // Print info
     if(fIsVerbose)
     {
         std::cout << BOLDYELLOW << "---- FindRP::SortAndCluster ----" << '\n';
         for(const auto& e : ret)
             e.Print();
+        if(ret.size())
+            std::cout << "  PreliminaryRP : " << ret.front().fRP << '\n';
         std::cout << "------------------------------" << RESET << '\n';
     }
     return ret;
