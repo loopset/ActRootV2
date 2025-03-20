@@ -450,11 +450,6 @@ ActAlgorithm::Actions::FindRP::ClusterAndSortRPs(std::vector<ActAlgorithm::Actio
         auto it {std::find_if(ret.rbegin(), ret.rend(), [&](const RPOps& ops) { return ops.fIdxs.size() == value; })};
         auto idx {std::distance(it, ret.rend())}; // watch out for reverse iterators!!
         auto end {ret.begin() + idx};
-        if(fIsVerbose)
-        {
-            std::cout << "Tied elements :" << '\n';
-            std::for_each(begin, end, [](const auto& ops) { ops.Print(); });
-        }
 
         // Compute min track length
         auto minTL {[this](RPOps& ops)
@@ -767,7 +762,7 @@ bool ActAlgorithm::Actions::FindRP::BreakBeamToHeavy(const ActAlgorithm::VAction
                 if(fIsVerbose)
                 {
                     std::cout << BOLDYELLOW << "---- FindRP::BreakBeamToHeavy ----" << '\n';
-                    std::cout << "  <i,j> : <" << i << "," << j << "> with percent : " << percent << RESET << '\n';
+                    std::cout << "  <i,j> : <" << i << "," << j << "> with percent : " << aux << RESET << '\n';
                 }
                 if(aux > percent)
                 {

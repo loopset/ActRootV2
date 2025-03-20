@@ -8,6 +8,7 @@
 #include "ActACleanZs.h"
 #include "ActAFindRP.h"
 #include "ActAMerge.h"
+#include "ActASplit.h"
 #include "ActColors.h"
 #include "ActInputParser.h"
 #include "ActOptions.h"
@@ -32,6 +33,7 @@ ActAlgorithm::MultiAction::MultiAction()
     fMap["CleanZs"] = &RegisterAction<Actions::CleanZs>;
     fMap["CleanBadFits"] = &RegisterAction<Actions::CleanBadFits>;
     fMap["FindRP"] = &RegisterAction<Actions::FindRP>;
+    fMap["Split"] = &RegisterAction<Actions::Split>;
 }
 
 ActAlgorithm::MultiAction::Ptr ActAlgorithm::MultiAction::ConstructAction(const std::string& actionID)
