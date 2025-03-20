@@ -202,5 +202,5 @@ var searchData=
   ['assignrangetoregion_199',['AssignRangeToRegion',['../classActAlgorithm_1_1MultiRegion.html#af072e55d27a5045cde5919a3ccd7ee26',1,'ActAlgorithm::MultiRegion']]],
   ['assignvoxeltoregion_200',['AssignVoxelToRegion',['../classActAlgorithm_1_1MultiRegion.html#a6bc2330f89477bf2d1e96e46fe5fdade',1,'ActAlgorithm::MultiRegion']]],
   ['attachbintocluster_201',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['autoisinbeam_202',['autoisinbeam',['../classActAlgorithm_1_1Actions_1_1BreakChi2.html#af0c96678a2aaea095a70187a2e6ae8da',1,'ActAlgorithm::Actions::BreakChi2::AutoIsInBeam()'],['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep::AutoIsInBeam()']]]
+  ['autoisinbeam_202',['AutoIsInBeam',['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep']]]
 ];

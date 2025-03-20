@@ -37,5 +37,5 @@ var searchData=
   ['assignrangetoregion_34',['AssignRangeToRegion',['../classActAlgorithm_1_1MultiRegion.html#af072e55d27a5045cde5919a3ccd7ee26',1,'ActAlgorithm::MultiRegion']]],
   ['assignvoxeltoregion_35',['AssignVoxelToRegion',['../classActAlgorithm_1_1MultiRegion.html#a6bc2330f89477bf2d1e96e46fe5fdade',1,'ActAlgorithm::MultiRegion']]],
   ['attachbintocluster_36',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
-  ['autoisinbeam_37',['autoisinbeam',['../classActAlgorithm_1_1Actions_1_1BreakChi2.html#af0c96678a2aaea095a70187a2e6ae8da',1,'ActAlgorithm::Actions::BreakChi2::AutoIsInBeam()'],['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep::AutoIsInBeam()']]]
+  ['autoisinbeam_37',['AutoIsInBeam',['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep']]]
 ];
