@@ -254,7 +254,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">  155</span>{</div>
 <div class="line"><span class="lineno">  156</span>    <span class="comment">// Longitudinal is extracted from sorting in distance</span></div>
-<div class="line"><span class="lineno">  157</span>    cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac">SortAlongDir</a>();</div>
+<div class="line"><span class="lineno">  157</span>    cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#acff6059482a5320bb8d1ef168af2af6d">SortAlongDir</a>();</div>
 <div class="line"><span class="lineno">  158</span>    <span class="keyword">auto</span> lon {(cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">GetVoxels</a>().front().GetPosition() - cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">GetVoxels</a>().back().GetPosition()).R()};</div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Transversal is the maximum perp dist to fit</span></div>
 <div class="line"><span class="lineno">  160</span>    <span class="keywordtype">double</span> trans {-1111};</div>
@@ -266,9 +266,9 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><span class="lineno">  166</span>    }</div>
 <div class="line"><span class="lineno">  167</span>    <span class="keywordflow">return</span> {lon, trans};</div>
 <div class="line"><span class="lineno">  168</span>}</div>
-<div class="ttc" id="aclassActRoot_1_1Cluster_html_ac06c9b99e630b7d25a3d4cf96335f31e"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac06c9b99e630b7d25a3d4cf96335f31e">ActRoot::Cluster::GetLine</a></div><div class="ttdeci">const ActRoot::Line &amp; GetLine() const</div><div class="ttdef"><b>Definition</b> ActCluster.h:53</div></div>
-<div class="ttc" id="aclassActRoot_1_1Cluster_html_ac4b49994670abc8359865c2ae5811eac"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac">ActRoot::Cluster::SortAlongDir</a></div><div class="ttdeci">void SortAlongDir()</div><div class="ttdoc">Refill sets after an external operation modifies them.</div><div class="ttdef"><b>Definition</b> ActCluster.cxx:174</div></div>
-<div class="ttc" id="aclassActRoot_1_1Cluster_html_ac89a8e2813c0bdd35e90d6e5e579ec04"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">ActRoot::Cluster::GetVoxels</a></div><div class="ttdeci">const std::vector&lt; ActRoot::Voxel &gt; &amp; GetVoxels() const</div><div class="ttdef"><b>Definition</b> ActCluster.h:55</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html_ac06c9b99e630b7d25a3d4cf96335f31e"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac06c9b99e630b7d25a3d4cf96335f31e">ActRoot::Cluster::GetLine</a></div><div class="ttdeci">const ActRoot::Line &amp; GetLine() const</div><div class="ttdef"><b>Definition</b> ActCluster.h:55</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html_ac89a8e2813c0bdd35e90d6e5e579ec04"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">ActRoot::Cluster::GetVoxels</a></div><div class="ttdeci">const std::vector&lt; ActRoot::Voxel &gt; &amp; GetVoxels() const</div><div class="ttdef"><b>Definition</b> ActCluster.h:57</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html_acff6059482a5320bb8d1ef168af2af6d"><div class="ttname"><a href="classActRoot_1_1Cluster.html#acff6059482a5320bb8d1ef168af2af6d">ActRoot::Cluster::SortAlongDir</a></div><div class="ttdeci">void SortAlongDir(const XYZVectorF &amp;dir)</div><div class="ttdoc">Refill sets after an external operation modifies them.</div><div class="ttdef"><b>Definition</b> ActCluster.cxx:180</div></div>
 <div class="ttc" id="aclassActRoot_1_1Line_html_a580355eb976854b3ca1f09f268d02d88"><div class="ttname"><a href="classActRoot_1_1Line.html#a580355eb976854b3ca1f09f268d02d88">ActRoot::Line::DistanceLineToPoint</a></div><div class="ttdeci">double DistanceLineToPoint(const XYZPointF &amp;point) const</div><div class="ttdef"><b>Definition</b> ActLine.cxx:57</div></div>
 </div><!-- fragment -->
 </div>

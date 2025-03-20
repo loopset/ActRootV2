@@ -122,7 +122,7 @@ var searchData=
   ['slow_119',['Slow',['../classActPhysics_1_1SRIM.html#a836b0e58f2fa1e332f6f377b638739c0',1,'ActPhysics::SRIM']]],
   ['slowwithstraggling_120',['SlowWithStraggling',['../classActPhysics_1_1SRIM.html#a3f3ffeaab885070dcb5a9540a924da63',1,'ActPhysics::SRIM']]],
   ['sort_121',['Sort',['../classActAlgorithm_1_1MultiRegion.html#a781e44abbcdd00ea12cee5ba001a8d0d',1,'ActAlgorithm::MultiRegion']]],
-  ['sortalongdir_122',['SortAlongDir',['../classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac',1,'ActRoot::Cluster']]],
+  ['sortalongdir_122',['sortalongdir',['../classActRoot_1_1Cluster.html#acff6059482a5320bb8d1ef168af2af6d',1,'ActRoot::Cluster::SortAlongDir(const XYZVectorF &amp;dir)'],['../classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac',1,'ActRoot::Cluster::SortAlongDir()']]],
   ['splinesangular_123',['splinesAngular',['../classActSim_1_1TheoCrossSection.html#a6f036834aa3857614cc9fff61a3d273f',1,'ActSim::TheoCrossSection']]],
   ['splinescattering_124',['splineScattering',['../classActSim_1_1TheoCrossSection.html#ae421f732b296b8bd65d77c406e6ea240',1,'ActSim::TheoCrossSection']]],
   ['spreadcharge_125',['SpreadCharge',['../classActSim_1_1TrackGenerator.html#ab9b49094ddfb8c5725d999369e92e230',1,'ActSim::TrackGenerator']]],
