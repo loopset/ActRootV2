@@ -201,7 +201,10 @@ void ActAlgorithm::Actions::BreakChi2::Run()
                 // Reset ranges
                 it->ReFillSets();
                 // Set it is beam-like
-                it->SetBeamLike(true);
+                // INFO: update March 2025. Disable this since it can
+                // create false positives of beam-likes
+                // it->SetBeamLike(true);
+
                 // And of course, add to iterator
                 it++;
             }

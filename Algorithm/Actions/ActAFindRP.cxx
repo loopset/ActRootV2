@@ -32,8 +32,8 @@ void ActAlgorithm::Actions::FindRP::ReadConfiguration(std::shared_ptr<ActRoot::I
         return;
     if(block->CheckTokenExists("UseExtVoxels"))
         fUseExtVoxels = block->GetBool("UseExtVoxels");
-    if(block->CheckTokenExists("BeamLikeParallelF"))
-        fBeamLikeParallelF = block->GetDouble("BeamLikeParallelF");
+    if(block->CheckTokenExists("BeamLikeMaxAngle"))
+        fBeamLikeMaxAngle = block->GetDouble("BeamLikeMaxAngle");
     if(block->CheckTokenExists("BeamLikeXMinThresh"))
         fBeamLikeXMinThresh = block->GetDouble("BeamLikeXMinThresh");
     if(block->CheckTokenExists("RPDistThresh"))
@@ -103,7 +103,7 @@ void ActAlgorithm::Actions::FindRP::Print() const
         return;
     }
     std::cout << "  UseExtVoxels       ? " << std::boolalpha << fUseExtVoxels << '\n';
-    std::cout << "  BeamLikeParallel   : " << fBeamLikeParallelF << '\n';
+    std::cout << "  BeamLikeMaxAngle   : " << fBeamLikeMaxAngle << '\n';
     std::cout << "  BeamLikeXMinThresh : " << fBeamLikeXMinThresh << '\n';
     std::cout << "  RPDistThresh       : " << fRPDistThresh << '\n';
     std::cout << "  RPDistCluster      : " << fRPDistCluster << '\n';
@@ -146,11 +146,12 @@ void ActAlgorithm::Actions::FindRP::DetermineBeamLikes()
         // 1-> Check if xmin is bellow threshold
         auto [xmin, xmax] {it->GetXRange()};
         bool isInEntrance {xmin <= fBeamLikeXMinThresh};
-        // 2-> Check if track is parallel
+        // 2-> Check if track has small opening angle
         auto uDir {it->GetLine().GetDirection().Unit()};
-        bool isAlongX {std::abs(uDir.X()) >= fBeamLikeParallelF};
+        auto angle {TMath::ACos(uDir.Dot(XYZVectorF {1, 0, 0})) * TMath::RadToDeg()};
+        bool isParallel {angle <= fBeamLikeMaxAngle};
         // 3-> If both conditions true, mark as beam-like
-        if(isInEntrance && isAlongX)
+        if(isInEntrance && isParallel)
         {
             it->SetBeamLike(true);
             nBeam++;

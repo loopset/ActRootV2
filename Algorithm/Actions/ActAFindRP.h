@@ -15,7 +15,7 @@ private:
     bool fUseExtVoxels {}; //!< Whether to use or not unrebinned Z coordinate in FITS only
     // Beam like determination
     double fBeamLikeXMinThresh {}; //!< Min value in X that has to be in the cluster to be beam-like
-    double fBeamLikeParallelF {};  //!< Min value for X component
+    double fBeamLikeMaxAngle {};   //!< Max angle wrt X direction allowed for a beam cluster
     // Preliminary RP treatment
     double fRPDistThresh {};             //!< Max distance between two lines to form a RP
     double fRPDistCluster {};            //!< Max distance to cluster RPs
