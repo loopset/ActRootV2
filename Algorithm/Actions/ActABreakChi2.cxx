@@ -226,13 +226,14 @@ void ActAlgorithm::Actions::BreakChi2::Run()
             }
         }
     }
+    bool hasRun {toAppend.size() > 0};
     // Append clusters to original TPCData
     fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(toAppend.begin()),
                                std::make_move_iterator(toAppend.end()));
     // Reset clusterID
     for(int i = 0; i < fTPCData->fClusters.size(); i++)
         fTPCData->fClusters[i].SetClusterID(i);
-    if(fDoBreakMultiTracks)
+    if(fDoBreakMultiTracks && hasRun)
         BreakMultiTrack();
 }
 
