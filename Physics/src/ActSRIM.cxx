@@ -338,6 +338,43 @@ double ActPhysics::SRIM::TravelledDistance(const std::string& material, double T
     return (Rini - Rafter);
 }
 
+double
+ActPhysics::SRIM::DoDeltaECalculation(const std::string& material, double init, double step, double deltaE, double dist)
+{
+    // Graph to store DeltaE vs T relation
+    TGraph gdeltaEE {};
+    gdeltaEE.SetTitle("#DeltaE rec;#DeltaE [MeV];T_{ini} [MeV]");
+    for(double t = init; t > 0; t -= step)
+    {
+        auto tafter {Slow(material, t, dist)};
+        auto eloss {(t - tafter)};
+        // Keep only punch events since this method is only interesting for them
+        if(tafter <= 0)
+            break;
+        gdeltaEE.AddPoint(eloss, t);
+    }
+    // Eval
+    double ret {};
+    if(fUseSpline)
+        ret = gdeltaEE.Eval(deltaE, nullptr, "S");
+    else
+        ret = gdeltaEE.Eval(deltaE);
+    return ret;
+}
+
+double ActPhysics::SRIM::EvalInitialEnergyFromDeltaE(const std::string& material, double deltaE, double thickness,
+                                                     double angleInRad, bool spline)
+{
+    // Distance
+    auto dist {thickness / TMath::Cos(angleInRad)};
+    // Call to function using hardcoded values
+    // TODO: optimize this in the future
+    double Tini {150};
+    double step {0.5};
+    auto recIni {DoDeltaECalculation(material, Tini, step, deltaE, dist)};
+    return recIni;
+}
+
 bool ActPhysics::SRIM::CheckKeyIsStored(const std::string& key)
 {
     return std::find(fKeys.begin(), fKeys.end(), key) != fKeys.end();

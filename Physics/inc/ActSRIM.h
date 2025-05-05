@@ -48,7 +48,7 @@ private:
     std::map<std::string, PtrSpline> fSplinesLatStrag;
     std::map<std::string, PtrGraph> fGraphsLatStrag;
     // Bool to use spline or not
-    bool fUseSpline {false};
+    bool fUseSpline {true}; //!< Use Spline interpolation by default. Can be disabled through set method
 
 
 public:
@@ -89,6 +89,9 @@ public:
 
     double TravelledDistance(const std::string& material, double Tini, double Tafter);
 
+    double EvalInitialEnergyFromDeltaE(const std::string& material, double deltaE, double thickness,
+                                       double angleInRad = 0, bool spline = true);
+
     bool CheckKeyIsStored(const std::string& key);
 
     // Methods to read from file! Header is [SRIM]
@@ -101,6 +104,7 @@ private:
     double ConvertToDouble(std::string& str, const std::string& unit);
     PtrGraph GetGraph(std::vector<double>& x, std::vector<double>& y, const std::string& name);
     PtrSpline GetSpline(std::vector<double>& x, std::vector<double>& y, const std::string& name);
+    double DoDeltaECalculation(const std::string& material, double init, double step, double deltaE, double dist);
 };
 }; // namespace ActPhysics
 
