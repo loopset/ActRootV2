@@ -222,6 +222,47 @@ void ActPhysics::SRIM::ReadInterpolations(std::string key, std::string fileName)
     fKeys.push_back(key);
 }
 
+void ActPhysics::SRIM::SetStragglingLISE(const std::string& key, const std::string& fileName)
+{
+    std::ifstream streamer(fileName);
+    if(!streamer)
+        throw std::runtime_error("SRIM::ParseFileLISE(): could not open file " + fileName);
+
+    std::string line {};
+    // Skip 3 first rows of LISE files (header)
+    for(int i = 0; i < 3; ++i)
+        std::getline(streamer, line);
+
+    std::vector<double> vE, vR, vLongStrag;
+
+    while(std::getline(streamer, line))
+    {
+        std::istringstream ss(line);
+        std::string token;
+        std::vector<std::string> tokens;
+
+        // Separar por espacios/tabs
+        while(ss >> token)
+        {
+            tokens.push_back(token);
+        }
+
+        if(tokens.size() >= 12)
+        {
+            vE.push_back(std::stod(tokens[0]));         // Energy in MeV/u but it is not being used. 1st position
+            vR.push_back(std::stod(tokens[3]) / 1000);   // Range in microns. 4th position
+            vLongStrag.push_back(std::stod(tokens[11]) / 1000); // Range straggling in microns. 12th position
+        }
+    }
+
+    streamer.close();
+
+    // Modify splines for long straggling
+    fSplinesLongStrag[key] = GetSpline(vR, vLongStrag, "RtoLongS");
+    fGraphsLongStrag[key] = GetGraph(vR, vLongStrag, "RtoLongS");
+    fGraphsLongStrag[key]->SetTitle(";Range [mm];Longitudinal straggling [mm]");
+}
+
 // All eval functions
 double ActPhysics::SRIM::EvalDirect(const std::string& key, double energy)
 {
