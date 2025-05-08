@@ -1,13 +1,9 @@
 #ifndef ActASplit_h
 #define ActASplit_h
 
+#include "ActCluster.h"
 #include "ActVAction.h"
 
-// forward declarations
-namespace ActRoot
-{
-class Cluster;
-}
 
 namespace ActAlgorithm
 {
@@ -25,7 +21,7 @@ public:
 
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
     void Run() override;
-    void Print() const override {};
+    void Print() const override;
 
 private:
     void CheckChi2(std::vector<ActRoot::Cluster>& clusters, std::vector<ActRoot::Cluster>& clustersToRANSAC,
@@ -39,7 +35,7 @@ private:
     GetBestFit(std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Cluster>>& inliersAndOutliersVector,
                int nClusterFit);
     void ApplyContinuity(std::vector<ActRoot::Cluster>& clustersIteration, ActRoot::Cluster& outliers,
-                         ActRoot::Cluster& bestCluster, ActAlgorithm::ClIMB* climb);
+                         ActRoot::Cluster& bestCluster, ActAlgorithm::VCluster* climb);
 };
 } // namespace Actions
 } // namespace ActAlgorithm
