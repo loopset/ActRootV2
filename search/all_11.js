@@ -124,7 +124,7 @@ var searchData=
   ['slowwithstraggling_121',['SlowWithStraggling',['../classActPhysics_1_1SRIM.html#a3f3ffeaab885070dcb5a9540a924da63',1,'ActPhysics::SRIM']]],
   ['sort_122',['Sort',['../classActAlgorithm_1_1MultiRegion.html#a781e44abbcdd00ea12cee5ba001a8d0d',1,'ActAlgorithm::MultiRegion']]],
   ['sortalongdir_123',['sortalongdir',['../classActRoot_1_1Cluster.html#acff6059482a5320bb8d1ef168af2af6d',1,'ActRoot::Cluster::SortAlongDir(const XYZVectorF &amp;dir)'],['../classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac',1,'ActRoot::Cluster::SortAlongDir()']]],
-  ['sortclustersinliersandoutliers_124',['SortClustersInliersAndOutliers',['../classActAlgorithm_1_1Actions_1_1Split.html#a3b6649205fc1c87089340b1cc6409be2',1,'ActAlgorithm::Actions::Split']]],
+  ['sortclustersinliersandoutliers_124',['SortClustersInliersAndOutliers',['../classActAlgorithm_1_1Actions_1_1Split.html#a55f9520b045fdaa36bab35ae371dc6ea',1,'ActAlgorithm::Actions::Split']]],
   ['splinesangular_125',['splinesAngular',['../classActSim_1_1TheoCrossSection.html#a6f036834aa3857614cc9fff61a3d273f',1,'ActSim::TheoCrossSection']]],
   ['splinescattering_126',['splineScattering',['../classActSim_1_1TheoCrossSection.html#ae421f732b296b8bd65d77c406e6ea240',1,'ActSim::TheoCrossSection']]],
   ['split_127',['split',['../classActAlgorithm_1_1Actions_1_1Split.html#ac3be8a12651a470dc77783d749b770bc',1,'ActAlgorithm::Actions::Split::Split()'],['../classActAlgorithm_1_1Actions_1_1Split.html',1,'ActAlgorithm::Actions::Split']]],

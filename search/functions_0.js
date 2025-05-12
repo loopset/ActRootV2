@@ -28,7 +28,7 @@ var searchData=
   ['alignusingpoint_25',['AlignUsingPoint',['../classActRoot_1_1Line.html#afc2eda509881e64aeba74fbd6903ef9e',1,'ActRoot::Line']]],
   ['apply_26',['apply',['../classActPhysics_1_1GenCorrection.html#aaf220aaa5bc6e3df7dacf2f26d869eb4',1,'ActPhysics::GenCorrection::Apply()'],['../classActPhysics_1_1PIDCorrection.html#a705eb052473c1e73e6ea63c8c99c6c53',1,'ActPhysics::PIDCorrection::Apply()']]],
   ['applycalibration_27',['ApplyCalibration',['../classActRoot_1_1CalibrationManager.html#a943efc2a955786642286182b7aa64a8f',1,'ActRoot::CalibrationManager']]],
-  ['applycontinuity_28',['ApplyContinuity',['../classActAlgorithm_1_1Actions_1_1Split.html#a4f888714fa360d4ff0de8a1616535f75',1,'ActAlgorithm::Actions::Split']]],
+  ['applycontinuity_28',['ApplyContinuity',['../classActAlgorithm_1_1Actions_1_1Split.html#a17ef8a7d0e191629258ddc5519794712',1,'ActAlgorithm::Actions::Split']]],
   ['applyfinerthresholds_29',['ApplyFinerThresholds',['../classActRoot_1_1SilData.html#afbc40f7b0c5132b1b5ffc19507d9fd03',1,'ActRoot::SilData']]],
   ['applyinvlookup_30',['ApplyInvLookUp',['../classActRoot_1_1CalibrationManager.html#aec9179c5f45704c604a8dbe551f0c45b',1,'ActRoot::CalibrationManager']]],
   ['applylookup_31',['ApplyLookUp',['../classActRoot_1_1CalibrationManager.html#a7dc78d9b0ca9b0f41332bc2370f22df5',1,'ActRoot::CalibrationManager']]],
