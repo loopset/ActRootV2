@@ -26,7 +26,7 @@ void ActAlgorithm::Actions::Split::Run()
     gRandom->SetSeed(0);
     auto& fClusters {fTPCData->fClusters};
     // Initialize climb algorithm object
-    auto climb {new ActAlgorithm::ClIMB(fTPCPars, 10)};
+    auto climb = std::make_shared<ActAlgorithm::ClIMB>(fTPCPars, 10);
     std::vector<ActRoot::Cluster> bestClusters {};  // Save the clusters with the best Chi2
     std::vector<ActRoot::Cluster> clustersFinal {}; // Prepare output
     while(true)
@@ -101,9 +101,8 @@ void ActAlgorithm::Actions::Split::CheckChi2(std::vector<ActRoot::Cluster>& clus
     }
 }
 
-std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Cluster>>
-ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers(std::vector<ActRoot::Cluster>& inliersVector,
-                                                             std::vector<ActRoot::Cluster>& outliersVector)
+void ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers(std::vector<ActRoot::Cluster>& inliersVector,
+                                                                  std::vector<ActRoot::Cluster>& outliersVector)
 {
     // 1. Create a vector of pairs
     std::vector<std::pair<ActRoot::Cluster, ActRoot::Cluster>> pairedClusters;
@@ -120,11 +119,9 @@ ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers(std::vector<ActRoot
         inliersVector[i] = pairedClusters[i].first;
         outliersVector[i] = pairedClusters[i].second;
     }
-
-    return {inliersVector, outliersVector};
 }
 
-std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Cluster>>
+ActAlgorithm::Actions::Split::InliersOutliersPair
 ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster& cluster, int Niterations)
 {
     const auto& voxels = cluster.GetVoxels();
@@ -157,12 +154,13 @@ ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster& cluster, i
         outliersVector.push_back(outliers);
     }
     // Sort the clusters based on the size of the inliers
-    auto output = SortClustersInliersAndOutliers(inliersVector, outliersVector);
+    SortClustersInliersAndOutliers(inliersVector, outliersVector);
+    InliersOutliersPair output = {inliersVector, outliersVector};
     return output;
 }
 
 std::pair<ActRoot::Cluster&, ActRoot::Cluster&> ActAlgorithm::Actions::Split::GetBestFit(
-    std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Cluster>>& inliersAndOutliersVector, int nClusterFit)
+    InliersOutliersPair& inliersAndOutliersVector, int nClusterFit)
 {
     double chi2compare = 1000;
     auto& inliersVector = inliersAndOutliersVector.first;
@@ -192,7 +190,7 @@ std::pair<ActRoot::Cluster&, ActRoot::Cluster&> ActAlgorithm::Actions::Split::Ge
 
 void ActAlgorithm::Actions::Split::ApplyContinuity(std::vector<ActRoot::Cluster>& clustersIteration,
                                                    ActRoot::Cluster& outliers, ActRoot::Cluster& bestCluster,
-                                                   ActAlgorithm::VCluster* climb)
+                                                   const std::shared_ptr<ActAlgorithm::VCluster>& climb)
 {
     // auto clustersInliersAfter = climb->Run(bestCluster.GetRefToVoxels());
     // for(auto clusterAfter : clustersInliersAfter.first)
