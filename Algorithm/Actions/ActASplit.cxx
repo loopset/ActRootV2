@@ -7,6 +7,7 @@
 #include "TRandom3.h"
 
 #include <memory>
+#include <numeric>
 
 void ActAlgorithm::Actions::Split::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> conf)
 {
@@ -25,46 +26,31 @@ void ActAlgorithm::Actions::Split::Run()
 {
     gRandom->SetSeed(0);
     auto& fClusters {fTPCData->fClusters};
-    // Initialize climb algorithm object
-    auto climb = std::make_shared<ActAlgorithm::ClIMB>(fTPCPars, 10);
-    std::vector<ActRoot::Cluster> bestClusters {};  // Save the clusters with the best Chi2
-    std::vector<ActRoot::Cluster> clustersFinal {}; // Prepare output
-    while(true)
+    for(int i = 0; i < 2; i++) // Search a maximum of 2 times for the best clusters
     {
-        std::vector<ActRoot::Cluster> clustersToRANSAC {};
-        // First we need to see what cluster need RANSAC by its chi2
-        CheckChi2(fClusters, clustersToRANSAC, clustersFinal);
-        if(clustersToRANSAC.size() == 0)
+        std::vector<ActRoot::Cluster> toAdd {};
+        for(auto it = fClusters.begin(); it != fClusters.end();)
         {
-            break;
-        }
-        // Let's do the RANSAC algorithm
-        // 1. Select a random subset of points to be the model
-        // 2. Solve for the model
-        // 3. Find the inliers to the model
-        // 4. Repeat 1-3 for N iterations, and choose the model with the most inliers
+            if(it->GetLine().GetChi2() < fMinChi2) // First we need to see what cluster need RANSAC by its chi2
+            {
+                it++;
+                continue;
+            }
 
-        std::vector<ActRoot::Cluster> clustersIteration; // Save clusters after the RANSAC iteration
-        for(auto cluster : clustersToRANSAC)
-        {
             // 1. Select a random subset of points to be the model
             // 2. Solve for the model
             // 3. Find the inliers to the model
             // 4. Repeat 1-3 for N iterations, and choose the model with the most inliers
 
-            int Niterations = 20;
             // Get the inliers and outliers for this iteration of RANSAC
-            auto inliersAndOutliersVector = GetInliersAndOutliers(cluster, Niterations);
-            // Get the best fit
-            auto bestFit = GetBestFit(inliersAndOutliersVector, 6);
-            auto bestCluster = bestFit.first;
-            bestClusters.push_back(bestCluster);
-            auto outliers = bestFit.second;
-            // Apply continuity to the best cluster and to the outliers with ClIMB algorithm
-            ApplyContinuity(clustersIteration, outliers, bestCluster, climb);
+            auto inliersAndOutliersVector = GetInliersAndOutliers(&(*it));
+            GetBestFit(inliersAndOutliersVector);
+            ApplyContinuity(toAdd, inliersAndOutliersVector);
+            // Apply changes to fClusters
+            it = fClusters.erase(it);
         }
-
-        fClusters = clustersIteration;
+        fClusters.insert(fClusters.end(), std::make_move_iterator(toAdd.begin()),
+                             std::make_move_iterator(toAdd.end()));
     }
 }
 
@@ -82,52 +68,44 @@ void ActAlgorithm::Actions::Split::Print() const
     std::cout << "······························" << RESET << '\n';
 }
 
-void ActAlgorithm::Actions::Split::CheckChi2(std::vector<ActRoot::Cluster>& clusters,
-                                             std::vector<ActRoot::Cluster>& clustersToRANSAC,
-                                             std::vector<ActRoot::Cluster>& clustersFinal)
-{
-    for(auto cluster : clusters)
-    {
-        std::cout << "Chi2 of the cluster: " << cluster.GetLine().GetChi2() << std::endl;
-        if(cluster.GetLine().GetChi2() > 1.5)
-        {
-            clustersToRANSAC.push_back(cluster);
-        }
-        else
-        {
-            clustersFinal.push_back(
-                cluster); // If not need of RANSAC is already a separated cluster in the shape of a line
-        }
-    }
-}
 
-void ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers(std::vector<ActRoot::Cluster>& inliersVector,
-                                                                  std::vector<ActRoot::Cluster>& outliersVector)
+void ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers(InliersOutliersPair& inliersAndOutliersVector)
 {
-    // 1. Create a vector of pairs
-    std::vector<std::pair<ActRoot::Cluster, ActRoot::Cluster>> pairedClusters;
-    for(int i = 0; i < inliersVector.size(); i++)
+    auto& inliersVector  = inliersAndOutliersVector.first;
+    auto& outliersVector = inliersAndOutliersVector.second;
+
+    const auto size = inliersVector.size();
+    std::vector<int> index(size);
+    std::iota(index.begin(), index.end(), 0); // make index vectors
+
+    // Sort index vector based on the size of the inliers
+    std::sort(index.begin(), index.end(), [&](size_t a, size_t b) {
+        return inliersVector[a].GetVoxels().size() > inliersVector[b].GetVoxels().size();
+    });
+
+    // Reorder the inliers and outliers vectors based on the sorted indices
+    std::vector<ActRoot::Cluster> sortedInliers, sortedOutliers;
+    sortedInliers.reserve(size);
+    sortedOutliers.reserve(size);
+    
+    for (int i : index)
     {
-        pairedClusters.emplace_back(inliersVector[i], outliersVector[i]);
+        sortedInliers.emplace_back(std::move(inliersVector[i]));
+        sortedOutliers.emplace_back(std::move(outliersVector[i]));
     }
-    // 2. Sort the pairs based on the size of the inliers
-    std::sort(pairedClusters.begin(), pairedClusters.end(),
-              [](const auto& a, const auto& b) { return a.first.GetVoxels().size() > b.first.GetVoxels().size(); });
-    // 3. Unpack sorted pairs back into inliersVector and outliersVector
-    for(int i = 0; i < pairedClusters.size(); i++)
-    {
-        inliersVector[i] = pairedClusters[i].first;
-        outliersVector[i] = pairedClusters[i].second;
-    }
+
+    // Replace the original vectors with the sorted ones
+    inliersVector  = std::move(sortedInliers);
+    outliersVector = std::move(sortedOutliers);
 }
 
 ActAlgorithm::Actions::Split::InliersOutliersPair
-ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster& cluster, int Niterations)
+ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster* cluster)
 {
-    const auto& voxels = cluster.GetVoxels();
+    const auto& voxels = cluster->GetVoxels();
     std::vector<ActRoot::Cluster> inliersVector {};
     std::vector<ActRoot::Cluster> outliersVector {};
-    for(int i = 0; i < Niterations; i++)
+    for(int i = 0; i < fNiterRANSAC; i++)
     {
         ActRoot::Cluster inliers {};
         ActRoot::Cluster outliers {};
@@ -141,7 +119,7 @@ ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster& cluster, i
         // 3. Find the inliers to the model
         for(auto voxel : voxels)
         {
-            if(line.DistanceLineToPoint(voxel.GetPosition()) < 2.5)
+            if(line.DistanceLineToPoint(voxel.GetPosition()) < fCylinderRadius)
             {
                 inliers.AddVoxel(voxel);
             }
@@ -154,53 +132,33 @@ ActAlgorithm::Actions::Split::GetInliersAndOutliers(ActRoot::Cluster& cluster, i
         outliersVector.push_back(outliers);
     }
     // Sort the clusters based on the size of the inliers
-    SortClustersInliersAndOutliers(inliersVector, outliersVector);
-    InliersOutliersPair output = {inliersVector, outliersVector};
-    return output;
+    InliersOutliersPair inliersAndOutliersVector = {inliersVector, outliersVector};
+    SortClustersInliersAndOutliers(inliersAndOutliersVector);
+    return inliersAndOutliersVector;
 }
 
-std::pair<ActRoot::Cluster&, ActRoot::Cluster&> ActAlgorithm::Actions::Split::GetBestFit(
-    InliersOutliersPair& inliersAndOutliersVector, int nClusterFit)
+void ActAlgorithm::Actions::Split::GetBestFit(InliersOutliersPair& inliersAndOutliersVector)
 {
-    double chi2compare = 1000;
     auto& inliersVector = inliersAndOutliersVector.first;
     auto& outliersVector = inliersAndOutliersVector.second;
     // Initialize variables for loop
-    ActRoot::Cluster* bestCluster = &inliersVector[0];
-    ActRoot::Cluster* bestOutlier = &outliersVector[0];
-    std::pair<ActRoot::Cluster, ActRoot::Cluster> output {};
-    for(int i = 0; i < nClusterFit; i++)
+    for(int i = 0; i < fSavedIterations; i++)
     {
-        auto& inliers = inliersVector[i];
-
-        // Do the fit
-        ActRoot::Cluster tempCluster = inliers; // Work on a temporary cluster
-        tempCluster.ReFit();
-        double chi2 = tempCluster.GetLine().GetChi2();
-
-        if(chi2 < chi2compare)
-        {
-            chi2compare = chi2;
-            bestCluster = &inliersVector[i];  // Guardamos referencia al mejor cluster
-            bestOutlier = &outliersVector[i]; // Guardamos referencia al outlier correspondiente
-        }
+        inliersVector[i].ReFit();
     }
-    return {*bestCluster, *bestOutlier};
+    // Sort the first fSavedIteration clusters by chi2
+    std::sort(inliersVector.begin(), inliersVector.begin() + fSavedIterations,
+              [](const ActRoot::Cluster& a, const ActRoot::Cluster& b)
+              { return a.GetLine().GetChi2() < b.GetLine().GetChi2(); });
 }
 
-void ActAlgorithm::Actions::Split::ApplyContinuity(std::vector<ActRoot::Cluster>& clustersIteration,
-                                                   ActRoot::Cluster& outliers, ActRoot::Cluster& bestCluster,
-                                                   const std::shared_ptr<ActAlgorithm::VCluster>& climb)
+void ActAlgorithm::Actions::Split::ApplyContinuity(std::vector<ActRoot::Cluster>& toAdd,
+                                                   InliersOutliersPair& inliersAndOutliersVector)
 {
-    // auto clustersInliersAfter = climb->Run(bestCluster.GetRefToVoxels());
-    // for(auto clusterAfter : clustersInliersAfter.first)
-    //{
-    //     clustersFinal.push_back(clusterAfter);
-    // }
-    clustersIteration.push_back(bestCluster);
-    auto clusterOutliersAfter = climb->Run(outliers.GetRefToVoxels());
+    toAdd.push_back(inliersAndOutliersVector.first[0]);
+    auto clusterOutliersAfter = fClimb->Run(inliersAndOutliersVector.second[0].GetRefToVoxels());
     for(auto clusterAfter : clusterOutliersAfter.first)
     {
-        clustersIteration.push_back(clusterAfter);
+        toAdd.push_back(clusterAfter);
     }
 }
