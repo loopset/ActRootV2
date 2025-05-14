@@ -13,7 +13,9 @@ namespace Actions
 class Split : public VAction
 {
 public:
-    using InliersOutliersPair = std::pair<std::vector<ActRoot::Cluster>, std::vector<ActRoot::Cluster>>;
+    using InliersOutliersPair =
+        std::pair<ActRoot::Cluster, ActRoot::Cluster>; // In first position inliers, second outliers
+    using PairsVector = std::vector<InliersOutliersPair>;
 
 private:
     int fNiterRANSAC {};       //!< Iterations for RANSAC algorithm
@@ -30,10 +32,10 @@ public:
     void Print() const override;
 
 private:
-    void SortClustersInliersAndOutliers(InliersOutliersPair& inliersAndOutliersVector);
-    InliersOutliersPair GetInliersAndOutliers(ActRoot::Cluster* cluster);
-    void GetBestFit(InliersOutliersPair& inliersAndOutliersVector);
-    void ApplyContinuity(std::vector<ActRoot::Cluster>& toAdd, InliersOutliersPair& inliersAndOutliersVector);
+    void SortClustersInliersAndOutliers(PairsVector& inliersAndOutliersVector);
+    PairsVector GetInliersAndOutliers(ActRoot::Cluster* cluster);
+    void GetBestFit(PairsVector& inliersAndOutliersVector);
+    void ApplyContinuity(std::vector<ActRoot::Cluster>& toAdd, PairsVector& inliersAndOutliersVector);
 };
 } // namespace Actions
 } // namespace ActAlgorithm
