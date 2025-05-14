@@ -116,7 +116,7 @@ var searchData=
   ['slowwithstraggling_113',['SlowWithStraggling',['../classActPhysics_1_1SRIM.html#a3f3ffeaab885070dcb5a9540a924da63',1,'ActPhysics::SRIM']]],
   ['sort_114',['Sort',['../classActAlgorithm_1_1MultiRegion.html#a781e44abbcdd00ea12cee5ba001a8d0d',1,'ActAlgorithm::MultiRegion']]],
   ['sortalongdir_115',['sortalongdir',['../classActRoot_1_1Cluster.html#ac4b49994670abc8359865c2ae5811eac',1,'ActRoot::Cluster::SortAlongDir()'],['../classActRoot_1_1Cluster.html#acff6059482a5320bb8d1ef168af2af6d',1,'ActRoot::Cluster::SortAlongDir(const XYZVectorF &amp;dir)']]],
-  ['sortclustersinliersandoutliers_116',['SortClustersInliersAndOutliers',['../classActAlgorithm_1_1Actions_1_1Split.html#a69d4c2b19191e6b97ead1f76af0032eb',1,'ActAlgorithm::Actions::Split']]],
+  ['sortclustersinliersandoutliers_116',['SortClustersInliersAndOutliers',['../classActAlgorithm_1_1Actions_1_1Split.html#ac35c0f5bbb35dbd0b1b7bb8975038419',1,'ActAlgorithm::Actions::Split']]],
   ['split_117',['Split',['../classActAlgorithm_1_1Actions_1_1Split.html#ac3be8a12651a470dc77783d749b770bc',1,'ActAlgorithm::Actions::Split']]],
   ['spreadcharge_118',['SpreadCharge',['../classActSim_1_1TrackGenerator.html#ab9b49094ddfb8c5725d999369e92e230',1,'ActSim::TrackGenerator']]],
   ['srim_119',['srim',['../classActPhysics_1_1SRIM.html#a1b1cf1f7dc625361521825167abdfe15',1,'ActPhysics::SRIM::SRIM()=default'],['../classActPhysics_1_1SRIM.html#a400b092abae684e2826e869530fb7047',1,'ActPhysics::SRIM::SRIM(const std::string &amp;material, const std::string &amp;file)']]],

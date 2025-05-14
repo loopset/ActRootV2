@@ -116,8 +116,10 @@ Collaboration diagram for ActAlgorithm::Actions::Split:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a00afade9786f5716e48d029fb77247e3" id="r_a00afade9786f5716e48d029fb77247e3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> = std::pair&lt; std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt;, std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; &gt;</td></tr>
-<tr class="separator:a00afade9786f5716e48d029fb77247e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a181bf7f3280749cf2d29595981bd552e" id="r_a181bf7f3280749cf2d29595981bd552e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">InliersOutliersPair</a> = std::pair&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>, <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt;</td></tr>
+<tr class="separator:a181bf7f3280749cf2d29595981bd552e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac33b2f374398294af63953261073769b" id="r_ac33b2f374398294af63953261073769b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> = std::vector&lt; <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">InliersOutliersPair</a> &gt;</td></tr>
+<tr class="separator:ac33b2f374398294af63953261073769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classActAlgorithm_1_1VAction"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classActAlgorithm_1_1VAction')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classActAlgorithm_1_1VAction.html">ActAlgorithm::VAction</a></td></tr>
 <tr class="memitem:a29f9ede5dfad27386baec381cec3b96e inherit pub_types_classActAlgorithm_1_1VAction" id="r_a29f9ede5dfad27386baec381cec3b96e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1VAction.html#a29f9ede5dfad27386baec381cec3b96e">XYZVector</a> = ROOT::Math::XYZVector</td></tr>
 <tr class="separator:a29f9ede5dfad27386baec381cec3b96e inherit pub_types_classActAlgorithm_1_1VAction"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,14 +168,14 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a69d4c2b19191e6b97ead1f76af0032eb" id="r_a69d4c2b19191e6b97ead1f76af0032eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a69d4c2b19191e6b97ead1f76af0032eb">SortClustersInliersAndOutliers</a> (<a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;inliersAndOutliersVector)</td></tr>
-<tr class="separator:a69d4c2b19191e6b97ead1f76af0032eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3198f52bf86a24386a616c72f17ea77d" id="r_a3198f52bf86a24386a616c72f17ea77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a3198f52bf86a24386a616c72f17ea77d">GetInliersAndOutliers</a> (<a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> *cluster)</td></tr>
-<tr class="separator:a3198f52bf86a24386a616c72f17ea77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb14154ee710182da394d85ba1747458" id="r_abb14154ee710182da394d85ba1747458"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#abb14154ee710182da394d85ba1747458">GetBestFit</a> (<a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;inliersAndOutliersVector)</td></tr>
-<tr class="separator:abb14154ee710182da394d85ba1747458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4984ef3a23908793642744876b22f59" id="r_ad4984ef3a23908793642744876b22f59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ad4984ef3a23908793642744876b22f59">ApplyContinuity</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; &amp;toAdd, <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;inliersAndOutliersVector)</td></tr>
-<tr class="separator:ad4984ef3a23908793642744876b22f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35c0f5bbb35dbd0b1b7bb8975038419" id="r_ac35c0f5bbb35dbd0b1b7bb8975038419"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac35c0f5bbb35dbd0b1b7bb8975038419">SortClustersInliersAndOutliers</a> (<a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;inliersAndOutliersVector)</td></tr>
+<tr class="separator:ac35c0f5bbb35dbd0b1b7bb8975038419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a760f11b9e0266d3387b97472f9c71" id="r_af4a760f11b9e0266d3387b97472f9c71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#af4a760f11b9e0266d3387b97472f9c71">GetInliersAndOutliers</a> (<a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> *cluster)</td></tr>
+<tr class="separator:af4a760f11b9e0266d3387b97472f9c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6862d6a48d6ab3996dece94ce90787" id="r_a0d6862d6a48d6ab3996dece94ce90787"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a0d6862d6a48d6ab3996dece94ce90787">GetBestFit</a> (<a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;inliersAndOutliersVector)</td></tr>
+<tr class="separator:a0d6862d6a48d6ab3996dece94ce90787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bf3e6aad6a9765b18c2d66bbb02269" id="r_ac1bf3e6aad6a9765b18c2d66bbb02269"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac1bf3e6aad6a9765b18c2d66bbb02269">ApplyContinuity</a> (std::vector&lt; <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> &gt; &amp;toAdd, <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;inliersAndOutliersVector)</td></tr>
+<tr class="separator:ac1bf3e6aad6a9765b18c2d66bbb02269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -209,14 +211,28 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a07fee27dcb3da2c28d912278dc290f53 inherit pro_attribs_classActAlgorithm_1_1VAction"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a00afade9786f5716e48d029fb77247e3" name="a00afade9786f5716e48d029fb77247e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00afade9786f5716e48d029fb77247e3">&#9670;&#160;</a></span>InliersOutliersPair</h2>
+<a id="a181bf7f3280749cf2d29595981bd552e" name="a181bf7f3280749cf2d29595981bd552e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a181bf7f3280749cf2d29595981bd552e">&#9670;&#160;</a></span>InliersOutliersPair</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">ActAlgorithm::Actions::Split::InliersOutliersPair</a> =  std::pair&lt;std::vector&lt;<a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&gt;, std::vector&lt;<a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">ActAlgorithm::Actions::Split::InliersOutliersPair</a> =  std::pair&lt;<a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>, <a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac33b2f374398294af63953261073769b" name="ac33b2f374398294af63953261073769b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac33b2f374398294af63953261073769b">&#9670;&#160;</a></span>PairsVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">ActAlgorithm::Actions::Split::PairsVector</a> =  std::vector&lt;<a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">InliersOutliersPair</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -246,16 +262,16 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   26</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;Split&quot;</span>) { <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">fClimb</a> = std::make_shared&lt;ActAlgorithm::ClIMB&gt;(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>, 10); }</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a70d6183bd1aba666bfc7fa9ea5121f02"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">ActAlgorithm::Actions::Split::fClimb</a></div><div class="ttdeci">std::shared_ptr&lt; ActAlgorithm::ClIMB &gt; fClimb</div><div class="ttdef"><b>Definition</b> ActASplit.h:24</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>: <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">VAction</a>(<span class="stringliteral">&quot;Split&quot;</span>) { <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">fClimb</a> = std::make_shared&lt;ActAlgorithm::ClIMB&gt;(<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">fTPCPars</a>, 10); }</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a70d6183bd1aba666bfc7fa9ea5121f02"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">ActAlgorithm::Actions::Split::fClimb</a></div><div class="ttdeci">std::shared_ptr&lt; ActAlgorithm::ClIMB &gt; fClimb</div><div class="ttdef"><b>Definition</b> ActASplit.h:26</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2f668f17900dee55342988c465510aba"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2f668f17900dee55342988c465510aba">ActAlgorithm::VAction::VAction</a></div><div class="ttdeci">VAction(const std::string &amp;actionID=&quot;Base&quot;)</div><div class="ttdef"><b>Definition</b> ActVAction.cxx:7</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a7352a4edfdef7053a5c5be2b7dea1723"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a7352a4edfdef7053a5c5be2b7dea1723">ActAlgorithm::VAction::fTPCPars</a></div><div class="ttdeci">ActRoot::TPCParameters * fTPCPars</div><div class="ttdef"><b>Definition</b> ActVAction.h:33</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad4984ef3a23908793642744876b22f59" name="ad4984ef3a23908793642744876b22f59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4984ef3a23908793642744876b22f59">&#9670;&#160;</a></span>ApplyContinuity()</h2>
+<a id="ac1bf3e6aad6a9765b18c2d66bbb02269" name="ac1bf3e6aad6a9765b18c2d66bbb02269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1bf3e6aad6a9765b18c2d66bbb02269">&#9670;&#160;</a></span>ApplyContinuity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,7 +288,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;&#160;</td>
           <td class="paramname"><em>inliersAndOutliersVector</em>&#160;</td>
         </tr>
         <tr>
@@ -287,19 +303,21 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  157</span>{</div>
-<div class="line"><span class="lineno">  158</span>    toAdd.push_back(inliersAndOutliersVector.first[0]);</div>
-<div class="line"><span class="lineno">  159</span>    <span class="keyword">auto</span> clusterOutliersAfter = <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">fClimb</a>-&gt;Run(inliersAndOutliersVector.second[0].GetRefToVoxels());</div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span> clusterAfter : clusterOutliersAfter.first)</div>
-<div class="line"><span class="lineno">  161</span>    {</div>
-<div class="line"><span class="lineno">  162</span>        toAdd.push_back(clusterAfter);</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="line"><span class="lineno">  164</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
+<div class="line"><span class="lineno">  129</span>    <span class="comment">// Add the first inlier (best chi2)</span></div>
+<div class="line"><span class="lineno">  130</span>    toAdd.push_back(clusterPairs[0].first);</div>
+<div class="line"><span class="lineno">  131</span>    <span class="comment">// Run Climb on the outliers of the first pair and add them</span></div>
+<div class="line"><span class="lineno">  132</span>    <span class="keyword">auto</span> clusterOutliersAfter = <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a70d6183bd1aba666bfc7fa9ea5121f02">fClimb</a>-&gt;Run(clusterPairs[0].second.GetRefToVoxels());</div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; clusterAfter : clusterOutliersAfter.first)</div>
+<div class="line"><span class="lineno">  134</span>    {</div>
+<div class="line"><span class="lineno">  135</span>        toAdd.push_back(clusterAfter);</div>
+<div class="line"><span class="lineno">  136</span>    }</div>
+<div class="line"><span class="lineno">  137</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="abb14154ee710182da394d85ba1747458" name="abb14154ee710182da394d85ba1747458"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb14154ee710182da394d85ba1747458">&#9670;&#160;</a></span>GetBestFit()</h2>
+<a id="a0d6862d6a48d6ab3996dece94ce90787" name="a0d6862d6a48d6ab3996dece94ce90787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6862d6a48d6ab3996dece94ce90787">&#9670;&#160;</a></span>GetBestFit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,7 +328,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void ActAlgorithm::Actions::Split::GetBestFit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;&#160;</td>
           <td class="paramname"><em>inliersAndOutliersVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -321,26 +339,25 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span>&amp; inliersVector = inliersAndOutliersVector.first;</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span>&amp; outliersVector = inliersAndOutliersVector.second;</div>
-<div class="line"><span class="lineno">  144</span>    <span class="comment">// Initialize variables for loop</span></div>
-<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">fSavedIterations</a>; i++)</div>
-<div class="line"><span class="lineno">  146</span>    {</div>
-<div class="line"><span class="lineno">  147</span>        inliersVector[i].ReFit();</div>
-<div class="line"><span class="lineno">  148</span>    }</div>
-<div class="line"><span class="lineno">  149</span>    <span class="comment">// Sort the first fSavedIteration clusters by chi2</span></div>
-<div class="line"><span class="lineno">  150</span>    std::sort(inliersVector.begin(), inliersVector.begin() + <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">fSavedIterations</a>,</div>
-<div class="line"><span class="lineno">  151</span>              [](<span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&amp; a, <span class="keyword">const</span> <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a>&amp; b)</div>
-<div class="line"><span class="lineno">  152</span>              { return a.GetLine().GetChi2() &lt; b.GetLine().GetChi2(); });</div>
-<div class="line"><span class="lineno">  153</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a0c01113efb8b1c56ba472541519293e8"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">ActAlgorithm::Actions::Split::fSavedIterations</a></div><div class="ttdeci">int fSavedIterations</div><div class="ttdoc">Iterations with higher amount of inliers used to get best cluster (least chi2)</div><div class="ttdef"><b>Definition</b> ActASplit.h:22</div></div>
-<div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition</b> ActCluster.h:20</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{</div>
+<div class="line"><span class="lineno">  114</span>    <span class="comment">// Refit only the first `fSavedIterations` inliers</span></div>
+<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">fSavedIterations</a>; ++i)</div>
+<div class="line"><span class="lineno">  116</span>    {</div>
+<div class="line"><span class="lineno">  117</span>        inliersAndOutliersVector[i].first.ReFit(); <span class="comment">// Refit the inlier (first of the pair)</span></div>
+<div class="line"><span class="lineno">  118</span>    }</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>    <span class="comment">// Sort the first `fSavedIterations` pairs by chi2 of the inlier</span></div>
+<div class="line"><span class="lineno">  121</span>    std::sort(inliersAndOutliersVector.begin(),</div>
+<div class="line"><span class="lineno">  122</span>              inliersAndOutliersVector.begin() +</div>
+<div class="line"><span class="lineno">  123</span>                  std::min(<a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">fSavedIterations</a>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(inliersAndOutliersVector.size())),</div>
+<div class="line"><span class="lineno">  124</span>              [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; a, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; b) { return a.first.GetLine().GetChi2() &lt; b.first.GetLine().GetChi2(); });</div>
+<div class="line"><span class="lineno">  125</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a0c01113efb8b1c56ba472541519293e8"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a0c01113efb8b1c56ba472541519293e8">ActAlgorithm::Actions::Split::fSavedIterations</a></div><div class="ttdeci">int fSavedIterations</div><div class="ttdoc">Iterations with higher amount of inliers used to get best cluster (least chi2)</div><div class="ttdef"><b>Definition</b> ActASplit.h:24</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a3198f52bf86a24386a616c72f17ea77d" name="a3198f52bf86a24386a616c72f17ea77d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3198f52bf86a24386a616c72f17ea77d">&#9670;&#160;</a></span>GetInliersAndOutliers()</h2>
+<a id="af4a760f11b9e0266d3387b97472f9c71" name="af4a760f11b9e0266d3387b97472f9c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a760f11b9e0266d3387b97472f9c71">&#9670;&#160;</a></span>GetInliersAndOutliers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +366,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">ActAlgorithm::Actions::Split::InliersOutliersPair</a> ActAlgorithm::Actions::Split::GetInliersAndOutliers </td>
+          <td class="memname"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">ActAlgorithm::Actions::Split::PairsVector</a> ActAlgorithm::Actions::Split::GetInliersAndOutliers </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> *&#160;</td>
           <td class="paramname"><em>cluster</em></td><td>)</td>
@@ -362,45 +379,46 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  104</span>{</div>
-<div class="line"><span class="lineno">  105</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxels = cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">GetVoxels</a>();</div>
-<div class="line"><span class="lineno">  106</span>    std::vector&lt;ActRoot::Cluster&gt; inliersVector {};</div>
-<div class="line"><span class="lineno">  107</span>    std::vector&lt;ActRoot::Cluster&gt; outliersVector {};</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">fNiterRANSAC</a>; i++)</div>
-<div class="line"><span class="lineno">  109</span>    {</div>
-<div class="line"><span class="lineno">  110</span>        <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> inliers {};</div>
-<div class="line"><span class="lineno">  111</span>        <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> outliers {};</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>        <span class="comment">// 1. Select a random subset of points to be the model</span></div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordtype">double</span> sizeCluster = voxels.size();</div>
-<div class="line"><span class="lineno">  115</span>        <span class="keyword">auto</span> voxel1 = voxels[gRandom-&gt;Integer(sizeCluster)];</div>
-<div class="line"><span class="lineno">  116</span>        <span class="keyword">auto</span> voxel2 = voxels[gRandom-&gt;Integer(sizeCluster)];</div>
-<div class="line"><span class="lineno">  117</span>        <span class="comment">// 2. Solve for the model</span></div>
-<div class="line"><span class="lineno">  118</span>        <a class="code hl_class" href="classActRoot_1_1Line.html">ActRoot::Line</a> line(voxel1.GetPosition(), voxel2.GetPosition());</div>
-<div class="line"><span class="lineno">  119</span>        <span class="comment">// 3. Find the inliers to the model</span></div>
-<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">for</span>(<span class="keyword">auto</span> voxel : voxels)</div>
-<div class="line"><span class="lineno">  121</span>        {</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">if</span>(line.DistanceLineToPoint(voxel.GetPosition()) &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">fCylinderRadius</a>)</div>
-<div class="line"><span class="lineno">  123</span>            {</div>
-<div class="line"><span class="lineno">  124</span>                inliers.AddVoxel(voxel);</div>
-<div class="line"><span class="lineno">  125</span>            }</div>
-<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  127</span>            {</div>
-<div class="line"><span class="lineno">  128</span>                outliers.AddVoxel(voxel);</div>
-<div class="line"><span class="lineno">  129</span>            }</div>
-<div class="line"><span class="lineno">  130</span>        }</div>
-<div class="line"><span class="lineno">  131</span>        inliersVector.push_back(inliers);</div>
-<div class="line"><span class="lineno">  132</span>        outliersVector.push_back(outliers);</div>
-<div class="line"><span class="lineno">  133</span>    }</div>
-<div class="line"><span class="lineno">  134</span>    <span class="comment">// Sort the clusters based on the size of the inliers</span></div>
-<div class="line"><span class="lineno">  135</span>    <a class="code hl_typedef" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> inliersAndOutliersVector = {inliersVector, outliersVector};</div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#a69d4c2b19191e6b97ead1f76af0032eb">SortClustersInliersAndOutliers</a>(inliersAndOutliersVector);</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">return</span> inliersAndOutliersVector;</div>
-<div class="line"><span class="lineno">  138</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a00afade9786f5716e48d029fb77247e3"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">ActAlgorithm::Actions::Split::InliersOutliersPair</a></div><div class="ttdeci">std::pair&lt; std::vector&lt; ActRoot::Cluster &gt;, std::vector&lt; ActRoot::Cluster &gt; &gt; InliersOutliersPair</div><div class="ttdef"><b>Definition</b> ActASplit.h:16</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a2042388b4b93b0b3fb93089a5f28ef32"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">ActAlgorithm::Actions::Split::fCylinderRadius</a></div><div class="ttdeci">double fCylinderRadius</div><div class="ttdoc">Cylinder radius to define inliers.</div><div class="ttdef"><b>Definition</b> ActASplit.h:20</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a69d4c2b19191e6b97ead1f76af0032eb"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a69d4c2b19191e6b97ead1f76af0032eb">ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers</a></div><div class="ttdeci">void SortClustersInliersAndOutliers(InliersOutliersPair &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:72</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ab9fa75762549eb5ce0b5dac4e2b50867"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">ActAlgorithm::Actions::Split::fNiterRANSAC</a></div><div class="ttdeci">int fNiterRANSAC</div><div class="ttdoc">Iterations for RANSAC algorithm.</div><div class="ttdef"><b>Definition</b> ActASplit.h:19</div></div>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_typedef" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> inliersAndOutliersVector {};</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; voxels = cluster-&gt;<a class="code hl_function" href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">GetVoxels</a>();</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">fNiterRANSAC</a>; i++)</div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> inliers {};</div>
+<div class="line"><span class="lineno">   84</span>        <a class="code hl_class" href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a> outliers {};</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>        <span class="comment">// 1. Select a random subset of points to be the model</span></div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordtype">double</span> sizeCluster = voxels.size();</div>
+<div class="line"><span class="lineno">   88</span>        <span class="keyword">auto</span> voxel1 = voxels[gRandom-&gt;Integer(sizeCluster)];</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keyword">auto</span> voxel2 = voxels[gRandom-&gt;Integer(sizeCluster)];</div>
+<div class="line"><span class="lineno">   90</span>        <span class="comment">// 2. Solve for the model</span></div>
+<div class="line"><span class="lineno">   91</span>        <a class="code hl_class" href="classActRoot_1_1Line.html">ActRoot::Line</a> line(voxel1.GetPosition(), voxel2.GetPosition());</div>
+<div class="line"><span class="lineno">   92</span>        <span class="comment">// 3. Find the inliers to the model</span></div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">for</span>(<span class="keyword">auto</span> voxel : voxels)</div>
+<div class="line"><span class="lineno">   94</span>        {</div>
+<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">if</span>(line.DistanceLineToPoint(voxel.GetPosition()) &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">fCylinderRadius</a>)</div>
+<div class="line"><span class="lineno">   96</span>            {</div>
+<div class="line"><span class="lineno">   97</span>                inliers.AddVoxel(voxel);</div>
+<div class="line"><span class="lineno">   98</span>            }</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  100</span>            {</div>
+<div class="line"><span class="lineno">  101</span>                outliers.AddVoxel(voxel);</div>
+<div class="line"><span class="lineno">  102</span>            }</div>
+<div class="line"><span class="lineno">  103</span>        }</div>
+<div class="line"><span class="lineno">  104</span>        <a class="code hl_typedef" href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">InliersOutliersPair</a> inliersAndOutliers = {inliers, outliers};</div>
+<div class="line"><span class="lineno">  105</span>        inliersAndOutliersVector.push_back(inliersAndOutliers);</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span>    <span class="comment">// Sort the clusters based on the size of the inliers</span></div>
+<div class="line"><span class="lineno">  108</span>    <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#ac35c0f5bbb35dbd0b1b7bb8975038419">SortClustersInliersAndOutliers</a>(inliersAndOutliersVector);</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">return</span> inliersAndOutliersVector;</div>
+<div class="line"><span class="lineno">  110</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a181bf7f3280749cf2d29595981bd552e"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a181bf7f3280749cf2d29595981bd552e">ActAlgorithm::Actions::Split::InliersOutliersPair</a></div><div class="ttdeci">std::pair&lt; ActRoot::Cluster, ActRoot::Cluster &gt; InliersOutliersPair</div><div class="ttdef"><b>Definition</b> ActASplit.h:17</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a2042388b4b93b0b3fb93089a5f28ef32"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">ActAlgorithm::Actions::Split::fCylinderRadius</a></div><div class="ttdeci">double fCylinderRadius</div><div class="ttdoc">Cylinder radius to define inliers.</div><div class="ttdef"><b>Definition</b> ActASplit.h:22</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ab9fa75762549eb5ce0b5dac4e2b50867"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">ActAlgorithm::Actions::Split::fNiterRANSAC</a></div><div class="ttdeci">int fNiterRANSAC</div><div class="ttdoc">Iterations for RANSAC algorithm.</div><div class="ttdef"><b>Definition</b> ActASplit.h:21</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ac33b2f374398294af63953261073769b"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">ActAlgorithm::Actions::Split::PairsVector</a></div><div class="ttdeci">std::vector&lt; InliersOutliersPair &gt; PairsVector</div><div class="ttdef"><b>Definition</b> ActASplit.h:18</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ac35c0f5bbb35dbd0b1b7bb8975038419"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ac35c0f5bbb35dbd0b1b7bb8975038419">ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers</a></div><div class="ttdeci">void SortClustersInliersAndOutliers(PairsVector &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:70</div></div>
+<div class="ttc" id="aclassActRoot_1_1Cluster_html"><div class="ttname"><a href="classActRoot_1_1Cluster.html">ActRoot::Cluster</a></div><div class="ttdoc">Basic class containing Line + Collection of voxels belonging to the cluster.</div><div class="ttdef"><b>Definition</b> ActCluster.h:20</div></div>
 <div class="ttc" id="aclassActRoot_1_1Cluster_html_ac89a8e2813c0bdd35e90d6e5e579ec04"><div class="ttname"><a href="classActRoot_1_1Cluster.html#ac89a8e2813c0bdd35e90d6e5e579ec04">ActRoot::Cluster::GetVoxels</a></div><div class="ttdeci">const std::vector&lt; ActRoot::Voxel &gt; &amp; GetVoxels() const</div><div class="ttdef"><b>Definition</b> ActCluster.h:57</div></div>
 <div class="ttc" id="aclassActRoot_1_1Line_html"><div class="ttname"><a href="classActRoot_1_1Line.html">ActRoot::Line</a></div><div class="ttdef"><b>Definition</b> ActLine.h:21</div></div>
 </div><!-- fragment -->
@@ -430,21 +448,21 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a376e68966cbc0e74bbbab6f5d10afcdc">ActAlgorithm::VAction</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
-<div class="line"><span class="lineno">   59</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
-<div class="line"><span class="lineno">   61</span>    {</div>
-<div class="line"><span class="lineno">   62</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
-<div class="line"><span class="lineno">   65</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  NiterRANSAC    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">fNiterRANSAC</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   66</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  CylinderRadius : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">fCylinderRadius</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   67</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  MinChi2        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">fMinChi2</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   68</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>{</div>
+<div class="line"><span class="lineno">   57</span>    std::cout &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a> &lt;&lt; <span class="stringliteral">&quot;····· &quot;</span> &lt;&lt; <a class="code hl_function" href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">GetActionID</a>() &lt;&lt; <span class="stringliteral">&quot; ·····&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span>(!<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">fIsEnabled</a>)</div>
+<div class="line"><span class="lineno">   59</span>    {</div>
+<div class="line"><span class="lineno">   60</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   62</span>    }</div>
+<div class="line"><span class="lineno">   63</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  NiterRANSAC    : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#ab9fa75762549eb5ce0b5dac4e2b50867">fNiterRANSAC</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   64</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  CylinderRadius : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a2042388b4b93b0b3fb93089a5f28ef32">fCylinderRadius</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   65</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  MinChi2        : &quot;</span> &lt;&lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">fMinChi2</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   66</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;······························&quot;</span> &lt;&lt; <a class="code hl_define" href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   67</span>}</div>
 <div class="ttc" id="aActColors_8h_html_ab702106cf3b3e96750b6845ded4e0299"><div class="ttname"><a href="ActColors_8h.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a></div><div class="ttdeci">#define RESET</div><div class="ttdef"><b>Definition</b> ActColors.h:6</div></div>
 <div class="ttc" id="aActColors_8h_html_ae87af5e6363eb1913b17f24dcb60a22d"><div class="ttname"><a href="ActColors_8h.html#ae87af5e6363eb1913b17f24dcb60a22d">BOLDCYAN</a></div><div class="ttdeci">#define BOLDCYAN</div><div class="ttdef"><b>Definition</b> ActColors.h:21</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a06121f235254c7917d4f2d1c65ed3ca9"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">ActAlgorithm::Actions::Split::fMinChi2</a></div><div class="ttdeci">double fMinChi2</div><div class="ttdoc">Minimum value of cluster's chi2 to apply RANSAC to it.</div><div class="ttdef"><b>Definition</b> ActASplit.h:21</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a06121f235254c7917d4f2d1c65ed3ca9"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">ActAlgorithm::Actions::Split::fMinChi2</a></div><div class="ttdeci">double fMinChi2</div><div class="ttdoc">Minimum value of cluster's chi2 to apply RANSAC to it.</div><div class="ttdef"><b>Definition</b> ActASplit.h:23</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_a2a299818265c1afa62ef5e9917ecb3b5"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#a2a299818265c1afa62ef5e9917ecb3b5">ActAlgorithm::VAction::fIsEnabled</a></div><div class="ttdeci">bool fIsEnabled</div><div class="ttdef"><b>Definition</b> ActVAction.h:36</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_abc573631cdaa8b4e3d34aacc0fdaf22c"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#abc573631cdaa8b4e3d34aacc0fdaf22c">ActAlgorithm::VAction::GetActionID</a></div><div class="ttdeci">const std::string &amp; GetActionID() const</div><div class="ttdef"><b>Definition</b> ActVAction.h:51</div></div>
 </div><!-- fragment -->
@@ -514,45 +532,43 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classActAlgorithm_1_1VAction.html#a03261405a5648594cf8b515c74024990">ActAlgorithm::VAction</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span>    gRandom-&gt;SetSeed(0);</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keyword">auto</span>&amp; fClusters {<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>};</div>
-<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 2; i++) <span class="comment">// Search a maximum of 2 times for the best clusters</span></div>
-<div class="line"><span class="lineno">   30</span>    {</div>
-<div class="line"><span class="lineno">   31</span>        std::vector&lt;ActRoot::Cluster&gt; toAdd {};</div>
-<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = fClusters.begin(); it != fClusters.end();)</div>
-<div class="line"><span class="lineno">   33</span>        {</div>
-<div class="line"><span class="lineno">   34</span>            <span class="keywordflow">if</span>(it-&gt;GetLine().GetChi2() &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">fMinChi2</a>) <span class="comment">// First we need to see what cluster need RANSAC by its chi2</span></div>
-<div class="line"><span class="lineno">   35</span>            {</div>
-<div class="line"><span class="lineno">   36</span>                it++;</div>
-<div class="line"><span class="lineno">   37</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">   38</span>            }</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>            <span class="comment">// 1. Select a random subset of points to be the model</span></div>
-<div class="line"><span class="lineno">   41</span>            <span class="comment">// 2. Solve for the model</span></div>
-<div class="line"><span class="lineno">   42</span>            <span class="comment">// 3. Find the inliers to the model</span></div>
-<div class="line"><span class="lineno">   43</span>            <span class="comment">// 4. Repeat 1-3 for N iterations, and choose the model with the most inliers</span></div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>            <span class="comment">// Get the inliers and outliers for this iteration of RANSAC</span></div>
-<div class="line"><span class="lineno">   46</span>            <span class="keyword">auto</span> inliersAndOutliersVector = <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#a3198f52bf86a24386a616c72f17ea77d">GetInliersAndOutliers</a>(&amp;(*it));</div>
-<div class="line"><span class="lineno">   47</span>            <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#abb14154ee710182da394d85ba1747458">GetBestFit</a>(inliersAndOutliersVector);</div>
-<div class="line"><span class="lineno">   48</span>            <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#ad4984ef3a23908793642744876b22f59">ApplyContinuity</a>(toAdd, inliersAndOutliersVector);</div>
-<div class="line"><span class="lineno">   49</span>            <span class="comment">// Apply changes to fClusters</span></div>
-<div class="line"><span class="lineno">   50</span>            it = fClusters.erase(it);</div>
-<div class="line"><span class="lineno">   51</span>        }</div>
-<div class="line"><span class="lineno">   52</span>        fClusters.insert(fClusters.end(), std::make_move_iterator(toAdd.begin()),</div>
-<div class="line"><span class="lineno">   53</span>                             std::make_move_iterator(toAdd.end()));</div>
-<div class="line"><span class="lineno">   54</span>    }</div>
-<div class="line"><span class="lineno">   55</span>}</div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a3198f52bf86a24386a616c72f17ea77d"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a3198f52bf86a24386a616c72f17ea77d">ActAlgorithm::Actions::Split::GetInliersAndOutliers</a></div><div class="ttdeci">InliersOutliersPair GetInliersAndOutliers(ActRoot::Cluster *cluster)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:103</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_abb14154ee710182da394d85ba1747458"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#abb14154ee710182da394d85ba1747458">ActAlgorithm::Actions::Split::GetBestFit</a></div><div class="ttdeci">void GetBestFit(InliersOutliersPair &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:140</div></div>
-<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ad4984ef3a23908793642744876b22f59"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ad4984ef3a23908793642744876b22f59">ActAlgorithm::Actions::Split::ApplyContinuity</a></div><div class="ttdeci">void ApplyContinuity(std::vector&lt; ActRoot::Cluster &gt; &amp;toAdd, InliersOutliersPair &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:155</div></div>
+<div class="line"><span class="lineno">   27</span>    <span class="keyword">auto</span>&amp; fClusters {<a class="code hl_variable" href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">fTPCData</a>-&gt;<a class="code hl_variable" href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">fClusters</a>};</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 2; i++) <span class="comment">// Search a maximum of 2 times for the best clusters</span></div>
+<div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        std::vector&lt;ActRoot::Cluster&gt; toAdd {};</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = fClusters.begin(); it != fClusters.end();)</div>
+<div class="line"><span class="lineno">   32</span>        {</div>
+<div class="line"><span class="lineno">   33</span>            <span class="keywordflow">if</span>(it-&gt;GetLine().GetChi2() &lt; <a class="code hl_variable" href="classActAlgorithm_1_1Actions_1_1Split.html#a06121f235254c7917d4f2d1c65ed3ca9">fMinChi2</a>) <span class="comment">// First we need to see what cluster need RANSAC by its chi2</span></div>
+<div class="line"><span class="lineno">   34</span>            {</div>
+<div class="line"><span class="lineno">   35</span>                it++;</div>
+<div class="line"><span class="lineno">   36</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   37</span>            }</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>            <span class="comment">// 1. Select a random subset of points to be the model</span></div>
+<div class="line"><span class="lineno">   40</span>            <span class="comment">// 2. Solve for the model</span></div>
+<div class="line"><span class="lineno">   41</span>            <span class="comment">// 3. Find the inliers to the model</span></div>
+<div class="line"><span class="lineno">   42</span>            <span class="comment">// 4. Repeat 1-3 for N iterations, and choose the model with the most inliers</span></div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>            <span class="comment">// Get the inliers and outliers for this iteration of RANSAC</span></div>
+<div class="line"><span class="lineno">   45</span>            <span class="keyword">auto</span> inliersAndOutliersVector = <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#af4a760f11b9e0266d3387b97472f9c71">GetInliersAndOutliers</a>(&amp;(*it));</div>
+<div class="line"><span class="lineno">   46</span>            <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#a0d6862d6a48d6ab3996dece94ce90787">GetBestFit</a>(inliersAndOutliersVector);</div>
+<div class="line"><span class="lineno">   47</span>            <a class="code hl_function" href="classActAlgorithm_1_1Actions_1_1Split.html#ac1bf3e6aad6a9765b18c2d66bbb02269">ApplyContinuity</a>(toAdd, inliersAndOutliersVector);</div>
+<div class="line"><span class="lineno">   48</span>            <span class="comment">// Apply changes to fClusters</span></div>
+<div class="line"><span class="lineno">   49</span>            it = fClusters.erase(it);</div>
+<div class="line"><span class="lineno">   50</span>        }</div>
+<div class="line"><span class="lineno">   51</span>        fClusters.insert(fClusters.end(), std::make_move_iterator(toAdd.begin()), std::make_move_iterator(toAdd.end()));</div>
+<div class="line"><span class="lineno">   52</span>    }</div>
+<div class="line"><span class="lineno">   53</span>}</div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_a0d6862d6a48d6ab3996dece94ce90787"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#a0d6862d6a48d6ab3996dece94ce90787">ActAlgorithm::Actions::Split::GetBestFit</a></div><div class="ttdeci">void GetBestFit(PairsVector &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:112</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_ac1bf3e6aad6a9765b18c2d66bbb02269"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#ac1bf3e6aad6a9765b18c2d66bbb02269">ActAlgorithm::Actions::Split::ApplyContinuity</a></div><div class="ttdeci">void ApplyContinuity(std::vector&lt; ActRoot::Cluster &gt; &amp;toAdd, PairsVector &amp;inliersAndOutliersVector)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:127</div></div>
+<div class="ttc" id="aclassActAlgorithm_1_1Actions_1_1Split_html_af4a760f11b9e0266d3387b97472f9c71"><div class="ttname"><a href="classActAlgorithm_1_1Actions_1_1Split.html#af4a760f11b9e0266d3387b97472f9c71">ActAlgorithm::Actions::Split::GetInliersAndOutliers</a></div><div class="ttdeci">PairsVector GetInliersAndOutliers(ActRoot::Cluster *cluster)</div><div class="ttdef"><b>Definition</b> ActASplit.cxx:76</div></div>
 <div class="ttc" id="aclassActAlgorithm_1_1VAction_html_add8078a2aa1a83e3eb110a0274a8908f"><div class="ttname"><a href="classActAlgorithm_1_1VAction.html#add8078a2aa1a83e3eb110a0274a8908f">ActAlgorithm::VAction::fTPCData</a></div><div class="ttdeci">ActRoot::TPCData * fTPCData</div><div class="ttdef"><b>Definition</b> ActVAction.h:32</div></div>
 <div class="ttc" id="aclassActRoot_1_1TPCData_html_adf84fa184a479d60824d87ec02b64b99"><div class="ttname"><a href="classActRoot_1_1TPCData.html#adf84fa184a479d60824d87ec02b64b99">ActRoot::TPCData::fClusters</a></div><div class="ttdeci">std::vector&lt; Cluster &gt; fClusters</div><div class="ttdef"><b>Definition</b> ActTPCData.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a69d4c2b19191e6b97ead1f76af0032eb" name="a69d4c2b19191e6b97ead1f76af0032eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69d4c2b19191e6b97ead1f76af0032eb">&#9670;&#160;</a></span>SortClustersInliersAndOutliers()</h2>
+<a id="ac35c0f5bbb35dbd0b1b7bb8975038419" name="ac35c0f5bbb35dbd0b1b7bb8975038419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac35c0f5bbb35dbd0b1b7bb8975038419">&#9670;&#160;</a></span>SortClustersInliersAndOutliers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -563,7 +579,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void ActAlgorithm::Actions::Split::SortClustersInliersAndOutliers </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#a00afade9786f5716e48d029fb77247e3">InliersOutliersPair</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classActAlgorithm_1_1Actions_1_1Split.html#ac33b2f374398294af63953261073769b">PairsVector</a> &amp;&#160;</td>
           <td class="paramname"><em>inliersAndOutliersVector</em></td><td>)</td>
           <td></td>
         </tr>
@@ -574,34 +590,10 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   73</span>{</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keyword">auto</span>&amp; inliersVector  = inliersAndOutliersVector.first;</div>
-<div class="line"><span class="lineno">   75</span>    <span class="keyword">auto</span>&amp; outliersVector = inliersAndOutliersVector.second;</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    <span class="keyword">const</span> <span class="keyword">auto</span> size = inliersVector.size();</div>
-<div class="line"><span class="lineno">   78</span>    std::vector&lt;int&gt; index(size);</div>
-<div class="line"><span class="lineno">   79</span>    std::iota(index.begin(), index.end(), 0); <span class="comment">// make index vectors</span></div>
-<div class="line"><span class="lineno">   80</span> </div>
-<div class="line"><span class="lineno">   81</span>    <span class="comment">// Sort index vector based on the size of the inliers</span></div>
-<div class="line"><span class="lineno">   82</span>    std::sort(index.begin(), index.end(), [&amp;](<span class="keywordtype">size_t</span> a, <span class="keywordtype">size_t</span> b) {</div>
-<div class="line"><span class="lineno">   83</span>        return inliersVector[a].GetVoxels().size() &gt; inliersVector[b].GetVoxels().size();</div>
-<div class="line"><span class="lineno">   84</span>    });</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>    <span class="comment">// Reorder the inliers and outliers vectors based on the sorted indices</span></div>
-<div class="line"><span class="lineno">   87</span>    std::vector&lt;ActRoot::Cluster&gt; sortedInliers, sortedOutliers;</div>
-<div class="line"><span class="lineno">   88</span>    sortedInliers.reserve(size);</div>
-<div class="line"><span class="lineno">   89</span>    sortedOutliers.reserve(size);</div>
-<div class="line"><span class="lineno">   90</span>    </div>
-<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i : index)</div>
-<div class="line"><span class="lineno">   92</span>    {</div>
-<div class="line"><span class="lineno">   93</span>        sortedInliers.emplace_back(std::move(inliersVector[i]));</div>
-<div class="line"><span class="lineno">   94</span>        sortedOutliers.emplace_back(std::move(outliersVector[i]));</div>
-<div class="line"><span class="lineno">   95</span>    }</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>    <span class="comment">// Replace the original vectors with the sorted ones</span></div>
-<div class="line"><span class="lineno">   98</span>    inliersVector  = std::move(sortedInliers);</div>
-<div class="line"><span class="lineno">   99</span>    outliersVector = std::move(sortedOutliers);</div>
-<div class="line"><span class="lineno">  100</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>{</div>
+<div class="line"><span class="lineno">   72</span>    std::sort(inliersAndOutliersVector.begin(), inliersAndOutliersVector.end(),</div>
+<div class="line"><span class="lineno">   73</span>              [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; a, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; b) { return a.first.GetVoxels().size() &gt; b.first.GetVoxels().size(); });</div>
+<div class="line"><span class="lineno">   74</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -625,7 +617,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   24</span>{}; <span class="comment">// ClIMB continuity algorithm object</span></div>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>{}; <span class="comment">// ClIMB continuity algorithm object</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -650,7 +642,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cylinder radius to define inliers. </p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>{}; </div>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{}; </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -675,7 +667,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Minimum value of cluster's chi2 to apply <a class="el" href="classActAlgorithm_1_1RANSAC.html">RANSAC</a> to it. </p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{};        </div>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{};        </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -700,7 +692,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Iterations for <a class="el" href="classActAlgorithm_1_1RANSAC.html">RANSAC</a> algorithm. </p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{};       </div>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{};       </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -725,7 +717,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Iterations with higher amount of inliers used to get best cluster (least chi2) </p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{};   </div>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{};   </div>
 </div><!-- fragment -->
 </div>
 </div>
