@@ -17,9 +17,11 @@ void ActAlgorithm::Actions::Split::ReadConfiguration(std::shared_ptr<ActRoot::In
     if(conf->CheckTokenExists("NiterRANSAC"))
         fNiterRANSAC = conf->GetInt("NiterRANSAC");
     if(conf->CheckTokenExists("CylinderRadius"))
-        fCylinderRadius = conf->GetInt("CylinderRadius");
+        fCylinderRadius = conf->GetDouble("CylinderRadius");
     if(conf->CheckTokenExists("MinChi2"))
-        fMinChi2 = conf->GetInt("MinChi2");
+        fMinChi2 = conf->GetDouble("MinChi2");
+    if(conf->CheckTokenExists("SavedIterations"))
+        fSavedIterations = conf->GetInt("SavedIterations");
 }
 
 void ActAlgorithm::Actions::Split::Run()
