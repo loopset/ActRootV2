@@ -1,6 +1,7 @@
 #ifndef ActCrossSection_h
 #define ActCrossSection_h
 
+#include "TH1.h"
 #include "TSpline.h"
 
 #include <string>
@@ -13,9 +14,9 @@ class CrossSection
 private:
     std::vector<double> fX {};
     std::vector<double> fY {};
-    std::vector<double> fY_AngleGraph {};
-    TSpline3* fCDF {};
-    TGraph* fTheoXSGraph {};
+    TSpline3* fCDF {};       //!< For CDF sampling
+    TH1D* fHist {};          //!< For direct count sampling
+    TGraph* fTheoXSGraph {}; //!< Theoretical input graph
     double fStep {};
     double fTotalXS {};
     bool fIsAngle {};
@@ -27,14 +28,19 @@ public:
     void ReadGraph(TGraph* g);
     void ReadFile(const std::string& file);
 
-    // Getters and others
-    double xsIntervalcm(const TString& file, double minAngle, double maxAngle);
-    void DrawCDF() const;
-    double Sample(double r);
-    double Sample(); // Using internal gRandom
-    void DrawTheo();
+
+    // Sampling methods
+    double SampleCDF(double r);
+    double SampleCDF();
+    double SampleHist(TRandom* rand = nullptr);
+
+    // Getters
     double GetTotalXSmbarn() { return fTotalXS; }
     double GetTotalXScm2() const { return fTotalXS * 1e-27; }
+    double GetIntervalXS(double minAngle, double maxAngle);
+
+    // Others
+    void Draw() const;
 
 private:
     void Init(int n, const double* x, const double* y);

@@ -2,9 +2,12 @@
 
 #include "ActUtils.h"
 
+#include "Rtypes.h"
+
 #include "TCanvas.h"
 #include "TF1.h"
 #include "TGraph.h"
+#include "TH1.h"
 #include "TMath.h"
 #include "TRandom.h"
 #include "TString.h"
@@ -58,6 +61,16 @@ void ActSim::CrossSection::Init(int n, const double* x, const double* y)
     // Get the Spline
     fCDF = new TSpline3 {"fCDF", &CDFData[0], &fX[0], (int)CDFData.size(), "b2,e2", 0, 0};
     fCDF->SetTitle(TString::Format("CDF;r;%s", fIsAngle ? "#theta_{CM} [#circ]" : "E_{x} [MeV]"));
+
+    // Compute the histogram
+    TGraph ghist {static_cast<Int_t>(fX.size()), fX.data(), fY.data()};
+    TF1 fhist {"fhist", [&](double* x, double* p) { return ghist.Eval(x[0], nullptr, "S"); }, fX.front(), fX.back(), 0};
+    // Get bin info
+    auto min {fX.front() - fStep / 2};
+    auto max {fX.back() + fStep / 2};
+    auto nbins {static_cast<int>((max - min) / 0.5)};
+    fHist = new TH1D {"hXS", "Count histo;#theta_{CM} [#circ];#counts", nbins, min, max};
+    fHist->Add(&fhist);
 }
 
 void ActSim::CrossSection::ReadFile(const std::string& file)
@@ -110,42 +123,46 @@ void ActSim::CrossSection::ReadGraph(TGraph* g)
     Init(g->GetN(), g->GetX(), g->GetY());
 }
 
-double ActSim::CrossSection::xsIntervalcm(const TString& file, double minAngle, double maxAngle)
+double ActSim::CrossSection::GetIntervalXS(double minAngle, double maxAngle)
 {
     double xsIntervalValue {};
     for(int i = 0; i < fX.size(); i++)
     {
-        // Only process the data if the angle is within the specified range
         if(minAngle <= fX[i] && fX[i] <= maxAngle)
         {
-            xsIntervalValue += fY[i] * TMath::TwoPi() * (fStep * TMath::DegToRad());
+            xsIntervalValue += fY[i] * TMath::TwoPi() * (fStep * TMath::DegToRad()); // already multiplied by sin factor
         }
     }
     return xsIntervalValue; // Return in mb
 }
 
-void ActSim::CrossSection::DrawCDF() const
+void ActSim::CrossSection::Draw() const
 {
-    auto c0 {new TCanvas("cCDF", "CDF Canvas")};
+    auto* c {new TCanvas {"cXS", "Cross section canvas"}};
+    c->DivideSquare(4);
+    c->cd(1);
+    fTheoXSGraph->Draw("apl");
+    c->cd(2);
     fCDF->SetLineWidth(2);
     fCDF->SetLineColor(kRed);
     fCDF->SetLineWidth(3);
     fCDF->SetNpx(1000);
     fCDF->Draw();
+    c->cd(3);
+    fHist->Draw();
 }
 
-double ActSim::CrossSection::Sample(double r)
+double ActSim::CrossSection::SampleCDF(double r)
 {
     return fCDF->Eval(r);
 }
 
-double ActSim::CrossSection::Sample()
+double ActSim::CrossSection::SampleCDF()
 {
-    return Sample(gRandom->Uniform());
+    return SampleCDF(gRandom->Uniform());
 }
 
-void ActSim::CrossSection::DrawTheo()
+double ActSim::CrossSection::SampleHist(TRandom* rand)
 {
-    auto* c1 {new TCanvas("cTheo")};
-    fTheoXSGraph->Draw();
+    return fHist->GetRandom(rand);
 }
