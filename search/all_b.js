@@ -8,5 +8,6 @@ var searchData=
   ['lightorheavy_5',['LightOrHeavy',['../classActRoot_1_1MergerDetector.html#a6e648156c52ebf690dd9c049060c9fd6',1,'ActRoot::MergerDetector']]],
   ['line_6',['line',['../classActRoot_1_1Line.html',1,'ActRoot::Line'],['../classActRoot_1_1Line.html#aec3e244591a6afb9ee2e18b44063fb76',1,'ActRoot::Line::Line()=default'],['../classActRoot_1_1Line.html#a7bade61caa570696be228264b32306a8',1,'ActRoot::Line::Line(XYZPointF point, XYZVectorF direction, float chi)'],['../classActRoot_1_1Line.html#aa0e552a33685ed263731bd94a975c745',1,'ActRoot::Line::Line(const XYZPointF &amp;p1, const XYZPointF &amp;p2)']]],
   ['linemap_7',['LineMap',['../classActRoot_1_1HistogramPainter.html#abd0104d4af047797df62acab8dc221b2',1,'ActRoot::HistogramPainter']]],
-  ['lorentzboostx_8',['LorentzBoostX',['../classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2',1,'ActPhysics::Kinematics']]]
+  ['loaduseraction_8',['LoadUserAction',['../classActAlgorithm_1_1MultiAction.html#a18b61a4bea65c6c8a6ac71918fbd11ba',1,'ActAlgorithm::MultiAction']]],
+  ['lorentzboostx_9',['LorentzBoostX',['../classActPhysics_1_1Kinematics.html#a865644e9c2a512b72708def6927e90c2',1,'ActPhysics::Kinematics']]]
 ];
