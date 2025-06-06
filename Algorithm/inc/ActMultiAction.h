@@ -1,6 +1,7 @@
 #ifndef ActMultiAction_h
 #define ActMultiAction_h
 
+#include "ActInputParser.h"
 #include "ActVAction.h"
 #include "ActVCluster.h"
 #include "ActVFilter.h"
@@ -49,6 +50,7 @@ public:
     Ptr ConstructAction(const std::string& actionID);
 
 private:
+    void LoadUserAction(std::shared_ptr<ActRoot::InputBlock> block);
     void ResetClusterID();
 };
 

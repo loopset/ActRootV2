@@ -16,6 +16,9 @@
 #include "ActTPCParameters.h"
 #include "ActVCluster.h"
 
+#include <dlfcn.h>
+
+#include <filesystem>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -80,9 +83,24 @@ void ActAlgorithm::MultiAction::ReadConfiguration()
     // And init!
     for(const auto& header : headers)
     {
-        fActions.push_back(ConstructAction(header));
+        // User action
+        if(header == "User")
+        {
+            LoadUserAction(parser.GetBlock(header));
+            // If there use UserConfig header, pass it to the UserAction
+            if(std::find(headers.begin(), headers.end(), "UserConfig") != headers.end())
+                fActions.back()->ReadConfiguration(parser.GetBlock("UserConfig"));
+        }
+        // UserConfig
+        else if(header == "UserConfig")
+            continue; // UserConfig is passed to UserAction in previous if condition
+        else
+        {
+            fActions.push_back(ConstructAction(header));
+            fActions.back()->ReadConfiguration(parser.GetBlock(header));
+        }
+        // Set ClusterPtr for all. Data and Parameters are managed by TPCDetector
         fActions.back()->SetClusterPtr(fAlgo);
-        fActions.back()->ReadConfiguration(parser.GetBlock(header));
     }
 }
 
@@ -114,4 +132,30 @@ void ActAlgorithm::MultiAction::ResetClusterID()
 {
     for(int i = 0, size = fData->fClusters.size(); i < size; i++)
         fData->fClusters[i].SetClusterID(i);
+}
+
+void ActAlgorithm::MultiAction::LoadUserAction(std::shared_ptr<ActRoot::InputBlock> block)
+{
+    // Get name
+    auto name {block->GetString("Name")};
+    // Get path from block
+    auto path {block->GetString("Path")};
+    // Build path + name
+    auto file {ActRoot::Options::GetInstance()->GetProjectDir() + path + name};
+    // If it doesnt exist, throw error
+    if(!std::filesystem::exists(file))
+        throw std::runtime_error("MA::LoadUserAction(): cannot locate library");
+
+    // Load the .so
+    auto library {dlopen(file.c_str(), RTLD_NOW | RTLD_GLOBAL)};
+    if(!library)
+        throw std::runtime_error("MA::LoadUserAction: failed to execute dlopen()");
+    auto creator {reinterpret_cast<VAction* (*)()>(dlsym(library, "CreateUserAction"))};
+    if(!creator)
+    {
+        dlclose(library);
+        throw std::runtime_error("MA::LoadUserAction(): cannot open CreateUserAction() in library " + name);
+    }
+    // If success, call constructor in extern "C" function
+    fActions.push_back(std::shared_ptr<VAction>(creator()));
 }

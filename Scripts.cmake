@@ -52,3 +52,29 @@ function(add_actlibrary)
     # and finally root components
     install_root_dict(${PARSED_ARGS_NAME})
 endfunction()
+
+function(add_userlibrary)
+    # parse arguments
+    set(options OPTS)
+    set(oneValue NAME)
+    set(multiValue LINK SOURCES)
+    cmake_parse_arguments(PARSED_ARGS "${options}" "${oneValue}"
+                           "${multiValue}" ${ARGN})
+    if(NOT PARSED_ARGS_NAME)
+        message(FATAL_ERROR "add_actlibrary() : you must provide a library name")
+    endif()
+
+    set(CMAKE_CXX_STANDARD 17)
+
+    # ROOT
+    find_package(ROOT 6.20 CONFIG REQUIRED COMPONENTS MathCore MathMore Physics GenVector)
+    include(${ROOT_USE_FILE})
+
+    # ActRoot
+    set(ACTROOT_INSTALL $ENV{ACTROOT}/install)
+    include_directories(${ACTROOT_INSTALL}/include)
+    link_directories(${ACTROOT_INSTALL}/lib)
+
+    add_library(${PARSED_ARGS_NAME} SHARED ${PARSED_ARGS_SOURCES})
+    target_link_libraries(${PARSED_ARGS_NAME} PRIVATE ${ROOT_LIBRARIES} ${PARSED_ARGS_LINK})
+endfunction()
