@@ -21,7 +21,7 @@ var searchData=
   ['addpoint_18',['AddPoint',['../classActPhysics_1_1SilMatrix.html#ae69e45f6140bf27ac1928d0bd25b8123',1,'ActPhysics::SilMatrix']]],
   ['addrecoil_19',['AddRecoil',['../classActSim_1_1TrackGenerator.html#aca75be5bc30ceb79a5147e7ba0e28d74',1,'ActSim::TrackGenerator']]],
   ['addregion_20',['AddRegion',['../classActAlgorithm_1_1MultiRegion.html#ae0995a5dca6a1818b14f12e93be80bdf',1,'ActAlgorithm::MultiRegion']]],
-  ['addsil_21',['addsil',['../classActPhysics_1_1SilMatrix.html#abc4a5ab52bff2a592603d2dacacb9a22',1,'ActPhysics::SilMatrix::AddSil(int idx, TCutG *g)'],['../classActPhysics_1_1SilMatrix.html#a72043c2ca042a9f98eecdcdb7ced4d18',1,'ActPhysics::SilMatrix::AddSil(int idx, const std::pair&lt; double, double &gt; &amp;x, const std::pair&lt; double, double &gt; &amp;y)']]],
+  ['addsil_21',['addsil',['../classActPhysics_1_1SilMatrix.html#a72043c2ca042a9f98eecdcdb7ced4d18',1,'ActPhysics::SilMatrix::AddSil(int idx, const std::pair&lt; double, double &gt; &amp;x, const std::pair&lt; double, double &gt; &amp;y)'],['../classActPhysics_1_1SilMatrix.html#abc4a5ab52bff2a592603d2dacacb9a22',1,'ActPhysics::SilMatrix::AddSil(int idx, TCutG *g)']]],
   ['addtabs_22',['AddTabs',['../classActRoot_1_1EventPainter.html#a885e2232b2ac9e9e353cd565de89704c',1,'ActRoot::EventPainter']]],
   ['addvoxel_23',['addvoxel',['../classActRoot_1_1Cluster.html#aa143cc642be6c7f041c3fb104822845a',1,'ActRoot::Cluster::AddVoxel(const ActRoot::Voxel &amp;voxel)'],['../classActRoot_1_1Cluster.html#a4fa8a01bb016011bb89aac9134b6b3a7',1,'ActRoot::Cluster::AddVoxel(ActRoot::Voxel &amp;&amp;voxel)']]],
   ['addz_24',['AddZ',['../classActRoot_1_1Voxel.html#a4068b0f625c4a71ff760fee33ac524b3',1,'ActRoot::Voxel']]],
@@ -36,7 +36,7 @@ var searchData=
   ['applystragglinginmaterialtorleft_33',['ApplyStragglingInMaterialToRLeft',['../classActSim_1_1Runner.html#a3792693ce2f1e39e8ec5d8c2d7c115f3',1,'ActSim::Runner']]],
   ['applythreshold_34',['applythreshold',['../classActRoot_1_1CalibrationManager.html#ab442c4be39fc40c11d8b50123e738c67',1,'ActRoot::CalibrationManager::ApplyThreshold()'],['../classActPhysics_1_1SilLayer.html#a1cccf49d7ea66bd0e5e51c46de8c6fe4',1,'ActPhysics::SilLayer::ApplyThreshold()']]],
   ['assignrangetoregion_35',['AssignRangeToRegion',['../classActAlgorithm_1_1MultiRegion.html#af072e55d27a5045cde5919a3ccd7ee26',1,'ActAlgorithm::MultiRegion']]],
-  ['assignvoxeltoregion_36',['AssignVoxelToRegion',['../classActAlgorithm_1_1MultiRegion.html#a6bc2330f89477bf2d1e96e46fe5fdade',1,'ActAlgorithm::MultiRegion']]],
+  ['assignvoxeltoregion_36',['assignvoxeltoregion',['../classActAlgorithm_1_1Actions_1_1MultiRegion.html#aa24f2ab2c7af79664263d5a89fe3498a',1,'ActAlgorithm::Actions::MultiRegion::AssignVoxelToRegion()'],['../classActAlgorithm_1_1MultiRegion.html#a6bc2330f89477bf2d1e96e46fe5fdade',1,'ActAlgorithm::MultiRegion::AssignVoxelToRegion()']]],
   ['attachbintocluster_37',['AttachBinToCluster',['../classActRoot_1_1HistogramPainter.html#a4f652b3ee8ab32509260438c14d8cdba',1,'ActRoot::HistogramPainter']]],
   ['autoisinbeam_38',['AutoIsInBeam',['../classActAlgorithm_1_1MultiStep.html#abb6e9e5c809dca345ed3ffbb39eb28ec',1,'ActAlgorithm::MultiStep']]]
 ];
