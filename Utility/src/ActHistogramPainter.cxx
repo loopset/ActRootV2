@@ -438,6 +438,8 @@ void ActRoot::HistogramPainter::InitRegionGraphs()
 void ActRoot::HistogramPainter::InitSiliconMatrices()
 {
     auto specs {fDetMan->GetDetectorAs<MergerDetector>()->GetSilSpecs()};
+    if(!specs)
+        return;
     for(const auto& [name, layer] : specs->GetLayers())
     {
         fSilMatrices[name] = std::shared_ptr<ActPhysics::SilMatrix>(layer.GetSilMatrix()->Clone());
