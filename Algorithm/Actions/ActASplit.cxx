@@ -26,6 +26,9 @@ void ActAlgorithm::Actions::Split::ReadConfiguration(std::shared_ptr<ActRoot::In
 
 void ActAlgorithm::Actions::Split::Run()
 {
+    if(!fIsEnabled)
+        return;
+
     auto& fClusters {fTPCData->fClusters};
     for(int i = 0; i < 2; i++) // Search a maximum of 2 times for the best clusters
     {
