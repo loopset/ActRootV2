@@ -4,9 +4,9 @@
 #include "ActInputParser.h"
 #include "ActTPCData.h"
 
+#include <functional>
 #include <memory>
 #include <set>
-#include <functional>
 
 void ActAlgorithm::Actions::MultiRegion::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> conf)
 {
@@ -43,16 +43,23 @@ void ActAlgorithm::Actions::MultiRegion::Run()
             continue;
         }
         // If not, break the cluster into regions
-        BreakCluster(*it, brokenVoxels, beamRegion);
         auto isOk {BreakCluster(*it, brokenVoxels, beamRegion)};
+        // If size of remaining voxels is lower than Cluster algorithm threshold, mark to delete
         if(!isOk)
         {
             toDelete.insert(std::distance(fTPCData->fClusters.begin(), it));
         }
     }
     // Delete clusters
-
+    for(const auto& idx : toDelete)
+    {
+        fTPCData->fClusters.erase(fTPCData->fClusters.begin() + idx);
+        if(fIsVerbose)
+            std::cout << "-> Deleting cluster " << (fTPCData->fClusters.begin() + idx)->GetClusterID() << '\n';
+    }
     // Process the leftover voxels
+    ProcessNotBeam(brokenVoxels, beamRegion);
+    ResetID();
 }
 
 void ActAlgorithm::Actions::MultiRegion::Print() const
@@ -101,5 +108,64 @@ bool ActAlgorithm::Actions::MultiRegion::BreakCluster(ActRoot::Cluster& cluster,
     cluster.SetRegionType(ActRoot::RegionType::EBeam);
     // Check if size fell below threshold
     return {cluster.GetSizeOfVoxels() >= fMinVoxelsAfterBreak};
+}
 
+ActRoot::RegionType ActAlgorithm::Actions::MultiRegion::AssignVoxelToRegion(const ActRoot::Voxel& voxel,
+                                                                           const ActRoot::Region& region)
+{
+    // Assign the voxel to the region
+    if(region.IsInside(voxel.GetPosition()))
+        return ActRoot::RegionType::EBeam;
+    else
+        return ActRoot::RegionType::ENone;
+}
+
+void ActAlgorithm::Actions::MultiRegion::ProcessNotBeam(BrokenVoxels& brokenVoxels, const ActRoot::Region& region)
+{
+    std::vector<ActRoot::Voxel> beamVoxels;
+    std::vector<ActRoot::Voxel> otherVoxels;
+
+    for(const auto& cluster : brokenVoxels)
+    {
+        for(const auto& voxel : cluster)
+        {
+            auto r = AssignVoxelToRegion(voxel, region);
+            if(r == ActRoot::RegionType::EBeam)
+                beamVoxels.push_back(voxel);
+            else
+                otherVoxels.push_back(voxel);
+        }
+    }
+
+    // Apply continuity algorithm to broken voxels
+    auto processRegion = [&](const std::vector<ActRoot::Voxel>& voxels, ActRoot::RegionType regionType)
+    {
+        auto [newClusters, noise] = fAlgo->Run(voxels);
+        for(int idx = 0; idx < static_cast<int>(newClusters.size()); ++idx)
+        {
+            newClusters[idx].SetClusterID(fTPCData->fClusters.size() + idx);
+            newClusters[idx].SetRegionType(regionType);
+
+            if(fIsVerbose)
+            {
+                std::cout << "-> Adding new cluster " << idx << '\n';
+                fTPCData->fClusters.back().Print();
+            }
+        }
+
+        fTPCData->fClusters.insert(fTPCData->fClusters.end(),
+                                std::make_move_iterator(newClusters.begin()),
+                                std::make_move_iterator(newClusters.end()));
+    };
+
+    // 3 -> Procesa cada conjunto
+    processRegion(beamVoxels, ActRoot::RegionType::EBeam);
+    processRegion(otherVoxels, ActRoot::RegionType::ENone);
+}
+
+void ActAlgorithm::Actions::MultiRegion::ResetID()
+{
+    fTPCData->fClusters.back().Print();
+    for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
+        (fTPCData->fClusters)[i].SetClusterID(i);
 }

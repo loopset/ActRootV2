@@ -1,6 +1,7 @@
 #ifndef ActAMultiregion_h
 #define ActAMultiregion_h
 
+#include "ActClIMB.h"
 #include "ActInputParser.h"
 #include "ActVAction.h"
 
@@ -21,6 +22,8 @@ private:
     int fxmax {};                //!< Beam region x max
     int fMinVoxelsAfterBreak {}; //!< Minimum number of voxels after breaking into regions
 
+    std::shared_ptr<ActAlgorithm::ClIMB> fClimb {}; // ClIMB continuity algorithm object
+
 public:
     MultiRegion() : VAction("MultiRegion") {};
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
@@ -31,6 +34,9 @@ private:
     void BreakIntoRegions();
     bool CheckClusterIsInRegion(ActRoot::Cluster& cluster, const ActRoot::Region& region);
     bool BreakCluster(ActRoot::Cluster& cluster, BrokenVoxels& brokenVoxels, ActRoot::Region& region);
+    ActRoot::RegionType AssignVoxelToRegion(const ActRoot::Voxel& voxel, const ActRoot::Region& region);
+    void ProcessNotBeam(BrokenVoxels& brokenVoxels, const ActRoot::Region& region);
+    void ResetID();
 };
 } // namespace Actions
 } // namespace ActAlgorithm
