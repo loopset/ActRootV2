@@ -16,6 +16,8 @@ class MultiRegion : public VAction
 public:
     using BrokenVoxels = std::vector<std::vector<ActRoot::Voxel>>; //!< Voxels broken into regions
 private:
+    std::unordered_map<ActRoot::RegionType, ActRoot::Region> fRegions;
+
     int fymin {};                //!< Beam region y min
     int fymax {};                //!< Beam region y max
     int fxmin {};                //!< Beam region x min

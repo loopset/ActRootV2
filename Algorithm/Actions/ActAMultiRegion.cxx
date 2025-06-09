@@ -165,7 +165,6 @@ void ActAlgorithm::Actions::MultiRegion::ProcessNotBeam(BrokenVoxels& brokenVoxe
 
 void ActAlgorithm::Actions::MultiRegion::ResetID()
 {
-    fTPCData->fClusters.back().Print();
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
         (fTPCData->fClusters)[i].SetClusterID(i);
 }
