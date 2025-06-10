@@ -28,7 +28,7 @@ Please, replace `N` with your number of cores (which you might find by executing
 4. Source the `thisActRoot.sh` file located in the ActRoot main folder.
    For this, just open your local `.bashrc` file and append at the end the line
 ```bash
-source /home/youruser/ActRootV2/thisActRoot.sh
+source /home/youruser/ActRoot/thisActRoot.sh
 ```
 Now your system knows where the installation is located and you can use all the libraries inside a ROOT macro! Also, do not forget to include the headers in your 
 macros when they are needed. They are all under `install/include`, so, for instance, you would add `#include "ActParticle.h"` for working with an `ActPhysics::Particle` object.
