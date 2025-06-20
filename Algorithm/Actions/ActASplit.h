@@ -23,9 +23,9 @@ private:
     double fMinChi2 {};        //!< Minimum value of cluster's chi2 to apply RANSAC to it
     int fSavedIterations {};   //!< Iterations with higher amount of inliers used to get best cluster (least chi2)
 
-    std::shared_ptr<ActAlgorithm::ClIMB> fClimb {}; // ClIMB continuity algorithm object
+    std::shared_ptr<ActAlgorithm::ClIMB> fContinuity {}; // ClIMB continuity algorithm object
 public:
-    Split() : VAction("Split") { fClimb = std::make_shared<ActAlgorithm::ClIMB>(fTPCPars, 10); }
+    Split() : VAction("Split") {}
 
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
     void Run() override;

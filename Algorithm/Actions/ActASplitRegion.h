@@ -1,5 +1,5 @@
-#ifndef ActAMultiRegion_h
-#define ActAMultiRegion_h
+#ifndef ActASplitRegion_h
+#define ActASplitRegion_h
 
 #include "ActClIMB.h"
 #include "ActInputParser.h"
@@ -11,7 +11,7 @@ namespace ActAlgorithm
 {
 namespace Actions
 {
-class MultiRegion : public VAction
+class SplitRegion : public VAction
 {
 public:
     using BrokenVoxels = std::vector<std::vector<ActRoot::Voxel>>; //!< Voxels broken into regions
@@ -20,7 +20,7 @@ private:
     int fMinVoxelsAfterBreak {}; //!< Minimum number of voxels after breaking into regions
 
 public:
-    MultiRegion() : VAction("MultiRegion") {};
+    SplitRegion() : VAction("SplitRegion") {};
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
     void Run() override;
     void Print() const override;

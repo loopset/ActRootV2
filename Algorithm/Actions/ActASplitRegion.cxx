@@ -1,4 +1,4 @@
-#include "ActAMultiRegion.h"
+#include "ActASplitRegion.h"
 
 #include "ActColors.h"
 #include "ActInputParser.h"
@@ -8,7 +8,7 @@
 #include <memory>
 #include <set>
 
-void ActAlgorithm::Actions::MultiRegion::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> conf)
+void ActAlgorithm::Actions::SplitRegion::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> conf)
 {
     fIsEnabled = conf->GetBool("IsEnabled");
     if(!fIsEnabled)
@@ -22,7 +22,7 @@ void ActAlgorithm::Actions::MultiRegion::ReadConfiguration(std::shared_ptr<ActRo
     CheckRegionsReadout();
 }
 
-void ActAlgorithm::Actions::MultiRegion::Run()
+void ActAlgorithm::Actions::SplitRegion::Run()
 {
     if(!fIsEnabled)
         return;
@@ -59,9 +59,9 @@ void ActAlgorithm::Actions::MultiRegion::Run()
     ResetID();
 }
 
-void ActAlgorithm::Actions::MultiRegion::Print() const
+void ActAlgorithm::Actions::SplitRegion::Print() const
 {
-    std::cout << BOLDCYAN << "····· " << GetActionID() << " ·····" << RESET << '\n';
+    std::cout << BOLDCYAN << "····· " << GetActionID() << " ·····" << '\n';
     if(!fIsEnabled)
     {
         std::cout << "······························" << RESET << '\n';
@@ -71,7 +71,7 @@ void ActAlgorithm::Actions::MultiRegion::Print() const
     std::cout << "······························" << RESET << '\n';
 }
 
-void ActAlgorithm::Actions::MultiRegion::AddRegion(unsigned int r, const std::vector<double>& vec)
+void ActAlgorithm::Actions::SplitRegion::AddRegion(unsigned int r, const std::vector<double>& vec)
 {
     // Assert right dimension
     if(vec.size() != 4)
@@ -89,7 +89,7 @@ void ActAlgorithm::Actions::MultiRegion::AddRegion(unsigned int r, const std::ve
     fRegions[type] = {vec[0], vec[1], vec[2], vec[3]};
 }
 
-void ActAlgorithm::Actions::MultiRegion::CheckRegionsReadout()
+void ActAlgorithm::Actions::SplitRegion::CheckRegionsReadout()
 {
     bool beam {};
     for(const auto& [name, r] : fRegions)
@@ -100,7 +100,7 @@ void ActAlgorithm::Actions::MultiRegion::CheckRegionsReadout()
                                  "it with the r0 command");
 }
 
-ActRoot::RegionType ActAlgorithm::Actions::MultiRegion::AssignClusterToRegion(ActRoot::Cluster& cluster)
+ActRoot::RegionType ActAlgorithm::Actions::SplitRegion::AssignClusterToRegion(ActRoot::Cluster& cluster)
 {
     for(const auto& [name, r] : fRegions)
     {
@@ -114,7 +114,7 @@ ActRoot::RegionType ActAlgorithm::Actions::MultiRegion::AssignClusterToRegion(Ac
     return ActRoot::RegionType::ENone;
 }
 
-bool ActAlgorithm::Actions::MultiRegion::BreakCluster(ActRoot::Cluster& cluster, BrokenVoxels& brokenVoxels)
+bool ActAlgorithm::Actions::SplitRegion::BreakCluster(ActRoot::Cluster& cluster, BrokenVoxels& brokenVoxels)
 {
     // Break the cluster into regions
     if(auto r {fRegions.find(ActRoot::RegionType::EBeam)}; r != fRegions.end())
@@ -136,7 +136,7 @@ bool ActAlgorithm::Actions::MultiRegion::BreakCluster(ActRoot::Cluster& cluster,
     return {cluster.GetSizeOfVoxels() >= fMinVoxelsAfterBreak};
 }
 
-ActRoot::RegionType ActAlgorithm::Actions::MultiRegion::AssignVoxelToRegion(const ActRoot::Voxel& voxel)
+ActRoot::RegionType ActAlgorithm::Actions::SplitRegion::AssignVoxelToRegion(const ActRoot::Voxel& voxel)
 {
     for(const auto& [name, r] : fRegions)
     {
@@ -148,7 +148,7 @@ ActRoot::RegionType ActAlgorithm::Actions::MultiRegion::AssignVoxelToRegion(cons
     return ActRoot::RegionType::ENone;
 }
 
-void ActAlgorithm::Actions::MultiRegion::ProcessNotBeam(BrokenVoxels& brokenVoxels)
+void ActAlgorithm::Actions::SplitRegion::ProcessNotBeam(BrokenVoxels& brokenVoxels)
 {
     // Auxiliar structure
     std::vector<std::unordered_map<ActRoot::RegionType, std::vector<ActRoot::Voxel>>> aux;
@@ -186,7 +186,7 @@ void ActAlgorithm::Actions::MultiRegion::ProcessNotBeam(BrokenVoxels& brokenVoxe
     }
 }
 
-void ActAlgorithm::Actions::MultiRegion::ResetID()
+void ActAlgorithm::Actions::SplitRegion::ResetID()
 {
     for(int i = 0, size = fTPCData->fClusters.size(); i < size; i++)
         (fTPCData->fClusters)[i].SetClusterID(i);

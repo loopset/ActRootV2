@@ -29,6 +29,11 @@ void ActAlgorithm::Actions::Split::Run()
     if(!fIsEnabled)
         return;
 
+    // Initialize the continuity algorithm if not already done. fTPCPars exist after ReadConfiguration is called, so has
+    // to be in Run
+    if(!fContinuity)
+        fContinuity = std::make_shared<ActAlgorithm::ClIMB>(fTPCPars, 10);
+
     auto& fClusters {fTPCData->fClusters};
     for(int i = 0; i < 2; i++) // Search a maximum of 2 times for the best clusters
     {
@@ -134,7 +139,7 @@ void ActAlgorithm::Actions::Split::ApplyContinuity(std::vector<ActRoot::Cluster>
     // Add the first inlier (best chi2)
     toAdd.push_back(clusterPairs[0].first);
     // Run Climb on the outliers of the first pair and add them
-    auto clusterOutliersAfter = fClimb->Run(clusterPairs[0].second.GetRefToVoxels());
+    auto clusterOutliersAfter = fContinuity->Run(clusterPairs[0].second.GetRefToVoxels());
     for(const auto& clusterAfter : clusterOutliersAfter.first)
     {
         toAdd.push_back(clusterAfter);
