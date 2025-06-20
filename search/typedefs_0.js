@@ -1,5 +1,5 @@
 var searchData=
 [
   ['blockptr_0',['BlockPtr',['../namespaceActRoot.html#a68d199cc2990311709795d0ded060fc2',1,'ActRoot']]],
-  ['brokenvoxels_1',['brokenvoxels',['../classActAlgorithm_1_1Actions_1_1MultiRegion.html#a209276374e6302816e8d563709230db8',1,'ActAlgorithm::Actions::MultiRegion::BrokenVoxels'],['../classActAlgorithm_1_1MultiRegion.html#abf80b7d52c26cf55a11ef6544d5c0d19',1,'ActAlgorithm::MultiRegion::BrokenVoxels']]]
+  ['brokenvoxels_1',['brokenvoxels',['../classActAlgorithm_1_1Actions_1_1SplitRegion.html#a73ee69880e558096e4e4ab3c9e1fbc8b',1,'ActAlgorithm::Actions::SplitRegion::BrokenVoxels'],['../classActAlgorithm_1_1MultiRegion.html#abf80b7d52c26cf55a11ef6544d5c0d19',1,'ActAlgorithm::MultiRegion::BrokenVoxels']]]
 ];

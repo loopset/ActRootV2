@@ -11,6 +11,6 @@ var searchData=
   ['mtexecutor_8',['MTExecutor',['../classActRoot_1_1MTExecutor.html',1,'ActRoot']]],
   ['multi_5ffuture_9',['multi_future',['../classBS_1_1multi__future.html',1,'BS']]],
   ['multiaction_10',['MultiAction',['../classActAlgorithm_1_1MultiAction.html',1,'ActAlgorithm']]],
-  ['multiregion_11',['multiregion',['../classActAlgorithm_1_1Actions_1_1MultiRegion.html',1,'ActAlgorithm::Actions::MultiRegion'],['../classActAlgorithm_1_1MultiRegion.html',1,'ActAlgorithm::MultiRegion']]],
+  ['multiregion_11',['MultiRegion',['../classActAlgorithm_1_1MultiRegion.html',1,'ActAlgorithm']]],
   ['multistep_12',['MultiStep',['../classActAlgorithm_1_1MultiStep.html',1,'ActAlgorithm']]]
 ];
