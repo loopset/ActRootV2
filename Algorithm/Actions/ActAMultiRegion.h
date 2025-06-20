@@ -19,8 +19,6 @@ private:
     std::unordered_map<ActRoot::RegionType, ActRoot::Region> fRegions;
     int fMinVoxelsAfterBreak {}; //!< Minimum number of voxels after breaking into regions
 
-    std::shared_ptr<ActAlgorithm::ClIMB> fClimb {}; // ClIMB continuity algorithm object
-
 public:
     MultiRegion() : VAction("MultiRegion") {};
     void ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> block) override;
