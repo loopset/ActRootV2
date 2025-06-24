@@ -249,8 +249,8 @@ void ActPhysics::SRIM::SetStragglingLISE(const std::string& key, const std::stri
 
         if(tokens.size() >= 12)
         {
-            vE.push_back(std::stod(tokens[0]));         // Energy in MeV/u but it is not being used. 1st position
-            vR.push_back(std::stod(tokens[3]) / 1000);   // Range in microns. 4th position
+            vE.push_back(std::stod(tokens[0]));        // Energy in MeV/u but it is not being used. 1st position
+            vR.push_back(std::stod(tokens[3]) / 1000); // Range in microns. 4th position
             vLongStrag.push_back(std::stod(tokens[11]) / 1000); // Range straggling in microns. 12th position
         }
     }
@@ -329,8 +329,8 @@ double ActPhysics::SRIM::Slow(const std::string& material, double Tini, double t
     auto ret {EvalInverse(material, RAfter)};
     if(ret > Tini)
         return Tini;
-        // throw std::runtime_error(
-        //     "SRIM::Slow(): Tafter > Tini due to TSpline precision. Consider using a larger step in thickness");
+    // throw std::runtime_error(
+    //     "SRIM::Slow(): Tafter > Tini due to TSpline precision. Consider using a larger step in thickness");
     return ret;
 }
 
@@ -356,7 +356,10 @@ double ActPhysics::SRIM::SlowWithStraggling(const std::string& material, double 
     RAfter = RIni - dist;
     if(RAfter <= 0)
         return 0;
-    return EvalEnergy(material, RAfter);
+    auto ret {EvalEnergy(material, RAfter)};
+    if(ret > Tini)
+        return Tini;
+    return ret;
 }
 
 double
