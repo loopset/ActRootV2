@@ -1,13 +1,12 @@
 #include "ActASplit.h"
 
-#include "ActClIMB.h"
 #include "ActColors.h"
+#include "ActContinuity.h"
 #include "ActTPCData.h"
 
 #include "TRandom3.h"
 
 #include <memory>
-#include <numeric>
 
 void ActAlgorithm::Actions::Split::ReadConfiguration(std::shared_ptr<ActRoot::InputBlock> conf)
 {
@@ -32,7 +31,7 @@ void ActAlgorithm::Actions::Split::Run()
     // Initialize the continuity algorithm if not already done. fTPCPars exist after ReadConfiguration is called, so has
     // to be in Run
     if(!fContinuity)
-        fContinuity = std::make_shared<ActAlgorithm::ClIMB>(fTPCPars, 10);
+        fContinuity = std::make_shared<ActAlgorithm::Continuity>(fTPCPars, 10);
 
     auto& fClusters {fTPCData->fClusters};
     for(int i = 0; i < 2; i++) // Search a maximum of 2 times for the best clusters

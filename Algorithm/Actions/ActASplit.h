@@ -1,8 +1,8 @@
 #ifndef ActASplit_h
 #define ActASplit_h
 
-#include "ActClIMB.h"
 #include "ActCluster.h"
+#include "ActContinuity.h"
 #include "ActVAction.h"
 
 
@@ -23,7 +23,7 @@ private:
     double fMinChi2 {};        //!< Minimum value of cluster's chi2 to apply RANSAC to it
     int fSavedIterations {};   //!< Iterations with higher amount of inliers used to get best cluster (least chi2)
 
-    std::shared_ptr<ActAlgorithm::ClIMB> fContinuity {}; // ClIMB continuity algorithm object
+    std::shared_ptr<ActAlgorithm::Continuity> fContinuity {}; // ClIMB continuity algorithm object
 public:
     Split() : VAction("Split") {}
 

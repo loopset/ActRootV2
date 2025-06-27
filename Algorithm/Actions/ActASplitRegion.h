@@ -1,7 +1,6 @@
 #ifndef ActASplitRegion_h
 #define ActASplitRegion_h
 
-#include "ActClIMB.h"
 #include "ActInputParser.h"
 #include "ActVAction.h"
 

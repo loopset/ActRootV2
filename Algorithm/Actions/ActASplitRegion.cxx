@@ -121,11 +121,11 @@ bool ActAlgorithm::Actions::SplitRegion::BreakCluster(ActRoot::Cluster& cluster,
     {
         auto& refVoxels {cluster.GetRefToVoxels()};
         auto part {std::partition(refVoxels.begin(), refVoxels.end(),
-                                [&](const ActRoot::Voxel& v) { return r->second.IsInside(v.GetPosition()); })};
+                                  [&](const ActRoot::Voxel& v) { return r->second.IsInside(v.GetPosition()); })};
         // New voxels
         brokenVoxels.push_back({});
         brokenVoxels.back().insert(brokenVoxels.back().end(), std::make_move_iterator(part),
-                                std::make_move_iterator(refVoxels.end()));
+                                   std::make_move_iterator(refVoxels.end()));
         refVoxels.erase(part, refVoxels.end());
         // Refit
         cluster.ReFit();
@@ -133,7 +133,7 @@ bool ActAlgorithm::Actions::SplitRegion::BreakCluster(ActRoot::Cluster& cluster,
         cluster.SetRegionType(r->first);
     }
     // Check if size fell below threshold
-    return {cluster.GetSizeOfVoxels() >= fMinVoxelsAfterBreak};
+    return cluster.GetSizeOfVoxels() >= fMinVoxelsAfterBreak;
 }
 
 ActRoot::RegionType ActAlgorithm::Actions::SplitRegion::AssignVoxelToRegion(const ActRoot::Voxel& voxel)
@@ -181,7 +181,7 @@ void ActAlgorithm::Actions::SplitRegion::ProcessNotBeam(BrokenVoxels& brokenVoxe
                 }
             }
             fTPCData->fClusters.insert(fTPCData->fClusters.end(), std::make_move_iterator(newClusters.begin()),
-                                    std::make_move_iterator(newClusters.end()));
+                                       std::make_move_iterator(newClusters.end()));
         }
     }
 }

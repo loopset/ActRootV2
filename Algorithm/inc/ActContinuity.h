@@ -18,7 +18,7 @@ class TPCParameters;
 namespace ActAlgorithm
 {
 //! Implementation of a continuity-based cluster algorithm by J. Lois-Fuentes
-class ClIMB : public VCluster
+class Continuity : public VCluster
 {
 private:
     // Timer
@@ -28,9 +28,9 @@ private:
     std::vector<int> fIndexes;
     ActRoot::TPCParameters* fTPC {}; //!< Pointer to TPC parameters needed to define algorithm parameters
 public:
-    ClIMB() = default;
-    ClIMB(ActRoot::TPCParameters* tpc, int minPoints);
-    ~ClIMB() override = default;
+    Continuity() = default;
+    Continuity(ActRoot::TPCParameters* tpc, int minPoints);
+    ~Continuity() override = default;
 
     // Read config file
     void ReadConfiguration() override;

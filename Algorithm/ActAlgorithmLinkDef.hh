@@ -16,7 +16,7 @@
 // Cluster algorithms
 #pragma link C++ class ActAlgorithm::VCluster;
 #pragma link C++ class ActAlgorithm::RANSAC;
-#pragma link C++ class ActAlgorithm::ClIMB;
+#pragma link C++ class ActAlgorithm::Continuity;
 
 // Utility classes
 #pragma link C++ class ActAlgorithm::Interval < int> + ;

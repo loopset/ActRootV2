@@ -1,8 +1,8 @@
 #include "ActTPCDetector.h"
 
-#include "ActClIMB.h"
 #include "ActCluster.h"
 #include "ActColors.h"
+#include "ActContinuity.h"
 #include "ActInputParser.h"
 #include "ActMultiAction.h"
 #include "ActMultiRegion.h"
@@ -84,9 +84,9 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
         fCluster = std::make_shared<ActAlgorithm::RANSAC>();
         fCluster->ReadConfiguration();
     }
-    else if(m == "climb")
+    else if(m == "continuity" || m == "cont")
     {
-        auto c {std::make_shared<ActAlgorithm::ClIMB>()};
+        auto c {std::make_shared<ActAlgorithm::Continuity>()};
         c->SetTPCParameters(&fPars);
         c->ReadConfiguration();
         fCluster = c;
@@ -94,7 +94,7 @@ void ActRoot::TPCDetector::InitClusterMethod(const std::string& method)
     else if(m == "none")
         return;
     else
-        throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac, Climb and None");
+        throw std::runtime_error("TPCDetector::InitClusterMethod: no listed method from Ransac, Continuity and None");
 }
 
 void ActRoot::TPCDetector::InitFilterMethod(const std::string& method)

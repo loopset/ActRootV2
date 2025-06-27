@@ -1,4 +1,4 @@
-#include "ActClIMB.h"
+#include "ActContinuity.h"
 
 #include "ActCluster.h"
 #include "ActColors.h"
@@ -16,43 +16,43 @@
 #include <utility>
 #include <vector>
 
-ActAlgorithm::ClIMB::ClIMB(ActRoot::TPCParameters* tpc, int minPoints) : VCluster(minPoints), fTPC(tpc)
+ActAlgorithm::Continuity::Continuity(ActRoot::TPCParameters* tpc, int minPoints) : VCluster(minPoints), fTPC(tpc)
 {
     InitMatrix();
 }
 
-void ActAlgorithm::ClIMB::Print() const
+void ActAlgorithm::Continuity::Print() const
 {
-    std::cout << BOLDMAGENTA << ".... ClIMB configuration ...." << '\n';
+    std::cout << BOLDMAGENTA << ".... Continuity configuration ...." << '\n';
     std::cout << "-> MinPoints : " << fMinPoints << '\n';
     std::cout << "............................." << RESET << '\n';
 }
 
-void ActAlgorithm::ClIMB::PrintReports() const
+void ActAlgorithm::Continuity::PrintReports() const
 {
-    std::cout << BOLDYELLOW << ".... ClIMB time report ...." << '\n';
+    std::cout << BOLDYELLOW << ".... Continuity time report ...." << '\n';
     fClock.Print();
     std::cout << ".............................." << RESET << '\n';
 }
 
-void ActAlgorithm::ClIMB::ReadConfiguration()
+void ActAlgorithm::Continuity::ReadConfiguration()
 {
     std::string conf {ActRoot::Options::GetInstance()->GetConfigDir()};
-    conf += "climb.conf";
+    conf += "continuity.conf";
     // Parse!
     ActRoot::InputParser parser {conf};
-    auto cb {parser.GetBlock("Climb")};
+    auto cb {parser.GetBlock("Continuity")};
     if(cb->CheckTokenExists("MinPoints"))
         fMinPoints = cb->GetInt("MinPoints");
 }
 
-void ActAlgorithm::ClIMB::InitMatrix()
+void ActAlgorithm::Continuity::InitMatrix()
 {
     fMatrix = std::vector<std::vector<std::vector<int>>>(
         fTPC->GetNPADSX(), std::vector<std::vector<int>>(fTPC->GetNPADSY(), std::vector<int>(fTPC->GetNPADSZ(), -1)));
 }
 
-void ActAlgorithm::ClIMB::FillMatrix()
+void ActAlgorithm::Continuity::FillMatrix()
 {
     for(int i = 0, size = fVoxels.size(); i < size; i++)
     {
@@ -61,7 +61,7 @@ void ActAlgorithm::ClIMB::FillMatrix()
     }
 }
 
-std::tuple<int, int, int> ActAlgorithm::ClIMB::GetCoordinates(int index)
+std::tuple<int, int, int> ActAlgorithm::Continuity::GetCoordinates(int index)
 {
     const auto& pos {fVoxels[index].GetPosition()};
     auto x {(int)pos.X()};
@@ -70,18 +70,18 @@ std::tuple<int, int, int> ActAlgorithm::ClIMB::GetCoordinates(int index)
     return {x, y, z};
 }
 
-void ActAlgorithm::ClIMB::MaskVoxelsInMatrix(int index)
+void ActAlgorithm::Continuity::MaskVoxelsInMatrix(int index)
 {
     auto [x, y, z] {GetCoordinates(index)};
     fMatrix[x][y][z] = -1;
 }
 
-void ActAlgorithm::ClIMB::MaskVoxelsInIndex(int index)
+void ActAlgorithm::Continuity::MaskVoxelsInIndex(int index)
 {
     fIndexes[index] = -1;
 }
 template <typename T>
-bool ActAlgorithm::ClIMB::IsInCage(T x, T y, T z)
+bool ActAlgorithm::Continuity::IsInCage(T x, T y, T z)
 {
     bool condX {0 <= x && x < fTPC->GetNPADSX()};
     bool condY {0 <= y && y < fTPC->GetNPADSY()};
@@ -89,7 +89,7 @@ bool ActAlgorithm::ClIMB::IsInCage(T x, T y, T z)
     return condX && condY && condZ;
 }
 
-std::vector<int> ActAlgorithm::ClIMB::ScanNeighborhood(const std::vector<int>& gen0)
+std::vector<int> ActAlgorithm::Continuity::ScanNeighborhood(const std::vector<int>& gen0)
 {
     std::vector<int> gen1;
     for(const auto& ivoxel : gen0)
@@ -122,7 +122,7 @@ std::vector<int> ActAlgorithm::ClIMB::ScanNeighborhood(const std::vector<int>& g
     return std::move(gen1);
 }
 
-void ActAlgorithm::ClIMB::InitIndexes()
+void ActAlgorithm::Continuity::InitIndexes()
 {
     // Clear
     fIndexes.clear();
@@ -134,7 +134,8 @@ void ActAlgorithm::ClIMB::InitIndexes()
     std::iota(fIndexes.begin(), fIndexes.end(), 0);
 }
 
-ActAlgorithm::VCluster::ClusterRet ActAlgorithm::ClIMB::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
+ActAlgorithm::VCluster::ClusterRet
+ActAlgorithm::Continuity::Run(const std::vector<ActRoot::Voxel>& voxels, bool addNoise)
 {
     // Inner timer
     fClock.Start(false);
