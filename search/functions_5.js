@@ -6,7 +6,7 @@ var searchData=
   ['fillclusterhistos_3',['FillClusterHistos',['../classActRoot_1_1HistogramPainter.html#a9749ee7e9f28680923794e29d24236ac',1,'ActRoot::HistogramPainter']]],
   ['fillgraph_4',['FillGraph',['../classActRoot_1_1Region.html#a8d56d7a5b43a53a82652fafb687458ee',1,'ActRoot::Region']]],
   ['fillhisto_5',['FillHisto',['../classActPhysics_1_1PIDCorrector.html#ab2af62597f1912d0dd0dedceb6645d69',1,'ActPhysics::PIDCorrector']]],
-  ['fillmatrix_6',['FillMatrix',['../classActAlgorithm_1_1ClIMB.html#aca01cae5582598632ccef724585237c1',1,'ActAlgorithm::ClIMB']]],
+  ['fillmatrix_6',['FillMatrix',['../classActAlgorithm_1_1Continuity.html#a458110a14ddb0bc9833dec90c8dd0213',1,'ActAlgorithm::Continuity']]],
   ['fillmevent_7',['FillMEvent',['../classActSim_1_1TrackGenerator.html#ac9083eb0a1d6a7b3d4b06761c3c22677',1,'ActSim::TrackGenerator']]],
   ['fillsets_8',['fillsets',['../classActRoot_1_1Cluster.html#ad6fb5e0249fb89f30b41ad749b0c306c',1,'ActRoot::Cluster::FillSets(const ActRoot::Voxel &amp;voxel)'],['../classActRoot_1_1Cluster.html#adf7e6b588a868020795edd987e6a2bc9',1,'ActRoot::Cluster::FillSets()']]],
   ['fillsilmatrices_9',['FillSilMatrices',['../classActRoot_1_1HistogramPainter.html#a06b98d44522958ef2f779329a5a92b57',1,'ActRoot::HistogramPainter']]],

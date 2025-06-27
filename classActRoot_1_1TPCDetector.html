@@ -900,9 +900,9 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="lineno">   84</span>        <a class="code hl_variable" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a> = std::make_shared&lt;ActAlgorithm::RANSAC&gt;();</div>
 <div class="line"><span class="lineno">   85</span>        <a class="code hl_variable" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a>-&gt;ReadConfiguration();</div>
 <div class="line"><span class="lineno">   86</span>    }</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m == <span class="stringliteral">&quot;climb&quot;</span>)</div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m == <span class="stringliteral">&quot;continuity&quot;</span> || m == <span class="stringliteral">&quot;cont&quot;</span>)</div>
 <div class="line"><span class="lineno">   88</span>    {</div>
-<div class="line"><span class="lineno">   89</span>        <span class="keyword">auto</span> c {std::make_shared&lt;ActAlgorithm::ClIMB&gt;()};</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keyword">auto</span> c {std::make_shared&lt;ActAlgorithm::Continuity&gt;()};</div>
 <div class="line"><span class="lineno">   90</span>        c-&gt;SetTPCParameters(&amp;<a class="code hl_variable" href="classActRoot_1_1TPCDetector.html#a0dfe427358f3425b6f2f54f741ff7aca">fPars</a>);</div>
 <div class="line"><span class="lineno">   91</span>        c-&gt;ReadConfiguration();</div>
 <div class="line"><span class="lineno">   92</span>        <a class="code hl_variable" href="classActRoot_1_1TPCDetector.html#a1bf3d2a1217db1d08ab9e0187ae4b120">fCluster</a> = c;</div>
@@ -910,7 +910,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="lineno">   94</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m == <span class="stringliteral">&quot;none&quot;</span>)</div>
 <div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   96</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;TPCDetector::InitClusterMethod: no listed method from Ransac, Climb and None&quot;</span>);</div>
+<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;TPCDetector::InitClusterMethod: no listed method from Ransac, Continuity and None&quot;</span>);</div>
 <div class="line"><span class="lineno">   98</span>}</div>
 </div><!-- fragment -->
 </div>

@@ -51,7 +51,7 @@ var searchData=
   ['getclusterid_48',['GetClusterID',['../classActRoot_1_1Cluster.html#a5fb3757f1f0d80464a9f53cc6096990e',1,'ActRoot::Cluster']]],
   ['getclusters_49',['GetClusters',['../classActAlgorithm_1_1MultiStep.html#ade25019514991498680fab8a79656dea',1,'ActAlgorithm::MultiStep']]],
   ['getconfigdir_50',['GetConfigDir',['../classActRoot_1_1Options.html#a73d2e11fbcc9ad0f4a912bd2c4e94026',1,'ActRoot::Options']]],
-  ['getcoordinates_51',['GetCoordinates',['../classActAlgorithm_1_1ClIMB.html#a6032895dd6658286505969c81cb0a1bd',1,'ActAlgorithm::ClIMB']]],
+  ['getcoordinates_51',['GetCoordinates',['../classActAlgorithm_1_1Continuity.html#a43fd00a4a184fbfcbdbd32569978a33c',1,'ActAlgorithm::Continuity']]],
   ['getcorrection_52',['GetCorrection',['../classActPhysics_1_1PIDCorrector.html#a361514508da43e19eef8a2a9296eba9a',1,'ActPhysics::PIDCorrector']]],
   ['getcurrentrunentry_53',['GetCurrentRunEntry',['../classActRoot_1_1InputIterator.html#a586f48f7913a0da3c053a90a89a053e4',1,'ActRoot::InputIterator']]],
   ['getcurrentstatus_54',['GetCurrentStatus',['../classActRoot_1_1InputWrapper.html#af2d1f0920413d5609bf78df6af555aca',1,'ActRoot::InputWrapper']]],
